@@ -1,5 +1,4 @@
-# TutteeFrame
-  Phần mềm Quản lí học sinh
+# TutteeFrame - Phần mềm Quản lí học sinh
 ## Mô tả
   - Người sử dụng:
     - Ban giám hiệu nhà trường (BGH)
