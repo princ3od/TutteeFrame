@@ -27,8 +27,9 @@
     - Cập nhật điểm môn cho học sinh
 ### **[Usecase Diagram](https://drive.google.com/file/d/1ABtAMIk52-Gye9QqIcycEgiHBsQpuhCQ/view?usp=sharing)**
 ## Tác giả
-  - [Leader] *Dương Bình Trọng*
-  - [Developer] *Trần Đặng Hoàng Anh*
-  - [Developer] *Phạm Đức Hoàng*
+  - [Leader] *Dương Bình Trọng - 19521056*
+  - [Developer] *Trần Đặng Hoàng Anh - 19521213*
+  - [Developer] *Phạm Đức Hoàng - 19521542*
 ## Thông tin thêm
   - **Giảng viên hướng dẫn:** thầy *Nguyễn Tuấn Toàn*
+  - Khoa Công nghệ Phần mềm - Trường Đại học Công nghệ Thông tin (ĐHQG - TPHCM)
