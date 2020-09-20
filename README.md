@@ -31,5 +31,5 @@
   - [Developer] *Trần Đặng Hoàng Anh - 19521213*
   - [Developer] *Phạm Đức Hoàng - 19521542*
 ## Thông tin thêm
-  - **Giảng viên hướng dẫn:** thầy *Nguyễn Tuấn Toàn*
+  - **Giảng viên hướng dẫn:** thầy *Nguyễn Tấn Toàn*
   - Khoa Công nghệ Phần mềm - Trường Đại học Công nghệ Thông tin (ĐHQG - TPHCM)
