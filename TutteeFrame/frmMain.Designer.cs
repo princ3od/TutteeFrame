@@ -36,7 +36,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Name = "frmMain";
-            this.Text = "Form1";
+            this.Text = "TutteeFrame";
             this.ResumeLayout(false);
 
         }
