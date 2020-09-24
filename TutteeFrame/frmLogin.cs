@@ -10,9 +10,9 @@ using MetroFramework.Forms;
 
 namespace TutteeFrame
 {
-    public partial class frmMain : MetroForm
+    public partial class frmLogin : MetroForm
     {
-        public frmMain()
+        public frmLogin()
         {
             InitializeComponent();
         }

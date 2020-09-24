@@ -1,6 +1,6 @@
 ﻿namespace TutteeFrame
 {
-    partial class frmMain
+    partial class frmLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -30,16 +30,13 @@
         {
             this.SuspendLayout();
             // 
-            // frmMain
+            // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Name = "frmMain";
-            this.Resizable = false;
-            this.ShadowType = MetroFramework.Forms.MetroForm.MetroFormShadowType.DropShadow;
-            this.Text = "TutteeFrame";
-            this.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.Name = "frmLogin";
+            this.Text = "frmLogin";
             this.ResumeLayout(false);
 
         }
@@ -47,4 +44,3 @@
         #endregion
     }
 }
-
