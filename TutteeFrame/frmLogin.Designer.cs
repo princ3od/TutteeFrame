@@ -38,8 +38,8 @@
             this.rbtUser = new MetroFramework.Controls.MetroRadioButton();
             this.linkForgetPass = new MetroFramework.Controls.MetroLink();
             this.linkRegister = new MetroFramework.Controls.MetroLink();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btSettingSever = new Material_Design_for_Winform.MaterialFlatButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -156,13 +156,6 @@
             this.linkRegister.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
             this.linkRegister.Name = "linkRegister";
             // 
-            // pictureBox1
-            // 
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
-            this.pictureBox1.BackgroundImage = global::TutteeFrame.Properties.Resources._16015343831562853;
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.TabStop = false;
-            // 
             // btSettingSever
             // 
             this.btSettingSever.BackColor = System.Drawing.Color.Transparent;
@@ -173,6 +166,13 @@
             this.btSettingSever.Icon = null;
             this.btSettingSever.Name = "btSettingSever";
             this.btSettingSever.TextAlign = System.Drawing.StringAlignment.Center;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::TutteeFrame.Properties.Resources._160153438315628531;
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.TabStop = false;
             // 
             // frmLogin
             // 

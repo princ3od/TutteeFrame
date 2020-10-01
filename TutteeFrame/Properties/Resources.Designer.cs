@@ -63,29 +63,9 @@ namespace TutteeFrame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _106113338_2690747427877571_5932638769520352223_o {
+        internal static System.Drawing.Bitmap _160153438315628531 {
             get {
-                object obj = ResourceManager.GetObject("106113338_2690747427877571_5932638769520352223_o", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap _16015343831562853 {
-            get {
-                object obj = ResourceManager.GetObject("16015343831562853", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Capture {
-            get {
-                object obj = ResourceManager.GetObject("Capture", resourceCulture);
+                object obj = ResourceManager.GetObject("160153438315628531", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -96,56 +76,6 @@ namespace TutteeFrame.Properties {
         internal static System.Drawing.Bitmap media_player_button_29_512 {
             get {
                 object obj = ResourceManager.GetObject("media_player_button_29-512", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap output_onlinepngtools {
-            get {
-                object obj = ResourceManager.GetObject("output-onlinepngtools", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap output_onlinepngtools1 {
-            get {
-                object obj = ResourceManager.GetObject("output-onlinepngtools1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Screenshot_2020_09_28_122305 {
-            get {
-                object obj = ResourceManager.GetObject("Screenshot 2020-09-28 122305", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Setting_icon {
-            get {
-                object obj = ResourceManager.GetObject("Setting-icon", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap this_icon_res_settings_setting_icon_in_android_115534090385jukm0tvfi {
-            get {
-                object obj = ResourceManager.GetObject("this-icon-res-settings-setting-icon-in-android-115534090385jukm0tvfi", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
