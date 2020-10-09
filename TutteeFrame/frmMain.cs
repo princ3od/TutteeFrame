@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MetroFramework.Forms;
-
+using TutteeFrame.Modal;
 namespace TutteeFrame
 {
     public partial class frmMain : MetroForm
@@ -15,6 +15,7 @@ namespace TutteeFrame
         public frmMain()
         {
             InitializeComponent();
+            DataAccess.Instance.Test("PRINC3-LAPTOP", 49172, "princ3od", "");
         }
     }
 }
