@@ -40,6 +40,7 @@
             this.ShadowType = MetroFramework.Forms.MetroForm.MetroFormShadowType.DropShadow;
             this.Text = "TutteeFrame";
             this.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.Shown += new System.EventHandler(this.frmMain_Shown);
             this.ResumeLayout(false);
 
         }

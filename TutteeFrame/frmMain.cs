@@ -15,7 +15,22 @@ namespace TutteeFrame
         public frmMain()
         {
             InitializeComponent();
-            DataAccess.Instance.Test("PRINC3-LAPTOP", 49172, "princ3od", "");
         }
+
+        #region Form Event
+        private void frmMain_Shown(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmChooseServer frmChooseServer = new frmChooseServer();
+            frmChooseServer.FormClosed += frmChooseServer_FormClosed;
+            frmChooseServer.Show();
+            frmChooseServer.Activate();
+        }
+
+        private void frmChooseServer_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //throw new NotImplementedException();
+        }
+        #endregion
     }
 }
