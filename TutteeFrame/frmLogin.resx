@@ -129,7 +129,7 @@
     <value>98, 259</value>
   </data>
   <data name="txtPass.Size" type="System.Drawing.Size, System.Drawing">
-    <value>299, 35</value>
+    <value>224, 31</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="txtPass.TabIndex" type="System.Int32, mscorlib">
@@ -157,7 +157,7 @@
     <value>98, 193</value>
   </data>
   <data name="txtID.Size" type="System.Drawing.Size, System.Drawing">
-    <value>299, 35</value>
+    <value>224, 31</value>
   </data>
   <data name="txtID.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -187,7 +187,7 @@
     <value>86, 458</value>
   </data>
   <data name="btLogin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>312, 52</value>
+    <value>234, 37</value>
   </data>
   <data name="btLogin.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -220,7 +220,7 @@
     <value>98, 371</value>
   </data>
   <data name="cbxRememberme.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 21</value>
+    <value>124, 15</value>
   </data>
   <data name="cbxRememberme.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -256,7 +256,7 @@
     <value>94, 328</value>
   </data>
   <data name="labelLogintype.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 20</value>
+    <value>118, 15</value>
   </data>
   <data name="labelLogintype.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -292,7 +292,7 @@
     <value>265, 330</value>
   </data>
   <data name="rbtAdmin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 17</value>
+    <value>59, 15</value>
   </data>
   <data name="rbtAdmin.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -328,7 +328,7 @@
     <value>336, 330</value>
   </data>
   <data name="rbtUser.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 17</value>
+    <value>49, 15</value>
   </data>
   <data name="rbtUser.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -355,7 +355,7 @@
     <value>98, 398</value>
   </data>
   <data name="linkForgetPass.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 24</value>
+    <value>86, 17</value>
   </data>
   <data name="linkForgetPass.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -382,7 +382,7 @@
     <value>98, 428</value>
   </data>
   <data name="linkRegister.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 24</value>
+    <value>92, 17</value>
   </data>
   <data name="linkRegister.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -1273,7 +1273,7 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 17</value>
+    <value>6, 12</value>
   </data>
   <data name="$this.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
@@ -3781,10 +3781,10 @@
 </value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 4, 5, 4</value>
+    <value>4, 3, 4, 3</value>
   </data>
   <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>27, 79, 27, 27</value>
+    <value>20, 56, 20, 19</value>
   </data>
   <data name="$this.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>

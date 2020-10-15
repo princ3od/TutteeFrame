@@ -8,6 +8,7 @@ using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Windows.Forms;
 using MetroFramework.Forms;
+using TutteeFrame.Model;
 
 namespace TutteeFrame
 {
@@ -16,7 +17,7 @@ namespace TutteeFrame
         public frmLogin()
         {
             InitializeComponent();
-            
+            DataAccess.Instance.LoadAccount();
         }
 
         private void btLogin_Click(object sender, EventArgs e)
@@ -43,6 +44,9 @@ namespace TutteeFrame
                 }
                 running = false;
             }
+            int i = 1;
+            if (Controller.Instance.Login(txtID.Text, txtPass.Text, ref i))
+                MessageBox.Show("Thành công");
         }
         private void txtID_TextChanged(object sender, EventArgs e)
         {
@@ -61,9 +65,6 @@ namespace TutteeFrame
                 txtPass.HintText = "Mật khẩu";
             }
         }
-      
-
-   
 
         private void hiddenbtEnterToLogin_Click_1(object sender, EventArgs e)
         {
@@ -72,8 +73,12 @@ namespace TutteeFrame
 
         private void linkRegister_Click(object sender, EventArgs e)
         {
-            frmRegister register= new frmRegister();
-            register.Show();
+            //frmRegister register= new frmRegister();
+            //register.Show();
+        }
+
+        private void frmLogin_KeyPress(object sender, KeyPressEventArgs e)
+        {
         }
     }
 }

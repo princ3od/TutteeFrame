@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using MetroFramework.Forms;
-
+using TutteeFrame.Modal;
 namespace TutteeFrame
 {
     public partial class frmMain : MetroForm
@@ -18,6 +18,7 @@ namespace TutteeFrame
             InitializeComponent();
         }
 
+        #region Form Event
         private void frmMain_Shown(object sender, EventArgs e)
         {
             this.Hide();
@@ -28,10 +29,22 @@ namespace TutteeFrame
 
         private void Splash_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //frmLogin login = new frmLogin();
-            //login.Show();
-            this.Show();
-
+            frmChooseServer frmChooseServer = new frmChooseServer();
+            frmChooseServer.FormClosed += frmChooseServer_FormClosed;
+            frmChooseServer.Show();
+            frmChooseServer.Activate();
         }
+        private void frmChooseServer_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            frmLogin frmLogin = new frmLogin();
+            frmLogin.FormClosed += FrmLogin_FormClosed;
+            frmLogin.Show();
+            frmLogin.Activate();
+        }
+        private void FrmLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Show();
+        }
+        #endregion
     }
 }
