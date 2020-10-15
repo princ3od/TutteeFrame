@@ -32,13 +32,13 @@
             this.txtPass = new Material_Design_for_Winform.MaterialTextField();
             this.btLogin = new Material_Design_for_Winform.MaterialRaisedButton();
             this.cbxRememberme = new Material_Design_for_Winform.MaterialCheckBox();
-            this.linkForgetPass = new MetroFramework.Controls.MetroLink();
-            this.linkRegister = new MetroFramework.Controls.MetroLink();
             this.hiddenbtEnterToLogin = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btSettingSever = new Material_Design_for_Winform.MaterialFlatButton();
             this.txtID = new Material_Design_for_Winform.MaterialTextField();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnForgotPass = new Material_Design_for_Winform.MaterialFlatButton();
+            this.btnRegister = new Material_Design_for_Winform.MaterialFlatButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,8 +64,8 @@
             // 
             // btLogin
             // 
-            this.btLogin.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.btLogin, "btLogin");
+            this.btLogin.BackColor = System.Drawing.Color.Transparent;
             this.btLogin.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
             this.btLogin.Cursor = System.Windows.Forms.Cursors.Default;
             this.btLogin.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
@@ -87,24 +87,6 @@
             this.cbxRememberme.MarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.cbxRememberme.Name = "cbxRememberme";
             this.cbxRememberme.UseVisualStyleBackColor = false;
-            // 
-            // linkForgetPass
-            // 
-            resources.ApplyResources(this.linkForgetPass, "linkForgetPass");
-            this.linkForgetPass.BackColor = System.Drawing.Color.White;
-            this.linkForgetPass.CustomBackground = true;
-            this.linkForgetPass.CustomForeColor = true;
-            this.linkForgetPass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.linkForgetPass.Name = "linkForgetPass";
-            // 
-            // linkRegister
-            // 
-            resources.ApplyResources(this.linkRegister, "linkRegister");
-            this.linkRegister.CustomBackground = true;
-            this.linkRegister.CustomForeColor = true;
-            this.linkRegister.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.linkRegister.Name = "linkRegister";
-            this.linkRegister.Click += new System.EventHandler(this.linkRegister_Click);
             // 
             // hiddenbtEnterToLogin
             // 
@@ -156,17 +138,37 @@
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
             // 
+            // btnForgotPass
+            // 
+            this.btnForgotPass.BackColor = System.Drawing.Color.Transparent;
+            this.btnForgotPass.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
+            resources.ApplyResources(this.btnForgotPass, "btnForgotPass");
+            this.btnForgotPass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnForgotPass.Icon = null;
+            this.btnForgotPass.Name = "btnForgotPass";
+            this.btnForgotPass.TextAlign = System.Drawing.StringAlignment.Center;
+            // 
+            // btnRegister
+            // 
+            this.btnRegister.BackColor = System.Drawing.Color.Transparent;
+            this.btnRegister.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
+            resources.ApplyResources(this.btnRegister, "btnRegister");
+            this.btnRegister.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnRegister.Icon = null;
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.TextAlign = System.Drawing.StringAlignment.Center;
+            // 
             // frmLogin
             // 
             this.AcceptButton = this.hiddenbtEnterToLogin;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
+            this.Controls.Add(this.btnRegister);
+            this.Controls.Add(this.btnForgotPass);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btSettingSever);
-            this.Controls.Add(this.linkRegister);
-            this.Controls.Add(this.linkForgetPass);
             this.Controls.Add(this.cbxRememberme);
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.txtPass);
@@ -188,12 +190,12 @@
         private Material_Design_for_Winform.MaterialTextField txtPass;
         private Material_Design_for_Winform.MaterialRaisedButton btLogin;
         private Material_Design_for_Winform.MaterialCheckBox cbxRememberme;
-        private MetroFramework.Controls.MetroLink linkForgetPass;
-        private MetroFramework.Controls.MetroLink linkRegister;
         private Material_Design_for_Winform.MaterialFlatButton btSettingSever;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button hiddenbtEnterToLogin;
         private Material_Design_for_Winform.MaterialTextField txtID;
         private System.Windows.Forms.Label label2;
+        private Material_Design_for_Winform.MaterialFlatButton btnForgotPass;
+        private Material_Design_for_Winform.MaterialFlatButton btnRegister;
     }
 }

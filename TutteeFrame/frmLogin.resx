@@ -119,23 +119,20 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="txtPass.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
+    <value>Top, Left, Right</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="txtPass.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt</value>
+    <value>Segoe UI, 12pt</value>
   </data>
   <data name="txtPass.Location" type="System.Drawing.Point, System.Drawing">
-    <value>68, 304</value>
-  </data>
-  <data name="txtPass.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>126, 274</value>
   </data>
   <data name="txtPass.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>2, 2, 2, 2</value>
+    <value>2, 1, 2, 1</value>
   </data>
   <data name="txtPass.Size" type="System.Drawing.Size, System.Drawing">
-    <value>323, 35</value>
+    <value>255, 43</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="txtPass.TabIndex" type="System.Int32, mscorlib">
@@ -153,20 +150,20 @@
   <data name="&gt;&gt;txtPass.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
+  <data name="btLogin.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Left, Right</value>
+  </data>
   <data name="btLogin.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
   </data>
   <data name="btLogin.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 10.2pt, style=Bold</value>
+    <value>Segoe UI, 12pt, style=Bold</value>
   </data>
   <data name="btLogin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>59, 400</value>
-  </data>
-  <data name="btLogin.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>114, 367</value>
   </data>
   <data name="btLogin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>339, 69</value>
+    <value>284, 70</value>
   </data>
   <data name="btLogin.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -187,22 +184,19 @@
     <value>8</value>
   </data>
   <data name="cbxRememberme.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
+    <value>Top, Left, Right</value>
   </data>
   <data name="cbxRememberme.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 10pt</value>
+    <value>Segoe UI, 12pt</value>
   </data>
   <data name="cbxRememberme.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="cbxRememberme.Location" type="System.Drawing.Point, System.Drawing">
-    <value>68, 358</value>
-  </data>
-  <data name="cbxRememberme.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>126, 334</value>
   </data>
   <data name="cbxRememberme.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 25</value>
+    <value>153, 27</value>
   </data>
   <data name="cbxRememberme.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -222,80 +216,17 @@
   <data name="&gt;&gt;cbxRememberme.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="linkForgetPass.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="linkForgetPass.Location" type="System.Drawing.Point, System.Drawing">
-    <value>73, 698</value>
-  </data>
-  <data name="linkForgetPass.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="linkForgetPass.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 24</value>
-  </data>
-  <data name="linkForgetPass.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <data name="linkForgetPass.Text" xml:space="preserve">
-    <value>Quên mật khẩu?</value>
-  </data>
-  <data name="&gt;&gt;linkForgetPass.Name" xml:space="preserve">
-    <value>linkForgetPass</value>
-  </data>
-  <data name="&gt;&gt;linkForgetPass.Type" xml:space="preserve">
-    <value>MetroFramework.Controls.MetroLink, MetroFramework, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a</value>
-  </data>
-  <data name="&gt;&gt;linkForgetPass.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;linkForgetPass.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="linkRegister.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="linkRegister.Location" type="System.Drawing.Point, System.Drawing">
-    <value>275, 698</value>
-  </data>
-  <data name="linkRegister.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
-  </data>
-  <data name="linkRegister.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 24</value>
-  </data>
-  <data name="linkRegister.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
-  </data>
-  <data name="linkRegister.Text" xml:space="preserve">
-    <value>Đăng kí tài khoản</value>
-  </data>
-  <data name="&gt;&gt;linkRegister.Name" xml:space="preserve">
-    <value>linkRegister</value>
-  </data>
-  <data name="&gt;&gt;linkRegister.Type" xml:space="preserve">
-    <value>MetroFramework.Controls.MetroLink, MetroFramework, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a</value>
-  </data>
-  <data name="&gt;&gt;linkRegister.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;linkRegister.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="hiddenbtEnterToLogin.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
+    <value>Top, Left, Right</value>
   </data>
   <data name="hiddenbtEnterToLogin.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="hiddenbtEnterToLogin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>322, 421</value>
-  </data>
-  <data name="hiddenbtEnterToLogin.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>324, 383</value>
   </data>
   <data name="hiddenbtEnterToLogin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 33</value>
+    <value>42, 23</value>
   </data>
   <data name="hiddenbtEnterToLogin.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -313,7 +244,7 @@
     <value>9</value>
   </data>
   <data name="pictureBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
+    <value>Top, Left, Right</value>
   </data>
   <data name="pictureBox1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -558,13 +489,10 @@
     <value />
   </data>
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>66, 124</value>
-  </data>
-  <data name="pictureBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>126, 95</value>
   </data>
   <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>332, 96</value>
+    <value>255, 69</value>
   </data>
   <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -579,7 +507,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;pictureBox1.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="btSettingSever.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1108,13 +1036,10 @@
     <value>Segoe UI Semibold, 10.5pt</value>
   </data>
   <data name="btSettingSever.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 8</value>
-  </data>
-  <data name="btSettingSever.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>1, 6</value>
   </data>
   <data name="btSettingSever.Size" type="System.Drawing.Size, System.Drawing">
-    <value>56, 55</value>
+    <value>42, 39</value>
   </data>
   <data name="btSettingSever.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1129,22 +1054,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btSettingSever.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="txtID.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
+    <value>Top, Left, Right</value>
   </data>
   <data name="txtID.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt</value>
+    <value>Segoe UI, 12pt</value>
   </data>
   <data name="txtID.Location" type="System.Drawing.Point, System.Drawing">
-    <value>68, 245</value>
-  </data>
-  <data name="txtID.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 4, 4, 4</value>
+    <value>126, 203</value>
   </data>
   <data name="txtID.Size" type="System.Drawing.Size, System.Drawing">
-    <value>323, 35</value>
+    <value>255, 43</value>
   </data>
   <data name="txtID.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -1162,19 +1084,22 @@
     <value>6</value>
   </data>
   <data name="label2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top</value>
+    <value>Top, Left, Right</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI Light, 7.8pt</value>
+    <value>Segoe UI Light, 9.75pt</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>167, 473</value>
+    <value>195, 440</value>
+  </data>
+  <data name="label2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 19</value>
+    <value>123, 17</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -1192,19 +1117,73 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="btnForgotPass.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI Semibold, 9.75pt, style=Bold</value>
+  </data>
+  <data name="btnForgotPass.Location" type="System.Drawing.Point, System.Drawing">
+    <value>92, 525</value>
+  </data>
+  <data name="btnForgotPass.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 30</value>
+  </data>
+  <data name="btnForgotPass.TabIndex" type="System.Int32, mscorlib">
+    <value>19</value>
+  </data>
+  <data name="btnForgotPass.Text" xml:space="preserve">
+    <value>Quên mật khẩu?</value>
+  </data>
+  <data name="&gt;&gt;btnForgotPass.Name" xml:space="preserve">
+    <value>btnForgotPass</value>
+  </data>
+  <data name="&gt;&gt;btnForgotPass.Type" xml:space="preserve">
+    <value>Material_Design_for_Winform.MaterialFlatButton, MaterialDesignByPr3, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;btnForgotPass.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnForgotPass.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="btnRegister.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI Semibold, 9.75pt, style=Bold</value>
+  </data>
+  <data name="btnRegister.Location" type="System.Drawing.Point, System.Drawing">
+    <value>248, 525</value>
+  </data>
+  <data name="btnRegister.Size" type="System.Drawing.Size, System.Drawing">
+    <value>150, 30</value>
+  </data>
+  <data name="btnRegister.TabIndex" type="System.Int32, mscorlib">
+    <value>20</value>
+  </data>
+  <data name="btnRegister.Text" xml:space="preserve">
+    <value>Đăng kí tài khoản</value>
+  </data>
+  <data name="&gt;&gt;btnRegister.Name" xml:space="preserve">
+    <value>btnRegister</value>
+  </data>
+  <data name="&gt;&gt;btnRegister.Type" xml:space="preserve">
+    <value>Material_Design_for_Winform.MaterialFlatButton, MaterialDesignByPr3, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;btnRegister.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnRegister.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 17</value>
+    <value>6, 12</value>
   </data>
   <data name="$this.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>475, 753</value>
+    <value>509, 639</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 7.8pt, style=Bold</value>
@@ -3706,10 +3685,10 @@
 </value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 4, 5, 4</value>
+    <value>4, 3, 4, 3</value>
   </data>
   <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>27, 85, 27, 27</value>
+    <value>20, 60, 20, 19</value>
   </data>
   <data name="$this.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>

@@ -54,7 +54,7 @@ namespace TutteeFrame.Model
         public bool TestLocal()
         {
             bool success = true;
-            string strConnect = "Data Source=.\\SQLEXPRESS;Initial Catalog=TutteeFrame;Integrated Security=True;TimeOut = 10";
+            string strConnect = "Data Source=ANDREWANHTRAN;Initial Catalog=TutteeFrame;Integrated Security=True;TimeOut = 10";
             try
             {
                 connection = new SqlConnection(strConnect);
@@ -106,8 +106,9 @@ namespace TutteeFrame.Model
                 sqlCommand.Parameters.AddWithValue("@pass", _account.Password);
                 sqlCommand.ExecuteNonQuery();
             }
-            catch 
+            catch (Exception e)
             {
+                MessageBox.Show(e.Message);
                 return false;
             }
 

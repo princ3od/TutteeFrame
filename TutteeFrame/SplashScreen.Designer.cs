@@ -38,9 +38,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::TutteeFrame.Properties.Resources._16015343831562853;
-            this.pictureBox1.Location = new System.Drawing.Point(26, 37);
+            this.pictureBox1.Location = new System.Drawing.Point(42, 30);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(811, 241);
+            this.pictureBox1.Size = new System.Drawing.Size(835, 198);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -53,21 +54,23 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Light", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(317, 281);
+            this.label1.Location = new System.Drawing.Point(364, 230);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(221, 32);
+            this.label1.Size = new System.Drawing.Size(178, 25);
             this.label1.TabIndex = 1;
             this.label1.Text = "TutteeFrame © 2020";
             // 
             // SplashScreen
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(876, 325);
+            this.ClientSize = new System.Drawing.Size(931, 264);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "SplashScreen";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
