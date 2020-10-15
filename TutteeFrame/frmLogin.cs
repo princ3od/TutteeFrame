@@ -18,10 +18,11 @@ namespace TutteeFrame
         {
             InitializeComponent();
             DataAccess.Instance.LoadAccount();
-
         }
+
         private void btLogin_Click(object sender, EventArgs e)
         {
+                
             bool running = true;
             while (running)
             {
@@ -53,7 +54,10 @@ namespace TutteeFrame
             {
                 txtID.HintText = "Số ID";
             }
+            
+            
         }
+      
         private void txtPass_TextChanged(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(txtPass.Text))
@@ -62,9 +66,19 @@ namespace TutteeFrame
             }
         }
 
+        private void hiddenbtEnterToLogin_Click_1(object sender, EventArgs e)
+        {
+            btLogin_Click(sender, e);
+        }
+
+        private void linkRegister_Click(object sender, EventArgs e)
+        {
+            //frmRegister register= new frmRegister();
+            //register.Show();
+        }
+
         private void frmLogin_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
         }
     }
 }

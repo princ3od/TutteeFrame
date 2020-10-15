@@ -63,6 +63,16 @@ namespace TutteeFrame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _16015343831562853 {
+            get {
+                object obj = ResourceManager.GetObject("16015343831562853", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap _160153438315628531 {
             get {
                 object obj = ResourceManager.GetObject("160153438315628531", resourceCulture);
@@ -73,9 +83,60 @@ namespace TutteeFrame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap _21104 {
+            get {
+                object obj = ResourceManager.GetObject("21104", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap id_card_concept_vector_linear_icon_isolated_transparent_backg_background_transparency_outline_style_130086174 {
+            get {
+                object obj = ResourceManager.GetObject("id-card-concept-vector-linear-icon-isolated-transparent-backg-background-transpar" +
+                        "ency-outline-style-130086174", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap images {
+            get {
+                object obj = ResourceManager.GetObject("images", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap media_player_button_29_512 {
             get {
                 object obj = ResourceManager.GetObject("media_player_button_29-512", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pngtree_outline_user_icon_png_image_1727916 {
+            get {
+                object obj = ResourceManager.GetObject("pngtree-outline-user-icon-png-image_1727916", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap User001_Edit_512 {
+            get {
+                object obj = ResourceManager.GetObject("User001_Edit-512", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

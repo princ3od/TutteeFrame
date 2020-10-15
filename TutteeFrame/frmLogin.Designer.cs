@@ -38,8 +38,10 @@
             this.rbtUser = new MetroFramework.Controls.MetroRadioButton();
             this.linkForgetPass = new MetroFramework.Controls.MetroLink();
             this.linkRegister = new MetroFramework.Controls.MetroLink();
-            this.btSettingSever = new Material_Design_for_Winform.MaterialFlatButton();
+            this.hiddenbtEnterToLogin = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btSettingSever = new Material_Design_for_Winform.MaterialFlatButton();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,6 +72,7 @@
             this.txtID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.txtID.FloatingLabelText = "";
             this.txtID.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.txtID.ForeColor = System.Drawing.SystemColors.ControlText;
             this.txtID.HideSelection = true;
             this.txtID.HintText = "Số ID";
             this.txtID.MaxLength = 32767;
@@ -155,11 +158,30 @@
             this.linkRegister.CustomForeColor = true;
             this.linkRegister.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
             this.linkRegister.Name = "linkRegister";
+            this.linkRegister.Click += new System.EventHandler(this.linkRegister_Click);
+            // 
+            // hiddenbtEnterToLogin
+            // 
+            this.hiddenbtEnterToLogin.BackColor = System.Drawing.Color.White;
+            resources.ApplyResources(this.hiddenbtEnterToLogin, "hiddenbtEnterToLogin");
+            this.hiddenbtEnterToLogin.Name = "hiddenbtEnterToLogin";
+            this.hiddenbtEnterToLogin.UseVisualStyleBackColor = false;
+            this.hiddenbtEnterToLogin.Click += new System.EventHandler(this.hiddenbtEnterToLogin_Click_1);
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // pictureBox1
+            // 
+            resources.ApplyResources(this.pictureBox1, "pictureBox1");
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.TabStop = false;
             // 
             // btSettingSever
             // 
             this.btSettingSever.BackColor = System.Drawing.Color.Transparent;
-            this.btSettingSever.BackgroundImage = global::TutteeFrame.Properties.Resources.media_player_button_29_512;
             resources.ApplyResources(this.btSettingSever, "btSettingSever");
             this.btSettingSever.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
             this.btSettingSever.ForeColor = System.Drawing.Color.Blue;
@@ -167,18 +189,13 @@
             this.btSettingSever.Name = "btSettingSever";
             this.btSettingSever.TextAlign = System.Drawing.StringAlignment.Center;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::TutteeFrame.Properties.Resources._160153438315628531;
-            resources.ApplyResources(this.pictureBox1, "pictureBox1");
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.TabStop = false;
-            // 
             // frmLogin
             // 
+            this.AcceptButton = this.hiddenbtEnterToLogin;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btSettingSever);
             this.Controls.Add(this.linkRegister);
@@ -187,9 +204,10 @@
             this.Controls.Add(this.rbtAdmin);
             this.Controls.Add(this.labelLogintype);
             this.Controls.Add(this.cbxRememberme);
-            this.Controls.Add(this.btLogin);
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.txtPass);
+            this.Controls.Add(this.btLogin);
+            this.Controls.Add(this.hiddenbtEnterToLogin);
             this.KeyPreview = true;
             this.Name = "frmLogin";
             this.TextAlign = System.Windows.Forms.VisualStyles.HorizontalAlign.Center;
@@ -213,5 +231,7 @@
         private MetroFramework.Controls.MetroLink linkRegister;
         private Material_Design_for_Winform.MaterialFlatButton btSettingSever;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button hiddenbtEnterToLogin;
+        private System.Windows.Forms.Label label1;
     }
 }

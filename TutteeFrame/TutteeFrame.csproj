@@ -84,6 +84,12 @@
     <Compile Include="frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmRegister.Designer.cs">
+      <DependentUpon>frmRegister.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Class.cs" />
     <Compile Include="Model\DataAccess.cs" />
@@ -95,6 +101,12 @@
     <Compile Include="Model\Teacher.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SplashScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SplashScreen.Designer.cs">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="frmAccountManagement.resx">
       <DependentUpon>frmAccountManagement.cs</DependentUpon>
     </EmbeddedResource>
@@ -107,10 +119,16 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmRegister.resx">
+      <DependentUpon>frmRegister.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SplashScreen.resx">
+      <DependentUpon>SplashScreen.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="packages.config" />
@@ -131,6 +149,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="MetroFramework.txt" />
+    <None Include="Resources\id-card-concept-vector-linear-icon-isolated-transparent-backg-background-transparency-outline-style-130086174.jpg" />
+    <None Include="Resources\User001_Edit-512.png" />
+    <None Include="Resources\images.png" />
+    <None Include="Resources\21104.png" />
+    <None Include="Resources\pngtree-outline-user-icon-png-image_1727916.jpg" />
+    <None Include="Resources\16015343831562853.png" />
     <None Include="Resources\160153438315628531.png" />
     <None Include="Resources\media_player_button_29-512.png" />
   </ItemGroup>
