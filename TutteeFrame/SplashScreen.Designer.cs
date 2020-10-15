@@ -38,7 +38,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = global::TutteeFrame.Properties.Resources._16015343831562853;
-            this.pictureBox1.Location = new System.Drawing.Point(38, 61);
+            this.pictureBox1.Location = new System.Drawing.Point(26, 37);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(811, 241);
             this.pictureBox1.TabIndex = 0;
@@ -53,7 +53,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Light", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(326, 317);
+            this.label1.Location = new System.Drawing.Point(317, 281);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(221, 32);
             this.label1.TabIndex = 1;
@@ -63,8 +63,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.ClientSize = new System.Drawing.Size(885, 370);
+            this.BackColor = System.Drawing.SystemColors.Control;
+            this.ClientSize = new System.Drawing.Size(876, 325);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

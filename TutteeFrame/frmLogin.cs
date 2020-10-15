@@ -21,32 +21,22 @@ namespace TutteeFrame
         }
 
         private void btLogin_Click(object sender, EventArgs e)
-        {
-                
-            bool running = true;
-            while (running)
+        {                         
+            if (String.IsNullOrEmpty(txtID.Text))
             {
-                if (String.IsNullOrEmpty(txtID.Text))
-                {
-                    txtID.FocusColor = Color.Red;
-                    txtID.Focus();
-                    txtID.HintText = "Hãy nhập user ID";
-                    if (!String.IsNullOrEmpty(txtID.Text))
-                        running = false;
-                }
-                else if (String.IsNullOrEmpty(txtPass.Text))
-                {
-                    txtPass.FocusColor = Color.Red;
-                    txtPass.Focus();
-                    txtPass.HintText = "Hãy nhập mật khẩu ";
-                    if (!String.IsNullOrEmpty(txtPass.Text))
-                        running = false;
-                }
-                running = false;
+                txtID.FocusColor = Color.Red;
+                txtID.HintText = "Hãy nhập user ID";
+                txtID.Focus();
+
             }
-            int i = 1;
-            if (Controller.Instance.Login(txtID.Text, txtPass.Text, ref i))
-                MessageBox.Show("Thành công");
+            else if (String.IsNullOrEmpty(txtPass.Text))
+            {
+                txtPass.FocusColor = Color.Red;
+                txtPass.HintText = "Hãy nhập mật khẩu ";
+                txtPass.Focus();
+                
+            }
+           
         }
         private void txtID_TextChanged(object sender, EventArgs e)
         {
@@ -54,10 +44,8 @@ namespace TutteeFrame
             {
                 txtID.HintText = "Số ID";
             }
-            
-            
         }
-      
+
         private void txtPass_TextChanged(object sender, EventArgs e)
         {
             if (!String.IsNullOrEmpty(txtPass.Text))

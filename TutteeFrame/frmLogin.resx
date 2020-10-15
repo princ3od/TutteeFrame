@@ -119,17 +119,23 @@
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="txtPass.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
+    <value>Top</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="txtPass.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 9pt</value>
   </data>
   <data name="txtPass.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 259</value>
+    <value>68, 304</value>
+  </data>
+  <data name="txtPass.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="txtPass.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="txtPass.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 31</value>
+    <value>323, 35</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="txtPass.TabIndex" type="System.Int32, mscorlib">
@@ -145,37 +151,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtPass.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="txtID.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="txtID.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt</value>
-  </data>
-  <data name="txtID.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 193</value>
-  </data>
-  <data name="txtID.Size" type="System.Drawing.Size, System.Drawing">
-    <value>224, 31</value>
-  </data>
-  <data name="txtID.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;txtID.Name" xml:space="preserve">
-    <value>txtID</value>
-  </data>
-  <data name="&gt;&gt;txtID.Type" xml:space="preserve">
-    <value>Material_Design_for_Winform.MaterialTextField, MaterialDesignByPr3, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;txtID.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtID.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="btLogin.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
+    <value>7</value>
   </data>
   <data name="btLogin.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
@@ -184,10 +160,13 @@
     <value>Segoe UI, 10.2pt, style=Bold</value>
   </data>
   <data name="btLogin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>86, 458</value>
+    <value>59, 400</value>
+  </data>
+  <data name="btLogin.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="btLogin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>234, 37</value>
+    <value>339, 69</value>
   </data>
   <data name="btLogin.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -205,22 +184,25 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btLogin.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>8</value>
   </data>
   <data name="cbxRememberme.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
+    <value>Top</value>
   </data>
   <data name="cbxRememberme.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt</value>
+    <value>Segoe UI, 10pt</value>
   </data>
   <data name="cbxRememberme.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="cbxRememberme.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 371</value>
+    <value>68, 358</value>
+  </data>
+  <data name="cbxRememberme.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="cbxRememberme.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 15</value>
+    <value>165, 25</value>
   </data>
   <data name="cbxRememberme.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -238,124 +220,19 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;cbxRememberme.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="labelLogintype.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="labelLogintype.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="labelLogintype.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt</value>
-  </data>
-  <data name="labelLogintype.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="labelLogintype.Location" type="System.Drawing.Point, System.Drawing">
-    <value>94, 328</value>
-  </data>
-  <data name="labelLogintype.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 15</value>
-  </data>
-  <data name="labelLogintype.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="labelLogintype.Text" xml:space="preserve">
-    <value>Chọn loại đăng nhập</value>
-  </data>
-  <data name="&gt;&gt;labelLogintype.Name" xml:space="preserve">
-    <value>labelLogintype</value>
-  </data>
-  <data name="&gt;&gt;labelLogintype.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;labelLogintype.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;labelLogintype.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="rbtAdmin.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="rbtAdmin.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rbtAdmin.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
-  </data>
-  <data name="rbtAdmin.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="rbtAdmin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>265, 330</value>
-  </data>
-  <data name="rbtAdmin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 15</value>
-  </data>
-  <data name="rbtAdmin.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
-  </data>
-  <data name="rbtAdmin.Text" xml:space="preserve">
-    <value>Admin</value>
-  </data>
-  <data name="&gt;&gt;rbtAdmin.Name" xml:space="preserve">
-    <value>rbtAdmin</value>
-  </data>
-  <data name="&gt;&gt;rbtAdmin.Type" xml:space="preserve">
-    <value>MetroFramework.Controls.MetroRadioButton, MetroFramework, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a</value>
-  </data>
-  <data name="&gt;&gt;rbtAdmin.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;rbtAdmin.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="rbtUser.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="rbtUser.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rbtUser.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Popup</value>
-  </data>
-  <data name="rbtUser.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="rbtUser.Location" type="System.Drawing.Point, System.Drawing">
-    <value>336, 330</value>
-  </data>
-  <data name="rbtUser.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 15</value>
-  </data>
-  <data name="rbtUser.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="rbtUser.Text" xml:space="preserve">
-    <value>User</value>
-  </data>
-  <data name="&gt;&gt;rbtUser.Name" xml:space="preserve">
-    <value>rbtUser</value>
-  </data>
-  <data name="&gt;&gt;rbtUser.Type" xml:space="preserve">
-    <value>MetroFramework.Controls.MetroRadioButton, MetroFramework, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a</value>
-  </data>
-  <data name="&gt;&gt;rbtUser.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;rbtUser.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
   <data name="linkForgetPass.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
+    <value>Top</value>
   </data>
   <data name="linkForgetPass.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 398</value>
+    <value>73, 698</value>
+  </data>
+  <data name="linkForgetPass.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="linkForgetPass.Size" type="System.Drawing.Size, System.Drawing">
-    <value>86, 17</value>
+    <value>115, 24</value>
   </data>
   <data name="linkForgetPass.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -376,13 +253,16 @@
     <value>4</value>
   </data>
   <data name="linkRegister.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>None</value>
+    <value>Top</value>
   </data>
   <data name="linkRegister.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 428</value>
+    <value>275, 698</value>
+  </data>
+  <data name="linkRegister.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="linkRegister.Size" type="System.Drawing.Size, System.Drawing">
-    <value>92, 17</value>
+    <value>123, 24</value>
   </data>
   <data name="linkRegister.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -402,14 +282,20 @@
   <data name="&gt;&gt;linkRegister.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="hiddenbtEnterToLogin.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top</value>
+  </data>
   <data name="hiddenbtEnterToLogin.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="hiddenbtEnterToLogin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>358, 474</value>
+    <value>322, 421</value>
+  </data>
+  <data name="hiddenbtEnterToLogin.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="hiddenbtEnterToLogin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 23</value>
+    <value>39, 33</value>
   </data>
   <data name="hiddenbtEnterToLogin.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -424,40 +310,10 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;hiddenbtEnterToLogin.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>9</value>
   </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI Light, 7.8pt</value>
-  </data>
-  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>184, 627</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>129, 19</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>TutteeFrame © 2020</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="pictureBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top</value>
   </data>
   <data name="pictureBox1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -702,10 +558,13 @@
     <value />
   </data>
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>98, 94</value>
+    <value>66, 124</value>
+  </data>
+  <data name="pictureBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>299, 68</value>
+    <value>332, 96</value>
   </data>
   <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1249,10 +1108,13 @@
     <value>Segoe UI Semibold, 10.5pt</value>
   </data>
   <data name="btSettingSever.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 6</value>
+    <value>1, 8</value>
+  </data>
+  <data name="btSettingSever.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
   </data>
   <data name="btSettingSever.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 54</value>
+    <value>56, 55</value>
   </data>
   <data name="btSettingSever.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1269,17 +1131,80 @@
   <data name="&gt;&gt;btSettingSever.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="txtID.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="txtID.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 9pt</value>
+  </data>
+  <data name="txtID.Location" type="System.Drawing.Point, System.Drawing">
+    <value>68, 245</value>
+  </data>
+  <data name="txtID.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 4, 4, 4</value>
+  </data>
+  <data name="txtID.Size" type="System.Drawing.Size, System.Drawing">
+    <value>323, 35</value>
+  </data>
+  <data name="txtID.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;txtID.Name" xml:space="preserve">
+    <value>txtID</value>
+  </data>
+  <data name="&gt;&gt;txtID.Type" xml:space="preserve">
+    <value>Material_Design_for_Winform.MaterialTextField, MaterialDesignByPr3, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;txtID.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtID.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="label2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI Light, 7.8pt</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>167, 473</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>129, 19</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>18</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>TutteeFrame © 2020</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 12</value>
+    <value>8, 17</value>
   </data>
   <data name="$this.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>500, 650</value>
+    <value>475, 753</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 7.8pt, style=Bold</value>
@@ -3781,10 +3706,10 @@
 </value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 3, 4, 3</value>
+    <value>5, 4, 5, 4</value>
   </data>
   <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>20, 56, 20, 19</value>
+    <value>27, 85, 27, 27</value>
   </data>
   <data name="$this.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
