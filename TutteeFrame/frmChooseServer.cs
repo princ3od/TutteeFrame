@@ -50,8 +50,8 @@ namespace TutteeFrame
                 MessageBox.Show("Kết nối thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             // for test purpose
-            DataAccess.Instance.AddAccount(new Account(1, "TC123456", "1"));
-            DataAccess.Instance.AddAccount(new Account(2, "TC234567", "1"));
+            DataAccess.Instance.AddAccount(new Account(1, "TC123456", Encryption.Encrypt("1","1")));
+            DataAccess.Instance.AddAccount(new Account(2, "TC234567", Encryption.Encrypt("1", "1")));
 
         }
     }
