@@ -29,7 +29,15 @@ namespace TutteeFrame
 
         private void frmChooseServer_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //throw new NotImplementedException();
+            frmLogin frmLogin = new frmLogin();
+            frmLogin.FormClosed += FrmLogin_FormClosed;
+            frmLogin.Show();
+            frmLogin.Activate();
+        }
+
+        private void FrmLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Show();
         }
         #endregion
     }

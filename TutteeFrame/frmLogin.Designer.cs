@@ -190,9 +190,11 @@
             this.Controls.Add(this.btLogin);
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.txtPass);
+            this.KeyPreview = true;
             this.Name = "frmLogin";
             this.TextAlign = System.Windows.Forms.VisualStyles.HorizontalAlign.Center;
             this.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmLogin_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using TutteeFrame.Model;
 using TutteeFrame.Properties;
 
 namespace TutteeFrame
@@ -16,8 +17,6 @@ namespace TutteeFrame
         public frmChooseServer()
         {
             InitializeComponent();
-            string conectioString = string.Format(Settings.Default.ServerConnectionString,"1","2","3","4");
-            txtServerName.Text = conectioString;
         }
 
         //only digit textbox
@@ -25,6 +24,30 @@ namespace TutteeFrame
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 e.Handled = true;
+        }
+
+        private void materialRaisedButton1_Click(object sender, EventArgs e)
+        {
+            DataAccess.Instance.connectionType = DataAccess.ConnectionType.Server;
+            if (DataAccess.Instance.Test(txtServerName.Text, txtPort.Text, txtAccount.Text, txtPassword.Text))
+            {
+                MessageBox.Show("Kết nối thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+            else
+                MessageBox.Show("Kết nối thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private void materialFlatButton1_Click(object sender, EventArgs e)
+        {
+            DataAccess.Instance.connectionType = DataAccess.ConnectionType.Local;
+            if (DataAccess.Instance.TestLocal())
+            {
+                MessageBox.Show("Kết nối thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                this.Close();
+            }
+            else
+                MessageBox.Show("Kết nối thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
     }
 }

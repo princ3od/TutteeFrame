@@ -28,60 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtServerName = new Material_Design_for_Winform.MaterialTextField();
-            this.txtPort = new Material_Design_for_Winform.MaterialTextField();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnConnectLocal = new Material_Design_for_Winform.MaterialFlatButton();
+            this.btnConnect = new Material_Design_for_Winform.MaterialRaisedButton();
             this.txtPassword = new Material_Design_for_Winform.MaterialTextField();
             this.txtAccount = new Material_Design_for_Winform.MaterialTextField();
-            this.materialRaisedButton1 = new Material_Design_for_Winform.MaterialRaisedButton();
-            this.materialFlatButton1 = new Material_Design_for_Winform.MaterialFlatButton();
+            this.txtPort = new Material_Design_for_Winform.MaterialTextField();
+            this.txtServerName = new Material_Design_for_Winform.MaterialTextField();
             this.SuspendLayout();
-            // 
-            // txtServerName
-            // 
-            this.txtServerName.AutoScaleColor = true;
-            this.txtServerName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtServerName.FloatingLabelText = "Tên server";
-            this.txtServerName.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.txtServerName.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtServerName.HideSelection = true;
-            this.txtServerName.HintText = "Có thể là địa chỉ IP";
-            this.txtServerName.Location = new System.Drawing.Point(155, 103);
-            this.txtServerName.MaxLength = 32767;
-            this.txtServerName.Multiline = false;
-            this.txtServerName.Name = "txtServerName";
-            this.txtServerName.PasswordChar = '\0';
-            this.txtServerName.ReadOnly = false;
-            this.txtServerName.ShortcutsEnable = true;
-            this.txtServerName.ShowCaret = true;
-            this.txtServerName.Size = new System.Drawing.Size(200, 43);
-            this.txtServerName.Style = Material_Design_for_Winform.MaterialTextField.ST.HasFloatingLabel;
-            this.txtServerName.TabIndex = 0;
-            this.txtServerName.UseSystemPasswordChar = false;
-            // 
-            // txtPort
-            // 
-            this.txtPort.AutoScaleColor = true;
-            this.txtPort.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtPort.FloatingLabelText = "Số cổng";
-            this.txtPort.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.txtPort.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtPort.HideSelection = true;
-            this.txtPort.HintText = "Port number";
-            this.txtPort.Location = new System.Drawing.Point(155, 154);
-            this.txtPort.MaxLength = 32767;
-            this.txtPort.Multiline = false;
-            this.txtPort.Name = "txtPort";
-            this.txtPort.PasswordChar = '\0';
-            this.txtPort.ReadOnly = false;
-            this.txtPort.ShortcutsEnable = true;
-            this.txtPort.ShowCaret = true;
-            this.txtPort.Size = new System.Drawing.Size(200, 43);
-            this.txtPort.Style = Material_Design_for_Winform.MaterialTextField.ST.HasFloatingLabel;
-            this.txtPort.TabIndex = 1;
-            this.txtPort.UseSystemPasswordChar = false;
-            this.txtPort.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPort_KeyPress);
             // 
             // label1
             // 
@@ -102,6 +57,40 @@
             this.label2.Size = new System.Drawing.Size(115, 30);
             this.label2.TabIndex = 5;
             this.label2.Text = "XÁC THỰC";
+            // 
+            // btnConnectLocal
+            // 
+            this.btnConnectLocal.BackColor = System.Drawing.Color.Transparent;
+            this.btnConnectLocal.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
+            this.btnConnectLocal.Font = new System.Drawing.Font("Segoe UI Semibold", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConnectLocal.ForeColor = System.Drawing.Color.Black;
+            this.btnConnectLocal.Icon = null;
+            this.btnConnectLocal.Location = new System.Drawing.Point(175, 430);
+            this.btnConnectLocal.Name = "btnConnectLocal";
+            this.btnConnectLocal.Size = new System.Drawing.Size(150, 35);
+            this.btnConnectLocal.TabIndex = 6;
+            this.btnConnectLocal.Text = "Sử dụng local server";
+            this.btnConnectLocal.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnConnectLocal.Click += new System.EventHandler(this.materialFlatButton1_Click);
+            // 
+            // btnConnect
+            // 
+            this.btnConnect.BackColor = System.Drawing.Color.Transparent;
+            this.btnConnect.ButtonColor = System.Drawing.Color.DodgerBlue;
+            this.btnConnect.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.btnConnect.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConnect.ForeColor = System.Drawing.Color.White;
+            this.btnConnect.Icon = null;
+            this.btnConnect.Location = new System.Drawing.Point(155, 369);
+            this.btnConnect.Name = "btnConnect";
+            this.btnConnect.Radius = 2;
+            this.btnConnect.ShadowDepth = 6;
+            this.btnConnect.ShadowOpacity = 35;
+            this.btnConnect.Size = new System.Drawing.Size(190, 55);
+            this.btnConnect.TabIndex = 5;
+            this.btnConnect.Text = "KẾT NỐI";
+            this.btnConnect.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnConnect.Click += new System.EventHandler(this.materialRaisedButton1_Click);
             // 
             // txtPassword
             // 
@@ -147,45 +136,58 @@
             this.txtAccount.TabIndex = 2;
             this.txtAccount.UseSystemPasswordChar = false;
             // 
-            // materialRaisedButton1
+            // txtPort
             // 
-            this.materialRaisedButton1.BackColor = System.Drawing.Color.Transparent;
-            this.materialRaisedButton1.ButtonColor = System.Drawing.Color.DodgerBlue;
-            this.materialRaisedButton1.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
-            this.materialRaisedButton1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.materialRaisedButton1.ForeColor = System.Drawing.Color.White;
-            this.materialRaisedButton1.Icon = null;
-            this.materialRaisedButton1.Location = new System.Drawing.Point(155, 369);
-            this.materialRaisedButton1.Name = "materialRaisedButton1";
-            this.materialRaisedButton1.Radius = 2;
-            this.materialRaisedButton1.ShadowDepth = 6;
-            this.materialRaisedButton1.ShadowOpacity = 35;
-            this.materialRaisedButton1.Size = new System.Drawing.Size(190, 55);
-            this.materialRaisedButton1.TabIndex = 5;
-            this.materialRaisedButton1.Text = "KẾT NỐI";
-            this.materialRaisedButton1.TextAlign = System.Drawing.StringAlignment.Center;
+            this.txtPort.AutoScaleColor = true;
+            this.txtPort.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtPort.FloatingLabelText = "Số cổng";
+            this.txtPort.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.txtPort.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtPort.HideSelection = true;
+            this.txtPort.HintText = "Port number";
+            this.txtPort.Location = new System.Drawing.Point(155, 154);
+            this.txtPort.MaxLength = 32767;
+            this.txtPort.Multiline = false;
+            this.txtPort.Name = "txtPort";
+            this.txtPort.PasswordChar = '\0';
+            this.txtPort.ReadOnly = false;
+            this.txtPort.ShortcutsEnable = true;
+            this.txtPort.ShowCaret = true;
+            this.txtPort.Size = new System.Drawing.Size(200, 43);
+            this.txtPort.Style = Material_Design_for_Winform.MaterialTextField.ST.HasFloatingLabel;
+            this.txtPort.TabIndex = 1;
+            this.txtPort.UseSystemPasswordChar = false;
+            this.txtPort.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPort_KeyPress);
             // 
-            // materialFlatButton1
+            // txtServerName
             // 
-            this.materialFlatButton1.BackColor = System.Drawing.Color.Transparent;
-            this.materialFlatButton1.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
-            this.materialFlatButton1.Font = new System.Drawing.Font("Segoe UI Semibold", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.materialFlatButton1.ForeColor = System.Drawing.Color.Black;
-            this.materialFlatButton1.Icon = null;
-            this.materialFlatButton1.Location = new System.Drawing.Point(175, 430);
-            this.materialFlatButton1.Name = "materialFlatButton1";
-            this.materialFlatButton1.Size = new System.Drawing.Size(150, 35);
-            this.materialFlatButton1.TabIndex = 6;
-            this.materialFlatButton1.Text = "Sử dụng local server";
-            this.materialFlatButton1.TextAlign = System.Drawing.StringAlignment.Center;
+            this.txtServerName.AutoScaleColor = true;
+            this.txtServerName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtServerName.FloatingLabelText = "Tên server";
+            this.txtServerName.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.txtServerName.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtServerName.HideSelection = true;
+            this.txtServerName.HintText = "Có thể là địa chỉ IP";
+            this.txtServerName.Location = new System.Drawing.Point(155, 103);
+            this.txtServerName.MaxLength = 32767;
+            this.txtServerName.Multiline = false;
+            this.txtServerName.Name = "txtServerName";
+            this.txtServerName.PasswordChar = '\0';
+            this.txtServerName.ReadOnly = false;
+            this.txtServerName.ShortcutsEnable = true;
+            this.txtServerName.ShowCaret = true;
+            this.txtServerName.Size = new System.Drawing.Size(200, 43);
+            this.txtServerName.Style = Material_Design_for_Winform.MaterialTextField.ST.HasFloatingLabel;
+            this.txtServerName.TabIndex = 0;
+            this.txtServerName.UseSystemPasswordChar = false;
             // 
             // frmChooseServer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(500, 480);
-            this.Controls.Add(this.materialFlatButton1);
-            this.Controls.Add(this.materialRaisedButton1);
+            this.Controls.Add(this.btnConnectLocal);
+            this.Controls.Add(this.btnConnect);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtAccount);
@@ -211,7 +213,7 @@
         private System.Windows.Forms.Label label2;
         private Material_Design_for_Winform.MaterialTextField txtPassword;
         private Material_Design_for_Winform.MaterialTextField txtAccount;
-        private Material_Design_for_Winform.MaterialRaisedButton materialRaisedButton1;
-        private Material_Design_for_Winform.MaterialFlatButton materialFlatButton1;
+        private Material_Design_for_Winform.MaterialRaisedButton btnConnect;
+        private Material_Design_for_Winform.MaterialFlatButton btnConnectLocal;
     }
 }

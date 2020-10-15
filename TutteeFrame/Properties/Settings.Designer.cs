@@ -25,8 +25,8 @@ namespace TutteeFrame.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Server=tcp:{0},{1};Initial Catalog=TutteeFrame;User ID={2};password={3};Integrate" +
-            "d Security=False;Connect Timeout=30;")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Server = {0},{1};Initial Catalog = TutteeFrame;User ID = {2};Password = {3};Integ" +
+            "rated Security = False;Connect Timeout = 5;")]
         public string ServerConnectionString {
             get {
                 return ((string)(this["ServerConnectionString"]));

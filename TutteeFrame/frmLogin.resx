@@ -126,10 +126,13 @@
     <value>Segoe UI, 9pt</value>
   </data>
   <data name="txtPass.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 234</value>
+    <value>111, 166</value>
+  </data>
+  <data name="txtPass.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="txtPass.Size" type="System.Drawing.Size, System.Drawing">
-    <value>299, 35</value>
+    <value>224, 31</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="txtPass.TabIndex" type="System.Int32, mscorlib">
@@ -154,10 +157,13 @@
     <value>Segoe UI, 9pt</value>
   </data>
   <data name="txtID.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 168</value>
+    <value>111, 120</value>
+  </data>
+  <data name="txtID.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="txtID.Size" type="System.Drawing.Size, System.Drawing">
-    <value>299, 35</value>
+    <value>224, 31</value>
   </data>
   <data name="txtID.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -184,10 +190,13 @@
     <value>Segoe UI, 10.2pt, style=Bold</value>
   </data>
   <data name="btLogin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>136, 433</value>
+    <value>102, 307</value>
+  </data>
+  <data name="btLogin.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="btLogin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>312, 52</value>
+    <value>234, 37</value>
   </data>
   <data name="btLogin.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -217,10 +226,13 @@
     <value>NoControl</value>
   </data>
   <data name="cbxRememberme.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 346</value>
+    <value>111, 245</value>
+  </data>
+  <data name="cbxRememberme.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="cbxRememberme.Size" type="System.Drawing.Size, System.Drawing">
-    <value>165, 21</value>
+    <value>124, 15</value>
   </data>
   <data name="cbxRememberme.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -253,10 +265,13 @@
     <value>NoControl</value>
   </data>
   <data name="labelLogintype.Location" type="System.Drawing.Point, System.Drawing">
-    <value>144, 303</value>
+    <value>108, 215</value>
+  </data>
+  <data name="labelLogintype.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 0, 2, 0</value>
   </data>
   <data name="labelLogintype.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 20</value>
+    <value>118, 15</value>
   </data>
   <data name="labelLogintype.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -289,10 +304,13 @@
     <value>NoControl</value>
   </data>
   <data name="rbtAdmin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>315, 305</value>
+    <value>236, 216</value>
+  </data>
+  <data name="rbtAdmin.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="rbtAdmin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 17</value>
+    <value>59, 15</value>
   </data>
   <data name="rbtAdmin.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -325,10 +343,13 @@
     <value>NoControl</value>
   </data>
   <data name="rbtUser.Location" type="System.Drawing.Point, System.Drawing">
-    <value>386, 305</value>
+    <value>290, 216</value>
+  </data>
+  <data name="rbtUser.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="rbtUser.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 17</value>
+    <value>49, 15</value>
   </data>
   <data name="rbtUser.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -352,10 +373,13 @@
     <value>None</value>
   </data>
   <data name="linkForgetPass.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 373</value>
+    <value>111, 264</value>
+  </data>
+  <data name="linkForgetPass.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="linkForgetPass.Size" type="System.Drawing.Size, System.Drawing">
-    <value>115, 24</value>
+    <value>86, 17</value>
   </data>
   <data name="linkForgetPass.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -379,10 +403,13 @@
     <value>None</value>
   </data>
   <data name="linkRegister.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 403</value>
+    <value>111, 285</value>
+  </data>
+  <data name="linkRegister.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="linkRegister.Size" type="System.Drawing.Size, System.Drawing">
-    <value>123, 24</value>
+    <value>92, 17</value>
   </data>
   <data name="linkRegister.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -409,10 +436,13 @@
     <value>Segoe UI Semibold, 10.5pt</value>
   </data>
   <data name="btSettingSever.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 6</value>
+    <value>1, 4</value>
+  </data>
+  <data name="btSettingSever.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="btSettingSever.Size" type="System.Drawing.Size, System.Drawing">
-    <value>54, 43</value>
+    <value>40, 30</value>
   </data>
   <data name="btSettingSever.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -439,10 +469,13 @@
     <value />
   </data>
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>148, 92</value>
+    <value>111, 65</value>
+  </data>
+  <data name="pictureBox1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>2, 2, 2, 2</value>
   </data>
   <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>299, 70</value>
+    <value>224, 49</value>
   </data>
   <data name="pictureBox1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -463,13 +496,13 @@
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>8, 17</value>
+    <value>6, 12</value>
   </data>
   <data name="$this.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>600, 600</value>
+    <value>450, 425</value>
   </data>
   <data name="$this.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 7.8pt, style=Bold</value>
@@ -2971,10 +3004,10 @@
 </value>
   </data>
   <data name="$this.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>5, 4, 5, 4</value>
+    <value>4, 3, 4, 3</value>
   </data>
   <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>27, 79, 27, 27</value>
+    <value>20, 56, 20, 19</value>
   </data>
   <data name="$this.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
