@@ -1,6 +1,6 @@
 ﻿namespace TutteeFrame
 {
-    partial class SplashScreen
+    partial class frmSpashScreen
     {
         /// <summary>
         /// Required designer variable.

@@ -40,7 +40,7 @@ namespace TutteeFrame.Model
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                //MessageBox.Show(e.Message);
                 success = false;
             }
             finally
@@ -54,7 +54,7 @@ namespace TutteeFrame.Model
         public bool TestLocal()
         {
             bool success = true;
-            string strConnect = "Data Source=ANDREWANHTRAN;Initial Catalog=TutteeFrame;Integrated Security=True;TimeOut = 10";
+            string strConnect = "Data Source=.\\SQLEXPRESS;Initial Catalog=TutteeFrame;Integrated Security=True;TimeOut = 10";
             try
             {
                 connection = new SqlConnection(strConnect);

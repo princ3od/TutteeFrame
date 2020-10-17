@@ -1120,7 +1120,7 @@
     <value>2</value>
   </data>
   <data name="btnForgotPass.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI Semibold, 9.75pt, style=Bold</value>
+    <value>Segoe UI Semibold, 9.75pt</value>
   </data>
   <data name="btnForgotPass.Location" type="System.Drawing.Point, System.Drawing">
     <value>92, 525</value>
@@ -1147,7 +1147,7 @@
     <value>1</value>
   </data>
   <data name="btnRegister.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI Semibold, 9.75pt, style=Bold</value>
+    <value>Segoe UI Semibold, 9.75pt</value>
   </data>
   <data name="btnRegister.Location" type="System.Drawing.Point, System.Drawing">
     <value>248, 525</value>

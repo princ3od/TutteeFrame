@@ -9,11 +9,11 @@ using System.Windows.Forms;
 
 namespace TutteeFrame
 {
-    public partial class SplashScreen : Form
+    public partial class frmSpashScreen : Form
     {
         int second = 1;
 
-        public SplashScreen()
+        public frmSpashScreen()
         {
             InitializeComponent();
             timer1.Start();

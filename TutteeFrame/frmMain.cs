@@ -22,7 +22,7 @@ namespace TutteeFrame
         private void frmMain_Shown(object sender, EventArgs e)
         {
             this.Hide();
-            SplashScreen splash = new SplashScreen();
+            frmSpashScreen splash = new frmSpashScreen();
             splash.FormClosed += Splash_FormClosed;
             splash.Show();
         }
@@ -36,6 +36,12 @@ namespace TutteeFrame
         }
         private void frmChooseServer_FormClosed(object sender, FormClosedEventArgs e)
         {
+            if (!(sender as frmChooseServer).connected)
+            {
+                this.Close();
+                return;
+            }
+                            
             frmLogin frmLogin = new frmLogin();
             frmLogin.FormClosed += FrmLogin_FormClosed;
             frmLogin.Show();
