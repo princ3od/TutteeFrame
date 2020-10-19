@@ -51,7 +51,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semilight", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(118, 116);
+            this.label1.Location = new System.Drawing.Point(175, 114);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(153, 30);
             this.label1.TabIndex = 2;
@@ -61,7 +61,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semilight", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(118, 272);
+            this.label2.Location = new System.Drawing.Point(189, 285);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(115, 30);
             this.label2.TabIndex = 5;
@@ -74,7 +74,7 @@
             this.btnConnectLocal.Font = new System.Drawing.Font("Segoe UI Semibold", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConnectLocal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
             this.btnConnectLocal.Icon = null;
-            this.btnConnectLocal.Location = new System.Drawing.Point(181, 476);
+            this.btnConnectLocal.Location = new System.Drawing.Point(178, 504);
             this.btnConnectLocal.Name = "btnConnectLocal";
             this.btnConnectLocal.Size = new System.Drawing.Size(150, 35);
             this.btnConnectLocal.TabIndex = 6;
@@ -90,12 +90,12 @@
             this.btnConnect.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConnect.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnConnect.Icon = null;
-            this.btnConnect.Location = new System.Drawing.Point(154, 415);
+            this.btnConnect.Location = new System.Drawing.Point(144, 443);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Radius = 2;
             this.btnConnect.ShadowDepth = 0;
             this.btnConnect.ShadowOpacity = 35;
-            this.btnConnect.Size = new System.Drawing.Size(190, 55);
+            this.btnConnect.Size = new System.Drawing.Size(210, 55);
             this.btnConnect.TabIndex = 5;
             this.btnConnect.Text = "KẾT NỐI";
             this.btnConnect.TextAlign = System.Drawing.StringAlignment.Center;
@@ -110,7 +110,7 @@
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtPassword.HideSelection = true;
             this.txtPassword.HintText = "có thể trống";
-            this.txtPassword.Location = new System.Drawing.Point(154, 356);
+            this.txtPassword.Location = new System.Drawing.Point(154, 384);
             this.txtPassword.MaxLength = 32767;
             this.txtPassword.Multiline = false;
             this.txtPassword.Name = "txtPassword";
@@ -133,7 +133,7 @@
             this.txtAccount.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtAccount.HideSelection = true;
             this.txtAccount.HintText = "";
-            this.txtAccount.Location = new System.Drawing.Point(154, 305);
+            this.txtAccount.Location = new System.Drawing.Point(154, 333);
             this.txtAccount.MaxLength = 32767;
             this.txtAccount.Multiline = false;
             this.txtAccount.Name = "txtAccount";
@@ -156,7 +156,7 @@
             this.txtPort.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtPort.HideSelection = true;
             this.txtPort.HintText = "Port number";
-            this.txtPort.Location = new System.Drawing.Point(154, 200);
+            this.txtPort.Location = new System.Drawing.Point(154, 214);
             this.txtPort.MaxLength = 32767;
             this.txtPort.Multiline = false;
             this.txtPort.Name = "txtPort";
@@ -180,7 +180,7 @@
             this.txtServerName.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtServerName.HideSelection = true;
             this.txtServerName.HintText = "Có thể là địa chỉ IP";
-            this.txtServerName.Location = new System.Drawing.Point(154, 149);
+            this.txtServerName.Location = new System.Drawing.Point(154, 163);
             this.txtServerName.MaxLength = 32767;
             this.txtServerName.Multiline = false;
             this.txtServerName.Name = "txtServerName";
@@ -202,9 +202,9 @@
             this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(120, 33);
+            this.pictureBox1.Location = new System.Drawing.Point(144, 21);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(250, 65);
+            this.pictureBox1.Size = new System.Drawing.Size(259, 65);
             this.pictureBox1.TabIndex = 7;
             this.pictureBox1.TabStop = false;
             // 
@@ -231,7 +231,7 @@
             this.lbConnectInform.AutoSize = true;
             this.lbConnectInform.BackColor = System.Drawing.Color.Transparent;
             this.lbConnectInform.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbConnectInform.Location = new System.Drawing.Point(202, 522);
+            this.lbConnectInform.Location = new System.Drawing.Point(206, 611);
             this.lbConnectInform.Name = "lbConnectInform";
             this.lbConnectInform.Size = new System.Drawing.Size(88, 13);
             this.lbConnectInform.TabIndex = 9;
@@ -240,7 +240,8 @@
             // 
             // mainProgressbar
             // 
-            this.mainProgressbar.Location = new System.Drawing.Point(-2, 540);
+            this.mainProgressbar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.mainProgressbar.Location = new System.Drawing.Point(2, 629);
             this.mainProgressbar.MarqueeAnimationSpeed = 30;
             this.mainProgressbar.Name = "mainProgressbar";
             this.mainProgressbar.Size = new System.Drawing.Size(505, 12);
@@ -248,8 +249,9 @@
             // 
             // ptbDone
             // 
+            this.ptbDone.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.ptbDone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.ptbDone.Location = new System.Drawing.Point(-2, 540);
+            this.ptbDone.Location = new System.Drawing.Point(2, 629);
             this.ptbDone.Name = "ptbDone";
             this.ptbDone.Size = new System.Drawing.Size(505, 12);
             this.ptbDone.TabIndex = 11;
@@ -261,7 +263,7 @@
             this.AcceptButton = this.btnAcept;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(500, 550);
+            this.ClientSize = new System.Drawing.Size(509, 639);
             this.Controls.Add(this.lbConnectInform);
             this.Controls.Add(this.btnAcept);
             this.Controls.Add(this.pictureBox1);
@@ -276,6 +278,7 @@
             this.Controls.Add(this.ptbDone);
             this.Controls.Add(this.mainProgressbar);
             this.DisplayHeader = false;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "frmChooseServer";

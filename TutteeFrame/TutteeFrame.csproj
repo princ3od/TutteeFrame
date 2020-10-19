@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo_1_removebg_preview_hoi_icon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="MaterialDesignByPr3, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -150,6 +153,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="logo_1_removebg_preview_hoi_icon.ico" />
     <Content Include="MetroFramework.txt" />
     <None Include="Resources\id-card-concept-vector-linear-icon-isolated-transparent-backg-background-transparency-outline-style-130086174.jpg" />
     <None Include="Resources\User001_Edit-512.png" />
