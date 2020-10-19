@@ -117,29 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="21104" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\21104.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="160153438315628531" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\160153438315628531.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="16015343831562853" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\16015343831562853.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="images" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\images.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="User001_Edit-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\User001_Edit-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="pngtree-outline-user-icon-png-image_1727916" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\pngtree-outline-user-icon-png-image_1727916.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="media_player_button_29-512" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\media_player_button_29-512.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="id-card-concept-vector-linear-icon-isolated-transparent-backg-background-transparency-outline-style-130086174" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\id-card-concept-vector-linear-icon-isolated-transparent-backg-background-transparency-outline-style-130086174.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
+  <metadata name="timer1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>
