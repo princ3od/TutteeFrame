@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.txtPass = new Material_Design_for_Winform.MaterialTextField();
-            this.btLogin = new Material_Design_for_Winform.MaterialRaisedButton();
+            this.btnLogin = new Material_Design_for_Winform.MaterialRaisedButton();
             this.cbxRememberme = new Material_Design_for_Winform.MaterialCheckBox();
-            this.hiddenbtEnterToLogin = new System.Windows.Forms.Button();
+            this.btnEnter = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btSettingSever = new Material_Design_for_Winform.MaterialFlatButton();
             this.txtID = new Material_Design_for_Winform.MaterialTextField();
@@ -62,21 +62,21 @@
             this.txtPass.UseSystemPasswordChar = true;
             this.txtPass.TextChanged += new System.EventHandler(this.txtPass_TextChanged);
             // 
-            // btLogin
+            // btnLogin
             // 
-            resources.ApplyResources(this.btLogin, "btLogin");
-            this.btLogin.BackColor = System.Drawing.Color.Transparent;
-            this.btLogin.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.btLogin.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btLogin.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
-            this.btLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
-            this.btLogin.Icon = null;
-            this.btLogin.Name = "btLogin";
-            this.btLogin.Radius = 2;
-            this.btLogin.ShadowDepth = 0;
-            this.btLogin.ShadowOpacity = 35;
-            this.btLogin.TextAlign = System.Drawing.StringAlignment.Center;
-            this.btLogin.Click += new System.EventHandler(this.btLogin_Click);
+            resources.ApplyResources(this.btnLogin, "btnLogin");
+            this.btnLogin.BackColor = System.Drawing.Color.Transparent;
+            this.btnLogin.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnLogin.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnLogin.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.btnLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.btnLogin.Icon = null;
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Radius = 2;
+            this.btnLogin.ShadowDepth = 0;
+            this.btnLogin.ShadowOpacity = 35;
+            this.btnLogin.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnLogin.Click += new System.EventHandler(this.btLogin_Click);
             // 
             // cbxRememberme
             // 
@@ -88,13 +88,13 @@
             this.cbxRememberme.Name = "cbxRememberme";
             this.cbxRememberme.UseVisualStyleBackColor = false;
             // 
-            // hiddenbtEnterToLogin
+            // btnEnter
             // 
-            resources.ApplyResources(this.hiddenbtEnterToLogin, "hiddenbtEnterToLogin");
-            this.hiddenbtEnterToLogin.BackColor = System.Drawing.Color.White;
-            this.hiddenbtEnterToLogin.Name = "hiddenbtEnterToLogin";
-            this.hiddenbtEnterToLogin.UseVisualStyleBackColor = false;
-            this.hiddenbtEnterToLogin.Click += new System.EventHandler(this.hiddenbtEnterToLogin_Click_1);
+            resources.ApplyResources(this.btnEnter, "btnEnter");
+            this.btnEnter.BackColor = System.Drawing.Color.White;
+            this.btnEnter.Name = "btnEnter";
+            this.btnEnter.UseVisualStyleBackColor = false;
+            this.btnEnter.Click += new System.EventHandler(this.hiddenbtEnterToLogin_Click_1);
             // 
             // pictureBox1
             // 
@@ -160,7 +160,7 @@
             // 
             // frmLogin
             // 
-            this.AcceptButton = this.hiddenbtEnterToLogin;
+            this.AcceptButton = this.btnEnter;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
@@ -172,13 +172,16 @@
             this.Controls.Add(this.cbxRememberme);
             this.Controls.Add(this.txtID);
             this.Controls.Add(this.txtPass);
-            this.Controls.Add(this.btLogin);
-            this.Controls.Add(this.hiddenbtEnterToLogin);
+            this.Controls.Add(this.btnLogin);
+            this.Controls.Add(this.btnEnter);
+            this.DisplayHeader = false;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmLogin";
+            this.Resizable = false;
             this.TextAlign = System.Windows.Forms.VisualStyles.HorizontalAlign.Center;
             this.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmLogin_FormClosing);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmLogin_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -188,11 +191,11 @@
 
         #endregion
         private Material_Design_for_Winform.MaterialTextField txtPass;
-        private Material_Design_for_Winform.MaterialRaisedButton btLogin;
+        private Material_Design_for_Winform.MaterialRaisedButton btnLogin;
         private Material_Design_for_Winform.MaterialCheckBox cbxRememberme;
         private Material_Design_for_Winform.MaterialFlatButton btSettingSever;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button hiddenbtEnterToLogin;
+        private System.Windows.Forms.Button btnEnter;
         private Material_Design_for_Winform.MaterialTextField txtID;
         private System.Windows.Forms.Label label2;
         private Material_Design_for_Winform.MaterialFlatButton btnForgotPass;

@@ -14,6 +14,7 @@ namespace TutteeFrame
 {
     public partial class frmLogin : MetroForm
     {
+        public bool logined = false;
         public frmLogin()
         {
             InitializeComponent();
@@ -36,6 +37,24 @@ namespace TutteeFrame
                 txtPass.Focus();
                 
             }
+            else
+            {
+                int flag = 1;
+                if (Controller.Instance.Login(txtID.Text, txtPass.Text, ref flag))
+                {
+                    logined = true;
+                    this.Close();
+                }
+                else
+                {
+                    if (flag == 0)
+                        MessageBox.Show("Tên đăng nhập không tồn tại!", "Đăng nhập thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else
+                        MessageBox.Show("Vui lòng kiểm tra lại mật khẩu!", "Đăng nhập thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+
+                }
+            }    
            
         }
         private void txtID_TextChanged(object sender, EventArgs e)
@@ -56,7 +75,7 @@ namespace TutteeFrame
 
         private void hiddenbtEnterToLogin_Click_1(object sender, EventArgs e)
         {
-            btLogin_Click(sender, e);
+            btnLogin.PerformClick();
         }
 
         private void linkRegister_Click(object sender, EventArgs e)
@@ -67,6 +86,15 @@ namespace TutteeFrame
 
         private void frmLogin_KeyPress(object sender, KeyPressEventArgs e)
         {
+        }
+
+        private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (logined)
+                return;
+            DialogResult result = MessageBox.Show("Bạn chắc chắn muốn thoát?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.No)
+                e.Cancel = true;
         }
     }
 }

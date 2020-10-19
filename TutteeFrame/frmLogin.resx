@@ -126,7 +126,7 @@
     <value>Segoe UI, 12pt</value>
   </data>
   <data name="txtPass.Location" type="System.Drawing.Point, System.Drawing">
-    <value>126, 274</value>
+    <value>126, 244</value>
   </data>
   <data name="txtPass.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 1, 2, 1</value>
@@ -136,7 +136,7 @@
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="txtPass.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+    <value>1</value>
   </data>
   <data name="&gt;&gt;txtPass.Name" xml:space="preserve">
     <value>txtPass</value>
@@ -150,37 +150,37 @@
   <data name="&gt;&gt;txtPass.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="btLogin.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="btnLogin.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="btLogin.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+  <data name="btnLogin.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
   </data>
-  <data name="btLogin.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="btnLogin.Font" type="System.Drawing.Font, System.Drawing">
     <value>Segoe UI, 12pt, style=Bold</value>
   </data>
-  <data name="btLogin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>114, 367</value>
+  <data name="btnLogin.Location" type="System.Drawing.Point, System.Drawing">
+    <value>114, 337</value>
   </data>
-  <data name="btLogin.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="btnLogin.Size" type="System.Drawing.Size, System.Drawing">
     <value>284, 70</value>
   </data>
-  <data name="btLogin.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
+  <data name="btnLogin.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="btLogin.Text" xml:space="preserve">
-    <value>Đăng Nhập</value>
+  <data name="btnLogin.Text" xml:space="preserve">
+    <value>ĐĂNG NHẬP</value>
   </data>
-  <data name="&gt;&gt;btLogin.Name" xml:space="preserve">
-    <value>btLogin</value>
+  <data name="&gt;&gt;btnLogin.Name" xml:space="preserve">
+    <value>btnLogin</value>
   </data>
-  <data name="&gt;&gt;btLogin.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnLogin.Type" xml:space="preserve">
     <value>Material_Design_for_Winform.MaterialRaisedButton, MaterialDesignByPr3, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;btLogin.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnLogin.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;btLogin.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;btnLogin.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
   <data name="cbxRememberme.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -193,13 +193,13 @@
     <value>NoControl</value>
   </data>
   <data name="cbxRememberme.Location" type="System.Drawing.Point, System.Drawing">
-    <value>126, 334</value>
+    <value>126, 304</value>
   </data>
   <data name="cbxRememberme.Size" type="System.Drawing.Size, System.Drawing">
     <value>153, 27</value>
   </data>
   <data name="cbxRememberme.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+    <value>2</value>
   </data>
   <data name="cbxRememberme.Text" xml:space="preserve">
     <value>Ghi nhớ tôi</value>
@@ -216,31 +216,31 @@
   <data name="&gt;&gt;cbxRememberme.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="hiddenbtEnterToLogin.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="btnEnter.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Left, Right</value>
   </data>
-  <data name="hiddenbtEnterToLogin.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="btnEnter.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="hiddenbtEnterToLogin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>324, 383</value>
+  <data name="btnEnter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>324, 353</value>
   </data>
-  <data name="hiddenbtEnterToLogin.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="btnEnter.Size" type="System.Drawing.Size, System.Drawing">
     <value>42, 23</value>
   </data>
-  <data name="hiddenbtEnterToLogin.TabIndex" type="System.Int32, mscorlib">
+  <data name="btnEnter.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
   </data>
-  <data name="&gt;&gt;hiddenbtEnterToLogin.Name" xml:space="preserve">
-    <value>hiddenbtEnterToLogin</value>
+  <data name="&gt;&gt;btnEnter.Name" xml:space="preserve">
+    <value>btnEnter</value>
   </data>
-  <data name="&gt;&gt;hiddenbtEnterToLogin.Type" xml:space="preserve">
+  <data name="&gt;&gt;btnEnter.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;hiddenbtEnterToLogin.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnEnter.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;hiddenbtEnterToLogin.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;btnEnter.ZOrder" xml:space="preserve">
     <value>9</value>
   </data>
   <data name="pictureBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
@@ -489,7 +489,7 @@
     <value />
   </data>
   <data name="pictureBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>126, 95</value>
+    <value>126, 65</value>
   </data>
   <data name="pictureBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>255, 69</value>
@@ -1042,7 +1042,7 @@
     <value>42, 39</value>
   </data>
   <data name="btSettingSever.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>6</value>
   </data>
   <data name="&gt;&gt;btSettingSever.Name" xml:space="preserve">
     <value>btSettingSever</value>
@@ -1063,13 +1063,13 @@
     <value>Segoe UI, 12pt</value>
   </data>
   <data name="txtID.Location" type="System.Drawing.Point, System.Drawing">
-    <value>126, 203</value>
+    <value>126, 173</value>
   </data>
   <data name="txtID.Size" type="System.Drawing.Size, System.Drawing">
     <value>255, 43</value>
   </data>
   <data name="txtID.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
+    <value>0</value>
   </data>
   <data name="&gt;&gt;txtID.Name" xml:space="preserve">
     <value>txtID</value>
@@ -1093,7 +1093,7 @@
     <value>Segoe UI Light, 9.75pt</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>195, 440</value>
+    <value>195, 410</value>
   </data>
   <data name="label2.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>2, 0, 2, 0</value>
@@ -1129,7 +1129,7 @@
     <value>150, 30</value>
   </data>
   <data name="btnForgotPass.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="btnForgotPass.Text" xml:space="preserve">
     <value>Quên mật khẩu?</value>
@@ -1150,13 +1150,13 @@
     <value>Segoe UI Semibold, 9.75pt</value>
   </data>
   <data name="btnRegister.Location" type="System.Drawing.Point, System.Drawing">
-    <value>248, 525</value>
+    <value>261, 525</value>
   </data>
   <data name="btnRegister.Size" type="System.Drawing.Size, System.Drawing">
     <value>150, 30</value>
   </data>
   <data name="btnRegister.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="btnRegister.Text" xml:space="preserve">
     <value>Đăng kí tài khoản</value>
@@ -3688,10 +3688,13 @@
     <value>4, 3, 4, 3</value>
   </data>
   <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>20, 60, 20, 19</value>
+    <value>20, 30, 20, 19</value>
   </data>
   <data name="$this.RightToLeft" type="System.Windows.Forms.RightToLeft, System.Windows.Forms">
     <value>No</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>TutteeFrame</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>frmLogin</value>

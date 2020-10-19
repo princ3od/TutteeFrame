@@ -39,10 +39,12 @@
             this.txtServerName = new Material_Design_for_Winform.MaterialTextField();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnAcept = new System.Windows.Forms.Button();
-            this.mainProgressbar = new MetroFramework.Controls.MetroProgressBar();
             this.mainProccess = new System.ComponentModel.BackgroundWorker();
             this.lbConnectInform = new System.Windows.Forms.Label();
+            this.mainProgressbar = new System.Windows.Forms.ProgressBar();
+            this.ptbDone = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbDone)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -120,6 +122,7 @@
             this.txtPassword.Style = Material_Design_for_Winform.MaterialTextField.ST.HasFloatingLabel;
             this.txtPassword.TabIndex = 4;
             this.txtPassword.UseSystemPasswordChar = true;
+            this.txtPassword.TextChanged += new System.EventHandler(this.ResetTextboxColor);
             // 
             // txtAccount
             // 
@@ -142,6 +145,7 @@
             this.txtAccount.Style = Material_Design_for_Winform.MaterialTextField.ST.HasFloatingLabel;
             this.txtAccount.TabIndex = 3;
             this.txtAccount.UseSystemPasswordChar = false;
+            this.txtAccount.TextChanged += new System.EventHandler(this.ResetTextboxColor);
             // 
             // txtPort
             // 
@@ -165,6 +169,7 @@
             this.txtPort.TabIndex = 2;
             this.txtPort.UseSystemPasswordChar = false;
             this.txtPort.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPort_KeyPress);
+            this.txtPort.TextChanged += new System.EventHandler(this.ResetTextboxColor);
             // 
             // txtServerName
             // 
@@ -187,6 +192,7 @@
             this.txtServerName.Style = Material_Design_for_Winform.MaterialTextField.ST.HasFloatingLabel;
             this.txtServerName.TabIndex = 1;
             this.txtServerName.UseSystemPasswordChar = false;
+            this.txtServerName.TextChanged += new System.EventHandler(this.ResetTextboxColor);
             // 
             // pictureBox1
             // 
@@ -212,17 +218,6 @@
             this.btnAcept.UseVisualStyleBackColor = true;
             this.btnAcept.Click += new System.EventHandler(this.btnAcept_Click);
             // 
-            // mainProgressbar
-            // 
-            this.mainProgressbar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.mainProgressbar.Location = new System.Drawing.Point(-2, 539);
-            this.mainProgressbar.Name = "mainProgressbar";
-            this.mainProgressbar.Size = new System.Drawing.Size(504, 12);
-            this.mainProgressbar.Step = 1;
-            this.mainProgressbar.TabIndex = 8;
-            this.mainProgressbar.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
             // mainProccess
             // 
             this.mainProccess.WorkerReportsProgress = true;
@@ -243,6 +238,24 @@
             this.lbConnectInform.Text = "*Đang kết nối...";
             this.lbConnectInform.Visible = false;
             // 
+            // mainProgressbar
+            // 
+            this.mainProgressbar.Location = new System.Drawing.Point(-2, 540);
+            this.mainProgressbar.MarqueeAnimationSpeed = 30;
+            this.mainProgressbar.Name = "mainProgressbar";
+            this.mainProgressbar.Size = new System.Drawing.Size(505, 12);
+            this.mainProgressbar.TabIndex = 10;
+            // 
+            // ptbDone
+            // 
+            this.ptbDone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ptbDone.Location = new System.Drawing.Point(-2, 540);
+            this.ptbDone.Name = "ptbDone";
+            this.ptbDone.Size = new System.Drawing.Size(505, 12);
+            this.ptbDone.TabIndex = 11;
+            this.ptbDone.TabStop = false;
+            this.ptbDone.Visible = false;
+            // 
             // frmChooseServer
             // 
             this.AcceptButton = this.btnAcept;
@@ -250,7 +263,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(500, 550);
             this.Controls.Add(this.lbConnectInform);
-            this.Controls.Add(this.mainProgressbar);
             this.Controls.Add(this.btnAcept);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnConnectLocal);
@@ -261,6 +273,8 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPort);
             this.Controls.Add(this.txtServerName);
+            this.Controls.Add(this.ptbDone);
+            this.Controls.Add(this.mainProgressbar);
             this.DisplayHeader = false;
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -270,6 +284,7 @@
             this.Text = "TutteeFrame";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmChooseServer_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbDone)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -287,8 +302,9 @@
         private Material_Design_for_Winform.MaterialRaisedButton btnConnect;
         private Material_Design_for_Winform.MaterialFlatButton btnConnectLocal;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private MetroFramework.Controls.MetroProgressBar mainProgressbar;
         private System.ComponentModel.BackgroundWorker mainProccess;
         private System.Windows.Forms.Label lbConnectInform;
+        private System.Windows.Forms.ProgressBar mainProgressbar;
+        private System.Windows.Forms.PictureBox ptbDone;
     }
 }
