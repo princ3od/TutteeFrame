@@ -40,13 +40,17 @@ namespace TutteeFrame
 
         public bool ConnectServer()
         {
-            if (!InitHelper.Instance.IsSettingExist() || !InitHelper.Instance.IsSettingCorrupt())
-                InitHelper.Instance.CreateDefaultSetting();
             string server = InitHelper.Instance.Read("ServerName", "Database");
             string port = InitHelper.Instance.Read("Port", "Database");
             string serverAccount = InitHelper.Instance.Read("ServerAccount", "Database");
             string serverPass = InitHelper.Instance.Read("ServerPassword", "Database");
             return DataAccess.Instance.Test(server, port, serverAccount, serverPass);
+        }
+
+        public void SettingCheck()
+        {
+            if (!InitHelper.Instance.IsSettingExist() || !InitHelper.Instance.IsSettingCorrupt())
+                InitHelper.Instance.CreateDefaultSetting();
         }
 
     }
