@@ -93,6 +93,7 @@
     <Compile Include="frmRegister.Designer.cs">
       <DependentUpon>frmRegister.cs</DependentUpon>
     </Compile>
+    <Compile Include="InitHelper.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Class.cs" />
     <Compile Include="Model\DataAccess.cs" />

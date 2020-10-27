@@ -24,10 +24,6 @@ namespace TutteeFrame.Model
         private SqlConnection connection;
         #endregion
 
-        #region Data List
-        public List<Account> accounts = new List<Account>();
-        #endregion
-
         public bool Test(string _server, string _port, string _userid, string _pass)
         {
             bool success = true;
@@ -95,20 +91,21 @@ namespace TutteeFrame.Model
 
         public bool AddAccount(Account _account)
         {
-            Connect();
+            bool success = Connect();
 
+            if (!success)
+                return false;
             try
             {
                 string query = "INSERT INTO ACCOUNT(ID,TeacherID,Password) VALUES(@id,@teacherid, @pass)";
                 SqlCommand sqlCommand = new SqlCommand(query, connection);
-                sqlCommand.Parameters.AddWithValue("@id",_account.ID);
-                sqlCommand.Parameters.AddWithValue("@teacherid",_account.TeacherID);
+                sqlCommand.Parameters.AddWithValue("@id", _account.ID);
+                sqlCommand.Parameters.AddWithValue("@teacherid", _account.TeacherID);
                 sqlCommand.Parameters.AddWithValue("@pass", _account.Password);
                 sqlCommand.ExecuteNonQuery();
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
                 return false;
             }
 
@@ -116,15 +113,18 @@ namespace TutteeFrame.Model
             return true;
         }
 
-        public void LoadAccount()
+        public List<Account> LoadAccount()
         {
-            Connect();
+            bool success = Connect();
+
+            if (!success)
+                return null;
 
             Account account;
+            List<Account> accounts = new List<Account>();
             string strQuery = "SELECT * FROM ACCOUNT";
-            SqlCommand sqlCommand = new SqlCommand(strQuery,connection);
+            SqlCommand sqlCommand = new SqlCommand(strQuery, connection);
             SqlDataReader dataReader = sqlCommand.ExecuteReader();
-
             while (dataReader.Read())
             {
                 account = new Account(Convert.ToInt32(dataReader.GetString(0)), dataReader.GetString(1), dataReader.GetString(2));
@@ -132,6 +132,7 @@ namespace TutteeFrame.Model
             }
 
             Disconnect();
+            return accounts;
         }
     }
 }

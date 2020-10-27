@@ -39,7 +39,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnForgotPass = new Material_Design_for_Winform.MaterialFlatButton();
             this.btnRegister = new Material_Design_for_Winform.MaterialFlatButton();
+            this.bwkerMain = new System.ComponentModel.BackgroundWorker();
+            this.lbInformation = new System.Windows.Forms.Label();
+            this.ptbDone = new System.Windows.Forms.PictureBox();
+            this.mainProgressbar = new System.Windows.Forms.ProgressBar();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbDone)).BeginInit();
             this.SuspendLayout();
             // 
             // txtPass
@@ -87,6 +92,7 @@
             this.cbxRememberme.MarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.cbxRememberme.Name = "cbxRememberme";
             this.cbxRememberme.UseVisualStyleBackColor = false;
+            this.cbxRememberme.CheckedChanged += new System.EventHandler(this.cbxRememberme_CheckedChanged);
             // 
             // btnEnter
             // 
@@ -158,12 +164,41 @@
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.TextAlign = System.Drawing.StringAlignment.Center;
             // 
+            // bwkerMain
+            // 
+            this.bwkerMain.WorkerReportsProgress = true;
+            this.bwkerMain.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwkerMain_DoWork);
+            this.bwkerMain.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bwkerMain_ProgressChanged);
+            this.bwkerMain.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwkerMain_RunWorkerCompleted);
+            // 
+            // lbInformation
+            // 
+            resources.ApplyResources(this.lbInformation, "lbInformation");
+            this.lbInformation.BackColor = System.Drawing.Color.Transparent;
+            this.lbInformation.Name = "lbInformation";
+            // 
+            // ptbDone
+            // 
+            resources.ApplyResources(this.ptbDone, "ptbDone");
+            this.ptbDone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ptbDone.Name = "ptbDone";
+            this.ptbDone.TabStop = false;
+            // 
+            // mainProgressbar
+            // 
+            resources.ApplyResources(this.mainProgressbar, "mainProgressbar");
+            this.mainProgressbar.MarqueeAnimationSpeed = 30;
+            this.mainProgressbar.Name = "mainProgressbar";
+            // 
             // frmLogin
             // 
             this.AcceptButton = this.btnEnter;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
+            this.Controls.Add(this.lbInformation);
+            this.Controls.Add(this.ptbDone);
+            this.Controls.Add(this.mainProgressbar);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.btnForgotPass);
             this.Controls.Add(this.label2);
@@ -182,8 +217,10 @@
             this.TextAlign = System.Windows.Forms.VisualStyles.HorizontalAlign.Center;
             this.Theme = MetroFramework.MetroThemeStyle.Light;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmLogin_FormClosing);
+            this.Load += new System.EventHandler(this.frmLogin_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.frmLogin_KeyPress);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbDone)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -200,5 +237,9 @@
         private System.Windows.Forms.Label label2;
         private Material_Design_for_Winform.MaterialFlatButton btnForgotPass;
         private Material_Design_for_Winform.MaterialFlatButton btnRegister;
+        private System.ComponentModel.BackgroundWorker bwkerMain;
+        private System.Windows.Forms.Label lbInformation;
+        private System.Windows.Forms.PictureBox ptbDone;
+        private System.Windows.Forms.ProgressBar mainProgressbar;
     }
 }

@@ -16,6 +16,7 @@ namespace TutteeFrame
         public frmSpashScreen()
         {
             InitializeComponent();
+            Controller.Instance.SettingCheck();
             timer1.Start();
 
         }
