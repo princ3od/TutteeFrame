@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -26,55 +27,15 @@ namespace TutteeFrame
         frmChooseServer frmChooseServer;
         private void frmMain_Shown(object sender, EventArgs e)
         {
-            if (!this.Visible)
-            {
-                if (frmLogin != null)
-                    frmLogin.Activate();
-                else
-                    frmLogin.Activate();
-                return;
-            }    
             this.Hide();
             frmSpashScreen splash = new frmSpashScreen();
             splash.FormClosed += Splash_FormClosed;
             splash.Show();
-            splash.Activate();
+            //splash.Activate();
         }
 
         private void Splash_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (Settings.Default.ConnectionType < 0)
-            {
-                frmChooseServer = new frmChooseServer();
-                frmChooseServer.FormClosed += frmChooseServer_FormClosed;
-                frmChooseServer.Show();
-                frmChooseServer.Activate();
-            }
-            else
-            {
-                DataAccess.Instance.connectionType = (DataAccess.ConnectionType)Settings.Default.ConnectionType;
-                switch (DataAccess.Instance.connectionType) 
-                {
-                    case DataAccess.ConnectionType.Server:
-                        break;
-                    case DataAccess.ConnectionType.Local:
-                        break;
-                    default:
-                        break;
-                }
-                frmLogin = new frmLogin();
-                frmLogin.FormClosed += FrmLogin_FormClosed;
-                frmLogin.Show();
-                frmLogin.Activate();
-            }    
-        }
-        private void frmChooseServer_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (!(sender as frmChooseServer).connected)
-            {
-                this.Close();
-                return;
-            }
             frmLogin = new frmLogin();
             frmLogin.FormClosed += FrmLogin_FormClosed;
             frmLogin.Show();
