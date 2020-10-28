@@ -9,8 +9,6 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
 using MetroFramework.Forms;
-using TutteeFrame.Model;
-using TutteeFrame.Properties;
 
 namespace TutteeFrame
 {
@@ -53,6 +51,9 @@ namespace TutteeFrame
             {
                 if (bwkerMain.IsBusy)
                     return;
+                ptbDone.Hide();
+                mainProgressbar.Show();
+                mainProgressbar.BringToFront();
                 if (!connectSuccess)
                     bwkerMain.RunWorkerAsync();
                 else
@@ -82,7 +83,11 @@ namespace TutteeFrame
         {
             btnLogin.PerformClick();
         }
-
+        private void btSettingSever_Click(object sender, EventArgs e)
+        {
+            frmChooseServer frmChooseServer = new frmChooseServer();
+            frmChooseServer.ShowDialog();
+        }
         private void linkRegister_Click(object sender, EventArgs e)
         {
             //frmRegister register= new frmRegister();
@@ -109,7 +114,7 @@ namespace TutteeFrame
             if (!connectSuccess)
                 return;
             bwkerMain.ReportProgress(50);
-            loadSuccess = Controller.Instance.LoadAccount();
+            loadSuccess = Controller.Instance.LoadAccounts();
             if (!loadSuccess)
                 return;
             bwkerMain.ReportProgress(100);
@@ -151,11 +156,13 @@ namespace TutteeFrame
             int flag = 1;
             if (Controller.Instance.Login(txtID.Text, txtPass.Text, ref flag))
             {
+                InitHelper.Instance.Write("RememberMe", cbxRememberme.Checked.ToString(), "Application");
                 if (cbxRememberme.Checked)
                 {
                     InitHelper.Instance.Write("LastID", txtID.Text, "Application");
                     InitHelper.Instance.Write("LastPass", txtPass.Text, "Application");
                 }
+                Controller.Instance.LoadUsingTeacher(txtID.Text);
                 logined = true;
                 this.Close();
             }
@@ -179,5 +186,6 @@ namespace TutteeFrame
             InitHelper.Instance.Write("RememberMe", cbxRememberme.Checked.ToString(), "Application");
 
         }
+
     }
 }

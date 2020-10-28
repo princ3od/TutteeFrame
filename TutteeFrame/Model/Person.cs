@@ -12,11 +12,15 @@ namespace TutteeFrame.Model
         private string firstName;
         private string address;
         private string mail;
+        private string phone;
 
-        protected string ID { get => iD; set => iD = value; }
-        protected string SurName { get => surName; set => surName = value; }
-        protected string FirstName { get => firstName; set => firstName = value; }
-        protected string Address { get => address; set => address = value; }
-        protected string Mail { get => mail; set => mail = value; }
+        public string ID { get => iD; set => iD = value; }
+        public string SurName { get => surName; set => surName = value; }
+        public string FirstName { get => firstName; set => firstName = value; }
+        public string Address { get => address; set => address = value; }
+        public string Mail { get => mail; set => mail = value; }
+        public string Phone { get => phone; set => phone = value; }
+
+
     }
 }

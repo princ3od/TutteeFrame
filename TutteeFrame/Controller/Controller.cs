@@ -17,7 +17,14 @@ namespace TutteeFrame
 
         #region Data List
         public List<Account> accounts = new List<Account>();
+        public Teacher usingTeacher;
         #endregion
+
+        public void SettingCheck()
+        {
+            if (!InitHelper.Instance.IsSettingExist() || !InitHelper.Instance.IsSettingCorrupt())
+                InitHelper.Instance.CreateDefaultSetting();
+        }
 
         public bool Login(string _teacherId, string _pass, ref int _flag)
         {
@@ -30,10 +37,9 @@ namespace TutteeFrame
             return false;
         }
 
-        public bool LoadAccount()
+        public bool LoadAccounts()
         {
-            accounts = DataAccess.Instance.LoadAccount();
-            if (accounts == null)
+            if (!DataAccess.Instance.LoadAccounts(accounts))
                 return false;
             return true;
         }
@@ -47,11 +53,10 @@ namespace TutteeFrame
             return DataAccess.Instance.Test(server, port, serverAccount, serverPass);
         }
 
-        public void SettingCheck()
+        public bool LoadUsingTeacher(string _teacherID)
         {
-            if (!InitHelper.Instance.IsSettingExist() || !InitHelper.Instance.IsSettingCorrupt())
-                InitHelper.Instance.CreateDefaultSetting();
+            usingTeacher = new Teacher();
+            return DataAccess.Instance.LoadTeacher(_teacherID, usingTeacher);
         }
-
     }
 }

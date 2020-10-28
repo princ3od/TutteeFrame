@@ -117,6 +117,7 @@
             this.btSettingSever.Icon = null;
             this.btSettingSever.Name = "btSettingSever";
             this.btSettingSever.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btSettingSever.Click += new System.EventHandler(this.btSettingSever_Click);
             // 
             // txtID
             // 
