@@ -9,9 +9,6 @@ using System.Text;
 using System.Threading;
 using System.Windows.Forms;
 using MetroFramework.Forms;
-using TutteeFrame.Modal;
-using TutteeFrame.Model;
-using TutteeFrame.Properties;
 
 namespace TutteeFrame
 {
@@ -23,8 +20,7 @@ namespace TutteeFrame
         }
 
         #region Form Event
-        frmLogin frmLogin;
-        frmChooseServer frmChooseServer;
+        private frmLogin frmLogin;
         private void frmMain_Shown(object sender, EventArgs e)
         {
             this.Hide();

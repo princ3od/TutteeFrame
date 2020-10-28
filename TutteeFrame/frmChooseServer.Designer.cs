@@ -31,8 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmChooseServer));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnConnectLocal = new Material_Design_for_Winform.MaterialFlatButton();
-            this.btnConnect = new Material_Design_for_Winform.MaterialRaisedButton();
+            this.btnConfirm = new Material_Design_for_Winform.MaterialRaisedButton();
             this.txtPassword = new Material_Design_for_Winform.MaterialTextField();
             this.txtAccount = new Material_Design_for_Winform.MaterialTextField();
             this.txtPort = new Material_Design_for_Winform.MaterialTextField();
@@ -67,39 +66,24 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "XÁC THỰC";
             // 
-            // btnConnectLocal
+            // btnConfirm
             // 
-            this.btnConnectLocal.BackColor = System.Drawing.Color.Transparent;
-            this.btnConnectLocal.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
-            this.btnConnectLocal.Font = new System.Drawing.Font("Segoe UI Semibold", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConnectLocal.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.btnConnectLocal.Icon = null;
-            this.btnConnectLocal.Location = new System.Drawing.Point(178, 504);
-            this.btnConnectLocal.Name = "btnConnectLocal";
-            this.btnConnectLocal.Size = new System.Drawing.Size(150, 35);
-            this.btnConnectLocal.TabIndex = 6;
-            this.btnConnectLocal.Text = "Sử dụng local server";
-            this.btnConnectLocal.TextAlign = System.Drawing.StringAlignment.Center;
-            this.btnConnectLocal.Click += new System.EventHandler(this.btnConnectLocal_Click);
-            // 
-            // btnConnect
-            // 
-            this.btnConnect.BackColor = System.Drawing.Color.Transparent;
-            this.btnConnect.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.btnConnect.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
-            this.btnConnect.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConnect.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
-            this.btnConnect.Icon = null;
-            this.btnConnect.Location = new System.Drawing.Point(144, 443);
-            this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Radius = 2;
-            this.btnConnect.ShadowDepth = 0;
-            this.btnConnect.ShadowOpacity = 35;
-            this.btnConnect.Size = new System.Drawing.Size(210, 55);
-            this.btnConnect.TabIndex = 5;
-            this.btnConnect.Text = "KẾT NỐI";
-            this.btnConnect.TextAlign = System.Drawing.StringAlignment.Center;
-            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
+            this.btnConfirm.BackColor = System.Drawing.Color.Transparent;
+            this.btnConfirm.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnConfirm.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.btnConfirm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfirm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.btnConfirm.Icon = null;
+            this.btnConfirm.Location = new System.Drawing.Point(144, 443);
+            this.btnConfirm.Name = "btnConfirm";
+            this.btnConfirm.Radius = 2;
+            this.btnConfirm.ShadowDepth = 0;
+            this.btnConfirm.ShadowOpacity = 35;
+            this.btnConfirm.Size = new System.Drawing.Size(210, 55);
+            this.btnConfirm.TabIndex = 5;
+            this.btnConfirm.Text = "XÁC NHẬN";
+            this.btnConfirm.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // txtPassword
             // 
@@ -267,8 +251,7 @@
             this.Controls.Add(this.lbConnectInform);
             this.Controls.Add(this.btnAcept);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.btnConnectLocal);
-            this.Controls.Add(this.btnConnect);
+            this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtAccount);
@@ -285,7 +268,7 @@
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.Resizable = false;
             this.Text = "TutteeFrame";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmChooseServer_FormClosing);
+            this.Load += new System.EventHandler(this.frmChooseServer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbDone)).EndInit();
             this.ResumeLayout(false);
@@ -302,8 +285,7 @@
         private System.Windows.Forms.Label label2;
         private Material_Design_for_Winform.MaterialTextField txtPassword;
         private Material_Design_for_Winform.MaterialTextField txtAccount;
-        private Material_Design_for_Winform.MaterialRaisedButton btnConnect;
-        private Material_Design_for_Winform.MaterialFlatButton btnConnectLocal;
+        private Material_Design_for_Winform.MaterialRaisedButton btnConfirm;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.ComponentModel.BackgroundWorker mainProccess;
         private System.Windows.Forms.Label lbConnectInform;

@@ -23,6 +23,13 @@ namespace TutteeFrame
             InitializeComponent();
         }
 
+        private void frmChooseServer_Load(object sender, EventArgs e)
+        {
+            txtServerName.Text = InitHelper.Instance.Read("ServerName", "Database");
+            txtPort.Text = InitHelper.Instance.Read("Port", "Database");
+            txtAccount.Text = InitHelper.Instance.Read("ServerAccount", "Database");
+            txtPassword.Text = InitHelper.Instance.Read("ServerPassword", "Database");
+        }
         //only digit textbox
         private void txtPort_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -56,33 +63,12 @@ namespace TutteeFrame
             }
             else
             {
-                ptbDone.Hide();
-                mainProgressbar.Style = ProgressBarStyle.Marquee;
-                DataAccess.Instance.connectionType = DataAccess.ConnectionType.Server;
-                EnableChange(false);
-                mainProccess.RunWorkerAsync();
+                InitHelper.Instance.Write("ServerName", txtServerName.Text, "Database");
+                InitHelper.Instance.Write("Port", txtPort.Text, "Database");
+                InitHelper.Instance.Write("ServerAccount", txtAccount.Text, "Database");
+                InitHelper.Instance.Write("ServerPassword", txtPassword.Text, "Database");
+                this.Close();
             }
-        }
-
-        private void btnConnectLocal_Click(object sender, EventArgs e)
-        {
-            ptbDone.Hide();
-            mainProgressbar.Style = ProgressBarStyle.Marquee;
-            DataAccess.Instance.connectionType = DataAccess.ConnectionType.Local;
-            EnableChange(false);
-            mainProccess.RunWorkerAsync();
-            ////// for test purpose
-            //DataAccess.Instance.AddAccount(new Account(1, "TC123456", Encryption.Encrypt("1","1")));
-            //DataAccess.Instance.AddAccount(new Account(2, "TC234567", Encryption.Encrypt("1", "1")));
-        }
-
-        private void frmChooseServer_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (connected)
-                return;
-            DialogResult result = MessageBox.Show("Bạn chắc chắn muốn thoát?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (result == DialogResult.No)
-                e.Cancel = true;
         }
 
         private void btnAcept_Click(object sender, EventArgs e)
@@ -95,9 +81,8 @@ namespace TutteeFrame
                 txtAccount.Focus();
             else if (string.IsNullOrEmpty(txtPassword.Text))
                 txtPassword.Focus();
-
             else
-                btnConnect.PerformClick();
+                btnConfirm.PerformClick();
         }
         bool success = false;
         private void mainProccess_DoWork(object sender, DoWorkEventArgs e)
@@ -141,7 +126,7 @@ namespace TutteeFrame
         void EnableChange(bool _value)
         {
             txtServerName.Enabled = txtPort.Enabled = txtAccount.Enabled = txtPassword.Enabled = _value;
-            btnConnect.Enabled = btnConnectLocal.Enabled = _value;
+            btnConfirm.Enabled = true;
             lbConnectInform.Visible = !_value;
         }
     }
