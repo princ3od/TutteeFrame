@@ -57,29 +57,6 @@ namespace TutteeFrame.Model
             return success;
         }
 
-        //Hàm thừa, sẽ xóa sau
-        public bool TestLocal()
-        {
-            bool success = true;
-            string strConnect = "Data Source=.\\SQLEXPRESS;Initial Catalog=TutteeFrame;Integrated Security=True;TimeOut = 10";
-            try
-            {
-                connection = new SqlConnection(strConnect);
-                connection.Open();
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.Message);
-                success = false;
-            }
-            finally
-            {
-                connectionString = strConnect;
-                connection.Close();
-            }
-            return success;
-        }
-
         /// <summary>
         /// Hàm mở kết nối đến server.
         /// </summary>
@@ -138,7 +115,7 @@ namespace TutteeFrame.Model
         /// <param name="_teacherID"> Mã giáo viên cần lấy dữ liệu. </param>
         /// <param name="_teacher"> Đối tượng giáo viên được load dữ liệu vào. </param>
         /// <returns> Việc lấy dữ liệu có thành công hay không (mã gv không tồn tại, vấn đề server...). </returns>
-        public bool LoadTeacher(string _teacherID, Teacher _teacher)
+        public bool LoadTeacher(string _teacherID, Teacher _teacher, ref bool _isMinistry, ref bool _isAdmin, ref string _position)
         {
             bool success = Connect();
 
@@ -146,11 +123,59 @@ namespace TutteeFrame.Model
                 return false;
             try
             {
-                //code go here
-                //...
+                string strQuery = "SELECT * FROM TEACHER WHERE TeacherID=@teacherid";
+                SqlCommand sqlCommand = new SqlCommand(strQuery, connection);
+                sqlCommand.Parameters.AddWithValue("@teacherid", _teacherID);
+                SqlDataReader dataReader = sqlCommand.ExecuteReader();
+                dataReader.Read();
+                _teacher.ID = dataReader.GetString(0);
+                _teacher.SurName = dataReader.GetString(1);
+                _teacher.FirstName = dataReader.GetString(2);
+                _teacher.Address = dataReader.GetString(3);
+                _teacher.Phone = dataReader.GetString(4);
+                _teacher.Mail = dataReader.GetString(5);
+                //_teacher.Subject = dataReader.GetString(6);
+                _isMinistry = dataReader.GetBoolean(7);
+                _isAdmin = dataReader.GetBoolean(8);
+                _position = dataReader.GetString(9);
             }
             catch (Exception e)
             {
+                return false;
+            }
+
+            Disconnect();
+            return true;
+        }
+        /// <summary>
+        /// Lấy lớp mà giáo viên có mã [_teacherID] chủ nhiệm.
+        /// </summary>
+        /// <param name="_teacherID"> Mã giáo viên </param>
+        /// <param name="_classID"> Mã lớp chủ nhiệm, nếu không có trả về null </param>
+        /// <returns></returns>
+        public bool GetInchargeClass(string _teacherID, ref string _classID)
+        {
+            bool success = Connect();
+
+            if (!success)
+                return false;
+            try
+            {
+                string strQuery = "SELECT * FROM CLASS WHERE TeacherID=@teacherid";
+                SqlCommand sqlCommand = new SqlCommand(strQuery, connection);
+                sqlCommand.Parameters.AddWithValue("@teacherid", _teacherID);
+                SqlDataReader dataReader = sqlCommand.ExecuteReader();
+                if (!dataReader.HasRows)
+                    _classID = null;
+                else
+                {
+                    dataReader.Read();
+                    _classID = dataReader.GetString(0);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
                 return false;
             }
 
@@ -207,7 +232,7 @@ namespace TutteeFrame.Model
             Disconnect();
             return true;
         }
-     
+
         /// <summary>
         /// Hàm lấy danh sách tất cả danh sách giáo viên lưu vào [teachers].
         /// </summary>
@@ -283,28 +308,6 @@ namespace TutteeFrame.Model
 
             Disconnect();
             return true;
-        }
-        //Hàm thừa, sẽ bỏ sau
-        public List<Account> LoadAccounts()
-        {
-            bool success = Connect();
-
-            if (!success)
-                return null;
-
-            Account account;
-            List<Account> accounts = new List<Account>();
-            string strQuery = "SELECT * FROM ACCOUNT";
-            SqlCommand sqlCommand = new SqlCommand(strQuery, connection);
-            SqlDataReader dataReader = sqlCommand.ExecuteReader();
-            while (dataReader.Read())
-            {
-                account = new Account(Convert.ToInt32(dataReader.GetString(0)), dataReader.GetString(1), dataReader.GetString(2));
-                accounts.Add(account);
-            }
-
-            Disconnect();
-            return accounts;
         }
 
         /// <summary>
@@ -415,7 +418,7 @@ namespace TutteeFrame.Model
         /// <param name="_column"></param>
         /// <param name="_value"></param>
         /// <returns></returns>
-        public bool UpdateStudent(string _studentID, string _column,string _value)
+        public bool UpdateStudent(string _studentID, string _column, string _value)
         {
             bool success = Connect();
 
