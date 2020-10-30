@@ -466,8 +466,59 @@ namespace TutteeFrame.Model
         }
         #endregion
 
-        #region 
+        #region For ID Creation
+        /// <summary>
+        /// Lấy ID của học sinh cuối cùng, nếu không có học sinh trả về [năm hiện tại] * 10000 + 2000
+        /// </summary>
+        /// <param name="_lastStudentID"> ID được lấy ra</param>
+        /// <returns></returns>
+        public bool GetLastStudentID(ref int _lastStudentID)
+        {
+            bool success = Connect();
 
-        #endregion
+            if (!success)
+                return false;
+            try
+            {
+                string strQuery = "SELECT TOP 1 * FROM STUDENT ORDER BY StudentID DESC";
+                SqlCommand sqlCommand = new SqlCommand(strQuery, connection);
+                SqlDataReader dataReader = sqlCommand.ExecuteReader();
+               
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+            Disconnect();
+            return true;
+        }
+        /// <summary>
+        /// Trả về năm hiện tại của server.
+        /// </summary>
+        /// <param name="_serverYear"> Giá trị trả về.</param>
+        /// <returns></returns>
+        public bool GetServerYear(ref int _serverYear)
+        {
+            bool success = Connect();
+
+            if (!success)
+                return false;
+            try
+            {
+               //code go heree
+               //..
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+            Disconnect();
+            return true;
+        }   
+        #endregion 
+
     }
 }

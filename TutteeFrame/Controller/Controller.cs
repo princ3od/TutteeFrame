@@ -78,7 +78,22 @@ namespace TutteeFrame
             MessageBox.Show(success.ToString());
             return success;
         }
+        public string GenerateStudentID()
+        {
+            int result = 0;
+            if (DataAccess.Instance.GetLastStudentID(ref result))
+            {
+                Random random = new Random();
+                int distance = random.Next(1, 4);
+                result += distance;
+            }
+            return result.ToString();
 
-
+        }
+        public string GenerateTeacherID()
+        {
+            int result = (new Random()).Next(100000, 999999);
+            return result.ToString();
+        }
     }
 }
