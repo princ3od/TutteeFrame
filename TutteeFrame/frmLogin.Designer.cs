@@ -148,7 +148,7 @@
             // btnForgotPass
             // 
             this.btnForgotPass.BackColor = System.Drawing.Color.Transparent;
-            this.btnForgotPass.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Light;
+            this.btnForgotPass.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
             resources.ApplyResources(this.btnForgotPass, "btnForgotPass");
             this.btnForgotPass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
             this.btnForgotPass.Icon = null;
@@ -158,12 +158,13 @@
             // btnRegister
             // 
             this.btnRegister.BackColor = System.Drawing.Color.Transparent;
-            this.btnRegister.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Light;
+            this.btnRegister.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
             resources.ApplyResources(this.btnRegister, "btnRegister");
             this.btnRegister.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
             this.btnRegister.Icon = null;
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnRegister.Click += new System.EventHandler(this.linkRegister_Click);
             // 
             // bwkerMain
             // 

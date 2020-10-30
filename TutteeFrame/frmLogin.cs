@@ -29,7 +29,7 @@ namespace TutteeFrame
             if (!cbxRememberme.Checked)
                 return;
             txtID.Text = InitHelper.Instance.Read("LastID", "Application");
-            txtPass.Text = InitHelper.Instance.Read("LastPass", "Application");
+            txtPass.Text = Encryption.Decrypt(InitHelper.Instance.Read("LastPass", "Application"), txtID.Text);
         }
         private void btLogin_Click(object sender, EventArgs e)
         {
@@ -90,6 +90,7 @@ namespace TutteeFrame
         }
         private void linkRegister_Click(object sender, EventArgs e)
         {
+            btnLogin.PerformClick();
             //frmRegister register= new frmRegister();
             //register.Show();
         }
@@ -160,7 +161,7 @@ namespace TutteeFrame
                 if (cbxRememberme.Checked)
                 {
                     InitHelper.Instance.Write("LastID", txtID.Text, "Application");
-                    InitHelper.Instance.Write("LastPass", txtPass.Text, "Application");
+                    InitHelper.Instance.Write("LastPass", Encryption.Encrypt(txtPass.Text, txtID.Text), "Application");
                 }
                 Controller.Instance.LoadUsingTeacher(txtID.Text);
                 logined = true;
