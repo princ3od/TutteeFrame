@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 using TutteeFrame.Model;
 
 namespace TutteeFrame
@@ -17,7 +18,7 @@ namespace TutteeFrame
 
         #region Data List
         public List<Account> accounts = new List<Account>();
-        public Teacher usingTeacher;
+        public Teacher usingTeacher = new Teacher();
         #endregion
 
         public void SettingCheck()
@@ -55,8 +56,29 @@ namespace TutteeFrame
 
         public bool LoadUsingTeacher(string _teacherID)
         {
-            usingTeacher = new Teacher();
-            return DataAccess.Instance.LoadTeacher(_teacherID, usingTeacher);
+            bool isMinistry = false, isAdmin = false;
+            string position = "";
+            bool success = DataAccess.Instance.LoadTeacher(_teacherID, usingTeacher, ref isMinistry, ref isAdmin, ref position);
+            if (isAdmin)
+                usingTeacher.Type = Teacher.TeacherType.Adminstrator;
+            else if (isMinistry)
+                usingTeacher.Type = Teacher.TeacherType.Ministry;
+            else
+            {
+                string classID = null;
+                DataAccess.Instance.GetInchargeClass(_teacherID, ref classID);
+                if (classID == null)
+                {
+                    usingTeacher.Type = Teacher.TeacherType.Teacher;
+                    return success;
+                }
+                usingTeacher.Type = Teacher.TeacherType.FormerTeacher;
+                usingTeacher.FormClassID = classID;
+            }
+            MessageBox.Show(success.ToString());
+            return success;
         }
+
+
     }
 }

@@ -29,7 +29,7 @@ namespace TutteeFrame
             if (!cbxRememberme.Checked)
                 return;
             txtID.Text = InitHelper.Instance.Read("LastID", "Application");
-            txtPass.Text = InitHelper.Instance.Read("LastPass", "Application");
+            txtPass.Text = Encryption.Decrypt(InitHelper.Instance.Read("LastPass", "Application"), txtID.Text);
         }
         private void btLogin_Click(object sender, EventArgs e)
         {

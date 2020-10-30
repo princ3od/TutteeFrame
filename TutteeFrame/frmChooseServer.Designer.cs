@@ -37,7 +37,6 @@
             this.txtPort = new Material_Design_for_Winform.MaterialTextField();
             this.txtServerName = new Material_Design_for_Winform.MaterialTextField();
             this.btnAcept = new System.Windows.Forms.Button();
-            this.mainProccess = new System.ComponentModel.BackgroundWorker();
             this.lbConnectInform = new System.Windows.Forms.Label();
             this.mainProgressbar = new System.Windows.Forms.ProgressBar();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -188,13 +187,6 @@
             this.btnAcept.UseVisualStyleBackColor = true;
             this.btnAcept.Click += new System.EventHandler(this.btnAcept_Click);
             // 
-            // mainProccess
-            // 
-            this.mainProccess.WorkerReportsProgress = true;
-            this.mainProccess.DoWork += new System.ComponentModel.DoWorkEventHandler(this.mainProccess_DoWork);
-            this.mainProccess.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.mainProccess_ProgressChanged);
-            this.mainProccess.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.mainProccess_RunWorkerCompleted);
-            // 
             // lbConnectInform
             // 
             this.lbConnectInform.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -287,7 +279,6 @@
         private Material_Design_for_Winform.MaterialTextField txtAccount;
         private Material_Design_for_Winform.MaterialRaisedButton btnConfirm;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.ComponentModel.BackgroundWorker mainProccess;
         private System.Windows.Forms.Label lbConnectInform;
         private System.Windows.Forms.ProgressBar mainProgressbar;
         private System.Windows.Forms.PictureBox ptbDone;
