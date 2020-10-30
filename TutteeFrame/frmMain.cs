@@ -21,13 +21,14 @@ namespace TutteeFrame
 
         #region Form Event
         private frmLogin frmLogin;
-        private void frmMain_Shown(object sender, EventArgs e)
+        private void frmMain_Shown(object sender, EventArgs e)  
         {
+            //this.Show();
             this.Hide();
             frmSpashScreen splash = new frmSpashScreen();
             splash.FormClosed += Splash_FormClosed;
             splash.Show();
-            //splash.Activate();
+
         }
 
         private void Splash_FormClosed(object sender, FormClosedEventArgs e)
@@ -47,5 +48,17 @@ namespace TutteeFrame
             this.Show();
         }
         #endregion
+
+        private void btnAddTeacher_Click(object sender, EventArgs e)
+        {
+            frmAddTeacher addtc = new frmAddTeacher();
+            addtc.Show();
+        }
+
+        private void btnAddStd_Click(object sender, EventArgs e)
+        {
+            frmAddStudent addstd = new frmAddStudent();
+            addstd.Show();
+        }
     }
 }
