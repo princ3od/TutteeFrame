@@ -86,6 +86,7 @@ namespace TutteeFrame
         private void btSettingSever_Click(object sender, EventArgs e)
         {
             frmChooseServer frmChooseServer = new frmChooseServer();
+            frmChooseServer.Parent = this;
             frmChooseServer.ShowDialog();
         }
         private void linkRegister_Click(object sender, EventArgs e)

@@ -7,10 +7,10 @@ namespace TutteeFrame.Model
 {
     class Subject
     {
-        int ID;
+        string ID;
         string Name;
 
-        public int ID1 { get => ID; set => ID = value; }
+        public string ID1 { get => ID; set => ID = value; }
         public string Name1 { get => Name; set => Name = value; }
     }
 }
