@@ -89,11 +89,60 @@ namespace TutteeFrame
             }
             return result.ToString();
 
+<<<<<<< Updated upstream
         }
         public string GenerateTeacherID()
         {
             int result = (new Random()).Next(100000, 999999);
             return result.ToString();
+=======
+        public bool LoadTeachers(DataGridView _gridView)
+        {
+            string teacherNote = "";
+            _gridView.Rows.Clear();
+            List<Teacher> teachers = new List<Teacher>();
+            bool succes = DataAccess.Instance.LoadTeachers(teachers);
+            if (succes)
+            {
+                foreach (Teacher teacher in teachers)
+                {
+                    string classID = null;
+                    DataAccess.Instance.GetInchargeClass(teacher.ID, ref classID);
+                    if (classID != null)
+                    {
+                        teacher.Type = Teacher.TeacherType.FormerTeacher;
+                        teacher.FormClassID = classID;
+                    }
+                    switch (teacher.Type)
+                    {
+                        case Teacher.TeacherType.Teacher:
+                            teacherNote = "";
+                            break;
+                        case Teacher.TeacherType.Adminstrator:
+                            teacherNote = "Thuộc ban giám hiệu.";
+                            break;
+                        case Teacher.TeacherType.Ministry:
+                            teacherNote = "Thuộc giáo vụ.";
+                            break;
+                        case Teacher.TeacherType.FormerTeacher:
+                            teacherNote = "Là GVCN lớp " + teacher.FormClassID + ".";
+                            break;
+                        default:
+                            break;
+                    }
+                    _gridView.Rows.Add(teacher.ID, teacher.SurName, teacher.FirstName, teacher.Address,
+                        teacher.Phone, teacher.Mail, teacher.Subject.Name1, teacherNote);
+                }
+            }
+            return succes;
+        }
+        public bool DeleteTeacher(string _teacherID)
+        {
+            bool success = DataAccess.Instance.DeleteAccount(_teacherID);
+            if (success)
+                success = DataAccess.Instance.DeleteTeacher(_teacherID);
+            return success;
+>>>>>>> Stashed changes
         }
     }
 }

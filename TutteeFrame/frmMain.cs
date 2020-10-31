@@ -85,5 +85,71 @@ namespace TutteeFrame
             this.Show();
         }
         #endregion
+<<<<<<< Updated upstream
+=======
+
+        private void btnAddTeacher_Click(object sender, EventArgs e)
+        {
+            frmAddTeacher addtc = new frmAddTeacher();
+            addtc.ShowDialog();
+        }
+
+        private void btnAddStd_Click(object sender, EventArgs e)
+        {
+            frmAddStudent addstd = new frmAddStudent();
+            addstd.ShowDialog();
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmLogin = new frmLogin();
+            frmLogin.FormClosed += FrmLogin_FormClosed;
+            frmLogin.Show();
+            frmLogin.Activate();
+        }
+
+        private void metroTabControl1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (metroTabControl1.SelectedTab == metroTabControl1.TabPages["tbpgTeacherUdt"] && this.Visible)
+                Controller.Instance.LoadTeachers(dtagridTeacher);
+        }
+
+        private void btnDeleteTeacher_Click(object sender, EventArgs e)
+        {
+            bool success;
+            if (dtagridTeacher.SelectedRows.Count < 1)
+            {
+                if (dtagridTeacher.Rows.Count < 1)
+                    MessageBox.Show("Không có cột nào để xóa cả!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                    MessageBox.Show("Mời chọn cột cần xóa!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (dtagridTeacher.SelectedRows[0].Cells[0].Value.ToString() == mainTeacher.ID)
+            {
+                if (MessageBox.Show("Bạn đang tự xóa tài khoản của chính mình, sau khi xóa bạn sẽ bị đăng xuất. Xác nhận xóa?",
+                       "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                    return;
+                success = Controller.Instance.DeleteTeacher(dtagridTeacher.SelectedRows[0].Cells[0].Value.ToString());
+                if (success)
+                    btnLogout.PerformClick();
+                else
+                    MessageBox.Show("Có lỗi xảy ra khi thực hiện xóa.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                if (MessageBox.Show("Bạn chắc chắn muốn xóa?", "Xác nhận",
+                  MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                    return;
+                success = Controller.Instance.DeleteTeacher(dtagridTeacher.SelectedRows[0].Cells[0].Value.ToString());
+                if (success)
+                    dtagridTeacher.Rows.Remove(dtagridTeacher.SelectedRows[0]);
+                else
+                    MessageBox.Show("Có lỗi xảy ra khi thực hiện xóa.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+>>>>>>> Stashed changes
     }
 }
