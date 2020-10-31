@@ -5,10 +5,11 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
+using TutteeFrame.Model;
 
 namespace TutteeFrame
 {
-    static class Program
+  /*  static class Program
     {
         private static bool isNew;
         [DllImport("user32.dll")]
@@ -47,6 +48,47 @@ namespace TutteeFrame
                     }
                 }
             }
+        }
+    }
+  */
+
+    static class Program
+    {
+       static void Main()
+        {
+            //Subject sb = new Subject();
+            //sb.ID1 = "sb001";
+            //sb.Name1 = "Sinh Hoc";
+            //Teacher tc = new Teacher();
+            //tc.ID = "TC000002";
+            //tc.SurName = "Pham";
+            //tc.FirstName = "Hoang";
+            //tc.Address = "Phu Rieng";
+            //tc.Mail = "Hoang@gmail.com";
+            //tc.Subject = sb;
+            //tc.Phone = "014785214";
+            //tc.Type = Teacher.TeacherType.Adminstrator;
+            //DataAccess.Instance.AddTeacher(tc);
+            //DataAccess.Instance.LoadTeacher("TC123456",tc);
+            //DataAccess.Instance.UpdateTeacher("TC000002", "Address","Phu Rieng Binh Phuoc");
+            //DataAccess.Instance.DeleteTeacher("TC000002");
+            //List<Teacher> teachers = new List<Teacher>();
+            //DataAccess.Instance.LoadTeachers(teachers);
+            //Student st = new Student();
+            //st.ID = "ST000001";
+            //st.SurName = "ST";
+            //st.FirstName = "Lien";
+            //st.ClassID = "12A1";
+            //st.Address = "Phu Rieng";
+            //st.Phone = "123456789";
+            //st.Status = "Learning";
+            //st.PunishmentList = "null";
+            //DataAccess.Instance.AddStudent(st);
+
+            Student st = new Student();
+            DataAccess.Instance.LoadStudent("ST000001", st);
+            MessageBox.Show($"{st.ID} : {st.FirstName}");
+
         }
     }
 }
