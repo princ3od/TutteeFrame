@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.ApplicationServices;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -20,6 +21,7 @@ namespace TutteeFrame.Model
         private string connectionString;
 
         private SqlConnection connection;
+        private string strQuery;
         #endregion
 
         #region Server Function
@@ -36,11 +38,7 @@ namespace TutteeFrame.Model
             bool success = true;
             //Đổi chuỗi kết nối ở dưới để test
             string strConnect = string.Format(Properties.Settings.Default.ServerConnectionString,
-<<<<<<< Updated upstream
-                        _server, _port, _userid, _pass);
-=======
             _server, _port, _userid, _pass);
->>>>>>> Stashed changes
             try
             {
                 connection = new SqlConnection(strConnect);
@@ -69,6 +67,7 @@ namespace TutteeFrame.Model
             try
             {
                 //connection = new SqlConnection(connectionString);
+                Test("", "", "", "");
                 connection.Open();
             }
             catch
@@ -100,10 +99,6 @@ namespace TutteeFrame.Model
                 return false;
             try
             {
-<<<<<<< Updated upstream
-                //code go here
-                //...
-=======
                 int is_admin = 0;
                 int is_ministry = 0;
 
@@ -136,10 +131,10 @@ namespace TutteeFrame.Model
                 sqlCommand.Parameters.AddWithValue("@is_ministry", is_ministry);
                 sqlCommand.Parameters.AddWithValue("@is_admin", is_admin);
                 sqlCommand.ExecuteNonQuery();
->>>>>>> Stashed changes
             }
             catch (Exception e)
             {
+                MessageBox.Show(e.ToString());
                 return false;
             }
 
@@ -234,11 +229,13 @@ namespace TutteeFrame.Model
                 return false;
             try
             {
-                //code go here
-                //...
+                string query = $"UPDATE TEACHER SET {_columnName} = '{_value}' WHERE TeacherID = '{_teacherID}'";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.ExecuteNonQuery();
             }
             catch (Exception e)
             {
+                MessageBox.Show(e.ToString());
                 return false;
             }
 
@@ -258,8 +255,9 @@ namespace TutteeFrame.Model
                 return false;
             try
             {
-                //code go here
-                //...
+                string query = $"DELETE TEACHER WHERE TeacherID = '{_teacherID}'";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.ExecuteNonQuery();
             }
             catch (Exception e)
             {
@@ -283,10 +281,6 @@ namespace TutteeFrame.Model
                 return false;
             try
             {
-<<<<<<< Updated upstream
-                //code go here
-                //...
-=======
                 string query = "SELECT * FROM TEACHER JOIN [SUBJECT] ON TEACHER.SubjectID = SUBJECT.SubjectID";
                 SqlCommand command = new SqlCommand(query, connection);
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -308,15 +302,15 @@ namespace TutteeFrame.Model
                         else if (reader.GetBoolean(8))
                             _teacher.Type = Teacher.TeacherType.Adminstrator;
                         else
-                            _teacher.Type = Teacher.TeacherType.Teacher;                     
+                            _teacher.Type = Teacher.TeacherType.Teacher;
                         teachers.Add(_teacher);
                         //MessageBox.Show(teachers[i].ID);
                     }
                 }
->>>>>>> Stashed changes
             }
             catch (Exception e)
             {
+                MessageBox.Show(e.ToString());
                 return false;
             }
 
@@ -343,6 +337,7 @@ namespace TutteeFrame.Model
             }
             catch (Exception e)
             {
+                MessageBox.Show(e.ToString());
                 return false;
             }
 
@@ -369,6 +364,7 @@ namespace TutteeFrame.Model
             }
             catch (Exception e)
             {
+                MessageBox.Show(e.ToString());
                 return false;
             }
 
@@ -390,11 +386,14 @@ namespace TutteeFrame.Model
                 return false;
             try
             {
-                //code go here
-                //...
+                string query = $"UPDATE ACCOUNT SET Password = '{_newPass}' WHERE TeacherID = '{_teacherID}'";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.ExecuteNonQuery();
+
             }
             catch (Exception e)
             {
+                MessageBox.Show(e.ToString());
                 return false;
             }
 
@@ -414,17 +413,13 @@ namespace TutteeFrame.Model
                 return false;
             try
             {
-<<<<<<< Updated upstream
-                //code go here
-                //...
-=======
                 string query = $"DELETE ACCOUNT WHERE TeacherID = '{_teacherID}'";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.ExecuteNonQuery();
->>>>>>> Stashed changes
             }
             catch (Exception e)
             {
+                MessageBox.Show(e.ToString());
                 return false;
             }
 
@@ -447,10 +442,6 @@ namespace TutteeFrame.Model
                 return false;
             try
             {
-<<<<<<< Updated upstream
-                //code go here
-                //...
-=======
                 int _status = 1;
                 if (_student.Status == "Truant")
                 {
@@ -461,10 +452,10 @@ namespace TutteeFrame.Model
                                 $"{_student.Phone},'{_student.ClassID}',{_status},{_student.PunishmentList})";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.ExecuteNonQuery();
->>>>>>> Stashed changes
             }
             catch (Exception e)
             {
+                MessageBox.Show(e.ToString());
                 return false;
             }
 
@@ -485,10 +476,6 @@ namespace TutteeFrame.Model
                 return false;
             try
             {
-<<<<<<< Updated upstream
-                //code go here
-                //...
-=======
                 string query = $"SELECT * FROM STUDENT WHERE StudentID = '{_studentID}'";
                 SqlCommand command = new SqlCommand(query, connection);
                 using (SqlDataReader reader = command.ExecuteReader())
@@ -505,10 +492,10 @@ namespace TutteeFrame.Model
                         _student.PunishmentList = reader["PunishmentListID"].ToString();
                     }
                 }
->>>>>>> Stashed changes
             }
             catch (Exception e)
             {
+                MessageBox.Show(e.ToString());
                 return false;
             }
 
@@ -530,10 +517,6 @@ namespace TutteeFrame.Model
                 return false;
             try
             {
-<<<<<<< Updated upstream
-                //code go here
-                //...
-=======
                 if (_column == "Status")
                 {
                     int _status = 1;
@@ -545,16 +528,17 @@ namespace TutteeFrame.Model
                     SqlCommand command = new SqlCommand(query, connection);
                     command.ExecuteNonQuery();
                 }
+
                 else
                 {
                     string query = $"UPDATE STUDENT SET {_column} = '{_value}' WHERE StudentID = '{_studentID}'";
                     SqlCommand command = new SqlCommand(query, connection);
                     command.ExecuteNonQuery();
                 }
->>>>>>> Stashed changes
             }
             catch (Exception e)
             {
+                MessageBox.Show(e.ToString());
                 return false;
             }
 
@@ -577,11 +561,14 @@ namespace TutteeFrame.Model
                 return false;
             try
             {
-                //code go here
-                //...
+                string query = "INSERT INTO CLASS(ClassID,RoomNum,StudentNum,TeacherID) VALUES" +
+                    $"('{_class.ID}','{_class.Room}','{_class.StudentNum}','{_class.FormerTeacherID}')";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.ExecuteNonQuery();
             }
             catch (Exception e)
             {
+                MessageBox.Show(e.ToString());
                 return false;
             }
 
@@ -589,7 +576,6 @@ namespace TutteeFrame.Model
             return true;
         }
         #endregion
-<<<<<<< Updated upstream
 
         #region For ID Creation
         /// <summary>
@@ -608,7 +594,7 @@ namespace TutteeFrame.Model
                 string strQuery = "SELECT TOP 1 * FROM STUDENT ORDER BY StudentID DESC";
                 SqlCommand sqlCommand = new SqlCommand(strQuery, connection);
                 SqlDataReader dataReader = sqlCommand.ExecuteReader();
-               
+
             }
             catch (Exception e)
             {
@@ -631,8 +617,8 @@ namespace TutteeFrame.Model
                 return false;
             try
             {
-               //code go heree
-               //..
+                //code go heree
+                //..
 
             }
             catch (Exception e)
@@ -642,10 +628,8 @@ namespace TutteeFrame.Model
 
             Disconnect();
             return true;
-        }   
-        #endregion 
+        }
+        #endregion
 
-=======
->>>>>>> Stashed changes
     }
 }

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
+using TutteeFrame.Model;
 
 namespace TutteeFrame
 {
@@ -49,9 +50,4 @@ namespace TutteeFrame
             }
         }
     }
-<<<<<<< Updated upstream
-=======
-
-
->>>>>>> Stashed changes
 }
