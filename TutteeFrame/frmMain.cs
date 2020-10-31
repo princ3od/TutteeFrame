@@ -148,5 +148,10 @@ namespace TutteeFrame
                     MessageBox.Show("Có lỗi xảy ra khi thực hiện xóa.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }       
         }
+
+        private void btnEditTeacher_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

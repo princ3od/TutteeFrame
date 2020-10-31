@@ -38,7 +38,7 @@ namespace TutteeFrame.Model
             bool success = true;
             //Đổi chuỗi kết nối ở dưới để test
             string strConnect = string.Format(Properties.Settings.Default.ServerConnectionString,
-            _server, _port, _userid, _pass);
+                    _server, _port, _userid, _pass);
             try
             {
                 connection = new SqlConnection(strConnect);
@@ -66,8 +66,7 @@ namespace TutteeFrame.Model
             bool success = true;
             try
             {
-                //connection = new SqlConnection(connectionString);
-                Test("", "", "", "");
+                connection = new SqlConnection(connectionString);
                 connection.Open();
             }
             catch

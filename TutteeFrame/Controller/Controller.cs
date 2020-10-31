@@ -88,14 +88,12 @@ namespace TutteeFrame
                 result += distance;
             }
             return result.ToString();
-
-<<<<<<< Updated upstream
         }
         public string GenerateTeacherID()
         {
             int result = (new Random()).Next(100000, 999999);
             return result.ToString();
-=======
+        }
         public bool LoadTeachers(DataGridView _gridView)
         {
             string teacherNote = "";
@@ -142,7 +140,6 @@ namespace TutteeFrame
             if (success)
                 success = DataAccess.Instance.DeleteTeacher(_teacherID);
             return success;
->>>>>>> Stashed changes
         }
     }
 }
