@@ -84,5 +84,10 @@ namespace TutteeFrame
             else
                 btnConfirm.PerformClick();
         }
+
+        private void btnCreateAdmin_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

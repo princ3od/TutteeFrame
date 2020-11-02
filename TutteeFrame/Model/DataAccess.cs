@@ -118,7 +118,8 @@ namespace TutteeFrame.Model
                             break;
                         }
                 }
-                string query = "INSERT INTO TEACHER(TeacherID,Surname,FirstName,Address,Phone,Mail,SubjectID,IsMinistry,IsAdmin) VALUES(@teacherid,@surname,@firstname,@address,@phone,@mail,@subjectid,@is_ministry,@is_admin)";
+                string query = "INSERT INTO TEACHER(TeacherID,Surname,FirstName,Address,Phone,Maill,SubjectID,IsMinistry,IsAdmin) " +
+                    "VALUES(@teacherid,@surname,@firstname,@address,@phone,@mail,@subjectid,@is_ministry,@is_admin)";
                 SqlCommand sqlCommand = new SqlCommand(query, connection);
                 sqlCommand.Parameters.AddWithValue("@teacherid", _teacher.ID);
                 sqlCommand.Parameters.AddWithValue("@surname", _teacher.SurName);
@@ -126,7 +127,7 @@ namespace TutteeFrame.Model
                 sqlCommand.Parameters.AddWithValue("@phone", _teacher.Phone);
                 sqlCommand.Parameters.AddWithValue("@address", _teacher.Address);
                 sqlCommand.Parameters.AddWithValue("@mail", _teacher.Mail);
-                sqlCommand.Parameters.AddWithValue("@subjectid", _teacher.Subject.ID1);
+                sqlCommand.Parameters.AddWithValue("@subjectid", _teacher.Subject.ID);
                 sqlCommand.Parameters.AddWithValue("@is_ministry", is_ministry);
                 sqlCommand.Parameters.AddWithValue("@is_admin", is_admin);
                 sqlCommand.ExecuteNonQuery();
@@ -154,7 +155,8 @@ namespace TutteeFrame.Model
                 return false;
             try
             {
-                string strQuery = "SELECT * FROM TEACHER WHERE TeacherID=@teacherid";
+                string strQuery = "SELECT * FROM TEACHER JOIN [SUBJECT] ON TEACHER.SubjectID = SUBJECT.SubjectID" +
+                    " WHERE TeacherID=@teacherid";
                 SqlCommand sqlCommand = new SqlCommand(strQuery, connection);
                 sqlCommand.Parameters.AddWithValue("@teacherid", _teacherID);
                 SqlDataReader dataReader = sqlCommand.ExecuteReader();
@@ -165,7 +167,9 @@ namespace TutteeFrame.Model
                 _teacher.Address = dataReader.GetString(3);
                 _teacher.Phone = dataReader.GetString(4);
                 _teacher.Mail = dataReader.GetString(5);
-                //_teacher.Subject = dataReader.GetString(6);
+                _teacher.Subject = new Subject();
+                _teacher.Subject.ID = dataReader.GetString(6);
+                _teacher.Subject.Name = dataReader["SubjectName"].ToString();
                 _isMinistry = dataReader.GetBoolean(7);
                 _isAdmin = dataReader.GetBoolean(8);
                 _position = dataReader.GetString(9);
@@ -260,6 +264,7 @@ namespace TutteeFrame.Model
             }
             catch (Exception e)
             {
+                MessageBox.Show(e.Message);
                 return false;
             }
 
@@ -294,8 +299,8 @@ namespace TutteeFrame.Model
                         _teacher.Phone = reader["Phone"].ToString();
                         _teacher.Mail = reader["Maill"].ToString();
                         _teacher.Subject = new Subject();
-                        _teacher.Subject.ID1 = reader["SubjectID"].ToString();
-                        _teacher.Subject.Name1 = reader["SubjectName"].ToString();
+                        _teacher.Subject.ID = reader["SubjectID"].ToString();
+                        _teacher.Subject.Name = reader["SubjectName"].ToString();
                         if (reader.GetBoolean(7))
                             _teacher.Type = Teacher.TeacherType.Ministry;
                         else if (reader.GetBoolean(8))
@@ -329,7 +334,7 @@ namespace TutteeFrame.Model
             {
                 string query = "INSERT INTO ACCOUNT(ID,TeacherID,Password) VALUES(@id,@teacherid, @pass)";
                 SqlCommand sqlCommand = new SqlCommand(query, connection);
-                sqlCommand.Parameters.AddWithValue("@id", _account.ID);
+                sqlCommand.Parameters.AddWithValue("@id", _account.ID.ToString());
                 sqlCommand.Parameters.AddWithValue("@teacherid", _account.TeacherID);
                 sqlCommand.Parameters.AddWithValue("@pass", _account.Password);
                 sqlCommand.ExecuteNonQuery();

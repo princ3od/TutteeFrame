@@ -40,6 +40,7 @@ namespace TutteeFrame
 
         public bool LoadAccounts()
         {
+            accounts.Clear();
             if (!DataAccess.Instance.LoadAccounts(accounts))
                 return false;
             return true;
@@ -75,7 +76,70 @@ namespace TutteeFrame
                 usingTeacher.Type = Teacher.TeacherType.FormerTeacher;
                 usingTeacher.FormClassID = classID;
             }
-            MessageBox.Show(success.ToString());
+            return success;
+        }
+        public bool LoadTeacher(string _teacherID, Teacher _teacher)
+        {
+            bool isMinistry = false, isAdmin = false;
+            string position = "";
+            bool success = DataAccess.Instance.LoadTeacher(_teacherID, _teacher, ref isMinistry, ref isAdmin, ref position);
+            if (isAdmin)
+                _teacher.Type = Teacher.TeacherType.Adminstrator;
+            else if (isMinistry)
+                _teacher.Type = Teacher.TeacherType.Ministry;
+            else
+            {
+                string classID = null;
+                DataAccess.Instance.GetInchargeClass(_teacherID, ref classID);
+                if (classID == null)
+                {
+                    _teacher.Type = Teacher.TeacherType.Teacher;
+                    return success;
+                }
+                _teacher.Type = Teacher.TeacherType.FormerTeacher;
+                _teacher.FormClassID = classID;
+            }
+            return success;
+        }
+        public bool UpdateTeacher(string _teacherID, Teacher _newTeacher)
+        {
+            bool success = true;
+            Teacher oldTeacher = new Teacher();
+            LoadTeacher(_teacherID, oldTeacher);
+            if (oldTeacher.ID != _newTeacher.ID)
+                success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[0], _newTeacher.ID);
+            if (oldTeacher.SurName != _newTeacher.SurName)
+                success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[1], _newTeacher.SurName);
+            if (oldTeacher.FirstName != _newTeacher.FirstName)
+                success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[2], _newTeacher.FirstName);
+            if (oldTeacher.Address != _newTeacher.Address)
+                success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[3], _newTeacher.Address);
+            if (oldTeacher.Phone != _newTeacher.Phone)
+                success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[4], _newTeacher.Phone);
+            if (oldTeacher.Mail != _newTeacher.Mail)
+                success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[5], _newTeacher.Mail);
+            if (_newTeacher.Type != oldTeacher.Type)
+            {
+                switch (_newTeacher.Type)
+                {
+                    case Teacher.TeacherType.Teacher:
+                        success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[7], "0");
+                        success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[8], "0");
+                        break;
+                    case Teacher.TeacherType.Adminstrator:
+                        success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[7], "0");
+                        success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[8], "1");
+                        break;
+                    case Teacher.TeacherType.Ministry:
+                        success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[7], "1");
+                        success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[8], "0");
+                        break;
+                    case Teacher.TeacherType.FormerTeacher:
+                        break;
+                    default:
+                        break;
+                }
+            }
             return success;
         }
         public string GenerateStudentID()
@@ -128,8 +192,9 @@ namespace TutteeFrame
                         default:
                             break;
                     }
-                    _gridView.Rows.Add(teacher.ID, teacher.SurName, teacher.FirstName, teacher.Address,
-                        teacher.Phone, teacher.Mail, teacher.Subject.Name1, teacherNote);
+                    if (teacher.ID != "AD999999")
+                        _gridView.Rows.Add(teacher.ID, teacher.SurName, teacher.FirstName, teacher.Address,
+                            teacher.Phone, teacher.Mail, teacher.Subject.Name, teacherNote);
                 }
             }
             return succes;
@@ -138,8 +203,37 @@ namespace TutteeFrame
         {
             bool success = DataAccess.Instance.DeleteAccount(_teacherID);
             if (success)
+            {
                 success = DataAccess.Instance.DeleteTeacher(_teacherID);
+                LoadAccounts();
+            }
             return success;
+        }
+        public bool AddTeacher(Teacher _teacher)
+        {
+            bool success = DataAccess.Instance.AddTeacher(_teacher);
+            if (success)
+            {
+                LoadAccounts();
+                Account account = new Account(accounts.Count + 1, _teacher.ID, Encryption.Encrypt("1", "1"));
+                success = DataAccess.Instance.AddAccount(account);
+                if (success)
+                    accounts.Add(account);
+            }
+            return success;
+        }
+        public bool CreateAdminAccount()
+        {
+            Teacher teacher = new Teacher();
+            teacher.Subject = new Subject("01", "Toán");
+            teacher.ID = "AD999999";
+            teacher.FirstName = "Admin";
+            teacher.SurName = "Admin";
+            teacher.Address = "";
+            teacher.Phone = "0123456789";
+            teacher.Mail = "admin@tutteframe.com";
+            teacher.Type = Teacher.TeacherType.Adminstrator;
+            return AddTeacher(teacher);
         }
     }
 }

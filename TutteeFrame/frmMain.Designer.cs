@@ -36,18 +36,15 @@
             this.lbSubjectTeach = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnBrowseforProfilePic = new Material_Design_for_Winform.MaterialRaisedButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbMyemail = new System.Windows.Forms.Label();
-            this.lbInchargeCls = new System.Windows.Forms.Label();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.lbMyfonenum = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.lbInforNote = new System.Windows.Forms.Label();
             this.lbMyaddr = new System.Windows.Forms.Label();
             this.lbImyID = new System.Windows.Forms.Label();
             this.lbMyname = new System.Windows.Forms.Label();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tbpgMarkUpdt = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.tbpgDisandRe = new System.Windows.Forms.TabPage();
@@ -98,13 +95,24 @@
             this.metroToolTip4 = new MetroFramework.Components.MetroToolTip();
             this.btnLogout = new Material_Design_for_Winform.MaterialRaisedButton();
             this.btnForgotPass = new Material_Design_for_Winform.MaterialFlatButton();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.dtagridviewStudent = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tbpgSubjectManage = new System.Windows.Forms.TabPage();
             this.metroTabControl1.SuspendLayout();
             this.tbpgInfo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tbpgMarkUpdt.SuspendLayout();
             this.tbpgDisandRe.SuspendLayout();
             this.tbpgStdUdt.SuspendLayout();
@@ -117,6 +125,10 @@
             this.tbpgHkUdt.SuspendLayout();
             this.tbpgMarkboard.SuspendLayout();
             this.tbpgReport.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtagridviewStudent)).BeginInit();
             this.SuspendLayout();
             // 
             // metroTabControl1
@@ -149,6 +161,7 @@
             this.metroTabControl1.Controls.Add(this.tbpgHkUdt);
             this.metroTabControl1.Controls.Add(this.tbpgMarkboard);
             this.metroTabControl1.Controls.Add(this.tbpgReport);
+            this.metroTabControl1.Controls.Add(this.tbpgSubjectManage);
             this.metroTabControl1.DoAnimation = false;
             this.metroTabControl1.DrawPolygon = true;
             this.metroTabControl1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -172,16 +185,16 @@
             // 
             this.tbpgInfo.BackColor = System.Drawing.Color.White;
             this.tbpgInfo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbpgInfo.Controls.Add(this.pictureBox5);
             this.tbpgInfo.Controls.Add(this.label3);
             this.tbpgInfo.Controls.Add(this.lbSubjectTeach);
             this.tbpgInfo.Controls.Add(this.label2);
             this.tbpgInfo.Controls.Add(this.btnBrowseforProfilePic);
             this.tbpgInfo.Controls.Add(this.pictureBox1);
             this.tbpgInfo.Controls.Add(this.lbMyemail);
-            this.tbpgInfo.Controls.Add(this.lbInchargeCls);
             this.tbpgInfo.Controls.Add(this.pictureBox6);
             this.tbpgInfo.Controls.Add(this.lbMyfonenum);
-            this.tbpgInfo.Controls.Add(this.label1);
+            this.tbpgInfo.Controls.Add(this.lbInforNote);
             this.tbpgInfo.Controls.Add(this.lbMyaddr);
             this.tbpgInfo.Controls.Add(this.lbImyID);
             this.tbpgInfo.Controls.Add(this.lbMyname);
@@ -214,7 +227,7 @@
             // 
             this.lbSubjectTeach.AutoSize = true;
             this.lbSubjectTeach.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.lbSubjectTeach.Location = new System.Drawing.Point(322, 542);
+            this.lbSubjectTeach.Location = new System.Drawing.Point(958, 122);
             this.lbSubjectTeach.Name = "lbSubjectTeach";
             this.lbSubjectTeach.Size = new System.Drawing.Size(29, 25);
             this.lbSubjectTeach.TabIndex = 31;
@@ -224,7 +237,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.label2.Location = new System.Drawing.Point(167, 542);
+            this.label2.Location = new System.Drawing.Point(821, 122);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(143, 25);
             this.label2.TabIndex = 30;
@@ -238,7 +251,7 @@
             this.btnBrowseforProfilePic.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnBrowseforProfilePic.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnBrowseforProfilePic.Icon = null;
-            this.btnBrowseforProfilePic.Location = new System.Drawing.Point(80, 149);
+            this.btnBrowseforProfilePic.Location = new System.Drawing.Point(91, 195);
             this.btnBrowseforProfilePic.Name = "btnBrowseforProfilePic";
             this.btnBrowseforProfilePic.Radius = 2;
             this.btnBrowseforProfilePic.ShadowDepth = 0;
@@ -248,43 +261,22 @@
             this.btnBrowseforProfilePic.Text = "Browse";
             this.btnBrowseforProfilePic.TextAlign = System.Drawing.StringAlignment.Center;
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.pictureBox1.Location = new System.Drawing.Point(172, 107);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(40, 40);
-            this.pictureBox1.TabIndex = 17;
-            this.pictureBox1.TabStop = false;
-            // 
             // lbMyemail
             // 
             this.lbMyemail.AutoSize = true;
             this.lbMyemail.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.lbMyemail.Location = new System.Drawing.Point(238, 350);
+            this.lbMyemail.Location = new System.Drawing.Point(318, 392);
             this.lbMyemail.Name = "lbMyemail";
             this.lbMyemail.Size = new System.Drawing.Size(262, 25);
             this.lbMyemail.TabIndex = 26;
             this.lbMyemail.Text = "thisismyemail@hahamail.com";
             this.metroToolTip1.SetToolTip(this.lbMyemail, "Email");
             // 
-            // lbInchargeCls
-            // 
-            this.lbInchargeCls.AutoSize = true;
-            this.lbInchargeCls.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.lbInchargeCls.Location = new System.Drawing.Point(322, 499);
-            this.lbInchargeCls.Name = "lbInchargeCls";
-            this.lbInchargeCls.Size = new System.Drawing.Size(54, 25);
-            this.lbInchargeCls.TabIndex = 17;
-            this.lbInchargeCls.Text = "12A1";
-            // 
             // pictureBox6
             // 
             this.pictureBox6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox6.BackgroundImage")));
             this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox6.Location = new System.Drawing.Point(171, 350);
+            this.pictureBox6.Location = new System.Drawing.Point(252, 380);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(40, 37);
             this.pictureBox6.TabIndex = 25;
@@ -294,28 +286,28 @@
             // 
             this.lbMyfonenum.AutoSize = true;
             this.lbMyfonenum.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.lbMyfonenum.Location = new System.Drawing.Point(238, 433);
+            this.lbMyfonenum.Location = new System.Drawing.Point(318, 479);
             this.lbMyfonenum.Name = "lbMyfonenum";
             this.lbMyfonenum.Size = new System.Drawing.Size(102, 25);
             this.lbMyfonenum.TabIndex = 24;
             this.lbMyfonenum.Text = "090999999";
             this.metroToolTip2.SetToolTip(this.lbMyfonenum, "Số điện thoại");
             // 
-            // label1
+            // lbInforNote
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.label1.Location = new System.Drawing.Point(167, 499);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(141, 25);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Lớp chủ nhiệm:";
+            this.lbInforNote.AutoSize = true;
+            this.lbInforNote.Font = new System.Drawing.Font("Segoe UI", 14F);
+            this.lbInforNote.Location = new System.Drawing.Point(821, 177);
+            this.lbInforNote.Name = "lbInforNote";
+            this.lbInforNote.Size = new System.Drawing.Size(77, 25);
+            this.lbInforNote.TabIndex = 8;
+            this.lbInforNote.Text = "Ghi chú";
             // 
             // lbMyaddr
             // 
             this.lbMyaddr.AutoSize = true;
             this.lbMyaddr.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.lbMyaddr.Location = new System.Drawing.Point(238, 268);
+            this.lbMyaddr.Location = new System.Drawing.Point(318, 304);
             this.lbMyaddr.Name = "lbMyaddr";
             this.lbMyaddr.Size = new System.Drawing.Size(282, 25);
             this.lbMyaddr.TabIndex = 23;
@@ -326,7 +318,7 @@
             // 
             this.lbImyID.AutoSize = true;
             this.lbImyID.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.lbImyID.Location = new System.Drawing.Point(238, 186);
+            this.lbImyID.Location = new System.Drawing.Point(318, 207);
             this.lbImyID.Name = "lbImyID";
             this.lbImyID.Size = new System.Drawing.Size(102, 25);
             this.lbImyID.TabIndex = 22;
@@ -337,7 +329,7 @@
             // 
             this.lbMyname.AutoSize = true;
             this.lbMyname.Font = new System.Drawing.Font("Segoe UI", 14F);
-            this.lbMyname.Location = new System.Drawing.Point(245, 123);
+            this.lbMyname.Location = new System.Drawing.Point(318, 113);
             this.lbMyname.Name = "lbMyname";
             this.lbMyname.Size = new System.Drawing.Size(102, 25);
             this.lbMyname.TabIndex = 21;
@@ -347,7 +339,7 @@
             // 
             this.pictureBox4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.BackgroundImage")));
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox4.Location = new System.Drawing.Point(171, 432);
+            this.pictureBox4.Location = new System.Drawing.Point(251, 464);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(40, 40);
             this.pictureBox4.TabIndex = 20;
@@ -358,22 +350,11 @@
             this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(171, 253);
+            this.pictureBox3.Location = new System.Drawing.Point(251, 289);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(40, 40);
             this.pictureBox3.TabIndex = 19;
             this.pictureBox3.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(171, 177);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(40, 40);
-            this.pictureBox2.TabIndex = 18;
-            this.pictureBox2.TabStop = false;
             // 
             // tbpgMarkUpdt
             // 
@@ -431,6 +412,7 @@
             // 
             this.tbpgStdUdt.BackColor = System.Drawing.Color.White;
             this.tbpgStdUdt.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tbpgStdUdt.Controls.Add(this.dtagridviewStudent);
             this.tbpgStdUdt.Controls.Add(this.btnEditStd);
             this.tbpgStdUdt.Controls.Add(this.btnDeleteStd);
             this.tbpgStdUdt.Controls.Add(this.btnAddStd);
@@ -450,7 +432,7 @@
             this.btnEditStd.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnEditStd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnEditStd.Icon = null;
-            this.btnEditStd.Location = new System.Drawing.Point(1064, 518);
+            this.btnEditStd.Location = new System.Drawing.Point(1064, 590);
             this.btnEditStd.Name = "btnEditStd";
             this.btnEditStd.Radius = 2;
             this.btnEditStd.ShadowDepth = 0;
@@ -468,7 +450,7 @@
             this.btnDeleteStd.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnDeleteStd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnDeleteStd.Icon = null;
-            this.btnDeleteStd.Location = new System.Drawing.Point(943, 518);
+            this.btnDeleteStd.Location = new System.Drawing.Point(943, 590);
             this.btnDeleteStd.Name = "btnDeleteStd";
             this.btnDeleteStd.Radius = 2;
             this.btnDeleteStd.ShadowDepth = 0;
@@ -486,7 +468,7 @@
             this.btnAddStd.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnAddStd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnAddStd.Icon = null;
-            this.btnAddStd.Location = new System.Drawing.Point(49, 518);
+            this.btnAddStd.Location = new System.Drawing.Point(49, 590);
             this.btnAddStd.Name = "btnAddStd";
             this.btnAddStd.Radius = 2;
             this.btnAddStd.ShadowDepth = 0;
@@ -936,6 +918,134 @@
             this.btnForgotPass.Text = "Đổi mật khẩu";
             this.btnForgotPass.TextAlign = System.Drawing.StringAlignment.Center;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.Location = new System.Drawing.Point(251, 192);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox2.TabIndex = 18;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.pictureBox1.Location = new System.Drawing.Point(252, 98);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox1.TabIndex = 17;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pictureBox5.Location = new System.Drawing.Point(91, 69);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(140, 132);
+            this.pictureBox5.TabIndex = 33;
+            this.pictureBox5.TabStop = false;
+            // 
+            // dtagridviewStudent
+            // 
+            this.dtagridviewStudent.AllowUserToAddRows = false;
+            this.dtagridviewStudent.AllowUserToDeleteRows = false;
+            this.dtagridviewStudent.AllowUserToResizeRows = false;
+            this.dtagridviewStudent.BackgroundColor = System.Drawing.Color.WhiteSmoke;
+            this.dtagridviewStudent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtagridviewStudent.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn7,
+            this.clmStatus,
+            this.dataGridViewTextBoxColumn8});
+            this.dtagridviewStudent.GridColor = System.Drawing.Color.White;
+            this.dtagridviewStudent.Location = new System.Drawing.Point(22, 100);
+            this.dtagridviewStudent.Margin = new System.Windows.Forms.Padding(5);
+            this.dtagridviewStudent.MultiSelect = false;
+            this.dtagridviewStudent.Name = "dtagridviewStudent";
+            this.dtagridviewStudent.RowHeadersVisible = false;
+            this.dtagridviewStudent.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dtagridviewStudent.ShowEditingIcon = false;
+            this.dtagridviewStudent.Size = new System.Drawing.Size(1180, 483);
+            this.dtagridviewStudent.TabIndex = 41;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "MSHS";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewTextBoxColumn2.FillWeight = 10.30928F;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Họ";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 150;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.dataGridViewTextBoxColumn3.FillWeight = 189.6907F;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Tên";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            this.dataGridViewTextBoxColumn3.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Địa chỉ";
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            this.dataGridViewTextBoxColumn4.Width = 240;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "SĐT";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            this.dataGridViewTextBoxColumn5.Width = 120;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.dataGridViewTextBoxColumn7.HeaderText = "Lớp";
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            this.dataGridViewTextBoxColumn7.Width = 62;
+            // 
+            // clmStatus
+            // 
+            this.clmStatus.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.clmStatus.HeaderText = "Tình trạng";
+            this.clmStatus.Name = "clmStatus";
+            this.clmStatus.Width = 106;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn8.HeaderText = "Ghi chú";
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            // 
+            // tbpgSubjectManage
+            // 
+            this.tbpgSubjectManage.BackColor = System.Drawing.Color.White;
+            this.tbpgSubjectManage.Location = new System.Drawing.Point(179, 4);
+            this.tbpgSubjectManage.Name = "tbpgSubjectManage";
+            this.tbpgSubjectManage.Padding = new System.Windows.Forms.Padding(3);
+            this.tbpgSubjectManage.Size = new System.Drawing.Size(1226, 684);
+            this.tbpgSubjectManage.TabIndex = 12;
+            this.tbpgSubjectManage.Text = "Quản lí môn";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -958,11 +1068,9 @@
             this.metroTabControl1.ResumeLayout(false);
             this.tbpgInfo.ResumeLayout(false);
             this.tbpgInfo.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tbpgMarkUpdt.ResumeLayout(false);
             this.tbpgMarkUpdt.PerformLayout();
             this.tbpgDisandRe.ResumeLayout(false);
@@ -986,6 +1094,10 @@
             this.tbpgMarkboard.PerformLayout();
             this.tbpgReport.ResumeLayout(false);
             this.tbpgReport.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dtagridviewStudent)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -994,17 +1106,14 @@
         private MetroSuite.MetroTabControl metroTabControl1;
         private System.Windows.Forms.TabPage tbpgInfo;
         private System.Windows.Forms.Label lbMyemail;
-        private System.Windows.Forms.Label lbInchargeCls;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.Label lbMyfonenum;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lbInforNote;
         private System.Windows.Forms.Label lbMyaddr;
         private System.Windows.Forms.Label lbImyID;
         private System.Windows.Forms.Label lbMyname;
         private System.Windows.Forms.PictureBox pictureBox4;
         private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.TabPage tbpgMarkUpdt;
         private System.Windows.Forms.TabPage tbpgDisandRe;
         private System.Windows.Forms.TabPage tbpgStdUdt;
@@ -1059,6 +1168,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTeacherSubject;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTeacherNote;
         private Material_Design_for_Winform.MaterialFlatButton btnForgotPass;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.DataGridView dtagridviewStudent;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.TabPage tbpgSubjectManage;
     }
 }
 

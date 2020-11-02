@@ -23,7 +23,7 @@ namespace TutteeFrame
 
         #region Form Event
         private frmLogin frmLogin;
-        private void frmMain_Shown(object sender, EventArgs e)  
+        private void frmMain_Shown(object sender, EventArgs e)
         {
             //this.Show();
             this.Hide();
@@ -48,6 +48,17 @@ namespace TutteeFrame
                 return;
             }
             mainTeacher = Controller.Instance.usingTeacher;
+            if (mainTeacher.ID == "AD999999")
+            {
+                lbMyname.Text = string.Format("{0} {1}", mainTeacher.SurName, mainTeacher.FirstName);
+                lbImyID.Text = mainTeacher.ID;
+                lbMyaddr.Text = mainTeacher.Address;
+                lbMyemail.Text = mainTeacher.Mail;
+                lbMyfonenum.Text = mainTeacher.Phone;
+                lbSubjectTeach.Text = mainTeacher.Subject.Name;
+                this.Show();
+                return;
+            }             
             metroTabControl1.TabPages.Clear();
             metroTabControl1.TabPages.Add(tbpgInfo);
             metroTabControl1.TabPages.Add(tbpgMySche);
@@ -58,15 +69,17 @@ namespace TutteeFrame
                     metroTabControl1.TabPages.Add(tbpgHkUdt);
                     metroTabControl1.TabPages.Add(tbpgMarkboard);
                     metroTabControl1.TabPages.Add(tbpgReport);
-                    lbInchargeCls.Text = mainTeacher.FormClassID;
-                    lbInchargeCls.Show();
+                    lbInforNote.Text = "Lớp chủ nhiệm: " + mainTeacher.FormClassID;
                     break;
                 case Teacher.TeacherType.Teacher:
                     metroTabControl1.TabPages.Add(tbpgMarkUpdt);
+                    lbInforNote.Hide();
                     break;
                 case Teacher.TeacherType.Adminstrator:
                     metroTabControl1.TabPages.Add(tbpgTeacherUdt);
                     metroTabControl1.TabPages.Add(tbpgArTeacher);
+                    metroTabControl1.TabPages.Add(tbpgSubjectManage);
+                    lbInforNote.Text = "Bạn thuộc Ban giám hiệu.";
                     break;
                 case Teacher.TeacherType.Ministry:
                     metroTabControl1.TabPages.Add(tbpgStdUdt);
@@ -74,6 +87,7 @@ namespace TutteeFrame
                     metroTabControl1.TabPages.Add(tbpgCreSche);
                     metroTabControl1.TabPages.Add(tbpgDisandRe);
                     metroTabControl1.TabPages.Add(tbpgMarkboard);
+                    lbInforNote.Text = "Bạn thuộc Ban giáo vụ.";
                     break;
                 default:
                     break;
@@ -83,16 +97,67 @@ namespace TutteeFrame
             lbMyaddr.Text = mainTeacher.Address;
             lbMyemail.Text = mainTeacher.Mail;
             lbMyfonenum.Text = mainTeacher.Phone;
+            lbSubjectTeach.Text = mainTeacher.Subject.Name;
             this.Show();
+
         }
         #endregion
 
         private void btnAddTeacher_Click(object sender, EventArgs e)
         {
-            frmAddTeacher addtc = new frmAddTeacher();
-            addtc.ShowDialog();
+            frmTeacher frmTeacher = new frmTeacher(frmTeacher.Mode.Add);
+            frmTeacher.FormClosed += FrmTeacher_FormClosed;
+            frmTeacher.ShowDialog();
         }
 
+        private void FrmTeacher_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            frmTeacher frmTeacher = (sender as frmTeacher);
+            if (!frmTeacher.doneSuccess)
+                return;
+            switch (frmTeacher.mode)
+            {
+                case frmTeacher.Mode.Add:
+                    string teacherNote = "";
+                    switch (frmTeacher.teacher.Type)
+                    {
+                        case Teacher.TeacherType.Teacher:
+                            teacherNote = "";
+                            break;
+                        case Teacher.TeacherType.Adminstrator:
+                            teacherNote = "Thuộc ban giám hiệu.";
+                            break;
+                        case Teacher.TeacherType.Ministry:
+                            teacherNote = "Thuộc giáo vụ.";
+                            break;
+                        default:
+                            break;
+                    }
+                    dtagridTeacher.Rows.Add(frmTeacher.teacher.ID, frmTeacher.teacher.SurName, frmTeacher.teacher.FirstName, frmTeacher.teacher.Address,
+                        frmTeacher.teacher.Phone, frmTeacher.teacher.Mail, frmTeacher.teacher.Subject.Name, teacherNote);
+                    dtagridTeacher.Rows[dtagridTeacher.Rows.Count - 1].Selected = true;
+                    break;
+                case frmTeacher.Mode.Edit:
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void btnEditTeacher_Click(object sender, EventArgs e)
+        {
+            return;
+            if (dtagridTeacher.SelectedRows.Count < 1)
+            {
+                if (dtagridTeacher.Rows.Count < 1)
+                    MessageBox.Show("Không có cột nào để sửa cả!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                    MessageBox.Show("Mời chọn cột cần sửa!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            frmTeacher addtc = new frmTeacher(frmTeacher.Mode.Edit, dtagridTeacher.SelectedRows[0].Cells[0].Value.ToString());
+            addtc.ShowDialog();
+        }
         private void btnAddStd_Click(object sender, EventArgs e)
         {
             frmAddStudent addstd = new frmAddStudent();
@@ -146,12 +211,7 @@ namespace TutteeFrame
                     dtagridTeacher.Rows.Remove(dtagridTeacher.SelectedRows[0]);
                 else
                     MessageBox.Show("Có lỗi xảy ra khi thực hiện xóa.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }       
-        }
-
-        private void btnEditTeacher_Click(object sender, EventArgs e)
-        {
-
+            }
         }
     }
 }
