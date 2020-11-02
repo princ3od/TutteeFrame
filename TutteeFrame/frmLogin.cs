@@ -23,6 +23,10 @@ namespace TutteeFrame
         {
             InitializeComponent();
         }
+        void EnableControl(bool _enable)
+        {
+            txtID.Enabled = txtPass.Enabled = btnLogin.Enabled = btSettingSever.Enabled = _enable;
+        }
         private void frmLogin_Load(object sender, EventArgs e)
         {
             cbxRememberme.Checked = Boolean.Parse(InitHelper.Instance.Read("RememberMe", "Application"));
@@ -51,6 +55,7 @@ namespace TutteeFrame
             {
                 if (bwkerMain.IsBusy)
                     return;
+                EnableControl(false);
                 ptbDone.Hide();
                 mainProgressbar.Show();
                 mainProgressbar.BringToFront();
@@ -87,12 +92,6 @@ namespace TutteeFrame
         {
             frmChooseServer frmChooseServer = new frmChooseServer();
             frmChooseServer.ShowDialog();
-        }
-        private void linkRegister_Click(object sender, EventArgs e)
-        {
-            btnLogin.PerformClick();
-            //frmRegister register= new frmRegister();
-            //register.Show();
         }
 
         private void frmLogin_KeyPress(object sender, KeyPressEventArgs e)
@@ -139,6 +138,8 @@ namespace TutteeFrame
         private void bwkerMain_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             lbInformation.Hide();
+            EnableControl(true);
+
             if (!connectSuccess)
             {
                 ptbDone.Show();
@@ -187,6 +188,5 @@ namespace TutteeFrame
             InitHelper.Instance.Write("RememberMe", cbxRememberme.Checked.ToString(), "Application");
 
         }
-
     }
 }

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TutteeFrame.Model
 {
-    class Person
+    public class Person
     {
         private string iD;
         private string surName;

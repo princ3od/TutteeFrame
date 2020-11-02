@@ -36,21 +36,16 @@
             this.txtAccount = new Material_Design_for_Winform.MaterialTextField();
             this.txtPort = new Material_Design_for_Winform.MaterialTextField();
             this.txtServerName = new Material_Design_for_Winform.MaterialTextField();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnAcept = new System.Windows.Forms.Button();
-            this.mainProccess = new System.ComponentModel.BackgroundWorker();
-            this.lbConnectInform = new System.Windows.Forms.Label();
-            this.mainProgressbar = new System.Windows.Forms.ProgressBar();
-            this.ptbDone = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbDone)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semilight", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(175, 114);
+            this.label1.Location = new System.Drawing.Point(91, 128);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(153, 30);
             this.label1.TabIndex = 2;
@@ -60,7 +55,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semilight", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(189, 285);
+            this.label2.Location = new System.Drawing.Point(105, 299);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(115, 30);
             this.label2.TabIndex = 5;
@@ -74,12 +69,12 @@
             this.btnConfirm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnConfirm.Icon = null;
-            this.btnConfirm.Location = new System.Drawing.Point(144, 443);
+            this.btnConfirm.Location = new System.Drawing.Point(82, 457);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Radius = 2;
             this.btnConfirm.ShadowDepth = 0;
             this.btnConfirm.ShadowOpacity = 35;
-            this.btnConfirm.Size = new System.Drawing.Size(210, 55);
+            this.btnConfirm.Size = new System.Drawing.Size(162, 55);
             this.btnConfirm.TabIndex = 5;
             this.btnConfirm.Text = "XÁC NHẬN";
             this.btnConfirm.TextAlign = System.Drawing.StringAlignment.Center;
@@ -94,7 +89,7 @@
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtPassword.HideSelection = true;
             this.txtPassword.HintText = "có thể trống";
-            this.txtPassword.Location = new System.Drawing.Point(154, 384);
+            this.txtPassword.Location = new System.Drawing.Point(70, 398);
             this.txtPassword.MaxLength = 32767;
             this.txtPassword.Multiline = false;
             this.txtPassword.Name = "txtPassword";
@@ -117,7 +112,7 @@
             this.txtAccount.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtAccount.HideSelection = true;
             this.txtAccount.HintText = "";
-            this.txtAccount.Location = new System.Drawing.Point(154, 333);
+            this.txtAccount.Location = new System.Drawing.Point(70, 347);
             this.txtAccount.MaxLength = 32767;
             this.txtAccount.Multiline = false;
             this.txtAccount.Name = "txtAccount";
@@ -140,7 +135,7 @@
             this.txtPort.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtPort.HideSelection = true;
             this.txtPort.HintText = "Port number";
-            this.txtPort.Location = new System.Drawing.Point(154, 214);
+            this.txtPort.Location = new System.Drawing.Point(70, 228);
             this.txtPort.MaxLength = 32767;
             this.txtPort.Multiline = false;
             this.txtPort.Name = "txtPort";
@@ -164,7 +159,7 @@
             this.txtServerName.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtServerName.HideSelection = true;
             this.txtServerName.HintText = "Có thể là địa chỉ IP";
-            this.txtServerName.Location = new System.Drawing.Point(154, 163);
+            this.txtServerName.Location = new System.Drawing.Point(70, 177);
             this.txtServerName.MaxLength = 32767;
             this.txtServerName.Multiline = false;
             this.txtServerName.Name = "txtServerName";
@@ -178,20 +173,6 @@
             this.txtServerName.UseSystemPasswordChar = false;
             this.txtServerName.TextChanged += new System.EventHandler(this.ResetTextboxColor);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(144, 21);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(259, 65);
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
-            // 
             // btnAcept
             // 
             this.btnAcept.Location = new System.Drawing.Point(10, 488);
@@ -202,53 +183,26 @@
             this.btnAcept.UseVisualStyleBackColor = true;
             this.btnAcept.Click += new System.EventHandler(this.btnAcept_Click);
             // 
-            // mainProccess
+            // pictureBox1
             // 
-            this.mainProccess.WorkerReportsProgress = true;
-            this.mainProccess.DoWork += new System.ComponentModel.DoWorkEventHandler(this.mainProccess_DoWork);
-            this.mainProccess.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.mainProccess_ProgressChanged);
-            this.mainProccess.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.mainProccess_RunWorkerCompleted);
-            // 
-            // lbConnectInform
-            // 
-            this.lbConnectInform.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.lbConnectInform.AutoSize = true;
-            this.lbConnectInform.BackColor = System.Drawing.Color.Transparent;
-            this.lbConnectInform.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbConnectInform.Location = new System.Drawing.Point(206, 611);
-            this.lbConnectInform.Name = "lbConnectInform";
-            this.lbConnectInform.Size = new System.Drawing.Size(88, 13);
-            this.lbConnectInform.TabIndex = 9;
-            this.lbConnectInform.Text = "*Đang kết nối...";
-            this.lbConnectInform.Visible = false;
-            // 
-            // mainProgressbar
-            // 
-            this.mainProgressbar.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.mainProgressbar.Location = new System.Drawing.Point(2, 629);
-            this.mainProgressbar.MarqueeAnimationSpeed = 30;
-            this.mainProgressbar.Name = "mainProgressbar";
-            this.mainProgressbar.Size = new System.Drawing.Size(505, 12);
-            this.mainProgressbar.TabIndex = 10;
-            // 
-            // ptbDone
-            // 
-            this.ptbDone.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.ptbDone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.ptbDone.Location = new System.Drawing.Point(2, 629);
-            this.ptbDone.Name = "ptbDone";
-            this.ptbDone.Size = new System.Drawing.Size(505, 12);
-            this.ptbDone.TabIndex = 11;
-            this.ptbDone.TabStop = false;
-            this.ptbDone.Visible = false;
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.pictureBox1.InitialImage = null;
+            this.pictureBox1.Location = new System.Drawing.Point(45, 33);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(259, 65);
+            this.pictureBox1.TabIndex = 7;
+            this.pictureBox1.TabStop = false;
             // 
             // frmChooseServer
             // 
             this.AcceptButton = this.btnAcept;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(509, 639);
-            this.Controls.Add(this.lbConnectInform);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
+            this.ClientSize = new System.Drawing.Size(345, 555);
             this.Controls.Add(this.btnAcept);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnConfirm);
@@ -258,8 +212,6 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPort);
             this.Controls.Add(this.txtServerName);
-            this.Controls.Add(this.ptbDone);
-            this.Controls.Add(this.mainProgressbar);
             this.DisplayHeader = false;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
@@ -267,10 +219,10 @@
             this.Name = "frmChooseServer";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.Resizable = false;
+            this.ShadowType = MetroFramework.Forms.MetroForm.MetroFormShadowType.DropShadow;
             this.Text = "TutteeFrame";
             this.Load += new System.EventHandler(this.frmChooseServer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbDone)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -287,9 +239,5 @@
         private Material_Design_for_Winform.MaterialTextField txtAccount;
         private Material_Design_for_Winform.MaterialRaisedButton btnConfirm;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.ComponentModel.BackgroundWorker mainProccess;
-        private System.Windows.Forms.Label lbConnectInform;
-        private System.Windows.Forms.ProgressBar mainProgressbar;
-        private System.Windows.Forms.PictureBox ptbDone;
     }
 }

@@ -84,50 +84,10 @@ namespace TutteeFrame
             else
                 btnConfirm.PerformClick();
         }
-        bool success = false;
-        private void mainProccess_DoWork(object sender, DoWorkEventArgs e)
-        {
-            switch (DataAccess.Instance.connectionType)
-            {
-                case DataAccess.ConnectionType.Server:
-                    success = DataAccess.Instance.Test(txtServerName.Text, txtPort.Text, txtAccount.Text, txtPassword.Text);
-                    break;
-                case DataAccess.ConnectionType.Local:
-                    success = DataAccess.Instance.TestLocal();
-                    break;
-                default:
-                    break;
-            }
 
-        }
-
-        private void mainProccess_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        private void btnCreateAdmin_Click(object sender, EventArgs e)
         {
-            //
-        }
-
-        private void mainProccess_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            EnableChange(true);
-            mainProgressbar.Style = ProgressBarStyle.Continuous;
-            mainProgressbar.Value = 100;
-            if (success)
-            {
-                MessageBox.Show("Kết nối thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                connected = true;
-                this.Close();
-                return;
-            }
-            ptbDone.Show();
-            ptbDone.BringToFront();
-            MessageBox.Show("Kết nối thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        void EnableChange(bool _value)
-        {
-            txtServerName.Enabled = txtPort.Enabled = txtAccount.Enabled = txtPassword.Enabled = _value;
-            btnConfirm.Enabled = true;
-            lbConnectInform.Visible = !_value;
+            
         }
     }
 }
