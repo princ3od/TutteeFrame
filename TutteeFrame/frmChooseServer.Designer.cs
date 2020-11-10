@@ -201,7 +201,7 @@
             // 
             this.AcceptButton = this.btnAcept;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BorderStyle = MetroFramework.Drawing.MetroBorderStyle.FixedSingle;
+            this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.ClientSize = new System.Drawing.Size(345, 555);
             this.Controls.Add(this.btnAcept);
             this.Controls.Add(this.pictureBox1);
@@ -219,7 +219,7 @@
             this.Name = "frmChooseServer";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.Resizable = false;
-            this.ShadowType = MetroFramework.Forms.MetroForm.MetroFormShadowType.DropShadow;
+            this.ShadowType = MetroFramework.Forms.MetroFormShadowType.DropShadow;
             this.Text = "TutteeFrame";
             this.Load += new System.EventHandler(this.frmChooseServer_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

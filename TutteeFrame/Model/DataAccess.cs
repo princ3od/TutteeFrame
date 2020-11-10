@@ -417,8 +417,17 @@ namespace TutteeFrame.Model
                 return false;
             try
             {
-                string query = $"DELETE ACCOUNT WHERE TeacherID = '{_teacherID}'";
+                string query = $"SELECT ID FROM ACCOUNT WHERE TeacherID = '{_teacherID}'";
                 SqlCommand command = new SqlCommand(query, connection);
+                SqlDataReader dataReader = command.ExecuteReader();
+                int deletedID = dataReader.GetInt16(0);
+                query = $"DELETE ACCOUNT WHERE TeacherID = '{_teacherID}'";
+                command = new SqlCommand(query, connection);
+                command.ExecuteNonQuery();
+                //Cập nhật lại id
+                query = "UPDATE ACCOUNT SET ID = ID - 1 WHERE ID > @deletedid";
+                command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("deletedid", deletedID);
                 command.ExecuteNonQuery();
             }
             catch (Exception e)
