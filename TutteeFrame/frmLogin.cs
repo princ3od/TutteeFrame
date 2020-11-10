@@ -1,33 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using MetroFramework;
+using System;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Security.Cryptography;
-using System.Text;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using MetroFramework.Forms;
 
 namespace TutteeFrame
 {
-    public partial class frmLogin : MetroForm
+    public partial class FormLogin : Form
     {
+        #region Win32 Form
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                const int CS_DROPSHADOW = 0x20000;
+                CreateParams cp = base.CreateParams;
+                cp.ClassStyle |= CS_DROPSHADOW;
+                return cp;
+            }
+        }
+        #endregion
+
         public bool logined = false;
 
         bool connectSuccess = false;
         bool loadSuccess = true;
 
-        public frmLogin()
+        public FormLogin()
         {
             InitializeComponent();
         }
-        void EnableControl(bool _enable)
+        protected override void OnShown(EventArgs e)
         {
-            txtID.Enabled = txtPass.Enabled = btnLogin.Enabled = btSettingSever.Enabled = _enable;
+            base.OnShown(e);
+            TopMost = true;
+            this.Focus();
+            TopMost = false;
         }
-        private void frmLogin_Load(object sender, EventArgs e)
+        private void FormLogin_Load(object sender, EventArgs e)
         {
             cbxRememberme.Checked = Boolean.Parse(InitHelper.Instance.Read("RememberMe", "Application"));
             if (!cbxRememberme.Checked)
@@ -35,7 +54,36 @@ namespace TutteeFrame
             txtID.Text = InitHelper.Instance.Read("LastID", "Application");
             txtPass.Text = Encryption.Decrypt(InitHelper.Instance.Read("LastPass", "Application"), txtID.Text);
         }
-        private void btLogin_Click(object sender, EventArgs e)
+        private void FormLogin_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (logined)
+                return;
+            DialogResult result = MetroMessageBox.Show(this, "Bạn chắc chắn muốn thoát?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.No)
+                e.Cancel = true;
+        }
+
+        private void FormLogin_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void pictureBox1_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics g = e.Graphics;
+            g.FillRectangle(new SolidBrush(Color.FromArgb(120, Color.Black)), new Rectangle(pictureBox1.Location, pictureBox1.Size));
+        }
+
+        private void btnLogin_Click(object sender, EventArgs e)
         {
             if (String.IsNullOrEmpty(txtID.Text))
             {
@@ -55,10 +103,8 @@ namespace TutteeFrame
             {
                 if (bwkerMain.IsBusy)
                     return;
-                EnableControl(false);
-                ptbDone.Hide();
+                lbInformation.Show();
                 mainProgressbar.Show();
-                mainProgressbar.BringToFront();
                 if (!connectSuccess)
                     bwkerMain.RunWorkerAsync();
                 else
@@ -66,47 +112,7 @@ namespace TutteeFrame
                     bwkerMain_RunWorkerCompleted(bwkerMain, null);
                 }
             }
-
         }
-        private void txtID_TextChanged(object sender, EventArgs e)
-        {
-            if (!String.IsNullOrEmpty(txtID.Text))
-            {
-                txtID.HintText = "Số ID";
-            }
-        }
-
-        private void txtPass_TextChanged(object sender, EventArgs e)
-        {
-            if (!String.IsNullOrEmpty(txtPass.Text))
-            {
-                txtPass.HintText = "Mật khẩu";
-            }
-        }
-
-        private void hiddenbtEnterToLogin_Click_1(object sender, EventArgs e)
-        {
-            btnLogin.PerformClick();
-        }
-        private void btSettingSever_Click(object sender, EventArgs e)
-        {
-            frmChooseServer frmChooseServer = new frmChooseServer();
-            frmChooseServer.ShowDialog();
-        }
-
-        private void frmLogin_KeyPress(object sender, KeyPressEventArgs e)
-        {
-        }
-
-        private void frmLogin_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            if (logined)
-                return;
-            DialogResult result = MessageBox.Show("Bạn chắc chắn muốn thoát?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-            if (result == DialogResult.No)
-                e.Cancel = true;
-        }
-
         private void bwkerMain_DoWork(object sender, DoWorkEventArgs e)
         {
             bwkerMain.ReportProgress(0);
@@ -127,7 +133,6 @@ namespace TutteeFrame
             {
                 mainProgressbar.Style = ProgressBarStyle.Marquee;
                 lbInformation.Text = "*Đang kết nối đến server...";
-                lbInformation.Show();
             }
             else
             {
@@ -138,23 +143,17 @@ namespace TutteeFrame
         private void bwkerMain_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             lbInformation.Hide();
-            EnableControl(true);
-
+            mainProgressbar.Hide();
             if (!connectSuccess)
             {
-                ptbDone.Show();
-                ptbDone.BringToFront();
-                MessageBox.Show("Kết nối thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroMessageBox.Show(this, "Kết nối thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else if (!loadSuccess)
             {
-                ptbDone.Show();
-                ptbDone.BringToFront();
-                MessageBox.Show("Không thể đăng nhập!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroMessageBox.Show(this, "Không thể đăng nhập!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            mainProgressbar.Hide();
             int flag = 1;
             if (Controller.Instance.Login(txtID.Text, txtPass.Text, ref flag))
             {
@@ -172,12 +171,12 @@ namespace TutteeFrame
             {
                 if (flag == 0)
                 {
-                    MessageBox.Show("Tên đăng nhập không tồn tại!", "Đăng nhập thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MetroMessageBox.Show(this, "Tên đăng nhập không tồn tại!", "Đăng nhập thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtID.Focus();
                 }
                 else
                 {
-                    MessageBox.Show("Vui lòng kiểm tra lại mật khẩu!", "Đăng nhập thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MetroMessageBox.Show(this, "Vui lòng kiểm tra lại mật khẩu!", "Đăng nhập thất bại", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     txtPass.Focus();
                 }
             }
@@ -186,7 +185,6 @@ namespace TutteeFrame
         private void cbxRememberme_CheckedChanged(object sender, EventArgs e)
         {
             InitHelper.Instance.Write("RememberMe", cbxRememberme.Checked.ToString(), "Application");
-
         }
     }
 }

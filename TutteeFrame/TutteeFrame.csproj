@@ -8,9 +8,10 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>TutteeFrame</RootNamespace>
     <AssemblyName>TutteeFrame</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -21,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -30,6 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>logo_1_removebg_preview_hoi_icon.ico</ApplicationIcon>
@@ -39,18 +42,19 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\MaterialDesignByPr3.dll</HintPath>
     </Reference>
-    <Reference Include="MetroFramework, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
-      <HintPath>packages\MetroFramework.RunTime.1.2.0.3\lib\net40-Client\MetroFramework.dll</HintPath>
+    <Reference Include="MaterialSkin">
+      <HintPath>.\MaterialSkin.dll</HintPath>
     </Reference>
-    <Reference Include="MetroFramework.Design, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
-      <HintPath>packages\MetroFramework.Design.1.2.0.3\lib\net40\MetroFramework.Design.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="MetroFramework, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="MetroFramework.Design">
+      <HintPath>packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
     </Reference>
     <Reference Include="MetroFramework.Fonts, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
-      <HintPath>packages\MetroFramework.Fonts.1.2.0.3\lib\net40\MetroFramework.Fonts.dll</HintPath>
-    </Reference>
-    <Reference Include="MetroSuite">
-      <HintPath>.\MetroSuite.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="System" />
@@ -68,11 +72,17 @@
   <ItemGroup>
     <Compile Include="Controller\Controller.cs" />
     <Compile Include="Encryption.cs" />
-    <Compile Include="frmAccountManagement.cs">
+    <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmAccountManagement.Designer.cs">
-      <DependentUpon>frmAccountManagement.cs</DependentUpon>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmMain.Designer.cs">
+      <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
     <Compile Include="frmAddStudent.cs">
       <SubType>Form</SubType>
@@ -92,24 +102,6 @@
     <Compile Include="frmChooseServer.Designer.cs">
       <DependentUpon>frmChooseServer.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmLogin.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmLogin.Designer.cs">
-      <DependentUpon>frmLogin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmMain.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmMain.Designer.cs">
-      <DependentUpon>frmMain.cs</DependentUpon>
-    </Compile>
-    <Compile Include="frmRegister.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmRegister.Designer.cs">
-      <DependentUpon>frmRegister.cs</DependentUpon>
-    </Compile>
     <Compile Include="InitHelper.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Class.cs" />
@@ -120,6 +112,9 @@
     <Compile Include="Model\Subject.cs" />
     <Compile Include="Model\SubjectScore.cs" />
     <Compile Include="Model\Teacher.cs" />
+    <Compile Include="OverlayForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="frmSpashScreen.cs">
@@ -128,8 +123,11 @@
     <Compile Include="frmSpashScreen.Designer.cs">
       <DependentUpon>frmSpashScreen.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="frmAccountManagement.resx">
-      <DependentUpon>frmAccountManagement.cs</DependentUpon>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmMain.resx">
+      <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAddStudent.resx">
       <DependentUpon>frmAddStudent.cs</DependentUpon>
@@ -139,16 +137,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmChooseServer.resx">
       <DependentUpon>frmChooseServer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmLogin.resx">
-      <DependentUpon>frmLogin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmMain.resx">
-      <DependentUpon>frmMain.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmRegister.resx">
-      <DependentUpon>frmRegister.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -178,16 +166,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\settings.png" />
+    <None Include="Resources\password.png" />
+    <None Include="Resources\log-out.png" />
     <Content Include="logo_1_removebg_preview_hoi_icon.ico" />
-    <Content Include="MetroFramework.txt" />
-    <None Include="Resources\id-card-concept-vector-linear-icon-isolated-transparent-backg-background-transparency-outline-style-130086174.jpg" />
-    <None Include="Resources\User001_Edit-512.png" />
-    <None Include="Resources\images.png" />
     <None Include="Resources\21104.png" />
-    <None Include="Resources\pngtree-outline-user-icon-png-image_1727916.jpg" />
     <None Include="Resources\16015343831562853.png" />
     <None Include="Resources\160153438315628531.png" />
-    <None Include="Resources\media_player_button_29-512.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
