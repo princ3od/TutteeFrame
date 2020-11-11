@@ -351,6 +351,7 @@
             this.materialLabel2.Size = new System.Drawing.Size(230, 29);
             this.materialLabel2.TabIndex = 6;
             this.materialLabel2.Text = "TutteeFram Beta v1.0";
+            this.materialLabel2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MovableForm);
             // 
             // btnLogout
             // 
@@ -454,6 +455,7 @@
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.ShadowType = MetroFramework.Forms.MetroFormShadowType.AeroShadow;
             this.Style = MetroFramework.MetroColorStyle.Teal;
+            this.Text = "TutteeFrame";
             this.Shown += new System.EventHandler(this.frmMain_Shown);
             this.mainTabcontrol.ResumeLayout(false);
             this.pnProfile.ResumeLayout(false);

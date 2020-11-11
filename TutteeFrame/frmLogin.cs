@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace TutteeFrame
 {
-    public partial class FormLogin : Form
+    public partial class frmLogin : Form
     {
         #region Win32 Form
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -35,7 +35,7 @@ namespace TutteeFrame
         bool connectSuccess = false;
         bool loadSuccess = true;
 
-        public FormLogin()
+        public frmLogin()
         {
             InitializeComponent();
             btnAccept.Click += (s, e) =>

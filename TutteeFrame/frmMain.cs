@@ -34,7 +34,7 @@ namespace TutteeFrame
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
         #endregion
-        private FormLogin frmLogin;
+        private frmLogin frmLogin;
         private void frmMain_Shown(object sender, EventArgs e)
         {
             this.Hide();
@@ -47,14 +47,14 @@ namespace TutteeFrame
 
         private void Splash_FormClosing(object sender, FormClosingEventArgs e)
         {
-            frmLogin = new FormLogin();
+            frmLogin = new frmLogin();
             frmLogin.FormClosed += FrmLogin_FormClosed;
             frmLogin.Show();
         }
 
         private void FrmLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (!(sender as FormLogin).logined)
+            if (!(sender as frmLogin).logined)
             {
                 this.Close();
                 return;
@@ -107,7 +107,7 @@ namespace TutteeFrame
         {
             this.Hide();
             pnProfile.Size = new Size(pnProfile.Size.Width, 70);
-            frmLogin = new FormLogin();
+            frmLogin = new frmLogin();
             frmLogin.FormClosed += FrmLogin_FormClosed;
             frmLogin.Show();
         }
