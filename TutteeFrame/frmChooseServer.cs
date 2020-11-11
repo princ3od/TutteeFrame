@@ -85,9 +85,9 @@ namespace TutteeFrame
                 btnConfirm.PerformClick();
         }
 
-        private void btnCreateAdmin_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
-            
+            this.Close();
         }
     }
 }

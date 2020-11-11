@@ -43,28 +43,28 @@
             this.tbpgFormClass = new System.Windows.Forms.TabPage();
             this.pnProfile = new System.Windows.Forms.Panel();
             this.materialCard1 = new MaterialSkin.Controls.MaterialCard();
-            this.btnLogout = new Material_Design_for_Winform.MaterialFlatButton();
-            this.btnChangePass = new Material_Design_for_Winform.MaterialFlatButton();
-            this.btnSetting = new Material_Design_for_Winform.MaterialFlatButton();
-            this.btnShowMore = new MaterialSkin.Controls.MaterialButton();
             this.materialDivider2 = new MaterialSkin.Controls.MaterialDivider();
-            this.ptbAvatar = new System.Windows.Forms.PictureBox();
             this.lbPostition = new MaterialSkin.Controls.MaterialLabel();
             this.lbName = new MaterialSkin.Controls.MaterialLabel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.materialDivider1 = new MaterialSkin.Controls.MaterialDivider();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.materialDivider3 = new MaterialSkin.Controls.MaterialDivider();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
+            this.btnLogout = new Material_Design_for_Winform.MaterialFlatButton();
+            this.btnChangePass = new Material_Design_for_Winform.MaterialFlatButton();
+            this.btnSetting = new Material_Design_for_Winform.MaterialFlatButton();
+            this.btnShowMore = new MaterialSkin.Controls.MaterialButton();
+            this.ptbAvatar = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.mainTabcontrol.SuspendLayout();
             this.pnProfile.SuspendLayout();
             this.materialCard1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbAvatar)).BeginInit();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbAvatar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // materialDrawer1
@@ -241,68 +241,6 @@
             this.materialCard1.Size = new System.Drawing.Size(290, 240);
             this.materialCard1.TabIndex = 2;
             // 
-            // btnLogout
-            // 
-            this.btnLogout.BackColor = System.Drawing.Color.Transparent;
-            this.btnLogout.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
-            this.btnLogout.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
-            this.btnLogout.ForeColor = System.Drawing.Color.Red;
-            this.btnLogout.Icon = ((System.Drawing.Image)(resources.GetObject("btnLogout.Icon")));
-            this.btnLogout.Location = new System.Drawing.Point(-1, 173);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(292, 45);
-            this.btnLogout.TabIndex = 10;
-            this.btnLogout.Text = "Đăng xuất";
-            this.btnLogout.TextAlign = System.Drawing.StringAlignment.Near;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
-            // 
-            // btnChangePass
-            // 
-            this.btnChangePass.BackColor = System.Drawing.Color.Transparent;
-            this.btnChangePass.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
-            this.btnChangePass.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
-            this.btnChangePass.ForeColor = System.Drawing.Color.Black;
-            this.btnChangePass.Icon = ((System.Drawing.Image)(resources.GetObject("btnChangePass.Icon")));
-            this.btnChangePass.Location = new System.Drawing.Point(-1, 128);
-            this.btnChangePass.Name = "btnChangePass";
-            this.btnChangePass.Size = new System.Drawing.Size(292, 45);
-            this.btnChangePass.TabIndex = 9;
-            this.btnChangePass.Text = "Đổi mật khẩu";
-            this.btnChangePass.TextAlign = System.Drawing.StringAlignment.Near;
-            // 
-            // btnSetting
-            // 
-            this.btnSetting.BackColor = System.Drawing.Color.Transparent;
-            this.btnSetting.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
-            this.btnSetting.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
-            this.btnSetting.ForeColor = System.Drawing.Color.Black;
-            this.btnSetting.Icon = ((System.Drawing.Image)(resources.GetObject("btnSetting.Icon")));
-            this.btnSetting.Location = new System.Drawing.Point(-1, 83);
-            this.btnSetting.Name = "btnSetting";
-            this.btnSetting.Size = new System.Drawing.Size(292, 45);
-            this.btnSetting.TabIndex = 8;
-            this.btnSetting.Text = "Cài đặt";
-            this.btnSetting.TextAlign = System.Drawing.StringAlignment.Near;
-            // 
-            // btnShowMore
-            // 
-            this.btnShowMore.AutoSize = false;
-            this.btnShowMore.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnShowMore.Depth = 0;
-            this.btnShowMore.DrawShadows = false;
-            this.btnShowMore.HighEmphasis = false;
-            this.btnShowMore.Icon = ((System.Drawing.Image)(resources.GetObject("btnShowMore.Icon")));
-            this.btnShowMore.Location = new System.Drawing.Point(240, 10);
-            this.btnShowMore.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnShowMore.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnShowMore.Name = "btnShowMore";
-            this.btnShowMore.Size = new System.Drawing.Size(42, 35);
-            this.btnShowMore.TabIndex = 7;
-            this.btnShowMore.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
-            this.btnShowMore.UseAccentColor = false;
-            this.btnShowMore.UseVisualStyleBackColor = true;
-            this.btnShowMore.Click += new System.EventHandler(this.materialButton3_Click);
-            // 
             // materialDivider2
             // 
             this.materialDivider2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -313,17 +251,6 @@
             this.materialDivider2.Size = new System.Drawing.Size(175, 1);
             this.materialDivider2.TabIndex = 5;
             this.materialDivider2.Text = "materialDivider2";
-            // 
-            // ptbAvatar
-            // 
-            this.ptbAvatar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ptbAvatar.Image = global::TutteeFrame.Properties.Resources._21104;
-            this.ptbAvatar.Location = new System.Drawing.Point(16, 10);
-            this.ptbAvatar.Name = "ptbAvatar";
-            this.ptbAvatar.Size = new System.Drawing.Size(40, 40);
-            this.ptbAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ptbAvatar.TabIndex = 4;
-            this.ptbAvatar.TabStop = false;
             // 
             // lbPostition
             // 
@@ -374,17 +301,6 @@
             this.materialDivider1.TabIndex = 2;
             this.materialDivider1.Text = "materialDivider1";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(100, 13);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MovableForm);
-            // 
             // materialLabel1
             // 
             this.materialLabel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -424,16 +340,102 @@
             // 
             // materialLabel2
             // 
+            this.materialLabel2.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.materialLabel2.AutoSize = true;
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.materialLabel2.FontType = MaterialSkin.MaterialSkinManager.fontType.H5;
-            this.materialLabel2.Location = new System.Drawing.Point(524, 11);
+            this.materialLabel2.Location = new System.Drawing.Point(494, 11);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(230, 29);
             this.materialLabel2.TabIndex = 6;
             this.materialLabel2.Text = "TutteeFram Beta v1.0";
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.BackColor = System.Drawing.Color.Transparent;
+            this.btnLogout.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
+            this.btnLogout.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
+            this.btnLogout.ForeColor = System.Drawing.Color.Red;
+            this.btnLogout.Icon = ((System.Drawing.Image)(resources.GetObject("btnLogout.Icon")));
+            this.btnLogout.Location = new System.Drawing.Point(-1, 173);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(292, 45);
+            this.btnLogout.TabIndex = 10;
+            this.btnLogout.Text = "Đăng xuất";
+            this.btnLogout.TextAlign = System.Drawing.StringAlignment.Near;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
+            // btnChangePass
+            // 
+            this.btnChangePass.BackColor = System.Drawing.Color.Transparent;
+            this.btnChangePass.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
+            this.btnChangePass.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
+            this.btnChangePass.ForeColor = System.Drawing.Color.Black;
+            this.btnChangePass.Icon = ((System.Drawing.Image)(resources.GetObject("btnChangePass.Icon")));
+            this.btnChangePass.Location = new System.Drawing.Point(-1, 128);
+            this.btnChangePass.Name = "btnChangePass";
+            this.btnChangePass.Size = new System.Drawing.Size(292, 45);
+            this.btnChangePass.TabIndex = 9;
+            this.btnChangePass.Text = "Đổi mật khẩu";
+            this.btnChangePass.TextAlign = System.Drawing.StringAlignment.Near;
+            this.btnChangePass.Click += new System.EventHandler(this.btnChangePass_Click);
+            // 
+            // btnSetting
+            // 
+            this.btnSetting.BackColor = System.Drawing.Color.Transparent;
+            this.btnSetting.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
+            this.btnSetting.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
+            this.btnSetting.ForeColor = System.Drawing.Color.Black;
+            this.btnSetting.Icon = ((System.Drawing.Image)(resources.GetObject("btnSetting.Icon")));
+            this.btnSetting.Location = new System.Drawing.Point(-1, 83);
+            this.btnSetting.Name = "btnSetting";
+            this.btnSetting.Size = new System.Drawing.Size(292, 45);
+            this.btnSetting.TabIndex = 8;
+            this.btnSetting.Text = "Cài đặt";
+            this.btnSetting.TextAlign = System.Drawing.StringAlignment.Near;
+            // 
+            // btnShowMore
+            // 
+            this.btnShowMore.AutoSize = false;
+            this.btnShowMore.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnShowMore.Depth = 0;
+            this.btnShowMore.DrawShadows = false;
+            this.btnShowMore.HighEmphasis = false;
+            this.btnShowMore.Icon = ((System.Drawing.Image)(resources.GetObject("btnShowMore.Icon")));
+            this.btnShowMore.Location = new System.Drawing.Point(240, 10);
+            this.btnShowMore.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnShowMore.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnShowMore.Name = "btnShowMore";
+            this.btnShowMore.Size = new System.Drawing.Size(42, 35);
+            this.btnShowMore.TabIndex = 7;
+            this.btnShowMore.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
+            this.btnShowMore.UseAccentColor = false;
+            this.btnShowMore.UseVisualStyleBackColor = true;
+            this.btnShowMore.Click += new System.EventHandler(this.materialButton3_Click);
+            // 
+            // ptbAvatar
+            // 
+            this.ptbAvatar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ptbAvatar.Image = global::TutteeFrame.Properties.Resources._21104;
+            this.ptbAvatar.Location = new System.Drawing.Point(16, 10);
+            this.ptbAvatar.Name = "ptbAvatar";
+            this.ptbAvatar.Size = new System.Drawing.Size(40, 40);
+            this.ptbAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ptbAvatar.TabIndex = 4;
+            this.ptbAvatar.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(100, 13);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(55, 55);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MovableForm);
             // 
             // frmMain
             // 
@@ -457,11 +459,11 @@
             this.pnProfile.ResumeLayout(false);
             this.materialCard1.ResumeLayout(false);
             this.materialCard1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbAvatar)).EndInit();
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbAvatar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

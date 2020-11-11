@@ -37,7 +37,10 @@ namespace TutteeFrame
             _flag = 0; //unknow username
             return false;
         }
-
+        public bool ChangePass(string _accountID, string _newPass)
+        {
+            return DataAccess.Instance.UpdatePass(_accountID, Encryption.Encrypt(_newPass, _newPass));
+        }
         public bool LoadAccounts()
         {
             accounts.Clear();
