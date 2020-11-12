@@ -1,6 +1,8 @@
 ﻿using MaterialSkin;
+using MetroFramework;
 using MetroFramework.Forms;
 using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -32,7 +34,7 @@ namespace TutteeFrame
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
         #endregion
-        private FormLogin frmLogin;
+        private frmLogin frmLogin;
         private void frmMain_Shown(object sender, EventArgs e)
         {
             this.Hide();
@@ -45,14 +47,14 @@ namespace TutteeFrame
 
         private void Splash_FormClosing(object sender, FormClosingEventArgs e)
         {
-            frmLogin = new FormLogin();
+            frmLogin = new frmLogin();
             frmLogin.FormClosed += FrmLogin_FormClosed;
             frmLogin.Show();
         }
 
         private void FrmLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (!(sender as FormLogin).logined)
+            if (!(sender as frmLogin).logined)
             {
                 this.Close();
                 return;
@@ -75,6 +77,15 @@ namespace TutteeFrame
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
         }
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            if (!this.Visible)
+                return;
+            DialogResult result = MetroMessageBox.Show(this, "Bạn chắc chắn muốn thoát?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (result == DialogResult.No)
+                e.Cancel = true;
+        }
         #endregion
         #region Control Event
         private void materialButton3_Click(object sender, EventArgs e)
@@ -96,7 +107,7 @@ namespace TutteeFrame
         {
             this.Hide();
             pnProfile.Size = new Size(pnProfile.Size.Width, 70);
-            frmLogin = new FormLogin();
+            frmLogin = new frmLogin();
             frmLogin.FormClosed += FrmLogin_FormClosed;
             frmLogin.Show();
         }
@@ -121,7 +132,6 @@ namespace TutteeFrame
                 mainTabcontrol.TabPages.Add(tbpgRewardManagment);
                 mainTabcontrol.TabPages.Add(tbpgStudentMarkboard);
                 mainTabcontrol.TabPages.Add(tbpgReport);
-
             }
             else
             {
@@ -155,5 +165,18 @@ namespace TutteeFrame
             }
         }
         #endregion
+
+        private void btnChangePass_Click(object sender, EventArgs e)
+        {
+            pnProfile.Size = new Size(pnProfile.Size.Width, 70);
+            frmChangePass frmChangePass = new frmChangePass(mainTeacher.ID);
+            OverlayForm overlay = new OverlayForm(this, frmChangePass);
+            frmChangePass.Show();
+            frmChangePass.FormClosing += (s, ev) =>
+            {
+                if (frmChangePass.changedSuccess)
+                    btnLogout.PerformClick();
+            };
+        }
     }
 }

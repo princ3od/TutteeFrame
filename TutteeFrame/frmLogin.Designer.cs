@@ -1,6 +1,6 @@
 ﻿namespace TutteeFrame
 {
-    partial class FormLogin
+    partial class frmLogin
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormLogin));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtID = new Material_Design_for_Winform.MaterialTextField();
             this.txtPass = new Material_Design_for_Winform.MaterialTextField();
@@ -43,6 +43,9 @@
             this.mainProgressbar = new System.Windows.Forms.ProgressBar();
             this.bwkerMain = new System.ComponentModel.BackgroundWorker();
             this.lbInformation = new System.Windows.Forms.Label();
+            this.btnAccept = new System.Windows.Forms.Button();
+            this.btnChooseServer = new MaterialSkin.Controls.MaterialButton();
+            this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -152,6 +155,7 @@
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnClose.Depth = 0;
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.DrawShadows = true;
             this.btnClose.HighEmphasis = true;
             this.btnClose.Icon = ((System.Drawing.Image)(resources.GetObject("btnClose.Icon")));
@@ -268,12 +272,52 @@
             this.lbInformation.Text = "*Đang kết nối...";
             this.lbInformation.Visible = false;
             // 
-            // FormLogin
+            // btnAccept
             // 
+            this.btnAccept.Location = new System.Drawing.Point(697, 396);
+            this.btnAccept.Name = "btnAccept";
+            this.btnAccept.Size = new System.Drawing.Size(1, 1);
+            this.btnAccept.TabIndex = 26;
+            this.btnAccept.UseVisualStyleBackColor = true;
+            // 
+            // btnChooseServer
+            // 
+            this.btnChooseServer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnChooseServer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnChooseServer.Depth = 0;
+            this.btnChooseServer.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnChooseServer.DrawShadows = true;
+            this.btnChooseServer.HighEmphasis = true;
+            this.btnChooseServer.Icon = ((System.Drawing.Image)(resources.GetObject("btnChooseServer.Icon")));
+            this.btnChooseServer.Location = new System.Drawing.Point(806, 0);
+            this.btnChooseServer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnChooseServer.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnChooseServer.Name = "btnChooseServer";
+            this.btnChooseServer.Size = new System.Drawing.Size(44, 36);
+            this.btnChooseServer.TabIndex = 27;
+            this.btnChooseServer.TabStop = false;
+            this.metroToolTip1.SetToolTip(this.btnChooseServer, "Thiết lập server");
+            this.btnChooseServer.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
+            this.btnChooseServer.UseAccentColor = false;
+            this.btnChooseServer.UseVisualStyleBackColor = true;
+            this.btnChooseServer.Click += new System.EventHandler(this.btnChooseServer_Click);
+            // 
+            // metroToolTip1
+            // 
+            this.metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroToolTip1.StyleManager = null;
+            this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
+            // frmLogin
+            // 
+            this.AcceptButton = this.btnAccept;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(900, 600);
+            this.Controls.Add(this.btnChooseServer);
+            this.Controls.Add(this.btnAccept);
             this.Controls.Add(this.lbInformation);
             this.Controls.Add(this.mainProgressbar);
             this.Controls.Add(this.label3);
@@ -290,9 +334,9 @@
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "FormLogin";
+            this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormLogin";
+            this.Text = "TutteeFrame";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormLogin_FormClosing);
             this.Load += new System.EventHandler(this.FormLogin_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormLogin_MouseDown);
@@ -319,5 +363,8 @@
         private System.Windows.Forms.ProgressBar mainProgressbar;
         private System.ComponentModel.BackgroundWorker bwkerMain;
         private System.Windows.Forms.Label lbInformation;
+        private System.Windows.Forms.Button btnAccept;
+        private MaterialSkin.Controls.MaterialButton btnChooseServer;
+        private MetroFramework.Components.MetroToolTip metroToolTip1;
     }
 }
