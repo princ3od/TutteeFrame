@@ -37,8 +37,7 @@ namespace TutteeFrame.Model
         {
             bool success = true;
             //Đổi chuỗi kết nối ở dưới để test
-            string strConnect = string.Format(Properties.Settings.Default.ServerConnectionString,
-                    _server, _port, _userid, _pass);
+            string strConnect = "Server=ANDREWANHTRAN;Database=TutteeFrame;Trusted_Connection=True;";
             try
             {
                 connection = new SqlConnection(strConnect);
