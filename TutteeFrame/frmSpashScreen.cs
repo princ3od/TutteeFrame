@@ -11,6 +11,7 @@ namespace TutteeFrame
 {
     public partial class frmSpashScreen : Form
     {
+
         int second = 1;
 
         public frmSpashScreen()

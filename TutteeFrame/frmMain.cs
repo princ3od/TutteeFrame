@@ -22,7 +22,7 @@ namespace TutteeFrame
             this.UpdateStyles();
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
-            materialSkinManager.ColorScheme = new ColorScheme(Primary.LightBlue400, Primary.BlueGrey700, Primary.Green600, Accent.LightBlue700, TextShade.BLACK);
+            materialSkinManager.ColorScheme = new ColorScheme(Primary.LightBlue400, Primary.Blue400, Primary.Green600, Accent.LightGreen700, TextShade.BLACK);
         }
         #region Form Event
         #region Win32 Form
@@ -118,6 +118,38 @@ namespace TutteeFrame
         {
             mainTeacher = Controller.Instance.usingTeacher;
             lbName.Text = mainTeacher.SurName + " " + mainTeacher.FirstName;
+
+            lbMyName.Text = string.Format("{0} {1}", mainTeacher.SurName, mainTeacher.FirstName);
+            lbImyID.Text = mainTeacher.ID;
+            lbMyaddr.Text = mainTeacher.Address;
+            lbMyemail.Text = mainTeacher.Mail;
+            lbMyfonenum.Text = mainTeacher.Phone;
+            lbSubjectTeach.Text = mainTeacher.Subject.Name;
+            lbPosition.Text = mainTeacher.Position;
+
+            lbIsAdmin.Visible = false;
+            lbIsMinstry.Visible = false;
+            lbJustTeacher.Visible = false;
+
+            
+            if (mainTeacher.Type==Teacher.TeacherType.Adminstrator)
+            {
+                lbIsAdmin.Text = "Ban giám hiệu";
+                lbIsAdmin.Visible = true;
+                
+            }
+            else if (mainTeacher.Type == Teacher.TeacherType.Ministry)
+            {
+                lbIsMinstry.Text = "Ban giáo vụ";
+                lbIsMinstry.Visible = true;
+            }
+            else
+
+            {
+                lbJustTeacher.Text = "Tổ " + mainTeacher.Subject.Name;
+                lbJustTeacher.Visible = true;
+            }
+            
             mainTabcontrol.TabPages.Clear();
             mainTabcontrol.TabPages.Add(tbpgProfile);
             mainTabcontrol.TabPages.Add(tbpgShedule);

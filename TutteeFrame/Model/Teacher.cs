@@ -18,5 +18,6 @@ namespace TutteeFrame.Model
         public string FormClassID { get => formClassID; set => formClassID = value; }
         public static List<string> Column = new List<string>{ "TeacherID", "Surname", "Firstname", "Address", "Phone", "Maill", 
                                                                     "SubjectID", "IsMinistry", "IsAdmin", "Position" };
+        public string Position;
     }
 }

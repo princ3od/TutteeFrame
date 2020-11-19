@@ -63,6 +63,7 @@ namespace TutteeFrame
             bool isMinistry = false, isAdmin = false;
             string position = "";
             bool success = DataAccess.Instance.LoadTeacher(_teacherID, usingTeacher, ref isMinistry, ref isAdmin, ref position);
+            usingTeacher.Position = position;
             if (isAdmin)
                 usingTeacher.Type = Teacher.TeacherType.Adminstrator;
             else if (isMinistry)
