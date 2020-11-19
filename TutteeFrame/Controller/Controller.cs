@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MaterialSkin.Controls;
 using TutteeFrame.Model;
 
 namespace TutteeFrame
@@ -23,7 +24,7 @@ namespace TutteeFrame
 
         public void SettingCheck()
         {
-            if (!InitHelper.Instance.IsSettingExist() || !InitHelper.Instance.IsSettingCorrupt())
+            if (!InitHelper.Instance.IsSettingExist())
                 InitHelper.Instance.CreateDefaultSetting();
         }
 
@@ -162,43 +163,48 @@ namespace TutteeFrame
             int result = (new Random()).Next(100000, 999999);
             return result.ToString();
         }
-        public bool LoadTeachers(DataGridView _gridView)
+        public bool LoadTeachers(List<Teacher> _teachers, Dictionary<string, string> _teacherNotes, out int _totalTeacher, out int _totalMinistry, out int _totalAdmin)
         {
             string teacherNote = "";
-            _gridView.Rows.Clear();
-            List<Teacher> teachers = new List<Teacher>();
-            bool succes = DataAccess.Instance.LoadTeachers(teachers);
+            bool succes = DataAccess.Instance.LoadTeachers(_teachers);
+            _totalTeacher = _totalAdmin = _totalMinistry = 0;
             if (succes)
             {
-                foreach (Teacher teacher in teachers)
+                for (; _totalTeacher < _teachers.Count; _totalTeacher++)
                 {
+                    if (_teachers[_totalTeacher].ID == "AD999999")
+                    {
+                        _teachers.Remove(_teachers[_totalTeacher]);
+                        _totalTeacher--;
+                        continue;
+                    }
                     string classID = null;
-                    DataAccess.Instance.GetInchargeClass(teacher.ID, ref classID);
+                    DataAccess.Instance.GetInchargeClass(_teachers[_totalTeacher].ID, ref classID);
                     if (classID != null)
                     {
-                        teacher.Type = Teacher.TeacherType.FormerTeacher;
-                        teacher.FormClassID = classID;
+                        _teachers[_totalTeacher].Type = Teacher.TeacherType.FormerTeacher;
+                        _teachers[_totalTeacher].FormClassID = classID;
                     }
-                    switch (teacher.Type)
+                    switch (_teachers[_totalTeacher].Type)
                     {
                         case Teacher.TeacherType.Teacher:
                             teacherNote = "";
                             break;
                         case Teacher.TeacherType.Adminstrator:
-                            teacherNote = "Thuộc ban giám hiệu.";
+                            _totalAdmin++;
+                            teacherNote = "Ban giám hiệu.";
                             break;
                         case Teacher.TeacherType.Ministry:
-                            teacherNote = "Thuộc giáo vụ.";
+                            _totalMinistry++;
+                            teacherNote = "Giáo vụ.";
                             break;
                         case Teacher.TeacherType.FormerTeacher:
-                            teacherNote = "Là GVCN lớp " + teacher.FormClassID + ".";
+                            teacherNote = "GVCN lớp " + _teachers[_totalTeacher].FormClassID + ".";
                             break;
                         default:
                             break;
                     }
-                    if (teacher.ID != "AD999999")
-                        _gridView.Rows.Add(teacher.ID, teacher.SurName, teacher.FirstName, teacher.Address,
-                            teacher.Phone, teacher.Mail, teacher.Subject.Name, teacherNote);
+                    _teacherNotes.Add(_teachers[_totalTeacher].ID, teacherNote);
                 }
             }
             return succes;

@@ -13,7 +13,7 @@ namespace TutteeFrame.Model
         private string address;
         private string mail;
         private string phone;
-        
+
         private DateTime DateOfBirth;
         private bool sex;
 
@@ -25,5 +25,9 @@ namespace TutteeFrame.Model
         public string Phone { get => phone; set => phone = value; }
         public bool Sex { get => sex; set => sex = value; }
         public DateTime DateOfBirth1 { get => DateOfBirth; set => DateOfBirth = value; }
+        public string GetSex
+        {
+            get => (sex) ? "Nam" : "Nữ";
+        }
     }
 }

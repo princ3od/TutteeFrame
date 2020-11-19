@@ -2,9 +2,11 @@
 using MetroFramework;
 using MetroFramework.Forms;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Threading;
 using System.Windows.Forms;
 using TutteeFrame.Model;
 
@@ -39,7 +41,7 @@ namespace TutteeFrame
         {
             this.Hide();
             //if (pnProfile.Size.Height > 70)
-                pnProfile.Size = new Size(300,70);
+            pnProfile.Size = new Size(300, 70);
             frmSpashScreen splash = new frmSpashScreen();
             splash.FormClosing += Splash_FormClosing;
             splash.Show();
@@ -87,6 +89,7 @@ namespace TutteeFrame
                 e.Cancel = true;
         }
         #endregion
+
         #region Control Event
         private void materialButton3_Click(object sender, EventArgs e)
         {
@@ -96,13 +99,11 @@ namespace TutteeFrame
                 pnProfile.Size = new Size(pnProfile.Size.Width, 250);
             pnProfile.Invalidate();
         }
-
         private void panel1_Leave(object sender, EventArgs e)
         {
             if (pnProfile.Size.Height > 70)
                 pnProfile.Size = new Size(pnProfile.Size.Width, 70);
         }
-
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -111,6 +112,95 @@ namespace TutteeFrame
             frmLogin.FormClosed += FrmLogin_FormClosed;
             frmLogin.Show();
         }
+        private void btnChangePass_Click(object sender, EventArgs e)
+        {
+            listviewTeacher.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            pnProfile.Size = new Size(pnProfile.Size.Width, 70);
+            frmChangePass frmChangePass = new frmChangePass(mainTeacher.ID);
+            OverlayForm overlay = new OverlayForm(this, frmChangePass);
+            frmChangePass.Show();
+            frmChangePass.FormClosing += (s, ev) =>
+            {
+                if (frmChangePass.changedSuccess)
+                    btnLogout.PerformClick();
+            };
+        }
+        private void btnAddTeacher_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnUpdateTeacher_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDeleteTeacher_Click(object sender, EventArgs e)
+        {
+            if (listviewTeacher.SelectedItems.Count <= 0)
+                return;
+            bool deleteSelf = false;
+            string idToDel = "";
+            Dictionary<int, string> indexToDelete = new Dictionary<int, string>();
+            List<int> indexHasDeleted = new List<int>();
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.WorkerSupportsCancellation = true;
+
+            lbInformation.Text = "Đang xóa giáo viên...";
+            lbInformation.Show();
+            mainProgressbar.Show();
+            foreach (ListViewItem item in listviewTeacher.SelectedItems)
+            {
+                indexToDelete.Add(item.Index, item.SubItems[1].Text);
+            }
+            worker.DoWork += (s, ev) =>
+            {
+                Thread.Sleep(2000);
+                foreach (KeyValuePair<int, string> index in indexToDelete)
+                {
+                    idToDel = index.Value;
+                    if (idToDel == mainTeacher.ID)
+                    {
+                        if (MetroMessageBox.Show(this, "Bạn đang tự xóa chính tài khoản của bản thân," +
+                            " sau khi xóa bạn sẽ không thể đăng nhập lại tài khoản này. Xác nhận xóa?", "Thông báo", MessageBoxButtons.YesNo,
+                                MessageBoxIcon.Warning) == DialogResult.No)
+                            continue;
+                        else
+                            deleteSelf = true;
+                    }
+                    if (Controller.Instance.DeleteTeacher(idToDel))
+                        indexHasDeleted.Add(index.Key);
+                    else
+                        MetroMessageBox.Show(this, "Đã có lỗi xảy ra trong quá trình xóa giáo viên có mã ID:" +
+                            index.Value + ".", "Lỗi");
+                }
+            };
+
+            worker.RunWorkerCompleted += (s, ev) =>
+            {
+                if (deleteSelf)
+                {
+                    btnLogout.PerformClick();
+                    return;
+                }    
+                lbInformation.Hide();
+                mainProgressbar.Hide();
+                if (indexToDelete.Count <= 0)
+                    return;
+                foreach (int index in indexHasDeleted)
+                {
+                    listviewTeacher.Items.RemoveAt(index);
+                }
+
+                for (int i = 0; i < listviewTeacher.Items.Count; i++)
+                    listviewTeacher.Items[i].SubItems[0].Text = (i + 1).ToString();
+
+            };
+
+            worker.RunWorkerAsync();
+
+        }
+
         #endregion
 
         #region Custom Function
@@ -127,9 +217,9 @@ namespace TutteeFrame
             lbMyfonenum.Text = mainTeacher.Phone;
             lbSubjectTeach.Text = mainTeacher.Subject.Name;
             lbPosition.Text = mainTeacher.Position;
-            if( mainTeacher.Sex==true)
+            if (mainTeacher.Sex == true)
             {
-                lbGender.Text= "Giới tính nam";
+                lbGender.Text = "Giới tính nam";
 
             }
 
@@ -137,12 +227,12 @@ namespace TutteeFrame
             lbIsMinstry.Visible = false;
             lbJustTeacher.Visible = false;
 
-            
-            if (mainTeacher.Type==Teacher.TeacherType.Adminstrator)
+
+            if (mainTeacher.Type == Teacher.TeacherType.Adminstrator)
             {
                 lbIsAdmin.Text = "Ban giám hiệu";
                 lbIsAdmin.Visible = true;
-                
+
             }
             else if (mainTeacher.Type == Teacher.TeacherType.Ministry)
             {
@@ -155,7 +245,7 @@ namespace TutteeFrame
                 lbJustTeacher.Text = "Tổ " + mainTeacher.Subject.Name;
                 lbJustTeacher.Visible = true;
             }
-            
+
             mainTabcontrol.TabPages.Clear();
             mainTabcontrol.TabPages.Add(tbpgProfile);
             mainTabcontrol.TabPages.Add(tbpgShedule);
@@ -163,7 +253,7 @@ namespace TutteeFrame
             if (mainTeacher.ID == "AD999999")
             {
                 lbPostition.Text = "Adminstrator";
-                mainTabcontrol.TabPages.Add(tbpgTeacherManagment);
+                mainTabcontrol.TabPages.Add(tbgpTeacherManagment);
                 mainTabcontrol.TabPages.Add(tbpgStudentManagment);
                 mainTabcontrol.TabPages.Add(tbpgClassManagment);
                 mainTabcontrol.TabPages.Add(tbpgSubjectManagment);
@@ -185,7 +275,7 @@ namespace TutteeFrame
                         mainTabcontrol.TabPages.Add(tbpgStudentMarkboard);
                         break;
                     case Teacher.TeacherType.Adminstrator:
-                        mainTabcontrol.TabPages.Add(tbpgTeacherManagment);
+                        mainTabcontrol.TabPages.Add(tbgpTeacherManagment);
                         mainTabcontrol.TabPages.Add(tbpgSubjectManagment);
                         mainTabcontrol.TabPages.Add(tbpgReport);
                         lbPostition.Text = "Ban giám hiệu";
@@ -201,20 +291,63 @@ namespace TutteeFrame
                         break;
                 }
             }
+            LoadData();
+
+        }
+        void LoadData()
+        {
+            listviewTeacher.Items.Clear();
+            List<Teacher> teachers = new List<Teacher>();
+            switch (mainTeacher.Type)
+            {
+                case Teacher.TeacherType.Teacher:
+                    break;
+                case Teacher.TeacherType.Adminstrator:
+                    {
+                        BackgroundWorker loader = new BackgroundWorker();
+                        int totalMinistry = 0, totalAdmin = 0, totalTeacher = 0;
+                        Dictionary<string, string> teacherNotes = new Dictionary<string, string>();
+                        mainProgressbar.Show();
+                        lbInformation.Text = "Đang tải danh sách giáo viên...";
+                        lbInformation.Show();
+                        loader.WorkerReportsProgress = true;
+                        loader.DoWork += (s, e) =>
+                        {
+                            Controller.Instance.LoadTeachers(teachers, teacherNotes, out totalTeacher, out totalMinistry, out totalAdmin);
+                        };
+
+                        loader.RunWorkerCompleted += (s, e) =>
+                        {
+                            mainProgressbar.Hide();
+                            lbInformation.Hide();
+                            lbTotalTeacher.Text = totalTeacher.ToString();
+                            lbTotalAdmin.Text = totalAdmin.ToString();
+                            lbTotalMinistry.Text = totalMinistry.ToString();
+                            int index = 1;
+                            foreach (Teacher teacher in teachers)
+                            {
+                                listviewTeacher.Items.Add(new ListViewItem(new string[] { index.ToString(),
+                                    teacher.ID,teacher.SurName + " " + teacher.FirstName,teacher.DateOfBirth1.ToString("d"), teacher.GetSex,
+                                    teacher.Address,teacher.Phone,teacher.Mail,teacher.Subject.Name,teacherNotes[teacher.ID]
+                                }));
+                                index++;
+                            }
+                            listviewTeacher.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+                            listviewTeacher.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+                        };
+
+                        loader.RunWorkerAsync();
+                    }
+                    break;
+                case Teacher.TeacherType.Ministry:
+                    break;
+                case Teacher.TeacherType.FormerTeacher:
+                    break;
+                default:
+                    break;
+            }
         }
         #endregion
 
-        private void btnChangePass_Click(object sender, EventArgs e)
-        {
-            pnProfile.Size = new Size(pnProfile.Size.Width, 70);
-            frmChangePass frmChangePass = new frmChangePass(mainTeacher.ID);
-            OverlayForm overlay = new OverlayForm(this, frmChangePass);
-            frmChangePass.Show();
-            frmChangePass.FormClosing += (s, ev) =>
-            {
-                if (frmChangePass.changedSuccess)
-                    btnLogout.PerformClick();
-            };
-        }
     }
 }

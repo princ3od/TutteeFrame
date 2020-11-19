@@ -37,7 +37,8 @@ namespace TutteeFrame.Model
         {
             bool success = true;
             //Đổi chuỗi kết nối ở dưới để test
-            string strConnect = "Server=ANDREWANHTRAN;Database=TutteeFrame;Trusted_Connection=True;";
+            string strConnect = string.Format(Properties.Settings.Default.ServerConnectionString
+                                    , _server, _port, _userid, _pass);
             try
             {
                 connection = new SqlConnection(strConnect);
@@ -297,15 +298,17 @@ namespace TutteeFrame.Model
                         _teacher.ID = reader.GetString(0);
                         _teacher.SurName = reader["Surname"].ToString();
                         _teacher.FirstName = reader["Firstname"].ToString();
+                        _teacher.DateOfBirth1 = reader.GetDateTime(4);
+                        _teacher.Sex = reader.GetBoolean(5);
                         _teacher.Address = reader["Address"].ToString();
                         _teacher.Phone = reader["Phone"].ToString();
                         _teacher.Mail = reader["Maill"].ToString();
                         _teacher.Subject = new Subject();
                         _teacher.Subject.ID = reader["SubjectID"].ToString();
                         _teacher.Subject.Name = reader["SubjectName"].ToString();
-                        if (reader.GetBoolean(7))
+                        if (reader.GetBoolean(10))
                             _teacher.Type = Teacher.TeacherType.Ministry;
-                        else if (reader.GetBoolean(8))
+                        else if (reader.GetBoolean(11))
                             _teacher.Type = Teacher.TeacherType.Adminstrator;
                         else
                             _teacher.Type = Teacher.TeacherType.Teacher;
@@ -419,15 +422,17 @@ namespace TutteeFrame.Model
                 return false;
             try
             {
-                string query = $"SELECT ID FROM ACCOUNT WHERE TeacherID = '{_teacherID}'";
+                string query = $"SELECT AccountID FROM ACCOUNT WHERE TeacherID = '{_teacherID}'";
                 SqlCommand command = new SqlCommand(query, connection);
                 SqlDataReader dataReader = command.ExecuteReader();
+                if (!dataReader.HasRows)
+                    return true;
                 int deletedID = dataReader.GetInt16(0);
                 query = $"DELETE ACCOUNT WHERE TeacherID = '{_teacherID}'";
                 command = new SqlCommand(query, connection);
                 command.ExecuteNonQuery();
                 //Cập nhật lại id
-                query = "UPDATE ACCOUNT SET ID = ID - 1 WHERE ID > @deletedid";
+                query = "UPDATE ACCOUNT SET TeacherID = TeacherID - 1 WHERE TeacherID > @deletedid";
                 command = new SqlCommand(query, connection);
                 command.Parameters.AddWithValue("deletedid", deletedID);
                 command.ExecuteNonQuery();
