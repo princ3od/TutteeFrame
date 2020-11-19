@@ -4,6 +4,7 @@ using MetroFramework.Forms;
 using System;
 using System.ComponentModel;
 using System.Drawing;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using TutteeFrame.Model;
@@ -39,7 +40,7 @@ namespace TutteeFrame
         {
             this.Hide();
             //if (pnProfile.Size.Height > 70)
-                pnProfile.Size = new Size(300,70);
+            pnProfile.Size = new Size(300, 70);
             frmSpashScreen splash = new frmSpashScreen();
             splash.FormClosing += Splash_FormClosing;
             splash.Show();
@@ -114,12 +115,28 @@ namespace TutteeFrame
         #endregion
 
         #region Custom Function
+
+        //Đổi mảng byte sang ảnh
+        public Image byteArrayToImage(byte[] byteArrayIn)
+        {
+            using (MemoryStream ms = new MemoryStream(byteArrayIn))
+            {
+                return Image.FromStream(ms);
+            }
+        }
         void LoadAfterLogin()
         {
 
+            //pbProfilemainAvatar.Image = byteArrayToImage(mainTeacher.Picture);
+            System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
+          
+            gp.AddEllipse(0, 0, pbProfilemainAvatar.Width - 1, pbProfilemainAvatar.Height - 1);
+            Region rg = new Region(gp);
+            pbProfilemainAvatar.Region = rg;
+
+
             mainTeacher = Controller.Instance.usingTeacher;
             lbName.Text = mainTeacher.SurName + " " + mainTeacher.FirstName;
-
             lbMyName.Text = string.Format("{0} {1}", mainTeacher.SurName, mainTeacher.FirstName);
             lbImyID.Text = mainTeacher.ID;
             lbMyaddr.Text = mainTeacher.Address;
@@ -127,22 +144,30 @@ namespace TutteeFrame
             lbMyfonenum.Text = mainTeacher.Phone;
             lbSubjectTeach.Text = mainTeacher.Subject.Name;
             lbPosition.Text = mainTeacher.Position;
-            if( mainTeacher.Sex==true)
+            lbDateofbirth.Text = mainTeacher.DateOfBirth1.ToString("d");
+
+            
+                
+            pictureBox13.Visible = false;
+
+            if (mainTeacher.Sex == true)
             {
-                lbGender.Text= "Giới tính nam";
-
+                lbGender.Text = "Giới tính nam";
+                pictureBox13.Visible = true;
             }
-
+            else
+            {
+                lbGender.Text = "Giới tính nữ";
+            }
             lbIsAdmin.Visible = false;
             lbIsMinstry.Visible = false;
             lbJustTeacher.Visible = false;
 
-            
-            if (mainTeacher.Type==Teacher.TeacherType.Adminstrator)
+
+            if (mainTeacher.Type == Teacher.TeacherType.Adminstrator)
             {
                 lbIsAdmin.Text = "Ban giám hiệu";
                 lbIsAdmin.Visible = true;
-                
             }
             else if (mainTeacher.Type == Teacher.TeacherType.Ministry)
             {
@@ -155,7 +180,7 @@ namespace TutteeFrame
                 lbJustTeacher.Text = "Tổ " + mainTeacher.Subject.Name;
                 lbJustTeacher.Visible = true;
             }
-            
+
             mainTabcontrol.TabPages.Clear();
             mainTabcontrol.TabPages.Add(tbpgProfile);
             mainTabcontrol.TabPages.Add(tbpgShedule);
@@ -215,6 +240,22 @@ namespace TutteeFrame
                 if (frmChangePass.changedSuccess)
                     btnLogout.PerformClick();
             };
+        }
+
+        private void btnBrowseForAvatar_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fd = new OpenFileDialog();
+            fd.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+            fd.AddExtension = true;
+            if(fd.ShowDialog()==DialogResult.OK)
+            {
+                this.pbProfilemainAvatar.Image = Image.FromFile(fd.FileName);
+                this.ptbAvatar.Image = Image.FromFile(fd.FileName);
+                
+               
+            }
+   
+            
         }
     }
 }

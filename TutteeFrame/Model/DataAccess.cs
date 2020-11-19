@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -166,14 +168,19 @@ namespace TutteeFrame.Model
                 _teacher.Address = dataReader.GetString(6);
                 _teacher.Phone = dataReader.GetString(7);
                 _teacher.Mail = dataReader.GetString(8);
+               
                 _teacher.Sex = dataReader.GetBoolean(5);
+
                 _teacher.DateOfBirth1 = dataReader.GetDateTime(4);
+                
+                
                 _teacher.Subject = new Subject();
                 _teacher.Subject.ID = dataReader.GetString(9);
                 _teacher.Subject.Name = dataReader["SubjectName"].ToString();
                 _isMinistry = dataReader.GetBoolean(10);
                 _isAdmin = dataReader.GetBoolean(11);
                 _position = dataReader.GetString(12);
+               // _teacher.Picture = (byte[])dataReader.GetValue(3);
             }
             catch (Exception e)
             {
@@ -300,6 +307,7 @@ namespace TutteeFrame.Model
                         _teacher.Address = reader["Address"].ToString();
                         _teacher.Phone = reader["Phone"].ToString();
                         _teacher.Mail = reader["Maill"].ToString();
+                        _teacher.Picture = (byte [])reader.GetValue(3);
                         _teacher.Subject = new Subject();
                         _teacher.Subject.ID = reader["SubjectID"].ToString();
                         _teacher.Subject.Name = reader["SubjectName"].ToString();
@@ -406,6 +414,10 @@ namespace TutteeFrame.Model
             Disconnect();
             return true;
         }
+   
+     
+
+    
         /// <summary>
         /// Xóa giáo viên có mã [_teacherID].
         /// </summary>
