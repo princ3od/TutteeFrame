@@ -13,6 +13,7 @@ namespace TutteeFrame.Model
         private TeacherType teacherType;
         private string formClassID;
 
+
         public Subject Subject { get => subject; set => subject = value; }
         public TeacherType Type { get => teacherType; set => teacherType = value; }
         public string FormClassID { get => formClassID; set => formClassID = value; }

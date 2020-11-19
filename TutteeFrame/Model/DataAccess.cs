@@ -117,7 +117,7 @@ namespace TutteeFrame.Model
                             break;
                         }
                 }
-                string query = "INSERT INTO TEACHER(TeacherID,Surname,FirstName,Address,Phone,Maill,SubjectID,IsMinistry,IsAdmin) " +
+                string query = "INSERT INTO TEACHER(TeacherID,Surname,FirstName,Address,Phone,Mail,SubjectID,IsMinistry,IsAdmin) " +
                     "VALUES(@teacherid,@surname,@firstname,@address,@phone,@mail,@subjectid,@is_ministry,@is_admin)";
                 SqlCommand sqlCommand = new SqlCommand(query, connection);
                 sqlCommand.Parameters.AddWithValue("@teacherid", _teacher.ID);
@@ -163,18 +163,21 @@ namespace TutteeFrame.Model
                 _teacher.ID = dataReader.GetString(0);
                 _teacher.SurName = dataReader.GetString(1);
                 _teacher.FirstName = dataReader.GetString(2);
-                _teacher.Address = dataReader.GetString(3);
-                _teacher.Phone = dataReader.GetString(4);
-                _teacher.Mail = dataReader.GetString(5);
+                _teacher.Address = dataReader.GetString(6);
+                _teacher.Phone = dataReader.GetString(7);
+                _teacher.Mail = dataReader.GetString(8);
+                _teacher.Sex = dataReader.GetBoolean(5);
+                _teacher.DateOfBirth1 = dataReader.GetDateTime(4);
                 _teacher.Subject = new Subject();
-                _teacher.Subject.ID = dataReader.GetString(6);
+                _teacher.Subject.ID = dataReader.GetString(9);
                 _teacher.Subject.Name = dataReader["SubjectName"].ToString();
-                _isMinistry = dataReader.GetBoolean(7);
-                _isAdmin = dataReader.GetBoolean(8);
-                _position = dataReader.GetString(9);
+                _isMinistry = dataReader.GetBoolean(10);
+                _isAdmin = dataReader.GetBoolean(11);
+                _position = dataReader.GetString(12);
             }
             catch (Exception e)
             {
+                MessageBox.Show(e.Message);
                 return false;
             }
 
@@ -331,7 +334,7 @@ namespace TutteeFrame.Model
                 return false;
             try
             {
-                string query = "INSERT INTO ACCOUNT(ID,TeacherID,Password) VALUES(@id,@teacherid, @pass)";
+                string query = "INSERT INTO ACCOUNT(AccountID,TeacherID,Password) VALUES(@id,@teacherid, @pass)";
                 SqlCommand sqlCommand = new SqlCommand(query, connection);
                 sqlCommand.Parameters.AddWithValue("@id", _account.ID.ToString());
                 sqlCommand.Parameters.AddWithValue("@teacherid", _account.TeacherID);

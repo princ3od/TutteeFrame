@@ -38,8 +38,8 @@ namespace TutteeFrame
         private void frmMain_Shown(object sender, EventArgs e)
         {
             this.Hide();
-            if (pnProfile.Size.Height > 70)
-                pnProfile.Size = new Size(pnProfile.Size.Width, 70);
+            //if (pnProfile.Size.Height > 70)
+                pnProfile.Size = new Size(300,70);
             frmSpashScreen splash = new frmSpashScreen();
             splash.FormClosing += Splash_FormClosing;
             splash.Show();
@@ -116,6 +116,7 @@ namespace TutteeFrame
         #region Custom Function
         void LoadAfterLogin()
         {
+
             mainTeacher = Controller.Instance.usingTeacher;
             lbName.Text = mainTeacher.SurName + " " + mainTeacher.FirstName;
 
@@ -126,6 +127,11 @@ namespace TutteeFrame
             lbMyfonenum.Text = mainTeacher.Phone;
             lbSubjectTeach.Text = mainTeacher.Subject.Name;
             lbPosition.Text = mainTeacher.Position;
+            if( mainTeacher.Sex==true)
+            {
+                lbGender.Text= "Giới tính nam";
+
+            }
 
             lbIsAdmin.Visible = false;
             lbIsMinstry.Visible = false;
