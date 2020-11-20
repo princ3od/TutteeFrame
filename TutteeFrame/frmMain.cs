@@ -18,10 +18,9 @@ namespace TutteeFrame
         public frmMain()
         {
             InitializeComponent();
-            this.SetStyle(ControlStyles.UserPaint |
-              ControlStyles.AllPaintingInWmPaint |
-              ControlStyles.OptimizedDoubleBuffer, true);
+            this.SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
             this.UpdateStyles();
+            this.DoubleBuffered = true;
             var materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.LightBlue400, Primary.Blue400, Primary.Green600, Accent.LightGreen700, TextShade.BLACK);
@@ -114,7 +113,6 @@ namespace TutteeFrame
         }
         private void btnChangePass_Click(object sender, EventArgs e)
         {
-            listviewTeacher.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
             pnProfile.Size = new Size(pnProfile.Size.Width, 70);
             frmChangePass frmChangePass = new frmChangePass(mainTeacher.ID);
             OverlayForm overlay = new OverlayForm(this, frmChangePass);
@@ -127,23 +125,40 @@ namespace TutteeFrame
         }
         private void btnAddTeacher_Click(object sender, EventArgs e)
         {
-
+            frmTeacher frmTeacher = new frmTeacher(frmTeacher.Mode.Add);
+            OverlayForm overlayForm = new OverlayForm(this, frmTeacher);
+            frmTeacher.Show();
         }
 
         private void btnUpdateTeacher_Click(object sender, EventArgs e)
         {
-
+            if (listviewTeacher.SelectedItems.Count <= 0)
+            {
+                MetroMessageBox.Show(this, "Vui lòng chọn giáo viên cần cập nhật thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            frmTeacher frmTeacher = new frmTeacher(frmTeacher.Mode.Edit, listviewTeacher.SelectedItems[0].SubItems[1].Text);
+            OverlayForm overlayForm = new OverlayForm(this, frmTeacher);
+            frmTeacher.Show();
         }
 
         private void btnDeleteTeacher_Click(object sender, EventArgs e)
         {
             if (listviewTeacher.SelectedItems.Count <= 0)
+            {
+                MetroMessageBox.Show(this, "Vui lòng chọn giáo viên cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (MetroMessageBox.Show(this, "Xác nhận xóa " + listviewTeacher.SelectedItems.Count + " giáo viên đã chọn?", "Xác nhận", MessageBoxButtons.YesNo,
+                                MessageBoxIcon.None) == DialogResult.No)
                 return;
             bool deleteSelf = false;
             string idToDel = "";
             Dictionary<int, string> indexToDelete = new Dictionary<int, string>();
             List<int> indexHasDeleted = new List<int>();
             BackgroundWorker worker = new BackgroundWorker();
+            int totalMinistry = 0, totalAdmin = 0, totalTeacher = 0;
+
             worker.WorkerSupportsCancellation = true;
 
             lbInformation.Text = "Đang xóa giáo viên...";
@@ -174,27 +189,36 @@ namespace TutteeFrame
                         MetroMessageBox.Show(this, "Đã có lỗi xảy ra trong quá trình xóa giáo viên có mã ID:" +
                             index.Value + ".", "Lỗi");
                 }
+                Controller.Instance.GetTeacherNumber(out totalTeacher, out totalMinistry, out totalAdmin);
             };
 
             worker.RunWorkerCompleted += (s, ev) =>
             {
+                lbTotalTeacher.Text = totalTeacher.ToString();
+                lbTotalAdmin.Text = totalAdmin.ToString();
+                lbTotalMinistry.Text = totalMinistry.ToString();
+                listviewTeacher.SelectedItems.Clear();
+
                 if (deleteSelf)
                 {
                     btnLogout.PerformClick();
                     return;
-                }    
+                }
+
                 lbInformation.Hide();
                 mainProgressbar.Hide();
                 if (indexToDelete.Count <= 0)
                     return;
+                int k = 0;
                 foreach (int index in indexHasDeleted)
                 {
-                    listviewTeacher.Items.RemoveAt(index);
+                    listviewTeacher.Items.RemoveAt(index - k);
+                    k++;
                 }
 
                 for (int i = 0; i < listviewTeacher.Items.Count; i++)
                     listviewTeacher.Items[i].SubItems[0].Text = (i + 1).ToString();
-
+                listviewTeacher.Invalidate();
             };
 
             worker.RunWorkerAsync();

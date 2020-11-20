@@ -147,6 +147,11 @@ namespace TutteeFrame
             }
             return success;
         }
+        public bool GetTeacherNumber(out int _totalTeacher, out int _totalMinistry, out int _totalAdmin)
+        {
+            _totalTeacher = _totalMinistry = _totalAdmin = 0;
+            return DataAccess.Instance.GetTeacherNum(ref _totalTeacher, ref _totalMinistry, ref _totalAdmin);
+        }
         public string GenerateStudentID()
         {
             int result = 0;

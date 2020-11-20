@@ -5,13 +5,14 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using TutteeFrame.Model;
 
 namespace TutteeFrame
 {
-    public partial class frmTeacher : MetroForm
+    public partial class frmTeacher : Form
     {
         public enum Mode { Add, Edit };
         public Mode mode;
@@ -21,29 +22,62 @@ namespace TutteeFrame
         public frmTeacher(Mode _mode, string _teacherID = null)
         {
             InitializeComponent();
+            this.SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            this.UpdateStyles();
+            this.DoubleBuffered = true;
             if (_teacherID != null)
                 teacherID = _teacherID;
             mode = _mode;
         }
 
+        #region Win32 Form
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                const int CS_DROPSHADOW = 0x20000;
+                CreateParams cp = base.CreateParams;
+                cp.ClassStyle |= CS_DROPSHADOW;
+                return cp;
+            }
+        }
+        #endregion
+
+        #region Form Events
+        #endregion
         private void frmTeacher_Load(object sender, EventArgs e)
         {
+            System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
+            gp.AddEllipse(0, 0, ptbAvatar.Width - 3, ptbAvatar.Height - 3);
+            Region rg = new Region(gp);
+            ptbAvatar.Region = rg;
             switch (mode)
             {
                 case Mode.Add:
-                    this.Text = "Thêm giáo viên";
-                    btnApprove.Text = "THÊM";
+                    btnApprove.Text = "Thêm giáo viên";
                     teacherID = "TC" + Controller.Instance.GenerateTeacherID();
-                    txtID.Text = teacherID;
+                    lbID.Text = teacherID;
+                    lbID.ForeColor = Color.Green;
+                    lbName.Text = "--";
                     break;
                 case Mode.Edit:
-                    txtID.Text = teacherID;
-                    this.Text = "Cập nhật giáo viên";
-                    btnApprove.Text = "CẬP NHẬT";
+                    btnApprove.Text = "Cập nhật giáo viên";
                     teacher = new Teacher();
                     Controller.Instance.LoadTeacher(teacherID, teacher);
+                    lbID.Text = teacher.ID;
+                    lbName.Text = teacher.SurName + " " + teacher.FirstName;
                     txtFirstname.Text = teacher.FirstName;
                     txtSurename.Text = teacher.SurName;
+                    dateBorn.Value = teacher.DateOfBirth1;
+                    cbbSex.SelectedIndex = Convert.ToInt32(teacher.Sex);
                     txtAddress.Text = teacher.Address;
                     txtPhoneNunber.Text = teacher.Phone;
                     txtTeacherMail.Text = teacher.Mail;
@@ -66,27 +100,29 @@ namespace TutteeFrame
                 default:
                     break;
             }
+            btnChooseAvatar.Show();
         }
         private void btnAproveAdding_Click(object sender, EventArgs e)
         {
             string idPreflex = "TC";
             teacher = new Teacher();
             if (cbxIsAdmin.Checked)
-            {
                 teacher.Type = Teacher.TeacherType.Adminstrator;
-                idPreflex = "AD";
-            }
             else if (cbxIsMinistry.Checked)
-            {
                 teacher.Type = Teacher.TeacherType.Ministry;
-                idPreflex = "MI";
-            }
             else
                 teacher.Type = Teacher.TeacherType.Teacher;
             teacher.Subject = new Subject("01", "Toán");
             teacher.ID = idPreflex + teacherID.Remove(0, 2);
             teacher.FirstName = txtFirstname.Text;
             teacher.SurName = txtSurename.Text;
+            if (cbbSex.SelectedIndex == -1)
+            {
+                cbbSex.Focus();
+                return;
+            }
+            teacher.Sex = Convert.ToBoolean(cbbSex.SelectedIndex);
+            teacher.DateOfBirth1 = dateBorn.Value;
             teacher.Address = txtAddress.Text;
             teacher.Phone = txtPhoneNunber.Text;
             teacher.Mail = txtTeacherMail.Text;
@@ -107,19 +143,32 @@ namespace TutteeFrame
 
         }
 
+        private void NameChanging(object sender, EventArgs e)
+        {
+            switch (mode)
+            {
+                case Mode.Add:
+                    if (string.IsNullOrEmpty(txtSurename.Text) && string.IsNullOrEmpty(txtFirstname.Text))
+                        lbName.Text = "--";
+                    else
+                        lbName.Text = txtSurename.Text + " " + txtFirstname.Text;
+                    break;
+                case Mode.Edit:
+                    break;
+                default:
+                    break;
+            }
+        }
         private void cbxIsAdmin_CheckedChanged(object sender, EventArgs e)
         {
             if (cbxIsAdmin.Checked)
             {
                 if (cbxIsMinistry.Checked)
                     cbxIsMinistry.Checked = false;
-                txtID.Text = "AD" + teacherID.Remove(0, 2);
 
             }
             else
             {
-                if (!cbxIsMinistry.Checked)
-                    txtID.Text = "TC" + teacherID.Remove(0, 2);
 
             }
         }
@@ -130,13 +179,11 @@ namespace TutteeFrame
             {
                 if (cbxIsAdmin.Checked)
                     cbxIsAdmin.Checked = false;
-                txtID.Text = "MI" + teacherID.Remove(0, 2);
 
             }
             else
             {
-                if (!cbxIsAdmin.Checked)
-                    txtID.Text = "TC" + teacherID.Remove(0, 2);
+
             }
         }
         //only digit textbox
@@ -148,7 +195,12 @@ namespace TutteeFrame
 
         private void frmTeacher_FormClosing(object sender, FormClosingEventArgs e)
         {
-            teacherID = txtID.Text;
+
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

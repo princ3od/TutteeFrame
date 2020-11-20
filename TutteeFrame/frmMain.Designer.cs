@@ -105,7 +105,6 @@
             this.materialDivider3 = new MaterialSkin.Controls.MaterialDivider();
             this.mainProgressbar = new System.Windows.Forms.ProgressBar();
             this.lbInformation = new System.Windows.Forms.Label();
-            this.btnCancel = new Material_Design_for_Winform.MaterialFlatButton();
             this.mainTabcontrol.SuspendLayout();
             this.tbpgProfile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
@@ -560,7 +559,7 @@
             this.listviewTeacher.MouseState = MaterialSkin.MouseState.OUT;
             this.listviewTeacher.Name = "listviewTeacher";
             this.listviewTeacher.OwnerDraw = true;
-            this.listviewTeacher.Size = new System.Drawing.Size(1119, 401);
+            this.listviewTeacher.Size = new System.Drawing.Size(1119, 409);
             this.listviewTeacher.TabIndex = 13;
             this.listviewTeacher.UseCompatibleStateImageBehavior = false;
             this.listviewTeacher.View = System.Windows.Forms.View.Details;
@@ -626,7 +625,7 @@
             this.btnDeleteTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnDeleteTeacher.Icon = null;
-            this.btnDeleteTeacher.Location = new System.Drawing.Point(903, 525);
+            this.btnDeleteTeacher.Location = new System.Drawing.Point(905, 532);
             this.btnDeleteTeacher.Name = "btnDeleteTeacher";
             this.btnDeleteTeacher.Radius = 2;
             this.btnDeleteTeacher.ShadowDepth = 3;
@@ -648,7 +647,7 @@
             this.btnUpdateTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdateTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnUpdateTeacher.Icon = null;
-            this.btnUpdateTeacher.Location = new System.Drawing.Point(196, 525);
+            this.btnUpdateTeacher.Location = new System.Drawing.Point(198, 532);
             this.btnUpdateTeacher.Name = "btnUpdateTeacher";
             this.btnUpdateTeacher.Radius = 2;
             this.btnUpdateTeacher.ShadowDepth = 3;
@@ -670,7 +669,7 @@
             this.btnAddTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnAddTeacher.Icon = null;
-            this.btnAddTeacher.Location = new System.Drawing.Point(48, 525);
+            this.btnAddTeacher.Location = new System.Drawing.Point(50, 532);
             this.btnAddTeacher.Name = "btnAddTeacher";
             this.btnAddTeacher.Radius = 2;
             this.btnAddTeacher.ShadowDepth = 3;
@@ -1116,24 +1115,9 @@
             this.lbInformation.Text = "*Đang kết nối...";
             this.lbInformation.Visible = false;
             // 
-            // btnCancel
-            // 
-            this.btnCancel.BackColor = System.Drawing.Color.Transparent;
-            this.btnCancel.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
-            this.btnCancel.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.ForeColor = System.Drawing.Color.Red;
-            this.btnCancel.Icon = null;
-            this.btnCancel.Location = new System.Drawing.Point(1297, 712);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(90, 32);
-            this.btnCancel.TabIndex = 27;
-            this.btnCancel.Text = "Hủy";
-            this.btnCancel.TextAlign = System.Drawing.StringAlignment.Center;
-            // 
             // frmMain
             // 
             this.ClientSize = new System.Drawing.Size(1400, 750);
-            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.mainProgressbar);
             this.Controls.Add(this.lbInformation);
             this.Controls.Add(this.pnProfile);
@@ -1144,7 +1128,7 @@
             this.DisplayHeader = false;
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(1000, 650);
+            this.MinimumSize = new System.Drawing.Size(1100, 700);
             this.Name = "frmMain";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
             this.ShadowType = MetroFramework.Forms.MetroFormShadowType.AeroShadow;
@@ -1257,6 +1241,5 @@
         private MaterialSkin.Controls.MaterialTextBox txtTeacherSearch;
         private System.Windows.Forms.ProgressBar mainProgressbar;
         private System.Windows.Forms.Label lbInformation;
-        private Material_Design_for_Winform.MaterialFlatButton btnCancel;
     }
 }

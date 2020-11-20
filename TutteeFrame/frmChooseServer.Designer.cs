@@ -38,6 +38,7 @@
             this.txtServerName = new Material_Design_for_Winform.MaterialTextField();
             this.btnAcept = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.btnExit = new MaterialSkin.Controls.MaterialButton();
             this.SuspendLayout();
             // 
             // label1
@@ -82,7 +83,7 @@
             // txtPassword
             // 
             this.txtPassword.AutoScaleColor = true;
-            this.txtPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtPassword.BackColor = System.Drawing.SystemColors.Control;
             this.txtPassword.FloatingLabelText = "Mật khẩu";
             this.txtPassword.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 12F);
@@ -105,7 +106,7 @@
             // txtAccount
             // 
             this.txtAccount.AutoScaleColor = true;
-            this.txtAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtAccount.BackColor = System.Drawing.SystemColors.Control;
             this.txtAccount.FloatingLabelText = "Tên tài khoản";
             this.txtAccount.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
             this.txtAccount.Font = new System.Drawing.Font("Segoe UI", 12F);
@@ -128,7 +129,7 @@
             // txtPort
             // 
             this.txtPort.AutoScaleColor = true;
-            this.txtPort.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtPort.BackColor = System.Drawing.SystemColors.Control;
             this.txtPort.FloatingLabelText = "Số cổng";
             this.txtPort.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
             this.txtPort.Font = new System.Drawing.Font("Segoe UI", 12F);
@@ -152,7 +153,7 @@
             // txtServerName
             // 
             this.txtServerName.AutoScaleColor = true;
-            this.txtServerName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtServerName.BackColor = System.Drawing.SystemColors.Control;
             this.txtServerName.FloatingLabelText = "Tên server";
             this.txtServerName.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
             this.txtServerName.Font = new System.Drawing.Font("Segoe UI", 12F);
@@ -193,13 +194,35 @@
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // btnExit
+            // 
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnExit.Depth = 0;
+            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnExit.DrawShadows = true;
+            this.btnExit.HighEmphasis = true;
+            this.btnExit.Icon = ((System.Drawing.Image)(resources.GetObject("btnExit.Icon")));
+            this.btnExit.Location = new System.Drawing.Point(307, 0);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnExit.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(44, 36);
+            this.btnExit.TabIndex = 28;
+            this.btnExit.TabStop = false;
+            this.btnExit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
+            this.btnExit.UseAccentColor = false;
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
             // frmChooseServer
             // 
             this.AcceptButton = this.btnAcept;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(350, 480);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnAcept);
             this.Controls.Add(this.btnConfirm);
@@ -209,21 +232,16 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPort);
             this.Controls.Add(this.txtServerName);
-            this.DisplayHeader = false;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Movable = false;
             this.Name = "frmChooseServer";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
-            this.Resizable = false;
-            this.ShadowType = MetroFramework.Forms.MetroFormShadowType.AeroShadow;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.Text = "TutteeFrame";
-            this.TransparencyKey = System.Drawing.Color.Empty;
             this.Load += new System.EventHandler(this.frmChooseServer_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -241,5 +259,6 @@
         private Material_Design_for_Winform.MaterialTextField txtAccount;
         private Material_Design_for_Winform.MaterialRaisedButton btnConfirm;
         private System.Windows.Forms.Button btnClose;
+        private MaterialSkin.Controls.MaterialButton btnExit;
     }
 }

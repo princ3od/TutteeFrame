@@ -118,11 +118,13 @@ namespace TutteeFrame.Model
                             break;
                         }
                 }
-                string query = "INSERT INTO TEACHER(TeacherID,Surname,FirstName,Address,Phone,Mail,SubjectID,IsMinistry,IsAdmin) " +
-                    "VALUES(@teacherid,@surname,@firstname,@address,@phone,@mail,@subjectid,@is_ministry,@is_admin)";
+                string query = "INSERT INTO TEACHER(TeacherID,Surname,FirstName,DateBorn,Sex,Address,Phone,Maill,SubjectID,IsMinistry,IsAdmin) " +
+                    "VALUES(@teacherid,@surname,@firstname,@date,@sex,@address,@phone,@mail,@subjectid,@is_ministry,@is_admin)";
                 SqlCommand sqlCommand = new SqlCommand(query, connection);
                 sqlCommand.Parameters.AddWithValue("@teacherid", _teacher.ID);
                 sqlCommand.Parameters.AddWithValue("@surname", _teacher.SurName);
+                sqlCommand.Parameters.AddWithValue("@date", _teacher.DateOfBirth1);
+                sqlCommand.Parameters.AddWithValue("@sex", _teacher.Sex);
                 sqlCommand.Parameters.AddWithValue("@firstname", _teacher.FirstName);
                 sqlCommand.Parameters.AddWithValue("@phone", _teacher.Phone);
                 sqlCommand.Parameters.AddWithValue("@address", _teacher.Address);
@@ -316,6 +318,36 @@ namespace TutteeFrame.Model
                         //MessageBox.Show(teachers[i].ID);
                     }
                 }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                return false;
+            }
+
+            Disconnect();
+            return true;
+        }
+        public bool GetTeacherNum(ref int _totalTeacher, ref int _totalMinstry, ref int _totalAdmin)
+        {
+            bool success = Connect();
+
+            if (!success)
+                return false;
+            try
+            {
+                string query = "SELECT COUNT(*) FROM TEACHER WHERE TeacherID != @adminid";
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@adminid", "AD999999");
+                _totalTeacher = (int)command.ExecuteScalar();
+                query = "SELECT COUNT(*) FROM TEACHER WHERE IsMinistry = 1 AND TeacherID != @adminid";
+                command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@adminid", "AD999999");
+                _totalMinstry = (int)command.ExecuteScalar();
+                query = "SELECT COUNT(*) FROM TEACHER WHERE IsAdmin = 1 AND TeacherID != @adminid";
+                command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@adminid", "AD999999");
+                _totalAdmin = (int)command.ExecuteScalar();
             }
             catch (Exception e)
             {
