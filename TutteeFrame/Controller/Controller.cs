@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -235,5 +236,71 @@ namespace TutteeFrame
             teacher.Type = Teacher.TeacherType.Adminstrator;
             return AddTeacher(teacher);
         }
+        #region Nhóm các chức năng liên quan đến thông tin học sinh
+        public List<StudentInfomation> GetInformationStudents(string classID)
+        {
+            return DataAccess.Instance.StudentsInformation(classID);
+        }
+        public  bool UpdateStudentToDataBase(string _studentid, StudentInfomation student)
+            
+        {
+            student.StudentImage = student.StudentImagePath == null ? student.StudentImage : Image.FromFile(student.StudentImagePath);
+            return DataAccess.Instance.UpdateStudent(_studentid, student);
+        }
+        public bool AddNewStudentToDataBase(string _studentid, StudentInfomation student)
+        {
+            return DataAccess.Instance.AddStudent(_studentid, student);
+        }
+
+        public bool DeleteStudent(string _studenID)
+        {
+            return DataAccess.Instance.DeleteStudent(_studenID);
+        }
+
+
+
+
+
+
+        #endregion
+
+        #region Nhóm các chức năng liên quan tới thông tin lớp học
+
+        public List <Class> GetClass(string Khoi)
+        {
+            return DataAccess.Instance.Lops(Khoi);
+        }
+        #endregion
+
+        #region Nhóm các funtion chuyển đổi ảnh qua binary và ngược lại
+        public static byte[] GetPhoto(string filePath)
+        {
+            FileStream stream = new FileStream(
+                filePath, FileMode.Open, FileAccess.Read);
+            BinaryReader reader = new BinaryReader(stream);
+
+            byte[] photo = reader.ReadBytes((int)stream.Length);
+
+            reader.Close();
+            stream.Close();
+
+            return photo;
+        }
+        public Image byteArrayToImage(byte[] byteArrayIn)
+        {
+            MemoryStream ms = new MemoryStream(byteArrayIn);
+            Image returnImage = Image.FromStream(ms);
+            return returnImage;
+
+        }
+        public byte[] ImageToByteArray(System.Drawing.Image imageIn)
+        {
+            using (var ms = new MemoryStream())
+            {
+                imageIn.Save(ms, imageIn.RawFormat);
+                return ms.ToArray();
+            }
+        }
+        #endregion
     }
 }

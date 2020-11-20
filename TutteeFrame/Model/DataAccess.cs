@@ -1,11 +1,14 @@
 ﻿using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using TutteeFrame.Modal;
+using TutteeFrame.Model;
 
 namespace TutteeFrame.Model
 {
@@ -37,8 +40,7 @@ namespace TutteeFrame.Model
         {
             bool success = true;
             //Đổi chuỗi kết nối ở dưới để test
-            string strConnect = string.Format(Properties.Settings.Default.ServerConnectionString,
-                    _server, _port, _userid, _pass);
+            string strConnect = "Data Source=DESKTOP-A4CIEO2\\SQLEXPRESS;Initial Catalog=TutteeFrame;Integrated Security=True";
             try
             {
                 connection = new SqlConnection(strConnect);
@@ -522,42 +524,183 @@ namespace TutteeFrame.Model
         /// <param name="_column"></param>
         /// <param name="_value"></param>
         /// <returns></returns>
-        public bool UpdateStudent(string _studentID, string _column, string _value)
+        public bool UpdateStudent(string _studentID, StudentInfomation student)
         {
-            bool success = Connect();
+            Connect();
+            byte[] photo = ImageToByteArray(student.StudentImage);
+            string query = $"UPDATE  STUDENT SET " +
+                "Surname = @surname," +
+                "Firstname = @firstname," +
+                "StudentImage =@studentimage," +
+                "DateBorn =@dateborn, " +
+                "Sex =@sex, " +
+                "Address= @address," +
+                "Phonne = @phone," +
+                "ClassID =@classid, " +
+                "Status = @status," +
+                "PunishmentListID = @punishmentlistid" +
+                $" WHERE StudentID = '{_studentID}' "
+                ;
+                
+            SqlCommand sqlCommand = new SqlCommand(query, connection);
+            sqlCommand.Parameters.AddWithValue("@surname", student.SurName);
+            sqlCommand.Parameters.AddWithValue("@firstname", student.FistName);
+            sqlCommand.Parameters.AddWithValue("@dateborn", student.BornDate);
+            sqlCommand.Parameters.AddWithValue("@sex", student.Sex);
+            sqlCommand.Parameters.AddWithValue("@phone", student.Phone);
+            sqlCommand.Parameters.AddWithValue("@classid", student.Class);
+            sqlCommand.Parameters.AddWithValue("@address", student.Address);
+            sqlCommand.Parameters.AddWithValue("@status", student.Status);
+            sqlCommand.Parameters.AddWithValue("@punishmentlistid", string.IsNullOrEmpty(student.PunishmentID) ? (object)DBNull.Value : student.PunishmentID);
+            sqlCommand.Parameters.Add("@studentimage", SqlDbType.Image, photo.Length).Value = photo;
 
-            if (!success)
-                return false;
             try
             {
-                if (_column == "Status")
-                {
-                    int _status = 1;
-                    if (_value == "Truant")
-                    {
-                        _status = 0;
-                    }
-                    string query = $"UPDATE STUDENT SET Status = {_status} WHERE StudentID = '{_studentID}'";
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.ExecuteNonQuery();
-                }
+                sqlCommand.ExecuteNonQuery();
+                Disconnect();
+                return true;
 
-                else
-                {
-                    string query = $"UPDATE STUDENT SET {_column} = '{_value}' WHERE StudentID = '{_studentID}'";
-                    SqlCommand command = new SqlCommand(query, connection);
-                    command.ExecuteNonQuery();
-                }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                MessageBox.Show(e.ToString());
+                MessageBox.Show(ex.Message);
+                Disconnect();
                 return false;
             }
+
 
             Disconnect();
             return true;
         }
+
+        /// Get list student of class 
+        
+        public List<StudentInfomation> StudentsInformation(string classID)
+        {
+            DataTable table = new DataTable();
+            List<StudentInfomation> Students = new List<StudentInfomation>();
+            Connect();
+            strQuery = $"SELECT * FROM STUDENT WHERE ClassID = '{classID}'";
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = strQuery;
+
+            SqlDataReader reader = cmd.ExecuteReader();
+            while(reader.Read())
+            {
+                StudentInfomation i = new StudentInfomation();
+                i.StudentID = reader.GetString(0);
+                i.SurName = reader.GetString(1);
+                i.FistName  = reader.GetString(2);
+                if(reader.IsDBNull(3)==false)
+                {
+                    i.StudentImage = byteArrayToImage((byte[])reader["StudentImage"]);
+                }
+
+                if (reader.IsDBNull(4)==false)
+                {
+
+                    i.BornDate = reader.GetDateTime(4);
+                }
+                i.Sex = reader.GetBoolean(5);
+                i.Address = reader.GetString(6);
+                i.Phone = reader.GetString(7);
+                i.Class = reader.GetString(8);
+                i.Status = reader.GetBoolean(9);
+                if(reader.IsDBNull(10)==false)
+                {
+                    i.PunishmentID = reader.GetString(10);
+                }
+
+                Students.Add(i);
+            }
+            Disconnect();
+            return Students;
+        }
+        public bool AddStudent(string _studentid , StudentInfomation student)
+        {
+            Connect();
+            byte[] photo = ImageToByteArray(student.StudentImage);
+            string query = "INSERT INTO STUDENT(StudentID,Surname,FirstName,DateBorn,Sex,Address,Phonne,ClassID,Status,PunishmentListID,StudentImage) " +
+                "VALUES(@studentid,@surname,@firstname,@dateborn,@sex,@address,@phone,@classid,@status,@punishmentlistid,@studentimage)";
+            SqlCommand sqlCommand = new SqlCommand(query, connection);
+            sqlCommand.Parameters.AddWithValue("@studentid", student.StudentID);
+            sqlCommand.Parameters.AddWithValue("@surname",student.SurName);
+            sqlCommand.Parameters.AddWithValue("@firstname", student.FistName);
+            sqlCommand.Parameters.AddWithValue("@dateborn", student.BornDate);
+            sqlCommand.Parameters.AddWithValue("@sex", student.Sex);
+            sqlCommand.Parameters.AddWithValue("@phone", student.Phone);
+            sqlCommand.Parameters.AddWithValue("@classid", student.Class);
+            sqlCommand.Parameters.AddWithValue("@address", student.Address);
+            sqlCommand.Parameters.AddWithValue("@status", student.Status);
+            sqlCommand.Parameters.AddWithValue("@punishmentlistid", string.IsNullOrEmpty(student.PunishmentID)?(object)DBNull.Value: student.PunishmentID);
+            sqlCommand.Parameters.Add("@studentimage",SqlDbType.Image, photo.Length).Value = photo;
+            try
+            {
+                sqlCommand.ExecuteNonQuery();
+                try
+                {
+
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    Disconnect();
+                    return false;
+                }
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Disconnect();
+                return false;
+            }
+          
+
+            Disconnect();
+            return true;
+        }
+
+        public Image byteArrayToImage(byte[] byteArrayIn)
+        {
+            MemoryStream ms = new MemoryStream(byteArrayIn);
+            Image returnImage = Image.FromStream(ms);
+            return returnImage;
+
+        }
+        public byte[] ImageToByteArray(System.Drawing.Image imageIn)
+        {
+            using (var ms = new MemoryStream())
+            {
+                imageIn.Save(ms, imageIn.RawFormat);
+                return ms.ToArray();
+            }
+        }
+        public bool DeleteStudent(string _studentID)
+        {
+            Connect();
+            try
+            {
+                strQuery = $"DELETE FROM STUDENT WHERE STUDENT.StudentID ='{_studentID}'";
+                SqlCommand cmd = connection.CreateCommand();
+                cmd.CommandText = strQuery;
+                cmd.ExecuteNonQuery();
+                Disconnect();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Disconnect();
+                return false;
+            }
+
+
+       
+           
+        }
+
+
         #endregion
 
         #region Class Function
@@ -587,6 +730,30 @@ namespace TutteeFrame.Model
 
             Disconnect();
             return true;
+        }
+
+        //Lấy danh sách các lớp học thuộc một khối
+        public List<Class> Lops(string Khoi)
+        {
+            List<Class> NhomLops = new List<Class>();
+            Connect();
+            strQuery = $"SELECT * FROM CLASS WHERE ClassID like'{Khoi}%%%'";
+            SqlCommand cmd = connection.CreateCommand();
+            cmd.CommandText = strQuery;
+            SqlDataReader reader = cmd.ExecuteReader();
+            while(reader.Read())
+            {
+                Class i = new Class();
+                i.ID = reader.GetString(0);
+                i.Room = reader.GetString(1);
+                i.StudentNum = (byte)reader.GetByte(2);
+                i.FormerTeacherID = reader.GetString(3);
+                NhomLops.Add(i);
+            }
+
+            Disconnect();
+
+            return NhomLops;
         }
         #endregion
 

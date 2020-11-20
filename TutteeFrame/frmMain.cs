@@ -1,7 +1,9 @@
 ﻿using MaterialSkin;
 using MetroFramework.Forms;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using TutteeFrame.Model;
@@ -111,7 +113,7 @@ namespace TutteeFrame
             mainTabcontrol.TabPages.Add(tbpgProfile);
             mainTabcontrol.TabPages.Add(tbpgShedule);
 
-            if (mainTeacher.ID == "AD999999")
+            if (mainTeacher.ID == "TC123456")
             {
                 lbPostition.Text = "Adminstrator";
                 mainTabcontrol.TabPages.Add(tbpgTeacherManagment);
@@ -155,5 +157,149 @@ namespace TutteeFrame
             }
         }
         #endregion
+
+        private void thêmMớiMộtHọcSinhToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void metroComboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string KhoiSelected=null;
+            KhoiSelected = cbxKhoi.SelectedItem.ToString();
+
+            if (KhoiSelected == null) return;
+            cboxLop.Items.Clear();
+            List <Class> LopThuocKhoi = Controller.Instance.GetClass(KhoiSelected);
+            foreach(var i in LopThuocKhoi)
+            {
+                cboxLop.Items.Add(i.ID);
+            }
+            return;
+
+        }
+
+        private void cboxLop_SelectedValueChanged(object sender, EventArgs e)
+        {
+            backgroundWorker1.RunWorkerAsync();
+
+        }
+
+
+
+        private void backgroundWorker1_DoWork_1(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+
+            backgroundWorker1.ReportProgress(0, this);
+        }
+
+        private void backgroundWorker1_ProgressChanged_1(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+            string lopid = cboxLop.Text;
+            if (lopid == "") return;
+            List<StudentInfomation> DanhSachHocSinh = Controller.Instance.GetInformationStudents(lopid);
+            foreach (var i in DanhSachHocSinh)
+            {
+                ListViewItem lvi = new ListViewItem(i.StudentID);
+                lvi.SubItems.Add(i.SurName);
+                lvi.SubItems.Add(i.FistName);
+                lvi.Tag = i.BornDate;
+                lvi.SubItems[1].Tag = i.StudentImage;
+                lvi.SubItems.Add(i.BornDate.ToString("dd/MM/yyyy"));
+                lvi.SubItems.Add(i.Sex.ToString());
+                lvi.SubItems.Add(i.Address.ToString());
+                lvi.SubItems.Add(i.Phone.ToString());
+                lvi.SubItems.Add(i.Class.ToString());
+                lvi.SubItems.Add(i.Status==true?"Đang học":"Đã nghỉ");
+                if (i.PunishmentID != null)
+                {
+                    lvi.SubItems.Add(i.PunishmentID.ToString());
+                }
+
+                metroListView1.Items.Add(lvi);
+            }
+
+        }
+
+
+
+        private void metroListView1_DoubleClick(object sender, EventArgs e)
+        {
+            sửaToolStripMenuItem.PerformClick();
+        }
+
+        private void sửaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+            ListView.SelectedListViewItemCollection collect = metroListView1.SelectedItems;
+            if(collect.Count>=1)
+            {
+                ListViewItem lvi = collect[0];
+                StudentInfomation st = new StudentInfomation();
+                st.StudentID = lvi.SubItems[0].Text;
+                st.SurName = lvi.SubItems[1].Text;
+                st.FistName = lvi.SubItems[2].Text;
+                st.BornDate = (DateTime)lvi.Tag;
+                st.StudentImage = (Image)lvi.SubItems[1].Tag;
+                if(lvi.SubItems[4].Text == "Nam")
+                {
+                    st.Sex = true;
+                }
+                else
+                {
+                    st.Sex = false;
+                }
+                st.Address = lvi.SubItems[5].Text;
+                st.Phone = lvi.SubItems[6].Text;
+                st.Class = cboxLop.Text;
+                if(lvi.SubItems[8].Text == "Đang học")
+                {
+                    st.Status = true;
+                }
+                else
+                {
+                    st.Status = false;
+                }
+                if(lvi.SubItems["Kỷ luật số"] !=null)
+                {
+                    st.PunishmentID = lvi.SubItems["Kỷ luật số"].Text;
+                }
+                
+                frmAddStudent frmstudentnew = new frmAddStudent(st, metroListView1,backgroundWorker1,false );
+                frmstudentnew.ShowDialog();
+            }
+        }
+
+
+
+        private void materialRaisedButton2_Click(object sender, EventArgs e)
+        {
+            metroListView1_DoubleClick(this,e);
+        }
+
+        private void materialRaisedButton1_Click(object sender, EventArgs e)
+        {
+            StudentInfomation newStudent = new StudentInfomation();
+            frmAddStudent NewFormAddStudent = new frmAddStudent(newStudent, metroListView1, backgroundWorker1, true);
+            NewFormAddStudent.ShowDialog();
+        }
+
+        private void btnAproveAdding_Click(object sender, EventArgs e)
+        {
+            ListView.SelectedListViewItemCollection collect = metroListView1.SelectedItems;
+            if(collect.Count>0)
+            {
+                string studentId = collect[0].SubItems[0].Text;
+                MessageBox.Show(studentId);
+                MessageBox.Show(Controller.Instance.DeleteStudent(studentId).ToString());
+                metroListView1.Items.Clear();
+                backgroundWorker1.RunWorkerAsync();
+            }
+        }
+
+        private void metroListView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

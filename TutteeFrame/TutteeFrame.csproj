@@ -72,6 +72,12 @@
   <ItemGroup>
     <Compile Include="Controller\Controller.cs" />
     <Compile Include="Encryption.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -109,6 +115,7 @@
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\Score.cs" />
     <Compile Include="Model\Student.cs" />
+    <Compile Include="Model\StudentInfomation.cs" />
     <Compile Include="Model\Subject.cs" />
     <Compile Include="Model\SubjectScore.cs" />
     <Compile Include="Model\Teacher.cs" />
@@ -123,6 +130,7 @@
     <Compile Include="frmSpashScreen.Designer.cs">
       <DependentUpon>frmSpashScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="StudentDataAccess.cs" />
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -166,6 +174,16 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\download.png" />
+    <None Include="Resources\Screenshot 2020-11-13 001747.jpg" />
+    <None Include="Resources\Screenshot 2020-11-13 001031.jpg" />
+    <None Include="Resources\Screenshot 2020-11-13 000804.jpg" />
+    <None Include="Resources\39-128.png" />
+    <None Include="Resources\38-128.png" />
+    <None Include="Resources\forward.png" />
+    <None Include="Resources\fastforward.png" />
+    <None Include="Resources\backfastforward.png" />
+    <None Include="Resources\back.png" />
     <None Include="Resources\settings.png" />
     <None Include="Resources\password.png" />
     <None Include="Resources\log-out.png" />
