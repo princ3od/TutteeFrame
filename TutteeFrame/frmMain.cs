@@ -158,11 +158,6 @@ namespace TutteeFrame
         }
         #endregion
 
-        private void thêmMớiMộtHọcSinhToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-        }
-
         private void metroComboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             string KhoiSelected=null;

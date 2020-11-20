@@ -39,8 +39,10 @@ namespace TutteeFrame.Model
         public bool Test(string _server, string _port, string _userid, string _pass)
         {
             bool success = true;
+            string strConnect = string.Format(Properties.Settings.Default.ServerConnectionString,
+                   _server, _port, _userid, _pass);
             //Đổi chuỗi kết nối ở dưới để test
-            string strConnect = "Data Source=DESKTOP-A4CIEO2\\SQLEXPRESS;Initial Catalog=TutteeFrame;Integrated Security=True";
+            //string strConnect = "Data Source=DESKTOP-A4CIEO2\\SQLEXPRESS;Initial Catalog=TutteeFrame;Integrated Security=True";
             try
             {
                 connection = new SqlConnection(strConnect);
