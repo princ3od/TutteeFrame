@@ -50,7 +50,7 @@ namespace TutteeFrame.Model
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                //MessageBox.Show(e.Message);
                 success = false;
             }
             finally
@@ -180,7 +180,6 @@ namespace TutteeFrame.Model
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
                 return false;
             }
 
@@ -481,12 +480,12 @@ namespace TutteeFrame.Model
             return true;
         }
         /// <summary>
-        /// Hàm lấy dữ liệu của student có mã [_studentID] đưa vào đối tượng [_student].
+        /// Hàm lấy dữ liệu của teacher có mã [_studentID] đưa vào đối tượng [_student].
         /// </summary>
         /// <param name="_studentID"> Mã học sinh cần lấy dữ liệu. </param>
         /// <param name="_student"> </param>
         /// <returns> Việc lấy dữ liệu có thành công hay không. </returns>
-        public bool LoadStudent(string _studentID, StudentInfomation _student)
+        public bool LoadStudent(string _studentID, Student _student)
         {
             bool success = Connect();
 
@@ -498,58 +497,27 @@ namespace TutteeFrame.Model
                 SqlCommand command = new SqlCommand(query, connection);
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    int i = 0;
                     if (reader.Read())
                     {
-                        i++;
-                        _student.StudentID = (string)reader["StudentID"];
-                        _student.SurName = (string)reader["Surname"];
-                        _student.FistName =(string) reader["Firstname"];
-                        _student.Address =(string) reader["Address"];
-                        _student.Phone =(string) reader["Phonne"];
-                        _student.Class = (string)reader["ClassID"];
-                        _student.Status = (bool)reader["Status"];
-                        _student.Sex = (bool)reader["Sex"];
-                        
-                        if(reader.IsDBNull(3)==false)
-                        {
-                            _student.StudentImage = byteArrayToImage((byte[])reader["StudentImage"]);
-                        }
-                        else
-                        {
-                            _student.StudentImage = null; 
-                        }
-                        if(reader.IsDBNull(4)==false)
-                        {
-                            _student.BornDate = (DateTime)reader["DateBorn"];
-                        }
-                        else
-                        {
-                            _student.BornDate = DateTime.Now;
-                        }
-                        if(reader.IsDBNull(10)==false)
-                        {
-                            _student.PunishmentID = (string)reader["PunishmentListID"];
-                        }
-                        else
-                        {
-                            _student.PunishmentID = null;
-                        }
-                    }
-                    if (i == 0)
-                    {
-                        MessageBox.Show("Không tìm thấy học sinh phù hợp");
-                        return false;
+                        _student.ID = reader["StudentID"].ToString();
+                        _student.SurName = reader["Surname"].ToString();
+                        _student.FirstName = reader["Firstname"].ToString();
+                        _student.Address = reader["Address"].ToString();
+                        _student.Phone = reader["Phone"].ToString();
+                        _student.ClassID = reader["ClassID"].ToString();
+                        _student.Status = reader["Status"].ToString();
+                        _student.PunishmentList = reader["PunishmentListID"].ToString();
                     }
                 }
-                MessageBox.Show("Tìm kiếm thành công");
-                return true;
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
                 return false;
             }
+
+            Disconnect();
+            return true;
         }
         /// <summary>
         /// Hàm cập nhật thông tin học sinh.
@@ -567,7 +535,7 @@ namespace TutteeFrame.Model
                 "Firstname = @firstname," +
                 "StudentImage =@studentimage," +
                 "DateBorn =@dateborn, " +
-                "Sex = @sex, " +
+                "Sex =@sex, " +
                 "Address= @address," +
                 "Phonne = @phone," +
                 "ClassID =@classid, " +
@@ -603,6 +571,8 @@ namespace TutteeFrame.Model
             }
 
 
+            Disconnect();
+            return true;
         }
 
         /// Get list student of class 
@@ -806,17 +776,15 @@ namespace TutteeFrame.Model
                 string strQuery = "SELECT TOP 1 * FROM STUDENT ORDER BY StudentID DESC";
                 SqlCommand sqlCommand = new SqlCommand(strQuery, connection);
                 SqlDataReader dataReader = sqlCommand.ExecuteReader();
-                Disconnect();
-                return true;
+
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
-                Disconnect();
                 return false;
             }
 
-
+            Disconnect();
+            return true;
         }
         /// <summary>
         /// Trả về năm hiện tại của server.
@@ -837,7 +805,6 @@ namespace TutteeFrame.Model
             }
             catch (Exception e)
             {
-                Disconnect();
                 return false;
             }
 

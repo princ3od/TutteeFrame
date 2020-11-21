@@ -257,11 +257,6 @@ namespace TutteeFrame
             return DataAccess.Instance.DeleteStudent(_studenID);
         }
 
-        public bool SeachStudentByID(string studenid , StudentInfomation student )
-        {
-            return DataAccess.Instance.LoadStudent(studenid, student);
-        }
-
 
 
 

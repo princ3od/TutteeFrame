@@ -176,7 +176,7 @@ namespace TutteeFrame
 
         private void cboxLop_SelectedValueChanged(object sender, EventArgs e)
         {
-            ShowListBackGroundWork.RunWorkerAsync();
+            backgroundWorker1.RunWorkerAsync();
 
         }
 
@@ -185,7 +185,7 @@ namespace TutteeFrame
         private void backgroundWorker1_DoWork_1(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
 
-            ShowListBackGroundWork.ReportProgress(0, this);
+            backgroundWorker1.ReportProgress(0, this);
         }
 
         private void backgroundWorker1_ProgressChanged_1(object sender, System.ComponentModel.ProgressChangedEventArgs e)
@@ -211,7 +211,7 @@ namespace TutteeFrame
                     lvi.SubItems.Add(i.PunishmentID.ToString());
                 }
 
-                ListViewStudents.Items.Add(lvi);
+                metroListView1.Items.Add(lvi);
             }
 
         }
@@ -226,7 +226,7 @@ namespace TutteeFrame
         private void sửaToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
-            ListView.SelectedListViewItemCollection collect = ListViewStudents.SelectedItems;
+            ListView.SelectedListViewItemCollection collect = metroListView1.SelectedItems;
             if(collect.Count>=1)
             {
                 ListViewItem lvi = collect[0];
@@ -246,7 +246,7 @@ namespace TutteeFrame
                 }
                 st.Address = lvi.SubItems[5].Text;
                 st.Phone = lvi.SubItems[6].Text;
-                st.Class = lvi.SubItems[7].Text;
+                st.Class = cboxLop.Text;
                 if(lvi.SubItems[8].Text == "Đang học")
                 {
                     st.Status = true;
@@ -260,7 +260,7 @@ namespace TutteeFrame
                     st.PunishmentID = lvi.SubItems["Kỷ luật số"].Text;
                 }
                 
-                frmAddStudent frmstudentnew = new frmAddStudent(st, ListViewStudents,ShowListBackGroundWork,false );
+                frmAddStudent frmstudentnew = new frmAddStudent(st, metroListView1,backgroundWorker1,false );
                 frmstudentnew.ShowDialog();
             }
         }
@@ -275,103 +275,26 @@ namespace TutteeFrame
         private void materialRaisedButton1_Click(object sender, EventArgs e)
         {
             StudentInfomation newStudent = new StudentInfomation();
-            frmAddStudent NewFormAddStudent = new frmAddStudent(newStudent, ListViewStudents, ShowListBackGroundWork, true);
+            frmAddStudent NewFormAddStudent = new frmAddStudent(newStudent, metroListView1, backgroundWorker1, true);
             NewFormAddStudent.ShowDialog();
         }
 
         private void btnAproveAdding_Click(object sender, EventArgs e)
         {
-            ListView.SelectedListViewItemCollection collect = ListViewStudents.SelectedItems;
+            ListView.SelectedListViewItemCollection collect = metroListView1.SelectedItems;
             if(collect.Count>0)
             {
                 string studentId = collect[0].SubItems[0].Text;
                 MessageBox.Show(studentId);
                 MessageBox.Show(Controller.Instance.DeleteStudent(studentId).ToString());
-                ListViewStudents.Items.Clear();
-                ShowListBackGroundWork.RunWorkerAsync();
+                metroListView1.Items.Clear();
+                backgroundWorker1.RunWorkerAsync();
             }
         }
 
-
-
-        private void materialTextField1_Enter(object sender, EventArgs e)
+        private void metroListView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-           
-        }
 
-        private void SeachBackGroundWork_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
-        {
-            StudentInfomation student = e.Argument as StudentInfomation;
-            if (Controller.Instance.SeachStudentByID(student.StudentID, student))
-            {
-                
-                SeachBackGroundWork.ReportProgress(0, student);
-            }
-        }
-
-        private void SeachBackGroundWork_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
-        {
-            StudentInfomation i = e.UserState as StudentInfomation;
-            ListViewStudents.Items.Clear();
-            ListViewItem lvi = new ListViewItem(i.StudentID);
-            lvi.SubItems.Add(i.SurName);
-            lvi.SubItems.Add(i.FistName);
-            lvi.Tag = i.BornDate;
-            lvi.SubItems[1].Tag = i.StudentImage;
-            lvi.SubItems.Add(i.BornDate.ToString("dd/MM/yyyy"));
-            if(i.Sex ==true)
-            {
-                lvi.SubItems.Add("Nam");
-            }
-            else
-            {
-                lvi.SubItems.Add("Nữ");
-            }
-
-            lvi.SubItems.Add(i.Address.ToString());
-            lvi.SubItems.Add(i.Phone.ToString());
-            lvi.SubItems.Add(i.Class.ToString());
-            lvi.SubItems.Add(i.Status == true ? "Đang học" : "Đã nghỉ");
-            if (i.PunishmentID != null)
-            {
-                lvi.SubItems.Add(i.PunishmentID.ToString());
-            }
-
-            ListViewStudents.Items.Add(lvi);
-
-
-        }
-
-
-
-        private void txtSeach_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if(e.KeyChar ==(char)13)
-            {
-                bool IsDigitsOnly(string str)
-                {
-                    foreach (char c in str)
-                    {
-                        if (c < '0' || c > '9')
-                            return false;
-                    }
-
-                    return true;
-                }
-                string SeachInfo = txtSeach.Text;
-                if (IsDigitsOnly(SeachInfo) && SeachInfo.Length == 8)
-                {
-                    ListViewStudents.Items.Clear();
-                    StudentInfomation student = new StudentInfomation();
-                    student.StudentID = SeachInfo;
-                    SeachBackGroundWork.RunWorkerAsync(student);
-
-                }
-                else
-                {
-                    MessageBox.Show("Mã học sinh không hợp lệ");
-                }
-            }
         }
     }
 }
