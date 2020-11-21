@@ -63,8 +63,10 @@ namespace TutteeFrame
         {
             bool isMinistry = false, isAdmin = false;
             string position = "";
-            bool success = DataAccess.Instance.LoadTeacher(_teacherID, usingTeacher, ref isMinistry, ref isAdmin, ref position);
+            byte[] avatar = null;
+            bool success = DataAccess.Instance.LoadTeacher(_teacherID, usingTeacher, ref isMinistry, ref isAdmin, ref avatar);
             usingTeacher.Position = position;
+            usingTeacher.Avatar = ImageHelper.BytesToImage(avatar);
             if (isAdmin)
                 usingTeacher.Type = Teacher.TeacherType.Adminstrator;
             else if (isMinistry)
@@ -86,8 +88,9 @@ namespace TutteeFrame
         public bool LoadTeacher(string _teacherID, Teacher _teacher)
         {
             bool isMinistry = false, isAdmin = false;
-            string position = "";
-            bool success = DataAccess.Instance.LoadTeacher(_teacherID, _teacher, ref isMinistry, ref isAdmin, ref position);
+            byte[] avatar = null;
+            bool success = DataAccess.Instance.LoadTeacher(_teacherID, _teacher, ref isMinistry, ref isAdmin, ref avatar);
+            _teacher.Avatar = ImageHelper.BytesToImage(avatar);
             if (isAdmin)
                 _teacher.Type = Teacher.TeacherType.Adminstrator;
             else if (isMinistry)
@@ -111,33 +114,49 @@ namespace TutteeFrame
             bool success = true;
             Teacher oldTeacher = new Teacher();
             LoadTeacher(_teacherID, oldTeacher);
-            if (oldTeacher.ID != _newTeacher.ID)
-                success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[0], _newTeacher.ID);
+
             if (oldTeacher.SurName != _newTeacher.SurName)
                 success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[1], _newTeacher.SurName);
+
             if (oldTeacher.FirstName != _newTeacher.FirstName)
                 success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[2], _newTeacher.FirstName);
+
+            if (!ImageHelper.SameImage(oldTeacher.Avatar,_newTeacher.Avatar))
+                success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[3], _newTeacher.GetAvatar());
+
+            if (oldTeacher.DateOfBirth1.Date != _newTeacher.DateOfBirth1.Date)
+                success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[4], _newTeacher.DateOfBirth1.Date);
+
+            if (oldTeacher.Sex != _newTeacher.Sex)
+                success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[5], Convert.ToInt32(_newTeacher.Sex));
+
             if (oldTeacher.Address != _newTeacher.Address)
-                success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[3], _newTeacher.Address);
+                success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[6], _newTeacher.Address);
+
             if (oldTeacher.Phone != _newTeacher.Phone)
-                success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[4], _newTeacher.Phone);
+                success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[7], _newTeacher.Phone);
+
             if (oldTeacher.Mail != _newTeacher.Mail)
-                success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[5], _newTeacher.Mail);
+                success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[8], _newTeacher.Mail);
+
+            if (oldTeacher.Subject.Name != _newTeacher.Subject.Name)
+                success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[9], _newTeacher.Subject.ID);
+
             if (_newTeacher.Type != oldTeacher.Type)
             {
                 switch (_newTeacher.Type)
                 {
                     case Teacher.TeacherType.Teacher:
-                        success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[7], "0");
-                        success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[8], "0");
+                        success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[10], "0");
+                        success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[11], "0");
                         break;
                     case Teacher.TeacherType.Adminstrator:
-                        success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[7], "0");
-                        success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[8], "1");
+                        success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[10], "0");
+                        success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[11], "1");
                         break;
                     case Teacher.TeacherType.Ministry:
-                        success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[7], "1");
-                        success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[8], "0");
+                        success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[10], "1");
+                        success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[11], "0");
                         break;
                     case Teacher.TeacherType.FormerTeacher:
                         break;
@@ -145,6 +164,10 @@ namespace TutteeFrame
                         break;
                 }
             }
+
+            if (oldTeacher.Position != _newTeacher.Position)
+                success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[12], _newTeacher.Position);
+
             return success;
         }
         public bool GetTeacherNumber(out int _totalTeacher, out int _totalMinistry, out int _totalAdmin)
@@ -171,7 +194,8 @@ namespace TutteeFrame
         public bool LoadTeachers(List<Teacher> _teachers, Dictionary<string, string> _teacherNotes, out int _totalTeacher, out int _totalMinistry, out int _totalAdmin)
         {
             string teacherNote = "";
-            bool succes = DataAccess.Instance.LoadTeachers(_teachers);
+            Dictionary<string, byte[]> avatars = new Dictionary<string, byte[]>();
+            bool succes = DataAccess.Instance.LoadTeachers(_teachers, avatars);
             _totalTeacher = _totalAdmin = _totalMinistry = 0;
             if (succes)
             {
@@ -209,6 +233,7 @@ namespace TutteeFrame
                         default:
                             break;
                     }
+                    _teachers[_totalTeacher].Avatar = ImageHelper.BytesToImage(avatars[_teachers[_totalTeacher].ID]);
                     _teacherNotes.Add(_teachers[_totalTeacher].ID, teacherNote);
                 }
             }
@@ -216,7 +241,10 @@ namespace TutteeFrame
         }
         public bool DeleteTeacher(string _teacherID)
         {
-            bool success = DataAccess.Instance.DeleteAccount(_teacherID);
+            bool isExist = false;
+            bool success = DataAccess.Instance.AccountExist(_teacherID,ref isExist);
+            if (isExist)
+                success = DataAccess.Instance.DeleteAccount(_teacherID);
             if (success)
             {
                 success = DataAccess.Instance.DeleteTeacher(_teacherID);
@@ -227,14 +255,6 @@ namespace TutteeFrame
         public bool AddTeacher(Teacher _teacher)
         {
             bool success = DataAccess.Instance.AddTeacher(_teacher);
-            if (success)
-            {
-                LoadAccounts();
-                Account account = new Account(accounts.Count + 1, _teacher.ID, Encryption.Encrypt("1", "1"));
-                success = DataAccess.Instance.AddAccount(account);
-                if (success)
-                    accounts.Add(account);
-            }
             return success;
         }
         public bool CreateAdminAccount()

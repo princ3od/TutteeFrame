@@ -187,7 +187,7 @@ namespace TutteeFrame
                         indexHasDeleted.Add(index.Key);
                     else
                         MetroMessageBox.Show(this, "Đã có lỗi xảy ra trong quá trình xóa giáo viên có mã ID:" +
-                            index.Value + ".", "Lỗi");
+                            index.Value + ".", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 Controller.Instance.GetTeacherNumber(out totalTeacher, out totalMinistry, out totalAdmin);
             };
@@ -316,7 +316,6 @@ namespace TutteeFrame
                 }
             }
             LoadData();
-
         }
         void LoadData()
         {
@@ -334,9 +333,10 @@ namespace TutteeFrame
                         mainProgressbar.Show();
                         lbInformation.Text = "Đang tải danh sách giáo viên...";
                         lbInformation.Show();
-                        loader.WorkerReportsProgress = true;
+                        loader.WorkerReportsProgress = false;
                         loader.DoWork += (s, e) =>
                         {
+                            Thread.Sleep(800);
                             Controller.Instance.LoadTeachers(teachers, teacherNotes, out totalTeacher, out totalMinistry, out totalAdmin);
                         };
 
@@ -352,12 +352,11 @@ namespace TutteeFrame
                             {
                                 listviewTeacher.Items.Add(new ListViewItem(new string[] { index.ToString(),
                                     teacher.ID,teacher.SurName + " " + teacher.FirstName,teacher.DateOfBirth1.ToString("d"), teacher.GetSex,
-                                    teacher.Address,teacher.Phone,teacher.Mail,teacher.Subject.Name,teacherNotes[teacher.ID]
+                                    teacher.Address, teacher.Phone, teacher.Mail, teacher.Subject.Name, teacherNotes[teacher.ID]
                                 }));
                                 index++;
                             }
-                            listviewTeacher.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-                            listviewTeacher.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+
                         };
 
                         loader.RunWorkerAsync();
@@ -372,6 +371,10 @@ namespace TutteeFrame
             }
         }
         #endregion
-
+        private void btnAutoColumn_Click(object sender, EventArgs e)
+        {
+            listviewTeacher.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            //listviewTeacher.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
     }
 }

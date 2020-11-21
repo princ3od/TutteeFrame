@@ -36,9 +36,7 @@
             this.txtTeacherMail = new Material_Design_for_Winform.MaterialTextField();
             this.cbxIsAdmin = new Material_Design_for_Winform.MaterialCheckBox();
             this.cbxIsMinistry = new Material_Design_for_Winform.MaterialCheckBox();
-            this.ptbAvatar = new System.Windows.Forms.PictureBox();
             this.pnBasicInfor = new MaterialSkin.Controls.MaterialCard();
-            this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.cbbSex = new MetroFramework.Controls.MetroComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -52,14 +50,16 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnApprove = new Material_Design_for_Winform.MaterialRaisedButton();
             this.btnCancal = new Material_Design_for_Winform.MaterialFlatButton();
-            this.btnExit = new MaterialSkin.Controls.MaterialButton();
             this.lbName = new System.Windows.Forms.Label();
             this.lbID = new System.Windows.Forms.Label();
+            this.btnExit = new MaterialSkin.Controls.MaterialButton();
             this.btnChooseAvatar = new MaterialSkin.Controls.MaterialFloatingActionButton();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbAvatar)).BeginInit();
+            this.ptbAvatar = new System.Windows.Forms.PictureBox();
+            this.txtPostition = new Material_Design_for_Winform.MaterialTextField();
             this.pnBasicInfor.SuspendLayout();
             this.materialCard1.SuspendLayout();
             this.materialCard2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbAvatar)).BeginInit();
             this.SuspendLayout();
             // 
             // txtFirstname
@@ -117,7 +117,7 @@
             this.txtAddress.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtAddress.HideSelection = true;
             this.txtAddress.HintText = "Địa chỉ";
-            this.txtAddress.Location = new System.Drawing.Point(22, 190);
+            this.txtAddress.Location = new System.Drawing.Point(17, 115);
             this.txtAddress.MaxLength = 32767;
             this.txtAddress.Multiline = false;
             this.txtAddress.Name = "txtAddress";
@@ -183,7 +183,7 @@
             this.cbxIsAdmin.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
             this.cbxIsAdmin.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.cbxIsAdmin.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cbxIsAdmin.Location = new System.Drawing.Point(28, 88);
+            this.cbxIsAdmin.Location = new System.Drawing.Point(28, 92);
             this.cbxIsAdmin.MarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.cbxIsAdmin.Name = "cbxIsAdmin";
             this.cbxIsAdmin.Size = new System.Drawing.Size(291, 27);
@@ -210,21 +210,11 @@
             this.cbxIsMinistry.UseVisualStyleBackColor = false;
             this.cbxIsMinistry.CheckedChanged += new System.EventHandler(this.cbxIsMinistry_CheckedChanged);
             // 
-            // ptbAvatar
-            // 
-            this.ptbAvatar.BackColor = System.Drawing.SystemColors.Control;
-            this.ptbAvatar.Image = global::TutteeFrame.Properties.Resources._160153438315628531;
-            this.ptbAvatar.Location = new System.Drawing.Point(330, 10);
-            this.ptbAvatar.Name = "ptbAvatar";
-            this.ptbAvatar.Size = new System.Drawing.Size(140, 140);
-            this.ptbAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ptbAvatar.TabIndex = 37;
-            this.ptbAvatar.TabStop = false;
-            // 
             // pnBasicInfor
             // 
             this.pnBasicInfor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.pnBasicInfor.Controls.Add(this.label7);
+            this.pnBasicInfor.Controls.Add(this.label6);
+            this.pnBasicInfor.Controls.Add(this.cbbSubject);
             this.pnBasicInfor.Controls.Add(this.label3);
             this.pnBasicInfor.Controls.Add(this.cbbSex);
             this.pnBasicInfor.Controls.Add(this.label2);
@@ -243,21 +233,11 @@
             this.pnBasicInfor.Size = new System.Drawing.Size(350, 390);
             this.pnBasicInfor.TabIndex = 38;
             // 
-            // label7
-            // 
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(17, 320);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(316, 56);
-            this.label7.TabIndex = 45;
-            this.label7.Text = "\"Have a good day!\"";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(18, 255);
+            this.label3.Location = new System.Drawing.Point(18, 253);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 19);
             this.label3.TabIndex = 44;
@@ -271,7 +251,7 @@
             this.cbbSex.Items.AddRange(new object[] {
             "Nữ",
             "Nam"});
-            this.cbbSex.Location = new System.Drawing.Point(31, 277);
+            this.cbbSex.Location = new System.Drawing.Point(31, 275);
             this.cbbSex.MaxDropDownItems = 2;
             this.cbbSex.Name = "cbbSex";
             this.cbbSex.PromptText = "Giới tính";
@@ -284,7 +264,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(13, 120);
+            this.label2.Location = new System.Drawing.Point(13, 177);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 19);
             this.label2.TabIndex = 42;
@@ -294,7 +274,7 @@
             // 
             this.dateBorn.CustomFormat = "dd-MM-yyyy";
             this.dateBorn.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateBorn.Location = new System.Drawing.Point(31, 143);
+            this.dateBorn.Location = new System.Drawing.Point(31, 200);
             this.dateBorn.MinimumSize = new System.Drawing.Size(0, 29);
             this.dateBorn.Name = "dateBorn";
             this.dateBorn.Size = new System.Drawing.Size(215, 35);
@@ -340,8 +320,7 @@
             // materialCard2
             // 
             this.materialCard2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.materialCard2.Controls.Add(this.label6);
-            this.materialCard2.Controls.Add(this.cbbSubject);
+            this.materialCard2.Controls.Add(this.txtPostition);
             this.materialCard2.Controls.Add(this.label5);
             this.materialCard2.Controls.Add(this.cbxIsMinistry);
             this.materialCard2.Controls.Add(this.cbxIsAdmin);
@@ -359,7 +338,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(24, 118);
+            this.label6.Location = new System.Drawing.Point(18, 322);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(102, 19);
             this.label6.TabIndex = 46;
@@ -370,7 +349,7 @@
             this.cbbSubject.DisplayFocus = true;
             this.cbbSubject.FormattingEnabled = true;
             this.cbbSubject.ItemHeight = 23;
-            this.cbbSubject.Location = new System.Drawing.Point(37, 140);
+            this.cbbSubject.Location = new System.Drawing.Point(31, 344);
             this.cbbSubject.Name = "cbbSubject";
             this.cbbSubject.PromptText = "Môn học";
             this.cbbSubject.Size = new System.Drawing.Size(175, 29);
@@ -422,6 +401,27 @@
             this.btnCancal.TextAlign = System.Drawing.StringAlignment.Center;
             this.btnCancal.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // lbName
+            // 
+            this.lbName.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbName.Location = new System.Drawing.Point(-1, 153);
+            this.lbName.Name = "lbName";
+            this.lbName.Size = new System.Drawing.Size(800, 32);
+            this.lbName.TabIndex = 44;
+            this.lbName.Text = "Name";
+            this.lbName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lbID
+            // 
+            this.lbID.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbID.ForeColor = System.Drawing.Color.Gray;
+            this.lbID.Location = new System.Drawing.Point(0, 180);
+            this.lbID.Name = "lbID";
+            this.lbID.Size = new System.Drawing.Size(800, 28);
+            this.lbID.TabIndex = 45;
+            this.lbID.Text = "ID";
+            this.lbID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // btnExit
             // 
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -444,27 +444,6 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // lbName
-            // 
-            this.lbName.Font = new System.Drawing.Font("Segoe UI Semibold", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbName.Location = new System.Drawing.Point(-1, 153);
-            this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(800, 32);
-            this.lbName.TabIndex = 44;
-            this.lbName.Text = "Name";
-            this.lbName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lbID
-            // 
-            this.lbID.Font = new System.Drawing.Font("Segoe UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbID.ForeColor = System.Drawing.Color.Gray;
-            this.lbID.Location = new System.Drawing.Point(0, 180);
-            this.lbID.Name = "lbID";
-            this.lbID.Size = new System.Drawing.Size(800, 28);
-            this.lbID.TabIndex = 45;
-            this.lbID.Text = "ID";
-            this.lbID.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // btnChooseAvatar
             // 
             this.btnChooseAvatar.AnimateShowHideButton = true;
@@ -480,6 +459,41 @@
             this.btnChooseAvatar.Text = "materialFloatingActionButton1";
             this.btnChooseAvatar.UseVisualStyleBackColor = true;
             this.btnChooseAvatar.Visible = false;
+            this.btnChooseAvatar.Click += new System.EventHandler(this.btnChooseAvatar_Click);
+            // 
+            // ptbAvatar
+            // 
+            this.ptbAvatar.BackColor = System.Drawing.SystemColors.Control;
+            this.ptbAvatar.Image = global::TutteeFrame.Properties.Resources.default_avatar;
+            this.ptbAvatar.Location = new System.Drawing.Point(330, 10);
+            this.ptbAvatar.Name = "ptbAvatar";
+            this.ptbAvatar.Size = new System.Drawing.Size(140, 140);
+            this.ptbAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ptbAvatar.TabIndex = 37;
+            this.ptbAvatar.TabStop = false;
+            // 
+            // txtPostition
+            // 
+            this.txtPostition.AutoScaleColor = true;
+            this.txtPostition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtPostition.FloatingLabelText = "FloatingLabel";
+            this.txtPostition.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.txtPostition.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtPostition.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.txtPostition.HideSelection = true;
+            this.txtPostition.HintText = "Vị trí";
+            this.txtPostition.Location = new System.Drawing.Point(45, 120);
+            this.txtPostition.MaxLength = 32767;
+            this.txtPostition.Multiline = false;
+            this.txtPostition.Name = "txtPostition";
+            this.txtPostition.PasswordChar = '\0';
+            this.txtPostition.ReadOnly = false;
+            this.txtPostition.ShortcutsEnable = true;
+            this.txtPostition.ShowCaret = true;
+            this.txtPostition.Size = new System.Drawing.Size(218, 43);
+            this.txtPostition.Style = Material_Design_for_Winform.MaterialTextField.ST.HintAsFloatingLabel;
+            this.txtPostition.TabIndex = 42;
+            this.txtPostition.UseSystemPasswordChar = false;
             // 
             // frmTeacher
             // 
@@ -499,19 +513,20 @@
             this.Controls.Add(this.lbID);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ForeColor = System.Drawing.SystemColors.ControlText;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmTeacher";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = " ";
             this.Load += new System.EventHandler(this.frmTeacher_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.ptbAvatar)).EndInit();
             this.pnBasicInfor.ResumeLayout(false);
             this.pnBasicInfor.PerformLayout();
             this.materialCard1.ResumeLayout(false);
             this.materialCard1.PerformLayout();
             this.materialCard2.ResumeLayout(false);
             this.materialCard2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbAvatar)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -529,7 +544,6 @@
         private System.Windows.Forms.PictureBox ptbAvatar;
         private MaterialSkin.Controls.MaterialCard pnBasicInfor;
         private MaterialSkin.Controls.MaterialCard materialCard1;
-        private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label3;
         private MetroFramework.Controls.MetroComboBox cbbSex;
         private System.Windows.Forms.Label label2;
@@ -546,5 +560,6 @@
         private System.Windows.Forms.Label lbName;
         private System.Windows.Forms.Label lbID;
         private MaterialSkin.Controls.MaterialFloatingActionButton btnChooseAvatar;
+        private Material_Design_for_Winform.MaterialTextField txtPostition;
     }
 }

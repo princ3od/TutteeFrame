@@ -1,4 +1,5 @@
-﻿using MetroFramework.Forms;
+﻿using MetroFramework;
+using MetroFramework.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -81,6 +82,8 @@ namespace TutteeFrame
                     txtAddress.Text = teacher.Address;
                     txtPhoneNunber.Text = teacher.Phone;
                     txtTeacherMail.Text = teacher.Mail;
+                    ptbAvatar.Image = teacher.Avatar;
+                    txtPostition.Text = teacher.Position;
                     switch (teacher.Type)
                     {
                         case Teacher.TeacherType.Teacher:
@@ -116,6 +119,8 @@ namespace TutteeFrame
             teacher.ID = idPreflex + teacherID.Remove(0, 2);
             teacher.FirstName = txtFirstname.Text;
             teacher.SurName = txtSurename.Text;
+            teacher.Avatar = ptbAvatar.Image;
+            teacher.Position = txtPostition.Text;
             if (cbbSex.SelectedIndex == -1)
             {
                 cbbSex.Focus();
@@ -129,16 +134,24 @@ namespace TutteeFrame
             if (mode == Mode.Add)
             {
                 if (!Controller.Instance.AddTeacher(teacher))
-                    MessageBox.Show("Đã có lỗi xảy ra trong quá trình thêm giáo viên.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MetroMessageBox.Show(this, "Đã có lỗi xảy ra trong quá trình thêm giáo viên.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
                 {
+                    MetroMessageBox.Show(this, "Đã thêm thành công giáo viên có ID: " + teacher.ID, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     doneSuccess = true;
                     this.Close();
                 }
             }
             else
             {
-                //Controller.Instance.UpdateTeacher(teacherID, teacher);
+                if (!Controller.Instance.UpdateTeacher(teacherID, teacher))
+                    MetroMessageBox.Show(this, "Đã có lỗi xảy ra trong quá trình cập nhật giáo viên.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else
+                {
+                    MetroMessageBox.Show(this, "Đã cập nhật thành công giáo viên có ID: " + teacher.ID, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    doneSuccess = true;
+                    this.Close();
+                }
             }
 
         }
@@ -201,6 +214,17 @@ namespace TutteeFrame
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnChooseAvatar_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog of = new OpenFileDialog();
+            of.Filter = "Image Files (*.bmp;*.jpg;*.jpeg,*.png)|*.BMP;*.JPG;*.JPEG;*.PNG";
+            if (of.ShowDialog() == DialogResult.OK)
+            {
+                ptbAvatar.ImageLocation = of.FileName;
+
+            }
         }
     }
 }

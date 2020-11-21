@@ -56,6 +56,7 @@
             this.lbMyName = new MaterialSkin.Controls.MaterialLabel();
             this.tbpgShedule = new System.Windows.Forms.TabPage();
             this.tbgpTeacherManagment = new System.Windows.Forms.TabPage();
+            this.btnAutoColumn = new Material_Design_for_Winform.MaterialFlatButton();
             this.txtTeacherSearch = new MaterialSkin.Controls.MaterialTextBox();
             this.cbbTeacherSearchBy = new MaterialSkin.Controls.MaterialComboBox();
             this.listviewTeacher = new MaterialSkin.Controls.MaterialListView();
@@ -162,7 +163,7 @@
             this.mainTabcontrol.Controls.Add(this.tbpgReport);
             this.mainTabcontrol.Controls.Add(this.tbpgFormClass);
             this.mainTabcontrol.Depth = 0;
-            this.mainTabcontrol.Location = new System.Drawing.Point(248, 105);
+            this.mainTabcontrol.Location = new System.Drawing.Point(249, 105);
             this.mainTabcontrol.MouseState = MaterialSkin.MouseState.HOVER;
             this.mainTabcontrol.Multiline = true;
             this.mainTabcontrol.Name = "mainTabcontrol";
@@ -464,6 +465,7 @@
             // tbgpTeacherManagment
             // 
             this.tbgpTeacherManagment.BackColor = System.Drawing.Color.White;
+            this.tbgpTeacherManagment.Controls.Add(this.btnAutoColumn);
             this.tbgpTeacherManagment.Controls.Add(this.txtTeacherSearch);
             this.tbgpTeacherManagment.Controls.Add(this.cbbTeacherSearchBy);
             this.tbgpTeacherManagment.Controls.Add(this.listviewTeacher);
@@ -484,6 +486,22 @@
             this.tbgpTeacherManagment.Size = new System.Drawing.Size(1138, 594);
             this.tbgpTeacherManagment.TabIndex = 2;
             this.tbgpTeacherManagment.Text = "quản lí giáo viên";
+            // 
+            // btnAutoColumn
+            // 
+            this.btnAutoColumn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAutoColumn.BackColor = System.Drawing.Color.Transparent;
+            this.btnAutoColumn.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
+            this.btnAutoColumn.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAutoColumn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnAutoColumn.Icon = null;
+            this.btnAutoColumn.Location = new System.Drawing.Point(1010, 536);
+            this.btnAutoColumn.Name = "btnAutoColumn";
+            this.btnAutoColumn.Size = new System.Drawing.Size(108, 36);
+            this.btnAutoColumn.TabIndex = 43;
+            this.btnAutoColumn.Text = "Auto Column";
+            this.btnAutoColumn.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnAutoColumn.Click += new System.EventHandler(this.btnAutoColumn_Click);
             // 
             // txtTeacherSearch
             // 
@@ -559,7 +577,7 @@
             this.listviewTeacher.MouseState = MaterialSkin.MouseState.OUT;
             this.listviewTeacher.Name = "listviewTeacher";
             this.listviewTeacher.OwnerDraw = true;
-            this.listviewTeacher.Size = new System.Drawing.Size(1119, 409);
+            this.listviewTeacher.Size = new System.Drawing.Size(1119, 405);
             this.listviewTeacher.TabIndex = 13;
             this.listviewTeacher.UseCompatibleStateImageBehavior = false;
             this.listviewTeacher.View = System.Windows.Forms.View.Details;
@@ -625,7 +643,7 @@
             this.btnDeleteTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnDeleteTeacher.Icon = null;
-            this.btnDeleteTeacher.Location = new System.Drawing.Point(905, 532);
+            this.btnDeleteTeacher.Location = new System.Drawing.Point(862, 528);
             this.btnDeleteTeacher.Name = "btnDeleteTeacher";
             this.btnDeleteTeacher.Radius = 2;
             this.btnDeleteTeacher.ShadowDepth = 3;
@@ -647,7 +665,7 @@
             this.btnUpdateTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdateTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnUpdateTeacher.Icon = null;
-            this.btnUpdateTeacher.Location = new System.Drawing.Point(198, 532);
+            this.btnUpdateTeacher.Location = new System.Drawing.Point(198, 528);
             this.btnUpdateTeacher.Name = "btnUpdateTeacher";
             this.btnUpdateTeacher.Radius = 2;
             this.btnUpdateTeacher.ShadowDepth = 3;
@@ -669,7 +687,7 @@
             this.btnAddTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnAddTeacher.Icon = null;
-            this.btnAddTeacher.Location = new System.Drawing.Point(50, 532);
+            this.btnAddTeacher.Location = new System.Drawing.Point(50, 528);
             this.btnAddTeacher.Name = "btnAddTeacher";
             this.btnAddTeacher.Radius = 2;
             this.btnAddTeacher.ShadowDepth = 3;
@@ -811,19 +829,19 @@
             // 
             // tbpgStudentManagment
             // 
-            this.tbpgStudentManagment.Location = new System.Drawing.Point(4, 22);
+            this.tbpgStudentManagment.Location = new System.Drawing.Point(4, 24);
             this.tbpgStudentManagment.Name = "tbpgStudentManagment";
             this.tbpgStudentManagment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgStudentManagment.Size = new System.Drawing.Size(1138, 596);
+            this.tbpgStudentManagment.Size = new System.Drawing.Size(1138, 594);
             this.tbpgStudentManagment.TabIndex = 3;
             this.tbpgStudentManagment.Text = "quản lí học sinh";
             this.tbpgStudentManagment.UseVisualStyleBackColor = true;
             // 
             // tbpgStudentMarkboard
             // 
-            this.tbpgStudentMarkboard.Location = new System.Drawing.Point(4, 22);
+            this.tbpgStudentMarkboard.Location = new System.Drawing.Point(4, 24);
             this.tbpgStudentMarkboard.Name = "tbpgStudentMarkboard";
-            this.tbpgStudentMarkboard.Size = new System.Drawing.Size(1138, 596);
+            this.tbpgStudentMarkboard.Size = new System.Drawing.Size(1138, 594);
             this.tbpgStudentMarkboard.TabIndex = 7;
             this.tbpgStudentMarkboard.Text = "bảng điểm học sinh";
             this.tbpgStudentMarkboard.UseVisualStyleBackColor = true;
@@ -985,7 +1003,7 @@
             // ptbAvatar
             // 
             this.ptbAvatar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ptbAvatar.Image = global::TutteeFrame.Properties.Resources._21104;
+            this.ptbAvatar.Image = global::TutteeFrame.Properties.Resources.default_avatar;
             this.ptbAvatar.Location = new System.Drawing.Point(16, 10);
             this.ptbAvatar.Name = "ptbAvatar";
             this.ptbAvatar.Size = new System.Drawing.Size(40, 40);
@@ -1241,5 +1259,6 @@
         private MaterialSkin.Controls.MaterialTextBox txtTeacherSearch;
         private System.Windows.Forms.ProgressBar mainProgressbar;
         private System.Windows.Forms.Label lbInformation;
+        private Material_Design_for_Winform.MaterialFlatButton btnAutoColumn;
     }
 }
