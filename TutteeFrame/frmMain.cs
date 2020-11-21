@@ -158,76 +158,44 @@ namespace TutteeFrame
         }
         #endregion
 
-        private void metroComboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            string KhoiSelected=null;
-            KhoiSelected = cbxKhoi.SelectedItem.ToString();
 
-            if (KhoiSelected == null) return;
-            cboxLop.Items.Clear();
-            List <Class> LopThuocKhoi = Controller.Instance.GetClass(KhoiSelected);
-            foreach(var i in LopThuocKhoi)
-            {
-                cboxLop.Items.Add(i.ID);
-            }
-            return;
-
-        }
 
         private void cboxLop_SelectedValueChanged(object sender, EventArgs e)
         {
-            backgroundWorker1.RunWorkerAsync();
+            ShowListBackGroundWork.RunWorkerAsync(cboxLop.Text);
 
         }
 
 
 
-        private void backgroundWorker1_DoWork_1(object sender, System.ComponentModel.DoWorkEventArgs e)
+        private void materialRaisedButton1_Click(object sender, EventArgs e)
         {
+            StudentInfomation newStudent = new StudentInfomation();
+            frmAddStudent NewFormAddStudent = new frmAddStudent(newStudent, true);
+            NewFormAddStudent.ShowDialog();
+            ShowListBackGroundWork.RunWorkerAsync(cboxLop.Text);
 
-            backgroundWorker1.ReportProgress(0, this);
         }
 
-        private void backgroundWorker1_ProgressChanged_1(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        private void btnAproveAdding_Click(object sender, EventArgs e)
         {
-            string lopid = cboxLop.Text;
-            if (lopid == "") return;
-            List<StudentInfomation> DanhSachHocSinh = Controller.Instance.GetInformationStudents(lopid);
-            foreach (var i in DanhSachHocSinh)
+            ListView.SelectedListViewItemCollection collect = ListViewStudents.SelectedItems;
+            if(collect.Count>0)
             {
-                ListViewItem lvi = new ListViewItem(i.StudentID);
-                lvi.SubItems.Add(i.SurName);
-                lvi.SubItems.Add(i.FistName);
-                lvi.Tag = i.BornDate;
-                lvi.SubItems[1].Tag = i.StudentImage;
-                lvi.SubItems.Add(i.BornDate.ToString("dd/MM/yyyy"));
-                lvi.SubItems.Add(i.Sex.ToString());
-                lvi.SubItems.Add(i.Address.ToString());
-                lvi.SubItems.Add(i.Phone.ToString());
-                lvi.SubItems.Add(i.Class.ToString());
-                lvi.SubItems.Add(i.Status==true?"Đang học":"Đã nghỉ");
-                if (i.PunishmentID != null)
-                {
-                    lvi.SubItems.Add(i.PunishmentID.ToString());
-                }
-
-                metroListView1.Items.Add(lvi);
+                string studentId = collect[0].SubItems[0].Text;
+                if(Controller.Instance.DeleteStudent(studentId)) MessageBox.Show("Xóa thành công");
+                ListViewStudents.Items.Clear();
+                ShowListBackGroundWork.RunWorkerAsync(cboxLop.Text);
             }
-
         }
 
 
 
-        private void metroListView1_DoubleClick(object sender, EventArgs e)
+        private void metroListView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            sửaToolStripMenuItem.PerformClick();
-        }
-
-        private void sửaToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-            ListView.SelectedListViewItemCollection collect = metroListView1.SelectedItems;
-            if(collect.Count>=1)
+            // Lấy thông tin của học sinh đã chọn 
+            ListView.SelectedListViewItemCollection collect = ListViewStudents.SelectedItems;
+            if (collect.Count >= 1)
             {
                 ListViewItem lvi = collect[0];
                 StudentInfomation st = new StudentInfomation();
@@ -236,7 +204,7 @@ namespace TutteeFrame
                 st.FistName = lvi.SubItems[2].Text;
                 st.BornDate = (DateTime)lvi.Tag;
                 st.StudentImage = (Image)lvi.SubItems[1].Tag;
-                if(lvi.SubItems[4].Text == "Nam")
+                if (lvi.SubItems[4].Text == "Nam")
                 {
                     st.Sex = true;
                 }
@@ -246,8 +214,8 @@ namespace TutteeFrame
                 }
                 st.Address = lvi.SubItems[5].Text;
                 st.Phone = lvi.SubItems[6].Text;
-                st.Class = cboxLop.Text;
-                if(lvi.SubItems[8].Text == "Đang học")
+                st.Class = lvi.SubItems[7].Text;
+                if (lvi.SubItems[8].Text == "Đang học")
                 {
                     st.Status = true;
                 }
@@ -255,46 +223,86 @@ namespace TutteeFrame
                 {
                     st.Status = false;
                 }
-                if(lvi.SubItems["Kỷ luật số"] !=null)
+                if (lvi.SubItems["Kỷ luật số"] != null)
                 {
                     st.PunishmentID = lvi.SubItems["Kỷ luật số"].Text;
                 }
-                
-                frmAddStudent frmstudentnew = new frmAddStudent(st, metroListView1,backgroundWorker1,false );
+
+                frmAddStudent frmstudentnew = new frmAddStudent(st, false);
                 frmstudentnew.ShowDialog();
+                ShowListBackGroundWork.RunWorkerAsync(cboxLop.Text);
             }
+
         }
 
 
 
-        private void materialRaisedButton2_Click(object sender, EventArgs e)
+        private void ShowListBackGroundWork_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            metroListView1_DoubleClick(this,e);
+            mainTabcontrol_SelectedIndexChanged(sender, e);
+            if (e.Argument as string == "") return;
+
+            List<StudentInfomation> Students = Controller.Instance.GetInformationStudents(e.Argument as string);
+            ShowListBackGroundWork.ReportProgress(0, Students);
+        }
+        private void ShowListBackGroundWork_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            ShowListBackGroundWork.Dispose();
         }
 
-        private void materialRaisedButton1_Click(object sender, EventArgs e)
+        private void ShowListBackGroundWork_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
-            StudentInfomation newStudent = new StudentInfomation();
-            frmAddStudent NewFormAddStudent = new frmAddStudent(newStudent, metroListView1, backgroundWorker1, true);
-            NewFormAddStudent.ShowDialog();
-        }
-
-        private void btnAproveAdding_Click(object sender, EventArgs e)
-        {
-            ListView.SelectedListViewItemCollection collect = metroListView1.SelectedItems;
-            if(collect.Count>0)
+            List<StudentInfomation> Students = e.UserState as List<StudentInfomation>;
+            ListViewStudents.Items.Clear();
+            foreach (var i in Students)
             {
-                string studentId = collect[0].SubItems[0].Text;
-                MessageBox.Show(studentId);
-                MessageBox.Show(Controller.Instance.DeleteStudent(studentId).ToString());
-                metroListView1.Items.Clear();
-                backgroundWorker1.RunWorkerAsync();
+                ListViewItem lvi = new ListViewItem(i.StudentID);
+                lvi.SubItems.Add(i.SurName);
+                lvi.SubItems.Add(i.FistName);
+                lvi.Tag = i.BornDate;
+                lvi.SubItems[1].Tag = i.StudentImage;
+                lvi.SubItems.Add(i.BornDate.ToString("dd/MM/yyyy"));
+                lvi.SubItems.Add(i.Sex == true ? "Nam" : "Nữ");
+                lvi.SubItems.Add(i.Address.ToString());
+                lvi.SubItems.Add(i.Phone.ToString());
+                lvi.SubItems.Add(i.Class.ToString());
+                lvi.SubItems.Add(i.Status == true ? "Đang học" : "Đã nghỉ");
+                if (i.PunishmentID != null)
+                {
+                    lvi.SubItems.Add(i.PunishmentID.ToString());
+                }
+
+                ListViewStudents.Items.Add(lvi);
             }
         }
 
-        private void metroListView1_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbxKhoi_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string KhoiSelected = null;
+            KhoiSelected = cbxKhoi.SelectedItem.ToString();
 
+            if (KhoiSelected == null) return;
+            cboxLop.Items.Clear();
+            List<Class> LopThuocKhoi = Controller.Instance.GetClass(KhoiSelected);
+            foreach (var i in LopThuocKhoi)
+            {
+                cboxLop.Items.Add(i.ID);
+            }
+            return;
+
+        }
+
+        private void mainTabcontrol_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(mainTabcontrol.SelectedIndex==3)
+            {
+                int numclass = 0;
+                Controller.Instance.CountNumberOfClass(ref numclass);
+                txtSumClass.Text = numclass.ToString();
+                int numStudent = 0;
+                Controller.Instance.CountNumberOfStudent(ref numStudent);
+                txtSumStudent.Text = numStudent.ToString();
+            }
         }
     }
 }

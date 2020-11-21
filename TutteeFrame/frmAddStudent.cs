@@ -15,133 +15,131 @@ namespace TutteeFrame
 {
     public partial class frmAddStudent : MetroForm
     {
-        public frmAddStudent(StudentInfomation student, MetroFramework.Controls.MetroListView listParrent, BackgroundWorker listviewbackground, bool IsNew)
+        public StudentInfomation studentinfor { get; set; }
+        public bool IsNew { get; }
+        public frmAddStudent(StudentInfomation student, bool IsNew)
         {
 
             studentinfor = student;
-            this.listParrent = listParrent;
-            ListViewChanged = listviewbackground;
             InitializeComponent();
             this.txtStudentID.Visible = IsNew;
             this.IsNew = IsNew;
         }
 
-        public MetroFramework.Controls.MetroListView listParrent { get; set; }
-        public StudentInfomation studentinfor { get; set; }
-        public BackgroundWorker ListViewChanged { get; set; }
-        public bool IsNew {get;}
+        private void btnChooseAvatar_Click(object sender, EventArgs e)
+        {
+            if (DialogImage.ShowDialog() == DialogResult.OK)
+            {
+                AddStudentBackground.RunWorkerAsync();
+            }
+        }
+
+        // Tải dữ liệu lên form
         private void frmAddStudent_Load(object sender, EventArgs e)
         {
-            if(!IsNew) txtStudentID.Text = studentinfor.StudentID;
-            if (studentinfor!=null)
-            {
-                picboxStudent.Image = studentinfor.StudentImage == null ? null : studentinfor.StudentImage;
-                txtFirstName.Text = studentinfor.FistName;
-                txtSurName.Text = studentinfor.SurName;
-                txtAddress.Text = studentinfor.Address;
-                txtPunishID.Text = studentinfor.PunishmentID != null?studentinfor.PunishmentID:"";
-                
-                if(studentinfor.Sex ==true)
-                {
-                    radioNam.Checked = true;
-                }
-                else
-                {
-                    radioNu.Checked = true;
-                }
-                if(studentinfor.Status ==true)
-                {
-                    radioLearning.Checked = true;
-                }
-                else
-                {
-                    radioQuit.Checked = true;
-                }
-                dtBornDate.Value = (studentinfor.BornDate != null) ? studentinfor.BornDate : DateTime.Now;
-                txtPhone.Text = studentinfor.Phone;
-                cboxKhoi.Text = studentinfor.Class==null?"":studentinfor.Class.Substring(0, 2);
-                cboxLop.Text = studentinfor.Class==null?"": studentinfor.Class;
-
-
-            }
+            txtSurname.Text = studentinfor.SurName == null ? "" : studentinfor.SurName;
+            txtFirstName.Text = studentinfor.FistName == null ? "" : studentinfor.FistName;
+            txtAddress.Text = studentinfor.Address == null ? "" : studentinfor.Address;
+            txtPhoneNunber.Text = studentinfor.Phone == null ? "" : studentinfor.Phone;
+            txtStudentID.Text = studentinfor.StudentID == null ? "" : studentinfor.StudentID;
+            txtPunishment.Text = studentinfor.PunishmentID == null ? "" : studentinfor.PunishmentID;
+            dateBorn.Value = studentinfor.BornDate == null ? DateTime.Now : studentinfor.BornDate;
+            cbbSex.SelectedIndex = studentinfor.Sex == true ? 0 : 1;
+            cbbStatus.SelectedIndex = studentinfor.Status == true ? 0 : 1;
+            cbbKhoi.SelectedItem = studentinfor.Class == null ? cbbKhoi.Items[2] : studentinfor.Class.Substring(0, 2);
+            cbbClass.SelectedItem = studentinfor.Class == null ?"": studentinfor.Class;
+            if (studentinfor.StudentImage != null) picboxStudent.Image = studentinfor.StudentImage;
         }
 
-
-
-        private void btnAproveAdding_Click_1(object sender, EventArgs e)
-        {
-            studentinfor.Class = cboxLop.Text;
-            studentinfor.BornDate = dtBornDate.Value;
-            studentinfor.Address = txtAddress.Text;
-            studentinfor.Status = radioLearning.Checked;
-            studentinfor.FistName = txtFirstName.Text;
-            studentinfor.SurName = txtSurName.Text;
-            studentinfor.Phone = txtPhone.Text;
-            studentinfor.Sex = radioNam.Checked;
-            studentinfor.Status = radioLearning.Checked;
-            studentinfor.StudentID = txtStudentID.Text;
-            if(txtPunishID.Text !="")
-            {
-                studentinfor.PunishmentID = txtPunishID.Text;
-            }
-            else
-            {
-                studentinfor.PunishmentID = null;
-            }
-            if (picboxStudent.Image != null)
-            {
-                studentinfor.StudentImage = picboxStudent.Image;
-            }  
-
-            
-            if (!IsNew &&Controller.Instance.UpdateStudentToDataBase(studentinfor.StudentID, studentinfor))
-            {
-
-               
-                this.listParrent.Items.Clear();
-                ListViewChanged.RunWorkerAsync();
-                this.Close();
-            }
-            else
-            {
-                studentinfor.StudentID = txtStudentID.Text;
-                Controller.Instance.AddNewStudentToDataBase(studentinfor.StudentID, studentinfor);
-                this.listParrent.Items.Clear();
-                ListViewChanged.RunWorkerAsync();
-                this.Close();
-            }
-
-        }
-
-        private void btnImageSearch_Click(object sender, EventArgs e)
-        {
-            if(openFileDialog1.ShowDialog() == DialogResult.OK)
-            {
-                string _studentImagePath;
-                _studentImagePath = openFileDialog1.FileName;
-                picboxStudent.Image = Image.FromFile(_studentImagePath);
-                studentinfor.StudentImagePath = _studentImagePath;
-                studentinfor.StudentImage = picboxStudent.Image;
-              
-            }
-        }
-
-
-        private void cboxKhoi_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbbKhoi_SelectedIndexChanged(object sender, EventArgs e)
         {
             string KhoiSelected = null;
-            KhoiSelected = cboxKhoi.SelectedItem.ToString();
+            KhoiSelected = cbbKhoi.SelectedItem.ToString();
 
             if (KhoiSelected == null) return;
-            cboxLop.Items.Clear();
+            cbbClass.Items.Clear();
             List<Class> LopThuocKhoi = Controller.Instance.GetClass(KhoiSelected);
             foreach (var i in LopThuocKhoi)
             {
-                cboxLop.Items.Add(i.ID);
+                cbbClass.Items.Add(i.ID);
             }
             return;
+
         }
 
+        private void AddStudentBackground_DoWork(object sender, DoWorkEventArgs e)
+        {
+            string _studentImagePath;
+            _studentImagePath = DialogImage.FileName;
+            studentinfor.StudentImage = Image.FromFile(_studentImagePath);
+            AddStudentBackground.ReportProgress(0, _studentImagePath);
+        }
 
+        private void AddStudentBackground_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            string _studentImagePath = e.UserState as string;
+            picboxStudent.Image = Image.FromFile(_studentImagePath);
+
+        }
+
+        private void AddStudentBackground_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+
+        }
+
+        private void btnApprove_Click(object sender, EventArgs e)
+        {
+            studentinfor.StudentID = txtStudentID.Text == "" ? null : txtStudentID.Text;
+            studentinfor.StudentImage = picboxStudent.Image;
+            studentinfor.FistName = txtFirstName.Text;
+            studentinfor.SurName = txtSurname.Text;
+            studentinfor.Address = txtAddress.Text;
+            studentinfor.Phone = txtPhoneNunber.Text;
+            studentinfor.PunishmentID = txtPunishment.Text == "" ? null : txtPunishment.Text;
+            studentinfor.Sex = cbbSex.Text == "Nam" ? true : false;
+            studentinfor.Status = cbbStatus.Text == "Đang học" ? true : false;
+            studentinfor.Class = cbbClass.Text == "" ? null : cbbClass.Text;
+            if (!Controller.Instance.IsDigitsOnly(studentinfor.StudentID) || studentinfor.StudentID.Length != 8 || studentinfor.Class == null)
+            {
+                MessageBox.Show("Mã số học sinh, hoặc mã lớp không hợp lệ.");
+                return;
+            }
+            if (IsNew == true)
+            {
+                    if (Controller.Instance.AddNewStudentToDataBase(studentinfor.StudentID, studentinfor))
+                    {
+                        MessageBox.Show("Thêm thành công");
+                        //Tải lại list Student
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Thêm thất bại");
+                    }
+                    return;
+            }//Không phải thêm mới - > Update
+            else
+            {
+                if(Controller.Instance.UpdateStudentToDataBase(studentinfor.StudentID,studentinfor))
+                {
+
+                    MessageBox.Show("Cập nhật thành công");
+
+                    this.Close();
+                    return;
+                }
+                else
+                {
+                    MessageBox.Show("Cập nhật thất bại, vui lòng kiểm tra thông tin và thử lại");
+                    return;
+                }
+
+            }
+        }
+
+        private void btnCancal_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

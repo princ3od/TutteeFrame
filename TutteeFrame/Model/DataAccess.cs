@@ -39,10 +39,10 @@ namespace TutteeFrame.Model
         public bool Test(string _server, string _port, string _userid, string _pass)
         {
             bool success = true;
-            string strConnect = string.Format(Properties.Settings.Default.ServerConnectionString,
-                   _server, _port, _userid, _pass);
+            //string strConnect = string.Format(Properties.Settings.Default.ServerConnectionString,
+            //       _server, _port, _userid, _pass);
             //Đổi chuỗi kết nối ở dưới để test
-            //string strConnect = "Data Source=DESKTOP-A4CIEO2\\SQLEXPRESS;Initial Catalog=TutteeFrame;Integrated Security=True";
+            string strConnect = "Data Source=DESKTOP-A4CIEO2\\SQLEXPRESS;Initial Catalog=TutteeFrame;Integrated Security=True";
             try
             {
                 connection = new SqlConnection(strConnect);
@@ -701,6 +701,30 @@ namespace TutteeFrame.Model
        
            
         }
+        public bool CountNumberOfStudent(ref int number)
+        {
+            try
+            {
+                Connect();
+                strQuery = "SELECT COUNT(*) FROM STUDENT";
+                SqlCommand cmd = connection.CreateCommand();
+                cmd.CommandText = strQuery;
+                SqlDataReader reader = cmd.ExecuteReader();
+                if(reader.Read())
+                {
+                    number = reader.GetInt32(0);
+                    Disconnect();
+                    return true;
+                }
+                return true;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Disconnect();
+                return false;
+            }
+        }
 
 
         #endregion
@@ -756,6 +780,32 @@ namespace TutteeFrame.Model
             Disconnect();
 
             return NhomLops;
+        }
+
+        public bool CountNumberOfClass(ref int number)
+        {
+            Connect();
+            try
+            {
+                strQuery = "SELECT COUNT(*) FROM CLASS";
+                SqlCommand cmd = connection.CreateCommand();
+                cmd.CommandText = strQuery;
+                SqlDataReader reader = cmd.ExecuteReader();
+                if(reader.Read())
+                {
+                    number = reader.GetInt32(0);
+                }
+                Disconnect();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                Disconnect();
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+
+           
         }
         #endregion
 

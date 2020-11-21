@@ -244,7 +244,7 @@ namespace TutteeFrame
         public  bool UpdateStudentToDataBase(string _studentid, StudentInfomation student)
             
         {
-            student.StudentImage = student.StudentImagePath == null ? student.StudentImage : Image.FromFile(student.StudentImagePath);
+            
             return DataAccess.Instance.UpdateStudent(_studentid, student);
         }
         public bool AddNewStudentToDataBase(string _studentid, StudentInfomation student)
@@ -258,7 +258,10 @@ namespace TutteeFrame
         }
 
 
-
+        public bool CountNumberOfStudent(ref int number)
+        {
+            return DataAccess.Instance.CountNumberOfStudent(ref number);
+        }
 
 
 
@@ -266,6 +269,10 @@ namespace TutteeFrame
 
         #region Nhóm các chức năng liên quan tới thông tin lớp học
 
+        public bool CountNumberOfClass(ref int number )
+        {
+            return DataAccess.Instance.CountNumberOfClass(ref number);
+        }
         public List <Class> GetClass(string Khoi)
         {
             return DataAccess.Instance.Lops(Khoi);
@@ -302,5 +309,19 @@ namespace TutteeFrame
             }
         }
         #endregion
+        #region Nhóm chức năng hỗ trợ logic
+      public  bool IsDigitsOnly(string str)
+        {
+            if (str == null) return false;
+            foreach (char c in str)
+            {
+                if (c < '0' || c > '9')
+                    return false;
+            }
+
+            return true;
+        }
+        #endregion
+
     }
 }

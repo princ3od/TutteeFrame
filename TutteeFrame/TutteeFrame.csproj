@@ -167,6 +167,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\user.jpg" />
     <None Include="Resources\download.png" />
     <None Include="Resources\Screenshot 2020-11-13 001747.jpg" />
     <None Include="Resources\Screenshot 2020-11-13 001031.jpg" />

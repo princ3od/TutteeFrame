@@ -11,7 +11,6 @@ namespace TutteeFrame.Model
         public string StudentID {get;set;}
         public string SurName { get; set; }
         public string FistName { get; set; }
-        public  string StudentImagePath { get; set; }
         public Image StudentImage { get; set; }
         public DateTime BornDate { get; set; }
         public bool Sex { get; set; }
