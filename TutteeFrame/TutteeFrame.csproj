@@ -124,7 +124,6 @@
     <Compile Include="frmSpashScreen.Designer.cs">
       <DependentUpon>frmSpashScreen.cs</DependentUpon>
     </Compile>
-    <Compile Include="StudentDataAccess.cs" />
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
