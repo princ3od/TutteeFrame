@@ -9,7 +9,7 @@ using System.Text;
 using System.Windows.Forms;
 using TutteeFrame.Model;
 using System.Drawing.Imaging;
-
+using System.Globalization;
 
 namespace TutteeFrame
 {
@@ -32,7 +32,9 @@ namespace TutteeFrame
         public bool IsNew {get;}
         private void frmAddStudent_Load(object sender, EventArgs e)
         {
-            if(!IsNew) txtStudentID.Text = studentinfor.StudentID;
+
+
+            txtStudentID.Text = studentinfor.StudentID==null?null: studentinfor.StudentID;
             if (studentinfor!=null)
             {
                 picboxStudent.Image = studentinfor.StudentImage == null ? null : studentinfor.StudentImage;
@@ -62,8 +64,17 @@ namespace TutteeFrame
                 cboxKhoi.Text = studentinfor.Class==null?"":studentinfor.Class.Substring(0, 2);
                 cboxLop.Text = studentinfor.Class==null?"": studentinfor.Class;
 
-
             }
+        }
+        public bool IsDigitsOnly(string str)
+        {
+            foreach (char c in str)
+            {
+                if (c < '0' || c > '9')
+                    return false;
+            }
+
+            return true;
         }
 
 
@@ -79,7 +90,12 @@ namespace TutteeFrame
             studentinfor.Phone = txtPhone.Text;
             studentinfor.Sex = radioNam.Checked;
             studentinfor.Status = radioLearning.Checked;
-            studentinfor.StudentID = txtStudentID.Text;
+            studentinfor.StudentID = txtStudentID.Text==""?null: txtStudentID.Text;
+            if(studentinfor.StudentID==null ||!IsDigitsOnly(studentinfor.StudentID))
+            {
+                MessageBox.Show("ID không thể bỏ trống, mã số học sinh chỉ chứa các số từ 0 - 9");
+                return;
+            }
             if(txtPunishID.Text !="")
             {
                 studentinfor.PunishmentID = txtPunishID.Text;

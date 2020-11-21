@@ -26,6 +26,16 @@ namespace TutteeFrame
         [STAThread]
         static void Main()
         {
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+           
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
+=======
+>>>>>>> Stashed changes
             using (var m = new Mutex(true, "TutteeFrame", out isNew))
             {
                 //If application owns the mutex, continue the execution
@@ -51,6 +61,10 @@ namespace TutteeFrame
                     }
                 }
             }
+<<<<<<< Updated upstream
+=======
+>>>>>>> edcc1318c5de6d861425a437d072ad7bd80c73ed
+>>>>>>> Stashed changes
         }
     }
 }

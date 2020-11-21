@@ -1,4 +1,6 @@
-﻿namespace TutteeFrame
+﻿using System.Windows.Forms;
+
+namespace TutteeFrame
 {
     partial class frmAddStudent
     {
@@ -175,12 +177,15 @@
             this.metroLabel2.Text = "Ngày sinh";
             // 
             // dtBornDate
-            // 
+         
+            
             this.dtBornDate.Location = new System.Drawing.Point(177, 218);
             this.dtBornDate.Name = "dtBornDate";
             this.dtBornDate.Size = new System.Drawing.Size(200, 20);
             this.dtBornDate.TabIndex = 48;
-            // 
+            this.dtBornDate.Format = DateTimePickerFormat.Custom;
+            this.dtBornDate.CustomFormat = "dd'/'MM'/'yyyy";
+            
             // txtPunishID
             // 
             this.txtPunishID.AutoScaleColor = true;
