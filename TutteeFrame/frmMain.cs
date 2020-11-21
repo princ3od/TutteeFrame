@@ -239,7 +239,7 @@ namespace TutteeFrame
 
         private void ShowListBackGroundWork_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            mainTabcontrol_SelectedIndexChanged(sender, e);
+           
             if (e.Argument as string == "") return;
 
             List<StudentInfomation> Students = Controller.Instance.GetInformationStudents(e.Argument as string);
@@ -252,6 +252,7 @@ namespace TutteeFrame
 
         private void ShowListBackGroundWork_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
+            CountSum();
             List<StudentInfomation> Students = e.UserState as List<StudentInfomation>;
             ListViewStudents.Items.Clear();
             foreach (var i in Students)
@@ -292,17 +293,15 @@ namespace TutteeFrame
 
         }
 
-        private void mainTabcontrol_SelectedIndexChanged(object sender, EventArgs e)
+
+        private void CountSum()
         {
-            if(mainTabcontrol.SelectedIndex==3)
-            {
-                int numclass = 0;
-                Controller.Instance.CountNumberOfClass(ref numclass);
-                txtSumClass.Text = numclass.ToString();
-                int numStudent = 0;
-                Controller.Instance.CountNumberOfStudent(ref numStudent);
-                txtSumStudent.Text = numStudent.ToString();
-            }
+            int numclass = 0;
+            Controller.Instance.CountNumberOfClass(ref numclass);
+            txtSumClass.Text = numclass.ToString();
+            int numStudent = 0;
+            Controller.Instance.CountNumberOfStudent(ref numStudent);
+            txtSumStudent.Text = numStudent.ToString();
         }
     }
 }
