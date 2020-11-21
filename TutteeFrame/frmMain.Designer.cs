@@ -230,6 +230,7 @@
             this.btnBrowseForAvatar.TabIndex = 29;
             this.btnBrowseForAvatar.Text = "Cập nhật ảnh đại diện";
             this.btnBrowseForAvatar.TextAlign = System.Drawing.StringAlignment.Near;
+            this.btnBrowseForAvatar.Visible = false;
             this.btnBrowseForAvatar.Click += new System.EventHandler(this.btnBrowseForAvatar_Click);
             // 
             // pictureBox16
@@ -579,30 +580,30 @@
             // 
             // tbpgShedule
             // 
-            this.tbpgShedule.Location = new System.Drawing.Point(4, 22);
+            this.tbpgShedule.Location = new System.Drawing.Point(4, 24);
             this.tbpgShedule.Name = "tbpgShedule";
             this.tbpgShedule.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgShedule.Size = new System.Drawing.Size(1085, 596);
+            this.tbpgShedule.Size = new System.Drawing.Size(1085, 594);
             this.tbpgShedule.TabIndex = 1;
             this.tbpgShedule.Text = "thời khóa biểu";
             this.tbpgShedule.UseVisualStyleBackColor = true;
             // 
             // tbpgTeacherManagment
             // 
-            this.tbpgTeacherManagment.Location = new System.Drawing.Point(4, 22);
+            this.tbpgTeacherManagment.Location = new System.Drawing.Point(4, 24);
             this.tbpgTeacherManagment.Name = "tbpgTeacherManagment";
             this.tbpgTeacherManagment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgTeacherManagment.Size = new System.Drawing.Size(1085, 596);
+            this.tbpgTeacherManagment.Size = new System.Drawing.Size(1085, 594);
             this.tbpgTeacherManagment.TabIndex = 2;
             this.tbpgTeacherManagment.Text = "quản lí giáo viên";
             this.tbpgTeacherManagment.UseVisualStyleBackColor = true;
             // 
             // tbpgStudentManagment
             // 
-            this.tbpgStudentManagment.Location = new System.Drawing.Point(4, 22);
+            this.tbpgStudentManagment.Location = new System.Drawing.Point(4, 24);
             this.tbpgStudentManagment.Name = "tbpgStudentManagment";
             this.tbpgStudentManagment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgStudentManagment.Size = new System.Drawing.Size(1085, 596);
+            this.tbpgStudentManagment.Size = new System.Drawing.Size(1085, 594);
             this.tbpgStudentManagment.TabIndex = 3;
             this.tbpgStudentManagment.Text = "quản lí học sinh";
             this.tbpgStudentManagment.UseVisualStyleBackColor = true;
