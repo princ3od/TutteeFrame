@@ -94,6 +94,7 @@
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.ShowListBackGroundWork = new System.ComponentModel.BackgroundWorker();
             this.SearchListBackGroundWork = new System.ComponentModel.BackgroundWorker();
+            this.btnPrint = new Material_Design_for_Winform.MaterialRaisedButton();
             this.mainTabcontrol.SuspendLayout();
             this.tbpgStudentManagment.SuspendLayout();
             this.metroPanel3.SuspendLayout();
@@ -179,10 +180,10 @@
             // tbpgTeacherManagment
             // 
             this.tbpgTeacherManagment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgTeacherManagment.Location = new System.Drawing.Point(4, 22);
+            this.tbpgTeacherManagment.Location = new System.Drawing.Point(4, 24);
             this.tbpgTeacherManagment.Name = "tbpgTeacherManagment";
             this.tbpgTeacherManagment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgTeacherManagment.Size = new System.Drawing.Size(931, 559);
+            this.tbpgTeacherManagment.Size = new System.Drawing.Size(931, 557);
             this.tbpgTeacherManagment.TabIndex = 2;
             this.tbpgTeacherManagment.Text = "quản lí giáo viên";
             this.tbpgTeacherManagment.UseVisualStyleBackColor = true;
@@ -194,10 +195,10 @@
             this.tbpgStudentManagment.Controls.Add(this.metroPanel2);
             this.tbpgStudentManagment.Controls.Add(this.metroPanel1);
             this.tbpgStudentManagment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgStudentManagment.Location = new System.Drawing.Point(4, 22);
+            this.tbpgStudentManagment.Location = new System.Drawing.Point(4, 24);
             this.tbpgStudentManagment.Name = "tbpgStudentManagment";
             this.tbpgStudentManagment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgStudentManagment.Size = new System.Drawing.Size(931, 559);
+            this.tbpgStudentManagment.Size = new System.Drawing.Size(931, 557);
             this.tbpgStudentManagment.TabIndex = 3;
             this.tbpgStudentManagment.Text = "quản lí học sinh";
             // 
@@ -210,7 +211,7 @@
             this.metroPanel3.HorizontalScrollbarSize = 10;
             this.metroPanel3.Location = new System.Drawing.Point(3, 139);
             this.metroPanel3.Name = "metroPanel3";
-            this.metroPanel3.Size = new System.Drawing.Size(925, 318);
+            this.metroPanel3.Size = new System.Drawing.Size(925, 316);
             this.metroPanel3.TabIndex = 2;
             this.metroPanel3.VerticalScrollbarBarColor = true;
             this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
@@ -239,11 +240,12 @@
             this.ListViewStudents.Location = new System.Drawing.Point(0, 0);
             this.ListViewStudents.Name = "ListViewStudents";
             this.ListViewStudents.OwnerDraw = true;
-            this.ListViewStudents.Size = new System.Drawing.Size(925, 318);
+            this.ListViewStudents.Size = new System.Drawing.Size(925, 316);
             this.ListViewStudents.TabIndex = 3;
             this.ListViewStudents.UseCompatibleStateImageBehavior = false;
             this.ListViewStudents.UseSelectable = true;
             this.ListViewStudents.View = System.Windows.Forms.View.Details;
+            this.ListViewStudents.SelectedIndexChanged += new System.EventHandler(this.ListViewStudents_SelectedIndexChanged);
             this.ListViewStudents.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.metroListView1_MouseDoubleClick);
             // 
             // studentID
@@ -303,13 +305,13 @@
             this.fixContent,
             this.addContent});
             this.mgStudentmenuContent.Name = "metroContextMenu1";
-            this.mgStudentmenuContent.Size = new System.Drawing.Size(181, 92);
+            this.mgStudentmenuContent.Size = new System.Drawing.Size(105, 70);
             // 
             // delContent
             // 
             this.delContent.Image = global::TutteeFrame.Properties.Resources.delete;
             this.delContent.Name = "delContent";
-            this.delContent.Size = new System.Drawing.Size(180, 22);
+            this.delContent.Size = new System.Drawing.Size(104, 22);
             this.delContent.Text = "Xóa";
             this.delContent.Click += new System.EventHandler(this.delContent_Click);
             // 
@@ -317,7 +319,7 @@
             // 
             this.fixContent.Image = global::TutteeFrame.Properties.Resources.penbook;
             this.fixContent.Name = "fixContent";
-            this.fixContent.Size = new System.Drawing.Size(180, 22);
+            this.fixContent.Size = new System.Drawing.Size(104, 22);
             this.fixContent.Text = "Sửa";
             this.fixContent.Click += new System.EventHandler(this.fixContent_Click);
             // 
@@ -325,7 +327,7 @@
             // 
             this.addContent.Image = global::TutteeFrame.Properties.Resources.addperson;
             this.addContent.Name = "addContent";
-            this.addContent.Size = new System.Drawing.Size(180, 22);
+            this.addContent.Size = new System.Drawing.Size(104, 22);
             this.addContent.Text = "Thêm";
             this.addContent.Click += new System.EventHandler(this.addContent_Click);
             // 
@@ -333,13 +335,14 @@
             // 
             this.metroPanel2.Controls.Add(this.btnAdd);
             this.metroPanel2.Controls.Add(this.btnFix);
+            this.metroPanel2.Controls.Add(this.btnPrint);
             this.metroPanel2.Controls.Add(this.btnDel);
             this.metroPanel2.Controls.Add(this.metroPanel6);
             this.metroPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.metroPanel2.HorizontalScrollbarBarColor = true;
             this.metroPanel2.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel2.HorizontalScrollbarSize = 10;
-            this.metroPanel2.Location = new System.Drawing.Point(3, 457);
+            this.metroPanel2.Location = new System.Drawing.Point(3, 455);
             this.metroPanel2.Name = "metroPanel2";
             this.metroPanel2.Size = new System.Drawing.Size(925, 99);
             this.metroPanel2.TabIndex = 1;
@@ -486,6 +489,7 @@
             this.cboxLop.Size = new System.Drawing.Size(121, 25);
             this.cboxLop.TabIndex = 7;
             this.cboxLop.UseSelectable = true;
+            this.cboxLop.SelectedIndexChanged += new System.EventHandler(this.cboxLop_SelectedIndexChanged);
             this.cboxLop.SelectedValueChanged += new System.EventHandler(this.cboxLop_SelectedValueChanged);
             // 
             // metroLabel7
@@ -911,6 +915,25 @@
             this.SearchListBackGroundWork.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.SearchListBackGroundWork_ProgressChanged);
             this.SearchListBackGroundWork.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.SearchListBackGroundWork_RunWorkerCompleted);
             // 
+            // btnPrint
+            // 
+            this.btnPrint.BackColor = System.Drawing.Color.Transparent;
+            this.btnPrint.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnPrint.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.btnPrint.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnPrint.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.btnPrint.Icon = null;
+            this.btnPrint.Location = new System.Drawing.Point(594, 35);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Radius = 2;
+            this.btnPrint.ShadowDepth = 0;
+            this.btnPrint.ShadowOpacity = 35;
+            this.btnPrint.Size = new System.Drawing.Size(147, 45);
+            this.btnPrint.TabIndex = 45;
+            this.btnPrint.Text = "In danh sách";
+            this.btnPrint.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // frmMain
             // 
             this.ClientSize = new System.Drawing.Size(1200, 700);
@@ -1015,5 +1038,6 @@
         private System.Windows.Forms.ToolStripMenuItem delContent;
         private System.Windows.Forms.ToolStripMenuItem fixContent;
         private System.Windows.Forms.ToolStripMenuItem addContent;
+        private Material_Design_for_Winform.MaterialRaisedButton btnPrint;
     }
 }

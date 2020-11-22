@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using TutteeFrame.Model;
+using System.Data;
 
 namespace TutteeFrame.Model
 {
@@ -808,6 +809,21 @@ namespace TutteeFrame.Model
             {
                 MessageBox.Show(ex.Message);
                 Disconnect();
+                return false;
+            }
+        }
+        public bool GetDataSetPrepareToPrint(DataSet input, string classID)
+        {
+            try
+            {
+                strQuery = $"SELECT * FROM STUDENT WHERE ClassID ='{classID}'";
+                SqlDataAdapter adapter = new SqlDataAdapter(strQuery, connection);
+                adapter.Fill(input, "STUDENT");
+                return true;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
                 return false;
             }
         }

@@ -100,6 +100,7 @@ namespace TutteeFrame
             studentinfor.Sex = cbbSex.Text == "Nam" ? true : false;
             studentinfor.Status = cbbStatus.Text == "Đang học" ? true : false;
             studentinfor.Class = cbbClass.Text == "" ? null : cbbClass.Text;
+            studentinfor.BornDate = dateBorn.Value;
             if (!Controller.Instance.IsDigitsOnly(studentinfor.StudentID) || studentinfor.StudentID.Length != 8 || studentinfor.Class == null)
             {
                 MessageBox.Show("Mã số học sinh, hoặc mã lớp không hợp lệ.");

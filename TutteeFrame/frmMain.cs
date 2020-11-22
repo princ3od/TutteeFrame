@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Web.UI;
 using System.Windows.Forms;
 using TutteeFrame.Model;
+using System.Data;
 
 namespace TutteeFrame
 {
@@ -246,6 +247,7 @@ namespace TutteeFrame
 
         private void cbxKhoi_SelectedIndexChanged(object sender, EventArgs e)
         {
+            btnPrint.Visible = false;
             string KhoiSelected = null;
             KhoiSelected = cbxKhoi.SelectedItem.ToString()!= "Tất cả"? cbxKhoi.SelectedItem.ToString():"";
             if (KhoiSelected == null) return;
@@ -278,7 +280,8 @@ namespace TutteeFrame
 
         private void mainTabcontrol_SelectedIndexChanged_1(object sender, EventArgs e)
         {
-            if(mainTabcontrol.SelectedIndex==3)
+            btnPrint.Visible = false;
+            if (mainTabcontrol.SelectedIndex==3)
             {
                 cbxKhoi.SelectedIndex = 3;
             }
@@ -399,7 +402,8 @@ namespace TutteeFrame
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if(e.KeyChar == (char)13)
+            btnPrint.Visible = false;
+            if (e.KeyChar == (char)13)
             {
                 Pair agr;
                 if (Controller.Instance.IsDigitsOnly(txtSearch.Text) && txtSearch.Text.Length == 8)
@@ -427,6 +431,28 @@ namespace TutteeFrame
         private void addContent_Click(object sender, EventArgs e)
         {
             btnAdd.PerformClick();
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            string classID = cboxLop.Text;
+            DataSet ds = new DataSet();
+            if(Controller.Instance.GetDataSetPrepareToPrint(ds,classID))
+            {
+                frmStudentPrinter printer = new frmStudentPrinter(ds,classID);
+                printer.ShowDialog();
+
+            }
+        }
+
+        private void cboxLop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnPrint.Visible = true;
+        }
+
+        private void ListViewStudents_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

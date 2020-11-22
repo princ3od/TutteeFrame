@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using TutteeFrame.Model;
+using System.Data;
 
 namespace TutteeFrame
 {
@@ -275,6 +276,10 @@ namespace TutteeFrame
         public bool CountNumberOfStudent(ref int number)
         {
             return DataAccess.Instance.CountNumberOfStudent(ref number);
+        }
+        public bool GetDataSetPrepareToPrint(DataSet input, string classID)
+        {
+            return DataAccess.Instance.GetDataSetPrepareToPrint(input, classID);
         }
 
 
