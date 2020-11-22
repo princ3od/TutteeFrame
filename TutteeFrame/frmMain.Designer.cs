@@ -343,6 +343,7 @@
             this.materialRaisedButton2.TabIndex = 45;
             this.materialRaisedButton2.Text = "Sửa thông tin học sinh";
             this.materialRaisedButton2.TextAlign = System.Drawing.StringAlignment.Center;
+            this.materialRaisedButton2.Click += new System.EventHandler(this.materialRaisedButton2_Click);
             // 
             // btnAproveAdding
             // 

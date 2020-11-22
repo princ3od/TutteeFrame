@@ -195,47 +195,7 @@ namespace TutteeFrame
 
         private void metroListView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            // Lấy thông tin của học sinh đã chọn 
-            ListView.SelectedListViewItemCollection collect = ListViewStudents.SelectedItems;
-            if (collect.Count >= 1)
-            {
-                ListViewItem lvi = collect[0];
-                StudentInfomation st = new StudentInfomation();
-                st.StudentID = lvi.SubItems[0].Text;
-                st.SurName = lvi.SubItems[1].Text;
-                st.FistName = lvi.SubItems[2].Text;
-                st.BornDate = (DateTime)lvi.Tag;
-                st.StudentImage = (Image)lvi.SubItems[1].Tag;
-                if (lvi.SubItems[4].Text == "Nam")
-                {
-                    st.Sex = true;
-                }
-                else
-                {
-                    st.Sex = false;
-                }
-                st.Address = lvi.SubItems[5].Text;
-                st.Phone = lvi.SubItems[6].Text;
-                st.Class = lvi.SubItems[7].Text;
-                if (lvi.SubItems[8].Text == "Đang học")
-                {
-                    st.Status = true;
-                }
-                else
-                {
-                    st.Status = false;
-                }
-                if (lvi.SubItems["Kỷ luật số"] != null)
-                {
-                    st.PunishmentID = lvi.SubItems["Kỷ luật số"].Text;
-                }
-
-                frmAddStudent frmstudentnew = new frmAddStudent(st, false);
-                frmstudentnew.ShowDialog();
-                if(frmstudentnew.Is_Progress_Successed)
-                ShowListBackGroundWork.RunWorkerAsync(cboxLop.Text);
-            }
-
+            materialRaisedButton2.PerformClick();
         }
 
 
@@ -320,6 +280,50 @@ namespace TutteeFrame
             if(mainTabcontrol.SelectedIndex==3)
             {
                 cbxKhoi.SelectedIndex = 3;
+            }
+        }
+
+        private void materialRaisedButton2_Click(object sender, EventArgs e)
+        {
+            // Lấy thông tin của học sinh đã chọn 
+            ListView.SelectedListViewItemCollection collect = ListViewStudents.SelectedItems;
+            if (collect.Count >= 1)
+            {
+                ListViewItem lvi = collect[0];
+                StudentInfomation st = new StudentInfomation();
+                st.StudentID = lvi.SubItems[0].Text;
+                st.SurName = lvi.SubItems[1].Text;
+                st.FistName = lvi.SubItems[2].Text;
+                st.BornDate = (DateTime)lvi.Tag;
+                st.StudentImage = (Image)lvi.SubItems[1].Tag;
+                if (lvi.SubItems[4].Text == "Nam")
+                {
+                    st.Sex = true;
+                }
+                else
+                {
+                    st.Sex = false;
+                }
+                st.Address = lvi.SubItems[5].Text;
+                st.Phone = lvi.SubItems[6].Text;
+                st.Class = lvi.SubItems[7].Text;
+                if (lvi.SubItems[8].Text == "Đang học")
+                {
+                    st.Status = true;
+                }
+                else
+                {
+                    st.Status = false;
+                }
+                if (lvi.SubItems["Kỷ luật số"] != null)
+                {
+                    st.PunishmentID = lvi.SubItems["Kỷ luật số"].Text;
+                }
+
+                frmAddStudent frmstudentnew = new frmAddStudent(st, false);
+                frmstudentnew.ShowDialog();
+                if (frmstudentnew.Is_Progress_Successed)
+                    ShowListBackGroundWork.RunWorkerAsync(cboxLop.Text);
             }
         }
     }
