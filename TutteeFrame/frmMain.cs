@@ -312,7 +312,12 @@ namespace TutteeFrame
 
         private void mainTabcontrol_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(mainTabcontrol.SelectedIndex == 3)
+
+        }
+
+        private void mainTabcontrol_SelectedIndexChanged_1(object sender, EventArgs e)
+        {
+            if(mainTabcontrol.SelectedIndex==3)
             {
                 cbxKhoi.SelectedIndex = 3;
             }

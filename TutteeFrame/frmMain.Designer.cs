@@ -145,7 +145,7 @@
             this.mainTabcontrol.SelectedIndex = 0;
             this.mainTabcontrol.Size = new System.Drawing.Size(939, 585);
             this.mainTabcontrol.TabIndex = 1;
-            this.mainTabcontrol.SelectedIndexChanged += new System.EventHandler(this.mainTabcontrol_SelectedIndexChanged);
+            this.mainTabcontrol.SelectedIndexChanged += new System.EventHandler(this.mainTabcontrol_SelectedIndexChanged_1);
             // 
             // tbpgProfile
             // 
