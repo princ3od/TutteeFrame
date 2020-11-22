@@ -145,6 +145,7 @@
             this.mainTabcontrol.SelectedIndex = 0;
             this.mainTabcontrol.Size = new System.Drawing.Size(939, 585);
             this.mainTabcontrol.TabIndex = 1;
+            this.mainTabcontrol.SelectedIndexChanged += new System.EventHandler(this.mainTabcontrol_SelectedIndexChanged);
             // 
             // tbpgProfile
             // 
@@ -161,10 +162,10 @@
             // tbpgShedule
             // 
             this.tbpgShedule.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgShedule.Location = new System.Drawing.Point(4, 24);
+            this.tbpgShedule.Location = new System.Drawing.Point(4, 22);
             this.tbpgShedule.Name = "tbpgShedule";
             this.tbpgShedule.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgShedule.Size = new System.Drawing.Size(931, 557);
+            this.tbpgShedule.Size = new System.Drawing.Size(931, 559);
             this.tbpgShedule.TabIndex = 1;
             this.tbpgShedule.Text = "thời khóa biểu";
             this.tbpgShedule.UseVisualStyleBackColor = true;
@@ -172,10 +173,10 @@
             // tbpgTeacherManagment
             // 
             this.tbpgTeacherManagment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgTeacherManagment.Location = new System.Drawing.Point(4, 24);
+            this.tbpgTeacherManagment.Location = new System.Drawing.Point(4, 22);
             this.tbpgTeacherManagment.Name = "tbpgTeacherManagment";
             this.tbpgTeacherManagment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgTeacherManagment.Size = new System.Drawing.Size(931, 557);
+            this.tbpgTeacherManagment.Size = new System.Drawing.Size(931, 559);
             this.tbpgTeacherManagment.TabIndex = 2;
             this.tbpgTeacherManagment.Text = "quản lí giáo viên";
             this.tbpgTeacherManagment.UseVisualStyleBackColor = true;
@@ -469,7 +470,7 @@
             "10",
             "11",
             "12",
-            "Tất cả các khối"});
+            "Tất cả"});
             this.cbxKhoi.Location = new System.Drawing.Point(447, 108);
             this.cbxKhoi.Name = "cbxKhoi";
             this.cbxKhoi.Size = new System.Drawing.Size(100, 25);
@@ -556,9 +557,9 @@
             // tbpgStudentMarkboard
             // 
             this.tbpgStudentMarkboard.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgStudentMarkboard.Location = new System.Drawing.Point(4, 24);
+            this.tbpgStudentMarkboard.Location = new System.Drawing.Point(4, 22);
             this.tbpgStudentMarkboard.Name = "tbpgStudentMarkboard";
-            this.tbpgStudentMarkboard.Size = new System.Drawing.Size(931, 557);
+            this.tbpgStudentMarkboard.Size = new System.Drawing.Size(931, 559);
             this.tbpgStudentMarkboard.TabIndex = 7;
             this.tbpgStudentMarkboard.Text = "bảng điểm học sinh";
             this.tbpgStudentMarkboard.UseVisualStyleBackColor = true;
@@ -566,10 +567,10 @@
             // tbpgSubjectManagment
             // 
             this.tbpgSubjectManagment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgSubjectManagment.Location = new System.Drawing.Point(4, 24);
+            this.tbpgSubjectManagment.Location = new System.Drawing.Point(4, 22);
             this.tbpgSubjectManagment.Name = "tbpgSubjectManagment";
             this.tbpgSubjectManagment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgSubjectManagment.Size = new System.Drawing.Size(931, 557);
+            this.tbpgSubjectManagment.Size = new System.Drawing.Size(931, 559);
             this.tbpgSubjectManagment.TabIndex = 4;
             this.tbpgSubjectManagment.Text = "quản lí môn";
             this.tbpgSubjectManagment.UseVisualStyleBackColor = true;
@@ -577,10 +578,10 @@
             // tbpgClassManagment
             // 
             this.tbpgClassManagment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgClassManagment.Location = new System.Drawing.Point(4, 24);
+            this.tbpgClassManagment.Location = new System.Drawing.Point(4, 22);
             this.tbpgClassManagment.Name = "tbpgClassManagment";
             this.tbpgClassManagment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgClassManagment.Size = new System.Drawing.Size(931, 557);
+            this.tbpgClassManagment.Size = new System.Drawing.Size(931, 559);
             this.tbpgClassManagment.TabIndex = 5;
             this.tbpgClassManagment.Text = "quản lí lớp";
             this.tbpgClassManagment.UseVisualStyleBackColor = true;
@@ -588,9 +589,9 @@
             // tbpgRewardManagment
             // 
             this.tbpgRewardManagment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgRewardManagment.Location = new System.Drawing.Point(4, 24);
+            this.tbpgRewardManagment.Location = new System.Drawing.Point(4, 22);
             this.tbpgRewardManagment.Name = "tbpgRewardManagment";
-            this.tbpgRewardManagment.Size = new System.Drawing.Size(931, 557);
+            this.tbpgRewardManagment.Size = new System.Drawing.Size(931, 559);
             this.tbpgRewardManagment.TabIndex = 9;
             this.tbpgRewardManagment.Text = "quản lí khen thưởng";
             this.tbpgRewardManagment.UseVisualStyleBackColor = true;
@@ -598,9 +599,9 @@
             // tbpgReport
             // 
             this.tbpgReport.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgReport.Location = new System.Drawing.Point(4, 24);
+            this.tbpgReport.Location = new System.Drawing.Point(4, 22);
             this.tbpgReport.Name = "tbpgReport";
-            this.tbpgReport.Size = new System.Drawing.Size(931, 557);
+            this.tbpgReport.Size = new System.Drawing.Size(931, 559);
             this.tbpgReport.TabIndex = 6;
             this.tbpgReport.Text = "báo cáo";
             this.tbpgReport.UseVisualStyleBackColor = true;
@@ -608,9 +609,9 @@
             // tbpgFormClass
             // 
             this.tbpgFormClass.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgFormClass.Location = new System.Drawing.Point(4, 24);
+            this.tbpgFormClass.Location = new System.Drawing.Point(4, 22);
             this.tbpgFormClass.Name = "tbpgFormClass";
-            this.tbpgFormClass.Size = new System.Drawing.Size(931, 557);
+            this.tbpgFormClass.Size = new System.Drawing.Size(931, 559);
             this.tbpgFormClass.TabIndex = 10;
             this.tbpgFormClass.Text = "lớp chủ nhiệm";
             this.tbpgFormClass.UseVisualStyleBackColor = true;

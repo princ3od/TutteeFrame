@@ -237,9 +237,14 @@ namespace TutteeFrame
             return AddTeacher(teacher);
         }
         #region Nhóm các chức năng liên quan đến thông tin học sinh
-        public List<StudentInfomation> GetInformationStudents(string classID)
+        /// <summary>
+        /// Hàm lấy thông tin về nhóm học sinh.
+        /// </summary>
+        /// <param name="classID"></param> (""/ khác "") nếu (lấy toàn bộ học sinh/ lấy những học sinh theo mã lớp
+        /// <returns></returns>
+        public List<StudentInfomation> GetInformationStudents(string classID,bool getKhoi =false)
         {
-            return DataAccess.Instance.StudentsInformation(classID);
+            return DataAccess.Instance.StudentsInformation(classID,getKhoi);
         }
         public  bool UpdateStudentToDataBase(string _studentid, StudentInfomation student)
             

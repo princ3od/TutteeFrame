@@ -577,12 +577,20 @@ namespace TutteeFrame.Model
 
         /// Get list student of class 
         
-        public List<StudentInfomation> StudentsInformation(string classID)
+        public List<StudentInfomation> StudentsInformation(string classID,bool getKhoi=false)
         {
             DataTable table = new DataTable();
             List<StudentInfomation> Students = new List<StudentInfomation>();
             Connect();
-            strQuery = $"SELECT * FROM STUDENT WHERE ClassID = '{classID}'";
+            if (getKhoi == false)
+            {
+                strQuery = classID != "" ? $"SELECT * FROM STUDENT WHERE ClassID = '{classID}'"
+                    : $"SELECT * FROM STUDENT";
+            }
+            else
+            {
+                strQuery = $"SELECT * FROM STUDENT WHERE STUDENT.ClassID like '{classID}%%'";
+            }
             SqlCommand cmd = connection.CreateCommand();
             cmd.CommandText = strQuery;
 

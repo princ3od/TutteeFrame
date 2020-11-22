@@ -108,6 +108,7 @@ namespace TutteeFrame
             {
                     if (Controller.Instance.AddNewStudentToDataBase(studentinfor.StudentID, studentinfor))
                     {
+                    this.DialogResult = DialogResult.OK;
                         MessageBox.Show("Thêm thành công");
                         //Tải lại list Student
                         this.Close();

@@ -162,10 +162,11 @@ namespace TutteeFrame
 
         private void cboxLop_SelectedValueChanged(object sender, EventArgs e)
         {
+            
             ShowListBackGroundWork.RunWorkerAsync(cboxLop.Text);
 
         }
-
+       
 
 
         private void materialRaisedButton1_Click(object sender, EventArgs e)
@@ -239,10 +240,13 @@ namespace TutteeFrame
 
         private void ShowListBackGroundWork_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-           
-            if (e.Argument as string == "") return;
+           // đối số e lưu  value của cbbKhoi trong t/h cbbKhoi Index change
+           // lưu value của cbbClaas trong t/h cbbClass Index change
 
-            List<StudentInfomation> Students = Controller.Instance.GetInformationStudents(e.Argument as string);
+            List<StudentInfomation> Students =
+                (e.Argument as string).Length==2?
+            Controller.Instance.GetInformationStudents(e.Argument as string,true):
+            Controller.Instance.GetInformationStudents(e.Argument as string);
             ShowListBackGroundWork.ReportProgress(0, Students);
         }
         private void ShowListBackGroundWork_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
@@ -280,8 +284,7 @@ namespace TutteeFrame
         private void cbxKhoi_SelectedIndexChanged(object sender, EventArgs e)
         {
             string KhoiSelected = null;
-            KhoiSelected = cbxKhoi.SelectedItem.ToString();
-
+            KhoiSelected = cbxKhoi.SelectedItem.ToString()!= "Tất cả"? cbxKhoi.SelectedItem.ToString():"";
             if (KhoiSelected == null) return;
             cboxLop.Items.Clear();
             List<Class> LopThuocKhoi = Controller.Instance.GetClass(KhoiSelected);
@@ -289,6 +292,7 @@ namespace TutteeFrame
             {
                 cboxLop.Items.Add(i.ID);
             }
+            ShowListBackGroundWork.RunWorkerAsync($"{KhoiSelected}");
             return;
 
         }
@@ -302,6 +306,14 @@ namespace TutteeFrame
             int numStudent = 0;
             Controller.Instance.CountNumberOfStudent(ref numStudent);
             txtSumStudent.Text = numStudent.ToString();
+        }
+
+        private void mainTabcontrol_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if(mainTabcontrol.SelectedIndex == 3)
+            {
+                cbxKhoi.SelectedIndex = 3;
+            }
         }
     }
 }
