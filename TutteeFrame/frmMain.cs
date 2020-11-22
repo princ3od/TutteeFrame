@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.Runtime.InteropServices;
+using System.Web.UI;
 using System.Windows.Forms;
 using TutteeFrame.Model;
 
@@ -324,6 +325,92 @@ namespace TutteeFrame
                 frmstudentnew.ShowDialog();
                 if (frmstudentnew.Is_Progress_Successed)
                     ShowListBackGroundWork.RunWorkerAsync(cboxLop.Text);
+            }
+        }
+
+        private void SearchListBackGroundWork_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            Pair arg = e.Argument as Pair;
+            List<StudentInfomation> students = new List<StudentInfomation>();
+            students.Add(new StudentInfomation());
+            if( (arg.Second as bool?) ==false &&Controller.Instance.LoadStudentInformationById(arg.First as string,students[0]))
+            {
+                
+            }
+            
+            else
+            {
+                students = new List<StudentInfomation>();
+                if((arg.Second as bool?) == true && Controller.Instance.LoadStudentInformationByName(arg.First as string, students))
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("Tìm kiếm không thành công");
+                    return;
+                }
+
+            }
+            SearchListBackGroundWork.ReportProgress(0, students);
+        }
+
+        private void SearchListBackGroundWork_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+            ListViewStudents.Items.Clear();
+            List<StudentInfomation> students = e.UserState as List<StudentInfomation>;
+            if(students.Count>0)
+            {
+                foreach(StudentInfomation i in students)
+                {
+                    if (i.StudentID != null && i.StudentID != "")
+                    {
+                        ListViewItem lvi = new ListViewItem(i.StudentID);
+                        lvi.SubItems.Add(i.SurName);
+                        lvi.SubItems.Add(i.FistName);
+                        lvi.Tag = i.BornDate;
+                        lvi.SubItems[1].Tag = i.StudentImage;
+                        lvi.SubItems.Add(i.BornDate.ToString("dd/MM/yyyy"));
+                        lvi.SubItems.Add(i.Sex == true ? "Nam" : "Nữ");
+                        lvi.SubItems.Add(i.Address.ToString());
+                        lvi.SubItems.Add(i.Phone.ToString());
+                        lvi.SubItems.Add(i.Class.ToString());
+                        lvi.SubItems.Add(i.Status == true ? "Đang học" : "Đã nghỉ");
+                        if (i.PunishmentID != null)
+                        {
+                            lvi.SubItems.Add(i.PunishmentID.ToString());
+                        }
+
+                        ListViewStudents.Items.Add(lvi);
+                    }
+            }
+
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy học sinh phù hợp");
+            }
+        }
+
+        private void SearchListBackGroundWork_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            MessageBox.Show("Kết thúc tìm kiếm");
+        }
+
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if(e.KeyChar == (char)13)
+            {
+                Pair agr;
+                if (Controller.Instance.IsDigitsOnly(txtSearch.Text) && txtSearch.Text.Length == 8)
+                {
+                    agr = new Pair(txtSearch.Text, false);
+                }
+                else
+                {
+                    agr = new Pair(txtSearch.Text, true);
+                }
+                SearchListBackGroundWork.RunWorkerAsync(agr);
             }
         }
     }

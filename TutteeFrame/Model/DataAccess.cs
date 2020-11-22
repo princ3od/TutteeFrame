@@ -485,7 +485,7 @@ namespace TutteeFrame.Model
         /// <param name="_studentID"> Mã học sinh cần lấy dữ liệu. </param>
         /// <param name="_student"> </param>
         /// <returns> Việc lấy dữ liệu có thành công hay không. </returns>
-        public bool LoadStudent(string _studentID, Student _student)
+        public bool LoadStudentByID(string _studentID, StudentInfomation _student)
         {
             bool success = Connect();
 
@@ -499,14 +499,81 @@ namespace TutteeFrame.Model
                 {
                     if (reader.Read())
                     {
-                        _student.ID = reader["StudentID"].ToString();
-                        _student.SurName = reader["Surname"].ToString();
-                        _student.FirstName = reader["Firstname"].ToString();
-                        _student.Address = reader["Address"].ToString();
-                        _student.Phone = reader["Phone"].ToString();
-                        _student.ClassID = reader["ClassID"].ToString();
-                        _student.Status = reader["Status"].ToString();
-                        _student.PunishmentList = reader["PunishmentListID"].ToString();
+                        _student.StudentID = reader.GetString(0);
+                       _student.SurName = reader.GetString(1);
+                       _student.FistName = reader.GetString(2);
+                        if (reader.IsDBNull(3) == false)
+                        {
+                            _student.StudentImage = byteArrayToImage((byte[])reader["StudentImage"]);
+                        }
+
+                        if (reader.IsDBNull(4) == false)
+                        {
+
+                            _student.BornDate = reader.GetDateTime(4);
+                        }
+                        _student.Sex = reader.GetBoolean(5);
+                        _student.Address = reader.GetString(6);
+                        _student.Phone = reader.GetString(7);
+                        _student.Class = reader.GetString(8);
+                        _student.Status = reader.GetBoolean(9);
+                        if (reader.IsDBNull(10) == false)
+                        {
+                            _student.PunishmentID = reader.GetString(10);
+                        }
+                        
+
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                return false;
+            }
+
+            Disconnect();
+            return true;
+        }
+        public bool LoadStudentsByName(string _studentName, List<StudentInfomation> _students)
+        {
+            bool success = Connect();
+
+            if (!success)
+                return false;
+            try
+            {
+                string query = $"SELECT * FROM STUDENT WHERE Firstname = '{_studentName}'";
+                SqlCommand command = new SqlCommand(query, connection);
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        StudentInfomation _student = new StudentInfomation();
+                        _student.StudentID = reader.GetString(0);
+                        _student.SurName = reader.GetString(1);
+                        _student.FistName = reader.GetString(2);
+                        if (reader.IsDBNull(3) == false)
+                        {
+                            _student.StudentImage = byteArrayToImage((byte[])reader["StudentImage"]);
+                        }
+
+                        if (reader.IsDBNull(4) == false)
+                        {
+
+                            _student.BornDate = reader.GetDateTime(4);
+                        }
+                        _student.Sex = reader.GetBoolean(5);
+                        _student.Address = reader.GetString(6);
+                        _student.Phone = reader.GetString(7);
+                        _student.Class = reader.GetString(8);
+                        _student.Status = reader.GetBoolean(9);
+                        if (reader.IsDBNull(10) == false)
+                        {
+                            _student.PunishmentID = reader.GetString(10);
+                        }
+                        _students.Add(_student);
+
                     }
                 }
             }

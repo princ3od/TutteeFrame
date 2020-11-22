@@ -54,7 +54,7 @@
             this.btnAproveAdding = new Material_Design_for_Winform.MaterialRaisedButton();
             this.metroPanel6 = new MetroFramework.Controls.MetroPanel();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
-            this.materialTextField1 = new Material_Design_for_Winform.MaterialTextField();
+            this.txtSearch = new Material_Design_for_Winform.MaterialTextField();
             this.cboxLop = new MetroFramework.Controls.MetroComboBox();
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
             this.cbxKhoi = new MetroFramework.Controls.MetroComboBox();
@@ -89,6 +89,7 @@
             this.materialDivider3 = new MaterialSkin.Controls.MaterialDivider();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.ShowListBackGroundWork = new System.ComponentModel.BackgroundWorker();
+            this.SearchListBackGroundWork = new System.ComponentModel.BackgroundWorker();
             this.mainTabcontrol.SuspendLayout();
             this.tbpgStudentManagment.SuspendLayout();
             this.metroPanel3.SuspendLayout();
@@ -380,7 +381,7 @@
             // 
             // metroPanel1
             // 
-            this.metroPanel1.Controls.Add(this.materialTextField1);
+            this.metroPanel1.Controls.Add(this.txtSearch);
             this.metroPanel1.Controls.Add(this.cboxLop);
             this.metroPanel1.Controls.Add(this.metroLabel7);
             this.metroPanel1.Controls.Add(this.cbxKhoi);
@@ -402,29 +403,30 @@
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel1.VerticalScrollbarSize = 10;
             // 
-            // materialTextField1
+            // txtSearch
             // 
-            this.materialTextField1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.materialTextField1.AutoScaleColor = true;
-            this.materialTextField1.BackColor = System.Drawing.Color.White;
-            this.materialTextField1.FloatingLabelText = "FloatingLabel";
-            this.materialTextField1.FocusColor = System.Drawing.Color.DodgerBlue;
-            this.materialTextField1.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.materialTextField1.HideSelection = true;
-            this.materialTextField1.HintText = "Nhập tên hoặc mã học sinh tại đây";
-            this.materialTextField1.Location = new System.Drawing.Point(156, 91);
-            this.materialTextField1.MaxLength = 32767;
-            this.materialTextField1.Multiline = false;
-            this.materialTextField1.Name = "materialTextField1";
-            this.materialTextField1.PasswordChar = '\0';
-            this.materialTextField1.ReadOnly = false;
-            this.materialTextField1.ShortcutsEnable = true;
-            this.materialTextField1.ShowCaret = true;
-            this.materialTextField1.Size = new System.Drawing.Size(231, 39);
-            this.materialTextField1.Style = Material_Design_for_Winform.MaterialTextField.ST.None;
-            this.materialTextField1.TabIndex = 8;
-            this.materialTextField1.UseSystemPasswordChar = false;
+            this.txtSearch.AutoScaleColor = true;
+            this.txtSearch.BackColor = System.Drawing.Color.White;
+            this.txtSearch.FloatingLabelText = "FloatingLabel";
+            this.txtSearch.FocusColor = System.Drawing.Color.DodgerBlue;
+            this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 11F);
+            this.txtSearch.HideSelection = true;
+            this.txtSearch.HintText = "Nhập tên hoặc mã học sinh tại đây";
+            this.txtSearch.Location = new System.Drawing.Point(156, 91);
+            this.txtSearch.MaxLength = 32767;
+            this.txtSearch.Multiline = false;
+            this.txtSearch.Name = "txtSearch";
+            this.txtSearch.PasswordChar = '\0';
+            this.txtSearch.ReadOnly = false;
+            this.txtSearch.ShortcutsEnable = true;
+            this.txtSearch.ShowCaret = true;
+            this.txtSearch.Size = new System.Drawing.Size(231, 39);
+            this.txtSearch.Style = Material_Design_for_Winform.MaterialTextField.ST.None;
+            this.txtSearch.TabIndex = 8;
+            this.txtSearch.UseSystemPasswordChar = false;
+            this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
             // 
             // cboxLop
             // 
@@ -862,6 +864,14 @@
             this.ShowListBackGroundWork.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.ShowListBackGroundWork_ProgressChanged);
             this.ShowListBackGroundWork.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.ShowListBackGroundWork_RunWorkerCompleted);
             // 
+            // SearchListBackGroundWork
+            // 
+            this.SearchListBackGroundWork.WorkerReportsProgress = true;
+            this.SearchListBackGroundWork.WorkerSupportsCancellation = true;
+            this.SearchListBackGroundWork.DoWork += new System.ComponentModel.DoWorkEventHandler(this.SearchListBackGroundWork_DoWork);
+            this.SearchListBackGroundWork.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.SearchListBackGroundWork_ProgressChanged);
+            this.SearchListBackGroundWork.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.SearchListBackGroundWork_RunWorkerCompleted);
+            // 
             // frmMain
             // 
             this.ClientSize = new System.Drawing.Size(1200, 700);
@@ -950,7 +960,7 @@
         private Material_Design_for_Winform.MaterialRaisedButton btnAproveAdding;
         private System.Windows.Forms.ColumnHeader colKyluat;
         private MetroFramework.Controls.MetroPanel metroPanel1;
-        private Material_Design_for_Winform.MaterialTextField materialTextField1;
+        private Material_Design_for_Winform.MaterialTextField txtSearch;
         private MetroFramework.Controls.MetroComboBox cboxLop;
         private MetroFramework.Controls.MetroLabel metroLabel7;
         private MetroFramework.Controls.MetroComboBox cbxKhoi;
@@ -960,5 +970,6 @@
         private MetroFramework.Controls.MetroLabel txtSumClass;
         private MetroFramework.Controls.MetroLabel metroLabel5;
         private MetroFramework.Controls.MetroLabel metroLabel1;
+        private System.ComponentModel.BackgroundWorker SearchListBackGroundWork;
     }
 }

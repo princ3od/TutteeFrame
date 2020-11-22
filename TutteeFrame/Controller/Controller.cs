@@ -257,6 +257,15 @@ namespace TutteeFrame
             return DataAccess.Instance.AddStudent(_studentid, student);
         }
 
+        public bool LoadStudentInformationById(string studentID,StudentInfomation student)
+        {
+            return DataAccess.Instance.LoadStudentByID(studentID, student);
+        }
+        public bool LoadStudentInformationByName(string studentName, List<StudentInfomation> students)
+        {
+            return DataAccess.Instance.LoadStudentsByName(studentName, students);
+        }
+
         public bool DeleteStudent(string _studenID)
         {
             return DataAccess.Instance.DeleteStudent(_studenID);
