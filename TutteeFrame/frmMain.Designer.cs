@@ -48,10 +48,14 @@
             this.studentClassID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.studentStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colKyluat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.mgStudentmenuContent = new MetroFramework.Controls.MetroContextMenu(this.components);
+            this.delContent = new System.Windows.Forms.ToolStripMenuItem();
+            this.fixContent = new System.Windows.Forms.ToolStripMenuItem();
+            this.addContent = new System.Windows.Forms.ToolStripMenuItem();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
-            this.materialRaisedButton1 = new Material_Design_for_Winform.MaterialRaisedButton();
-            this.materialRaisedButton2 = new Material_Design_for_Winform.MaterialRaisedButton();
-            this.btnAproveAdding = new Material_Design_for_Winform.MaterialRaisedButton();
+            this.btnAdd = new Material_Design_for_Winform.MaterialRaisedButton();
+            this.btnFix = new Material_Design_for_Winform.MaterialRaisedButton();
+            this.btnDel = new Material_Design_for_Winform.MaterialRaisedButton();
             this.metroPanel6 = new MetroFramework.Controls.MetroPanel();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
             this.txtSearch = new Material_Design_for_Winform.MaterialTextField();
@@ -93,6 +97,7 @@
             this.mainTabcontrol.SuspendLayout();
             this.tbpgStudentManagment.SuspendLayout();
             this.metroPanel3.SuspendLayout();
+            this.mgStudentmenuContent.SuspendLayout();
             this.metroPanel2.SuspendLayout();
             this.metroPanel1.SuspendLayout();
             this.pnProfile.SuspendLayout();
@@ -189,10 +194,10 @@
             this.tbpgStudentManagment.Controls.Add(this.metroPanel2);
             this.tbpgStudentManagment.Controls.Add(this.metroPanel1);
             this.tbpgStudentManagment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgStudentManagment.Location = new System.Drawing.Point(4, 24);
+            this.tbpgStudentManagment.Location = new System.Drawing.Point(4, 22);
             this.tbpgStudentManagment.Name = "tbpgStudentManagment";
             this.tbpgStudentManagment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgStudentManagment.Size = new System.Drawing.Size(931, 557);
+            this.tbpgStudentManagment.Size = new System.Drawing.Size(931, 559);
             this.tbpgStudentManagment.TabIndex = 3;
             this.tbpgStudentManagment.Text = "quản lí học sinh";
             // 
@@ -205,7 +210,7 @@
             this.metroPanel3.HorizontalScrollbarSize = 10;
             this.metroPanel3.Location = new System.Drawing.Point(3, 139);
             this.metroPanel3.Name = "metroPanel3";
-            this.metroPanel3.Size = new System.Drawing.Size(925, 316);
+            this.metroPanel3.Size = new System.Drawing.Size(925, 318);
             this.metroPanel3.TabIndex = 2;
             this.metroPanel3.VerticalScrollbarBarColor = true;
             this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
@@ -225,6 +230,7 @@
             this.studentClassID,
             this.studentStatus,
             this.colKyluat});
+            this.ListViewStudents.ContextMenuStrip = this.mgStudentmenuContent;
             this.ListViewStudents.Dock = System.Windows.Forms.DockStyle.Fill;
             this.ListViewStudents.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.ListViewStudents.FullRowSelect = true;
@@ -233,7 +239,7 @@
             this.ListViewStudents.Location = new System.Drawing.Point(0, 0);
             this.ListViewStudents.Name = "ListViewStudents";
             this.ListViewStudents.OwnerDraw = true;
-            this.ListViewStudents.Size = new System.Drawing.Size(925, 316);
+            this.ListViewStudents.Size = new System.Drawing.Size(925, 318);
             this.ListViewStudents.TabIndex = 3;
             this.ListViewStudents.UseCompatibleStateImageBehavior = false;
             this.ListViewStudents.UseSelectable = true;
@@ -290,17 +296,50 @@
             this.colKyluat.Text = "Kỷ luật số";
             this.colKyluat.Width = 120;
             // 
+            // mgStudentmenuContent
+            // 
+            this.mgStudentmenuContent.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.delContent,
+            this.fixContent,
+            this.addContent});
+            this.mgStudentmenuContent.Name = "metroContextMenu1";
+            this.mgStudentmenuContent.Size = new System.Drawing.Size(181, 92);
+            // 
+            // delContent
+            // 
+            this.delContent.Image = global::TutteeFrame.Properties.Resources.delete;
+            this.delContent.Name = "delContent";
+            this.delContent.Size = new System.Drawing.Size(180, 22);
+            this.delContent.Text = "Xóa";
+            this.delContent.Click += new System.EventHandler(this.delContent_Click);
+            // 
+            // fixContent
+            // 
+            this.fixContent.Image = global::TutteeFrame.Properties.Resources.penbook;
+            this.fixContent.Name = "fixContent";
+            this.fixContent.Size = new System.Drawing.Size(180, 22);
+            this.fixContent.Text = "Sửa";
+            this.fixContent.Click += new System.EventHandler(this.fixContent_Click);
+            // 
+            // addContent
+            // 
+            this.addContent.Image = global::TutteeFrame.Properties.Resources.addperson;
+            this.addContent.Name = "addContent";
+            this.addContent.Size = new System.Drawing.Size(180, 22);
+            this.addContent.Text = "Thêm";
+            this.addContent.Click += new System.EventHandler(this.addContent_Click);
+            // 
             // metroPanel2
             // 
-            this.metroPanel2.Controls.Add(this.materialRaisedButton1);
-            this.metroPanel2.Controls.Add(this.materialRaisedButton2);
-            this.metroPanel2.Controls.Add(this.btnAproveAdding);
+            this.metroPanel2.Controls.Add(this.btnAdd);
+            this.metroPanel2.Controls.Add(this.btnFix);
+            this.metroPanel2.Controls.Add(this.btnDel);
             this.metroPanel2.Controls.Add(this.metroPanel6);
             this.metroPanel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.metroPanel2.HorizontalScrollbarBarColor = true;
             this.metroPanel2.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel2.HorizontalScrollbarSize = 10;
-            this.metroPanel2.Location = new System.Drawing.Point(3, 455);
+            this.metroPanel2.Location = new System.Drawing.Point(3, 457);
             this.metroPanel2.Name = "metroPanel2";
             this.metroPanel2.Size = new System.Drawing.Size(925, 99);
             this.metroPanel2.TabIndex = 1;
@@ -308,62 +347,62 @@
             this.metroPanel2.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel2.VerticalScrollbarSize = 10;
             // 
-            // materialRaisedButton1
+            // btnAdd
             // 
-            this.materialRaisedButton1.BackColor = System.Drawing.Color.Transparent;
-            this.materialRaisedButton1.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.materialRaisedButton1.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
-            this.materialRaisedButton1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.materialRaisedButton1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
-            this.materialRaisedButton1.Icon = null;
-            this.materialRaisedButton1.Location = new System.Drawing.Point(35, 35);
-            this.materialRaisedButton1.Name = "materialRaisedButton1";
-            this.materialRaisedButton1.Radius = 2;
-            this.materialRaisedButton1.ShadowDepth = 0;
-            this.materialRaisedButton1.ShadowOpacity = 35;
-            this.materialRaisedButton1.Size = new System.Drawing.Size(159, 45);
-            this.materialRaisedButton1.TabIndex = 45;
-            this.materialRaisedButton1.Text = "Thêm học sinh";
-            this.materialRaisedButton1.TextAlign = System.Drawing.StringAlignment.Center;
-            this.materialRaisedButton1.Click += new System.EventHandler(this.materialRaisedButton1_Click);
+            this.btnAdd.BackColor = System.Drawing.Color.Transparent;
+            this.btnAdd.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnAdd.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.btnAdd.Icon = null;
+            this.btnAdd.Location = new System.Drawing.Point(35, 35);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Radius = 2;
+            this.btnAdd.ShadowDepth = 0;
+            this.btnAdd.ShadowOpacity = 35;
+            this.btnAdd.Size = new System.Drawing.Size(159, 45);
+            this.btnAdd.TabIndex = 45;
+            this.btnAdd.Text = "Thêm học sinh";
+            this.btnAdd.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnAdd.Click += new System.EventHandler(this.materialRaisedButton1_Click);
             // 
-            // materialRaisedButton2
+            // btnFix
             // 
-            this.materialRaisedButton2.BackColor = System.Drawing.Color.Transparent;
-            this.materialRaisedButton2.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.materialRaisedButton2.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
-            this.materialRaisedButton2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.materialRaisedButton2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
-            this.materialRaisedButton2.Icon = null;
-            this.materialRaisedButton2.Location = new System.Drawing.Point(365, 35);
-            this.materialRaisedButton2.Name = "materialRaisedButton2";
-            this.materialRaisedButton2.Radius = 2;
-            this.materialRaisedButton2.ShadowDepth = 0;
-            this.materialRaisedButton2.ShadowOpacity = 35;
-            this.materialRaisedButton2.Size = new System.Drawing.Size(223, 45);
-            this.materialRaisedButton2.TabIndex = 45;
-            this.materialRaisedButton2.Text = "Sửa thông tin học sinh";
-            this.materialRaisedButton2.TextAlign = System.Drawing.StringAlignment.Center;
-            this.materialRaisedButton2.Click += new System.EventHandler(this.materialRaisedButton2_Click);
+            this.btnFix.BackColor = System.Drawing.Color.Transparent;
+            this.btnFix.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnFix.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.btnFix.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnFix.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.btnFix.Icon = null;
+            this.btnFix.Location = new System.Drawing.Point(365, 35);
+            this.btnFix.Name = "btnFix";
+            this.btnFix.Radius = 2;
+            this.btnFix.ShadowDepth = 0;
+            this.btnFix.ShadowOpacity = 35;
+            this.btnFix.Size = new System.Drawing.Size(223, 45);
+            this.btnFix.TabIndex = 45;
+            this.btnFix.Text = "Sửa thông tin học sinh";
+            this.btnFix.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnFix.Click += new System.EventHandler(this.materialRaisedButton2_Click);
             // 
-            // btnAproveAdding
+            // btnDel
             // 
-            this.btnAproveAdding.BackColor = System.Drawing.Color.Transparent;
-            this.btnAproveAdding.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.btnAproveAdding.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
-            this.btnAproveAdding.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnAproveAdding.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
-            this.btnAproveAdding.Icon = null;
-            this.btnAproveAdding.Location = new System.Drawing.Point(200, 35);
-            this.btnAproveAdding.Name = "btnAproveAdding";
-            this.btnAproveAdding.Radius = 2;
-            this.btnAproveAdding.ShadowDepth = 0;
-            this.btnAproveAdding.ShadowOpacity = 35;
-            this.btnAproveAdding.Size = new System.Drawing.Size(159, 45);
-            this.btnAproveAdding.TabIndex = 45;
-            this.btnAproveAdding.Text = "Xóa học sinh";
-            this.btnAproveAdding.TextAlign = System.Drawing.StringAlignment.Center;
-            this.btnAproveAdding.Click += new System.EventHandler(this.btnAproveAdding_Click);
+            this.btnDel.BackColor = System.Drawing.Color.Transparent;
+            this.btnDel.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnDel.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.btnDel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnDel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.btnDel.Icon = null;
+            this.btnDel.Location = new System.Drawing.Point(200, 35);
+            this.btnDel.Name = "btnDel";
+            this.btnDel.Radius = 2;
+            this.btnDel.ShadowDepth = 0;
+            this.btnDel.ShadowOpacity = 35;
+            this.btnDel.Size = new System.Drawing.Size(159, 45);
+            this.btnDel.TabIndex = 45;
+            this.btnDel.Text = "Xóa học sinh";
+            this.btnDel.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnDel.Click += new System.EventHandler(this.btnAproveAdding_Click);
             // 
             // metroPanel6
             // 
@@ -893,6 +932,7 @@
             this.mainTabcontrol.ResumeLayout(false);
             this.tbpgStudentManagment.ResumeLayout(false);
             this.metroPanel3.ResumeLayout(false);
+            this.mgStudentmenuContent.ResumeLayout(false);
             this.metroPanel2.ResumeLayout(false);
             this.metroPanel1.ResumeLayout(false);
             this.metroPanel1.PerformLayout();
@@ -955,9 +995,9 @@
         private System.Windows.Forms.ColumnHeader studentStatus;
         private MetroFramework.Controls.MetroPanel metroPanel6;
         private System.Windows.Forms.ImageList imageList1;
-        private Material_Design_for_Winform.MaterialRaisedButton materialRaisedButton1;
-        private Material_Design_for_Winform.MaterialRaisedButton materialRaisedButton2;
-        private Material_Design_for_Winform.MaterialRaisedButton btnAproveAdding;
+        private Material_Design_for_Winform.MaterialRaisedButton btnAdd;
+        private Material_Design_for_Winform.MaterialRaisedButton btnFix;
+        private Material_Design_for_Winform.MaterialRaisedButton btnDel;
         private System.Windows.Forms.ColumnHeader colKyluat;
         private MetroFramework.Controls.MetroPanel metroPanel1;
         private Material_Design_for_Winform.MaterialTextField txtSearch;
@@ -971,5 +1011,9 @@
         private MetroFramework.Controls.MetroLabel metroLabel5;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private System.ComponentModel.BackgroundWorker SearchListBackGroundWork;
+        private MetroFramework.Controls.MetroContextMenu mgStudentmenuContent;
+        private System.Windows.Forms.ToolStripMenuItem delContent;
+        private System.Windows.Forms.ToolStripMenuItem fixContent;
+        private System.Windows.Forms.ToolStripMenuItem addContent;
     }
 }

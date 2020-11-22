@@ -196,7 +196,7 @@ namespace TutteeFrame
 
         private void metroListView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            materialRaisedButton2.PerformClick();
+            btnFix.PerformClick();
         }
 
 
@@ -412,6 +412,21 @@ namespace TutteeFrame
                 }
                 SearchListBackGroundWork.RunWorkerAsync(agr);
             }
+        }
+
+        private void delContent_Click(object sender, EventArgs e)
+        {
+            btnDel.PerformClick();
+        }
+
+        private void fixContent_Click(object sender, EventArgs e)
+        {
+            btnFix.PerformClick();
+        }
+
+        private void addContent_Click(object sender, EventArgs e)
+        {
+            btnAdd.PerformClick();
         }
     }
 }

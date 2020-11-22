@@ -595,7 +595,9 @@ namespace TutteeFrame.Model
         /// <returns></returns>
         public bool UpdateStudent(string _studentID, StudentInfomation student)
         {
-            Connect();
+           bool success = Connect();
+            if (success == false) return false;
+
             byte[] photo = ImageToByteArray(student.StudentImage);
             string query = $"UPDATE  STUDENT SET " +
                 "Surname = @surname," +
@@ -626,9 +628,6 @@ namespace TutteeFrame.Model
             try
             {
                 sqlCommand.ExecuteNonQuery();
-                Disconnect();
-                return true;
-
             }
             catch (Exception ex)
             {
@@ -636,8 +635,6 @@ namespace TutteeFrame.Model
                 Disconnect();
                 return false;
             }
-
-
             Disconnect();
             return true;
         }
@@ -646,56 +643,72 @@ namespace TutteeFrame.Model
         
         public List<StudentInfomation> StudentsInformation(string classID,bool getKhoi=false)
         {
+
+
             DataTable table = new DataTable();
             List<StudentInfomation> Students = new List<StudentInfomation>();
-            Connect();
-            if (getKhoi == false)
+
+            bool  success =Connect();
+            if (success == false) return Students;
+            try
             {
-                strQuery = classID != "" ? $"SELECT * FROM STUDENT WHERE ClassID = '{classID}'"
-                    : $"SELECT * FROM STUDENT";
+                if (getKhoi == false)
+                {
+                    strQuery = classID != "" ? $"SELECT * FROM STUDENT WHERE ClassID = '{classID}'"
+                        : $"SELECT * FROM STUDENT";
+                }
+                else
+                {
+                    strQuery = $"SELECT * FROM STUDENT WHERE STUDENT.ClassID like '{classID}%%'";
+                }
+                SqlCommand cmd = connection.CreateCommand();
+                cmd.CommandText = strQuery;
+
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    StudentInfomation i = new StudentInfomation();
+                    i.StudentID = reader.GetString(0);
+                    i.SurName = reader.GetString(1);
+                    i.FistName = reader.GetString(2);
+                    if (reader.IsDBNull(3) == false)
+                    {
+                        i.StudentImage = byteArrayToImage((byte[])reader["StudentImage"]);
+                    }
+
+                    if (reader.IsDBNull(4) == false)
+                    {
+
+                        i.BornDate = reader.GetDateTime(4);
+                    }
+                    i.Sex = reader.GetBoolean(5);
+                    i.Address = reader.GetString(6);
+                    i.Phone = reader.GetString(7);
+                    i.Class = reader.GetString(8);
+                    i.Status = reader.GetBoolean(9);
+                    if (reader.IsDBNull(10) == false)
+                    {
+                        i.PunishmentID = reader.GetString(10);
+                    }
+
+                    Students.Add(i);
+                }
             }
-            else
+            catch(Exception ex)
             {
-                strQuery = $"SELECT * FROM STUDENT WHERE STUDENT.ClassID like '{classID}%%'";
-            }
-            SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = strQuery;
-
-            SqlDataReader reader = cmd.ExecuteReader();
-            while(reader.Read())
-            {
-                StudentInfomation i = new StudentInfomation();
-                i.StudentID = reader.GetString(0);
-                i.SurName = reader.GetString(1);
-                i.FistName  = reader.GetString(2);
-                if(reader.IsDBNull(3)==false)
-                {
-                    i.StudentImage = byteArrayToImage((byte[])reader["StudentImage"]);
-                }
-
-                if (reader.IsDBNull(4)==false)
-                {
-
-                    i.BornDate = reader.GetDateTime(4);
-                }
-                i.Sex = reader.GetBoolean(5);
-                i.Address = reader.GetString(6);
-                i.Phone = reader.GetString(7);
-                i.Class = reader.GetString(8);
-                i.Status = reader.GetBoolean(9);
-                if(reader.IsDBNull(10)==false)
-                {
-                    i.PunishmentID = reader.GetString(10);
-                }
-
-                Students.Add(i);
+                MessageBox.Show(ex.Message);
+                Disconnect();
+                return Students;
             }
             Disconnect();
             return Students;
+
         }
         public bool AddStudent(string _studentid , StudentInfomation student)
         {
-            Connect();
+            bool success =Connect();
+            if (success == false) return false;
+
             byte[] photo = ImageToByteArray(student.StudentImage);
             string query = "INSERT INTO STUDENT(StudentID,Surname,FirstName,DateBorn,Sex,Address,Phonne,ClassID,Status,PunishmentListID,StudentImage) " +
                 "VALUES(@studentid,@surname,@firstname,@dateborn,@sex,@address,@phone,@classid,@status,@punishmentlistid,@studentimage)";
@@ -755,7 +768,8 @@ namespace TutteeFrame.Model
         }
         public bool DeleteStudent(string _studentID)
         {
-            Connect();
+            bool success =Connect();
+            if (success == false) return false;
             try
             {
                 strQuery = $"DELETE FROM STUDENT WHERE STUDENT.StudentID ='{_studentID}'";
@@ -771,16 +785,13 @@ namespace TutteeFrame.Model
                 Disconnect();
                 return false;
             }
-
-
-       
-           
         }
         public bool CountNumberOfStudent(ref int number)
         {
             try
             {
-                Connect();
+                bool success =Connect();
+                if (success == false) return false;
                 strQuery = "SELECT COUNT(*) FROM STUDENT";
                 SqlCommand cmd = connection.CreateCommand();
                 cmd.CommandText = strQuery;
@@ -837,29 +848,38 @@ namespace TutteeFrame.Model
         public List<Class> Lops(string Khoi)
         {
             List<Class> NhomLops = new List<Class>();
-            Connect();
-            strQuery = $"SELECT * FROM CLASS WHERE ClassID like'{Khoi}%%%'";
-            SqlCommand cmd = connection.CreateCommand();
-            cmd.CommandText = strQuery;
-            SqlDataReader reader = cmd.ExecuteReader();
-            while(reader.Read())
+            bool success = Connect();
+            if (success == false) return NhomLops;
+            try
             {
-                Class i = new Class();
-                i.ID = reader.GetString(0);
-                i.Room = reader.GetString(1);
-                i.StudentNum = (byte)reader.GetByte(2);
-                i.FormerTeacherID = reader.GetString(3);
-                NhomLops.Add(i);
+                strQuery = $"SELECT * FROM CLASS WHERE ClassID like'{Khoi}%%%'";
+                SqlCommand cmd = connection.CreateCommand();
+                cmd.CommandText = strQuery;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    Class i = new Class();
+                    i.ID = reader.GetString(0);
+                    i.Room = reader.GetString(1);
+                    i.StudentNum = (byte)reader.GetByte(2);
+                    i.FormerTeacherID = reader.GetString(3);
+                    NhomLops.Add(i);
+                }
             }
-
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Disconnect();
+                return NhomLops;
+            }
             Disconnect();
-
             return NhomLops;
         }
 
         public bool CountNumberOfClass(ref int number)
         {
-            Connect();
+            bool success =Connect();
+            if (success == false) return false;
             try
             {
                 strQuery = "SELECT COUNT(*) FROM CLASS";

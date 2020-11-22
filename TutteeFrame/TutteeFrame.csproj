@@ -170,6 +170,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\addperson.jpg" />
+    <None Include="Resources\penbook.png" />
+    <None Include="Resources\delete.png" />
     <None Include="Resources\user.jpg" />
     <None Include="Resources\download.png" />
     <None Include="Resources\Screenshot 2020-11-13 001747.jpg" />
