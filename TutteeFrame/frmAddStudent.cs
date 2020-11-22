@@ -15,6 +15,7 @@ namespace TutteeFrame
 {
     public partial class frmAddStudent : MetroForm
     {
+        public bool Is_Progress_Successed = false;
         public StudentInfomation studentinfor { get; set; }
         public bool IsNew { get; }
         public frmAddStudent(StudentInfomation student, bool IsNew)
@@ -108,7 +109,7 @@ namespace TutteeFrame
             {
                     if (Controller.Instance.AddNewStudentToDataBase(studentinfor.StudentID, studentinfor))
                     {
-                    this.DialogResult = DialogResult.OK;
+                        Is_Progress_Successed = true;
                         MessageBox.Show("Thêm thành công");
                         //Tải lại list Student
                         this.Close();
@@ -123,7 +124,7 @@ namespace TutteeFrame
             {
                 if(Controller.Instance.UpdateStudentToDataBase(studentinfor.StudentID,studentinfor))
                 {
-
+                    Is_Progress_Successed = true;
                     MessageBox.Show("Cập nhật thành công");
 
                     this.Close();

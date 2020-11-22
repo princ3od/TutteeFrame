@@ -174,6 +174,7 @@ namespace TutteeFrame
             StudentInfomation newStudent = new StudentInfomation();
             frmAddStudent NewFormAddStudent = new frmAddStudent(newStudent, true);
             NewFormAddStudent.ShowDialog();
+            if(NewFormAddStudent.Is_Progress_Successed)
             ShowListBackGroundWork.RunWorkerAsync(cboxLop.Text);
 
         }
@@ -231,6 +232,7 @@ namespace TutteeFrame
 
                 frmAddStudent frmstudentnew = new frmAddStudent(st, false);
                 frmstudentnew.ShowDialog();
+                if(frmstudentnew.Is_Progress_Successed)
                 ShowListBackGroundWork.RunWorkerAsync(cboxLop.Text);
             }
 
