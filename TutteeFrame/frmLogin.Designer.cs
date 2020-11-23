@@ -195,11 +195,10 @@
             // 
             // mainProgressbar
             // 
-            this.mainProgressbar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.mainProgressbar.Location = new System.Drawing.Point(0, 594);
+            this.mainProgressbar.Location = new System.Drawing.Point(426, 594);
             this.mainProgressbar.MarqueeAnimationSpeed = 20;
             this.mainProgressbar.Name = "mainProgressbar";
-            this.mainProgressbar.Size = new System.Drawing.Size(900, 6);
+            this.mainProgressbar.Size = new System.Drawing.Size(474, 6);
             this.mainProgressbar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.mainProgressbar.TabIndex = 24;
             this.mainProgressbar.Visible = false;
@@ -217,7 +216,7 @@
             this.lbInformation.BackColor = System.Drawing.Color.Transparent;
             this.lbInformation.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.lbInformation.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbInformation.Location = new System.Drawing.Point(618, 578);
+            this.lbInformation.Location = new System.Drawing.Point(432, 578);
             this.lbInformation.Name = "lbInformation";
             this.lbInformation.Size = new System.Drawing.Size(88, 13);
             this.lbInformation.TabIndex = 25;

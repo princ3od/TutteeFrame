@@ -108,6 +108,7 @@
     <Compile Include="frmChooseServer.Designer.cs">
       <DependentUpon>frmChooseServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImageHelper.cs" />
     <Compile Include="InitHelper.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Class.cs" />

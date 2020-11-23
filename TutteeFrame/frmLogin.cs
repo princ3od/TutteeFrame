@@ -56,7 +56,14 @@ namespace TutteeFrame
             if (!cbxRememberme.Checked)
                 return;
             txtID.Text = InitHelper.Instance.Read("LastID", "Application");
-            txtPass.Text = Encryption.Decrypt(InitHelper.Instance.Read("LastPass", "Application"), txtID.Text);
+            try
+            {
+                txtPass.Text = Encryption.Decrypt(InitHelper.Instance.Read("LastPass", "Application"), txtID.Text);
+            }
+            catch
+            {
+                txtPass.Text = "";
+            }
         }
         private void FormLogin_FormClosing(object sender, FormClosingEventArgs e)
         {

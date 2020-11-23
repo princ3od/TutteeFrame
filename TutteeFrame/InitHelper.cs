@@ -67,11 +67,5 @@ namespace TutteeFrame
             Write("LastID", "", "Application");
             Write("LastPass", "", "Application");
         }
-        public bool IsSettingCorrupt()
-        {
-            return !KeyExists("ServerName", "Database") || !KeyExists("Port", "Database") ||
-                !KeyExists("ServerAccount", "Database") || !KeyExists("ServerPassword", "Database") ||
-                    !KeyExists("RememberMe", "Application") || !KeyExists("LastID", "Application") || !KeyExists("LastPass", "Application");
-        }
     }
 }

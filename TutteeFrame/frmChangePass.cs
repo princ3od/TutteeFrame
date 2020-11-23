@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,7 +14,7 @@ using TutteeFrame.Model;
 
 namespace TutteeFrame
 {
-    public partial class frmChangePass : MetroForm
+    public partial class frmChangePass : Form
     {
         public bool changedSuccess = false;
         private string accountID;
@@ -21,9 +22,32 @@ namespace TutteeFrame
         public frmChangePass(string _accountID)
         {
             InitializeComponent();
+            this.SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            this.UpdateStyles();
+            this.DoubleBuffered = true;
             accountID = _accountID;
             txtID.Text = _accountID;
         }
+        #region Win32 Form
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                const int CS_DROPSHADOW = 0x20000;
+                CreateParams cp = base.CreateParams;
+                cp.ClassStyle |= CS_DROPSHADOW;
+                return cp;
+            }
+        }
+        #endregion
 
         private void btnOK_Click(object sender, EventArgs e)
         {
@@ -105,6 +129,11 @@ namespace TutteeFrame
         }
 
         private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
         }
