@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmChangePass));
             this.metroContextMenu1 = new MetroFramework.Controls.MetroContextMenu(this.components);
             this.txtID = new Material_Design_for_Winform.MaterialTextField();
             this.txtOldPass = new Material_Design_for_Winform.MaterialTextField();
@@ -40,6 +41,8 @@
             this.mainProgressbar = new System.Windows.Forms.ProgressBar();
             this.btnAccept = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.btnExit = new MaterialSkin.Controls.MaterialButton();
             this.SuspendLayout();
             // 
             // metroContextMenu1
@@ -50,7 +53,7 @@
             // txtID
             // 
             this.txtID.AutoScaleColor = true;
-            this.txtID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtID.BackColor = System.Drawing.SystemColors.Control;
             this.txtID.Enabled = false;
             this.txtID.FloatingLabelText = "";
             this.txtID.FocusColor = System.Drawing.Color.DodgerBlue;
@@ -75,7 +78,7 @@
             // txtOldPass
             // 
             this.txtOldPass.AutoScaleColor = true;
-            this.txtOldPass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtOldPass.BackColor = System.Drawing.SystemColors.Control;
             this.txtOldPass.FloatingLabelText = "";
             this.txtOldPass.FocusColor = System.Drawing.Color.DodgerBlue;
             this.txtOldPass.Font = new System.Drawing.Font("Segoe UI", 11F);
@@ -98,7 +101,7 @@
             // txtNewPass
             // 
             this.txtNewPass.AutoScaleColor = true;
-            this.txtNewPass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtNewPass.BackColor = System.Drawing.SystemColors.Control;
             this.txtNewPass.FloatingLabelText = "";
             this.txtNewPass.FocusColor = System.Drawing.Color.DodgerBlue;
             this.txtNewPass.Font = new System.Drawing.Font("Segoe UI", 11F);
@@ -121,7 +124,7 @@
             // txtConfirmPass
             // 
             this.txtConfirmPass.AutoScaleColor = true;
-            this.txtConfirmPass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtConfirmPass.BackColor = System.Drawing.SystemColors.Control;
             this.txtConfirmPass.FloatingLabelText = "";
             this.txtConfirmPass.FocusColor = System.Drawing.Color.DodgerBlue;
             this.txtConfirmPass.Font = new System.Drawing.Font("Segoe UI", 11F);
@@ -211,12 +214,45 @@
             // 
             // btnClose
             // 
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Location = new System.Drawing.Point(250, 200);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(1, 1);
             this.btnClose.TabIndex = 30;
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI Semilight", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(161, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(179, 32);
+            this.label1.TabIndex = 31;
+            this.label1.Text = "ĐỔI MẬT KHẨU";
+            // 
+            // btnExit
+            // 
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnExit.Depth = 0;
+            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnExit.DrawShadows = true;
+            this.btnExit.HighEmphasis = true;
+            this.btnExit.Icon = ((System.Drawing.Image)(resources.GetObject("btnExit.Icon")));
+            this.btnExit.Location = new System.Drawing.Point(457, 0);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnExit.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(44, 36);
+            this.btnExit.TabIndex = 32;
+            this.btnExit.TabStop = false;
+            this.btnExit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
+            this.btnExit.UseAccentColor = false;
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // frmChangePass
             // 
@@ -225,6 +261,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(500, 400);
+            this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnAccept);
             this.Controls.Add(this.mainProgressbar);
@@ -235,16 +273,12 @@
             this.Controls.Add(this.txtNewPass);
             this.Controls.Add(this.txtOldPass);
             this.Controls.Add(this.txtID);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Movable = false;
             this.Name = "frmChangePass";
-            this.Resizable = false;
-            this.ShadowType = MetroFramework.Forms.MetroFormShadowType.AeroShadow;
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.Text = "Đổi mật khẩu";
-            this.TextAlign = MetroFramework.Forms.MetroFormTextAlign.Center;
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -263,5 +297,7 @@
         private System.Windows.Forms.ProgressBar mainProgressbar;
         private System.Windows.Forms.Button btnAccept;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Label label1;
+        private MaterialSkin.Controls.MaterialButton btnExit;
     }
 }

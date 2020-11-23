@@ -6,11 +6,13 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using TutteeFrame.Model;
 
 namespace TutteeFrame
 {
     public partial class frmSpashScreen : Form
     {
+
         int second = 1;
 
         public frmSpashScreen()
@@ -32,7 +34,7 @@ namespace TutteeFrame
             else
                 second--;
 
-                
+
 
         }
 

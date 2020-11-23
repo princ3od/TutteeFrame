@@ -108,6 +108,7 @@
     <Compile Include="frmChooseServer.Designer.cs">
       <DependentUpon>frmChooseServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImageHelper.cs" />
     <Compile Include="InitHelper.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Class.cs" />
@@ -175,6 +176,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\thongtinll.png" />
+    <None Include="Resources\thongtincanhan.png" />
+    <None Include="Resources\phonban.png" />
     <None Include="Resources\settings.png" />
     <None Include="Resources\password.png" />
     <None Include="Resources\log-out.png" />
