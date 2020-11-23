@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 
 namespace TutteeFrame.Model
 {
@@ -13,7 +14,6 @@ namespace TutteeFrame.Model
         private string address;
         private string mail;
         private string phone;
-
         private DateTime DateOfBirth;
         private bool sex;
 

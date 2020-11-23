@@ -4,7 +4,9 @@ using MetroFramework.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
@@ -283,28 +285,53 @@ namespace TutteeFrame
         #endregion
 
         #region Custom Function
+
+        //Đổi mảng byte sang ảnh
+        public Image byteArrayToImage(byte[] byteArrayIn)
+        {
+            
+            MemoryStream mem = new MemoryStream();
+            mem.Write(byteArrayIn, 0, byteArrayIn.Length);
+            Bitmap bitmap = new Bitmap(mem);
+            return bitmap;
+            
+                   
+        }
         void LoadAfterLogin()
         {
+            //Cắt ảnh đại diện thành hình tròn
+            System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
+            gp.AddEllipse(0, 0, pbProfilemainAvatar.Width - 1, pbProfilemainAvatar.Height - 1);
+            Region rg = new Region(gp);
+            pbProfilemainAvatar.Region = rg;
 
+            //Đổ dữ liệu 
             mainTeacher = Controller.Instance.usingTeacher;
             lbName.Text = mainTeacher.SurName + " " + mainTeacher.FirstName;
 
+            //Avatar
+            //pbProfilemainAvatar.Image = mainTeacher.Picture;
+            
+            //THÔNG TIN CÁ NHÂN
             lbMyName.Text = string.Format("{0} {1}", mainTeacher.SurName, mainTeacher.FirstName);
             lbImyID.Text = mainTeacher.ID;
             lbMyaddr.Text = mainTeacher.Address;
             lbMyemail.Text = mainTeacher.Mail;
             lbMyfonenum.Text = mainTeacher.Phone;
-            lbSubjectTeach.Text = mainTeacher.Subject.Name;
+            lbSubjectTeach.Text = "Bộ môn "+mainTeacher.Subject.Name;
             lbPosition.Text = mainTeacher.Position;
+            lbDateofbirth.Text = mainTeacher.DateOfBirth1.ToString("d");
             if (mainTeacher.Sex == true)
             {
                 lbGender.Text = "Giới tính nam";
 
             }
+              else
+            {
+                lbGender.Text = "Giới tính nữ";
+            }
+            pictureBox13.Visible = false;
 
-            lbIsAdmin.Visible = false;
-            lbIsMinstry.Visible = false;
-            lbJustTeacher.Visible = false;
 
 
             if (mainTeacher.Type == Teacher.TeacherType.Adminstrator)
@@ -315,24 +342,18 @@ namespace TutteeFrame
             }
             else if (mainTeacher.Type == Teacher.TeacherType.Ministry)
             {
-                lbIsMinstry.Text = "Ban giáo vụ";
-                lbIsMinstry.Visible = true;
+                lbGender.Text = "Giới tính nam";
+                pictureBox13.Visible = true;
             }
-            else
-
-            {
-                lbJustTeacher.Text = "Tổ " + mainTeacher.Subject.Name;
-                lbJustTeacher.Visible = true;
-            }
-
+          
             mainTabcontrol.TabPages.Clear();
             mainTabcontrol.TabPages.Add(tbpgProfile);
             mainTabcontrol.TabPages.Add(tbpgShedule);
-
+            //Phòng ban
             if (mainTeacher.ID == "AD999999")
             {
-                lbPostition.Text = "Adminstrator";
-                mainTabcontrol.TabPages.Add(tbgpTeacherManagment);
+                lbBelongtoOnCard.Text = "Adminstrator";
+                mainTabcontrol.TabPages.Add(tbpgTeacherManagment);
                 mainTabcontrol.TabPages.Add(tbpgStudentManagment);
                 mainTabcontrol.TabPages.Add(tbpgClassManagment);
                 mainTabcontrol.TabPages.Add(tbpgSubjectManagment);
@@ -345,22 +366,22 @@ namespace TutteeFrame
                 switch (mainTeacher.Type)
                 {
                     case Teacher.TeacherType.FormerTeacher:
-                        lbPostition.Text = "Giáo viên (GVCN)";
+                        lbBelongtoOnCard.Text = "Giáo viên bộ môn (Có chủ nhiệm)";                        
                         mainTabcontrol.TabPages.Add(tbpgFormClass);
                         mainTabcontrol.TabPages.Add(tbpgStudentMarkboard);
                         break;
                     case Teacher.TeacherType.Teacher:
-                        lbPostition.Text = "Giáo viên";
+                        lbBelongtoOnCard.Text = "Giáo viên bộ môn";
                         mainTabcontrol.TabPages.Add(tbpgStudentMarkboard);
                         break;
                     case Teacher.TeacherType.Adminstrator:
                         mainTabcontrol.TabPages.Add(tbgpTeacherManagment);
                         mainTabcontrol.TabPages.Add(tbpgSubjectManagment);
                         mainTabcontrol.TabPages.Add(tbpgReport);
-                        lbPostition.Text = "Ban giám hiệu";
+                        lbBelongtoOnCard.Text = "Ban giám hiệu";
                         break;
                     case Teacher.TeacherType.Ministry:
-                        lbPostition.Text = "Ban giáo vụ";
+                        lbBelongtoOnCard.Text = "Ban giáo vụ";
                         mainTabcontrol.TabPages.Add(tbpgStudentManagment);
                         mainTabcontrol.TabPages.Add(tbpgClassManagment);
                         mainTabcontrol.TabPages.Add(tbpgRewardManagment);
@@ -369,6 +390,12 @@ namespace TutteeFrame
                     default:
                         break;
                 }
+                if(lbBelongtoOnCard.Text== "Giáo viên bộ môn"|| lbBelongtoOnCard.Text == "Giáo viên bộ môn (Có chủ nhiệm)")
+                {
+                    lbBelongto.Text = "Tổ " + mainTeacher.Subject.Name;
+                }
+                else
+                    lbBelongto.Text = lbBelongtoOnCard.Text;
             }
             LoadData();
         }
