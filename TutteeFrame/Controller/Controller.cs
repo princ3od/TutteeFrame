@@ -7,6 +7,7 @@ using System.Text;
 using System.Windows.Forms;
 using MaterialSkin.Controls;
 using TutteeFrame.Model;
+using System.Data;
 
 namespace TutteeFrame
 {
@@ -320,6 +321,120 @@ namespace TutteeFrame
             teacher.Type = Teacher.TeacherType.Adminstrator;
             return AddTeacher(teacher);
         }
+        #region Nhóm các chức năng liên quan đến thông tin học sinh
+        /// <summary>
+        /// Hàm lấy thông tin về nhóm học sinh.
+        /// </summary>
+        /// <param name="classID"></param> (""/ khác "") nếu (lấy toàn bộ học sinh/ lấy những học sinh theo mã lớp
+        /// <returns></returns>
+        public List<StudentInfomation> GetInformationStudents(string classID,bool getKhoi =false)
+        {
+            return DataAccess.Instance.StudentsInformation(classID,getKhoi);
+        }
+        public  bool UpdateStudentToDataBase(string _studentid, StudentInfomation student)
+            
+        {
+            
+            return DataAccess.Instance.UpdateStudent(_studentid, student);
+        }
+        public bool AddNewStudentToDataBase(string _studentid, StudentInfomation student)
+        {
+            return DataAccess.Instance.AddStudent(_studentid, student);
+        }
+
+        public bool LoadStudentInformationById(string studentID,StudentInfomation student)
+        {
+            return DataAccess.Instance.LoadStudentByID(studentID, student);
+        }
+        public bool LoadStudentInformationByName(string studentName, List<StudentInfomation> students)
+        {
+            return DataAccess.Instance.LoadStudentsByName(studentName, students);
+        }
+
+        public bool DeleteStudent(string _studenID)
+        {
+            return DataAccess.Instance.DeleteStudent(_studenID);
+        }
+
+
+        public bool CountNumberOfStudent(ref int number)
+        {
+            return DataAccess.Instance.CountNumberOfStudent(ref number);
+        }
+        public bool GetDataSetPrepareToPrint(DataSet input, string classID)
+        {
+            return DataAccess.Instance.GetDataSetPrepareToPrint(input, classID);
+        }
+
+
+
+        #endregion
+
+        #region Nhóm các chức năng liên quan tới thông tin lớp học
+
+        public bool CountNumberOfClass(ref int number )
+        {
+            return DataAccess.Instance.CountNumberOfClass(ref number);
+        }
+        public List <Class> GetClass(string Khoi)
+        {
+            return DataAccess.Instance.Lops(Khoi);
+        }
+        #endregion
+
+        #region Nhóm các funtion chuyển đổi ảnh qua binary và ngược lại
+        public static byte[] GetPhoto(string filePath)
+        {
+            FileStream stream = new FileStream(
+                filePath, FileMode.Open, FileAccess.Read);
+            BinaryReader reader = new BinaryReader(stream);
+
+            byte[] photo = reader.ReadBytes((int)stream.Length);
+
+            reader.Close();
+            stream.Close();
+
+            return photo;
+        }
+        public Image byteArrayToImage(byte[] byteArrayIn)
+        {
+            MemoryStream ms = new MemoryStream(byteArrayIn);
+            Image returnImage = Image.FromStream(ms);
+            return returnImage;
+
+        }
+        public byte[] ImageToByteArray(System.Drawing.Image imageIn)
+        {
+            using (var ms = new MemoryStream())
+            {
+                imageIn.Save(ms, imageIn.RawFormat);
+                return ms.ToArray();
+            }
+        }
+        #endregion
+
+        #region Nhóm chức năng hỗ trợ logic
+      public  bool IsDigitsOnly(string str)
+        {
+            if (str == null) return false;
+            foreach (char c in str)
+            {
+                if (c < '0' || c > '9')
+                    return false;
+            }
+
+            return true;
+        }
+        #endregion
+
+        #region Nhóm chức năng liên quan đến môn học
+
+        public bool GetAllSubjectInformation(List<Subject> listSubject)
+        {
+            return DataAccess.Instance.GetAllSubjectInformation(listSubject);
+        }
+        #endregion
+
         public bool LoadSubjects()
         {
             return DataAccess.Instance.LoadSubjects(subjects);
