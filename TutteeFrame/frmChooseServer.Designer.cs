@@ -37,15 +37,15 @@
             this.txtPort = new Material_Design_for_Winform.MaterialTextField();
             this.txtServerName = new Material_Design_for_Winform.MaterialTextField();
             this.btnAcept = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnExit = new MaterialSkin.Controls.MaterialButton();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semilight", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(91, 128);
+            this.label1.Location = new System.Drawing.Point(97, 42);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(153, 30);
             this.label1.TabIndex = 2;
@@ -55,7 +55,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI Semilight", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(105, 299);
+            this.label2.Location = new System.Drawing.Point(111, 213);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(115, 30);
             this.label2.TabIndex = 5;
@@ -69,27 +69,27 @@
             this.btnConfirm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnConfirm.Icon = null;
-            this.btnConfirm.Location = new System.Drawing.Point(82, 457);
+            this.btnConfirm.Location = new System.Drawing.Point(88, 371);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Radius = 2;
-            this.btnConfirm.ShadowDepth = 0;
+            this.btnConfirm.ShadowDepth = 3;
             this.btnConfirm.ShadowOpacity = 35;
             this.btnConfirm.Size = new System.Drawing.Size(162, 55);
             this.btnConfirm.TabIndex = 5;
-            this.btnConfirm.Text = "XÁC NHẬN";
+            this.btnConfirm.Text = "Xác nhận";
             this.btnConfirm.TextAlign = System.Drawing.StringAlignment.Center;
             this.btnConfirm.Click += new System.EventHandler(this.btnConnect_Click);
             // 
             // txtPassword
             // 
             this.txtPassword.AutoScaleColor = true;
-            this.txtPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtPassword.BackColor = System.Drawing.SystemColors.Control;
             this.txtPassword.FloatingLabelText = "Mật khẩu";
             this.txtPassword.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtPassword.HideSelection = true;
             this.txtPassword.HintText = "có thể trống";
-            this.txtPassword.Location = new System.Drawing.Point(70, 398);
+            this.txtPassword.Location = new System.Drawing.Point(76, 312);
             this.txtPassword.MaxLength = 32767;
             this.txtPassword.Multiline = false;
             this.txtPassword.Name = "txtPassword";
@@ -106,13 +106,13 @@
             // txtAccount
             // 
             this.txtAccount.AutoScaleColor = true;
-            this.txtAccount.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtAccount.BackColor = System.Drawing.SystemColors.Control;
             this.txtAccount.FloatingLabelText = "Tên tài khoản";
             this.txtAccount.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
             this.txtAccount.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtAccount.HideSelection = true;
             this.txtAccount.HintText = "";
-            this.txtAccount.Location = new System.Drawing.Point(70, 347);
+            this.txtAccount.Location = new System.Drawing.Point(76, 261);
             this.txtAccount.MaxLength = 32767;
             this.txtAccount.Multiline = false;
             this.txtAccount.Name = "txtAccount";
@@ -129,13 +129,13 @@
             // txtPort
             // 
             this.txtPort.AutoScaleColor = true;
-            this.txtPort.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtPort.BackColor = System.Drawing.SystemColors.Control;
             this.txtPort.FloatingLabelText = "Số cổng";
             this.txtPort.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
             this.txtPort.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtPort.HideSelection = true;
             this.txtPort.HintText = "Port number";
-            this.txtPort.Location = new System.Drawing.Point(70, 228);
+            this.txtPort.Location = new System.Drawing.Point(76, 142);
             this.txtPort.MaxLength = 32767;
             this.txtPort.Multiline = false;
             this.txtPort.Name = "txtPort";
@@ -153,13 +153,13 @@
             // txtServerName
             // 
             this.txtServerName.AutoScaleColor = true;
-            this.txtServerName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtServerName.BackColor = System.Drawing.SystemColors.Control;
             this.txtServerName.FloatingLabelText = "Tên server";
             this.txtServerName.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
             this.txtServerName.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtServerName.HideSelection = true;
             this.txtServerName.HintText = "Có thể là địa chỉ IP";
-            this.txtServerName.Location = new System.Drawing.Point(70, 177);
+            this.txtServerName.Location = new System.Drawing.Point(76, 91);
             this.txtServerName.MaxLength = 32767;
             this.txtServerName.Multiline = false;
             this.txtServerName.Name = "txtServerName";
@@ -175,7 +175,8 @@
             // 
             // btnAcept
             // 
-            this.btnAcept.Location = new System.Drawing.Point(10, 488);
+            this.btnAcept.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnAcept.Location = new System.Drawing.Point(10, 400);
             this.btnAcept.Name = "btnAcept";
             this.btnAcept.Size = new System.Drawing.Size(0, 0);
             this.btnAcept.TabIndex = 0;
@@ -183,28 +184,47 @@
             this.btnAcept.UseVisualStyleBackColor = true;
             this.btnAcept.Click += new System.EventHandler(this.btnAcept_Click);
             // 
-            // pictureBox1
+            // btnClose
             // 
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pictureBox1.InitialImage = null;
-            this.pictureBox1.Location = new System.Drawing.Point(45, 33);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(259, 65);
-            this.pictureBox1.TabIndex = 7;
-            this.pictureBox1.TabStop = false;
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.Location = new System.Drawing.Point(10, 300);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(1, 1);
+            this.btnClose.TabIndex = 27;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnExit
+            // 
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnExit.Depth = 0;
+            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnExit.DrawShadows = true;
+            this.btnExit.HighEmphasis = true;
+            this.btnExit.Icon = ((System.Drawing.Image)(resources.GetObject("btnExit.Icon")));
+            this.btnExit.Location = new System.Drawing.Point(307, 0);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnExit.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(44, 36);
+            this.btnExit.TabIndex = 28;
+            this.btnExit.TabStop = false;
+            this.btnExit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
+            this.btnExit.UseAccentColor = false;
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // frmChooseServer
             // 
             this.AcceptButton = this.btnAcept;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
-            this.ClientSize = new System.Drawing.Size(345, 555);
+            this.CancelButton = this.btnClose;
+            this.ClientSize = new System.Drawing.Size(350, 480);
+            this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnAcept);
-            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtPassword);
@@ -212,17 +232,17 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPort);
             this.Controls.Add(this.txtServerName);
-            this.DisplayHeader = false;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmChooseServer";
             this.Padding = new System.Windows.Forms.Padding(20, 30, 20, 20);
-            this.Resizable = false;
-            this.ShadowType = MetroFramework.Forms.MetroFormShadowType.DropShadow;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "TutteeFrame";
             this.Load += new System.EventHandler(this.frmChooseServer_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -238,6 +258,7 @@
         private Material_Design_for_Winform.MaterialTextField txtPassword;
         private Material_Design_for_Winform.MaterialTextField txtAccount;
         private Material_Design_for_Winform.MaterialRaisedButton btnConfirm;
-        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnClose;
+        private MaterialSkin.Controls.MaterialButton btnExit;
     }
 }

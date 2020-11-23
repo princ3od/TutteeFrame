@@ -112,6 +112,11 @@
     </Compile>
     <Compile Include="frmAddNewSubject.Designer.cs">
       <DependentUpon>frmAddNewSubject.cs</DependentUpon>
+    <Compile Include="frmChangePass.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmChangePass.Designer.cs">
+      <DependentUpon>frmChangePass.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
@@ -149,6 +154,7 @@
     <Compile Include="frmChooseServer.Designer.cs">
       <DependentUpon>frmChooseServer.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImageHelper.cs" />
     <Compile Include="InitHelper.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Class.cs" />
@@ -174,6 +180,8 @@
     <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="frmAddNewSubject.resx">
       <DependentUpon>frmAddNewSubject.cs</DependentUpon>
+    <EmbeddedResource Include="frmChangePass.resx">
+      <DependentUpon>frmChangePass.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
@@ -260,6 +268,9 @@
     <None Include="Resources\fastforward.png" />
     <None Include="Resources\backfastforward.png" />
     <None Include="Resources\back.png" />
+    <None Include="Resources\thongtinll.png" />
+    <None Include="Resources\thongtincanhan.png" />
+    <None Include="Resources\phonban.png" />
     <None Include="Resources\settings.png" />
     <None Include="Resources\password.png" />
     <None Include="Resources\log-out.png" />

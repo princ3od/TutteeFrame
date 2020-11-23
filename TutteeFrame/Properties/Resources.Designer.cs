@@ -83,9 +83,9 @@ namespace TutteeFrame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _21104 {
+        internal static System.Drawing.Bitmap default_avatar {
             get {
-                object obj = ResourceManager.GetObject("21104", resourceCulture);
+                object obj = ResourceManager.GetObject("default_avatar", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -236,6 +236,9 @@ namespace TutteeFrame.Properties {
         internal static System.Drawing.Bitmap Screenshot_2020_11_13_001747 {
             get {
                 object obj = ResourceManager.GetObject("Screenshot 2020-11-13 001747", resourceCulture);
+        internal static System.Drawing.Bitmap phonban {
+            get {
+                object obj = ResourceManager.GetObject("phonban", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -256,6 +259,19 @@ namespace TutteeFrame.Properties {
         internal static System.Drawing.Bitmap user {
             get {
                 object obj = ResourceManager.GetObject("user", resourceCulture);
+        internal static System.Drawing.Bitmap thongtincanhan {
+            get {
+                object obj = ResourceManager.GetObject("thongtincanhan", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap thongtinll {
+            get {
+                object obj = ResourceManager.GetObject("thongtinll", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

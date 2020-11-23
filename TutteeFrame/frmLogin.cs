@@ -7,7 +7,7 @@ using System.Windows.Forms;
 
 namespace TutteeFrame
 {
-    public partial class FormLogin : Form
+    public partial class frmLogin : Form
     {
         #region Win32 Form
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -35,9 +35,13 @@ namespace TutteeFrame
         bool connectSuccess = false;
         bool loadSuccess = true;
 
-        public FormLogin()
+        public frmLogin()
         {
             InitializeComponent();
+            btnAccept.Click += (s, e) =>
+            {
+                btnLogin.PerformClick();
+            };
         }
         protected override void OnShown(EventArgs e)
         {
@@ -52,7 +56,14 @@ namespace TutteeFrame
             if (!cbxRememberme.Checked)
                 return;
             txtID.Text = InitHelper.Instance.Read("LastID", "Application");
-            txtPass.Text = Encryption.Decrypt(InitHelper.Instance.Read("LastPass", "Application"), txtID.Text);
+            try
+            {
+                txtPass.Text = Encryption.Decrypt(InitHelper.Instance.Read("LastPass", "Application"), txtID.Text);
+            }
+            catch
+            {
+                txtPass.Text = "";
+            }
         }
         private void FormLogin_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -185,6 +196,13 @@ namespace TutteeFrame
         private void cbxRememberme_CheckedChanged(object sender, EventArgs e)
         {
             InitHelper.Instance.Write("RememberMe", cbxRememberme.Checked.ToString(), "Application");
+        }
+
+        private void btnChooseServer_Click(object sender, EventArgs e)
+        {
+            frmChooseServer frmChooseServer = new frmChooseServer();
+            OverlayForm overlayForm = new OverlayForm(this, frmChooseServer);
+            frmChooseServer.Show();
         }
     }
 }

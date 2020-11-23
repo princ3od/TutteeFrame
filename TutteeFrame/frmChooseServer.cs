@@ -1,28 +1,41 @@
 ﻿using Material_Design_for_Winform;
-using MetroFramework.Forms;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
-using TutteeFrame.Model;
-using TutteeFrame.Properties;
 
 namespace TutteeFrame
 {
-    public partial class frmChooseServer : MetroForm
+    public partial class frmChooseServer : Form
     {
         public bool connected = false;
         public frmChooseServer()
         {
             InitializeComponent();
+            this.SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            this.UpdateStyles();
+            this.DoubleBuffered = true;
         }
+        #region Win32 Form
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
 
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                const int CS_DROPSHADOW = 0x20000;
+                CreateParams cp = base.CreateParams;
+                cp.ClassStyle |= CS_DROPSHADOW;
+                return cp;
+            }
+        }
+        #endregion
         private void frmChooseServer_Load(object sender, EventArgs e)
         {
             txtServerName.Text = InitHelper.Instance.Read("ServerName", "Database");
@@ -85,9 +98,14 @@ namespace TutteeFrame
                 btnConfirm.PerformClick();
         }
 
-        private void btnCreateAdmin_Click(object sender, EventArgs e)
+        private void btnClose_Click(object sender, EventArgs e)
         {
-            
+            this.Close();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

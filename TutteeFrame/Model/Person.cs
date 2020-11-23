@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Drawing;
 
 namespace TutteeFrame.Model
 {
@@ -13,6 +14,8 @@ namespace TutteeFrame.Model
         private string address;
         private string mail;
         private string phone;
+        private DateTime DateOfBirth;
+        private bool sex;
 
         public string ID { get => iD; set => iD = value; }
         public string SurName { get => surName; set => surName = value; }
@@ -20,7 +23,11 @@ namespace TutteeFrame.Model
         public string Address { get => address; set => address = value; }
         public string Mail { get => mail; set => mail = value; }
         public string Phone { get => phone; set => phone = value; }
-
-
+        public bool Sex { get => sex; set => sex = value; }
+        public DateTime DateOfBirth1 { get => DateOfBirth; set => DateOfBirth = value; }
+        public string GetSex
+        {
+            get => (sex) ? "Nam" : "Nữ";
+        }
     }
 }

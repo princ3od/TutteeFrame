@@ -11,19 +11,6 @@ namespace TutteeFrame
     class OverlayForm : Form
     {
 
-        protected override void DefWndProc(ref Message m)
-        {
-            const int WM_MOUSEACTIVATE = 0x21;
-            const int MA_NOACTIVATE = 0x0003;
-
-            switch (m.Msg)
-            {
-                case WM_MOUSEACTIVATE:
-                    m.Result = (IntPtr)MA_NOACTIVATE;
-                    return;
-            }
-            base.DefWndProc(ref m);
-        }
         public OverlayForm(Form _parent, Form _child)
         {
             this.ControlBox = false;
@@ -36,10 +23,18 @@ namespace TutteeFrame
             this.Size = _parent.Size;
             this.Location = _parent.Location;
             this.Enabled = false;
+            this.Owner = _parent;
+            this.Activated += (s, e) =>
+            {
+                _child.Activate();
+            };
+            _child.Owner = _parent;
+            _child.ShowInTaskbar = false;
+            _child.Location = new Point(this.Location.X + this.Width / 2 - _child.Width / 2, this.Location.Y + this.Height / 2 - _child.Height / 2);
             _child.FormClosed += (s, e) =>
             {
                 this.Close();
-                _parent.Focus();
+                //_parent.Focus();
             };
             this.Show();
         }
