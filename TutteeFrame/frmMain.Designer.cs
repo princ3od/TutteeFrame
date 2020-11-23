@@ -49,10 +49,12 @@
             this.studentStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colKyluat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.mgStudentmenuContent = new MetroFramework.Controls.MetroContextMenu(this.components);
+            this.delContent = new System.Windows.Forms.ToolStripMenuItem();
+            this.fixContent = new System.Windows.Forms.ToolStripMenuItem();
+            this.addContent = new System.Windows.Forms.ToolStripMenuItem();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
             this.btnAdd = new Material_Design_for_Winform.MaterialRaisedButton();
             this.btnFix = new Material_Design_for_Winform.MaterialRaisedButton();
-            this.btnPrint = new Material_Design_for_Winform.MaterialRaisedButton();
             this.btnDel = new Material_Design_for_Winform.MaterialRaisedButton();
             this.metroPanel6 = new MetroFramework.Controls.MetroPanel();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
@@ -75,51 +77,36 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.pnProfile = new System.Windows.Forms.Panel();
             this.materialCard1 = new MaterialSkin.Controls.MaterialCard();
+            this.btnLogout = new Material_Design_for_Winform.MaterialFlatButton();
+            this.btnChangePass = new Material_Design_for_Winform.MaterialFlatButton();
+            this.btnSetting = new Material_Design_for_Winform.MaterialFlatButton();
+            this.btnShowMore = new MaterialSkin.Controls.MaterialButton();
             this.materialDivider2 = new MaterialSkin.Controls.MaterialDivider();
+            this.ptbAvatar = new System.Windows.Forms.PictureBox();
             this.lbPostition = new MaterialSkin.Controls.MaterialLabel();
             this.lbName = new MaterialSkin.Controls.MaterialLabel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.materialDivider1 = new MaterialSkin.Controls.MaterialDivider();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.materialDivider3 = new MaterialSkin.Controls.MaterialDivider();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.ShowListBackGroundWork = new System.ComponentModel.BackgroundWorker();
             this.SearchListBackGroundWork = new System.ComponentModel.BackgroundWorker();
-            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
-            this.metroPanel4 = new MetroFramework.Controls.MetroPanel();
-            this.metroPanel5 = new MetroFramework.Controls.MetroPanel();
-            this.metroPanel7 = new MetroFramework.Controls.MetroPanel();
-            this.metroPanel8 = new MetroFramework.Controls.MetroPanel();
-            this.metroPanel9 = new MetroFramework.Controls.MetroPanel();
-            this.lvSubjectManage = new MetroFramework.Controls.MetroListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.ManageSubjectBackgroundWork = new System.ComponentModel.BackgroundWorker();
-            this.btnLogout = new Material_Design_for_Winform.MaterialFlatButton();
-            this.btnChangePass = new Material_Design_for_Winform.MaterialFlatButton();
-            this.btnSetting = new Material_Design_for_Winform.MaterialFlatButton();
-            this.btnShowMore = new MaterialSkin.Controls.MaterialButton();
-            this.ptbAvatar = new System.Windows.Forms.PictureBox();
-            this.delContent = new System.Windows.Forms.ToolStripMenuItem();
-            this.fixContent = new System.Windows.Forms.ToolStripMenuItem();
-            this.addContent = new System.Windows.Forms.ToolStripMenuItem();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnPrint = new Material_Design_for_Winform.MaterialRaisedButton();
             this.mainTabcontrol.SuspendLayout();
             this.tbpgStudentManagment.SuspendLayout();
             this.metroPanel3.SuspendLayout();
             this.mgStudentmenuContent.SuspendLayout();
             this.metroPanel2.SuspendLayout();
             this.metroPanel1.SuspendLayout();
-            this.tbpgSubjectManagment.SuspendLayout();
             this.pnProfile.SuspendLayout();
             this.materialCard1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.metroPanel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbAvatar)).BeginInit();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // materialDrawer1
@@ -193,10 +180,10 @@
             // tbpgTeacherManagment
             // 
             this.tbpgTeacherManagment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgTeacherManagment.Location = new System.Drawing.Point(4, 22);
+            this.tbpgTeacherManagment.Location = new System.Drawing.Point(4, 24);
             this.tbpgTeacherManagment.Name = "tbpgTeacherManagment";
             this.tbpgTeacherManagment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgTeacherManagment.Size = new System.Drawing.Size(931, 559);
+            this.tbpgTeacherManagment.Size = new System.Drawing.Size(931, 557);
             this.tbpgTeacherManagment.TabIndex = 2;
             this.tbpgTeacherManagment.Text = "quản lí giáo viên";
             this.tbpgTeacherManagment.UseVisualStyleBackColor = true;
@@ -208,10 +195,10 @@
             this.tbpgStudentManagment.Controls.Add(this.metroPanel2);
             this.tbpgStudentManagment.Controls.Add(this.metroPanel1);
             this.tbpgStudentManagment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgStudentManagment.Location = new System.Drawing.Point(4, 22);
+            this.tbpgStudentManagment.Location = new System.Drawing.Point(4, 24);
             this.tbpgStudentManagment.Name = "tbpgStudentManagment";
             this.tbpgStudentManagment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgStudentManagment.Size = new System.Drawing.Size(931, 559);
+            this.tbpgStudentManagment.Size = new System.Drawing.Size(931, 557);
             this.tbpgStudentManagment.TabIndex = 3;
             this.tbpgStudentManagment.Text = "quản lí học sinh";
             // 
@@ -224,7 +211,7 @@
             this.metroPanel3.HorizontalScrollbarSize = 10;
             this.metroPanel3.Location = new System.Drawing.Point(3, 139);
             this.metroPanel3.Name = "metroPanel3";
-            this.metroPanel3.Size = new System.Drawing.Size(925, 318);
+            this.metroPanel3.Size = new System.Drawing.Size(925, 316);
             this.metroPanel3.TabIndex = 2;
             this.metroPanel3.VerticalScrollbarBarColor = true;
             this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
@@ -253,7 +240,7 @@
             this.ListViewStudents.Location = new System.Drawing.Point(0, 0);
             this.ListViewStudents.Name = "ListViewStudents";
             this.ListViewStudents.OwnerDraw = true;
-            this.ListViewStudents.Size = new System.Drawing.Size(925, 318);
+            this.ListViewStudents.Size = new System.Drawing.Size(925, 316);
             this.ListViewStudents.TabIndex = 3;
             this.ListViewStudents.UseCompatibleStateImageBehavior = false;
             this.ListViewStudents.UseSelectable = true;
@@ -269,55 +256,46 @@
             // studentSurname
             // 
             this.studentSurname.Text = "Họ";
-            this.studentSurname.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.studentSurname.Width = 120;
             // 
             // studentFirstname
             // 
             this.studentFirstname.Text = "Tên";
-            this.studentFirstname.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.studentFirstname.Width = 120;
             // 
             // studentBornDate
             // 
             this.studentBornDate.Text = "Ngày Sinh";
-            this.studentBornDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.studentBornDate.Width = 120;
             // 
             // studentSex
             // 
             this.studentSex.Text = "Giới tính";
-            this.studentSex.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.studentSex.Width = 120;
             // 
             // studentAddress
             // 
             this.studentAddress.Text = "Địa chỉ";
-            this.studentAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.studentAddress.Width = 120;
             // 
             // studentPhone
             // 
             this.studentPhone.Text = "Số điện thoại";
-            this.studentPhone.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.studentPhone.Width = 120;
             // 
             // studentClassID
             // 
             this.studentClassID.Text = "Tên lớp";
-            this.studentClassID.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.studentClassID.Width = 120;
             // 
             // studentStatus
             // 
             this.studentStatus.Text = "Tình trạng";
-            this.studentStatus.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.studentStatus.Width = 120;
             // 
             // colKyluat
             // 
             this.colKyluat.Text = "Kỷ luật số";
-            this.colKyluat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.colKyluat.Width = 120;
             // 
             // mgStudentmenuContent
@@ -328,6 +306,30 @@
             this.addContent});
             this.mgStudentmenuContent.Name = "metroContextMenu1";
             this.mgStudentmenuContent.Size = new System.Drawing.Size(105, 70);
+            // 
+            // delContent
+            // 
+            this.delContent.Image = global::TutteeFrame.Properties.Resources.delete;
+            this.delContent.Name = "delContent";
+            this.delContent.Size = new System.Drawing.Size(104, 22);
+            this.delContent.Text = "Xóa";
+            this.delContent.Click += new System.EventHandler(this.delContent_Click);
+            // 
+            // fixContent
+            // 
+            this.fixContent.Image = global::TutteeFrame.Properties.Resources.penbook;
+            this.fixContent.Name = "fixContent";
+            this.fixContent.Size = new System.Drawing.Size(104, 22);
+            this.fixContent.Text = "Sửa";
+            this.fixContent.Click += new System.EventHandler(this.fixContent_Click);
+            // 
+            // addContent
+            // 
+            this.addContent.Image = global::TutteeFrame.Properties.Resources.addperson;
+            this.addContent.Name = "addContent";
+            this.addContent.Size = new System.Drawing.Size(104, 22);
+            this.addContent.Text = "Thêm";
+            this.addContent.Click += new System.EventHandler(this.addContent_Click);
             // 
             // metroPanel2
             // 
@@ -340,7 +342,7 @@
             this.metroPanel2.HorizontalScrollbarBarColor = true;
             this.metroPanel2.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel2.HorizontalScrollbarSize = 10;
-            this.metroPanel2.Location = new System.Drawing.Point(3, 457);
+            this.metroPanel2.Location = new System.Drawing.Point(3, 455);
             this.metroPanel2.Name = "metroPanel2";
             this.metroPanel2.Size = new System.Drawing.Size(925, 99);
             this.metroPanel2.TabIndex = 1;
@@ -385,25 +387,6 @@
             this.btnFix.Text = "Sửa thông tin học sinh";
             this.btnFix.TextAlign = System.Drawing.StringAlignment.Center;
             this.btnFix.Click += new System.EventHandler(this.materialRaisedButton2_Click);
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.BackColor = System.Drawing.Color.Transparent;
-            this.btnPrint.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.btnPrint.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
-            this.btnPrint.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnPrint.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
-            this.btnPrint.Icon = null;
-            this.btnPrint.Location = new System.Drawing.Point(594, 35);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Radius = 2;
-            this.btnPrint.ShadowDepth = 0;
-            this.btnPrint.ShadowOpacity = 35;
-            this.btnPrint.Size = new System.Drawing.Size(147, 45);
-            this.btnPrint.TabIndex = 45;
-            this.btnPrint.Text = "In danh sách";
-            this.btnPrint.TextAlign = System.Drawing.StringAlignment.Center;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnDel
             // 
@@ -629,16 +612,11 @@
             // 
             // tbpgSubjectManagment
             // 
-            this.tbpgSubjectManagment.Controls.Add(this.metroPanel9);
-            this.tbpgSubjectManagment.Controls.Add(this.metroPanel8);
-            this.tbpgSubjectManagment.Controls.Add(this.metroPanel7);
-            this.tbpgSubjectManagment.Controls.Add(this.metroPanel5);
-            this.tbpgSubjectManagment.Controls.Add(this.metroPanel4);
             this.tbpgSubjectManagment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgSubjectManagment.Location = new System.Drawing.Point(4, 24);
+            this.tbpgSubjectManagment.Location = new System.Drawing.Point(4, 22);
             this.tbpgSubjectManagment.Name = "tbpgSubjectManagment";
             this.tbpgSubjectManagment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgSubjectManagment.Size = new System.Drawing.Size(931, 557);
+            this.tbpgSubjectManagment.Size = new System.Drawing.Size(931, 559);
             this.tbpgSubjectManagment.TabIndex = 4;
             this.tbpgSubjectManagment.Text = "quản lí môn";
             this.tbpgSubjectManagment.UseVisualStyleBackColor = true;
@@ -727,6 +705,68 @@
             this.materialCard1.Size = new System.Drawing.Size(290, 60);
             this.materialCard1.TabIndex = 2;
             // 
+            // btnLogout
+            // 
+            this.btnLogout.BackColor = System.Drawing.Color.Transparent;
+            this.btnLogout.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
+            this.btnLogout.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
+            this.btnLogout.ForeColor = System.Drawing.Color.Red;
+            this.btnLogout.Icon = ((System.Drawing.Image)(resources.GetObject("btnLogout.Icon")));
+            this.btnLogout.Location = new System.Drawing.Point(-1, 173);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(292, 45);
+            this.btnLogout.TabIndex = 10;
+            this.btnLogout.Text = "Đăng xuất";
+            this.btnLogout.TextAlign = System.Drawing.StringAlignment.Near;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
+            // btnChangePass
+            // 
+            this.btnChangePass.BackColor = System.Drawing.Color.Transparent;
+            this.btnChangePass.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
+            this.btnChangePass.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
+            this.btnChangePass.ForeColor = System.Drawing.Color.Black;
+            this.btnChangePass.Icon = ((System.Drawing.Image)(resources.GetObject("btnChangePass.Icon")));
+            this.btnChangePass.Location = new System.Drawing.Point(-1, 128);
+            this.btnChangePass.Name = "btnChangePass";
+            this.btnChangePass.Size = new System.Drawing.Size(292, 45);
+            this.btnChangePass.TabIndex = 9;
+            this.btnChangePass.Text = "Đổi mật khẩu";
+            this.btnChangePass.TextAlign = System.Drawing.StringAlignment.Near;
+            // 
+            // btnSetting
+            // 
+            this.btnSetting.BackColor = System.Drawing.Color.Transparent;
+            this.btnSetting.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
+            this.btnSetting.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
+            this.btnSetting.ForeColor = System.Drawing.Color.Black;
+            this.btnSetting.Icon = ((System.Drawing.Image)(resources.GetObject("btnSetting.Icon")));
+            this.btnSetting.Location = new System.Drawing.Point(-1, 83);
+            this.btnSetting.Name = "btnSetting";
+            this.btnSetting.Size = new System.Drawing.Size(292, 45);
+            this.btnSetting.TabIndex = 8;
+            this.btnSetting.Text = "Cài đặt";
+            this.btnSetting.TextAlign = System.Drawing.StringAlignment.Near;
+            // 
+            // btnShowMore
+            // 
+            this.btnShowMore.AutoSize = false;
+            this.btnShowMore.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnShowMore.Depth = 0;
+            this.btnShowMore.DrawShadows = false;
+            this.btnShowMore.HighEmphasis = false;
+            this.btnShowMore.Icon = ((System.Drawing.Image)(resources.GetObject("btnShowMore.Icon")));
+            this.btnShowMore.Location = new System.Drawing.Point(240, 10);
+            this.btnShowMore.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnShowMore.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnShowMore.Name = "btnShowMore";
+            this.btnShowMore.Size = new System.Drawing.Size(42, 35);
+            this.btnShowMore.TabIndex = 7;
+            this.btnShowMore.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
+            this.btnShowMore.UseAccentColor = false;
+            this.btnShowMore.UseVisualStyleBackColor = true;
+            this.btnShowMore.Click += new System.EventHandler(this.materialButton3_Click);
+            // 
             // materialDivider2
             // 
             this.materialDivider2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -737,6 +777,17 @@
             this.materialDivider2.Size = new System.Drawing.Size(175, 1);
             this.materialDivider2.TabIndex = 5;
             this.materialDivider2.Text = "materialDivider2";
+            // 
+            // ptbAvatar
+            // 
+            this.ptbAvatar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ptbAvatar.Image = global::TutteeFrame.Properties.Resources._21104;
+            this.ptbAvatar.Location = new System.Drawing.Point(16, 10);
+            this.ptbAvatar.Name = "ptbAvatar";
+            this.ptbAvatar.Size = new System.Drawing.Size(40, 40);
+            this.ptbAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ptbAvatar.TabIndex = 4;
+            this.ptbAvatar.TabStop = false;
             // 
             // lbPostition
             // 
@@ -786,6 +837,17 @@
             this.materialDivider1.Size = new System.Drawing.Size(175, 1);
             this.materialDivider1.TabIndex = 2;
             this.materialDivider1.Text = "materialDivider1";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(100, 13);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(55, 55);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MovableForm);
             // 
             // materialLabel1
             // 
@@ -853,245 +915,28 @@
             this.SearchListBackGroundWork.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.SearchListBackGroundWork_ProgressChanged);
             this.SearchListBackGroundWork.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.SearchListBackGroundWork_RunWorkerCompleted);
             // 
-            // metroLabel2
+            // btnPrint
             // 
-            this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(-15, -15);
-            this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(83, 19);
-            this.metroLabel2.TabIndex = 7;
-            this.metroLabel2.Text = "metroLabel2";
-            // 
-            // metroPanel4
-            // 
-            this.metroPanel4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.metroPanel4.HorizontalScrollbarBarColor = true;
-            this.metroPanel4.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel4.HorizontalScrollbarSize = 10;
-            this.metroPanel4.Location = new System.Drawing.Point(3, 3);
-            this.metroPanel4.Name = "metroPanel4";
-            this.metroPanel4.Size = new System.Drawing.Size(35, 551);
-            this.metroPanel4.TabIndex = 0;
-            this.metroPanel4.VerticalScrollbarBarColor = true;
-            this.metroPanel4.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel4.VerticalScrollbarSize = 10;
-            this.metroPanel4.Paint += new System.Windows.Forms.PaintEventHandler(this.metroPanel4_Paint);
-            // 
-            // metroPanel5
-            // 
-            this.metroPanel5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.metroPanel5.HorizontalScrollbarBarColor = true;
-            this.metroPanel5.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel5.HorizontalScrollbarSize = 10;
-            this.metroPanel5.Location = new System.Drawing.Point(891, 3);
-            this.metroPanel5.Name = "metroPanel5";
-            this.metroPanel5.Size = new System.Drawing.Size(37, 551);
-            this.metroPanel5.TabIndex = 1;
-            this.metroPanel5.VerticalScrollbarBarColor = true;
-            this.metroPanel5.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel5.VerticalScrollbarSize = 10;
-            // 
-            // metroPanel7
-            // 
-            this.metroPanel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.metroPanel7.HorizontalScrollbarBarColor = true;
-            this.metroPanel7.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel7.HorizontalScrollbarSize = 10;
-            this.metroPanel7.Location = new System.Drawing.Point(38, 412);
-            this.metroPanel7.Name = "metroPanel7";
-            this.metroPanel7.Size = new System.Drawing.Size(853, 142);
-            this.metroPanel7.TabIndex = 2;
-            this.metroPanel7.VerticalScrollbarBarColor = true;
-            this.metroPanel7.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel7.VerticalScrollbarSize = 10;
-            // 
-            // metroPanel8
-            // 
-            this.metroPanel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.metroPanel8.HorizontalScrollbarBarColor = true;
-            this.metroPanel8.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel8.HorizontalScrollbarSize = 10;
-            this.metroPanel8.Location = new System.Drawing.Point(38, 3);
-            this.metroPanel8.Name = "metroPanel8";
-            this.metroPanel8.Size = new System.Drawing.Size(853, 82);
-            this.metroPanel8.TabIndex = 3;
-            this.metroPanel8.VerticalScrollbarBarColor = true;
-            this.metroPanel8.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel8.VerticalScrollbarSize = 10;
-            // 
-            // metroPanel9
-            // 
-            this.metroPanel9.Controls.Add(this.lvSubjectManage);
-            this.metroPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroPanel9.HorizontalScrollbarBarColor = true;
-            this.metroPanel9.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel9.HorizontalScrollbarSize = 10;
-            this.metroPanel9.Location = new System.Drawing.Point(38, 85);
-            this.metroPanel9.Name = "metroPanel9";
-            this.metroPanel9.Size = new System.Drawing.Size(853, 327);
-            this.metroPanel9.TabIndex = 4;
-            this.metroPanel9.VerticalScrollbarBarColor = true;
-            this.metroPanel9.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel9.VerticalScrollbarSize = 10;
-            // 
-            // lvSubjectManage
-            // 
-            this.lvSubjectManage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lvSubjectManage.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lvSubjectManage.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
-            this.lvSubjectManage.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lvSubjectManage.FullRowSelect = true;
-            this.lvSubjectManage.GridLines = true;
-            this.lvSubjectManage.Location = new System.Drawing.Point(6, 13);
-            this.lvSubjectManage.Name = "lvSubjectManage";
-            this.lvSubjectManage.OwnerDraw = true;
-            this.lvSubjectManage.Size = new System.Drawing.Size(873, 307);
-            this.lvSubjectManage.TabIndex = 2;
-            this.lvSubjectManage.UseCompatibleStateImageBehavior = false;
-            this.lvSubjectManage.UseSelectable = true;
-            this.lvSubjectManage.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Số thứ tự";
-            this.columnHeader1.Width = 210;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Mã môn học";
-            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader2.Width = 257;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Tên môn học";
-            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader3.Width = 392;
-            // 
-            // ManageSubjectBackgroundWork
-            // 
-            this.ManageSubjectBackgroundWork.WorkerReportsProgress = true;
-            this.ManageSubjectBackgroundWork.WorkerSupportsCancellation = true;
-            this.ManageSubjectBackgroundWork.DoWork += new System.ComponentModel.DoWorkEventHandler(this.ManageSubjectBackgroundWork_DoWork);
-            this.ManageSubjectBackgroundWork.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.ManageSubjectBackgroundWork_ProgressChanged);
-            this.ManageSubjectBackgroundWork.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.ManageSubjectBackgroundWork_RunWorkerCompleted);
-            // 
-            // btnLogout
-            // 
-            this.btnLogout.BackColor = System.Drawing.Color.Transparent;
-            this.btnLogout.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
-            this.btnLogout.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
-            this.btnLogout.ForeColor = System.Drawing.Color.Red;
-            this.btnLogout.Icon = ((System.Drawing.Image)(resources.GetObject("btnLogout.Icon")));
-            this.btnLogout.Location = new System.Drawing.Point(-1, 173);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(292, 45);
-            this.btnLogout.TabIndex = 10;
-            this.btnLogout.Text = "Đăng xuất";
-            this.btnLogout.TextAlign = System.Drawing.StringAlignment.Near;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
-            // 
-            // btnChangePass
-            // 
-            this.btnChangePass.BackColor = System.Drawing.Color.Transparent;
-            this.btnChangePass.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
-            this.btnChangePass.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
-            this.btnChangePass.ForeColor = System.Drawing.Color.Black;
-            this.btnChangePass.Icon = ((System.Drawing.Image)(resources.GetObject("btnChangePass.Icon")));
-            this.btnChangePass.Location = new System.Drawing.Point(-1, 128);
-            this.btnChangePass.Name = "btnChangePass";
-            this.btnChangePass.Size = new System.Drawing.Size(292, 45);
-            this.btnChangePass.TabIndex = 9;
-            this.btnChangePass.Text = "Đổi mật khẩu";
-            this.btnChangePass.TextAlign = System.Drawing.StringAlignment.Near;
-            // 
-            // btnSetting
-            // 
-            this.btnSetting.BackColor = System.Drawing.Color.Transparent;
-            this.btnSetting.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
-            this.btnSetting.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
-            this.btnSetting.ForeColor = System.Drawing.Color.Black;
-            this.btnSetting.Icon = ((System.Drawing.Image)(resources.GetObject("btnSetting.Icon")));
-            this.btnSetting.Location = new System.Drawing.Point(-1, 83);
-            this.btnSetting.Name = "btnSetting";
-            this.btnSetting.Size = new System.Drawing.Size(292, 45);
-            this.btnSetting.TabIndex = 8;
-            this.btnSetting.Text = "Cài đặt";
-            this.btnSetting.TextAlign = System.Drawing.StringAlignment.Near;
-            // 
-            // btnShowMore
-            // 
-            this.btnShowMore.AutoSize = false;
-            this.btnShowMore.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnShowMore.Depth = 0;
-            this.btnShowMore.DrawShadows = false;
-            this.btnShowMore.HighEmphasis = false;
-            this.btnShowMore.Icon = ((System.Drawing.Image)(resources.GetObject("btnShowMore.Icon")));
-            this.btnShowMore.Location = new System.Drawing.Point(240, 10);
-            this.btnShowMore.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnShowMore.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnShowMore.Name = "btnShowMore";
-            this.btnShowMore.Size = new System.Drawing.Size(42, 35);
-            this.btnShowMore.TabIndex = 7;
-            this.btnShowMore.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
-            this.btnShowMore.UseAccentColor = false;
-            this.btnShowMore.UseVisualStyleBackColor = true;
-            this.btnShowMore.Click += new System.EventHandler(this.materialButton3_Click);
-            // 
-            // ptbAvatar
-            // 
-            this.ptbAvatar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ptbAvatar.Image = global::TutteeFrame.Properties.Resources._21104;
-            this.ptbAvatar.Location = new System.Drawing.Point(16, 10);
-            this.ptbAvatar.Name = "ptbAvatar";
-            this.ptbAvatar.Size = new System.Drawing.Size(40, 40);
-            this.ptbAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ptbAvatar.TabIndex = 4;
-            this.ptbAvatar.TabStop = false;
-            // 
-            // delContent
-            // 
-            this.delContent.Image = global::TutteeFrame.Properties.Resources.delete;
-            this.delContent.Name = "delContent";
-            this.delContent.Size = new System.Drawing.Size(104, 22);
-            this.delContent.Text = "Xóa";
-            this.delContent.Click += new System.EventHandler(this.delContent_Click);
-            // 
-            // fixContent
-            // 
-            this.fixContent.Image = global::TutteeFrame.Properties.Resources.penbook;
-            this.fixContent.Name = "fixContent";
-            this.fixContent.Size = new System.Drawing.Size(104, 22);
-            this.fixContent.Text = "Sửa";
-            this.fixContent.Click += new System.EventHandler(this.fixContent_Click);
-            // 
-            // addContent
-            // 
-            this.addContent.Image = global::TutteeFrame.Properties.Resources.addperson;
-            this.addContent.Name = "addContent";
-            this.addContent.Size = new System.Drawing.Size(104, 22);
-            this.addContent.Text = "Thêm";
-            this.addContent.Click += new System.EventHandler(this.addContent_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(100, 13);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MovableForm);
+            this.btnPrint.BackColor = System.Drawing.Color.Transparent;
+            this.btnPrint.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnPrint.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.btnPrint.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnPrint.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.btnPrint.Icon = null;
+            this.btnPrint.Location = new System.Drawing.Point(594, 35);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Radius = 2;
+            this.btnPrint.ShadowDepth = 0;
+            this.btnPrint.ShadowOpacity = 35;
+            this.btnPrint.Size = new System.Drawing.Size(147, 45);
+            this.btnPrint.TabIndex = 45;
+            this.btnPrint.Text = "In danh sách";
+            this.btnPrint.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // frmMain
             // 
             this.ClientSize = new System.Drawing.Size(1200, 700);
-            this.Controls.Add(this.metroLabel2);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.pnProfile);
             this.Controls.Add(this.mainTabcontrol);
@@ -1114,16 +959,14 @@
             this.metroPanel2.ResumeLayout(false);
             this.metroPanel1.ResumeLayout(false);
             this.metroPanel1.PerformLayout();
-            this.tbpgSubjectManagment.ResumeLayout(false);
             this.pnProfile.ResumeLayout(false);
             this.materialCard1.ResumeLayout(false);
             this.materialCard1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbAvatar)).EndInit();
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            this.metroPanel9.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ptbAvatar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1196,16 +1039,5 @@
         private System.Windows.Forms.ToolStripMenuItem fixContent;
         private System.Windows.Forms.ToolStripMenuItem addContent;
         private Material_Design_for_Winform.MaterialRaisedButton btnPrint;
-        private MetroFramework.Controls.MetroLabel metroLabel2;
-        private MetroFramework.Controls.MetroPanel metroPanel4;
-        private MetroFramework.Controls.MetroPanel metroPanel7;
-        private MetroFramework.Controls.MetroPanel metroPanel5;
-        private MetroFramework.Controls.MetroPanel metroPanel8;
-        private MetroFramework.Controls.MetroPanel metroPanel9;
-        private MetroFramework.Controls.MetroListView lvSubjectManage;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.ComponentModel.BackgroundWorker ManageSubjectBackgroundWork;
     }
 }

@@ -107,12 +107,6 @@
       <DependentUpon>DSStudentxsd.xsd</DependentUpon>
     </Compile>
     <Compile Include="Encryption.cs" />
-    <Compile Include="frmAddNewSubject.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmAddNewSubject.Designer.cs">
-      <DependentUpon>frmAddNewSubject.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,9 +166,6 @@
       <DependentUpon>frmSpashScreen.cs</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
-    <EmbeddedResource Include="frmAddNewSubject.resx">
-      <DependentUpon>frmAddNewSubject.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>

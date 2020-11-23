@@ -974,36 +974,5 @@ namespace TutteeFrame.Model
         }
         #endregion
 
-        #region Subject Funtion
-
-        public bool GetAllSubjectInformation(List<Subject> listSubject)
-        {
-            bool succees = Connect();
-            if (succees == false) return false;
-            try
-            {
-                strQuery = "SELECT * FROM SUBJECT";
-                SqlCommand cmd = connection.CreateCommand();
-                cmd.CommandText = strQuery;
-                SqlDataReader reader = cmd.ExecuteReader();
-                while(reader.Read())
-                {
-                    Subject i = new Subject(reader.GetString(0), reader.GetString(1));
-                    listSubject.Add(i);
-                }
-                Disconnect();
-                return true;
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                Disconnect();
-                return false;
-            }
-        }
-
-        #endregion
-
-
     }
 }

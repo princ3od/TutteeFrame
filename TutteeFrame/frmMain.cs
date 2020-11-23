@@ -285,10 +285,6 @@ namespace TutteeFrame
             {
                 cbxKhoi.SelectedIndex = 3;
             }
-            if(mainTabcontrol.SelectedIndex == 5)
-            {
-                ManageSubjectBackgroundWork.RunWorkerAsync();
-            }
         }
 
         private void materialRaisedButton2_Click(object sender, EventArgs e)
@@ -455,40 +451,6 @@ namespace TutteeFrame
         }
 
         private void ListViewStudents_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void metroPanel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void ManageSubjectBackgroundWork_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
-        {
-            List<Subject> listSubject = new List<Subject>();
-            if(Controller.Instance.GetAllSubjectInformation(listSubject))
-            {
-                ManageSubjectBackgroundWork.ReportProgress(0,listSubject);
-            }
-        }
-
-        private void ManageSubjectBackgroundWork_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
-        {
-            lvSubjectManage.Items.Clear();
-            List<Subject> listSubject = e.UserState as List<Subject>;
-            int stt = 0;
-            foreach(var i in listSubject)
-            {
-                stt += 1;
-                ListViewItem lvi = new ListViewItem(stt.ToString());
-                lvi.SubItems.Add(i.ID);
-                lvi.SubItems.Add(i.Name);
-                lvSubjectManage.Items.Add(lvi);
-            }
-        }
-
-        private void ManageSubjectBackgroundWork_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
 
         }
