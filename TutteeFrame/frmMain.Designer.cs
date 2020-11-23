@@ -33,7 +33,6 @@
             this.mainTabcontrol = new MaterialSkin.Controls.MaterialTabControl();
             this.tbpgProfile = new System.Windows.Forms.TabPage();
             this.materialDivider4 = new MaterialSkin.Controls.MaterialDivider();
-            this.btnBrowseForAvatar = new Material_Design_for_Winform.MaterialRaisedButton();
             this.pictureBox16 = new System.Windows.Forms.PictureBox();
             this.pbProfilemainAvatar = new System.Windows.Forms.PictureBox();
             this.pictureBox14 = new System.Windows.Forms.PictureBox();
@@ -43,7 +42,6 @@
             this.lbGender = new MaterialSkin.Controls.MaterialLabel();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.lbPosition = new MaterialSkin.Controls.MaterialLabel();
-            this.lbJustTeacher = new MaterialSkin.Controls.MaterialLabel();
             this.pictureBox9 = new System.Windows.Forms.PictureBox();
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.pictureBox8 = new System.Windows.Forms.PictureBox();
@@ -53,8 +51,7 @@
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.lbIsMinstry = new MaterialSkin.Controls.MaterialLabel();
-            this.lbIsAdmin = new MaterialSkin.Controls.MaterialLabel();
+            this.lbBelongto = new MaterialSkin.Controls.MaterialLabel();
             this.lbSubjectTeach = new MaterialSkin.Controls.MaterialLabel();
             this.lbMyfonenum = new MaterialSkin.Controls.MaterialLabel();
             this.lbMyemail = new MaterialSkin.Controls.MaterialLabel();
@@ -78,7 +75,7 @@
             this.btnShowMore = new MaterialSkin.Controls.MaterialButton();
             this.materialDivider2 = new MaterialSkin.Controls.MaterialDivider();
             this.ptbAvatar = new System.Windows.Forms.PictureBox();
-            this.lbPostition = new MaterialSkin.Controls.MaterialLabel();
+            this.lbBelongtoOnCard = new MaterialSkin.Controls.MaterialLabel();
             this.lbName = new MaterialSkin.Controls.MaterialLabel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.materialDivider1 = new MaterialSkin.Controls.MaterialDivider();
@@ -161,7 +158,6 @@
             this.tbpgProfile.AutoScroll = true;
             this.tbpgProfile.BackColor = System.Drawing.Color.White;
             this.tbpgProfile.Controls.Add(this.materialDivider4);
-            this.tbpgProfile.Controls.Add(this.btnBrowseForAvatar);
             this.tbpgProfile.Controls.Add(this.pictureBox16);
             this.tbpgProfile.Controls.Add(this.pbProfilemainAvatar);
             this.tbpgProfile.Controls.Add(this.pictureBox14);
@@ -171,7 +167,6 @@
             this.tbpgProfile.Controls.Add(this.lbGender);
             this.tbpgProfile.Controls.Add(this.pictureBox11);
             this.tbpgProfile.Controls.Add(this.lbPosition);
-            this.tbpgProfile.Controls.Add(this.lbJustTeacher);
             this.tbpgProfile.Controls.Add(this.pictureBox9);
             this.tbpgProfile.Controls.Add(this.pictureBox10);
             this.tbpgProfile.Controls.Add(this.pictureBox8);
@@ -181,8 +176,7 @@
             this.tbpgProfile.Controls.Add(this.pictureBox4);
             this.tbpgProfile.Controls.Add(this.pictureBox3);
             this.tbpgProfile.Controls.Add(this.pictureBox2);
-            this.tbpgProfile.Controls.Add(this.lbIsMinstry);
-            this.tbpgProfile.Controls.Add(this.lbIsAdmin);
+            this.tbpgProfile.Controls.Add(this.lbBelongto);
             this.tbpgProfile.Controls.Add(this.lbSubjectTeach);
             this.tbpgProfile.Controls.Add(this.lbMyfonenum);
             this.tbpgProfile.Controls.Add(this.lbMyemail);
@@ -196,7 +190,7 @@
             this.tbpgProfile.Size = new System.Drawing.Size(1085, 594);
             this.tbpgProfile.TabIndex = 0;
             this.tbpgProfile.Text = "Thông tin tài khoản";
-            this.metroToolTip1.SetToolTip(this.tbpgProfile, "Số điện thoại");
+            this.metroToolTip1.SetToolTip(this.tbpgProfile, "Phòng ban trực ");
             // 
             // materialDivider4
             // 
@@ -210,40 +204,17 @@
             this.materialDivider4.TabIndex = 31;
             this.materialDivider4.Text = "materialDivider4";
             // 
-            // btnBrowseForAvatar
-            // 
-            this.btnBrowseForAvatar.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnBrowseForAvatar.BackColor = System.Drawing.Color.Transparent;
-            this.btnBrowseForAvatar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnBrowseForAvatar.ButtonColor = System.Drawing.Color.WhiteSmoke;
-            this.btnBrowseForAvatar.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnBrowseForAvatar.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
-            this.btnBrowseForAvatar.Font = new System.Drawing.Font("Segoe UI Semibold", 10F);
-            this.btnBrowseForAvatar.ForeColor = System.Drawing.Color.Black;
-            this.btnBrowseForAvatar.Icon = ((System.Drawing.Image)(resources.GetObject("btnBrowseForAvatar.Icon")));
-            this.btnBrowseForAvatar.Location = new System.Drawing.Point(19, 242);
-            this.btnBrowseForAvatar.Name = "btnBrowseForAvatar";
-            this.btnBrowseForAvatar.Radius = 2;
-            this.btnBrowseForAvatar.ShadowDepth = 3;
-            this.btnBrowseForAvatar.ShadowOpacity = 35;
-            this.btnBrowseForAvatar.Size = new System.Drawing.Size(195, 44);
-            this.btnBrowseForAvatar.TabIndex = 29;
-            this.btnBrowseForAvatar.Text = "Cập nhật ảnh đại diện";
-            this.btnBrowseForAvatar.TextAlign = System.Drawing.StringAlignment.Near;
-            this.btnBrowseForAvatar.Visible = false;
-            this.btnBrowseForAvatar.Click += new System.EventHandler(this.btnBrowseForAvatar_Click);
-            // 
             // pictureBox16
             // 
             this.pictureBox16.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox16.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox16.BackgroundImage")));
             this.pictureBox16.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox16.Location = new System.Drawing.Point(283, 484);
+            this.pictureBox16.Location = new System.Drawing.Point(649, 347);
             this.pictureBox16.Name = "pictureBox16";
             this.pictureBox16.Size = new System.Drawing.Size(30, 30);
             this.pictureBox16.TabIndex = 28;
             this.pictureBox16.TabStop = false;
-            this.metroToolTip1.SetToolTip(this.pictureBox16, "Phòng ");
+            this.metroToolTip1.SetToolTip(this.pictureBox16, "Phòng ban trực ");
             // 
             // pbProfilemainAvatar
             // 
@@ -262,7 +233,7 @@
             this.pictureBox14.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox14.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox14.BackgroundImage")));
             this.pictureBox14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox14.Location = new System.Drawing.Point(279, 343);
+            this.pictureBox14.Location = new System.Drawing.Point(271, 417);
             this.pictureBox14.Name = "pictureBox14";
             this.pictureBox14.Size = new System.Drawing.Size(30, 30);
             this.pictureBox14.TabIndex = 26;
@@ -274,7 +245,7 @@
             this.pictureBox13.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox13.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox13.BackgroundImage")));
             this.pictureBox13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox13.Location = new System.Drawing.Point(279, 295);
+            this.pictureBox13.Location = new System.Drawing.Point(271, 347);
             this.pictureBox13.Name = "pictureBox13";
             this.pictureBox13.Size = new System.Drawing.Size(30, 30);
             this.pictureBox13.TabIndex = 25;
@@ -286,7 +257,7 @@
             this.pictureBox12.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox12.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox12.BackgroundImage")));
             this.pictureBox12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox12.Location = new System.Drawing.Point(279, 295);
+            this.pictureBox12.Location = new System.Drawing.Point(271, 347);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(30, 30);
             this.pictureBox12.TabIndex = 24;
@@ -298,7 +269,7 @@
             this.lbDateofbirth.AutoSize = true;
             this.lbDateofbirth.Depth = 0;
             this.lbDateofbirth.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lbDateofbirth.Location = new System.Drawing.Point(324, 354);
+            this.lbDateofbirth.Location = new System.Drawing.Point(323, 428);
             this.lbDateofbirth.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbDateofbirth.Name = "lbDateofbirth";
             this.lbDateofbirth.Size = new System.Drawing.Size(94, 19);
@@ -312,7 +283,7 @@
             this.lbGender.AutoSize = true;
             this.lbGender.Depth = 0;
             this.lbGender.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lbGender.Location = new System.Drawing.Point(323, 306);
+            this.lbGender.Location = new System.Drawing.Point(323, 358);
             this.lbGender.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbGender.Name = "lbGender";
             this.lbGender.Size = new System.Drawing.Size(64, 19);
@@ -325,7 +296,7 @@
             this.pictureBox11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox11.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox11.BackgroundImage")));
             this.pictureBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox11.Location = new System.Drawing.Point(279, 242);
+            this.pictureBox11.Location = new System.Drawing.Point(271, 276);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(30, 30);
             this.pictureBox11.TabIndex = 21;
@@ -338,7 +309,7 @@
             this.lbPosition.AutoSize = true;
             this.lbPosition.Depth = 0;
             this.lbPosition.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lbPosition.Location = new System.Drawing.Point(323, 253);
+            this.lbPosition.Location = new System.Drawing.Point(323, 287);
             this.lbPosition.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbPosition.Name = "lbPosition";
             this.lbPosition.Size = new System.Drawing.Size(72, 19);
@@ -346,26 +317,12 @@
             this.lbPosition.Text = "lbPosition";
             this.metroToolTip1.SetToolTip(this.lbPosition, "Chức vụ");
             // 
-            // lbJustTeacher
-            // 
-            this.lbJustTeacher.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lbJustTeacher.AutoSize = true;
-            this.lbJustTeacher.Depth = 0;
-            this.lbJustTeacher.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lbJustTeacher.Location = new System.Drawing.Point(324, 495);
-            this.lbJustTeacher.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lbJustTeacher.Name = "lbJustTeacher";
-            this.lbJustTeacher.Size = new System.Drawing.Size(84, 19);
-            this.lbJustTeacher.TabIndex = 19;
-            this.lbJustTeacher.Text = "justTeacher";
-            this.metroToolTip1.SetToolTip(this.lbJustTeacher, "Phòng ban");
-            // 
             // pictureBox9
             // 
             this.pictureBox9.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox9.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox9.BackgroundImage")));
             this.pictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox9.Location = new System.Drawing.Point(279, 146);
+            this.pictureBox9.Location = new System.Drawing.Point(271, 150);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(30, 30);
             this.pictureBox9.TabIndex = 18;
@@ -377,7 +334,7 @@
             this.pictureBox10.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
-            this.pictureBox10.Location = new System.Drawing.Point(279, 194);
+            this.pictureBox10.Location = new System.Drawing.Point(271, 209);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(34, 30);
             this.pictureBox10.TabIndex = 17;
@@ -389,7 +346,7 @@
             this.pictureBox8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox8.BackgroundImage")));
             this.pictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox8.Location = new System.Drawing.Point(279, 93);
+            this.pictureBox8.Location = new System.Drawing.Point(271, 82);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(30, 30);
             this.pictureBox8.TabIndex = 15;
@@ -401,7 +358,7 @@
             this.pictureBox7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox7.BackgroundImage")));
             this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox7.Location = new System.Drawing.Point(649, 194);
+            this.pictureBox7.Location = new System.Drawing.Point(649, 209);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(30, 30);
             this.pictureBox7.TabIndex = 14;
@@ -413,7 +370,7 @@
             this.pictureBox6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox6.BackgroundImage")));
             this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox6.Location = new System.Drawing.Point(649, 146);
+            this.pictureBox6.Location = new System.Drawing.Point(649, 150);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(30, 30);
             this.pictureBox6.TabIndex = 13;
@@ -438,7 +395,7 @@
             this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox4.BackgroundImage = global::TutteeFrame.Properties.Resources.thongtincanhan;
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox4.Location = new System.Drawing.Point(274, 31);
+            this.pictureBox4.Location = new System.Drawing.Point(270, 31);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(245, 39);
             this.pictureBox4.TabIndex = 11;
@@ -450,7 +407,7 @@
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.BackgroundImage = global::TutteeFrame.Properties.Resources.phonban;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(274, 437);
+            this.pictureBox3.Location = new System.Drawing.Point(632, 283);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(258, 42);
             this.pictureBox3.TabIndex = 10;
@@ -468,31 +425,19 @@
             this.pictureBox2.TabIndex = 9;
             this.pictureBox2.TabStop = false;
             // 
-            // lbIsMinstry
+            // lbBelongto
             // 
-            this.lbIsMinstry.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lbIsMinstry.AutoSize = true;
-            this.lbIsMinstry.Depth = 0;
-            this.lbIsMinstry.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lbIsMinstry.Location = new System.Drawing.Point(324, 495);
-            this.lbIsMinstry.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lbIsMinstry.Name = "lbIsMinstry";
-            this.lbIsMinstry.Size = new System.Drawing.Size(79, 19);
-            this.lbIsMinstry.TabIndex = 8;
-            this.lbIsMinstry.Text = "lbIsMinstry";
-            // 
-            // lbIsAdmin
-            // 
-            this.lbIsAdmin.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.lbIsAdmin.AutoSize = true;
-            this.lbIsAdmin.Depth = 0;
-            this.lbIsAdmin.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lbIsAdmin.Location = new System.Drawing.Point(324, 495);
-            this.lbIsAdmin.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lbIsAdmin.Name = "lbIsAdmin";
-            this.lbIsAdmin.Size = new System.Drawing.Size(59, 19);
-            this.lbIsAdmin.TabIndex = 7;
-            this.lbIsAdmin.Text = "IsAdmin";
+            this.lbBelongto.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.lbBelongto.AutoSize = true;
+            this.lbBelongto.Depth = 0;
+            this.lbBelongto.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lbBelongto.Location = new System.Drawing.Point(701, 358);
+            this.lbBelongto.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lbBelongto.Name = "lbBelongto";
+            this.lbBelongto.Size = new System.Drawing.Size(77, 19);
+            this.lbBelongto.TabIndex = 7;
+            this.lbBelongto.Text = "lbBelongto";
+            this.metroToolTip1.SetToolTip(this.lbBelongto, "Phòng ban trực ");
             // 
             // lbSubjectTeach
             // 
@@ -500,7 +445,7 @@
             this.lbSubjectTeach.AutoSize = true;
             this.lbSubjectTeach.Depth = 0;
             this.lbSubjectTeach.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lbSubjectTeach.Location = new System.Drawing.Point(323, 157);
+            this.lbSubjectTeach.Location = new System.Drawing.Point(323, 150);
             this.lbSubjectTeach.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbSubjectTeach.Name = "lbSubjectTeach";
             this.lbSubjectTeach.Size = new System.Drawing.Size(111, 19);
@@ -514,7 +459,7 @@
             this.lbMyfonenum.AutoSize = true;
             this.lbMyfonenum.Depth = 0;
             this.lbMyfonenum.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lbMyfonenum.Location = new System.Drawing.Point(701, 205);
+            this.lbMyfonenum.Location = new System.Drawing.Point(701, 220);
             this.lbMyfonenum.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbMyfonenum.Name = "lbMyfonenum";
             this.lbMyfonenum.Size = new System.Drawing.Size(100, 19);
@@ -528,7 +473,7 @@
             this.lbMyemail.AutoSize = true;
             this.lbMyemail.Depth = 0;
             this.lbMyemail.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lbMyemail.Location = new System.Drawing.Point(701, 157);
+            this.lbMyemail.Location = new System.Drawing.Point(701, 161);
             this.lbMyemail.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbMyemail.Name = "lbMyemail";
             this.lbMyemail.Size = new System.Drawing.Size(75, 19);
@@ -556,7 +501,7 @@
             this.lbImyID.AutoSize = true;
             this.lbImyID.Depth = 0;
             this.lbImyID.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lbImyID.Location = new System.Drawing.Point(323, 205);
+            this.lbImyID.Location = new System.Drawing.Point(323, 220);
             this.lbImyID.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbImyID.Name = "lbImyID";
             this.lbImyID.Size = new System.Drawing.Size(36, 19);
@@ -570,7 +515,7 @@
             this.lbMyName.AutoSize = true;
             this.lbMyName.Depth = 0;
             this.lbMyName.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lbMyName.Location = new System.Drawing.Point(323, 104);
+            this.lbMyName.Location = new System.Drawing.Point(323, 93);
             this.lbMyName.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbMyName.Name = "lbMyName";
             this.lbMyName.Size = new System.Drawing.Size(69, 19);
@@ -580,30 +525,30 @@
             // 
             // tbpgShedule
             // 
-            this.tbpgShedule.Location = new System.Drawing.Point(4, 24);
+            this.tbpgShedule.Location = new System.Drawing.Point(4, 22);
             this.tbpgShedule.Name = "tbpgShedule";
             this.tbpgShedule.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgShedule.Size = new System.Drawing.Size(1085, 594);
+            this.tbpgShedule.Size = new System.Drawing.Size(1085, 596);
             this.tbpgShedule.TabIndex = 1;
             this.tbpgShedule.Text = "thời khóa biểu";
             this.tbpgShedule.UseVisualStyleBackColor = true;
             // 
             // tbpgTeacherManagment
             // 
-            this.tbpgTeacherManagment.Location = new System.Drawing.Point(4, 24);
+            this.tbpgTeacherManagment.Location = new System.Drawing.Point(4, 22);
             this.tbpgTeacherManagment.Name = "tbpgTeacherManagment";
             this.tbpgTeacherManagment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgTeacherManagment.Size = new System.Drawing.Size(1085, 594);
+            this.tbpgTeacherManagment.Size = new System.Drawing.Size(1085, 596);
             this.tbpgTeacherManagment.TabIndex = 2;
             this.tbpgTeacherManagment.Text = "quản lí giáo viên";
             this.tbpgTeacherManagment.UseVisualStyleBackColor = true;
             // 
             // tbpgStudentManagment
             // 
-            this.tbpgStudentManagment.Location = new System.Drawing.Point(4, 24);
+            this.tbpgStudentManagment.Location = new System.Drawing.Point(4, 22);
             this.tbpgStudentManagment.Name = "tbpgStudentManagment";
             this.tbpgStudentManagment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgStudentManagment.Size = new System.Drawing.Size(1085, 594);
+            this.tbpgStudentManagment.Size = new System.Drawing.Size(1085, 596);
             this.tbpgStudentManagment.TabIndex = 3;
             this.tbpgStudentManagment.Text = "quản lí học sinh";
             this.tbpgStudentManagment.UseVisualStyleBackColor = true;
@@ -684,7 +629,7 @@
             this.materialCard1.Controls.Add(this.btnShowMore);
             this.materialCard1.Controls.Add(this.materialDivider2);
             this.materialCard1.Controls.Add(this.ptbAvatar);
-            this.materialCard1.Controls.Add(this.lbPostition);
+            this.materialCard1.Controls.Add(this.lbBelongtoOnCard);
             this.materialCard1.Controls.Add(this.lbName);
             this.materialCard1.Depth = 0;
             this.materialCard1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -782,20 +727,20 @@
             this.ptbAvatar.TabIndex = 4;
             this.ptbAvatar.TabStop = false;
             // 
-            // lbPostition
+            // lbBelongtoOnCard
             // 
-            this.lbPostition.AutoSize = true;
-            this.lbPostition.Depth = 0;
-            this.lbPostition.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.lbPostition.FontType = MaterialSkin.MaterialSkinManager.fontType.Button;
-            this.lbPostition.HighEmphasis = true;
-            this.lbPostition.Location = new System.Drawing.Point(62, 33);
-            this.lbPostition.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lbPostition.Name = "lbPostition";
-            this.lbPostition.Size = new System.Drawing.Size(61, 17);
-            this.lbPostition.TabIndex = 3;
-            this.lbPostition.Text = "Giáo viên";
-            this.lbPostition.UseAccent = true;
+            this.lbBelongtoOnCard.AutoSize = true;
+            this.lbBelongtoOnCard.Depth = 0;
+            this.lbBelongtoOnCard.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.lbBelongtoOnCard.FontType = MaterialSkin.MaterialSkinManager.fontType.Button;
+            this.lbBelongtoOnCard.HighEmphasis = true;
+            this.lbBelongtoOnCard.Location = new System.Drawing.Point(62, 33);
+            this.lbBelongtoOnCard.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lbBelongtoOnCard.Name = "lbBelongtoOnCard";
+            this.lbBelongtoOnCard.Size = new System.Drawing.Size(61, 17);
+            this.lbBelongtoOnCard.TabIndex = 3;
+            this.lbBelongtoOnCard.Text = "Giáo viên";
+            this.lbBelongtoOnCard.UseAccent = true;
             // 
             // lbName
             // 
@@ -948,7 +893,7 @@
         private MaterialSkin.Controls.MaterialButton btnShowMore;
         private MaterialSkin.Controls.MaterialDivider materialDivider2;
         private System.Windows.Forms.PictureBox ptbAvatar;
-        private MaterialSkin.Controls.MaterialLabel lbPostition;
+        private MaterialSkin.Controls.MaterialLabel lbBelongtoOnCard;
         private MaterialSkin.Controls.MaterialLabel lbName;
         private System.Windows.Forms.Panel pnProfile;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
@@ -965,8 +910,7 @@
         private System.Windows.Forms.TabPage tbpgFormClass;
         private MaterialSkin.Controls.MaterialLabel lbMyName;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private MaterialSkin.Controls.MaterialLabel lbIsMinstry;
-        private MaterialSkin.Controls.MaterialLabel lbIsAdmin;
+        private MaterialSkin.Controls.MaterialLabel lbBelongto;
         private MaterialSkin.Controls.MaterialLabel lbSubjectTeach;
         private MaterialSkin.Controls.MaterialLabel lbMyfonenum;
         private MaterialSkin.Controls.MaterialLabel lbMyemail;
@@ -980,7 +924,6 @@
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox5;
-        private MaterialSkin.Controls.MaterialLabel lbJustTeacher;
         private MaterialSkin.Controls.MaterialLabel lbPosition;
         private System.Windows.Forms.PictureBox pictureBox11;
         private MaterialSkin.Controls.MaterialLabel lbGender;
@@ -991,7 +934,6 @@
         private MetroFramework.Components.MetroToolTip metroToolTip1;
         private System.Windows.Forms.PictureBox pictureBox16;
         private System.Windows.Forms.PictureBox pbProfilemainAvatar;
-        private Material_Design_for_Winform.MaterialRaisedButton btnBrowseForAvatar;
         private MaterialSkin.Controls.MaterialDivider materialDivider4;
     }
 }

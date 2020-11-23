@@ -3,6 +3,7 @@ using MetroFramework;
 using MetroFramework.Forms;
 using System;
 using System.ComponentModel;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -119,35 +120,40 @@ namespace TutteeFrame
         //Đổi mảng byte sang ảnh
         public Image byteArrayToImage(byte[] byteArrayIn)
         {
-            using (MemoryStream ms = new MemoryStream(byteArrayIn))
-            {
-                return Image.FromStream(ms);
-            }
+            
+            MemoryStream mem = new MemoryStream();
+            mem.Write(byteArrayIn, 0, byteArrayIn.Length);
+            Bitmap bitmap = new Bitmap(mem);
+            return bitmap;
+            
+                   
         }
         void LoadAfterLogin()
         {
-
-            //pbProfilemainAvatar.Image = byteArrayToImage(mainTeacher.Picture);
+            //Cắt ảnh đại diện thành hình tròn
             System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
-          
             gp.AddEllipse(0, 0, pbProfilemainAvatar.Width - 1, pbProfilemainAvatar.Height - 1);
             Region rg = new Region(gp);
             pbProfilemainAvatar.Region = rg;
 
-
+            //Đổ dữ liệu 
             mainTeacher = Controller.Instance.usingTeacher;
             lbName.Text = mainTeacher.SurName + " " + mainTeacher.FirstName;
+
+            //Avatar
+            //pbProfilemainAvatar.Image = mainTeacher.Picture;
+            
+            //THÔNG TIN CÁ NHÂN
             lbMyName.Text = string.Format("{0} {1}", mainTeacher.SurName, mainTeacher.FirstName);
             lbImyID.Text = mainTeacher.ID;
             lbMyaddr.Text = mainTeacher.Address;
             lbMyemail.Text = mainTeacher.Mail;
             lbMyfonenum.Text = mainTeacher.Phone;
-            lbSubjectTeach.Text = mainTeacher.Subject.Name;
+            lbSubjectTeach.Text = "Bộ môn "+mainTeacher.Subject.Name;
             lbPosition.Text = mainTeacher.Position;
             lbDateofbirth.Text = mainTeacher.DateOfBirth1.ToString("d");
 
-            
-                
+            //Giới tính
             pictureBox13.Visible = false;
 
             if (mainTeacher.Sex == true)
@@ -159,35 +165,13 @@ namespace TutteeFrame
             {
                 lbGender.Text = "Giới tính nữ";
             }
-            lbIsAdmin.Visible = false;
-            lbIsMinstry.Visible = false;
-            lbJustTeacher.Visible = false;
-
-
-            if (mainTeacher.Type == Teacher.TeacherType.Adminstrator)
-            {
-                lbIsAdmin.Text = "Ban giám hiệu";
-                lbIsAdmin.Visible = true;
-            }
-            else if (mainTeacher.Type == Teacher.TeacherType.Ministry)
-            {
-                lbIsMinstry.Text = "Ban giáo vụ";
-                lbIsMinstry.Visible = true;
-            }
-            else
-
-            {
-                lbJustTeacher.Text = "Tổ " + mainTeacher.Subject.Name;
-                lbJustTeacher.Visible = true;
-            }
-
             mainTabcontrol.TabPages.Clear();
             mainTabcontrol.TabPages.Add(tbpgProfile);
             mainTabcontrol.TabPages.Add(tbpgShedule);
-
+            //Phòng ban
             if (mainTeacher.ID == "AD999999")
             {
-                lbPostition.Text = "Adminstrator";
+                lbBelongtoOnCard.Text = "Adminstrator";
                 mainTabcontrol.TabPages.Add(tbpgTeacherManagment);
                 mainTabcontrol.TabPages.Add(tbpgStudentManagment);
                 mainTabcontrol.TabPages.Add(tbpgClassManagment);
@@ -201,22 +185,22 @@ namespace TutteeFrame
                 switch (mainTeacher.Type)
                 {
                     case Teacher.TeacherType.FormerTeacher:
-                        lbPostition.Text = "Giáo viên (GVCN)";
+                        lbBelongtoOnCard.Text = "Giáo viên bộ môn (Có chủ nhiệm)";                        
                         mainTabcontrol.TabPages.Add(tbpgFormClass);
                         mainTabcontrol.TabPages.Add(tbpgStudentMarkboard);
                         break;
                     case Teacher.TeacherType.Teacher:
-                        lbPostition.Text = "Giáo viên";
+                        lbBelongtoOnCard.Text = "Giáo viên bộ môn";
                         mainTabcontrol.TabPages.Add(tbpgStudentMarkboard);
                         break;
                     case Teacher.TeacherType.Adminstrator:
                         mainTabcontrol.TabPages.Add(tbpgTeacherManagment);
                         mainTabcontrol.TabPages.Add(tbpgSubjectManagment);
                         mainTabcontrol.TabPages.Add(tbpgReport);
-                        lbPostition.Text = "Ban giám hiệu";
+                        lbBelongtoOnCard.Text = "Ban giám hiệu";
                         break;
                     case Teacher.TeacherType.Ministry:
-                        lbPostition.Text = "Ban giáo vụ";
+                        lbBelongtoOnCard.Text = "Ban giáo vụ";
                         mainTabcontrol.TabPages.Add(tbpgStudentManagment);
                         mainTabcontrol.TabPages.Add(tbpgClassManagment);
                         mainTabcontrol.TabPages.Add(tbpgRewardManagment);
@@ -225,6 +209,12 @@ namespace TutteeFrame
                     default:
                         break;
                 }
+                if(lbBelongtoOnCard.Text== "Giáo viên bộ môn"|| lbBelongtoOnCard.Text == "Giáo viên bộ môn (Có chủ nhiệm)")
+                {
+                    lbBelongto.Text = "Tổ " + mainTeacher.Subject.Name;
+                }
+                else
+                    lbBelongto.Text = lbBelongtoOnCard.Text;
             }
         }
         #endregion
@@ -242,20 +232,8 @@ namespace TutteeFrame
             };
         }
 
-        private void btnBrowseForAvatar_Click(object sender, EventArgs e)
-        {
-            OpenFileDialog fd = new OpenFileDialog();
-            fd.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
-            fd.AddExtension = true;
-            if(fd.ShowDialog()==DialogResult.OK)
-            {
-                this.pbProfilemainAvatar.Image = Image.FromFile(fd.FileName);
-                this.ptbAvatar.Image = Image.FromFile(fd.FileName);
-                
-               
-            }
-   
-            
-        }
+
+
+      
     }
 }
