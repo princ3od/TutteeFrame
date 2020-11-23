@@ -328,6 +328,7 @@ namespace TutteeFrame
             }
         }
         #endregion
+
         #region Nhóm chức năng hỗ trợ logic
       public  bool IsDigitsOnly(string str)
         {
@@ -339,6 +340,14 @@ namespace TutteeFrame
             }
 
             return true;
+        }
+        #endregion
+
+        #region Nhóm chức năng liên quan đến môn học
+
+        public bool GetAllSubjectInformation(List<Subject> listSubject)
+        {
+            return DataAccess.Instance.GetAllSubjectInformation(listSubject);
         }
         #endregion
 
