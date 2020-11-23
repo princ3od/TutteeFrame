@@ -8,7 +8,6 @@ using System.Globalization;
 using System.Web.UI;
 using System.ComponentModel;
 using System.Data.SqlClient;
-using System.Drawing;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
@@ -314,7 +313,8 @@ namespace TutteeFrame
             lbName.Text = mainTeacher.SurName + " " + mainTeacher.FirstName;
 
             //Avatar
-            //pbProfilemainAvatar.Image = mainTeacher.Picture;
+            pbProfilemainAvatar.Image = mainTeacher.Avatar;
+            ptbAvatar.Image = mainTeacher.Avatar;
             
             //THÔNG TIN CÁ NHÂN
             lbMyName.Text = string.Format("{0} {1}", mainTeacher.SurName, mainTeacher.FirstName);
@@ -340,29 +340,27 @@ namespace TutteeFrame
 
             if (mainTeacher.Type == Teacher.TeacherType.Adminstrator)
             {
-                lbIsAdmin.Text = "Ban giám hiệu";
-                lbIsAdmin.Visible = true;
-
+               lbBelongto.Text = "Ban giam hiệu";
             }
             else if (mainTeacher.Type == Teacher.TeacherType.Ministry)
             {
-                lbGender.Text = "Giới tính nam";
-                pictureBox13.Visible = true;
+                lbBelongto.Text = "Giáo vụ";
+
             }
-          
-            mainTabcontrol.TabPages.Clear();
-            mainTabcontrol.TabPages.Add(tbpgProfile);
-            mainTabcontrol.TabPages.Add(tbpgShedule);
+            mainTabControl.TabPages.Clear();
+            mainTabControl.TabPages.Add(tbpgProfile);
+            mainTabControl.TabPages.Add(tbpgShedule);
             if (mainTeacher.ID == "AD999999")
             {
                 lbBelongtoOnCard.Text = "Adminstrator";
-                mainTabcontrol.TabPages.Add(tbpgTeacherManagment);
-                mainTabcontrol.TabPages.Add(tbpgStudentManagment);
-                mainTabcontrol.TabPages.Add(tbpgClassManagment);
-                mainTabcontrol.TabPages.Add(tbpgSubjectManagment);
-                mainTabcontrol.TabPages.Add(tbpgRewardManagment);
-                mainTabcontrol.TabPages.Add(tbpgStudentMarkboard);
-                mainTabcontrol.TabPages.Add(tbpgReport);
+                mainTabControl.TabPages.Add(tbgpTeacherManagment);
+                mainTabControl.TabPages.Add(tbpgClassManagment);
+                mainTabControl.TabPages.Add(tbpgStudentManagment);
+                mainTabControl.TabPages.Add(tbpgSubjectManagment);
+                mainTabControl.TabPages.Add(tbpgRewardManagment);
+                mainTabControl.TabPages.Add(tbpgStudentMarkboard);
+                mainTabControl.TabPages.Add(tbpgReport);
+                mainTeacher.Type = Teacher.TeacherType.Adminstrator;
             }
             else
             {
@@ -370,25 +368,25 @@ namespace TutteeFrame
                 {
                     case Teacher.TeacherType.FormerTeacher:
                         lbBelongtoOnCard.Text = "Giáo viên bộ môn (Có chủ nhiệm)";                        
-                        mainTabcontrol.TabPages.Add(tbpgFormClass);
-                        mainTabcontrol.TabPages.Add(tbpgStudentMarkboard);
+                        mainTabControl.TabPages.Add(tbpgFormClass);
+                        mainTabControl.TabPages.Add(tbpgStudentMarkboard);
                         break;
                     case Teacher.TeacherType.Teacher:
                         lbBelongtoOnCard.Text = "Giáo viên bộ môn";
-                        mainTabcontrol.TabPages.Add(tbpgStudentMarkboard);
+                        mainTabControl.TabPages.Add(tbpgStudentMarkboard);
                         break;
                     case Teacher.TeacherType.Adminstrator:
-                        mainTabcontrol.TabPages.Add(tbgpTeacherManagment);
-                        mainTabcontrol.TabPages.Add(tbpgSubjectManagment);
-                        mainTabcontrol.TabPages.Add(tbpgReport);
+                        mainTabControl.TabPages.Add(tbgpTeacherManagment);
+                        mainTabControl.TabPages.Add(tbpgSubjectManagment);
+                        mainTabControl.TabPages.Add(tbpgReport);
                         lbBelongtoOnCard.Text = "Ban giám hiệu";
                         break;
                     case Teacher.TeacherType.Ministry:
                         lbBelongtoOnCard.Text = "Ban giáo vụ";
-                        mainTabcontrol.TabPages.Add(tbpgStudentManagment);
-                        mainTabcontrol.TabPages.Add(tbpgClassManagment);
-                        mainTabcontrol.TabPages.Add(tbpgRewardManagment);
-                        mainTabcontrol.TabPages.Add(tbpgReport);
+                        mainTabControl.TabPages.Add(tbpgStudentManagment);
+                        mainTabControl.TabPages.Add(tbpgClassManagment);
+                        mainTabControl.TabPages.Add(tbpgRewardManagment);
+                        mainTabControl.TabPages.Add(tbpgReport);
                         break;
                     default:
                         break;
@@ -583,23 +581,19 @@ namespace TutteeFrame
             txtSumStudent.Text = numStudent.ToString();
         }
 
-        private void mainTabcontrol_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void mainTabcontrol_SelectedIndexChanged_1(object sender, EventArgs e)
+        private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnPrint.Visible = false;
-            if (mainTabcontrol.SelectedIndex==3)
+            if (mainTabControl.SelectedIndex == 3)
             {
                 cbxKhoi.SelectedIndex = 3;
             }
-            if(mainTabcontrol.SelectedIndex == 5)
+            if (mainTabControl.SelectedIndex == 5)
             {
                 ManageSubjectBackgroundWork.RunWorkerAsync();
             }
         }
+
 
         private void materialRaisedButton2_Click(object sender, EventArgs e)
         {

@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.materialDrawer1 = new MaterialSkin.Controls.MaterialDrawer();
-            this.mainTabcontrol = new MaterialSkin.Controls.MaterialTabControl();
+            this.mainTabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.tbpgProfile = new System.Windows.Forms.TabPage();
             this.materialDivider4 = new MaterialSkin.Controls.MaterialDivider();
             this.pictureBox16 = new System.Windows.Forms.PictureBox();
@@ -40,7 +40,6 @@
             this.pictureBox13 = new System.Windows.Forms.PictureBox();
             this.pictureBox12 = new System.Windows.Forms.PictureBox();
             this.lbDateofbirth = new MaterialSkin.Controls.MaterialLabel();
-            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.lbGender = new MaterialSkin.Controls.MaterialLabel();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.lbPosition = new MaterialSkin.Controls.MaterialLabel();
@@ -101,6 +100,9 @@
             this.studentStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colKyluat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.mgStudentmenuContent = new MetroFramework.Controls.MetroContextMenu(this.components);
+            this.delContent = new System.Windows.Forms.ToolStripMenuItem();
+            this.fixContent = new System.Windows.Forms.ToolStripMenuItem();
+            this.addContent = new System.Windows.Forms.ToolStripMenuItem();
             this.metroPanel2 = new MetroFramework.Controls.MetroPanel();
             this.btnAdd = new Material_Design_for_Winform.MaterialRaisedButton();
             this.btnFix = new Material_Design_for_Winform.MaterialRaisedButton();
@@ -120,6 +122,15 @@
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.tbpgStudentMarkboard = new System.Windows.Forms.TabPage();
             this.tbpgSubjectManagment = new System.Windows.Forms.TabPage();
+            this.metroPanel9 = new MetroFramework.Controls.MetroPanel();
+            this.lvSubjectManage = new MetroFramework.Controls.MetroListView();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.metroPanel8 = new MetroFramework.Controls.MetroPanel();
+            this.metroPanel7 = new MetroFramework.Controls.MetroPanel();
+            this.metroPanel5 = new MetroFramework.Controls.MetroPanel();
+            this.metroPanel4 = new MetroFramework.Controls.MetroPanel();
             this.tbpgClassManagment = new System.Windows.Forms.TabPage();
             this.tbpgRewardManagment = new System.Windows.Forms.TabPage();
             this.tbpgReport = new System.Windows.Forms.TabPage();
@@ -127,49 +138,28 @@
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.pnProfile = new System.Windows.Forms.Panel();
             this.materialCard1 = new MaterialSkin.Controls.MaterialCard();
+            this.btnLogout = new Material_Design_for_Winform.MaterialFlatButton();
+            this.btnChangePass = new Material_Design_for_Winform.MaterialFlatButton();
+            this.btnSetting = new Material_Design_for_Winform.MaterialFlatButton();
+            this.btnShowMore = new MaterialSkin.Controls.MaterialButton();
             this.materialDivider2 = new MaterialSkin.Controls.MaterialDivider();
             this.ptbAvatar = new System.Windows.Forms.PictureBox();
             this.lbBelongtoOnCard = new MaterialSkin.Controls.MaterialLabel();
             this.lbName = new MaterialSkin.Controls.MaterialLabel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.materialDivider1 = new MaterialSkin.Controls.MaterialDivider();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.materialDivider3 = new MaterialSkin.Controls.MaterialDivider();
-            this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.ShowListBackGroundWork = new System.ComponentModel.BackgroundWorker();
             this.SearchListBackGroundWork = new System.ComponentModel.BackgroundWorker();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
-            this.metroPanel4 = new MetroFramework.Controls.MetroPanel();
-            this.metroPanel5 = new MetroFramework.Controls.MetroPanel();
-            this.metroPanel7 = new MetroFramework.Controls.MetroPanel();
-            this.metroPanel8 = new MetroFramework.Controls.MetroPanel();
-            this.metroPanel9 = new MetroFramework.Controls.MetroPanel();
-            this.lvSubjectManage = new MetroFramework.Controls.MetroListView();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ManageSubjectBackgroundWork = new System.ComponentModel.BackgroundWorker();
-            this.btnLogout = new Material_Design_for_Winform.MaterialFlatButton();
-            this.btnChangePass = new Material_Design_for_Winform.MaterialFlatButton();
-            this.btnSetting = new Material_Design_for_Winform.MaterialFlatButton();
-            this.btnShowMore = new MaterialSkin.Controls.MaterialButton();
-            this.ptbAvatar = new System.Windows.Forms.PictureBox();
-            this.delContent = new System.Windows.Forms.ToolStripMenuItem();
-            this.fixContent = new System.Windows.Forms.ToolStripMenuItem();
-            this.addContent = new System.Windows.Forms.ToolStripMenuItem();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.mainTabcontrol.SuspendLayout();
-            this.tbpgStudentManagment.SuspendLayout();
-            this.metroPanel3.SuspendLayout();
-            this.mgStudentmenuContent.SuspendLayout();
-            this.metroPanel2.SuspendLayout();
-            this.metroPanel1.SuspendLayout();
-            this.tbpgSubjectManagment.SuspendLayout();
             this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
             this.mainProgressbar = new System.Windows.Forms.ProgressBar();
             this.lbInformation = new System.Windows.Forms.Label();
-            this.mainTabcontrol.SuspendLayout();
+            this.mainTabControl.SuspendLayout();
             this.tbpgProfile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbProfilemainAvatar)).BeginInit();
@@ -187,13 +177,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tbgpTeacherManagment.SuspendLayout();
+            this.tbpgStudentManagment.SuspendLayout();
+            this.metroPanel3.SuspendLayout();
+            this.mgStudentmenuContent.SuspendLayout();
+            this.metroPanel2.SuspendLayout();
+            this.metroPanel1.SuspendLayout();
+            this.tbpgSubjectManagment.SuspendLayout();
+            this.metroPanel9.SuspendLayout();
             this.pnProfile.SuspendLayout();
             this.materialCard1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel4.SuspendLayout();
-            this.metroPanel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbAvatar)).BeginInit();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // materialDrawer1
@@ -202,7 +198,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.materialDrawer1.AutoHide = false;
             this.materialDrawer1.BackgroundWithAccent = false;
-            this.materialDrawer1.BaseTabControl = this.mainTabcontrol;
+            this.materialDrawer1.BaseTabControl = this.mainTabControl;
             this.materialDrawer1.Depth = 0;
             this.materialDrawer1.HighlightWithAccent = true;
             this.materialDrawer1.IndicatorWidth = 5;
@@ -216,36 +212,35 @@
             this.materialDrawer1.Text = "materialDrawer1";
             this.materialDrawer1.UseColors = false;
             // 
-            // mainTabcontrol
+            // mainTabControl
             // 
-            this.mainTabcontrol.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.mainTabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.mainTabcontrol.Controls.Add(this.tbpgProfile);
-            this.mainTabcontrol.Controls.Add(this.tbpgShedule);
-            this.mainTabcontrol.Controls.Add(this.tbgpTeacherManagment);
-            this.mainTabcontrol.Controls.Add(this.tbpgStudentManagment);
-            this.mainTabcontrol.Controls.Add(this.tbpgStudentMarkboard);
-            this.mainTabcontrol.Controls.Add(this.tbpgSubjectManagment);
-            this.mainTabcontrol.Controls.Add(this.tbpgClassManagment);
-            this.mainTabcontrol.Controls.Add(this.tbpgRewardManagment);
-            this.mainTabcontrol.Controls.Add(this.tbpgReport);
-            this.mainTabcontrol.Controls.Add(this.tbpgFormClass);
-            this.mainTabcontrol.Depth = 0;
-            this.mainTabcontrol.Location = new System.Drawing.Point(249, 105);
-            this.mainTabcontrol.MouseState = MaterialSkin.MouseState.HOVER;
-            this.mainTabcontrol.Multiline = true;
-            this.mainTabcontrol.Name = "mainTabcontrol";
-            this.mainTabcontrol.SelectedIndex = 0;
-            this.mainTabcontrol.Size = new System.Drawing.Size(1146, 622);
-            this.mainTabcontrol.TabIndex = 1;
-            this.mainTabcontrol.SelectedIndexChanged += new System.EventHandler(this.mainTabcontrol_SelectedIndexChanged_1);
+            this.mainTabControl.Controls.Add(this.tbpgProfile);
+            this.mainTabControl.Controls.Add(this.tbpgShedule);
+            this.mainTabControl.Controls.Add(this.tbgpTeacherManagment);
+            this.mainTabControl.Controls.Add(this.tbpgStudentManagment);
+            this.mainTabControl.Controls.Add(this.tbpgStudentMarkboard);
+            this.mainTabControl.Controls.Add(this.tbpgSubjectManagment);
+            this.mainTabControl.Controls.Add(this.tbpgClassManagment);
+            this.mainTabControl.Controls.Add(this.tbpgRewardManagment);
+            this.mainTabControl.Controls.Add(this.tbpgReport);
+            this.mainTabControl.Controls.Add(this.tbpgFormClass);
+            this.mainTabControl.Depth = 0;
+            this.mainTabControl.Location = new System.Drawing.Point(249, 105);
+            this.mainTabControl.MouseState = MaterialSkin.MouseState.HOVER;
+            this.mainTabControl.Multiline = true;
+            this.mainTabControl.Name = "mainTabControl";
+            this.mainTabControl.SelectedIndex = 0;
+            this.mainTabControl.Size = new System.Drawing.Size(1146, 622);
+            this.mainTabControl.TabIndex = 1;
+            this.mainTabControl.SelectedIndexChanged += new System.EventHandler(this.mainTabControl_SelectedIndexChanged);
             // 
             // tbpgProfile
             // 
             this.tbpgProfile.AutoScroll = true;
             this.tbpgProfile.BackColor = System.Drawing.Color.White;
-            this.tbpgProfile.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbpgProfile.Controls.Add(this.materialDivider4);
             this.tbpgProfile.Controls.Add(this.pictureBox16);
             this.tbpgProfile.Controls.Add(this.pbProfilemainAvatar);
@@ -276,7 +271,7 @@
             this.tbpgProfile.Location = new System.Drawing.Point(4, 24);
             this.tbpgProfile.Name = "tbpgProfile";
             this.tbpgProfile.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgProfile.Size = new System.Drawing.Size(1085, 594);
+            this.tbpgProfile.Size = new System.Drawing.Size(1138, 594);
             this.tbpgProfile.TabIndex = 0;
             this.tbpgProfile.Text = "Thông tin tài khoản";
             this.metroToolTip1.SetToolTip(this.tbpgProfile, "Phòng ban trực ");
@@ -286,7 +281,7 @@
             this.materialDivider4.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.materialDivider4.BackColor = System.Drawing.Color.DarkGray;
             this.materialDivider4.Depth = 0;
-            this.materialDivider4.Location = new System.Drawing.Point(588, 98);
+            this.materialDivider4.Location = new System.Drawing.Point(615, 98);
             this.materialDivider4.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialDivider4.Name = "materialDivider4";
             this.materialDivider4.Size = new System.Drawing.Size(1, 300);
@@ -298,7 +293,7 @@
             this.pictureBox16.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox16.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox16.BackgroundImage")));
             this.pictureBox16.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox16.Location = new System.Drawing.Point(649, 347);
+            this.pictureBox16.Location = new System.Drawing.Point(676, 347);
             this.pictureBox16.Name = "pictureBox16";
             this.pictureBox16.Size = new System.Drawing.Size(30, 30);
             this.pictureBox16.TabIndex = 28;
@@ -309,8 +304,7 @@
             // 
             this.pbProfilemainAvatar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pbProfilemainAvatar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbProfilemainAvatar.Image = global::TutteeFrame.Properties.Resources._21104;
-            this.pbProfilemainAvatar.Location = new System.Drawing.Point(19, 33);
+            this.pbProfilemainAvatar.Location = new System.Drawing.Point(46, 33);
             this.pbProfilemainAvatar.Name = "pbProfilemainAvatar";
             this.pbProfilemainAvatar.Size = new System.Drawing.Size(190, 190);
             this.pbProfilemainAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -322,7 +316,7 @@
             this.pictureBox14.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox14.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox14.BackgroundImage")));
             this.pictureBox14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox14.Location = new System.Drawing.Point(271, 417);
+            this.pictureBox14.Location = new System.Drawing.Point(298, 417);
             this.pictureBox14.Name = "pictureBox14";
             this.pictureBox14.Size = new System.Drawing.Size(30, 30);
             this.pictureBox14.TabIndex = 26;
@@ -334,7 +328,7 @@
             this.pictureBox13.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox13.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox13.BackgroundImage")));
             this.pictureBox13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox13.Location = new System.Drawing.Point(271, 347);
+            this.pictureBox13.Location = new System.Drawing.Point(298, 347);
             this.pictureBox13.Name = "pictureBox13";
             this.pictureBox13.Size = new System.Drawing.Size(30, 30);
             this.pictureBox13.TabIndex = 25;
@@ -346,7 +340,7 @@
             this.pictureBox12.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox12.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox12.BackgroundImage")));
             this.pictureBox12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox12.Location = new System.Drawing.Point(271, 347);
+            this.pictureBox12.Location = new System.Drawing.Point(298, 347);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(30, 30);
             this.pictureBox12.TabIndex = 24;
@@ -358,7 +352,7 @@
             this.lbDateofbirth.AutoSize = true;
             this.lbDateofbirth.Depth = 0;
             this.lbDateofbirth.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lbDateofbirth.Location = new System.Drawing.Point(323, 428);
+            this.lbDateofbirth.Location = new System.Drawing.Point(350, 428);
             this.lbDateofbirth.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbDateofbirth.Name = "lbDateofbirth";
             this.lbDateofbirth.Size = new System.Drawing.Size(94, 19);
@@ -372,7 +366,7 @@
             this.lbGender.AutoSize = true;
             this.lbGender.Depth = 0;
             this.lbGender.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lbGender.Location = new System.Drawing.Point(323, 358);
+            this.lbGender.Location = new System.Drawing.Point(350, 358);
             this.lbGender.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbGender.Name = "lbGender";
             this.lbGender.Size = new System.Drawing.Size(64, 19);
@@ -380,36 +374,12 @@
             this.lbGender.Text = "lbGender";
             this.metroToolTip1.SetToolTip(this.lbGender, "Giới tính");
             // 
-            // materialLabel2
-            // 
-            this.materialLabel2.AutoSize = true;
-            this.materialLabel2.Depth = 0;
-            this.materialLabel2.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.materialLabel2.Location = new System.Drawing.Point(96, 367);
-            this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel2.Name = "materialLabel2";
-            this.materialLabel2.Size = new System.Drawing.Size(14, 19);
-            this.materialLabel2.TabIndex = 23;
-            this.materialLabel2.Text = "lb";
-            // 
-            // lbGender
-            // 
-            this.lbGender.AutoSize = true;
-            this.lbGender.Depth = 0;
-            this.lbGender.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lbGender.Location = new System.Drawing.Point(96, 305);
-            this.lbGender.MouseState = MaterialSkin.MouseState.HOVER;
-            this.lbGender.Name = "lbGender";
-            this.lbGender.Size = new System.Drawing.Size(64, 19);
-            this.lbGender.TabIndex = 22;
-            this.lbGender.Text = "lbGender";
-            // 
             // pictureBox11
             // 
             this.pictureBox11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox11.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox11.BackgroundImage")));
             this.pictureBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox11.Location = new System.Drawing.Point(271, 276);
+            this.pictureBox11.Location = new System.Drawing.Point(298, 276);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(30, 30);
             this.pictureBox11.TabIndex = 21;
@@ -422,7 +392,7 @@
             this.lbPosition.AutoSize = true;
             this.lbPosition.Depth = 0;
             this.lbPosition.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lbPosition.Location = new System.Drawing.Point(323, 287);
+            this.lbPosition.Location = new System.Drawing.Point(350, 287);
             this.lbPosition.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbPosition.Name = "lbPosition";
             this.lbPosition.Size = new System.Drawing.Size(72, 19);
@@ -435,7 +405,7 @@
             this.pictureBox9.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox9.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox9.BackgroundImage")));
             this.pictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox9.Location = new System.Drawing.Point(271, 150);
+            this.pictureBox9.Location = new System.Drawing.Point(298, 150);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(30, 30);
             this.pictureBox9.TabIndex = 18;
@@ -447,7 +417,7 @@
             this.pictureBox10.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
-            this.pictureBox10.Location = new System.Drawing.Point(271, 209);
+            this.pictureBox10.Location = new System.Drawing.Point(298, 209);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(34, 30);
             this.pictureBox10.TabIndex = 17;
@@ -459,7 +429,7 @@
             this.pictureBox8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox8.BackgroundImage")));
             this.pictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox8.Location = new System.Drawing.Point(271, 82);
+            this.pictureBox8.Location = new System.Drawing.Point(298, 82);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(30, 30);
             this.pictureBox8.TabIndex = 15;
@@ -471,7 +441,7 @@
             this.pictureBox7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox7.BackgroundImage")));
             this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox7.Location = new System.Drawing.Point(649, 209);
+            this.pictureBox7.Location = new System.Drawing.Point(676, 209);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(30, 30);
             this.pictureBox7.TabIndex = 14;
@@ -483,7 +453,7 @@
             this.pictureBox6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox6.BackgroundImage")));
             this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox6.Location = new System.Drawing.Point(649, 150);
+            this.pictureBox6.Location = new System.Drawing.Point(676, 150);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(30, 30);
             this.pictureBox6.TabIndex = 13;
@@ -495,7 +465,7 @@
             this.pictureBox5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.BackgroundImage")));
             this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox5.Location = new System.Drawing.Point(649, 93);
+            this.pictureBox5.Location = new System.Drawing.Point(676, 93);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(30, 30);
             this.pictureBox5.TabIndex = 12;
@@ -508,7 +478,7 @@
             this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox4.BackgroundImage = global::TutteeFrame.Properties.Resources.thongtincanhan;
             this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox4.Location = new System.Drawing.Point(270, 31);
+            this.pictureBox4.Location = new System.Drawing.Point(297, 31);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(245, 39);
             this.pictureBox4.TabIndex = 11;
@@ -520,7 +490,7 @@
             this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox3.BackgroundImage = global::TutteeFrame.Properties.Resources.phonban;
             this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox3.Location = new System.Drawing.Point(632, 283);
+            this.pictureBox3.Location = new System.Drawing.Point(659, 283);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(258, 42);
             this.pictureBox3.TabIndex = 10;
@@ -532,7 +502,7 @@
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.BackgroundImage = global::TutteeFrame.Properties.Resources.thongtinll;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.Location = new System.Drawing.Point(632, 28);
+            this.pictureBox2.Location = new System.Drawing.Point(659, 28);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(245, 50);
             this.pictureBox2.TabIndex = 9;
@@ -544,7 +514,7 @@
             this.lbBelongto.AutoSize = true;
             this.lbBelongto.Depth = 0;
             this.lbBelongto.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lbBelongto.Location = new System.Drawing.Point(701, 358);
+            this.lbBelongto.Location = new System.Drawing.Point(728, 358);
             this.lbBelongto.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbBelongto.Name = "lbBelongto";
             this.lbBelongto.Size = new System.Drawing.Size(77, 19);
@@ -558,7 +528,7 @@
             this.lbSubjectTeach.AutoSize = true;
             this.lbSubjectTeach.Depth = 0;
             this.lbSubjectTeach.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lbSubjectTeach.Location = new System.Drawing.Point(323, 150);
+            this.lbSubjectTeach.Location = new System.Drawing.Point(350, 150);
             this.lbSubjectTeach.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbSubjectTeach.Name = "lbSubjectTeach";
             this.lbSubjectTeach.Size = new System.Drawing.Size(111, 19);
@@ -572,7 +542,7 @@
             this.lbMyfonenum.AutoSize = true;
             this.lbMyfonenum.Depth = 0;
             this.lbMyfonenum.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lbMyfonenum.Location = new System.Drawing.Point(701, 220);
+            this.lbMyfonenum.Location = new System.Drawing.Point(728, 220);
             this.lbMyfonenum.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbMyfonenum.Name = "lbMyfonenum";
             this.lbMyfonenum.Size = new System.Drawing.Size(100, 19);
@@ -586,7 +556,7 @@
             this.lbMyemail.AutoSize = true;
             this.lbMyemail.Depth = 0;
             this.lbMyemail.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lbMyemail.Location = new System.Drawing.Point(701, 161);
+            this.lbMyemail.Location = new System.Drawing.Point(728, 161);
             this.lbMyemail.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbMyemail.Name = "lbMyemail";
             this.lbMyemail.Size = new System.Drawing.Size(75, 19);
@@ -600,7 +570,7 @@
             this.lbMyaddr.AutoSize = true;
             this.lbMyaddr.Depth = 0;
             this.lbMyaddr.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lbMyaddr.Location = new System.Drawing.Point(701, 104);
+            this.lbMyaddr.Location = new System.Drawing.Point(728, 104);
             this.lbMyaddr.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbMyaddr.Name = "lbMyaddr";
             this.lbMyaddr.Size = new System.Drawing.Size(68, 19);
@@ -614,7 +584,7 @@
             this.lbImyID.AutoSize = true;
             this.lbImyID.Depth = 0;
             this.lbImyID.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lbImyID.Location = new System.Drawing.Point(323, 220);
+            this.lbImyID.Location = new System.Drawing.Point(350, 220);
             this.lbImyID.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbImyID.Name = "lbImyID";
             this.lbImyID.Size = new System.Drawing.Size(36, 19);
@@ -628,7 +598,7 @@
             this.lbMyName.AutoSize = true;
             this.lbMyName.Depth = 0;
             this.lbMyName.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.lbMyName.Location = new System.Drawing.Point(323, 93);
+            this.lbMyName.Location = new System.Drawing.Point(350, 93);
             this.lbMyName.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbMyName.Name = "lbMyName";
             this.lbMyName.Size = new System.Drawing.Size(69, 19);
@@ -639,10 +609,10 @@
             // tbpgShedule
             // 
             this.tbpgShedule.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgShedule.Location = new System.Drawing.Point(4, 22);
+            this.tbpgShedule.Location = new System.Drawing.Point(4, 24);
             this.tbpgShedule.Name = "tbpgShedule";
             this.tbpgShedule.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgShedule.Size = new System.Drawing.Size(1138, 596);
+            this.tbpgShedule.Size = new System.Drawing.Size(1138, 594);
             this.tbpgShedule.TabIndex = 1;
             this.tbpgShedule.Text = "thời khóa biểu";
             this.tbpgShedule.UseVisualStyleBackColor = true;
@@ -680,7 +650,7 @@
             this.btnAutoColumn.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAutoColumn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnAutoColumn.Icon = null;
-            this.btnAutoColumn.Location = new System.Drawing.Point(1010, 534);
+            this.btnAutoColumn.Location = new System.Drawing.Point(1010, 530);
             this.btnAutoColumn.Name = "btnAutoColumn";
             this.btnAutoColumn.Size = new System.Drawing.Size(108, 36);
             this.btnAutoColumn.TabIndex = 43;
@@ -763,7 +733,7 @@
             this.listviewTeacher.MouseState = MaterialSkin.MouseState.OUT;
             this.listviewTeacher.Name = "listviewTeacher";
             this.listviewTeacher.OwnerDraw = true;
-            this.listviewTeacher.Size = new System.Drawing.Size(1119, 403);
+            this.listviewTeacher.Size = new System.Drawing.Size(1119, 399);
             this.listviewTeacher.TabIndex = 13;
             this.listviewTeacher.UseCompatibleStateImageBehavior = false;
             this.listviewTeacher.View = System.Windows.Forms.View.Details;
@@ -829,7 +799,7 @@
             this.btnDeleteTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnDeleteTeacher.Icon = null;
-            this.btnDeleteTeacher.Location = new System.Drawing.Point(862, 526);
+            this.btnDeleteTeacher.Location = new System.Drawing.Point(862, 522);
             this.btnDeleteTeacher.Name = "btnDeleteTeacher";
             this.btnDeleteTeacher.Radius = 2;
             this.btnDeleteTeacher.ShadowDepth = 3;
@@ -851,7 +821,7 @@
             this.btnUpdateTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdateTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnUpdateTeacher.Icon = null;
-            this.btnUpdateTeacher.Location = new System.Drawing.Point(198, 526);
+            this.btnUpdateTeacher.Location = new System.Drawing.Point(198, 522);
             this.btnUpdateTeacher.Name = "btnUpdateTeacher";
             this.btnUpdateTeacher.Radius = 2;
             this.btnUpdateTeacher.ShadowDepth = 3;
@@ -873,7 +843,7 @@
             this.btnAddTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnAddTeacher.Icon = null;
-            this.btnAddTeacher.Location = new System.Drawing.Point(50, 526);
+            this.btnAddTeacher.Location = new System.Drawing.Point(50, 522);
             this.btnAddTeacher.Name = "btnAddTeacher";
             this.btnAddTeacher.Radius = 2;
             this.btnAddTeacher.ShadowDepth = 3;
@@ -1021,10 +991,10 @@
             this.tbpgStudentManagment.Controls.Add(this.metroPanel2);
             this.tbpgStudentManagment.Controls.Add(this.metroPanel1);
             this.tbpgStudentManagment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgStudentManagment.Location = new System.Drawing.Point(4, 22);
+            this.tbpgStudentManagment.Location = new System.Drawing.Point(4, 24);
             this.tbpgStudentManagment.Name = "tbpgStudentManagment";
             this.tbpgStudentManagment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgStudentManagment.Size = new System.Drawing.Size(1138, 596);
+            this.tbpgStudentManagment.Size = new System.Drawing.Size(1138, 594);
             this.tbpgStudentManagment.TabIndex = 3;
             this.tbpgStudentManagment.Text = "quản lí học sinh";
             // 
@@ -1037,7 +1007,7 @@
             this.metroPanel3.HorizontalScrollbarSize = 10;
             this.metroPanel3.Location = new System.Drawing.Point(3, 139);
             this.metroPanel3.Name = "metroPanel3";
-            this.metroPanel3.Size = new System.Drawing.Size(925, 318);
+            this.metroPanel3.Size = new System.Drawing.Size(1132, 353);
             this.metroPanel3.TabIndex = 2;
             this.metroPanel3.VerticalScrollbarBarColor = true;
             this.metroPanel3.VerticalScrollbarHighlightOnWheel = false;
@@ -1066,7 +1036,7 @@
             this.ListViewStudents.Location = new System.Drawing.Point(0, 0);
             this.ListViewStudents.Name = "ListViewStudents";
             this.ListViewStudents.OwnerDraw = true;
-            this.ListViewStudents.Size = new System.Drawing.Size(925, 318);
+            this.ListViewStudents.Size = new System.Drawing.Size(1132, 353);
             this.ListViewStudents.TabIndex = 3;
             this.ListViewStudents.UseCompatibleStateImageBehavior = false;
             this.ListViewStudents.UseSelectable = true;
@@ -1142,6 +1112,29 @@
             this.mgStudentmenuContent.Name = "metroContextMenu1";
             this.mgStudentmenuContent.Size = new System.Drawing.Size(105, 70);
             // 
+            // delContent
+            // 
+            this.delContent.Name = "delContent";
+            this.delContent.Size = new System.Drawing.Size(104, 22);
+            this.delContent.Text = "Xóa";
+            this.delContent.Click += new System.EventHandler(this.delContent_Click);
+            // 
+            // fixContent
+            // 
+            this.fixContent.Image = global::TutteeFrame.Properties.Resources.penbook;
+            this.fixContent.Name = "fixContent";
+            this.fixContent.Size = new System.Drawing.Size(104, 22);
+            this.fixContent.Text = "Sửa";
+            this.fixContent.Click += new System.EventHandler(this.fixContent_Click);
+            // 
+            // addContent
+            // 
+            this.addContent.Image = global::TutteeFrame.Properties.Resources.addperson;
+            this.addContent.Name = "addContent";
+            this.addContent.Size = new System.Drawing.Size(104, 22);
+            this.addContent.Text = "Thêm";
+            this.addContent.Click += new System.EventHandler(this.addContent_Click);
+            // 
             // metroPanel2
             // 
             this.metroPanel2.Controls.Add(this.btnAdd);
@@ -1153,9 +1146,9 @@
             this.metroPanel2.HorizontalScrollbarBarColor = true;
             this.metroPanel2.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel2.HorizontalScrollbarSize = 10;
-            this.metroPanel2.Location = new System.Drawing.Point(3, 457);
+            this.metroPanel2.Location = new System.Drawing.Point(3, 492);
             this.metroPanel2.Name = "metroPanel2";
-            this.metroPanel2.Size = new System.Drawing.Size(925, 99);
+            this.metroPanel2.Size = new System.Drawing.Size(1132, 99);
             this.metroPanel2.TabIndex = 1;
             this.metroPanel2.VerticalScrollbarBarColor = true;
             this.metroPanel2.VerticalScrollbarHighlightOnWheel = false;
@@ -1243,7 +1236,7 @@
             this.metroPanel6.HorizontalScrollbarBarColor = true;
             this.metroPanel6.HorizontalScrollbarHighlightOnWheel = false;
             this.metroPanel6.HorizontalScrollbarSize = 10;
-            this.metroPanel6.Location = new System.Drawing.Point(901, 0);
+            this.metroPanel6.Location = new System.Drawing.Point(1108, 0);
             this.metroPanel6.Name = "metroPanel6";
             this.metroPanel6.Size = new System.Drawing.Size(24, 99);
             this.metroPanel6.TabIndex = 5;
@@ -1269,7 +1262,7 @@
             this.metroPanel1.HorizontalScrollbarSize = 10;
             this.metroPanel1.Location = new System.Drawing.Point(3, 3);
             this.metroPanel1.Name = "metroPanel1";
-            this.metroPanel1.Size = new System.Drawing.Size(925, 136);
+            this.metroPanel1.Size = new System.Drawing.Size(1132, 136);
             this.metroPanel1.TabIndex = 0;
             this.metroPanel1.VerticalScrollbarBarColor = true;
             this.metroPanel1.VerticalScrollbarHighlightOnWheel = false;
@@ -1432,10 +1425,9 @@
             // 
             // tbpgStudentMarkboard
             // 
-            this.tbpgStudentMarkboard.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgStudentMarkboard.Location = new System.Drawing.Point(4, 22);
+            this.tbpgStudentMarkboard.Location = new System.Drawing.Point(4, 24);
             this.tbpgStudentMarkboard.Name = "tbpgStudentMarkboard";
-            this.tbpgStudentMarkboard.Size = new System.Drawing.Size(1138, 596);
+            this.tbpgStudentMarkboard.Size = new System.Drawing.Size(1138, 594);
             this.tbpgStudentMarkboard.TabIndex = 7;
             this.tbpgStudentMarkboard.Text = "bảng điểm học sinh";
             this.tbpgStudentMarkboard.UseVisualStyleBackColor = true;
@@ -1447,22 +1439,131 @@
             this.tbpgSubjectManagment.Controls.Add(this.metroPanel7);
             this.tbpgSubjectManagment.Controls.Add(this.metroPanel5);
             this.tbpgSubjectManagment.Controls.Add(this.metroPanel4);
-            this.tbpgSubjectManagment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbpgSubjectManagment.Location = new System.Drawing.Point(4, 24);
             this.tbpgSubjectManagment.Name = "tbpgSubjectManagment";
             this.tbpgSubjectManagment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgSubjectManagment.Size = new System.Drawing.Size(1138, 596);
+            this.tbpgSubjectManagment.Size = new System.Drawing.Size(1138, 594);
             this.tbpgSubjectManagment.TabIndex = 4;
             this.tbpgSubjectManagment.Text = "quản lí môn";
             this.tbpgSubjectManagment.UseVisualStyleBackColor = true;
             // 
+            // metroPanel9
+            // 
+            this.metroPanel9.Controls.Add(this.lvSubjectManage);
+            this.metroPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.metroPanel9.HorizontalScrollbarBarColor = true;
+            this.metroPanel9.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroPanel9.HorizontalScrollbarSize = 10;
+            this.metroPanel9.Location = new System.Drawing.Point(38, 85);
+            this.metroPanel9.Name = "metroPanel9";
+            this.metroPanel9.Size = new System.Drawing.Size(1060, 364);
+            this.metroPanel9.TabIndex = 4;
+            this.metroPanel9.VerticalScrollbarBarColor = true;
+            this.metroPanel9.VerticalScrollbarHighlightOnWheel = false;
+            this.metroPanel9.VerticalScrollbarSize = 10;
+            // 
+            // lvSubjectManage
+            // 
+            this.lvSubjectManage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvSubjectManage.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.lvSubjectManage.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3});
+            this.lvSubjectManage.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.lvSubjectManage.FullRowSelect = true;
+            this.lvSubjectManage.GridLines = true;
+            this.lvSubjectManage.Location = new System.Drawing.Point(6, 50);
+            this.lvSubjectManage.Name = "lvSubjectManage";
+            this.lvSubjectManage.OwnerDraw = true;
+            this.lvSubjectManage.Size = new System.Drawing.Size(1080, 307);
+            this.lvSubjectManage.TabIndex = 2;
+            this.lvSubjectManage.UseCompatibleStateImageBehavior = false;
+            this.lvSubjectManage.UseSelectable = true;
+            this.lvSubjectManage.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Số thứ tự";
+            this.columnHeader1.Width = 210;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Mã môn học";
+            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader2.Width = 257;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Tên môn học";
+            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader3.Width = 392;
+            // 
+            // metroPanel8
+            // 
+            this.metroPanel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.metroPanel8.HorizontalScrollbarBarColor = true;
+            this.metroPanel8.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroPanel8.HorizontalScrollbarSize = 10;
+            this.metroPanel8.Location = new System.Drawing.Point(38, 3);
+            this.metroPanel8.Name = "metroPanel8";
+            this.metroPanel8.Size = new System.Drawing.Size(1060, 82);
+            this.metroPanel8.TabIndex = 3;
+            this.metroPanel8.VerticalScrollbarBarColor = true;
+            this.metroPanel8.VerticalScrollbarHighlightOnWheel = false;
+            this.metroPanel8.VerticalScrollbarSize = 10;
+            // 
+            // metroPanel7
+            // 
+            this.metroPanel7.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.metroPanel7.HorizontalScrollbarBarColor = true;
+            this.metroPanel7.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroPanel7.HorizontalScrollbarSize = 10;
+            this.metroPanel7.Location = new System.Drawing.Point(38, 449);
+            this.metroPanel7.Name = "metroPanel7";
+            this.metroPanel7.Size = new System.Drawing.Size(1060, 142);
+            this.metroPanel7.TabIndex = 2;
+            this.metroPanel7.VerticalScrollbarBarColor = true;
+            this.metroPanel7.VerticalScrollbarHighlightOnWheel = false;
+            this.metroPanel7.VerticalScrollbarSize = 10;
+            // 
+            // metroPanel5
+            // 
+            this.metroPanel5.Dock = System.Windows.Forms.DockStyle.Right;
+            this.metroPanel5.HorizontalScrollbarBarColor = true;
+            this.metroPanel5.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroPanel5.HorizontalScrollbarSize = 10;
+            this.metroPanel5.Location = new System.Drawing.Point(1098, 3);
+            this.metroPanel5.Name = "metroPanel5";
+            this.metroPanel5.Size = new System.Drawing.Size(37, 588);
+            this.metroPanel5.TabIndex = 1;
+            this.metroPanel5.VerticalScrollbarBarColor = true;
+            this.metroPanel5.VerticalScrollbarHighlightOnWheel = false;
+            this.metroPanel5.VerticalScrollbarSize = 10;
+            // 
+            // metroPanel4
+            // 
+            this.metroPanel4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.metroPanel4.HorizontalScrollbarBarColor = true;
+            this.metroPanel4.HorizontalScrollbarHighlightOnWheel = false;
+            this.metroPanel4.HorizontalScrollbarSize = 10;
+            this.metroPanel4.Location = new System.Drawing.Point(3, 3);
+            this.metroPanel4.Name = "metroPanel4";
+            this.metroPanel4.Size = new System.Drawing.Size(35, 588);
+            this.metroPanel4.TabIndex = 0;
+            this.metroPanel4.VerticalScrollbarBarColor = true;
+            this.metroPanel4.VerticalScrollbarHighlightOnWheel = false;
+            this.metroPanel4.VerticalScrollbarSize = 10;
+            this.metroPanel4.Paint += new System.Windows.Forms.PaintEventHandler(this.metroPanel4_Paint);
+            // 
             // tbpgClassManagment
             // 
             this.tbpgClassManagment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgClassManagment.Location = new System.Drawing.Point(4, 22);
+            this.tbpgClassManagment.Location = new System.Drawing.Point(4, 24);
             this.tbpgClassManagment.Name = "tbpgClassManagment";
             this.tbpgClassManagment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgClassManagment.Size = new System.Drawing.Size(1138, 596);
+            this.tbpgClassManagment.Size = new System.Drawing.Size(1138, 594);
             this.tbpgClassManagment.TabIndex = 5;
             this.tbpgClassManagment.Text = "quản lí lớp";
             this.tbpgClassManagment.UseVisualStyleBackColor = true;
@@ -1620,7 +1721,7 @@
             this.ptbAvatar.Image = global::TutteeFrame.Properties.Resources.default_avatar;
             this.ptbAvatar.Location = new System.Drawing.Point(16, 10);
             this.ptbAvatar.Name = "ptbAvatar";
-            this.ptbAvatar.Size = new System.Drawing.Size(50, 50);
+            this.ptbAvatar.Size = new System.Drawing.Size(40, 40);
             this.ptbAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ptbAvatar.TabIndex = 4;
             this.ptbAvatar.TabStop = false;
@@ -1674,6 +1775,17 @@
             this.materialDivider1.TabIndex = 2;
             this.materialDivider1.Text = "materialDivider1";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(100, 13);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(55, 55);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MovableForm);
+            // 
             // materialLabel1
             // 
             this.materialLabel1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -1711,37 +1823,6 @@
             this.materialDivider3.TabIndex = 2;
             this.materialDivider3.Text = "materialDivider3";
             // 
-            // metroToolTip1
-            // 
-            this.metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroToolTip1.StyleManager = null;
-            this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
-            //
-            // mainProgressbar
-            // 
-            this.mainProgressbar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.mainProgressbar.Location = new System.Drawing.Point(245, 744);
-            this.mainProgressbar.MarqueeAnimationSpeed = 18;
-            this.mainProgressbar.Name = "mainProgressbar";
-            this.mainProgressbar.Size = new System.Drawing.Size(1205, 6);
-            this.mainProgressbar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
-            this.mainProgressbar.TabIndex = 25;
-            // 
-            // lbInformation
-            // 
-            this.lbInformation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lbInformation.AutoSize = true;
-            this.lbInformation.BackColor = System.Drawing.Color.White;
-            this.lbInformation.Font = new System.Drawing.Font("Segoe UI", 8.25F);
-            this.lbInformation.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbInformation.Location = new System.Drawing.Point(245, 727);
-            this.lbInformation.Name = "lbInformation";
-            this.lbInformation.Size = new System.Drawing.Size(88, 13);
-            this.lbInformation.TabIndex = 26;
-            this.lbInformation.Text = "*Đang kết nối...";
-            this.lbInformation.Visible = false;
-            // 
             // ShowListBackGroundWork
             // 
             this.ShowListBackGroundWork.WorkerReportsProgress = true;
@@ -1767,116 +1848,6 @@
             this.metroLabel2.TabIndex = 7;
             this.metroLabel2.Text = "metroLabel2";
             // 
-            // metroPanel4
-            // 
-            this.metroPanel4.Dock = System.Windows.Forms.DockStyle.Left;
-            this.metroPanel4.HorizontalScrollbarBarColor = true;
-            this.metroPanel4.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel4.HorizontalScrollbarSize = 10;
-            this.metroPanel4.Location = new System.Drawing.Point(3, 3);
-            this.metroPanel4.Name = "metroPanel4";
-            this.metroPanel4.Size = new System.Drawing.Size(35, 551);
-            this.metroPanel4.TabIndex = 0;
-            this.metroPanel4.VerticalScrollbarBarColor = true;
-            this.metroPanel4.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel4.VerticalScrollbarSize = 10;
-            this.metroPanel4.Paint += new System.Windows.Forms.PaintEventHandler(this.metroPanel4_Paint);
-            // 
-            // metroPanel5
-            // 
-            this.metroPanel5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.metroPanel5.HorizontalScrollbarBarColor = true;
-            this.metroPanel5.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel5.HorizontalScrollbarSize = 10;
-            this.metroPanel5.Location = new System.Drawing.Point(891, 3);
-            this.metroPanel5.Name = "metroPanel5";
-            this.metroPanel5.Size = new System.Drawing.Size(37, 551);
-            this.metroPanel5.TabIndex = 1;
-            this.metroPanel5.VerticalScrollbarBarColor = true;
-            this.metroPanel5.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel5.VerticalScrollbarSize = 10;
-            // 
-            // metroPanel7
-            // 
-            this.metroPanel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.metroPanel7.HorizontalScrollbarBarColor = true;
-            this.metroPanel7.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel7.HorizontalScrollbarSize = 10;
-            this.metroPanel7.Location = new System.Drawing.Point(38, 412);
-            this.metroPanel7.Name = "metroPanel7";
-            this.metroPanel7.Size = new System.Drawing.Size(853, 142);
-            this.metroPanel7.TabIndex = 2;
-            this.metroPanel7.VerticalScrollbarBarColor = true;
-            this.metroPanel7.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel7.VerticalScrollbarSize = 10;
-            // 
-            // metroPanel8
-            // 
-            this.metroPanel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.metroPanel8.HorizontalScrollbarBarColor = true;
-            this.metroPanel8.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel8.HorizontalScrollbarSize = 10;
-            this.metroPanel8.Location = new System.Drawing.Point(38, 3);
-            this.metroPanel8.Name = "metroPanel8";
-            this.metroPanel8.Size = new System.Drawing.Size(853, 82);
-            this.metroPanel8.TabIndex = 3;
-            this.metroPanel8.VerticalScrollbarBarColor = true;
-            this.metroPanel8.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel8.VerticalScrollbarSize = 10;
-            // 
-            // metroPanel9
-            // 
-            this.metroPanel9.Controls.Add(this.lvSubjectManage);
-            this.metroPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.metroPanel9.HorizontalScrollbarBarColor = true;
-            this.metroPanel9.HorizontalScrollbarHighlightOnWheel = false;
-            this.metroPanel9.HorizontalScrollbarSize = 10;
-            this.metroPanel9.Location = new System.Drawing.Point(38, 85);
-            this.metroPanel9.Name = "metroPanel9";
-            this.metroPanel9.Size = new System.Drawing.Size(853, 327);
-            this.metroPanel9.TabIndex = 4;
-            this.metroPanel9.VerticalScrollbarBarColor = true;
-            this.metroPanel9.VerticalScrollbarHighlightOnWheel = false;
-            this.metroPanel9.VerticalScrollbarSize = 10;
-            // 
-            // lvSubjectManage
-            // 
-            this.lvSubjectManage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lvSubjectManage.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.lvSubjectManage.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3});
-            this.lvSubjectManage.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lvSubjectManage.FullRowSelect = true;
-            this.lvSubjectManage.GridLines = true;
-            this.lvSubjectManage.Location = new System.Drawing.Point(6, 13);
-            this.lvSubjectManage.Name = "lvSubjectManage";
-            this.lvSubjectManage.OwnerDraw = true;
-            this.lvSubjectManage.Size = new System.Drawing.Size(873, 307);
-            this.lvSubjectManage.TabIndex = 2;
-            this.lvSubjectManage.UseCompatibleStateImageBehavior = false;
-            this.lvSubjectManage.UseSelectable = true;
-            this.lvSubjectManage.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Số thứ tự";
-            this.columnHeader1.Width = 210;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Mã môn học";
-            this.columnHeader2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader2.Width = 257;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Tên môn học";
-            this.columnHeader3.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader3.Width = 392;
-            // 
             // ManageSubjectBackgroundWork
             // 
             this.ManageSubjectBackgroundWork.WorkerReportsProgress = true;
@@ -1885,124 +1856,45 @@
             this.ManageSubjectBackgroundWork.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.ManageSubjectBackgroundWork_ProgressChanged);
             this.ManageSubjectBackgroundWork.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.ManageSubjectBackgroundWork_RunWorkerCompleted);
             // 
-            // btnLogout
+            // metroToolTip1
             // 
-            this.btnLogout.BackColor = System.Drawing.Color.Transparent;
-            this.btnLogout.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
-            this.btnLogout.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
-            this.btnLogout.ForeColor = System.Drawing.Color.Red;
-            this.btnLogout.Icon = ((System.Drawing.Image)(resources.GetObject("btnLogout.Icon")));
-            this.btnLogout.Location = new System.Drawing.Point(-1, 173);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(292, 45);
-            this.btnLogout.TabIndex = 10;
-            this.btnLogout.Text = "Đăng xuất";
-            this.btnLogout.TextAlign = System.Drawing.StringAlignment.Near;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            this.metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroToolTip1.StyleManager = null;
+            this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
-            // btnChangePass
+            // mainProgressbar
             // 
-            this.btnChangePass.BackColor = System.Drawing.Color.Transparent;
-            this.btnChangePass.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
-            this.btnChangePass.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
-            this.btnChangePass.ForeColor = System.Drawing.Color.Black;
-            this.btnChangePass.Icon = ((System.Drawing.Image)(resources.GetObject("btnChangePass.Icon")));
-            this.btnChangePass.Location = new System.Drawing.Point(-1, 128);
-            this.btnChangePass.Name = "btnChangePass";
-            this.btnChangePass.Size = new System.Drawing.Size(292, 45);
-            this.btnChangePass.TabIndex = 9;
-            this.btnChangePass.Text = "Đổi mật khẩu";
-            this.btnChangePass.TextAlign = System.Drawing.StringAlignment.Near;
+            this.mainProgressbar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mainProgressbar.Location = new System.Drawing.Point(245, 744);
+            this.mainProgressbar.MarqueeAnimationSpeed = 18;
+            this.mainProgressbar.Name = "mainProgressbar";
+            this.mainProgressbar.Size = new System.Drawing.Size(1205, 6);
+            this.mainProgressbar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.mainProgressbar.TabIndex = 25;
             // 
-            // btnSetting
+            // lbInformation
             // 
-            this.btnSetting.BackColor = System.Drawing.Color.Transparent;
-            this.btnSetting.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
-            this.btnSetting.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
-            this.btnSetting.ForeColor = System.Drawing.Color.Black;
-            this.btnSetting.Icon = ((System.Drawing.Image)(resources.GetObject("btnSetting.Icon")));
-            this.btnSetting.Location = new System.Drawing.Point(-1, 83);
-            this.btnSetting.Name = "btnSetting";
-            this.btnSetting.Size = new System.Drawing.Size(292, 45);
-            this.btnSetting.TabIndex = 8;
-            this.btnSetting.Text = "Cài đặt";
-            this.btnSetting.TextAlign = System.Drawing.StringAlignment.Near;
-            // 
-            // btnShowMore
-            // 
-            this.btnShowMore.AutoSize = false;
-            this.btnShowMore.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnShowMore.Depth = 0;
-            this.btnShowMore.DrawShadows = false;
-            this.btnShowMore.HighEmphasis = false;
-            this.btnShowMore.Icon = ((System.Drawing.Image)(resources.GetObject("btnShowMore.Icon")));
-            this.btnShowMore.Location = new System.Drawing.Point(240, 10);
-            this.btnShowMore.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnShowMore.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnShowMore.Name = "btnShowMore";
-            this.btnShowMore.Size = new System.Drawing.Size(42, 35);
-            this.btnShowMore.TabIndex = 7;
-            this.btnShowMore.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
-            this.btnShowMore.UseAccentColor = false;
-            this.btnShowMore.UseVisualStyleBackColor = true;
-            this.btnShowMore.Click += new System.EventHandler(this.materialButton3_Click);
-            // 
-            // ptbAvatar
-            // 
-            this.ptbAvatar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ptbAvatar.Image = global::TutteeFrame.Properties.Resources._21104;
-            this.ptbAvatar.Location = new System.Drawing.Point(16, 10);
-            this.ptbAvatar.Name = "ptbAvatar";
-            this.ptbAvatar.Size = new System.Drawing.Size(40, 40);
-            this.ptbAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ptbAvatar.TabIndex = 4;
-            this.ptbAvatar.TabStop = false;
-            // 
-            // delContent
-            // 
-            this.delContent.Image = global::TutteeFrame.Properties.Resources.delete;
-            this.delContent.Name = "delContent";
-            this.delContent.Size = new System.Drawing.Size(104, 22);
-            this.delContent.Text = "Xóa";
-            this.delContent.Click += new System.EventHandler(this.delContent_Click);
-            // 
-            // fixContent
-            // 
-            this.fixContent.Image = global::TutteeFrame.Properties.Resources.penbook;
-            this.fixContent.Name = "fixContent";
-            this.fixContent.Size = new System.Drawing.Size(104, 22);
-            this.fixContent.Text = "Sửa";
-            this.fixContent.Click += new System.EventHandler(this.fixContent_Click);
-            // 
-            // addContent
-            // 
-            this.addContent.Image = global::TutteeFrame.Properties.Resources.addperson;
-            this.addContent.Name = "addContent";
-            this.addContent.Size = new System.Drawing.Size(104, 22);
-            this.addContent.Text = "Thêm";
-            this.addContent.Click += new System.EventHandler(this.addContent_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(100, 13);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MovableForm);
+            this.lbInformation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbInformation.AutoSize = true;
+            this.lbInformation.BackColor = System.Drawing.Color.White;
+            this.lbInformation.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.lbInformation.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lbInformation.Location = new System.Drawing.Point(245, 727);
+            this.lbInformation.Name = "lbInformation";
+            this.lbInformation.Size = new System.Drawing.Size(88, 13);
+            this.lbInformation.TabIndex = 26;
+            this.lbInformation.Text = "*Đang kết nối...";
+            this.lbInformation.Visible = false;
             // 
             // frmMain
             // 
-            this.ClientSize = new System.Drawing.Size(1200, 700);
-            this.Controls.Add(this.metroLabel2);
-            this.Controls.Add(this.materialLabel2);
             this.ClientSize = new System.Drawing.Size(1400, 750);
+            this.Controls.Add(this.metroLabel2);
             this.Controls.Add(this.mainProgressbar);
             this.Controls.Add(this.lbInformation);
             this.Controls.Add(this.pnProfile);
-            this.Controls.Add(this.mainTabcontrol);
+            this.Controls.Add(this.mainTabControl);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.materialDrawer1);
@@ -2016,14 +1908,7 @@
             this.Style = MetroFramework.MetroColorStyle.Teal;
             this.Text = "TutteeFrame";
             this.Shown += new System.EventHandler(this.frmMain_Shown);
-            this.mainTabcontrol.ResumeLayout(false);
-            this.tbpgStudentManagment.ResumeLayout(false);
-            this.metroPanel3.ResumeLayout(false);
-            this.mgStudentmenuContent.ResumeLayout(false);
-            this.metroPanel2.ResumeLayout(false);
-            this.metroPanel1.ResumeLayout(false);
-            this.metroPanel1.PerformLayout();
-            this.tbpgSubjectManagment.ResumeLayout(false);
+            this.mainTabControl.ResumeLayout(false);
             this.tbpgProfile.ResumeLayout(false);
             this.tbpgProfile.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
@@ -2043,15 +1928,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tbgpTeacherManagment.ResumeLayout(false);
             this.tbgpTeacherManagment.PerformLayout();
+            this.tbpgStudentManagment.ResumeLayout(false);
+            this.metroPanel3.ResumeLayout(false);
+            this.mgStudentmenuContent.ResumeLayout(false);
+            this.metroPanel2.ResumeLayout(false);
+            this.metroPanel1.ResumeLayout(false);
+            this.metroPanel1.PerformLayout();
+            this.tbpgSubjectManagment.ResumeLayout(false);
+            this.metroPanel9.ResumeLayout(false);
             this.pnProfile.ResumeLayout(false);
             this.materialCard1.ResumeLayout(false);
             this.materialCard1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbAvatar)).EndInit();
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            this.metroPanel9.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.ptbAvatar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -2060,7 +1952,7 @@
         #endregion
 
         private MaterialSkin.Controls.MaterialDrawer materialDrawer1;
-        private MaterialSkin.Controls.MaterialTabControl mainTabcontrol;
+        private MaterialSkin.Controls.MaterialTabControl mainTabControl;
         private System.Windows.Forms.TabPage tbpgProfile;
         private System.Windows.Forms.TabPage tbpgShedule;
         private System.Windows.Forms.PictureBox pictureBox1;
@@ -2114,7 +2006,6 @@
         private System.Windows.Forms.PictureBox pictureBox16;
         private System.Windows.Forms.PictureBox pbProfilemainAvatar;
         private MaterialSkin.Controls.MaterialDivider materialDivider4;
-        private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private System.ComponentModel.BackgroundWorker ShowListBackGroundWork;
         private MetroFramework.Controls.MetroPanel metroPanel3;
         private MetroFramework.Controls.MetroPanel metroPanel2;

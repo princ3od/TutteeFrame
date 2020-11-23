@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using TutteeFrame.Model;
-using System.Data;
 
 namespace TutteeFrame.Model
 {
@@ -327,7 +326,6 @@ namespace TutteeFrame.Model
                         _teacher.Address = reader["Address"].ToString();
                         _teacher.Phone = reader["Phone"].ToString();
                         _teacher.Mail = reader["Maill"].ToString();
-                        _teacher.Picture = (byte [])reader.GetValue(3);
                         _teacher.Subject = new Subject();
                         _teacher.Subject.ID = reader["SubjectID"].ToString();
                         _teacher.Subject.Name = reader["SubjectName"].ToString();
