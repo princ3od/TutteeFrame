@@ -37,6 +37,8 @@
             this.cbxIsAdmin = new Material_Design_for_Winform.MaterialCheckBox();
             this.cbxIsMinistry = new Material_Design_for_Winform.MaterialCheckBox();
             this.pnBasicInfor = new MaterialSkin.Controls.MaterialCard();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cbbSubject = new MetroFramework.Controls.MetroComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cbbSex = new MetroFramework.Controls.MetroComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,8 +47,7 @@
             this.materialCard1 = new MaterialSkin.Controls.MaterialCard();
             this.label4 = new System.Windows.Forms.Label();
             this.materialCard2 = new MaterialSkin.Controls.MaterialCard();
-            this.label6 = new System.Windows.Forms.Label();
-            this.cbbSubject = new MetroFramework.Controls.MetroComboBox();
+            this.txtPostition = new Material_Design_for_Winform.MaterialTextField();
             this.label5 = new System.Windows.Forms.Label();
             this.btnApprove = new Material_Design_for_Winform.MaterialRaisedButton();
             this.btnCancal = new Material_Design_for_Winform.MaterialFlatButton();
@@ -55,7 +56,8 @@
             this.btnExit = new MaterialSkin.Controls.MaterialButton();
             this.btnChooseAvatar = new MaterialSkin.Controls.MaterialFloatingActionButton();
             this.ptbAvatar = new System.Windows.Forms.PictureBox();
-            this.txtPostition = new Material_Design_for_Winform.MaterialTextField();
+            this.mainProgressbar = new System.Windows.Forms.ProgressBar();
+            this.lbInformation = new System.Windows.Forms.Label();
             this.pnBasicInfor.SuspendLayout();
             this.materialCard1.SuspendLayout();
             this.materialCard2.SuspendLayout();
@@ -225,13 +227,36 @@
             this.pnBasicInfor.Controls.Add(this.txtFirstname);
             this.pnBasicInfor.Depth = 0;
             this.pnBasicInfor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.pnBasicInfor.Location = new System.Drawing.Point(35, 219);
+            this.pnBasicInfor.Location = new System.Drawing.Point(35, 216);
             this.pnBasicInfor.Margin = new System.Windows.Forms.Padding(14);
             this.pnBasicInfor.MouseState = MaterialSkin.MouseState.HOVER;
             this.pnBasicInfor.Name = "pnBasicInfor";
             this.pnBasicInfor.Padding = new System.Windows.Forms.Padding(14);
             this.pnBasicInfor.Size = new System.Drawing.Size(350, 390);
             this.pnBasicInfor.TabIndex = 38;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(18, 322);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(102, 19);
+            this.label6.TabIndex = 46;
+            this.label6.Text = "Môn giảng dạy";
+            // 
+            // cbbSubject
+            // 
+            this.cbbSubject.DisplayFocus = true;
+            this.cbbSubject.FormattingEnabled = true;
+            this.cbbSubject.ItemHeight = 23;
+            this.cbbSubject.Location = new System.Drawing.Point(31, 344);
+            this.cbbSubject.Name = "cbbSubject";
+            this.cbbSubject.PromptText = "Môn học";
+            this.cbbSubject.Size = new System.Drawing.Size(175, 29);
+            this.cbbSubject.Style = MetroFramework.MetroColorStyle.Teal;
+            this.cbbSubject.TabIndex = 45;
+            this.cbbSubject.UseSelectable = true;
             // 
             // label3
             // 
@@ -299,7 +324,7 @@
             this.materialCard1.Controls.Add(this.txtTeacherMail);
             this.materialCard1.Depth = 0;
             this.materialCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialCard1.Location = new System.Drawing.Point(411, 219);
+            this.materialCard1.Location = new System.Drawing.Point(411, 216);
             this.materialCard1.Margin = new System.Windows.Forms.Padding(14);
             this.materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialCard1.Name = "materialCard1";
@@ -326,7 +351,7 @@
             this.materialCard2.Controls.Add(this.cbxIsAdmin);
             this.materialCard2.Depth = 0;
             this.materialCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialCard2.Location = new System.Drawing.Point(411, 421);
+            this.materialCard2.Location = new System.Drawing.Point(411, 418);
             this.materialCard2.Margin = new System.Windows.Forms.Padding(14);
             this.materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialCard2.Name = "materialCard2";
@@ -334,28 +359,28 @@
             this.materialCard2.Size = new System.Drawing.Size(344, 188);
             this.materialCard2.TabIndex = 40;
             // 
-            // label6
+            // txtPostition
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(18, 322);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(102, 19);
-            this.label6.TabIndex = 46;
-            this.label6.Text = "Môn giảng dạy";
-            // 
-            // cbbSubject
-            // 
-            this.cbbSubject.DisplayFocus = true;
-            this.cbbSubject.FormattingEnabled = true;
-            this.cbbSubject.ItemHeight = 23;
-            this.cbbSubject.Location = new System.Drawing.Point(31, 344);
-            this.cbbSubject.Name = "cbbSubject";
-            this.cbbSubject.PromptText = "Môn học";
-            this.cbbSubject.Size = new System.Drawing.Size(175, 29);
-            this.cbbSubject.Style = MetroFramework.MetroColorStyle.Teal;
-            this.cbbSubject.TabIndex = 45;
-            this.cbbSubject.UseSelectable = true;
+            this.txtPostition.AutoScaleColor = true;
+            this.txtPostition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtPostition.FloatingLabelText = "FloatingLabel";
+            this.txtPostition.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.txtPostition.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtPostition.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.txtPostition.HideSelection = true;
+            this.txtPostition.HintText = "Vị trí";
+            this.txtPostition.Location = new System.Drawing.Point(45, 120);
+            this.txtPostition.MaxLength = 32767;
+            this.txtPostition.Multiline = false;
+            this.txtPostition.Name = "txtPostition";
+            this.txtPostition.PasswordChar = '\0';
+            this.txtPostition.ReadOnly = false;
+            this.txtPostition.ShortcutsEnable = true;
+            this.txtPostition.ShowCaret = true;
+            this.txtPostition.Size = new System.Drawing.Size(218, 43);
+            this.txtPostition.Style = Material_Design_for_Winform.MaterialTextField.ST.HintAsFloatingLabel;
+            this.txtPostition.TabIndex = 42;
+            this.txtPostition.UseSystemPasswordChar = false;
             // 
             // label5
             // 
@@ -375,7 +400,7 @@
             this.btnApprove.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnApprove.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnApprove.Icon = null;
-            this.btnApprove.Location = new System.Drawing.Point(244, 618);
+            this.btnApprove.Location = new System.Drawing.Point(244, 615);
             this.btnApprove.Name = "btnApprove";
             this.btnApprove.Radius = 2;
             this.btnApprove.ShadowDepth = 3;
@@ -393,7 +418,7 @@
             this.btnCancal.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancal.ForeColor = System.Drawing.Color.Red;
             this.btnCancal.Icon = null;
-            this.btnCancal.Location = new System.Drawing.Point(430, 626);
+            this.btnCancal.Location = new System.Drawing.Point(430, 623);
             this.btnCancal.Name = "btnCancal";
             this.btnCancal.Size = new System.Drawing.Size(108, 36);
             this.btnCancal.TabIndex = 42;
@@ -472,28 +497,31 @@
             this.ptbAvatar.TabIndex = 37;
             this.ptbAvatar.TabStop = false;
             // 
-            // txtPostition
+            // mainProgressbar
             // 
-            this.txtPostition.AutoScaleColor = true;
-            this.txtPostition.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtPostition.FloatingLabelText = "FloatingLabel";
-            this.txtPostition.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.txtPostition.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtPostition.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.txtPostition.HideSelection = true;
-            this.txtPostition.HintText = "Vị trí";
-            this.txtPostition.Location = new System.Drawing.Point(45, 120);
-            this.txtPostition.MaxLength = 32767;
-            this.txtPostition.Multiline = false;
-            this.txtPostition.Name = "txtPostition";
-            this.txtPostition.PasswordChar = '\0';
-            this.txtPostition.ReadOnly = false;
-            this.txtPostition.ShortcutsEnable = true;
-            this.txtPostition.ShowCaret = true;
-            this.txtPostition.Size = new System.Drawing.Size(218, 43);
-            this.txtPostition.Style = Material_Design_for_Winform.MaterialTextField.ST.HintAsFloatingLabel;
-            this.txtPostition.TabIndex = 42;
-            this.txtPostition.UseSystemPasswordChar = false;
+            this.mainProgressbar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mainProgressbar.Location = new System.Drawing.Point(-1, 675);
+            this.mainProgressbar.MarqueeAnimationSpeed = 18;
+            this.mainProgressbar.Name = "mainProgressbar";
+            this.mainProgressbar.Size = new System.Drawing.Size(802, 5);
+            this.mainProgressbar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.mainProgressbar.TabIndex = 47;
+            this.mainProgressbar.Visible = false;
+            // 
+            // lbInformation
+            // 
+            this.lbInformation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbInformation.AutoSize = true;
+            this.lbInformation.BackColor = System.Drawing.Color.White;
+            this.lbInformation.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.lbInformation.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lbInformation.Location = new System.Drawing.Point(1, 660);
+            this.lbInformation.Name = "lbInformation";
+            this.lbInformation.Size = new System.Drawing.Size(88, 13);
+            this.lbInformation.TabIndex = 48;
+            this.lbInformation.Text = "*Đang kết nối...";
+            this.lbInformation.Visible = false;
             // 
             // frmTeacher
             // 
@@ -501,6 +529,8 @@
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnExit;
             this.ClientSize = new System.Drawing.Size(800, 680);
+            this.Controls.Add(this.mainProgressbar);
+            this.Controls.Add(this.lbInformation);
             this.Controls.Add(this.btnChooseAvatar);
             this.Controls.Add(this.lbName);
             this.Controls.Add(this.btnExit);
@@ -561,5 +591,7 @@
         private System.Windows.Forms.Label lbID;
         private MaterialSkin.Controls.MaterialFloatingActionButton btnChooseAvatar;
         private Material_Design_for_Winform.MaterialTextField txtPostition;
+        private System.Windows.Forms.ProgressBar mainProgressbar;
+        private System.Windows.Forms.Label lbInformation;
     }
 }

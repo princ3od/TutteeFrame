@@ -19,7 +19,11 @@ namespace TutteeFrame
 
         #region Data List
         public List<Account> accounts = new List<Account>();
+        public List<Subject> subjects = new List<Subject>();
         public Teacher usingTeacher = new Teacher();
+        public List<Teacher> teachers = new List<Teacher>();
+        public Dictionary<string, string> teacherNotes = new Dictionary<string, string>();
+        public Dictionary<string, int> teacherIndex = new Dictionary<string, int>();
         #endregion
 
         public void SettingCheck()
@@ -112,37 +116,41 @@ namespace TutteeFrame
         public bool UpdateTeacher(string _teacherID, Teacher _newTeacher)
         {
             bool success = true;
-            Teacher oldTeacher = new Teacher();
-            LoadTeacher(_teacherID, oldTeacher);
+            int index = 0;
+            for (; index < teachers.Count; index++)
+            {
+                if (_teacherID == teachers[index].ID)
+                    break;
 
-            if (oldTeacher.SurName != _newTeacher.SurName)
+            }
+            if (teachers[index].SurName != _newTeacher.SurName)
                 success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[1], _newTeacher.SurName);
 
-            if (oldTeacher.FirstName != _newTeacher.FirstName)
+            if (teachers[index].FirstName != _newTeacher.FirstName)
                 success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[2], _newTeacher.FirstName);
 
-            if (!ImageHelper.SameImage(oldTeacher.Avatar,_newTeacher.Avatar))
+            if (!ImageHelper.SameImage(teachers[index].Avatar, _newTeacher.Avatar))
                 success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[3], _newTeacher.GetAvatar());
 
-            if (oldTeacher.DateOfBirth1.Date != _newTeacher.DateOfBirth1.Date)
+            if (teachers[index].DateOfBirth1.Date != _newTeacher.DateOfBirth1.Date)
                 success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[4], _newTeacher.DateOfBirth1.Date);
 
-            if (oldTeacher.Sex != _newTeacher.Sex)
+            if (teachers[index].Sex != _newTeacher.Sex)
                 success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[5], Convert.ToInt32(_newTeacher.Sex));
 
-            if (oldTeacher.Address != _newTeacher.Address)
+            if (teachers[index].Address != _newTeacher.Address)
                 success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[6], _newTeacher.Address);
 
-            if (oldTeacher.Phone != _newTeacher.Phone)
+            if (teachers[index].Phone != _newTeacher.Phone)
                 success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[7], _newTeacher.Phone);
 
-            if (oldTeacher.Mail != _newTeacher.Mail)
+            if (teachers[index].Mail != _newTeacher.Mail)
                 success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[8], _newTeacher.Mail);
 
-            if (oldTeacher.Subject.Name != _newTeacher.Subject.Name)
+            if (teachers[index].Subject.Name != _newTeacher.Subject.Name)
                 success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[9], _newTeacher.Subject.ID);
 
-            if (_newTeacher.Type != oldTeacher.Type)
+            if (_newTeacher.Type != teachers[index].Type)
             {
                 switch (_newTeacher.Type)
                 {
@@ -165,8 +173,10 @@ namespace TutteeFrame
                 }
             }
 
-            if (oldTeacher.Position != _newTeacher.Position)
+            if (teachers[index].Position != _newTeacher.Position)
                 success = DataAccess.Instance.UpdateTeacher(_teacherID, Teacher.Column[12], _newTeacher.Position);
+
+            teachers[index] = _newTeacher;
 
             return success;
         }
@@ -191,30 +201,33 @@ namespace TutteeFrame
             int result = (new Random()).Next(100000, 999999);
             return result.ToString();
         }
-        public bool LoadTeachers(List<Teacher> _teachers, Dictionary<string, string> _teacherNotes, out int _totalTeacher, out int _totalMinistry, out int _totalAdmin)
+        public bool LoadTeachers(out int _totalTeacher, out int _totalMinistry, out int _totalAdmin)
         {
+            teachers.Clear();
+            teacherNotes.Clear();
+            teacherIndex.Clear();
             string teacherNote = "";
             Dictionary<string, byte[]> avatars = new Dictionary<string, byte[]>();
-            bool succes = DataAccess.Instance.LoadTeachers(_teachers, avatars);
+            bool succes = DataAccess.Instance.LoadTeachers(teachers, avatars);
             _totalTeacher = _totalAdmin = _totalMinistry = 0;
             if (succes)
             {
-                for (; _totalTeacher < _teachers.Count; _totalTeacher++)
+                for (; _totalTeacher < teachers.Count; _totalTeacher++)
                 {
-                    if (_teachers[_totalTeacher].ID == "AD999999")
+                    if (teachers[_totalTeacher].ID == "AD999999")
                     {
-                        _teachers.Remove(_teachers[_totalTeacher]);
+                        teachers.Remove(teachers[_totalTeacher]);
                         _totalTeacher--;
                         continue;
                     }
                     string classID = null;
-                    DataAccess.Instance.GetInchargeClass(_teachers[_totalTeacher].ID, ref classID);
+                    DataAccess.Instance.GetInchargeClass(teachers[_totalTeacher].ID, ref classID);
                     if (classID != null)
                     {
-                        _teachers[_totalTeacher].Type = Teacher.TeacherType.FormerTeacher;
-                        _teachers[_totalTeacher].FormClassID = classID;
+                        teachers[_totalTeacher].Type = Teacher.TeacherType.FormerTeacher;
+                        teachers[_totalTeacher].FormClassID = classID;
                     }
-                    switch (_teachers[_totalTeacher].Type)
+                    switch (teachers[_totalTeacher].Type)
                     {
                         case Teacher.TeacherType.Teacher:
                             teacherNote = "";
@@ -228,13 +241,14 @@ namespace TutteeFrame
                             teacherNote = "Giáo vụ.";
                             break;
                         case Teacher.TeacherType.FormerTeacher:
-                            teacherNote = "GVCN lớp " + _teachers[_totalTeacher].FormClassID + ".";
+                            teacherNote = "GVCN lớp " + teachers[_totalTeacher].FormClassID + ".";
                             break;
                         default:
                             break;
                     }
-                    _teachers[_totalTeacher].Avatar = ImageHelper.BytesToImage(avatars[_teachers[_totalTeacher].ID]);
-                    _teacherNotes.Add(_teachers[_totalTeacher].ID, teacherNote);
+                    teachers[_totalTeacher].Avatar = ImageHelper.BytesToImage(avatars[teachers[_totalTeacher].ID]);
+                    teacherNotes.Add(teachers[_totalTeacher].ID, teacherNote);
+                    teacherIndex.Add(teachers[_totalTeacher].ID, _totalTeacher + 1);
                 }
             }
             return succes;
@@ -242,12 +256,17 @@ namespace TutteeFrame
         public bool DeleteTeacher(string _teacherID)
         {
             bool isExist = false;
-            bool success = DataAccess.Instance.AccountExist(_teacherID,ref isExist);
+            bool success = DataAccess.Instance.AccountExist(_teacherID, ref isExist);
             if (isExist)
                 success = DataAccess.Instance.DeleteAccount(_teacherID);
             if (success)
             {
                 success = DataAccess.Instance.DeleteTeacher(_teacherID);
+                if (success)
+                {
+                    teacherNotes.Remove(_teacherID);
+                    LoadTeacherIndex();
+                }
                 LoadAccounts();
             }
             return success;
@@ -255,7 +274,36 @@ namespace TutteeFrame
         public bool AddTeacher(Teacher _teacher)
         {
             bool success = DataAccess.Instance.AddTeacher(_teacher);
+            if (success)
+            {
+                string teacherNote = "";
+                switch (_teacher.Type)
+                {
+                    case Teacher.TeacherType.Teacher:
+                        teacherNote = "";
+                        break;
+                    case Teacher.TeacherType.Adminstrator:
+                        teacherNote = "Ban giám hiệu.";
+                        break;
+                    case Teacher.TeacherType.Ministry:
+                        teacherNote = "Giáo vụ.";
+                        break;
+                    case Teacher.TeacherType.FormerTeacher:
+                        teacherNote = "GVCN lớp " + _teacher.FormClassID + ".";
+                        break;
+                    default:
+                        break;
+                }
+                teacherNotes.Add(_teacher.ID, teacherNote);
+                teacherIndex.Add(_teacher.ID, teachers.Count + 1);
+            }
             return success;
+        }
+        private void LoadTeacherIndex()
+        {
+            teacherIndex.Clear();
+            for (int i = 0; i < teachers.Count; i++)
+                teacherIndex.Add(teachers[i].ID, i + 1);
         }
         public bool CreateAdminAccount()
         {
@@ -269,6 +317,21 @@ namespace TutteeFrame
             teacher.Mail = "admin@tutteframe.com";
             teacher.Type = Teacher.TeacherType.Adminstrator;
             return AddTeacher(teacher);
+        }
+        public bool LoadSubjects()
+        {
+            return DataAccess.Instance.LoadSubjects(subjects);
+        }
+        //Trả về các index trong teachers không thõa filter
+        public List<Teacher> TeacherListFilterBySubject(string _subjectName)
+        {
+            List<Teacher> result = new List<Teacher>();
+            foreach (Teacher teacher in teachers)
+            {
+                if (teacher.Subject.Name == _subjectName)
+                    result.Add(teacher);
+            }
+            return result;
         }
     }
 }

@@ -495,7 +495,7 @@
             this.btnAutoColumn.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAutoColumn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnAutoColumn.Icon = null;
-            this.btnAutoColumn.Location = new System.Drawing.Point(1010, 536);
+            this.btnAutoColumn.Location = new System.Drawing.Point(1010, 534);
             this.btnAutoColumn.Name = "btnAutoColumn";
             this.btnAutoColumn.Size = new System.Drawing.Size(108, 36);
             this.btnAutoColumn.TabIndex = 43;
@@ -538,15 +538,16 @@
             this.cbbTeacherSearchBy.IntegralHeight = false;
             this.cbbTeacherSearchBy.ItemHeight = 43;
             this.cbbTeacherSearchBy.Items.AddRange(new object[] {
-            "Toán",
-            "Lý",
-            "Hóa"});
+            "Mã giáo viên",
+            "Họ tên",
+            "Ngày sinh"});
             this.cbbTeacherSearchBy.Location = new System.Drawing.Point(985, 62);
             this.cbbTeacherSearchBy.MaxDropDownItems = 4;
             this.cbbTeacherSearchBy.MouseState = MaterialSkin.MouseState.OUT;
             this.cbbTeacherSearchBy.Name = "cbbTeacherSearchBy";
             this.cbbTeacherSearchBy.Size = new System.Drawing.Size(137, 49);
             this.cbbTeacherSearchBy.TabIndex = 11;
+            this.cbbTeacherSearchBy.SelectedIndexChanged += new System.EventHandler(this.cbbTeacherSearchBy_SelectedIndexChanged);
             // 
             // listviewTeacher
             // 
@@ -577,7 +578,7 @@
             this.listviewTeacher.MouseState = MaterialSkin.MouseState.OUT;
             this.listviewTeacher.Name = "listviewTeacher";
             this.listviewTeacher.OwnerDraw = true;
-            this.listviewTeacher.Size = new System.Drawing.Size(1119, 405);
+            this.listviewTeacher.Size = new System.Drawing.Size(1119, 403);
             this.listviewTeacher.TabIndex = 13;
             this.listviewTeacher.UseCompatibleStateImageBehavior = false;
             this.listviewTeacher.View = System.Windows.Forms.View.Details;
@@ -643,7 +644,7 @@
             this.btnDeleteTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnDeleteTeacher.Icon = null;
-            this.btnDeleteTeacher.Location = new System.Drawing.Point(862, 528);
+            this.btnDeleteTeacher.Location = new System.Drawing.Point(862, 526);
             this.btnDeleteTeacher.Name = "btnDeleteTeacher";
             this.btnDeleteTeacher.Radius = 2;
             this.btnDeleteTeacher.ShadowDepth = 3;
@@ -665,7 +666,7 @@
             this.btnUpdateTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdateTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnUpdateTeacher.Icon = null;
-            this.btnUpdateTeacher.Location = new System.Drawing.Point(198, 528);
+            this.btnUpdateTeacher.Location = new System.Drawing.Point(198, 526);
             this.btnUpdateTeacher.Name = "btnUpdateTeacher";
             this.btnUpdateTeacher.Radius = 2;
             this.btnUpdateTeacher.ShadowDepth = 3;
@@ -687,7 +688,7 @@
             this.btnAddTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnAddTeacher.Icon = null;
-            this.btnAddTeacher.Location = new System.Drawing.Point(50, 528);
+            this.btnAddTeacher.Location = new System.Drawing.Point(50, 526);
             this.btnAddTeacher.Name = "btnAddTeacher";
             this.btnAddTeacher.Radius = 2;
             this.btnAddTeacher.ShadowDepth = 3;
@@ -715,15 +716,17 @@
             this.cbbTeacherRoleFilter.IntegralHeight = false;
             this.cbbTeacherRoleFilter.ItemHeight = 43;
             this.cbbTeacherRoleFilter.Items.AddRange(new object[] {
-            "Toán",
-            "Lý",
-            "Hóa"});
+            "Tất cả",
+            "Là GVCN",
+            "Giáo vụ",
+            "BGH"});
             this.cbbTeacherRoleFilter.Location = new System.Drawing.Point(878, 62);
             this.cbbTeacherRoleFilter.MaxDropDownItems = 4;
             this.cbbTeacherRoleFilter.MouseState = MaterialSkin.MouseState.OUT;
             this.cbbTeacherRoleFilter.Name = "cbbTeacherRoleFilter";
             this.cbbTeacherRoleFilter.Size = new System.Drawing.Size(101, 49);
             this.cbbTeacherRoleFilter.TabIndex = 10;
+            this.cbbTeacherRoleFilter.SelectedIndexChanged += new System.EventHandler(this.cbbTeacherRoleFilter_SelectedIndexChanged);
             // 
             // cbbTeacherSubjectFilter
             // 
@@ -742,15 +745,14 @@
             this.cbbTeacherSubjectFilter.IntegralHeight = false;
             this.cbbTeacherSubjectFilter.ItemHeight = 43;
             this.cbbTeacherSubjectFilter.Items.AddRange(new object[] {
-            "Toán",
-            "Lý",
-            "Hóa"});
+            "Tất cả"});
             this.cbbTeacherSubjectFilter.Location = new System.Drawing.Point(699, 62);
             this.cbbTeacherSubjectFilter.MaxDropDownItems = 4;
             this.cbbTeacherSubjectFilter.MouseState = MaterialSkin.MouseState.OUT;
             this.cbbTeacherSubjectFilter.Name = "cbbTeacherSubjectFilter";
             this.cbbTeacherSubjectFilter.Size = new System.Drawing.Size(173, 49);
             this.cbbTeacherSubjectFilter.TabIndex = 9;
+            this.cbbTeacherSubjectFilter.SelectedIndexChanged += new System.EventHandler(this.cbbTeacherSubjectFilter_SelectedIndexChanged);
             // 
             // lbTotalAdmin
             // 
@@ -829,19 +831,19 @@
             // 
             // tbpgStudentManagment
             // 
-            this.tbpgStudentManagment.Location = new System.Drawing.Point(4, 24);
+            this.tbpgStudentManagment.Location = new System.Drawing.Point(4, 22);
             this.tbpgStudentManagment.Name = "tbpgStudentManagment";
             this.tbpgStudentManagment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgStudentManagment.Size = new System.Drawing.Size(1138, 594);
+            this.tbpgStudentManagment.Size = new System.Drawing.Size(1138, 596);
             this.tbpgStudentManagment.TabIndex = 3;
             this.tbpgStudentManagment.Text = "quản lí học sinh";
             this.tbpgStudentManagment.UseVisualStyleBackColor = true;
             // 
             // tbpgStudentMarkboard
             // 
-            this.tbpgStudentMarkboard.Location = new System.Drawing.Point(4, 24);
+            this.tbpgStudentMarkboard.Location = new System.Drawing.Point(4, 22);
             this.tbpgStudentMarkboard.Name = "tbpgStudentMarkboard";
-            this.tbpgStudentMarkboard.Size = new System.Drawing.Size(1138, 594);
+            this.tbpgStudentMarkboard.Size = new System.Drawing.Size(1138, 596);
             this.tbpgStudentMarkboard.TabIndex = 7;
             this.tbpgStudentMarkboard.Text = "bảng điểm học sinh";
             this.tbpgStudentMarkboard.UseVisualStyleBackColor = true;

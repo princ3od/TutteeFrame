@@ -128,6 +128,16 @@ namespace TutteeFrame
             frmTeacher frmTeacher = new frmTeacher(frmTeacher.Mode.Add);
             OverlayForm overlayForm = new OverlayForm(this, frmTeacher);
             frmTeacher.Show();
+            frmTeacher.FormClosing += (s, ev) =>
+            {
+                Teacher teacher = frmTeacher.teacher;
+                if (teacher == null)
+                    return;
+                listviewTeacher.Items.Add(new ListViewItem(new string[] { Controller.Instance.teacherIndex[teacher.ID].ToString(),
+                                    teacher.ID,teacher.SurName + " " + teacher.FirstName,teacher.DateOfBirth1.ToString("d"), teacher.GetSex,
+                                    teacher.Address, teacher.Phone, teacher.Mail, teacher.Subject.Name, Controller.Instance.teacherNotes[teacher.ID]
+                                }));
+            };
         }
 
         private void btnUpdateTeacher_Click(object sender, EventArgs e)
@@ -140,6 +150,16 @@ namespace TutteeFrame
             frmTeacher frmTeacher = new frmTeacher(frmTeacher.Mode.Edit, listviewTeacher.SelectedItems[0].SubItems[1].Text);
             OverlayForm overlayForm = new OverlayForm(this, frmTeacher);
             frmTeacher.Show();
+            frmTeacher.FormClosing += (s, ev) =>
+            {
+                Teacher teacher = frmTeacher.teacher;
+                ListViewItem[] item = listviewTeacher.Items.Find(teacher.ID, true);
+                if (item.Length > 0)
+                    item[0] = new ListViewItem(new string[] { Controller.Instance.teacherIndex[teacher.ID].ToString(),
+                                    teacher.ID,teacher.SurName + " " + teacher.FirstName,teacher.DateOfBirth1.ToString("d"), teacher.GetSex,
+                                    teacher.Address, teacher.Phone, teacher.Mail, teacher.Subject.Name, Controller.Instance.teacherNotes[teacher.ID]
+                                });
+            };
         }
 
         private void btnDeleteTeacher_Click(object sender, EventArgs e)
@@ -170,7 +190,7 @@ namespace TutteeFrame
             }
             worker.DoWork += (s, ev) =>
             {
-                Thread.Sleep(2000);
+                Thread.Sleep(1000);
                 foreach (KeyValuePair<int, string> index in indexToDelete)
                 {
                     idToDel = index.Value;
@@ -224,7 +244,42 @@ namespace TutteeFrame
             worker.RunWorkerAsync();
 
         }
+        private void btnAutoColumn_Click(object sender, EventArgs e)
+        {
+            listviewTeacher.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
+            //listviewTeacher.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
+        }
 
+        private void cbbTeacherSubjectFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            listviewTeacher.Items.Clear();
+            if (cbbTeacherSubjectFilter.SelectedIndex == 0)
+                foreach (Teacher teacher in Controller.Instance.teachers)
+                {
+                    listviewTeacher.Items.Add(new ListViewItem(new string[] { Controller.Instance.teacherIndex[teacher.ID].ToString(),
+                                    teacher.ID,teacher.SurName + " " + teacher.FirstName,teacher.DateOfBirth1.ToString("d"), teacher.GetSex,
+                                    teacher.Address, teacher.Phone, teacher.Mail, teacher.Subject.Name, Controller.Instance.teacherNotes[teacher.ID]
+                                }));
+                }
+            else
+                foreach (Teacher teacher in Controller.Instance.TeacherListFilterBySubject(cbbTeacherSubjectFilter.Text))
+                {
+                    listviewTeacher.Items.Add(new ListViewItem(new string[] { Controller.Instance.teacherIndex[teacher.ID].ToString(),
+                                    teacher.ID,teacher.SurName + " " + teacher.FirstName,teacher.DateOfBirth1.ToString("d"), teacher.GetSex,
+                                    teacher.Address, teacher.Phone, teacher.Mail, teacher.Subject.Name, Controller.Instance.teacherNotes[teacher.ID]
+                                }));
+                }
+        }
+
+        private void cbbTeacherRoleFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbbTeacherSearchBy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
         #endregion
 
         #region Custom Function
@@ -319,8 +374,12 @@ namespace TutteeFrame
         }
         void LoadData()
         {
+            cbbTeacherSubjectFilter.Items.Clear();
+            cbbTeacherSubjectFilter.Items.Add("Tất cả");
+            cbbTeacherSubjectFilter.SelectedIndex = 0;
+            cbbTeacherRoleFilter.SelectedIndex = 0;
+            cbbTeacherSearchBy.SelectedIndex = 0;
             listviewTeacher.Items.Clear();
-            List<Teacher> teachers = new List<Teacher>();
             switch (mainTeacher.Type)
             {
                 case Teacher.TeacherType.Teacher:
@@ -329,17 +388,24 @@ namespace TutteeFrame
                     {
                         BackgroundWorker loader = new BackgroundWorker();
                         int totalMinistry = 0, totalAdmin = 0, totalTeacher = 0;
-                        Dictionary<string, string> teacherNotes = new Dictionary<string, string>();
                         mainProgressbar.Show();
                         lbInformation.Text = "Đang tải danh sách giáo viên...";
                         lbInformation.Show();
-                        loader.WorkerReportsProgress = false;
+                        loader.WorkerReportsProgress = true;
                         loader.DoWork += (s, e) =>
                         {
                             Thread.Sleep(800);
-                            Controller.Instance.LoadTeachers(teachers, teacherNotes, out totalTeacher, out totalMinistry, out totalAdmin);
+                            Controller.Instance.LoadTeachers(out totalTeacher, out totalMinistry, out totalAdmin);
+                            loader.ReportProgress(50);
+                            Thread.Sleep(800);
+                            Controller.Instance.LoadSubjects();
                         };
 
+                        loader.ProgressChanged += (s, e) =>
+                        {
+                            if (e.ProgressPercentage == 50)
+                                lbInformation.Text = "Đang tải danh sách môn học...";
+                        };
                         loader.RunWorkerCompleted += (s, e) =>
                         {
                             mainProgressbar.Hide();
@@ -347,14 +413,16 @@ namespace TutteeFrame
                             lbTotalTeacher.Text = totalTeacher.ToString();
                             lbTotalAdmin.Text = totalAdmin.ToString();
                             lbTotalMinistry.Text = totalMinistry.ToString();
-                            int index = 1;
-                            foreach (Teacher teacher in teachers)
+                            foreach (Teacher teacher in Controller.Instance.teachers)
                             {
-                                listviewTeacher.Items.Add(new ListViewItem(new string[] { index.ToString(),
+                                listviewTeacher.Items.Add(new ListViewItem(new string[] { Controller.Instance.teacherIndex[teacher.ID].ToString(),
                                     teacher.ID,teacher.SurName + " " + teacher.FirstName,teacher.DateOfBirth1.ToString("d"), teacher.GetSex,
-                                    teacher.Address, teacher.Phone, teacher.Mail, teacher.Subject.Name, teacherNotes[teacher.ID]
+                                    teacher.Address, teacher.Phone, teacher.Mail, teacher.Subject.Name, Controller.Instance.teacherNotes[teacher.ID]
                                 }));
-                                index++;
+                            }
+                            foreach (Subject subject in Controller.Instance.subjects)
+                            {
+                                cbbTeacherSubjectFilter.Items.Add(subject.Name);
                             }
 
                         };
@@ -371,10 +439,6 @@ namespace TutteeFrame
             }
         }
         #endregion
-        private void btnAutoColumn_Click(object sender, EventArgs e)
-        {
-            listviewTeacher.AutoResizeColumns(ColumnHeaderAutoResizeStyle.ColumnContent);
-            //listviewTeacher.AutoResizeColumns(ColumnHeaderAutoResizeStyle.HeaderSize);
-        }
+
     }
 }

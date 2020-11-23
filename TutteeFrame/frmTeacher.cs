@@ -56,10 +56,15 @@ namespace TutteeFrame
         #endregion
         private void frmTeacher_Load(object sender, EventArgs e)
         {
+
             System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
             gp.AddEllipse(0, 0, ptbAvatar.Width - 3, ptbAvatar.Height - 3);
             Region rg = new Region(gp);
             ptbAvatar.Region = rg;
+            foreach (Subject subject in Controller.Instance.subjects)
+            {
+                cbbSubject.Items.Add(subject.Name);
+            }
             switch (mode)
             {
                 case Mode.Add:
@@ -71,8 +76,11 @@ namespace TutteeFrame
                     break;
                 case Mode.Edit:
                     btnApprove.Text = "Cập nhật giáo viên";
-                    teacher = new Teacher();
-                    Controller.Instance.LoadTeacher(teacherID, teacher);
+                    foreach (Teacher _teacher in Controller.Instance.teachers)
+                    {
+                        if (_teacher.ID == teacherID)
+                            teacher = _teacher;
+                    }
                     lbID.Text = teacher.ID;
                     lbName.Text = teacher.SurName + " " + teacher.FirstName;
                     txtFirstname.Text = teacher.FirstName;
@@ -84,6 +92,15 @@ namespace TutteeFrame
                     txtTeacherMail.Text = teacher.Mail;
                     ptbAvatar.Image = teacher.Avatar;
                     txtPostition.Text = teacher.Position;
+                    for (int i = 0; i < cbbSubject.Items.Count; i++)
+                    {
+                        if (cbbSubject.GetItemText(cbbSubject.Items[i]) == teacher.Subject.Name)
+                        {
+                            cbbSubject.SelectedIndex = i;
+                            break;
+                        }
+                    }
+                    cbbSex.SelectedIndex = (teacher.GetSex == "Nữ") ? 0 : 1;
                     switch (teacher.Type)
                     {
                         case Teacher.TeacherType.Teacher:
@@ -115,7 +132,11 @@ namespace TutteeFrame
                 teacher.Type = Teacher.TeacherType.Ministry;
             else
                 teacher.Type = Teacher.TeacherType.Teacher;
-            teacher.Subject = new Subject("01", "Toán");
+            foreach (Subject subject in Controller.Instance.subjects)
+            {
+                if (subject.Name == cbbSubject.Text)
+                    teacher.Subject = subject;
+            }
             teacher.ID = idPreflex + teacherID.Remove(0, 2);
             teacher.FirstName = txtFirstname.Text;
             teacher.SurName = txtSurename.Text;
@@ -137,6 +158,7 @@ namespace TutteeFrame
                     MetroMessageBox.Show(this, "Đã có lỗi xảy ra trong quá trình thêm giáo viên.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 else
                 {
+                    Controller.Instance.teachers.Add(teacher);
                     MetroMessageBox.Show(this, "Đã thêm thành công giáo viên có ID: " + teacher.ID, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     doneSuccess = true;
                     this.Close();

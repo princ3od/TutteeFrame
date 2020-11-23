@@ -118,7 +118,7 @@ namespace TutteeFrame.Model
                             break;
                         }
                 }
-                string query = "INSERT INTO TEACHER(TeacherID,Surname,FirstName,TeacherImage,DateBorn,Sex,Address,Phone,Maill,SubjectID,IsMinistry,IsAdmin,Postion) " +
+                string query = "INSERT INTO TEACHER(TeacherID,Surname,FirstName,TeacherImage,DateBorn,Sex,Address,Phone,Maill,SubjectID,IsMinistry,IsAdmin,Posittion) " +
                     "VALUES(@teacherid,@surname,@firstname,@avatar,@date,@sex,@address,@phone,@mail,@subjectid,@is_ministry,@is_admin,@position)";
                 SqlCommand sqlCommand = new SqlCommand(query, connection);
                 sqlCommand.Parameters.AddWithValue("@teacherid", _teacher.ID);
@@ -133,7 +133,7 @@ namespace TutteeFrame.Model
                 sqlCommand.Parameters.AddWithValue("@subjectid", _teacher.Subject.ID);
                 sqlCommand.Parameters.AddWithValue("@is_ministry", is_ministry);
                 sqlCommand.Parameters.AddWithValue("@is_admin", is_admin);
-                sqlCommand.Parameters.AddWithValue("@postion", _teacher.Position);
+                sqlCommand.Parameters.AddWithValue("@position", _teacher.Position);
                 sqlCommand.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -649,6 +649,35 @@ namespace TutteeFrame.Model
                     $"('{_class.ID}','{_class.Room}','{_class.StudentNum}','{_class.FormerTeacherID}')";
                 SqlCommand command = new SqlCommand(query, connection);
                 command.ExecuteNonQuery();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+                return false;
+            }
+
+            Disconnect();
+            return true;
+        }
+        #endregion
+
+        #region Subject Function
+        public bool LoadSubjects(List<Subject> _subjects)
+        {
+            bool success = Connect();
+
+            if (!success)
+                return false;
+            try
+            {
+                string query = "SELECT * FROM SUBJECT";
+                SqlCommand command = new SqlCommand(query, connection);
+                SqlDataReader reader = command.ExecuteReader();
+                while (reader.Read())
+                {
+                    Subject subject = new Subject(reader.GetString(0), reader.GetString(1));
+                    _subjects.Add(subject);
+                }
             }
             catch (Exception e)
             {
