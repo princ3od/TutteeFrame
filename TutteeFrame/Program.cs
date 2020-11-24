@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace TutteeFrame.Model
 {
-    /*
+
     static class Program
     {
         const UInt32 SWP_NOSIZE = 0x0001;
@@ -52,17 +52,6 @@ namespace TutteeFrame.Model
                     }
                 }
             }
-        }
-    }
-    */
-
-    static class Program
-    {
-        static void Main()
-        {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
         }
     }
 }

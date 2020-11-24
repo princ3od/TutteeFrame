@@ -24,7 +24,6 @@ namespace TutteeFrame
         public List<Subject> subjects = new List<Subject>();
         public Teacher usingTeacher = new Teacher();
         public List<Teacher> teachers = new List<Teacher>();
-        public Dictionary<string, string> teacherNotes = new Dictionary<string, string>();
         public Dictionary<string, int> teacherIndex = new Dictionary<string, int>();
         #endregion
 
@@ -48,7 +47,7 @@ namespace TutteeFrame
         {
             return DataAccess.Instance.UpdatePass(_accountID, Encryption.Encrypt(_newPass, _newPass));
         }
-       
+
         public bool LoadAccounts()
         {
             accounts.Clear();
@@ -193,9 +192,7 @@ namespace TutteeFrame
             int result = 0;
             if (DataAccess.Instance.GetLastStudentID(ref result))
             {
-                Random random = new Random();
-                int distance = random.Next(1, 4);
-                result += distance;
+                result += 1;
             }
             return result.ToString();
         }
@@ -204,57 +201,49 @@ namespace TutteeFrame
             int result = (new Random()).Next(100000, 999999);
             return result.ToString();
         }
-        public bool LoadTeachers(out int _totalTeacher, out int _totalMinistry, out int _totalAdmin)
+        public bool LoadTeachers(string _order = null)
         {
             teachers.Clear();
-            teacherNotes.Clear();
             teacherIndex.Clear();
-            string teacherNote = "";
             Dictionary<string, byte[]> avatars = new Dictionary<string, byte[]>();
-            bool succes = DataAccess.Instance.LoadTeachers(teachers, avatars);
-            _totalTeacher = _totalAdmin = _totalMinistry = 0;
+            bool succes = true;
+            if (_order == null)
+                succes = DataAccess.Instance.LoadTeachers(teachers, avatars);
+            else
+                succes = DataAccess.Instance.LoadTeachers(teachers, avatars, _order);
+            int index = 0;
             if (succes)
             {
-                for (; _totalTeacher < teachers.Count; _totalTeacher++)
+                for (; index < teachers.Count; index++)
                 {
-                    if (teachers[_totalTeacher].ID == "AD999999")
+                    if (teachers[index].ID == "AD999999")
                     {
-                        teachers.Remove(teachers[_totalTeacher]);
-                        _totalTeacher--;
+                        teachers.Remove(teachers[index]);
+                        index--;
                         continue;
                     }
                     string classID = null;
-                    DataAccess.Instance.GetInchargeClass(teachers[_totalTeacher].ID, ref classID);
+                    DataAccess.Instance.GetInchargeClass(teachers[index].ID, ref classID);
                     if (classID != null)
                     {
-                        teachers[_totalTeacher].Type = Teacher.TeacherType.FormerTeacher;
-                        teachers[_totalTeacher].FormClassID = classID;
+                        teachers[index].Type = Teacher.TeacherType.FormerTeacher;
+                        teachers[index].FormClassID = classID;
                     }
-                    switch (teachers[_totalTeacher].Type)
-                    {
-                        case Teacher.TeacherType.Teacher:
-                            teacherNote = "";
-                            break;
-                        case Teacher.TeacherType.Adminstrator:
-                            _totalAdmin++;
-                            teacherNote = "Ban giám hiệu.";
-                            break;
-                        case Teacher.TeacherType.Ministry:
-                            _totalMinistry++;
-                            teacherNote = "Giáo vụ.";
-                            break;
-                        case Teacher.TeacherType.FormerTeacher:
-                            teacherNote = "GVCN lớp " + teachers[_totalTeacher].FormClassID + ".";
-                            break;
-                        default:
-                            break;
-                    }
-                    teachers[_totalTeacher].Avatar = ImageHelper.BytesToImage(avatars[teachers[_totalTeacher].ID]);
-                    teacherNotes.Add(teachers[_totalTeacher].ID, teacherNote);
-                    teacherIndex.Add(teachers[_totalTeacher].ID, _totalTeacher + 1);
+                    teachers[index].Avatar = ImageHelper.BytesToImage(avatars[teachers[index].ID]);
+                    teacherIndex.Add(teachers[index].ID, index + 1);
                 }
             }
             return succes;
+        }
+        public bool AddTeacher(Teacher _teacher)
+        {
+            bool success = DataAccess.Instance.AddTeacher(_teacher);
+            if (success)
+            {
+                teachers.Add(_teacher);
+                teacherIndex.Add(_teacher.ID, teachers.Count);
+            }
+            return success;
         }
         public bool DeleteTeacher(string _teacherID)
         {
@@ -267,40 +256,56 @@ namespace TutteeFrame
                 success = DataAccess.Instance.DeleteTeacher(_teacherID);
                 if (success)
                 {
-                    teacherNotes.Remove(_teacherID);
+                    for (int i = 0; i < teachers.Count; i++)
+                        if (teachers[i].ID == _teacherID)
+                        {
+                            teachers.Remove(teachers[i]);
+                            break;
+                        }
                     LoadTeacherIndex();
                 }
                 LoadAccounts();
             }
             return success;
         }
-        public bool AddTeacher(Teacher _teacher)
+        public List<Teacher> TeacherListFilterBySubject(string _subjectName)
         {
-            bool success = DataAccess.Instance.AddTeacher(_teacher);
-            if (success)
+            List<Teacher> result = new List<Teacher>();
+            foreach (Teacher teacher in teachers)
             {
-                string teacherNote = "";
-                switch (_teacher.Type)
-                {
-                    case Teacher.TeacherType.Teacher:
-                        teacherNote = "";
-                        break;
-                    case Teacher.TeacherType.Adminstrator:
-                        teacherNote = "Ban giám hiệu.";
-                        break;
-                    case Teacher.TeacherType.Ministry:
-                        teacherNote = "Giáo vụ.";
-                        break;
-                    case Teacher.TeacherType.FormerTeacher:
-                        teacherNote = "GVCN lớp " + _teacher.FormClassID + ".";
-                        break;
-                    default:
-                        break;
-                }
-                teacherNotes.Add(_teacher.ID, teacherNote);
-                teacherIndex.Add(_teacher.ID, teachers.Count + 1);
+                if (teacher.Subject.Name == _subjectName)
+                    result.Add(teacher);
             }
-            return success;
+            return result;
+        }
+        public List<Teacher> TeacherListFilterByRole(Teacher.TeacherType _teacherType)
+        {
+            List<Teacher> result = new List<Teacher>();
+            foreach (Teacher teacher in teachers)
+            {
+                if (teacher.Type == _teacherType)
+                    result.Add(teacher);
+            }
+            return result;
+        }
+        public enum OrderType { ID = 0, Name = 1, BornDate = 2 };
+        public void SortTeacherList(OrderType orderType)
+        {
+            switch (orderType)
+            {
+                case OrderType.ID:
+                    teachers = teachers.OrderBy(o => o.ID).ToList();
+                    break;
+                case OrderType.Name:
+                    teachers = teachers.OrderBy(o => o.FirstName).ToList();
+                    break;
+                case OrderType.BornDate:
+                    teachers = teachers.OrderBy(o => o.DateOfBirth1).ToList();
+                    break;
+                default:
+                    break;
+            }
+            LoadTeacherIndex();
         }
         private void LoadTeacherIndex()
         {
@@ -327,14 +332,14 @@ namespace TutteeFrame
         /// </summary>
         /// <param name="classID"></param> (""/ khác "") nếu (lấy toàn bộ học sinh/ lấy những học sinh theo mã lớp
         /// <returns></returns>
-        public List<StudentInfomation> GetInformationStudents(string classID,bool getKhoi =false)
+        public List<StudentInfomation> GetInformationStudents(string classID, bool getKhoi = false)
         {
-            return DataAccess.Instance.StudentsInformation(classID,getKhoi);
+            return DataAccess.Instance.StudentsInformation(classID, getKhoi);
         }
-        public  bool UpdateStudentToDataBase(string _studentid, StudentInfomation student)
-            
+        public bool UpdateStudentToDataBase(string _studentid, StudentInfomation student)
+
         {
-            
+
             return DataAccess.Instance.UpdateStudent(_studentid, student);
         }
         public bool AddNewStudentToDataBase(string _studentid, StudentInfomation student)
@@ -342,7 +347,7 @@ namespace TutteeFrame
             return DataAccess.Instance.AddStudent(_studentid, student);
         }
 
-        public bool LoadStudentInformationById(string studentID,StudentInfomation student)
+        public bool LoadStudentInformationById(string studentID, StudentInfomation student)
         {
             return DataAccess.Instance.LoadStudentByID(studentID, student);
         }
@@ -372,11 +377,11 @@ namespace TutteeFrame
 
         #region Nhóm các chức năng liên quan tới thông tin lớp học
 
-        public bool CountNumberOfClass(ref int number )
+        public bool CountNumberOfClass(ref int number)
         {
             return DataAccess.Instance.CountNumberOfClass(ref number);
         }
-        public List <Class> GetClass(string Khoi)
+        public List<Class> GetClass(string Khoi)
         {
             return DataAccess.Instance.Lops(Khoi);
         }
@@ -414,7 +419,7 @@ namespace TutteeFrame
         #endregion
 
         #region Nhóm chức năng hỗ trợ logic
-      public  bool IsDigitsOnly(string str)
+        public bool IsDigitsOnly(string str)
         {
             if (str == null) return false;
             foreach (char c in str)
@@ -437,18 +442,10 @@ namespace TutteeFrame
 
         public bool LoadSubjects()
         {
+            subjects.Clear();
             return DataAccess.Instance.LoadSubjects(subjects);
         }
         //Trả về các index trong teachers không thõa filter
-        public List<Teacher> TeacherListFilterBySubject(string _subjectName)
-        {
-            List<Teacher> result = new List<Teacher>();
-            foreach (Teacher teacher in teachers)
-            {
-                if (teacher.Subject.Name == _subjectName)
-                    result.Add(teacher);
-            }
-            return result;
-        }
+
     }
 }

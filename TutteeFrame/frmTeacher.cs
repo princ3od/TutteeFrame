@@ -20,6 +20,7 @@ namespace TutteeFrame
         public string teacherID;
         public Teacher teacher;
         public bool doneSuccess = false;
+        BackgroundWorker worker;
         public frmTeacher(Mode _mode, string _teacherID = null)
         {
             InitializeComponent();
@@ -53,6 +54,14 @@ namespace TutteeFrame
         #endregion
 
         #region Form Events
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            base.OnClosing(e);
+            if (worker == null)
+                return;
+            if (worker.IsBusy)
+                e.Cancel = true;
+        }
         #endregion
         private void frmTeacher_Load(object sender, EventArgs e)
         {
@@ -154,28 +163,54 @@ namespace TutteeFrame
             teacher.Mail = txtTeacherMail.Text;
             if (mode == Mode.Add)
             {
-                if (!Controller.Instance.AddTeacher(teacher))
-                    MetroMessageBox.Show(this, "Đã có lỗi xảy ra trong quá trình thêm giáo viên.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                else
+                lbInformation.Text = "Đang thêm giáo viên có mã ID: " + teacher.ID;
+                lbInformation.Show();
+                mainProgressbar.Show();
+                worker = new BackgroundWorker();
+                worker.DoWork += (s, e) =>
                 {
-                    Controller.Instance.teachers.Add(teacher);
-                    MetroMessageBox.Show(this, "Đã thêm thành công giáo viên có ID: " + teacher.ID, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    doneSuccess = true;
-                    this.Close();
-                }
+                    System.Threading.Thread.Sleep(400);
+                    doneSuccess = Controller.Instance.AddTeacher(teacher);
+                };
+                worker.RunWorkerCompleted += (s, e) =>
+                {
+                    lbInformation.Hide();
+                    mainProgressbar.Hide();
+                    if (!doneSuccess)
+                        MetroMessageBox.Show(this, "Đã có lỗi xảy ra trong quá trình thêm giáo viên.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else
+                    {
+                        MetroMessageBox.Show(this, "Đã thêm thành công giáo viên có ID: " + teacher.ID, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
+                };
+
             }
             else
             {
-                if (!Controller.Instance.UpdateTeacher(teacherID, teacher))
-                    MetroMessageBox.Show(this, "Đã có lỗi xảy ra trong quá trình cập nhật giáo viên.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                else
+                lbInformation.Text = "Đang cập nhật giáo viên có mã ID: " + teacher.ID;
+                lbInformation.Show();
+                mainProgressbar.Show();
+                worker = new BackgroundWorker();
+                worker.DoWork += (s, e) =>
                 {
-                    MetroMessageBox.Show(this, "Đã cập nhật thành công giáo viên có ID: " + teacher.ID, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    doneSuccess = true;
-                    this.Close();
-                }
+                    System.Threading.Thread.Sleep(400);
+                    doneSuccess = Controller.Instance.UpdateTeacher(teacherID, teacher);
+                };
+                worker.RunWorkerCompleted += (s, e) =>
+                {
+                    lbInformation.Hide();
+                    mainProgressbar.Hide();
+                    if (!doneSuccess)
+                        MetroMessageBox.Show(this, "Đã có lỗi xảy ra trong quá trình cập nhật giáo viên.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    else
+                    {
+                        MetroMessageBox.Show(this, "Đã cập nhật thành công giáo viên có ID: " + teacher.ID, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.Close();
+                    }
+                };
             }
-
+            worker.RunWorkerAsync();
         }
 
         private void NameChanging(object sender, EventArgs e)
@@ -200,11 +235,6 @@ namespace TutteeFrame
             {
                 if (cbxIsMinistry.Checked)
                     cbxIsMinistry.Checked = false;
-
-            }
-            else
-            {
-
             }
         }
 
@@ -214,11 +244,6 @@ namespace TutteeFrame
             {
                 if (cbxIsAdmin.Checked)
                     cbxIsAdmin.Checked = false;
-
-            }
-            else
-            {
-
             }
         }
         //only digit textbox
@@ -226,11 +251,6 @@ namespace TutteeFrame
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
                 e.Handled = true;
-        }
-
-        private void frmTeacher_FormClosing(object sender, FormClosingEventArgs e)
-        {
-
         }
 
         private void btnExit_Click(object sender, EventArgs e)

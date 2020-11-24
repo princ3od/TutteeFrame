@@ -153,6 +153,7 @@
             this.txtPhoneNunber.Style = Material_Design_for_Winform.MaterialTextField.ST.HintAsFloatingLabel;
             this.txtPhoneNunber.TabIndex = 3;
             this.txtPhoneNunber.UseSystemPasswordChar = false;
+            this.txtPhoneNunber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAddingtcNum_KeyPress);
             // 
             // txtTeacherMail
             // 

@@ -16,6 +16,7 @@ namespace TutteeFrame.Model
         private string phone;
         private DateTime DateOfBirth;
         private bool sex;
+        private Image avatar;
 
         public string ID { get => iD; set => iD = value; }
         public string SurName { get => surName; set => surName = value; }
@@ -25,6 +26,7 @@ namespace TutteeFrame.Model
         public string Phone { get => phone; set => phone = value; }
         public bool Sex { get => sex; set => sex = value; }
         public DateTime DateOfBirth1 { get => DateOfBirth; set => DateOfBirth = value; }
+        public Image Avatar { get => avatar ?? Properties.Resources.default_avatar; set => avatar = value; }
         public string GetSex
         {
             get => (sex) ? "Nam" : "Nữ";

@@ -8,12 +8,12 @@ namespace TutteeFrame.Model
 {
     public class Teacher : Person
     {
-        public enum TeacherType { Teacher, Adminstrator, Ministry, FormerTeacher };
+        public enum TeacherType { Teacher = 4, Adminstrator = 3, Ministry = 2, FormerTeacher = 1};
 
         private Subject subject;
         private TeacherType teacherType;
         private string formClassID;
-        private Image avatar;
+
         private string position;
 
 
@@ -22,12 +22,34 @@ namespace TutteeFrame.Model
         public string FormClassID { get => formClassID; set => formClassID = value; }
         public static List<string> Column = new List<string>{ "TeacherID", "Surname", "Firstname","TeacherImage", "DateBorn","Sex", "Address", "Phone", "Maill",
                                                                     "SubjectID", "IsMinistry", "IsAdmin", "Posittion" };
-        public Image Avatar { get => avatar ?? Properties.Resources.default_avatar; set => avatar = value; }
         public string Position { get => position ?? "Không"; set => position = value; }
 
         public byte[] GetAvatar()
         {
             return ImageHelper.ImageToBytes(Avatar);
         }
+
+        public string GetNote()
+        {
+            string teacherNote = "";
+            switch (teacherType)
+            {
+                case Teacher.TeacherType.Teacher:
+                    teacherNote = "";
+                    break;
+                case Teacher.TeacherType.Adminstrator:
+                    teacherNote = "Ban giám hiệu.";
+                    break;
+                case Teacher.TeacherType.Ministry:
+                    teacherNote = "Giáo vụ.";
+                    break;
+                case Teacher.TeacherType.FormerTeacher:
+                    teacherNote = "GVCN lớp " + formClassID + ".";
+                    break;
+                default:
+                    break;
+            }
+            return teacherNote;
+        }    
     }
 }

@@ -52,13 +52,10 @@ namespace TutteeFrame.Model
             catch (Exception e)
             {
                 //MessageBox.Show(e.Message);
-                success = false;
+                return false;
             }
-            finally
-            {
-                connectionString = strConnect;
-                connection.Close();
-            }
+            connectionString = strConnect;
+            connection.Close();
             return success;
         }
 
@@ -85,7 +82,8 @@ namespace TutteeFrame.Model
         /// </summary>
         private void Disconnect()
         {
-            connection.Close();
+            if (connection != null)
+                connection.Close();
         }
         #endregion
 
@@ -146,8 +144,10 @@ namespace TutteeFrame.Model
                 MessageBox.Show(e.ToString());
                 return false;
             }
-
-            Disconnect();
+            finally
+            {
+                Disconnect();
+            }
             return true;
         }
         /// <summary>
@@ -180,12 +180,12 @@ namespace TutteeFrame.Model
                 _teacher.Address = dataReader.GetString(6);
                 _teacher.Phone = dataReader.GetString(7);
                 _teacher.Mail = dataReader.GetString(8);
-               
+
                 _teacher.Sex = dataReader.GetBoolean(5);
 
                 _teacher.DateOfBirth1 = dataReader.GetDateTime(4);
-                
-                
+
+
                 _teacher.Subject = new Subject();
                 _teacher.Subject.ID = dataReader.GetString(9);
                 _teacher.Subject.Name = dataReader["SubjectName"].ToString();
@@ -198,8 +198,10 @@ namespace TutteeFrame.Model
                 MessageBox.Show(e.Message);
                 return false;
             }
-
-            Disconnect();
+            finally
+            {
+                Disconnect();
+            }
             return true;
         }
         /// <summary>
@@ -233,8 +235,10 @@ namespace TutteeFrame.Model
                 MessageBox.Show(e.Message);
                 return false;
             }
-
-            Disconnect();
+            finally
+            {
+                Disconnect();
+            }
             return true;
         }
         /// <summary>
@@ -263,8 +267,10 @@ namespace TutteeFrame.Model
                 MessageBox.Show(e.ToString());
                 return false;
             }
-
-            Disconnect();
+            finally
+            {
+                Disconnect();
+            }
             return true;
         }
         /// <summary>
@@ -289,8 +295,10 @@ namespace TutteeFrame.Model
                 MessageBox.Show(e.Message);
                 return false;
             }
-
-            Disconnect();
+            finally
+            {
+                Disconnect();
+            }
             return true;
         }
 
@@ -299,7 +307,7 @@ namespace TutteeFrame.Model
         /// </summary>
         /// <param name="teachers">Danh sách giao viên được lấy ra.</param>
         /// <returns> Lấy danh sách có thành công hay không. </returns>
-        public bool LoadTeachers(List<Teacher> teachers, Dictionary<string, byte[]> _avatars)
+        public bool LoadTeachers(List<Teacher> teachers, Dictionary<string, byte[]> _avatars, string _order = "TeacherID")
         {
             bool success = Connect();
 
@@ -307,10 +315,11 @@ namespace TutteeFrame.Model
                 return false;
             try
             {
-                string query = "SELECT * FROM TEACHER JOIN [SUBJECT] ON TEACHER.SubjectID = SUBJECT.SubjectID";
+                string query = "SELECT * FROM TEACHER JOIN [SUBJECT] ON TEACHER.SubjectID = SUBJECT.SubjectID ORDER BY " + _order;
                 SqlCommand command = new SqlCommand(query, connection);
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
+                    int i = 0;
                     while (reader.Read())
                     {
                         Teacher _teacher = new Teacher();
@@ -337,7 +346,6 @@ namespace TutteeFrame.Model
                             _teacher.Type = Teacher.TeacherType.Teacher;
                         _teacher.Position = reader.GetString(12);
                         teachers.Add(_teacher);
-                        //MessageBox.Show(teachers[i].ID);
                     }
                 }
             }
@@ -346,8 +354,10 @@ namespace TutteeFrame.Model
                 MessageBox.Show(e.ToString());
                 return false;
             }
-
-            Disconnect();
+            finally
+            {
+                Disconnect();
+            }
             return true;
         }
         public bool GetTeacherNum(ref int _totalTeacher, ref int _totalMinstry, ref int _totalAdmin)
@@ -376,8 +386,10 @@ namespace TutteeFrame.Model
                 MessageBox.Show(e.ToString());
                 return false;
             }
-
-            Disconnect();
+            finally
+            {
+                Disconnect();
+            }
             return true;
         }
         #endregion
@@ -403,8 +415,10 @@ namespace TutteeFrame.Model
                 MessageBox.Show(e.ToString());
                 return false;
             }
-
-            Disconnect();
+            finally
+            {
+                Disconnect();
+            }
             return true;
         }
         public bool LoadAccounts(List<Account> accounts)
@@ -430,8 +444,10 @@ namespace TutteeFrame.Model
                 MessageBox.Show(e.ToString());
                 return false;
             }
-
-            Disconnect();
+            finally
+            {
+                Disconnect();
+            }
             return true;
         }
 
@@ -459,14 +475,16 @@ namespace TutteeFrame.Model
                 MessageBox.Show(e.ToString());
                 return false;
             }
-
-            Disconnect();
+            finally
+            {
+                Disconnect();
+            }
             return true;
         }
-   
-     
 
-    
+
+
+
         /// <summary>
         /// Xóa giáo viên có mã [_teacherID].
         /// </summary>
@@ -497,8 +515,10 @@ namespace TutteeFrame.Model
                 MessageBox.Show(e.ToString());
                 return false;
             }
-
-            Disconnect();
+            finally
+            {
+                Disconnect();
+            }
             return true;
         }
         public bool AccountExist(string _teacherID, ref bool _isExist)
@@ -519,8 +539,10 @@ namespace TutteeFrame.Model
                 MessageBox.Show(e.ToString());
                 return false;
             }
-
-            Disconnect();
+            finally
+            {
+                Disconnect();
+            }
             return true;
         }
         #endregion
@@ -555,8 +577,10 @@ namespace TutteeFrame.Model
                 MessageBox.Show(e.ToString());
                 return false;
             }
-
-            Disconnect();
+            finally
+            {
+                Disconnect();
+            }
             return true;
         }
         /// <summary>
@@ -573,18 +597,19 @@ namespace TutteeFrame.Model
                 return false;
             try
             {
-                string query = $"SELECT * FROM STUDENT WHERE StudentID = '{_studentID}'";
+                string query = $"SELECT * FROM STUDENT WHERE StudentID = @studentid";
                 SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@studentid", _studentID);
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     if (reader.Read())
                     {
                         _student.StudentID = reader.GetString(0);
-                       _student.SurName = reader.GetString(1);
-                       _student.FistName = reader.GetString(2);
+                        _student.SurName = reader.GetString(1);
+                        _student.FistName = reader.GetString(2);
                         if (reader.IsDBNull(3) == false)
                         {
-                            _student.StudentImage = byteArrayToImage((byte[])reader["StudentImage"]);
+                            _student.StudentImage = ImageHelper.BytesToImage((byte[])reader["StudentImage"]);
                         }
 
                         if (reader.IsDBNull(4) == false)
@@ -601,7 +626,7 @@ namespace TutteeFrame.Model
                         {
                             _student.PunishmentID = reader.GetString(10);
                         }
-                        
+
 
                     }
                 }
@@ -611,8 +636,10 @@ namespace TutteeFrame.Model
                 MessageBox.Show(e.ToString());
                 return false;
             }
-
-            Disconnect();
+            finally
+            {
+                Disconnect();
+            }
             return true;
         }
         public bool LoadStudentsByName(string _studentName, List<StudentInfomation> _students)
@@ -621,10 +648,12 @@ namespace TutteeFrame.Model
 
             if (!success)
                 return false;
+
             try
             {
-                string query = $"SELECT * FROM STUDENT WHERE Firstname = '{_studentName}'";
+                string query = $"SELECT * FROM STUDENT WHERE Firstname = @firstname";
                 SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@firstname", _studentName);
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -635,7 +664,7 @@ namespace TutteeFrame.Model
                         _student.FistName = reader.GetString(2);
                         if (reader.IsDBNull(3) == false)
                         {
-                            _student.StudentImage = byteArrayToImage((byte[])reader["StudentImage"]);
+                            _student.StudentImage = ImageHelper.BytesToImage((byte[])reader["StudentImage"]);
                         }
 
                         if (reader.IsDBNull(4) == false)
@@ -662,8 +691,10 @@ namespace TutteeFrame.Model
                 MessageBox.Show(e.ToString());
                 return false;
             }
-
-            Disconnect();
+            finally
+            {
+                Disconnect();
+            }
             return true;
         }
         /// <summary>
@@ -675,75 +706,77 @@ namespace TutteeFrame.Model
         /// <returns></returns>
         public bool UpdateStudent(string _studentID, StudentInfomation student)
         {
-           bool success = Connect();
-            if (success == false) return false;
+            bool success = Connect();
 
-            byte[] photo = ImageToByteArray(student.StudentImage);
-            string query = $"UPDATE  STUDENT SET " +
-                "Surname = @surname," +
-                "Firstname = @firstname," +
-                "StudentImage =@studentimage," +
-                "DateBorn =@dateborn, " +
-                "Sex =@sex, " +
-                "Address= @address," +
-                "Phonne = @phone," +
-                "ClassID =@classid, " +
-                "Status = @status," +
-                "PunishmentListID = @punishmentlistid" +
-                $" WHERE StudentID = '{_studentID}' "
-                ;
-                
-            SqlCommand sqlCommand = new SqlCommand(query, connection);
-            sqlCommand.Parameters.AddWithValue("@surname", student.SurName);
-            sqlCommand.Parameters.AddWithValue("@firstname", student.FistName);
-            sqlCommand.Parameters.AddWithValue("@dateborn", student.BornDate);
-            sqlCommand.Parameters.AddWithValue("@sex", student.Sex);
-            sqlCommand.Parameters.AddWithValue("@phone", student.Phone);
-            sqlCommand.Parameters.AddWithValue("@classid", student.Class);
-            sqlCommand.Parameters.AddWithValue("@address", student.Address);
-            sqlCommand.Parameters.AddWithValue("@status", student.Status);
-            sqlCommand.Parameters.AddWithValue("@punishmentlistid", string.IsNullOrEmpty(student.PunishmentID) ? (object)DBNull.Value : student.PunishmentID);
-            sqlCommand.Parameters.Add("@studentimage", SqlDbType.Image, photo.Length).Value = photo;
+            if (!success)
+                return false;
 
+            byte[] photo = ImageHelper.ImageToBytes(student.StudentImage);
             try
             {
+
+                string query = $"UPDATE  STUDENT SET " +
+                    "Surname = @surname," +
+                    "Firstname = @firstname," +
+                    "StudentImage =@studentimage," +
+                    "DateBorn =@dateborn, " +
+                    "Sex =@sex, " +
+                    "Address= @address," +
+                    "Phonne = @phone," +
+                    "ClassID =@classid, " +
+                    "Status = @status," +
+                    "PunishmentListID = @punishmentlistid" +
+                    $" WHERE StudentID = @studentid";
+                SqlCommand sqlCommand = new SqlCommand(query, connection);
+                sqlCommand.Parameters.AddWithValue("@studentid", _studentID);
+                sqlCommand.Parameters.AddWithValue("@surname", student.SurName);
+                sqlCommand.Parameters.AddWithValue("@firstname", student.FistName);
+                sqlCommand.Parameters.AddWithValue("@dateborn", student.BornDate);
+                sqlCommand.Parameters.AddWithValue("@sex", student.Sex);
+                sqlCommand.Parameters.AddWithValue("@phone", student.Phone);
+                sqlCommand.Parameters.AddWithValue("@classid", student.Class);
+                sqlCommand.Parameters.AddWithValue("@address", student.Address);
+                sqlCommand.Parameters.AddWithValue("@status", student.Status);
+                sqlCommand.Parameters.AddWithValue("@punishmentlistid", string.IsNullOrEmpty(student.PunishmentID) ? (object)DBNull.Value : student.PunishmentID);
+                sqlCommand.Parameters.Add("@studentimage", SqlDbType.Image, photo.Length).Value = photo;
                 sqlCommand.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                Disconnect();
                 return false;
             }
-            Disconnect();
+            finally
+            {
+                Disconnect();
+            }
             return true;
         }
 
         /// Get list student of class 
-        
-        public List<StudentInfomation> StudentsInformation(string classID,bool getKhoi=false)
+        public List<StudentInfomation> StudentsInformation(string classID, bool getKhoi = false)
         {
-
-
             DataTable table = new DataTable();
             List<StudentInfomation> Students = new List<StudentInfomation>();
 
-            bool  success =Connect();
-            if (success == false) return Students;
+            bool success = Connect();
+
+            if (!success)
+                return Students;
+
             try
             {
                 if (getKhoi == false)
                 {
-                    strQuery = classID != "" ? $"SELECT * FROM STUDENT WHERE ClassID = '{classID}'"
+                    strQuery = classID != "" ? $"SELECT * FROM STUDENT WHERE ClassID = @classid"
                         : $"SELECT * FROM STUDENT";
                 }
                 else
                 {
-                    strQuery = $"SELECT * FROM STUDENT WHERE STUDENT.ClassID like '{classID}%%'";
+                    strQuery = $"SELECT * FROM STUDENT WHERE STUDENT.ClassID LIKE @classid";
                 }
-                SqlCommand cmd = connection.CreateCommand();
-                cmd.CommandText = strQuery;
-
+                SqlCommand cmd = new SqlCommand(strQuery, connection);
+                cmd.Parameters.AddWithValue("@classid", (getKhoi) ? classID + "%%" : classID);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -774,27 +807,31 @@ namespace TutteeFrame.Model
                     Students.Add(i);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                Disconnect();
                 return Students;
             }
-            Disconnect();
+            finally
+            {
+                Disconnect();
+            }
             return Students;
 
         }
-        public bool AddStudent(string _studentid , StudentInfomation student)
+        public bool AddStudent(string _studentid, StudentInfomation student)
         {
-            bool success =Connect();
-            if (success == false) return false;
+            bool success = Connect();
 
-            byte[] photo = ImageToByteArray(student.StudentImage);
+            if (!success)
+                return false;
+
+            byte[] photo = ImageHelper.ImageToBytes(student.StudentImage);
             string query = "INSERT INTO STUDENT(StudentID,Surname,FirstName,DateBorn,Sex,Address,Phonne,ClassID,Status,PunishmentListID,StudentImage) " +
                 "VALUES(@studentid,@surname,@firstname,@dateborn,@sex,@address,@phone,@classid,@status,@punishmentlistid,@studentimage)";
             SqlCommand sqlCommand = new SqlCommand(query, connection);
             sqlCommand.Parameters.AddWithValue("@studentid", student.StudentID);
-            sqlCommand.Parameters.AddWithValue("@surname",student.SurName);
+            sqlCommand.Parameters.AddWithValue("@surname", student.SurName);
             sqlCommand.Parameters.AddWithValue("@firstname", student.FistName);
             sqlCommand.Parameters.AddWithValue("@dateborn", student.BornDate);
             sqlCommand.Parameters.AddWithValue("@sex", student.Sex);
@@ -802,32 +839,21 @@ namespace TutteeFrame.Model
             sqlCommand.Parameters.AddWithValue("@classid", student.Class);
             sqlCommand.Parameters.AddWithValue("@address", student.Address);
             sqlCommand.Parameters.AddWithValue("@status", student.Status);
-            sqlCommand.Parameters.AddWithValue("@punishmentlistid", string.IsNullOrEmpty(student.PunishmentID)?(object)DBNull.Value: student.PunishmentID);
-            sqlCommand.Parameters.Add("@studentimage",SqlDbType.Image, photo.Length).Value = photo;
+            sqlCommand.Parameters.AddWithValue("@punishmentlistid", string.IsNullOrEmpty(student.PunishmentID) ? (object)DBNull.Value : student.PunishmentID);
+            sqlCommand.Parameters.Add("@studentimage", SqlDbType.Image, photo.Length).Value = photo;
             try
             {
                 sqlCommand.ExecuteNonQuery();
-                try
-                {
-
-                }
-                catch(Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                    Disconnect();
-                    return false;
-                }
-
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                Disconnect();
                 return false;
             }
-          
-
-            Disconnect();
+            finally
+            {
+                Disconnect();
+            }
             return true;
         }
 
@@ -838,73 +864,80 @@ namespace TutteeFrame.Model
             return returnImage;
 
         }
-        public byte[] ImageToByteArray(System.Drawing.Image imageIn)
-        {
-            using (var ms = new MemoryStream())
-            {
-                imageIn.Save(ms, imageIn.RawFormat);
-                return ms.ToArray();
-            }
-        }
         public bool DeleteStudent(string _studentID)
         {
-            bool success =Connect();
-            if (success == false) return false;
+            bool success = Connect();
+            if (!success)
+                return false;
             try
             {
-                strQuery = $"DELETE FROM STUDENT WHERE STUDENT.StudentID ='{_studentID}'";
+                strQuery = $"DELETE FROM STUDENT WHERE STUDENT.StudentID = @studentid";
                 SqlCommand cmd = connection.CreateCommand();
                 cmd.CommandText = strQuery;
+                cmd.Parameters.AddWithValue("studentid", _studentID);
                 cmd.ExecuteNonQuery();
-                Disconnect();
-                return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                Disconnect();
                 return false;
             }
+            finally
+            {
+                Disconnect();
+            }
+            return true;
         }
         public bool CountNumberOfStudent(ref int number)
         {
+            bool success = Connect();
+
+            if (!success)
+                return false;
+
             try
             {
-                bool success =Connect();
-                if (success == false) return false;
                 strQuery = "SELECT COUNT(*) FROM STUDENT";
                 SqlCommand cmd = connection.CreateCommand();
                 cmd.CommandText = strQuery;
-                SqlDataReader reader = cmd.ExecuteReader();
-                if(reader.Read())
-                {
-                    number = reader.GetInt32(0);
-                    Disconnect();
-                    return true;
-                }
-                return true;
+                number = (int)cmd.ExecuteScalar();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                Disconnect();
                 return false;
             }
+            finally
+            {
+                Disconnect();
+            }
+            return true;
         }
         public bool GetDataSetPrepareToPrint(DataSet input, string classID)
         {
+            bool success = Connect();
+
+            if (!success)
+                return false;
+
             try
             {
-                strQuery = $"SELECT * FROM STUDENT WHERE ClassID ='{classID}'";
-                SqlDataAdapter adapter = new SqlDataAdapter(strQuery, connection);
+                strQuery = $"SELECT * FROM STUDENT WHERE ClassID = @classid";
+                SqlCommand command = new SqlCommand(strQuery, connection);
+                command.Parameters.AddWithValue("@classid", classID);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
                 adapter.Fill(input, "STUDENT");
-                return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return false;
             }
+            finally
+            {
+                Disconnect();
+            }
+            return true;
         }
 
 
@@ -924,9 +957,12 @@ namespace TutteeFrame.Model
                 return false;
             try
             {
-                string query = "INSERT INTO CLASS(ClassID,RoomNum,StudentNum,TeacherID) VALUES" +
-                    $"('{_class.ID}','{_class.Room}','{_class.StudentNum}','{_class.FormerTeacherID}')";
+                string query = "INSERT INTO CLASS(ClassID,RoomNum,StudentNum,TeacherID) VALUES (@classid,@classroom,@studentnum,@teacherid)";
                 SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@classid", _class.ID);
+                command.Parameters.AddWithValue("@classroom", _class.Room);
+                command.Parameters.AddWithValue("@studentnum", _class.StudentNum);
+                command.Parameters.AddWithValue("@teacherid", _class.FormerTeacherID);
                 command.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -934,22 +970,27 @@ namespace TutteeFrame.Model
                 MessageBox.Show(e.ToString());
                 return false;
             }
-
-            Disconnect();
+            finally
+            {
+                Disconnect();
+            }
             return true;
         }
 
         //Lấy danh sách các lớp học thuộc một khối
-        public List<Class> Lops(string Khoi)
+        public List<Class> Lops(string _khoi)
         {
             List<Class> NhomLops = new List<Class>();
+
             bool success = Connect();
-            if (success == false) return NhomLops;
+            if (!success)
+                return NhomLops;
             try
             {
-                strQuery = $"SELECT * FROM CLASS WHERE ClassID like'{Khoi}%%%'";
+                strQuery = $"SELECT * FROM CLASS WHERE ClassID LIKE @khoi";
                 SqlCommand cmd = connection.CreateCommand();
                 cmd.CommandText = strQuery;
+                cmd.Parameters.AddWithValue("@khoi", _khoi + "%%%");
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -961,41 +1002,41 @@ namespace TutteeFrame.Model
                     NhomLops.Add(i);
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                Disconnect();
                 return NhomLops;
             }
-            Disconnect();
+            finally
+            {
+                Disconnect();
+            }
             return NhomLops;
         }
 
         public bool CountNumberOfClass(ref int number)
         {
-            bool success =Connect();
+            bool success = Connect();
             if (success == false) return false;
             try
             {
                 strQuery = "SELECT COUNT(*) FROM CLASS";
                 SqlCommand cmd = connection.CreateCommand();
                 cmd.CommandText = strQuery;
-                SqlDataReader reader = cmd.ExecuteReader();
-                if(reader.Read())
-                {
-                    number = reader.GetInt32(0);
-                }
-                Disconnect();
-                return true;
+                number = (int)cmd.ExecuteScalar();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                Disconnect();
                 MessageBox.Show(ex.Message);
                 return false;
             }
+            finally
+            {
+                Disconnect();
 
-           
+            }
+            return true;
+
         }
         #endregion
 
@@ -1022,8 +1063,10 @@ namespace TutteeFrame.Model
                 MessageBox.Show(e.ToString());
                 return false;
             }
-
-            Disconnect();
+            finally
+            {
+                Disconnect();
+            }
             return true;
         }
         #endregion
@@ -1051,8 +1094,10 @@ namespace TutteeFrame.Model
             {
                 return false;
             }
-
-            Disconnect();
+            finally
+            {
+                Disconnect();
+            }
             return true;
         }
         /// <summary>
@@ -1076,8 +1121,10 @@ namespace TutteeFrame.Model
             {
                 return false;
             }
-
-            Disconnect();
+            finally
+            {
+                Disconnect();
+            }
             return true;
         }
         #endregion
@@ -1086,32 +1133,37 @@ namespace TutteeFrame.Model
 
         public bool GetAllSubjectInformation(List<Subject> listSubject)
         {
-            bool succees = Connect();
-            if (succees == false) return false;
+            bool success = Connect();
+
+            if (!success)
+                return false;
+
             try
             {
                 strQuery = "SELECT * FROM SUBJECT";
                 SqlCommand cmd = connection.CreateCommand();
                 cmd.CommandText = strQuery;
                 SqlDataReader reader = cmd.ExecuteReader();
-                while(reader.Read())
+                while (reader.Read())
                 {
                     Subject i = new Subject(reader.GetString(0), reader.GetString(1));
                     listSubject.Add(i);
                 }
-                Disconnect();
-                return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                Disconnect();
                 return false;
             }
+            finally
+            {
+                Disconnect();
+            }
+            return true;
+
         }
 
         #endregion
-
 
     }
 }

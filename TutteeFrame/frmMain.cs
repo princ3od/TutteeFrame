@@ -20,6 +20,7 @@ namespace TutteeFrame
     public partial class frmMain : MetroForm
     {
         Teacher mainTeacher = new Teacher();
+        bool firstLoad = true;
         public frmMain()
         {
             InitializeComponent();
@@ -30,6 +31,7 @@ namespace TutteeFrame
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
             materialSkinManager.ColorScheme = new ColorScheme(Primary.LightBlue400, Primary.Blue400, Primary.Green600, Accent.LightGreen700, TextShade.BLACK);
         }
+
         #region Form Event
         #region Win32 Form
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -139,9 +141,15 @@ namespace TutteeFrame
                 if (teacher == null)
                     return;
                 listviewTeacher.Items.Add(new ListViewItem(new string[] { Controller.Instance.teacherIndex[teacher.ID].ToString(),
-                                    teacher.ID,teacher.SurName + " " + teacher.FirstName,teacher.DateOfBirth1.ToString("d"), teacher.GetSex,
-                                    teacher.Address, teacher.Phone, teacher.Mail, teacher.Subject.Name, Controller.Instance.teacherNotes[teacher.ID]
+                                    teacher.ID,teacher.SurName + " " + teacher.FirstName,teacher.DateOfBirth1.ToString("dd-MM-yyyy"), teacher.GetSex,
+                                    teacher.Address, teacher.Phone, teacher.Mail, teacher.Subject.Name, teacher.GetNote()
                                 }));
+                lbTotalTeacher.Text = (Int32.Parse(lbTotalTeacher.Text) + 1).ToString();
+                if (teacher.Type == Teacher.TeacherType.Adminstrator)
+                    lbTotalAdmin.Text = (Int32.Parse(lbTotalAdmin.Text) + 1).ToString();
+                else if (teacher.Type == Teacher.TeacherType.Ministry)
+                    lbTotalMinistry.Text = (Int32.Parse(lbTotalMinistry.Text) + 1).ToString();
+                listviewTeacher.Items[listviewTeacher.Items.Count - 1].EnsureVisible();
             };
         }
 
@@ -158,11 +166,9 @@ namespace TutteeFrame
             frmTeacher.FormClosing += (s, ev) =>
             {
                 Teacher teacher = frmTeacher.teacher;
-                ListViewItem[] item = listviewTeacher.Items.Find(teacher.ID, true);
-                if (item.Length > 0)
-                    item[0] = new ListViewItem(new string[] { Controller.Instance.teacherIndex[teacher.ID].ToString(),
-                                    teacher.ID,teacher.SurName + " " + teacher.FirstName,teacher.DateOfBirth1.ToString("d"), teacher.GetSex,
-                                    teacher.Address, teacher.Phone, teacher.Mail, teacher.Subject.Name, Controller.Instance.teacherNotes[teacher.ID]
+                listviewTeacher.Items[listviewTeacher.SelectedItems[0].Index] = new ListViewItem(new string[] { Controller.Instance.teacherIndex[teacher.ID].ToString(),
+                                    teacher.ID,teacher.SurName + " " + teacher.FirstName,teacher.DateOfBirth1.ToString("dd-MM-yyyy"), teacher.GetSex,
+                                    teacher.Address, teacher.Phone, teacher.Mail, teacher.Subject.Name, teacher.GetNote()
                                 });
             };
         }
@@ -195,7 +201,7 @@ namespace TutteeFrame
             }
             worker.DoWork += (s, ev) =>
             {
-                Thread.Sleep(1000);
+                Thread.Sleep(600);
                 foreach (KeyValuePair<int, string> index in indexToDelete)
                 {
                     idToDel = index.Value;
@@ -223,7 +229,6 @@ namespace TutteeFrame
                 lbTotalAdmin.Text = totalAdmin.ToString();
                 lbTotalMinistry.Text = totalMinistry.ToString();
                 listviewTeacher.SelectedItems.Clear();
-
                 if (deleteSelf)
                 {
                     btnLogout.PerformClick();
@@ -243,7 +248,6 @@ namespace TutteeFrame
 
                 for (int i = 0; i < listviewTeacher.Items.Count; i++)
                     listviewTeacher.Items[i].SubItems[0].Text = (i + 1).ToString();
-                listviewTeacher.Invalidate();
             };
 
             worker.RunWorkerAsync();
@@ -263,43 +267,70 @@ namespace TutteeFrame
                 {
                     listviewTeacher.Items.Add(new ListViewItem(new string[] { Controller.Instance.teacherIndex[teacher.ID].ToString(),
                                     teacher.ID,teacher.SurName + " " + teacher.FirstName,teacher.DateOfBirth1.ToString("d"), teacher.GetSex,
-                                    teacher.Address, teacher.Phone, teacher.Mail, teacher.Subject.Name, Controller.Instance.teacherNotes[teacher.ID]
+                                    teacher.Address, teacher.Phone, teacher.Mail, teacher.Subject.Name, teacher.GetNote()
                                 }));
                 }
             else
+            {
                 foreach (Teacher teacher in Controller.Instance.TeacherListFilterBySubject(cbbTeacherSubjectFilter.Text))
                 {
                     listviewTeacher.Items.Add(new ListViewItem(new string[] { Controller.Instance.teacherIndex[teacher.ID].ToString(),
                                     teacher.ID,teacher.SurName + " " + teacher.FirstName,teacher.DateOfBirth1.ToString("d"), teacher.GetSex,
-                                    teacher.Address, teacher.Phone, teacher.Mail, teacher.Subject.Name, Controller.Instance.teacherNotes[teacher.ID]
+                                    teacher.Address, teacher.Phone, teacher.Mail, teacher.Subject.Name, teacher.GetNote()
                                 }));
                 }
+            }    
+                
         }
 
         private void cbbTeacherRoleFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            listviewTeacher.Items.Clear();
+            if (cbbTeacherRoleFilter.SelectedIndex == 0)
+                foreach (Teacher teacher in Controller.Instance.teachers)
+                {
+                    listviewTeacher.Items.Add(new ListViewItem(new string[] { Controller.Instance.teacherIndex[teacher.ID].ToString(),
+                                    teacher.ID,teacher.SurName + " " + teacher.FirstName,teacher.DateOfBirth1.ToString("d"), teacher.GetSex,
+                                    teacher.Address, teacher.Phone, teacher.Mail, teacher.Subject.Name, teacher.GetNote()
+                                }));
+                }
+            else
+                foreach (Teacher teacher in Controller.Instance.TeacherListFilterByRole((Teacher.TeacherType)cbbTeacherRoleFilter.SelectedIndex))
+                {
+                    listviewTeacher.Items.Add(new ListViewItem(new string[] { Controller.Instance.teacherIndex[teacher.ID].ToString(),
+                                    teacher.ID,teacher.SurName + " " + teacher.FirstName,teacher.DateOfBirth1.ToString("d"), teacher.GetSex,
+                                    teacher.Address, teacher.Phone, teacher.Mail, teacher.Subject.Name, teacher.GetNote()
+                                }));
+                }
         }
 
-        private void cbbTeacherSearchBy_SelectedIndexChanged(object sender, EventArgs e)
+        private void cbbTeacherSortBy_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (firstLoad)
+                return;
+            if (cbbTeacherSortBy.SelectedIndex == 0)
+                Controller.Instance.SortTeacherList(Controller.OrderType.ID);
+            else if (cbbTeacherSortBy.SelectedIndex == 1)
+                Controller.Instance.SortTeacherList(Controller.OrderType.Name);
+            else
+                Controller.Instance.SortTeacherList(Controller.OrderType.BornDate);
+            listviewTeacher.Items.Clear();
+            foreach (Teacher teacher in Controller.Instance.teachers)
+            {
+                listviewTeacher.Items.Add(new ListViewItem(new string[] { Controller.Instance.teacherIndex[teacher.ID].ToString(),
+                                    teacher.ID,teacher.SurName + " " + teacher.FirstName,teacher.DateOfBirth1.ToString("dd-MM-yyyy"), teacher.GetSex,
+                                    teacher.Address, teacher.Phone, teacher.Mail, teacher.Subject.Name, teacher.GetNote()
+                                }));
+            }
+            listviewTeacher.Invalidate();
+        }
+        private void listviewTeacher_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            btnUpdateTeacher.PerformClick();
         }
         #endregion
 
         #region Custom Function
-
-        //Đổi mảng byte sang ảnh
-        public Image byteArrayToImage(byte[] byteArrayIn)
-        {
-            
-            MemoryStream mem = new MemoryStream();
-            mem.Write(byteArrayIn, 0, byteArrayIn.Length);
-            Bitmap bitmap = new Bitmap(mem);
-            return bitmap;
-            
-                   
-        }
         void LoadAfterLogin()
         {
             //Cắt ảnh đại diện thành hình tròn
@@ -315,22 +346,22 @@ namespace TutteeFrame
             //Avatar
             pbProfilemainAvatar.Image = mainTeacher.Avatar;
             ptbAvatar.Image = mainTeacher.Avatar;
-            
+
             //THÔNG TIN CÁ NHÂN
             lbMyName.Text = string.Format("{0} {1}", mainTeacher.SurName, mainTeacher.FirstName);
             lbImyID.Text = mainTeacher.ID;
             lbMyaddr.Text = mainTeacher.Address;
             lbMyemail.Text = mainTeacher.Mail;
             lbMyfonenum.Text = mainTeacher.Phone;
-            lbSubjectTeach.Text = "Bộ môn "+mainTeacher.Subject.Name;
+            lbSubjectTeach.Text = "Bộ môn " + mainTeacher.Subject.Name;
             lbPosition.Text = mainTeacher.Position;
-            lbDateofbirth.Text = mainTeacher.DateOfBirth1.ToString("d");
+            lbDateofbirth.Text = mainTeacher.DateOfBirth1.ToString("dd/MM/yyyy");
             if (mainTeacher.Sex == true)
             {
                 lbGender.Text = "Giới tính nam";
 
             }
-              else
+            else
             {
                 lbGender.Text = "Giới tính nữ";
             }
@@ -340,7 +371,7 @@ namespace TutteeFrame
 
             if (mainTeacher.Type == Teacher.TeacherType.Adminstrator)
             {
-               lbBelongto.Text = "Ban giam hiệu";
+                lbBelongto.Text = "Ban giam hiệu";
             }
             else if (mainTeacher.Type == Teacher.TeacherType.Ministry)
             {
@@ -367,7 +398,7 @@ namespace TutteeFrame
                 switch (mainTeacher.Type)
                 {
                     case Teacher.TeacherType.FormerTeacher:
-                        lbBelongtoOnCard.Text = "Giáo viên bộ môn (Có chủ nhiệm)";                        
+                        lbBelongtoOnCard.Text = "Giáo viên bộ môn (Có chủ nhiệm)";
                         mainTabControl.TabPages.Add(tbpgFormClass);
                         mainTabControl.TabPages.Add(tbpgStudentMarkboard);
                         break;
@@ -391,7 +422,7 @@ namespace TutteeFrame
                     default:
                         break;
                 }
-                if(lbBelongtoOnCard.Text== "Giáo viên bộ môn"|| lbBelongtoOnCard.Text == "Giáo viên bộ môn (Có chủ nhiệm)")
+                if (lbBelongtoOnCard.Text == "Giáo viên bộ môn" || lbBelongtoOnCard.Text == "Giáo viên bộ môn (Có chủ nhiệm)")
                 {
                     lbBelongto.Text = "Tổ " + mainTeacher.Subject.Name;
                 }
@@ -400,42 +431,49 @@ namespace TutteeFrame
             }
             LoadData();
         }
+        BackgroundWorker loader;
         void LoadData()
         {
-            cbbTeacherSubjectFilter.Items.Clear();
-            cbbTeacherSubjectFilter.Items.Add("Tất cả");
-            cbbTeacherSubjectFilter.SelectedIndex = 0;
-            cbbTeacherRoleFilter.SelectedIndex = 0;
-            cbbTeacherSearchBy.SelectedIndex = 0;
-            listviewTeacher.Items.Clear();
+            loader = new BackgroundWorker();
+            loader.WorkerReportsProgress = true;
+            loader.DoWork += (s, e) =>
+            {
+                loader.ReportProgress(0, "Đang tải danh sách môn học...");
+                Thread.Sleep(800);
+                Controller.Instance.LoadSubjects();
+            };
+            mainProgressbar.Show();
+            lbInformation.Show();
+            
             switch (mainTeacher.Type)
             {
                 case Teacher.TeacherType.Teacher:
                     break;
                 case Teacher.TeacherType.Adminstrator:
                     {
-                        BackgroundWorker loader = new BackgroundWorker();
+                        cbbTeacherSubjectFilter.Items.Clear();
+                        cbbTeacherSubjectFilter.Items.Add("Tất cả");
+                        cbbTeacherSubjectFilter.SelectedIndex = 0;
+                        cbbTeacherRoleFilter.SelectedIndex = 0;
+                        cbbTeacherSortBy.SelectedIndex = 0;
+                        listviewTeacher.Items.Clear();
+                        lvSubjectManage.Items.Clear();
                         int totalMinistry = 0, totalAdmin = 0, totalTeacher = 0;
-                        mainProgressbar.Show();
-                        lbInformation.Text = "Đang tải danh sách giáo viên...";
-                        lbInformation.Show();
-                        loader.WorkerReportsProgress = true;
                         loader.DoWork += (s, e) =>
                         {
+                            loader.ReportProgress(0, "Đang tải danh sách giáo viên...");
                             Thread.Sleep(800);
-                            Controller.Instance.LoadTeachers(out totalTeacher, out totalMinistry, out totalAdmin);
-                            loader.ReportProgress(50);
-                            Thread.Sleep(800);
-                            Controller.Instance.LoadSubjects();
+                            Controller.Instance.LoadTeachers();
+                            Controller.Instance.GetTeacherNumber(out totalTeacher, out totalMinistry, out totalAdmin);
                         };
 
                         loader.ProgressChanged += (s, e) =>
                         {
-                            if (e.ProgressPercentage == 50)
-                                lbInformation.Text = "Đang tải danh sách môn học...";
+                            lbInformation.Text = (string)e.UserState;
                         };
                         loader.RunWorkerCompleted += (s, e) =>
                         {
+                            firstLoad = false;
                             mainProgressbar.Hide();
                             lbInformation.Hide();
                             lbTotalTeacher.Text = totalTeacher.ToString();
@@ -444,18 +482,22 @@ namespace TutteeFrame
                             foreach (Teacher teacher in Controller.Instance.teachers)
                             {
                                 listviewTeacher.Items.Add(new ListViewItem(new string[] { Controller.Instance.teacherIndex[teacher.ID].ToString(),
-                                    teacher.ID,teacher.SurName + " " + teacher.FirstName,teacher.DateOfBirth1.ToString("d"), teacher.GetSex,
-                                    teacher.Address, teacher.Phone, teacher.Mail, teacher.Subject.Name, Controller.Instance.teacherNotes[teacher.ID]
+                                    teacher.ID,teacher.SurName + " " + teacher.FirstName,teacher.DateOfBirth1.ToString("dd-MM-yyyy"), teacher.GetSex,
+                                    teacher.Address, teacher.Phone, teacher.Mail, teacher.Subject.Name, teacher.GetNote()
                                 }));
                             }
                             foreach (Subject subject in Controller.Instance.subjects)
                             {
                                 cbbTeacherSubjectFilter.Items.Add(subject.Name);
                             }
-
+                            int index = 0;
+                            foreach (Subject subject in Controller.Instance.subjects)
+                            {
+                                lvSubjectManage.Items.Add(new ListViewItem(new string[] { index.ToString(), subject.ID, subject.Name }));
+                                index++;
+                            }
                         };
 
-                        loader.RunWorkerAsync();
                     }
                     break;
                 case Teacher.TeacherType.Ministry:
@@ -465,18 +507,19 @@ namespace TutteeFrame
                 default:
                     break;
             }
+            loader.RunWorkerAsync();
+
         }
         #endregion
 
 
-
         private void cboxLop_SelectedValueChanged(object sender, EventArgs e)
         {
-            
+
             ShowListBackGroundWork.RunWorkerAsync(cboxLop.Text);
 
         }
-       
+
 
 
         private void materialRaisedButton1_Click(object sender, EventArgs e)
@@ -484,18 +527,18 @@ namespace TutteeFrame
             StudentInfomation newStudent = new StudentInfomation();
             frmAddStudent NewFormAddStudent = new frmAddStudent(newStudent, true);
             NewFormAddStudent.ShowDialog();
-            if(NewFormAddStudent.Is_Progress_Successed)
-            ShowListBackGroundWork.RunWorkerAsync(cboxLop.Text);
+            if (NewFormAddStudent.Is_Progress_Successed)
+                ShowListBackGroundWork.RunWorkerAsync(cboxLop.Text);
 
         }
 
         private void btnAproveAdding_Click(object sender, EventArgs e)
         {
             ListView.SelectedListViewItemCollection collect = ListViewStudents.SelectedItems;
-            if(collect.Count>0)
+            if (collect.Count > 0)
             {
                 string studentId = collect[0].SubItems[0].Text;
-                if(Controller.Instance.DeleteStudent(studentId)) MessageBox.Show("Xóa thành công");
+                if (Controller.Instance.DeleteStudent(studentId)) MessageBox.Show("Xóa thành công");
                 ListViewStudents.Items.Clear();
                 ShowListBackGroundWork.RunWorkerAsync(cboxLop.Text);
             }
@@ -512,12 +555,12 @@ namespace TutteeFrame
 
         private void ShowListBackGroundWork_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-           // đối số e lưu  value của cbbKhoi trong t/h cbbKhoi Index change
-           // lưu value của cbbClaas trong t/h cbbClass Index change
+            // đối số e lưu  value của cbbKhoi trong t/h cbbKhoi Index change
+            // lưu value của cbbClaas trong t/h cbbClass Index change
 
             List<StudentInfomation> Students =
-                (e.Argument as string).Length==2?
-            Controller.Instance.GetInformationStudents(e.Argument as string,true):
+                (e.Argument as string).Length == 2 ?
+            Controller.Instance.GetInformationStudents(e.Argument as string, true) :
             Controller.Instance.GetInformationStudents(e.Argument as string);
             ShowListBackGroundWork.ReportProgress(0, Students);
         }
@@ -557,7 +600,7 @@ namespace TutteeFrame
         {
             btnPrint.Visible = false;
             string KhoiSelected = null;
-            KhoiSelected = cbxKhoi.SelectedItem.ToString()!= "Tất cả"? cbxKhoi.SelectedItem.ToString():"";
+            KhoiSelected = cbxKhoi.SelectedItem.ToString() != "Tất cả" ? cbxKhoi.SelectedItem.ToString() : "";
             if (KhoiSelected == null) return;
             cboxLop.Items.Clear();
             List<Class> LopThuocKhoi = Controller.Instance.GetClass(KhoiSelected);
@@ -583,15 +626,15 @@ namespace TutteeFrame
 
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnPrint.Visible = false;
-            if (mainTabControl.SelectedIndex == 3)
-            {
-                cbxKhoi.SelectedIndex = 3;
-            }
-            if (mainTabControl.SelectedIndex == 5)
-            {
-                ManageSubjectBackgroundWork.RunWorkerAsync();
-            }
+            //btnPrint.Visible = false;
+            //if (mainTabControl.SelectedIndex == 3)
+            //{
+            //    cbxKhoi.SelectedIndex = 3;
+            //}
+            //if (mainTabControl.SelectedIndex == 5)
+            //{
+            //    ManageSubjectBackgroundWork.RunWorkerAsync();
+            //}
         }
 
 
@@ -644,15 +687,15 @@ namespace TutteeFrame
             Pair arg = e.Argument as Pair;
             List<StudentInfomation> students = new List<StudentInfomation>();
             students.Add(new StudentInfomation());
-            if( (arg.Second as bool?) ==false &&Controller.Instance.LoadStudentInformationById(arg.First as string,students[0]))
+            if ((arg.Second as bool?) == false && Controller.Instance.LoadStudentInformationById(arg.First as string, students[0]))
             {
-                
+
             }
-            
+
             else
             {
                 students = new List<StudentInfomation>();
-                if((arg.Second as bool?) == true && Controller.Instance.LoadStudentInformationByName(arg.First as string, students))
+                if ((arg.Second as bool?) == true && Controller.Instance.LoadStudentInformationByName(arg.First as string, students))
                 {
 
                 }
@@ -670,9 +713,9 @@ namespace TutteeFrame
         {
             ListViewStudents.Items.Clear();
             List<StudentInfomation> students = e.UserState as List<StudentInfomation>;
-            if(students.Count>0)
+            if (students.Count > 0)
             {
-                foreach(StudentInfomation i in students)
+                foreach (StudentInfomation i in students)
                 {
                     if (i.StudentID != null && i.StudentID != "")
                     {
@@ -694,7 +737,7 @@ namespace TutteeFrame
 
                         ListViewStudents.Items.Add(lvi);
                     }
-            }
+                }
 
             }
             else
@@ -725,29 +768,13 @@ namespace TutteeFrame
                 SearchListBackGroundWork.RunWorkerAsync(agr);
             }
         }
-
-        private void delContent_Click(object sender, EventArgs e)
-        {
-            btnDel.PerformClick();
-        }
-
-        private void fixContent_Click(object sender, EventArgs e)
-        {
-            btnFix.PerformClick();
-        }
-
-        private void addContent_Click(object sender, EventArgs e)
-        {
-            btnAdd.PerformClick();
-        }
-
         private void btnPrint_Click(object sender, EventArgs e)
         {
             string classID = cboxLop.Text;
             DataSet ds = new DataSet();
-            if(Controller.Instance.GetDataSetPrepareToPrint(ds,classID))
+            if (Controller.Instance.GetDataSetPrepareToPrint(ds, classID))
             {
-                frmStudentPrinter printer = new frmStudentPrinter(ds,classID);
+                frmStudentPrinter printer = new frmStudentPrinter(ds, classID);
                 printer.ShowDialog();
 
             }
@@ -758,43 +785,6 @@ namespace TutteeFrame
             btnPrint.Visible = true;
         }
 
-        private void ListViewStudents_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
-
-        private void metroPanel4_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void ManageSubjectBackgroundWork_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
-        {
-            List<Subject> listSubject = new List<Subject>();
-            if(Controller.Instance.GetAllSubjectInformation(listSubject))
-            {
-                ManageSubjectBackgroundWork.ReportProgress(0,listSubject);
-            }
-        }
-
-        private void ManageSubjectBackgroundWork_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
-        {
-            lvSubjectManage.Items.Clear();
-            List<Subject> listSubject = e.UserState as List<Subject>;
-            int stt = 0;
-            foreach(var i in listSubject)
-            {
-                stt += 1;
-                ListViewItem lvi = new ListViewItem(stt.ToString());
-                lvi.SubItems.Add(i.ID);
-                lvi.SubItems.Add(i.Name);
-                lvSubjectManage.Items.Add(lvi);
-            }
-        }
-
-        private void ManageSubjectBackgroundWork_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
-        {
-
-        }
     }
 }

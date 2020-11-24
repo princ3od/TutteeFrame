@@ -243,6 +243,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\gif-leaf-loading-gif-MAIN.gif" />
+    <None Include="Resources\loader.gif" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -261,15 +263,8 @@
     <None Include="Resources\delete.png" />
     <None Include="Resources\user.jpg" />
     <None Include="Resources\download.png" />
-    <None Include="Resources\Screenshot 2020-11-13 001747.jpg" />
-    <None Include="Resources\Screenshot 2020-11-13 001031.jpg" />
-    <None Include="Resources\Screenshot 2020-11-13 000804.jpg" />
     <None Include="Resources\39-128.png" />
     <None Include="Resources\38-128.png" />
-    <None Include="Resources\forward.png" />
-    <None Include="Resources\fastforward.png" />
-    <None Include="Resources\backfastforward.png" />
-    <None Include="Resources\back.png" />
     <None Include="Resources\thongtinll.png" />
     <None Include="Resources\thongtincanhan.png" />
     <None Include="Resources\phonban.png" />
