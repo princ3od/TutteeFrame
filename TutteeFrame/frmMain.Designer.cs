@@ -694,7 +694,7 @@
             this.cbbTeacherSortBy.Name = "cbbTeacherSortBy";
             this.cbbTeacherSortBy.Size = new System.Drawing.Size(137, 49);
             this.cbbTeacherSortBy.TabIndex = 11;
-            this.cbbTeacherSortBy.SelectedIndexChanged += new System.EventHandler(this.cbbTeacherSortBy_SelectedIndexChanged);
+            this.cbbTeacherSortBy.SelectedIndexChanged += new System.EventHandler(this.OnFilter);
             // 
             // listviewTeacher
             // 
@@ -874,7 +874,7 @@
             this.cbbTeacherRoleFilter.Name = "cbbTeacherRoleFilter";
             this.cbbTeacherRoleFilter.Size = new System.Drawing.Size(101, 49);
             this.cbbTeacherRoleFilter.TabIndex = 10;
-            this.cbbTeacherRoleFilter.SelectedIndexChanged += new System.EventHandler(this.cbbTeacherRoleFilter_SelectedIndexChanged);
+            this.cbbTeacherRoleFilter.SelectedIndexChanged += new System.EventHandler(this.OnFilter);
             // 
             // cbbTeacherSubjectFilter
             // 
@@ -900,7 +900,7 @@
             this.cbbTeacherSubjectFilter.Name = "cbbTeacherSubjectFilter";
             this.cbbTeacherSubjectFilter.Size = new System.Drawing.Size(173, 49);
             this.cbbTeacherSubjectFilter.TabIndex = 9;
-            this.cbbTeacherSubjectFilter.SelectedIndexChanged += new System.EventHandler(this.cbbTeacherSubjectFilter_SelectedIndexChanged);
+            this.cbbTeacherSubjectFilter.SelectedIndexChanged += new System.EventHandler(this.OnFilter);
             // 
             // lbTotalAdmin
             // 
