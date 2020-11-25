@@ -24,7 +24,6 @@ namespace TutteeFrame
         public List<Subject> subjects = new List<Subject>();
         public Teacher usingTeacher = new Teacher();
         public List<Teacher> teachers = new List<Teacher>();
-        public Dictionary<string, int> teacherIndex = new Dictionary<string, int>();
         #endregion
 
         public void SettingCheck()
@@ -204,7 +203,6 @@ namespace TutteeFrame
         public bool LoadTeachers(string _order = null)
         {
             teachers.Clear();
-            teacherIndex.Clear();
             Dictionary<string, byte[]> avatars = new Dictionary<string, byte[]>();
             bool succes = true;
             if (_order == null)
@@ -230,7 +228,6 @@ namespace TutteeFrame
                         teachers[index].FormClassID = classID;
                     }
                     teachers[index].Avatar = ImageHelper.BytesToImage(avatars[teachers[index].ID]);
-                    teacherIndex.Add(teachers[index].ID, index + 1);
                 }
             }
             return succes;
@@ -241,7 +238,7 @@ namespace TutteeFrame
             if (success)
             {
                 teachers.Add(_teacher);
-                teacherIndex.Add(_teacher.ID, teachers.Count);
+                DataAccess.Instance.AddAccount(new Account(accounts.Count + 1, _teacher.ID, Encryption.Encrypt("1", "1")));
             }
             return success;
         }
@@ -262,30 +259,43 @@ namespace TutteeFrame
                             teachers.Remove(teachers[i]);
                             break;
                         }
-                    LoadTeacherIndex();
                 }
                 LoadAccounts();
             }
             return success;
         }
-        public List<Teacher> TeacherListFilterBySubject(string _subjectName)
+        public List<Teacher> TeacherListFilterBySubject(string _subjectName, List<Teacher> _teachers = null)
         {
             List<Teacher> result = new List<Teacher>();
-            foreach (Teacher teacher in teachers)
-            {
-                if (teacher.Subject.Name == _subjectName)
-                    result.Add(teacher);
-            }
+            if (_teachers == null)
+                foreach (Teacher teacher in teachers)
+                {
+                    if (teacher.Subject.Name == _subjectName)
+                        result.Add(teacher);
+                }
+            else
+                foreach (Teacher teacher in _teachers)
+                {
+                    if (teacher.Subject.Name == _subjectName)
+                        result.Add(teacher);
+                }
             return result;
         }
-        public List<Teacher> TeacherListFilterByRole(Teacher.TeacherType _teacherType)
+        public List<Teacher> TeacherListFilterByRole(Teacher.TeacherType _teacherType, List<Teacher> _teachers = null)
         {
             List<Teacher> result = new List<Teacher>();
-            foreach (Teacher teacher in teachers)
-            {
-                if (teacher.Type == _teacherType)
-                    result.Add(teacher);
-            }
+            if (_teachers == null)
+                foreach (Teacher teacher in teachers)
+                {
+                    if (teacher.Type == _teacherType)
+                        result.Add(teacher);
+                }
+            else
+                foreach (Teacher teacher in _teachers)
+                {
+                    if (teacher.Type == _teacherType)
+                        result.Add(teacher);
+                }
             return result;
         }
         public enum OrderType { ID = 0, Name = 1, BornDate = 2 };
@@ -305,13 +315,6 @@ namespace TutteeFrame
                 default:
                     break;
             }
-            LoadTeacherIndex();
-        }
-        private void LoadTeacherIndex()
-        {
-            teacherIndex.Clear();
-            for (int i = 0; i < teachers.Count; i++)
-                teacherIndex.Add(teachers[i].ID, i + 1);
         }
         public bool CreateAdminAccount()
         {
