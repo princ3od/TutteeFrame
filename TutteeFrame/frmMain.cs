@@ -515,6 +515,7 @@ namespace TutteeFrame
                 string studentId = collect[0].SubItems[0].Text;
                 if (Controller.Instance.DeleteStudent(studentId)) MessageBox.Show("Xóa thành công");
                 ListViewStudents.Items.Clear();
+
                 ShowListBackGroundWork.RunWorkerAsync(cboxLop.Text);
             }
         }
@@ -532,25 +533,18 @@ namespace TutteeFrame
         {
             // đối số e lưu  value của cbbKhoi trong t/h cbbKhoi Index change
             // lưu value của cbbClaas trong t/h cbbClass Index change
-            mainProgressbar.Visible = true;
-            lbInformation.Visible = true;
-            lbInformation.Text = "Đang tải danh sách học sinh....";
-            System.Threading.Thread.Sleep(800);
+
             List<StudentInfomation> Students =
                 (e.Argument as string).Length == 2 ?
             Controller.Instance.GetInformationStudents(e.Argument as string, true) :
             Controller.Instance.GetInformationStudents(e.Argument as string);
             ShowListBackGroundWork.ReportProgress(0, Students);
         }
-        private void ShowListBackGroundWork_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
-        {
-            mainProgressbar.Visible =false;
-            lbInformation.Visible = false;
-            ShowListBackGroundWork.Dispose();
-        }
+
 
         private void ShowListBackGroundWork_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
+
             CountSum();
             List<StudentInfomation> Students = e.UserState as List<StudentInfomation>;
             ListViewStudents.Items.Clear();
@@ -574,11 +568,16 @@ namespace TutteeFrame
 
                 ListViewStudents.Items.Add(lvi);
             }
+            mainProgressbar.Visible = true;
+
         }
 
         private void cbxKhoi_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
+            lbInformation.Text = "Đamg tải thông tin học sinh...";
+            lbInformation.Visible = true;
+            mainProgressbar.Show();
             btnPrint.Visible = false;
             string KhoiSelected = null;
             KhoiSelected = cbxKhoi.SelectedItem.ToString() != "Tất cả" ? cbxKhoi.SelectedItem.ToString() : "";
@@ -590,6 +589,7 @@ namespace TutteeFrame
                 cboxLop.Items.Add(i.ID);
             }
             ShowListBackGroundWork.RunWorkerAsync($"{KhoiSelected}");
+
             return;
 
         }
@@ -608,8 +608,11 @@ namespace TutteeFrame
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             btnPrint.Visible = false;
+            
             if (mainTabControl.SelectedIndex == 4)
             {
+                lbInformation.Show();
+                mainProgressbar.Show();
                 cbxKhoi.SelectedIndex = 3;
             }
             //if (mainTabControl.SelectedIndex == 5)
