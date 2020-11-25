@@ -333,7 +333,7 @@ namespace TutteeFrame
             mainTabControl.TabPages.Clear();
             mainTabControl.TabPages.Add(tbpgProfile);
             mainTabControl.TabPages.Add(tbpgShedule);
-            if (mainTeacher.ID == "AD999999")
+            if (mainTeacher.ID == "TC123456")
             {
                 lbBelongtoOnCard.Text = "Adminstrator";
                 mainTabControl.TabPages.Add(tbgpTeacherManagment);
@@ -532,7 +532,10 @@ namespace TutteeFrame
         {
             // đối số e lưu  value của cbbKhoi trong t/h cbbKhoi Index change
             // lưu value của cbbClaas trong t/h cbbClass Index change
-
+            mainProgressbar.Visible = true;
+            lbInformation.Visible = true;
+            lbInformation.Text = "Đang tải danh sách học sinh....";
+            System.Threading.Thread.Sleep(800);
             List<StudentInfomation> Students =
                 (e.Argument as string).Length == 2 ?
             Controller.Instance.GetInformationStudents(e.Argument as string, true) :
@@ -541,6 +544,8 @@ namespace TutteeFrame
         }
         private void ShowListBackGroundWork_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
         {
+            mainProgressbar.Visible =false;
+            lbInformation.Visible = false;
             ShowListBackGroundWork.Dispose();
         }
 
@@ -573,6 +578,7 @@ namespace TutteeFrame
 
         private void cbxKhoi_SelectedIndexChanged(object sender, EventArgs e)
         {
+            
             btnPrint.Visible = false;
             string KhoiSelected = null;
             KhoiSelected = cbxKhoi.SelectedItem.ToString() != "Tất cả" ? cbxKhoi.SelectedItem.ToString() : "";
@@ -601,11 +607,11 @@ namespace TutteeFrame
 
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //btnPrint.Visible = false;
-            //if (mainTabControl.SelectedIndex == 3)
-            //{
-            //    cbxKhoi.SelectedIndex = 3;
-            //}
+            btnPrint.Visible = false;
+            if (mainTabControl.SelectedIndex == 4)
+            {
+                cbxKhoi.SelectedIndex = 3;
+            }
             //if (mainTabControl.SelectedIndex == 5)
             //{
             //    ManageSubjectBackgroundWork.RunWorkerAsync();
