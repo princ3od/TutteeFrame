@@ -568,7 +568,7 @@ namespace TutteeFrame
 
                 ListViewStudents.Items.Add(lvi);
             }
-            mainProgressbar.Visible = true;
+           
 
         }
 
@@ -576,7 +576,7 @@ namespace TutteeFrame
         {
 
             lbInformation.Text = "Đamg tải thông tin học sinh...";
-            lbInformation.Visible = true;
+            lbInformation.Show();
             mainProgressbar.Show();
             btnPrint.Visible = false;
             string KhoiSelected = null;
@@ -611,8 +611,6 @@ namespace TutteeFrame
             
             if (mainTabControl.SelectedIndex == 4)
             {
-                lbInformation.Show();
-                mainProgressbar.Show();
                 cbxKhoi.SelectedIndex = 3;
             }
             //if (mainTabControl.SelectedIndex == 5)
@@ -786,6 +784,12 @@ namespace TutteeFrame
                     i++;
                 }
             }
+        }
+
+        private void ShowListBackGroundWork_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            mainProgressbar.Hide();
+            lbInformation.Hide();
         }
     }
 }
