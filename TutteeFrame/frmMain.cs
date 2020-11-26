@@ -802,7 +802,7 @@ namespace TutteeFrame
         private void btnAddNew_Click(object sender, EventArgs e)
         {
             Subject sbj = null;
-            frmSubject newFrmSubject = new frmSubject(sbj);
+            frmSubject newFrmSubject = new frmSubject(sbj,this);
             newFrmSubject.ShowDialog();
 
         }
@@ -813,10 +813,14 @@ namespace TutteeFrame
             {
                 ListViewItem lvi = lvSubjectManage.SelectedItems[0];
                 Subject sbj = new Subject(lvi.SubItems[1].Text, lvi.SubItems[2].Text);
-                frmSubject sbjInfo = new frmSubject(sbj);
+                frmSubject sbjInfo = new frmSubject(sbj,this);
                 sbjInfo.ShowDialog();
-                 LoadData();
+                
             }
+        }
+        public void LoadDataAgain()
+        {
+            LoadData();
         }
     }
 }

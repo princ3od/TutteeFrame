@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MetroFramework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,13 +15,14 @@ namespace TutteeFrame
     
     public partial class frmSubject : MetroFramework.Forms.MetroForm
     {
+        private frmMain frmMain;
         private Subject sbj;
         private bool newSubject;
 
-        public frmSubject(Subject inputsSbj )
-        {
+        public frmSubject(Subject inputsSbj, frmMain frmMain)
+        { 
             sbj = inputsSbj;
-          
+            this.frmMain = frmMain;
             InitializeComponent();
         }
 
@@ -40,16 +42,18 @@ namespace TutteeFrame
             sbj.Name = txtNameSubject.Text;
             if(!this.newSubject && Controller.Instance.UpdateSubject(sbj))
             {
-                MaterialSkin.Controls.MaterialMessageBox.Show("Cập nhật thành công");
+                MetroMessageBox.Show(this, "Cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.Close();
+                this.frmMain.LoadDataAgain();
                 return;
             }
             else
             {
                 if(Controller.Instance.AddSubject(sbj))
                 {
-                    MaterialSkin.Controls.MaterialMessageBox.Show("Thêm vào thành công");
+                    MetroMessageBox.Show(this, "Thêm mới thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.Close();
+                    this.frmMain.LoadDataAgain();
                     return;
                 }
 
