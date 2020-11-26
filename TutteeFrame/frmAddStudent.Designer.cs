@@ -104,7 +104,6 @@
             // materialCard2
             // 
             this.materialCard2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.materialCard2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.materialCard2.Controls.Add(this.label8);
             this.materialCard2.Controls.Add(this.label7);
             this.materialCard2.Controls.Add(this.cbbStatus);
@@ -238,7 +237,6 @@
             // materialCard1
             // 
             this.materialCard1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.materialCard1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.materialCard1.Controls.Add(this.label4);
             this.materialCard1.Controls.Add(this.txtPhoneNunber);
             this.materialCard1.Depth = 0;
@@ -286,7 +284,6 @@
             // pnBasicInfor
             // 
             this.pnBasicInfor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.pnBasicInfor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnBasicInfor.Controls.Add(this.label3);
             this.pnBasicInfor.Controls.Add(this.cbbSex);
             this.pnBasicInfor.Controls.Add(this.label2);
@@ -348,7 +345,7 @@
             this.dateBorn.CustomFormat = "dd-MM-yyyy";
             this.dateBorn.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dateBorn.Location = new System.Drawing.Point(31, 200);
-            this.dateBorn.MinimumSize = new System.Drawing.Size(4, 29);
+            this.dateBorn.MinimumSize = new System.Drawing.Size(0, 29);
             this.dateBorn.Name = "dateBorn";
             this.dateBorn.Size = new System.Drawing.Size(215, 29);
             this.dateBorn.Style = MetroFramework.MetroColorStyle.Teal;
@@ -491,7 +488,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(743, 662);
             this.Controls.Add(this.btnChooseAvatar);
             this.Controls.Add(this.btnCancal);

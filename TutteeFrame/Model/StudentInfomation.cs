@@ -25,5 +25,9 @@ namespace TutteeFrame.Model
             BornDate = DateTime.Now;
             Sex = true;
         }
+        public string GetName()
+        {
+            return SurName + " " + FistName;
+        }
 	}
 }
