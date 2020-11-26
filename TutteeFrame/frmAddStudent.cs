@@ -13,7 +13,7 @@ using System.Drawing.Imaging;
 
 namespace TutteeFrame
 {
-    public partial class frmAddStudent : MetroForm
+    public partial class frmAddStudent : Form
     {
         public bool Is_Progress_Successed = false;
         public StudentInfomation studentinfor { get; set; }

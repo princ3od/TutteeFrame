@@ -307,7 +307,7 @@ namespace TutteeFrame
                     teachers = teachers.OrderBy(o => o.ID).ToList();
                     break;
                 case OrderType.Name:
-                    teachers = teachers.OrderBy(o => o.FirstName).ToList();
+                    teachers = teachers.OrderBy(o => o.FirstName).ThenBy(o => o.SurName).ToList();
                     break;
                 case OrderType.BornDate:
                     teachers = teachers.OrderBy(o => o.DateOfBirth1).ToList();
@@ -315,6 +315,17 @@ namespace TutteeFrame
                 default:
                     break;
             }
+        }
+        public bool GetTeachingClass(string _teacherID, List<string> _classes)
+        {
+            _classes.Clear();
+            return DataAccess.Instance.GetTeachingClasses(_teacherID, _classes);
+        }
+        public bool GetTeachingSemester(string _teacherID, string _classID, List<int> _semester, List<int> _year, List<bool> _isEditable)
+        {
+            _year.Clear();
+            _isEditable.Clear();
+            return DataAccess.Instance.GetTeachingSemester(_teacherID, _classID, _semester, _year, _isEditable);
         }
         public bool CreateAdminAccount()
         {
@@ -340,9 +351,7 @@ namespace TutteeFrame
             return DataAccess.Instance.StudentsInformation(classID, getKhoi);
         }
         public bool UpdateStudentToDataBase(string _studentid, StudentInfomation student)
-
         {
-
             return DataAccess.Instance.UpdateStudent(_studentid, student);
         }
         public bool AddNewStudentToDataBase(string _studentid, StudentInfomation student)
@@ -374,8 +383,54 @@ namespace TutteeFrame
             return DataAccess.Instance.GetDataSetPrepareToPrint(input, classID);
         }
 
+        public Dictionary<string, List<Score>> GetStudentListScore(List<StudentInfomation> _students, string _subjectID, int _sem)
+        {
+            Dictionary<string, List<Score>> result = new Dictionary<string, List<Score>>();
+            foreach (StudentInfomation student in _students)
+            {
+                List<Score> scores = new List<Score>();
+                DataAccess.Instance.GetStudentScore(student.StudentID, _subjectID, _sem, scores);
+                result.Add(student.StudentID, scores);
+            }
+            return result;
+        }
 
-
+        public bool UpdateStudentScore(DataGridViewRowCollection rows, string _subjectid, int _semester)
+        {
+            string studentid = "";
+            bool success = true;
+            foreach (DataGridViewRow row in rows)
+            {
+                studentid = row.Cells[1].Value.ToString();
+                List<Score> scores = new List<Score>();
+                Score score = new Score(Score.ScoreType.Mieng);
+                score.Value = (row.Cells[3].Value == null) ? -1 : Double.Parse(row.Cells[3].Value.ToString());
+                scores.Add(score);
+                for (int i = 4; i < 7; i++)
+                {
+                    score = new Score(Score.ScoreType.MuoiLamPhut);
+                    score.Value = (row.Cells[i].Value == null) ? -1 : Double.Parse(row.Cells[i].Value.ToString());
+                    scores.Add(score);
+                }
+                for (int i = 7; i < 10; i++)
+                {
+                    score = new Score(Score.ScoreType.MotTiet);
+                    score.Value = (row.Cells[i].Value == null) ? -1 : Double.Parse(row.Cells[i].Value.ToString());
+                    scores.Add(score);
+                }
+                score = new Score(Score.ScoreType.HocKi);
+                score.Value = (row.Cells[10].Value == null) ? -1 : Double.Parse(row.Cells[10].Value.ToString());
+                scores.Add(score);
+                score = new Score(Score.ScoreType.TrungBinh);
+                score.Value = (row.Cells[11].Value == null) ? -1 : Double.Parse(row.Cells[11].Value.ToString());
+                scores.Add(score);
+                if (success)
+                    success = DataAccess.Instance.UpdateStudentScore(studentid, _subjectid, _semester, scores);
+                else
+                    DataAccess.Instance.UpdateStudentScore(studentid, _subjectid, _semester, scores);
+            }
+            return success;
+        }
         #endregion
 
         #region Nhóm các chức năng liên quan tới thông tin lớp học

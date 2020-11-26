@@ -14,6 +14,7 @@ using System.Threading;
 using System.Windows.Forms;
 using TutteeFrame.Model;
 using System.Data;
+using System.Linq;
 
 namespace TutteeFrame
 {
@@ -280,6 +281,157 @@ namespace TutteeFrame
         {
             btnUpdateTeacher.PerformClick();
         }
+
+        List<int> year = new List<int>();
+        List<bool> isEdit = new List<bool>();
+        List<StudentInfomation> students = new List<StudentInfomation>();
+        private void cbbTeachingClass_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (firstLoad)
+                return;
+            cbbTeachingSemester.Items.Clear();
+            gridviewStudentScore.Rows.Clear();
+
+            List<int> semester = new List<int>();
+
+            BackgroundWorker worker = new BackgroundWorker();
+            cbbTeachingClass.Enabled = false;
+            cbbTeachingSemester.Enabled = false;
+            string classID = cbbTeachingClass.Text;
+            worker.DoWork += (s, e) =>
+            {
+                students = Controller.Instance.GetInformationStudents(classID);
+                students = students.OrderBy(o => o.FistName).ThenBy(o => o.SurName).ToList();
+                Controller.Instance.GetTeachingSemester(mainTeacher.ID, classID, semester, year, isEdit);
+            };
+            worker.RunWorkerCompleted += (s, e) =>
+            {
+                cbbTeachingClass.Enabled = true;
+                cbbTeachingSemester.Enabled = true;
+                foreach (int semes in semester)
+                {
+                    cbbTeachingSemester.Items.Add(semes);
+                }
+                if (cbbTeachingSemester.Items.Count > 0)
+                    cbbTeachingSemester.SelectedIndex = 0;
+                lbScoreTittle.Text = string.Format("Bảng điểm lớp {0} - môn {1} - HK {2} - năm {3}",
+                          cbbTeachingClass.Text, mainTeacher.Subject.Name,
+                            cbbTeachingSemester.Text, year[Int32.Parse(cbbTeachingSemester.Text) - 1]);
+                int index = 1;
+                foreach (StudentInfomation student in students)
+                {
+                    gridviewStudentScore.Rows.Add(index.ToString(), student.StudentID, student.GetName());
+                    index++;
+                }
+
+            };
+            worker.RunWorkerAsync();
+        }
+
+        private void cbbTeachingSemester_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lbScoreTittle.Text = string.Format("Bảng điểm lớp {0} - môn {1} - HK {2} - năm {3}",
+                                          cbbTeachingClass.Text, mainTeacher.Subject.Name,
+                                            cbbTeachingSemester.Text, year[Int32.Parse(cbbTeachingSemester.Text) - 1]);
+            gridviewStudentScore.ReadOnly = !isEdit[Int32.Parse(cbbTeachingSemester.Text) - 1];
+            if (gridviewStudentScore.ReadOnly)
+            {
+                lbLockScoreboardInform.Text = "Bảng điểm đã bị khóa bởi ban giáo vụ.";
+                lbLockScoreboardInform.ForeColor = Color.Red;
+            }
+            else
+            {
+                lbLockScoreboardInform.Text = "Bảng điểm chưa khóa.";
+                lbLockScoreboardInform.ForeColor = Color.Green;
+            }
+            lbLockScoreboardInform.Show();
+            int index = 1;
+            BackgroundWorker scoreLoaderr = new BackgroundWorker();
+            Dictionary<string, List<Score>> scoreList = new Dictionary<string, List<Score>>();
+            int _semes = Int32.Parse(cbbTeachingSemester.Text);
+            scoreLoaderr.DoWork += (s, e) =>
+            {
+                scoreList = Controller.Instance.GetStudentListScore(students, mainTeacher.Subject.ID, _semes);
+            };
+            scoreLoaderr.RunWorkerCompleted += (s, e) =>
+            {
+                bool success = true;
+                foreach (StudentInfomation student in students)
+                {
+                    for (int i = 0; i < 9; i++)
+                    {
+                        try
+                        {
+                            if (scoreList[student.StudentID][i].Value != -1)
+                                gridviewStudentScore.Rows[index - 1].Cells[i + 3].Value = scoreList[student.StudentID][i].Value;
+                        }
+                        catch
+                        {
+                            success = false;
+                            //MetroMessageBox.Show(this, "Không thể lấy thông tin điểm của học sinh có mã: " + student.StudentID + ".", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            break;
+                        }
+                    }
+                    index++;
+                }
+                if (!success)
+                    ;
+            };
+            scoreLoaderr.RunWorkerAsync();
+        }
+        private void txtTeacherSearch_TextChanged(object sender, EventArgs e)
+        {
+            TeacherFilter();
+            if (string.IsNullOrEmpty(txtTeacherSearch.Text))
+                return;
+            else
+            {
+                for (int i = 0; i < listviewTeacher.Items.Count;)
+                {
+                    if (!listviewTeacher.Items[i].SubItems[1].Text.Contains(txtTeacherSearch.Text) && !listviewTeacher.Items[i].SubItems[2].Text.Contains(txtTeacherSearch.Text))
+                    {
+                        listviewTeacher.Items.RemoveAt(i);
+                        i--;
+                    }
+                    i++;
+                }
+            }
+        }
+
+        private void btnApproveUpdateScore_Click(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in gridviewStudentScore.Rows)
+            {
+                foreach (DataGridViewCell cell in row.Cells)
+                    if (cell.ErrorText.Length > 0)
+                    {
+                        MetroMessageBox.Show(this, "Vui lòng giải quyết tất cả lỗi nhập liệu!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+            }
+            int _semes = Int32.Parse(cbbTeachingSemester.Text);
+            BackgroundWorker updater = new BackgroundWorker();
+            bool success = true;
+            lbInformation.Text = "Đang cập nhật điểm...";
+            lbInformation.Show();
+            mainProgressbar.Show();
+            updater.DoWork += (s, e) =>
+            {
+                Thread.Sleep(800);
+                success = Controller.Instance.UpdateStudentScore(gridviewStudentScore.Rows, mainTeacher.Subject.ID, _semes);
+            };
+            updater.RunWorkerCompleted += (s, e) =>
+            {
+                lbInformation.Hide();
+                mainProgressbar.Hide();
+                if (success)
+                    MetroMessageBox.Show(this, "Đã cập nhật thành công điểm cho " + gridviewStudentScore.Rows.Count.ToString() + " học sinh.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MetroMessageBox.Show(this, "Đã có lỗi xảy ra trong quá trình cập nhật.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            };
+
+            updater.RunWorkerAsync();
+        }
         #endregion
 
         #region Custom Function
@@ -337,6 +489,7 @@ namespace TutteeFrame
             {
                 lbBelongtoOnCard.Text = "Adminstrator";
                 mainTabControl.TabPages.Add(tbgpTeacherManagment);
+                mainTabControl.TabPages.Add(tbpgTeacherAssignment);
                 mainTabControl.TabPages.Add(tbpgClassManagment);
                 mainTabControl.TabPages.Add(tbpgStudentManagment);
                 mainTabControl.TabPages.Add(tbpgSubjectManagment);
@@ -360,6 +513,7 @@ namespace TutteeFrame
                         break;
                     case Teacher.TeacherType.Adminstrator:
                         mainTabControl.TabPages.Add(tbgpTeacherManagment);
+                        mainTabControl.TabPages.Add(tbpgTeacherAssignment);
                         mainTabControl.TabPages.Add(tbpgSubjectManagment);
                         mainTabControl.TabPages.Add(tbpgReport);
                         lbBelongtoOnCard.Text = "Ban giám hiệu";
@@ -409,6 +563,7 @@ namespace TutteeFrame
             switch (mainTeacher.Type)
             {
                 case Teacher.TeacherType.Teacher:
+                    LoadOnTeacher();
                     break;
                 case Teacher.TeacherType.Adminstrator:
                     {
@@ -459,12 +614,42 @@ namespace TutteeFrame
                 case Teacher.TeacherType.Ministry:
                     break;
                 case Teacher.TeacherType.FormerTeacher:
+                    LoadOnTeacher();
                     break;
                 default:
                     break;
             }
             loader.RunWorkerAsync();
 
+        }
+        void LoadOnTeacher()
+        {
+            bool succcess = true;
+            List<string> classes = new List<string>();
+            cbbTeachingClass.Items.Clear();
+            lbTeachingSubject.Text = mainTeacher.Subject.Name;
+            loader.DoWork += (s, e) =>
+            {
+                loader.ReportProgress(0, "Đang tải danh sách các lớp giảng dạy...");
+                succcess = Controller.Instance.GetTeachingClass(mainTeacher.ID, classes);
+
+            };
+            loader.RunWorkerCompleted += (s, e) =>
+            {
+                if (!succcess)
+                    return;
+                foreach (string item in classes)
+                {
+                    cbbTeachingClass.Items.Add(item);
+                }
+                if (cbbTeachingClass.Items.Count > 0)
+                    cbbTeachingClass.SelectedIndex = 0;
+
+                lbTotalTeachingClass.Text = classes.Count.ToString();
+                lbScoreTittle.Text = string.Format("Bảng điểm lớp {0} - môn {1} - HK {2} - năm {3}",
+                                            cbbTeachingClass.Text, mainTeacher.Subject.Name, cbbTeachingSemester.Text, "2020");
+
+            };
         }
         void TeacherFilter()
         {
@@ -485,8 +670,11 @@ namespace TutteeFrame
                 index++;
             }
         }
-        #endregion
+        void LoadStudentSCores()
+        {
 
+        }
+        #endregion
 
         private void cboxLop_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -760,23 +948,102 @@ namespace TutteeFrame
             btnPrint.Visible = true;
         }
 
-        private void txtTeacherSearch_TextChanged(object sender, EventArgs e)
+        private void gridviewStudentScore_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
-            TeacherFilter();
-            if (string.IsNullOrEmpty(txtTeacherSearch.Text))
-                return;
-            else
+
+        }
+
+        private void gridviewStudentScore_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            e.Control.KeyPress -= new KeyPressEventHandler(OnlyDigit);
+            if (gridviewStudentScore.CurrentCell.ColumnIndex > 2 && gridviewStudentScore.CurrentCell.ColumnIndex < 11) //Desired Column
             {
-                for (int i = 0; i < listviewTeacher.Items.Count;)
+                TextBox tb = e.Control as TextBox;
+                if (tb != null)
                 {
-                    if (!listviewTeacher.Items[i].SubItems[1].Text.Contains(txtTeacherSearch.Text) && !listviewTeacher.Items[i].SubItems[2].Text.Contains(txtTeacherSearch.Text))
-                    {
-                        listviewTeacher.Items.RemoveAt(i);
-                        i--;
-                    }
-                    i++;
+                    tb.KeyPress += new KeyPressEventHandler(OnlyDigit);
                 }
             }
+        }
+
+        private void OnlyDigit(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar)
+            && e.KeyChar != '.')
+            {
+                e.Handled = true;
+            }
+
+            // only allow one decimal point
+            if (e.KeyChar == '.' && (sender as TextBox).Text.IndexOf('.') > -1)
+            {
+                e.Handled = true;
+            }
+
+        }
+
+        private void gridviewStudentScore_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            double temp;
+            bool fullScore = true;
+            int tongHeSo = 0;
+            double sum = 0;
+            if (gridviewStudentScore.CurrentCell.Value == null)
+                fullScore = false;
+            else if (Double.TryParse(gridviewStudentScore.CurrentCell.Value.ToString(), out temp))
+            {
+                if (temp > 10)
+                    gridviewStudentScore.CurrentCell.ErrorText = "Điểm không hợp lệ (>10). Vui lòng nhập lại!";
+                else
+                    gridviewStudentScore.CurrentCell.ErrorText = string.Empty;
+
+            }
+            List<Score> scores = new List<Score>();
+            if (fullScore)
+                foreach (DataGridViewCell cell in gridviewStudentScore.Rows[e.RowIndex].Cells)
+                {
+                    Score score;
+                    if (cell.ColumnIndex < 3 || cell.ColumnIndex > 10)
+                        continue;
+                    if (cell.Value == null || cell.ErrorText.Length > 0)
+                    {
+                        fullScore = false;
+                        break;
+                    }
+                    if (cell.ColumnIndex < 7)
+                    {
+                        score = new Score(Score.ScoreType.MuoiLamPhut);
+                        tongHeSo += score.GetHeSo();
+                        score.Value = Double.Parse(cell.Value.ToString());
+                        sum += score.Value * score.GetHeSo();
+                    }
+                    else if (cell.ColumnIndex < 10)
+                    {
+                        score = new Score(Score.ScoreType.MotTiet);
+                        tongHeSo += score.GetHeSo();
+                        score.Value = Double.Parse(cell.Value.ToString());
+                        sum += score.Value * score.GetHeSo();
+                    }
+                    else if (cell.ColumnIndex < 11)
+                    {
+                        score = new Score(Score.ScoreType.HocKi);
+                        tongHeSo += score.GetHeSo();
+                        score.Value = Double.Parse(cell.Value.ToString());
+                        sum += score.Value * score.GetHeSo();
+                    }
+                }
+            if (fullScore)
+            {
+                double averageScore = Math.Round((double)(sum / tongHeSo), 2);
+                gridviewStudentScore.Rows[e.RowIndex].Cells[11].Value = averageScore.ToString();
+            }
+            else
+            {
+                if (gridviewStudentScore.Rows[e.RowIndex].Cells[11].Value != null)
+                    gridviewStudentScore.Rows[e.RowIndex].Cells[11].Value = null;
+
+            }
+
         }
     }
 }

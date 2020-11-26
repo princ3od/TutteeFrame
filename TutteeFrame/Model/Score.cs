@@ -7,11 +7,36 @@ namespace TutteeFrame.Model
 {
     class Score
     {
-        public enum ScoreType { Mieng, MuoiLamPhut, MotTiet, HocKi };
-        private float value;
+        public enum ScoreType { Mieng, MuoiLamPhut, MotTiet, HocKi, TrungBinh };
+        private double value;
         private ScoreType scoreType;
 
-        public float Value { get => value; set => this.value = value; }
+        //public Score()
+        //{
+
+        //}
+
+        public Score(ScoreType scoreType)
+        {
+            this.scoreType = scoreType;
+        }
+
+        public double Value { get => value; set => this.value = value; }
         public ScoreType Type { get => scoreType; set => scoreType = value; }
+        public int GetHeSo()
+        {
+            switch (scoreType)
+            {
+                case ScoreType.Mieng:
+                case ScoreType.MuoiLamPhut:
+                    return 1;
+                case ScoreType.MotTiet:
+                    return 2;
+                case ScoreType.HocKi:
+                    return 3;
+                default:
+                    return 1;
+            }
+        }
     }
 }
