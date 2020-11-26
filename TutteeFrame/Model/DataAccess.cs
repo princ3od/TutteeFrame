@@ -1068,6 +1068,55 @@ namespace TutteeFrame.Model
             }
             return true;
         }
+
+        public bool UpdateSubject(Subject sbj)
+        {
+            bool success = Connect();
+            if (!success) return false;
+            try
+            {
+                strQuery = "UPDATE SUBJECT SET SubjectName = @sbjName WHERE SubjectID = @sbjId";
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.Connection = connection;
+                cmd.CommandText = strQuery;
+                cmd.Parameters.Add("@sbjName", SqlDbType.NVarChar).Value = sbj.Name;
+                cmd.Parameters.Add("@sbjId", SqlDbType.VarChar).Value = sbj.ID;
+                int kq = cmd.ExecuteNonQuery();
+                return kq > 0;
+            }
+            catch(Exception ex)
+            {
+                MaterialSkin.Controls.MaterialMessageBox.Show(ex.Message);
+                if (connection.State == ConnectionState.Open) Disconnect();
+                return false;
+            }
+        }
+        public bool AddSubject(Subject sbj)
+        {
+            bool success = Connect();
+            if (!success) return false;
+            try
+            {
+                strQuery = "INSERT INTO SUBJECT(SubjectID,SubjectName) VALUES(@SubjectID,@SubjectName)";
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = connection;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = strQuery;
+                cmd.Parameters.Add("@SubjectID", SqlDbType.VarChar).Value = sbj.ID;
+                cmd.Parameters.Add("SubjectName", SqlDbType.NVarChar).Value = sbj.Name;
+                int kq = cmd.ExecuteNonQuery();
+                if (connection.State == ConnectionState.Open) Disconnect();
+                return kq > 0;
+                
+            }
+            catch(Exception ex)
+            {
+                MaterialSkin.Controls.MaterialMessageBox.Show(ex.Message);
+                if (connection.State == ConnectionState.Open) Disconnect();
+                return false;
+            }
+        }
         #endregion
 
         #region For ID Creation
@@ -1128,41 +1177,7 @@ namespace TutteeFrame.Model
         }
         #endregion
 
-        #region Subject Funtion
 
-        public bool GetAllSubjectInformation(List<Subject> listSubject)
-        {
-            bool success = Connect();
-
-            if (!success)
-                return false;
-
-            try
-            {
-                strQuery = "SELECT * FROM SUBJECT";
-                SqlCommand cmd = connection.CreateCommand();
-                cmd.CommandText = strQuery;
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    Subject i = new Subject(reader.GetString(0), reader.GetString(1));
-                    listSubject.Add(i);
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return false;
-            }
-            finally
-            {
-                Disconnect();
-            }
-            return true;
-
-        }
-
-        #endregion
 
     }
 }

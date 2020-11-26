@@ -21,6 +21,7 @@ namespace TutteeFrame
     {
         Teacher mainTeacher = new Teacher();
         bool firstLoad = true;
+       public bool ProgressSuccess { get; }
         public frmMain()
         {
             InitializeComponent();
@@ -451,6 +452,7 @@ namespace TutteeFrame
                             {
                                 lvSubjectManage.Items.Add(new ListViewItem(new string[] { index.ToString(), subject.ID, subject.Name }));
                                 index++;
+                                lbSumSubject.Text = index + "";
                             }
                         };
 
@@ -790,6 +792,31 @@ namespace TutteeFrame
         {
             mainProgressbar.Hide();
             lbInformation.Hide();
+        }
+
+        private void lvSubjectManage_DoubleClick(object sender, EventArgs e)
+        {
+            btnEdit.PerformClick();
+        }
+
+        private void btnAddNew_Click(object sender, EventArgs e)
+        {
+            Subject sbj = null;
+            frmSubject newFrmSubject = new frmSubject(sbj);
+            newFrmSubject.ShowDialog();
+
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (lvSubjectManage.SelectedItems.Count > 0)
+            {
+                ListViewItem lvi = lvSubjectManage.SelectedItems[0];
+                Subject sbj = new Subject(lvi.SubItems[1].Text, lvi.SubItems[2].Text);
+                frmSubject sbjInfo = new frmSubject(sbj);
+                sbjInfo.ShowDialog();
+                 LoadData();
+            }
         }
     }
 }
