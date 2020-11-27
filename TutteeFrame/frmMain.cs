@@ -591,7 +591,7 @@ namespace TutteeFrame
                         {
                             loader.ReportProgress(0, "Đang tải danh sách giáo viên...");
                             Thread.Sleep(800);
-                            Controller.Instance.LoadTeachers();
+                           teacherController.GetAllTeachers();
                             Controller.Instance.GetTeacherNumber(out totalTeacher, out totalMinistry, out totalAdmin);
                         };
 

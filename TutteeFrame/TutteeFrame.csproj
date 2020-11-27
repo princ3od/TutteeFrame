@@ -97,7 +97,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\AccountController.cs" />
+    <Compile Include="Controller\ClassController.cs" />
     <Compile Include="Controller\Controller.cs" />
+    <Compile Include="Controller\Helper.cs" />
+    <Compile Include="Controller\StudentController.cs" />
+    <Compile Include="Controller\SubjectController.cs" />
+    <Compile Include="Controller\TeacherController.cs" />
+    <Compile Include="DataAccess\AccountDA.cs" />
+    <Compile Include="DataAccess\ClassDA.cs" />
+    <Compile Include="DataAccess\StudentDA.cs" />
+    <Compile Include="DataAccess\SubjectDA.cs" />
+    <Compile Include="DataAccess\TeacherDA.cs" />
     <Compile Include="DSStudentxsd.cs">
       <DependentUpon>DSStudentxsd.xsd</DependentUpon>
     </Compile>
@@ -159,11 +170,10 @@
     <Compile Include="InitHelper.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Class.cs" />
-    <Compile Include="Model\DataAccess.cs" />
+    <Compile Include="DataAccess\MainDA.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\Score.cs" />
     <Compile Include="Model\Student.cs" />
-    <Compile Include="Model\StudentInfomation.cs" />
     <Compile Include="Model\Subject.cs" />
     <Compile Include="Model\SubjectScore.cs" />
     <Compile Include="Model\Teacher.cs" />
