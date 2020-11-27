@@ -803,7 +803,8 @@ namespace TutteeFrame
         {
             Subject sbj = null;
             frmSubject newFrmSubject = new frmSubject(sbj,this);
-            newFrmSubject.ShowDialog();
+            OverlayForm overlay = new OverlayForm(this, newFrmSubject);
+            newFrmSubject.Show();
 
         }
 
@@ -814,13 +815,39 @@ namespace TutteeFrame
                 ListViewItem lvi = lvSubjectManage.SelectedItems[0];
                 Subject sbj = new Subject(lvi.SubItems[1].Text, lvi.SubItems[2].Text);
                 frmSubject sbjInfo = new frmSubject(sbj,this);
-                sbjInfo.ShowDialog();
+                OverlayForm overlay = new OverlayForm(this, sbjInfo);
+                sbjInfo.Show();
                 
             }
         }
         public void LoadDataAgain()
         {
-            LoadData();
+            loader = new BackgroundWorker();
+            loader.WorkerReportsProgress = true;
+            loader.DoWork += (s, e) =>
+            {
+                loader.ReportProgress(0, "Đang tải danh sách môn học...");
+                Thread.Sleep(800);
+                Controller.Instance.LoadSubjects();
+            };
+            loader.RunWorkerCompleted += (s, e) =>
+            {
+                int index = 1;
+                mainProgressbar.Hide();
+                lbInformation.Hide();
+                lvSubjectManage.Items.Clear();
+                foreach (Subject subject in Controller.Instance.subjects)
+                {
+                    lvSubjectManage.Items.Add(new ListViewItem(new string[] { index.ToString(), subject.ID, subject.Name }));
+                    index++;
+                    lbSumSubject.Text = index + "";
+                }
+            };
+            loader.ProgressChanged += (s, e) =>
+            {
+                lbInformation.Text = (string)e.UserState;
+            };
+            loader.RunWorkerAsync();
         }
 
         private void btnDelASubject_Click(object sender, EventArgs e)
