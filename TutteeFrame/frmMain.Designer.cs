@@ -108,17 +108,16 @@
             this.btnPrint = new Material_Design_for_Winform.MaterialRaisedButton();
             this.btnDel = new Material_Design_for_Winform.MaterialRaisedButton();
             this.metroPanel6 = new MetroFramework.Controls.MetroPanel();
+            this.lbFrmSumSudent = new MetroFramework.Controls.MetroPanel();
+            this.lbFrmSumClass = new System.Windows.Forms.Label();
+            this.txtSearch = new MaterialSkin.Controls.MaterialTextBox();
+            this.cboxLop = new MaterialSkin.Controls.MaterialComboBox();
+            this.cbxKhoi = new MaterialSkin.Controls.MaterialComboBox();
             this.metroPanel1 = new MetroFramework.Controls.MetroPanel();
-            this.txtSearch = new Material_Design_for_Winform.MaterialTextField();
-            this.cboxLop = new MetroFramework.Controls.MetroComboBox();
             this.metroLabel7 = new MetroFramework.Controls.MetroLabel();
-            this.cbxKhoi = new MetroFramework.Controls.MetroComboBox();
             this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
             this.txtSumStudent = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.txtSumClass = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.tbpgStudentMarkboard = new System.Windows.Forms.TabPage();
             this.btnApproveUpdateScore = new Material_Design_for_Winform.MaterialRaisedButton();
             this.lbScoreTittle = new System.Windows.Forms.Label();
@@ -137,6 +136,9 @@
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.metroPanel8 = new MetroFramework.Controls.MetroPanel();
             this.metroPanel7 = new MetroFramework.Controls.MetroPanel();
+            this.btnDelASubject = new Material_Design_for_Winform.MaterialRaisedButton();
+            this.btnEdit = new Material_Design_for_Winform.MaterialRaisedButton();
+            this.btnAddNew = new Material_Design_for_Winform.MaterialRaisedButton();
             this.metroPanel5 = new MetroFramework.Controls.MetroPanel();
             this.metroPanel4 = new MetroFramework.Controls.MetroPanel();
             this.tbpgClassManagment = new System.Windows.Forms.TabPage();
@@ -177,6 +179,9 @@
             this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
             this.mainProgressbar = new System.Windows.Forms.ProgressBar();
             this.lbInformation = new System.Windows.Forms.Label();
+            this.lbTotalTeachingClassTittle = new System.Windows.Forms.Label();
+            this.lbTotalSubjectTittle = new System.Windows.Forms.Label();
+            this.lbTotalStudentTittle = new System.Windows.Forms.Label();
             this.lbLockScoreboardInform = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.clmStt = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -268,7 +273,7 @@
             this.mainTabControl.Multiline = true;
             this.mainTabControl.Name = "mainTabControl";
             this.mainTabControl.SelectedIndex = 0;
-            this.mainTabControl.Size = new System.Drawing.Size(1146, 622);
+            this.mainTabControl.Size = new System.Drawing.Size(1141, 622);
             this.mainTabControl.TabIndex = 1;
             this.mainTabControl.SelectedIndexChanged += new System.EventHandler(this.mainTabControl_SelectedIndexChanged);
             // 
@@ -306,7 +311,7 @@
             this.tbpgProfile.Location = new System.Drawing.Point(4, 24);
             this.tbpgProfile.Name = "tbpgProfile";
             this.tbpgProfile.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgProfile.Size = new System.Drawing.Size(1138, 594);
+            this.tbpgProfile.Size = new System.Drawing.Size(1138, 544);
             this.tbpgProfile.TabIndex = 0;
             this.tbpgProfile.Text = "Thông tin tài khoản";
             this.metroToolTip1.SetToolTip(this.tbpgProfile, "Phòng ban trực ");
@@ -647,7 +652,7 @@
             this.tbpgShedule.Location = new System.Drawing.Point(4, 22);
             this.tbpgShedule.Name = "tbpgShedule";
             this.tbpgShedule.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgShedule.Size = new System.Drawing.Size(1138, 596);
+            this.tbpgShedule.Size = new System.Drawing.Size(1133, 594);
             this.tbpgShedule.TabIndex = 1;
             this.tbpgShedule.Text = "thời khóa biểu";
             this.tbpgShedule.UseVisualStyleBackColor = true;
@@ -1026,7 +1031,7 @@
             this.tbpgStudentManagment.BackColor = System.Drawing.Color.White;
             this.tbpgStudentManagment.Controls.Add(this.metroPanel3);
             this.tbpgStudentManagment.Controls.Add(this.metroPanel2);
-            this.tbpgStudentManagment.Controls.Add(this.metroPanel1);
+            this.tbpgStudentManagment.Controls.Add(this.lbFrmSumSudent);
             this.tbpgStudentManagment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbpgStudentManagment.Location = new System.Drawing.Point(4, 22);
             this.tbpgStudentManagment.Name = "tbpgStudentManagment";
@@ -1251,6 +1256,37 @@
             this.metroPanel6.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel6.VerticalScrollbarSize = 10;
             // 
+            // lbFrmSumSudent
+            // 
+            this.lbFrmSumSudent.Controls.Add(this.lbTotalStudentTittle);
+            this.lbFrmSumSudent.Controls.Add(this.lbFrmSumClass);
+            this.lbFrmSumSudent.Controls.Add(this.txtSearch);
+            this.lbFrmSumSudent.Controls.Add(this.cboxLop);
+            this.lbFrmSumSudent.Controls.Add(this.cbxKhoi);
+            this.lbFrmSumSudent.Controls.Add(this.txtSumStudent);
+            this.lbFrmSumSudent.Controls.Add(this.txtSumClass);
+            this.lbFrmSumSudent.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lbFrmSumSudent.HorizontalScrollbarBarColor = true;
+            this.lbFrmSumSudent.HorizontalScrollbarHighlightOnWheel = false;
+            this.lbFrmSumSudent.HorizontalScrollbarSize = 10;
+            this.lbFrmSumSudent.Location = new System.Drawing.Point(3, 3);
+            this.lbFrmSumSudent.Name = "lbFrmSumSudent";
+            this.lbFrmSumSudent.Size = new System.Drawing.Size(1127, 136);
+            this.lbFrmSumSudent.TabIndex = 0;
+            this.lbFrmSumSudent.VerticalScrollbarBarColor = true;
+            this.lbFrmSumSudent.VerticalScrollbarHighlightOnWheel = false;
+            this.lbFrmSumSudent.VerticalScrollbarSize = 10;
+            // 
+            // lbFrmSumClass
+            // 
+            this.lbFrmSumClass.AutoSize = true;
+            this.lbFrmSumClass.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.lbFrmSumClass.Location = new System.Drawing.Point(31, 10);
+            this.lbFrmSumClass.Name = "lbFrmSumClass";
+            this.lbFrmSumClass.Size = new System.Drawing.Size(121, 21);
+            this.lbFrmSumClass.TabIndex = 9;
+            this.lbFrmSumClass.Text = "Tổng số lớp học";
+            //
             // metroPanel1
             // 
             this.metroPanel1.Controls.Add(this.txtSearch);
@@ -1279,92 +1315,82 @@
             // 
             this.txtSearch.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtSearch.AutoScaleColor = true;
             this.txtSearch.BackColor = System.Drawing.Color.White;
-            this.txtSearch.FloatingLabelText = "FloatingLabel";
-            this.txtSearch.FocusColor = System.Drawing.Color.DodgerBlue;
-            this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 11F);
-            this.txtSearch.HideSelection = true;
-            this.txtSearch.HintText = "Nhập tên hoặc mã học sinh tại đây";
-            this.txtSearch.Location = new System.Drawing.Point(156, 91);
+            this.txtSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSearch.Depth = 0;
+            this.txtSearch.Font = new System.Drawing.Font("Roboto", 12F);
+            this.txtSearch.Hint = "Tìm kiếm";
+            this.txtSearch.Location = new System.Drawing.Point(15, 72);
             this.txtSearch.MaxLength = 32767;
+            this.txtSearch.MouseState = MaterialSkin.MouseState.OUT;
             this.txtSearch.Multiline = false;
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.PasswordChar = '\0';
-            this.txtSearch.ReadOnly = false;
-            this.txtSearch.ShortcutsEnable = true;
-            this.txtSearch.ShowCaret = true;
-            this.txtSearch.Size = new System.Drawing.Size(231, 39);
-            this.txtSearch.Style = Material_Design_for_Winform.MaterialTextField.ST.None;
+            this.txtSearch.Size = new System.Drawing.Size(506, 50);
             this.txtSearch.TabIndex = 8;
-            this.txtSearch.UseSystemPasswordChar = false;
+            this.txtSearch.Text = "";
             this.txtSearch.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSearch_KeyPress);
             // 
             // cboxLop
             // 
             this.cboxLop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.cboxLop.FontSize = MetroFramework.MetroComboBoxSize.Small;
-            this.cboxLop.FontWeight = MetroFramework.MetroComboBoxWeight.Light;
+            this.cboxLop.AutoResize = false;
+            this.cboxLop.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cboxLop.Depth = 0;
+            this.cboxLop.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cboxLop.DropDownHeight = 174;
+            this.cboxLop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxLop.DropDownWidth = 121;
+            this.cboxLop.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cboxLop.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.cboxLop.FormattingEnabled = true;
-            this.cboxLop.ItemHeight = 19;
+            this.cboxLop.Hint = "Lớp";
+            this.cboxLop.IntegralHeight = false;
+            this.cboxLop.ItemHeight = 43;
             this.cboxLop.Items.AddRange(new object[] {
             "adas",
             "adasd",
             "dadadad",
             "dasdadad",
             "dadasdas"});
-            this.cboxLop.Location = new System.Drawing.Point(625, 107);
+            this.cboxLop.Location = new System.Drawing.Point(785, 72);
+            this.cboxLop.MaxDropDownItems = 4;
+            this.cboxLop.MouseState = MaterialSkin.MouseState.OUT;
             this.cboxLop.Name = "cboxLop";
-            this.cboxLop.Size = new System.Drawing.Size(121, 25);
+            this.cboxLop.Size = new System.Drawing.Size(121, 49);
             this.cboxLop.TabIndex = 7;
-            this.cboxLop.UseSelectable = true;
             this.cboxLop.SelectedIndexChanged += new System.EventHandler(this.cboxLop_SelectedIndexChanged);
             this.cboxLop.SelectedValueChanged += new System.EventHandler(this.cboxLop_SelectedValueChanged);
-            // 
-            // metroLabel7
-            // 
-            this.metroLabel7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.metroLabel7.AutoSize = true;
-            this.metroLabel7.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.metroLabel7.Location = new System.Drawing.Point(590, 111);
-            this.metroLabel7.Name = "metroLabel7";
-            this.metroLabel7.Size = new System.Drawing.Size(31, 19);
-            this.metroLabel7.TabIndex = 6;
-            this.metroLabel7.Text = "Lớp";
             // 
             // cbxKhoi
             // 
             this.cbxKhoi.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.cbxKhoi.FontSize = MetroFramework.MetroComboBoxSize.Small;
-            this.cbxKhoi.FontWeight = MetroFramework.MetroComboBoxWeight.Light;
+            this.cbxKhoi.AutoResize = false;
+            this.cbxKhoi.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cbxKhoi.Depth = 0;
+            this.cbxKhoi.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbxKhoi.DropDownHeight = 174;
+            this.cbxKhoi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbxKhoi.DropDownWidth = 121;
+            this.cbxKhoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cbxKhoi.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.cbxKhoi.FormattingEnabled = true;
-            this.cbxKhoi.ItemHeight = 19;
+            this.cbxKhoi.Hint = "Khối";
+            this.cbxKhoi.IntegralHeight = false;
+            this.cbxKhoi.ItemHeight = 43;
             this.cbxKhoi.Items.AddRange(new object[] {
             "10",
             "11",
             "12",
             "Tất cả"});
-            this.cbxKhoi.Location = new System.Drawing.Point(447, 108);
+            this.cbxKhoi.Location = new System.Drawing.Point(613, 72);
+            this.cbxKhoi.MaxDropDownItems = 4;
+            this.cbxKhoi.MouseState = MaterialSkin.MouseState.OUT;
             this.cbxKhoi.Name = "cbxKhoi";
-            this.cbxKhoi.Size = new System.Drawing.Size(100, 25);
+            this.cbxKhoi.Size = new System.Drawing.Size(100, 49);
             this.cbxKhoi.TabIndex = 7;
-            this.cbxKhoi.UseSelectable = true;
             this.cbxKhoi.SelectedIndexChanged += new System.EventHandler(this.cbxKhoi_SelectedIndexChanged);
-            // 
-            // metroLabel6
-            // 
-            this.metroLabel6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.metroLabel6.AutoSize = true;
-            this.metroLabel6.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.metroLabel6.Location = new System.Drawing.Point(409, 111);
-            this.metroLabel6.Name = "metroLabel6";
-            this.metroLabel6.Size = new System.Drawing.Size(34, 19);
-            this.metroLabel6.TabIndex = 6;
-            this.metroLabel6.Text = "Khối";
             // 
             // txtSumStudent
             // 
@@ -1373,7 +1399,7 @@
             this.txtSumStudent.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.txtSumStudent.FontWeight = MetroFramework.MetroLabelWeight.Bold;
             this.txtSumStudent.ForeColor = System.Drawing.Color.Lime;
-            this.txtSumStudent.Location = new System.Drawing.Point(332, 5);
+            this.txtSumStudent.Location = new System.Drawing.Point(317, 31);
             this.txtSumStudent.Name = "txtSumStudent";
             this.txtSumStudent.Size = new System.Drawing.Size(42, 25);
             this.txtSumStudent.TabIndex = 3;
@@ -1382,16 +1408,6 @@
             this.txtSumStudent.UseCustomBackColor = true;
             this.txtSumStudent.UseCustomForeColor = true;
             // 
-            // metroLabel4
-            // 
-            this.metroLabel4.AutoSize = true;
-            this.metroLabel4.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.metroLabel4.Location = new System.Drawing.Point(256, 26);
-            this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(181, 19);
-            this.metroLabel4.TabIndex = 4;
-            this.metroLabel4.Text = "Tổng số học sinh toàn trường";
-            // 
             // txtSumClass
             // 
             this.txtSumClass.AutoSize = true;
@@ -1399,7 +1415,7 @@
             this.txtSumClass.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.txtSumClass.FontWeight = MetroFramework.MetroLabelWeight.Bold;
             this.txtSumClass.ForeColor = System.Drawing.Color.Red;
-            this.txtSumClass.Location = new System.Drawing.Point(116, 5);
+            this.txtSumClass.Location = new System.Drawing.Point(58, 31);
             this.txtSumClass.Name = "txtSumClass";
             this.txtSumClass.Size = new System.Drawing.Size(42, 25);
             this.txtSumClass.TabIndex = 2;
@@ -1407,28 +1423,6 @@
             this.txtSumClass.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.txtSumClass.UseCustomBackColor = true;
             this.txtSumClass.UseCustomForeColor = true;
-            // 
-            // metroLabel5
-            // 
-            this.metroLabel5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.metroLabel5.AutoSize = true;
-            this.metroLabel5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.metroLabel5.Location = new System.Drawing.Point(76, 107);
-            this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(63, 19);
-            this.metroLabel5.TabIndex = 2;
-            this.metroLabel5.Text = "Tìm kiếm";
-            // 
-            // metroLabel1
-            // 
-            this.metroLabel1.AutoSize = true;
-            this.metroLabel1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.metroLabel1.Location = new System.Drawing.Point(90, 26);
-            this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(104, 19);
-            this.metroLabel1.TabIndex = 2;
-            this.metroLabel1.Text = "Tổng số lớp học";
             // 
             // tbpgStudentMarkboard
             // 
@@ -1684,7 +1678,8 @@
             this.columnHeader2,
             this.columnHeader3});
             this.lvSubjectManage.Depth = 0;
-            this.lvSubjectManage.Font = new System.Drawing.Font("Segoe UI", 33.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvSubjectManage.Font = new System.Drawing.Font("Segoe UI", 25F);
+            this.lvSubjectManage.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.lvSubjectManage.FullRowSelect = true;
             this.lvSubjectManage.HideSelection = false;
             this.lvSubjectManage.Location = new System.Drawing.Point(6, 52);
@@ -1697,6 +1692,7 @@
             this.lvSubjectManage.TabIndex = 2;
             this.lvSubjectManage.UseCompatibleStateImageBehavior = false;
             this.lvSubjectManage.View = System.Windows.Forms.View.Details;
+            this.lvSubjectManage.DoubleClick += new System.EventHandler(this.lvSubjectManage_DoubleClick);
             // 
             // columnHeader1
             // 
@@ -1743,6 +1739,63 @@
             this.metroPanel7.VerticalScrollbarHighlightOnWheel = false;
             this.metroPanel7.VerticalScrollbarSize = 10;
             // 
+            // btnDelASubject
+            // 
+            this.btnDelASubject.BackColor = System.Drawing.Color.Transparent;
+            this.btnDelASubject.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnDelASubject.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.btnDelASubject.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnDelASubject.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.btnDelASubject.Icon = null;
+            this.btnDelASubject.Location = new System.Drawing.Point(532, 94);
+            this.btnDelASubject.Name = "btnDelASubject";
+            this.btnDelASubject.Radius = 2;
+            this.btnDelASubject.ShadowDepth = 0;
+            this.btnDelASubject.ShadowOpacity = 35;
+            this.btnDelASubject.Size = new System.Drawing.Size(159, 45);
+            this.btnDelASubject.TabIndex = 48;
+            this.btnDelASubject.Text = "Xóa";
+            this.btnDelASubject.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnDelASubject.Click += new System.EventHandler(this.btnDelASubject_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.BackColor = System.Drawing.Color.Transparent;
+            this.btnEdit.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnEdit.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.btnEdit.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.btnEdit.Icon = null;
+            this.btnEdit.Location = new System.Drawing.Point(296, 94);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Radius = 2;
+            this.btnEdit.ShadowDepth = 0;
+            this.btnEdit.ShadowOpacity = 35;
+            this.btnEdit.Size = new System.Drawing.Size(159, 45);
+            this.btnEdit.TabIndex = 47;
+            this.btnEdit.Text = "Chỉnh sửa";
+            this.btnEdit.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnAddNew
+            // 
+            this.btnAddNew.BackColor = System.Drawing.Color.Transparent;
+            this.btnAddNew.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnAddNew.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.btnAddNew.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnAddNew.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.btnAddNew.Icon = null;
+            this.btnAddNew.Location = new System.Drawing.Point(69, 94);
+            this.btnAddNew.Name = "btnAddNew";
+            this.btnAddNew.Radius = 2;
+            this.btnAddNew.ShadowDepth = 0;
+            this.btnAddNew.ShadowOpacity = 35;
+            this.btnAddNew.Size = new System.Drawing.Size(159, 45);
+            this.btnAddNew.TabIndex = 46;
+            this.btnAddNew.Text = "Thêm môn học";
+            this.btnAddNew.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnAddNew.Click += new System.EventHandler(this.btnAddNew_Click);
+            // 
             // metroPanel5
             // 
             this.metroPanel5.Dock = System.Windows.Forms.DockStyle.Right;
@@ -1777,7 +1830,7 @@
             this.tbpgClassManagment.Location = new System.Drawing.Point(4, 22);
             this.tbpgClassManagment.Name = "tbpgClassManagment";
             this.tbpgClassManagment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgClassManagment.Size = new System.Drawing.Size(1138, 596);
+            this.tbpgClassManagment.Size = new System.Drawing.Size(1133, 594);
             this.tbpgClassManagment.TabIndex = 5;
             this.tbpgClassManagment.Text = "quản lí lớp";
             this.tbpgClassManagment.UseVisualStyleBackColor = true;
@@ -1787,7 +1840,7 @@
             this.tbpgRewardManagment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbpgRewardManagment.Location = new System.Drawing.Point(4, 22);
             this.tbpgRewardManagment.Name = "tbpgRewardManagment";
-            this.tbpgRewardManagment.Size = new System.Drawing.Size(1138, 596);
+            this.tbpgRewardManagment.Size = new System.Drawing.Size(1133, 594);
             this.tbpgRewardManagment.TabIndex = 9;
             this.tbpgRewardManagment.Text = "quản lí khen thưởng";
             this.tbpgRewardManagment.UseVisualStyleBackColor = true;
@@ -1797,7 +1850,7 @@
             this.tbpgReport.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbpgReport.Location = new System.Drawing.Point(4, 22);
             this.tbpgReport.Name = "tbpgReport";
-            this.tbpgReport.Size = new System.Drawing.Size(1138, 596);
+            this.tbpgReport.Size = new System.Drawing.Size(1138, 544);
             this.tbpgReport.TabIndex = 6;
             this.tbpgReport.Text = "báo cáo";
             this.tbpgReport.UseVisualStyleBackColor = true;
@@ -1807,7 +1860,7 @@
             this.tbpgFormClass.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbpgFormClass.Location = new System.Drawing.Point(4, 22);
             this.tbpgFormClass.Name = "tbpgFormClass";
-            this.tbpgFormClass.Size = new System.Drawing.Size(1138, 596);
+            this.tbpgFormClass.Size = new System.Drawing.Size(1138, 544);
             this.tbpgFormClass.TabIndex = 10;
             this.tbpgFormClass.Text = "lớp chủ nhiệm";
             this.tbpgFormClass.UseVisualStyleBackColor = true;
@@ -2197,6 +2250,35 @@
             this.lbInformation.Text = "*Đang kết nối...";
             this.lbInformation.Visible = false;
             // 
+            // lbTotalTeachingClassTittle
+            // 
+            this.lbTotalTeachingClassTittle.AutoSize = true;
+            this.lbTotalTeachingClassTittle.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.lbTotalTeachingClassTittle.Location = new System.Drawing.Point(168, 13);
+            this.lbTotalTeachingClassTittle.Name = "lbTotalTeachingClassTittle";
+            this.lbTotalTeachingClassTittle.Size = new System.Drawing.Size(114, 21);
+            this.lbTotalTeachingClassTittle.TabIndex = 15;
+            this.lbTotalTeachingClassTittle.Text = "Môn giảng dạy";
+            // 
+            // lbTotalSubjectTittle
+            // 
+            this.lbTotalSubjectTittle.AutoSize = true;
+            this.lbTotalSubjectTittle.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.lbTotalSubjectTittle.Location = new System.Drawing.Point(6, 10);
+            this.lbTotalSubjectTittle.Name = "lbTotalSubjectTittle";
+            this.lbTotalSubjectTittle.Size = new System.Drawing.Size(114, 21);
+            this.lbTotalSubjectTittle.TabIndex = 7;
+            this.lbTotalSubjectTittle.Text = "Môn giảng dạy";
+            // 
+            // lbTotalStudentTittle
+            // 
+            this.lbTotalStudentTittle.AutoSize = true;
+            this.lbTotalStudentTittle.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.lbTotalStudentTittle.Location = new System.Drawing.Point(287, 10);
+            this.lbTotalStudentTittle.Name = "lbTotalStudentTittle";
+            this.lbTotalStudentTittle.Size = new System.Drawing.Size(114, 21);
+            this.lbTotalStudentTittle.TabIndex = 10;
+            this.lbTotalStudentTittle.Text = "Môn giảng dạy";
             // lbLockScoreboardInform
             // 
             this.lbLockScoreboardInform.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -2424,6 +2506,7 @@
         private System.ComponentModel.BackgroundWorker ShowListBackGroundWork;
         private MetroFramework.Controls.MetroPanel metroPanel3;
         private MetroFramework.Controls.MetroPanel metroPanel2;
+        private MetroFramework.Controls.MetroPanel metroPanel1;
         private MaterialSkin.Controls.MaterialListView ListViewStudents;
         private System.Windows.Forms.ColumnHeader studentID;
         private System.Windows.Forms.ColumnHeader studentSurname;
@@ -2439,17 +2522,12 @@
         private Material_Design_for_Winform.MaterialRaisedButton btnFix;
         private Material_Design_for_Winform.MaterialRaisedButton btnDel;
         private System.Windows.Forms.ColumnHeader colKyluat;
-        private MetroFramework.Controls.MetroPanel metroPanel1;
-        private Material_Design_for_Winform.MaterialTextField txtSearch;
-        private MetroFramework.Controls.MetroComboBox cboxLop;
-        private MetroFramework.Controls.MetroLabel metroLabel7;
-        private MetroFramework.Controls.MetroComboBox cbxKhoi;
-        private MetroFramework.Controls.MetroLabel metroLabel6;
+        private MetroFramework.Controls.MetroPanel lbFrmSumSudent;
+        private MaterialSkin.Controls.MaterialTextBox txtSearch;
+        private MaterialSkin.Controls.MaterialComboBox cboxLop;
+        private MaterialSkin.Controls.MaterialComboBox cbxKhoi;
         private MetroFramework.Controls.MetroLabel txtSumStudent;
-        private MetroFramework.Controls.MetroLabel metroLabel4;
         private MetroFramework.Controls.MetroLabel txtSumClass;
-        private MetroFramework.Controls.MetroLabel metroLabel5;
-        private MetroFramework.Controls.MetroLabel metroLabel1;
         private System.ComponentModel.BackgroundWorker SearchListBackGroundWork;
         private Material_Design_for_Winform.MaterialRaisedButton btnPrint;
         private MetroFramework.Controls.MetroLabel metroLabel2;
