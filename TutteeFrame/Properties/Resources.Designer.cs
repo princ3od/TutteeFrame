@@ -163,6 +163,16 @@ namespace TutteeFrame.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap imageva {
+            get {
+                object obj = ResourceManager.GetObject("imageva", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap labelSubject {
             get {
                 object obj = ResourceManager.GetObject("labelSubject", resourceCulture);
@@ -226,6 +236,16 @@ namespace TutteeFrame.Properties {
         internal static System.Drawing.Bitmap phonban {
             get {
                 object obj = ResourceManager.GetObject("phonban", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Screenshot_2020_11_26_152444 {
+            get {
+                object obj = ResourceManager.GetObject("Screenshot 2020-11-26 152444", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

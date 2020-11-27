@@ -257,6 +257,8 @@
     <None Include="Resources\labelSubject.jpg" />
     <None Include="Resources\fixlabelSuject.jpg" />
     <None Include="Resources\labelSubject1.jpg" />
+    <None Include="Resources\Screenshot 2020-11-26 152444.jpg" />
+    <None Include="Resources\imageva.jpg" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
