@@ -4,6 +4,7 @@ using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
 
+
 namespace TutteeFrame.Model
 {
 
@@ -54,4 +55,17 @@ namespace TutteeFrame.Model
             }
         }
     }
+    //static class Program
+    //{
+    //    static void Main()
+    //    {
+
+    //        Application.EnableVisualStyles();
+    //        Application.SetCompatibleTextRenderingDefault(false);
+    //        Application.Run(new frmSubject(null, new frmMain()));
+    //        //Application.Run( new frmMain());
+
+    //    }
+    //}
+
 }

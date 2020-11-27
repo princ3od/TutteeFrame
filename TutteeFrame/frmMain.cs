@@ -22,6 +22,7 @@ namespace TutteeFrame
     {
         Teacher mainTeacher = new Teacher();
         bool firstLoad = true;
+       public bool ProgressSuccess { get; }
         public frmMain()
         {
             InitializeComponent();
@@ -485,7 +486,7 @@ namespace TutteeFrame
             mainTabControl.TabPages.Clear();
             mainTabControl.TabPages.Add(tbpgProfile);
             mainTabControl.TabPages.Add(tbpgShedule);
-            if (mainTeacher.ID == "AD999999")
+            if (mainTeacher.ID == "TC123456")
             {
                 lbBelongtoOnCard.Text = "Adminstrator";
                 mainTabControl.TabPages.Add(tbgpTeacherManagment);
@@ -606,6 +607,7 @@ namespace TutteeFrame
                             {
                                 lvSubjectManage.Items.Add(new ListViewItem(new string[] { index.ToString(), subject.ID, subject.Name }));
                                 index++;
+                                lbSumSubject.Text = index + "";
                             }
                         };
 
@@ -703,6 +705,7 @@ namespace TutteeFrame
                 string studentId = collect[0].SubItems[0].Text;
                 if (Controller.Instance.DeleteStudent(studentId)) MessageBox.Show("Xóa thành công");
                 ListViewStudents.Items.Clear();
+
                 ShowListBackGroundWork.RunWorkerAsync(cboxLop.Text);
             }
         }
@@ -727,13 +730,11 @@ namespace TutteeFrame
             Controller.Instance.GetInformationStudents(e.Argument as string);
             ShowListBackGroundWork.ReportProgress(0, Students);
         }
-        private void ShowListBackGroundWork_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
-        {
-            ShowListBackGroundWork.Dispose();
-        }
+
 
         private void ShowListBackGroundWork_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
+
             CountSum();
             List<StudentInfomation> Students = e.UserState as List<StudentInfomation>;
             ListViewStudents.Items.Clear();
@@ -757,10 +758,16 @@ namespace TutteeFrame
 
                 ListViewStudents.Items.Add(lvi);
             }
+           
+
         }
 
         private void cbxKhoi_SelectedIndexChanged(object sender, EventArgs e)
         {
+
+            lbInformation.Text = "Đamg tải thông tin học sinh...";
+            lbInformation.Show();
+            mainProgressbar.Show();
             btnPrint.Visible = false;
             string KhoiSelected = null;
             KhoiSelected = cbxKhoi.SelectedItem.ToString() != "Tất cả" ? cbxKhoi.SelectedItem.ToString() : "";
@@ -772,6 +779,7 @@ namespace TutteeFrame
                 cboxLop.Items.Add(i.ID);
             }
             ShowListBackGroundWork.RunWorkerAsync($"{KhoiSelected}");
+
             return;
 
         }
@@ -789,11 +797,12 @@ namespace TutteeFrame
 
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //btnPrint.Visible = false;
-            //if (mainTabControl.SelectedIndex == 3)
-            //{
-            //    cbxKhoi.SelectedIndex = 3;
-            //}
+            btnPrint.Visible = false;
+            
+            if (mainTabControl.SelectedIndex == 4)
+            {
+                cbxKhoi.SelectedIndex = 3;
+            }
             //if (mainTabControl.SelectedIndex == 5)
             //{
             //    ManageSubjectBackgroundWork.RunWorkerAsync();
@@ -1044,6 +1053,86 @@ namespace TutteeFrame
 
             }
 
+        }
+
+        private void ShowListBackGroundWork_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            mainProgressbar.Hide();
+            lbInformation.Hide();
+        }
+
+        private void lvSubjectManage_DoubleClick(object sender, EventArgs e)
+        {
+            btnEdit.PerformClick();
+        }
+
+        private void btnAddNew_Click(object sender, EventArgs e)
+        {
+            Subject sbj = null;
+            frmSubject newFrmSubject = new frmSubject(sbj,this);
+            OverlayForm overlay = new OverlayForm(this, newFrmSubject);
+            newFrmSubject.Show();
+
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            if (lvSubjectManage.SelectedItems.Count > 0)
+            {
+                ListViewItem lvi = lvSubjectManage.SelectedItems[0];
+                Subject sbj = new Subject(lvi.SubItems[1].Text, lvi.SubItems[2].Text);
+                frmSubject sbjInfo = new frmSubject(sbj,this);
+                OverlayForm overlay = new OverlayForm(this, sbjInfo);
+                sbjInfo.Show();
+                
+            }
+        }
+        public void LoadDataAgain()
+        {
+            loader = new BackgroundWorker();
+            loader.WorkerReportsProgress = true;
+            loader.DoWork += (s, e) =>
+            {
+                loader.ReportProgress(0, "Đang tải danh sách môn học...");
+                Thread.Sleep(800);
+                Controller.Instance.LoadSubjects();
+            };
+            loader.RunWorkerCompleted += (s, e) =>
+            {
+                int index = 1;
+                mainProgressbar.Hide();
+                lbInformation.Hide();
+                lvSubjectManage.Items.Clear();
+                foreach (Subject subject in Controller.Instance.subjects)
+                {
+                    lvSubjectManage.Items.Add(new ListViewItem(new string[] { index.ToString(), subject.ID, subject.Name }));
+                    index++;
+                    lbSumSubject.Text = index + "";
+                }
+            };
+            loader.ProgressChanged += (s, e) =>
+            {
+                lbInformation.Text = (string)e.UserState;
+            };
+            loader.RunWorkerAsync();
+        }
+
+        private void btnDelASubject_Click(object sender, EventArgs e)
+        {
+            if(lvSubjectManage.SelectedItems.Count>0)
+            {
+                ListViewItem lvi = lvSubjectManage.SelectedItems[0];
+                Subject sbj = new Subject(lvi.SubItems[1].Text, lvi.SubItems[2].Text);
+                if (Controller.Instance.DeleteSubject(sbj))
+                {
+                    MessageBox.Show("Xóa thành công!");
+                    LoadDataAgain();
+                }
+                else
+                {
+                    MessageBox.Show("Xóa thật bại, dữ liệu nhập vào không hợp lệ");
+                }
+            }
         }
     }
 }
