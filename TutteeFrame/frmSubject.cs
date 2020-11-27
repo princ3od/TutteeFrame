@@ -94,7 +94,7 @@ namespace TutteeFrame
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            btnEdit.PerformClick();
+            this.Close();
         }
     }
 }

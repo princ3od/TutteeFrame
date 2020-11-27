@@ -32,7 +32,7 @@ namespace TutteeFrame
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSubject));
             this.btnAdd = new Material_Design_for_Winform.MaterialFlatButton();
-            this.btnEdit = new Material_Design_for_Winform.MaterialFlatButton();
+            this.btnExit = new Material_Design_for_Winform.MaterialFlatButton();
             this.txtNameSubject = new MaterialSkin.Controls.MaterialTextBox();
             this.txtSubjectId = new MaterialSkin.Controls.MaterialTextBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
@@ -57,20 +57,20 @@ namespace TutteeFrame
             this.btnAdd.TextAlign = System.Drawing.StringAlignment.Center;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // btnEdit
+            // btnExit
             // 
-            this.btnEdit.BackColor = System.Drawing.Color.Transparent;
-            this.btnEdit.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
-            this.btnEdit.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnEdit.Icon = null;
-            this.btnEdit.Location = new System.Drawing.Point(378, 260);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(111, 36);
-            this.btnEdit.TabIndex = 66;
-            this.btnEdit.Text = "Hủy bỏ";
-            this.btnEdit.TextAlign = System.Drawing.StringAlignment.Center;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            this.btnExit.BackColor = System.Drawing.Color.Transparent;
+            this.btnExit.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
+            this.btnExit.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnExit.Icon = null;
+            this.btnExit.Location = new System.Drawing.Point(378, 260);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(111, 36);
+            this.btnExit.TabIndex = 66;
+            this.btnExit.Text = "Hủy bỏ";
+            this.btnExit.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnExit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // txtNameSubject
             // 
@@ -153,7 +153,7 @@ namespace TutteeFrame
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.btnAdd);
-            this.Controls.Add(this.btnEdit);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.txtNameSubject);
             this.Controls.Add(this.txtSubjectId);
             this.Controls.Add(this.pictureBox1);
@@ -171,7 +171,7 @@ namespace TutteeFrame
         #endregion
 
         private Material_Design_for_Winform.MaterialFlatButton btnAdd;
-        private Material_Design_for_Winform.MaterialFlatButton btnEdit;
+        private Material_Design_for_Winform.MaterialFlatButton btnExit;
         private MaterialSkin.Controls.MaterialTextBox txtNameSubject;
         private MaterialSkin.Controls.MaterialTextBox txtSubjectId;
         private System.Windows.Forms.PictureBox pictureBox1;

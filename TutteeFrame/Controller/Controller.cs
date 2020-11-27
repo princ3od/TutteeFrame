@@ -451,6 +451,11 @@ namespace TutteeFrame
         {
             return DataAccess.Instance.AddSubject(sbj);
         }
+
+        public bool DeleteSubject(Subject sbj)
+        {
+            return DataAccess.Instance.DeleteSubject(sbj);
+        }
         #endregion
 
     }

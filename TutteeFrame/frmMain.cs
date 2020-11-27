@@ -822,5 +822,23 @@ namespace TutteeFrame
         {
             LoadData();
         }
+
+        private void btnDelASubject_Click(object sender, EventArgs e)
+        {
+            if(lvSubjectManage.SelectedItems.Count>0)
+            {
+                ListViewItem lvi = lvSubjectManage.SelectedItems[0];
+                Subject sbj = new Subject(lvi.SubItems[1].Text, lvi.SubItems[2].Text);
+                if (Controller.Instance.DeleteSubject(sbj))
+                {
+                    MessageBox.Show("Xóa thành công!");
+                    LoadDataAgain();
+                }
+                else
+                {
+                    MessageBox.Show("Xóa thật bại, dữ liệu nhập vào không hợp lệ");
+                }
+            }
+        }
     }
 }

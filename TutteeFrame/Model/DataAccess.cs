@@ -1117,6 +1117,30 @@ namespace TutteeFrame.Model
                 return false;
             }
         }
+
+        public  bool DeleteSubject( Subject sbj)
+        {
+            bool succsess = Connect();
+            if (!succsess) return false;
+            try
+            {
+                strQuery = "DELETE FROM SUBJECT WHERE SubjectID =@SubjectID";
+                SqlCommand cmd = new SqlCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = strQuery;
+                cmd.Parameters.Add("@SubjectID", SqlDbType.VarChar).Value = sbj.ID;
+                cmd.Connection = connection;
+                int k = cmd.ExecuteNonQuery();
+                if (connection.State == ConnectionState.Open) Disconnect();
+                return k > 0;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                if (connection.State == ConnectionState.Open) Disconnect();
+                return false;
+            }
+        }
         #endregion
 
         #region For ID Creation
