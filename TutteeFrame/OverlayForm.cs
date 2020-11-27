@@ -38,5 +38,17 @@ namespace TutteeFrame
             };
             this.Show();
         }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // OverlayForm
+            // 
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Name = "OverlayForm";
+            this.ResumeLayout(false);
+
+        }
     }
 }

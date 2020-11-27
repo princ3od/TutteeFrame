@@ -29,51 +29,80 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
-            this.txtID = new Material_Design_for_Winform.MaterialTextField();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
+            this.btnChooseServer = new MaterialSkin.Controls.MaterialButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.txtPass = new Material_Design_for_Winform.MaterialTextField();
+            this.txtID = new Material_Design_for_Winform.MaterialTextField();
             this.btnLogin = new Material_Design_for_Winform.MaterialRaisedButton();
+            this.btnClose = new MaterialSkin.Controls.MaterialButton();
             this.label2 = new System.Windows.Forms.Label();
             this.btnForgotPass = new Material_Design_for_Winform.MaterialFlatButton();
-            this.cbxRememberme = new Material_Design_for_Winform.MaterialCheckBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.mainProgressbar = new System.Windows.Forms.ProgressBar();
             this.bwkerMain = new System.ComponentModel.BackgroundWorker();
+            this.cbxRememberme = new Material_Design_for_Winform.MaterialCheckBox();
             this.lbInformation = new System.Windows.Forms.Label();
             this.btnAccept = new System.Windows.Forms.Button();
-            this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
-            this.btnChooseServer = new MaterialSkin.Controls.MaterialButton();
-            this.btnClose = new MaterialSkin.Controls.MaterialButton();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // txtID
+            // pictureBox2
             // 
-            this.txtID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtID.AutoScaleColor = true;
-            this.txtID.BackColor = System.Drawing.Color.White;
-            this.txtID.FloatingLabelText = "";
-            this.txtID.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.txtID.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtID.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.txtID.HideSelection = true;
-            this.txtID.HintText = "Số ID";
-            this.txtID.Location = new System.Drawing.Point(535, 248);
-            this.txtID.MaxLength = 32767;
-            this.txtID.Multiline = false;
-            this.txtID.Name = "txtID";
-            this.txtID.PasswordChar = '\0';
-            this.txtID.ReadOnly = false;
-            this.txtID.ShortcutsEnable = true;
-            this.txtID.ShowCaret = true;
-            this.txtID.Size = new System.Drawing.Size(255, 43);
-            this.txtID.Style = Material_Design_for_Winform.MaterialTextField.ST.HintAsFloatingLabel;
-            this.txtID.TabIndex = 0;
-            this.txtID.UseSystemPasswordChar = false;
+            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.pictureBox2.InitialImage = null;
+            this.pictureBox2.Location = new System.Drawing.Point(535, 45);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(270, 74);
+            this.pictureBox2.TabIndex = 4;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormLogin_MouseDown);
+            // 
+            // metroToolTip1
+            // 
+            this.metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroToolTip1.StyleManager = null;
+            this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
+            // btnChooseServer
+            // 
+            this.btnChooseServer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnChooseServer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnChooseServer.Depth = 0;
+            this.btnChooseServer.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnChooseServer.DrawShadows = true;
+            this.btnChooseServer.HighEmphasis = true;
+            this.btnChooseServer.Icon = ((System.Drawing.Image)(resources.GetObject("btnChooseServer.Icon")));
+            this.btnChooseServer.Location = new System.Drawing.Point(806, 0);
+            this.btnChooseServer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnChooseServer.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnChooseServer.Name = "btnChooseServer";
+            this.btnChooseServer.Size = new System.Drawing.Size(44, 36);
+            this.btnChooseServer.TabIndex = 27;
+            this.btnChooseServer.TabStop = false;
+            this.metroToolTip1.SetToolTip(this.btnChooseServer, "Thiết lập server");
+            this.btnChooseServer.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
+            this.btnChooseServer.UseAccentColor = false;
+            this.btnChooseServer.UseVisualStyleBackColor = true;
+            this.btnChooseServer.Click += new System.EventHandler(this.btnChooseServer_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(426, 600);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormLogin_MouseDown);
             // 
             // txtPass
             // 
@@ -100,6 +129,31 @@
             this.txtPass.TabIndex = 1;
             this.txtPass.UseSystemPasswordChar = true;
             // 
+            // txtID
+            // 
+            this.txtID.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtID.AutoScaleColor = true;
+            this.txtID.BackColor = System.Drawing.Color.White;
+            this.txtID.FloatingLabelText = "";
+            this.txtID.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.txtID.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtID.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtID.HideSelection = true;
+            this.txtID.HintText = "Số ID";
+            this.txtID.Location = new System.Drawing.Point(535, 248);
+            this.txtID.MaxLength = 32767;
+            this.txtID.Multiline = false;
+            this.txtID.Name = "txtID";
+            this.txtID.PasswordChar = '\0';
+            this.txtID.ReadOnly = false;
+            this.txtID.ShortcutsEnable = true;
+            this.txtID.ShowCaret = true;
+            this.txtID.Size = new System.Drawing.Size(255, 43);
+            this.txtID.Style = Material_Design_for_Winform.MaterialTextField.ST.HintAsFloatingLabel;
+            this.txtID.TabIndex = 0;
+            this.txtID.UseSystemPasswordChar = false;
+            // 
             // btnLogin
             // 
             this.btnLogin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -122,6 +176,28 @@
             this.btnLogin.Text = "Đăng nhập";
             this.btnLogin.TextAlign = System.Drawing.StringAlignment.Center;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnClose.Depth = 0;
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.DrawShadows = true;
+            this.btnClose.HighEmphasis = true;
+            this.btnClose.Icon = ((System.Drawing.Image)(resources.GetObject("btnClose.Icon")));
+            this.btnClose.Location = new System.Drawing.Point(858, 0);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnClose.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(44, 36);
+            this.btnClose.TabIndex = 6;
+            this.btnClose.TabStop = false;
+            this.btnClose.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
+            this.btnClose.UseAccentColor = false;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // label2
             // 
@@ -151,24 +227,6 @@
             this.btnForgotPass.TabIndex = 4;
             this.btnForgotPass.Text = "Quên mật khẩu?";
             this.btnForgotPass.TextAlign = System.Drawing.StringAlignment.Center;
-            // 
-            // cbxRememberme
-            // 
-            this.cbxRememberme.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbxRememberme.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.cbxRememberme.BorderColor = System.Drawing.Color.Gray;
-            this.cbxRememberme.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.cbxRememberme.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cbxRememberme.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cbxRememberme.Location = new System.Drawing.Point(532, 350);
-            this.cbxRememberme.MarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
-            this.cbxRememberme.Name = "cbxRememberme";
-            this.cbxRememberme.Size = new System.Drawing.Size(153, 27);
-            this.cbxRememberme.TabIndex = 2;
-            this.cbxRememberme.Text = "Ghi nhớ tôi";
-            this.cbxRememberme.UseVisualStyleBackColor = false;
-            this.cbxRememberme.CheckedChanged += new System.EventHandler(this.cbxRememberme_CheckedChanged);
             // 
             // label1
             // 
@@ -209,6 +267,24 @@
             this.bwkerMain.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bwkerMain_DoWork);
             this.bwkerMain.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bwkerMain_RunWorkerCompleted);
             // 
+            // cbxRememberme
+            // 
+            this.cbxRememberme.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxRememberme.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.cbxRememberme.BorderColor = System.Drawing.Color.Gray;
+            this.cbxRememberme.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.cbxRememberme.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.cbxRememberme.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.cbxRememberme.Location = new System.Drawing.Point(532, 350);
+            this.cbxRememberme.MarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.cbxRememberme.Name = "cbxRememberme";
+            this.cbxRememberme.Size = new System.Drawing.Size(153, 27);
+            this.cbxRememberme.TabIndex = 2;
+            this.cbxRememberme.Text = "Ghi nhớ tôi";
+            this.cbxRememberme.UseVisualStyleBackColor = false;
+            this.cbxRememberme.CheckedChanged += new System.EventHandler(this.cbxRememberme_CheckedChanged);
+            // 
             // lbInformation
             // 
             this.lbInformation.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -230,82 +306,7 @@
             this.btnAccept.Size = new System.Drawing.Size(1, 1);
             this.btnAccept.TabIndex = 26;
             this.btnAccept.UseVisualStyleBackColor = true;
-            // 
-            // metroToolTip1
-            // 
-            this.metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
-            this.metroToolTip1.StyleManager = null;
-            this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
-            // btnChooseServer
-            // 
-            this.btnChooseServer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnChooseServer.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnChooseServer.Depth = 0;
-            this.btnChooseServer.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnChooseServer.DrawShadows = true;
-            this.btnChooseServer.HighEmphasis = true;
-            this.btnChooseServer.Icon = ((System.Drawing.Image)(resources.GetObject("btnChooseServer.Icon")));
-            this.btnChooseServer.Location = new System.Drawing.Point(806, 0);
-            this.btnChooseServer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnChooseServer.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnChooseServer.Name = "btnChooseServer";
-            this.btnChooseServer.Size = new System.Drawing.Size(44, 36);
-            this.btnChooseServer.TabIndex = 27;
-            this.btnChooseServer.TabStop = false;
-            this.metroToolTip1.SetToolTip(this.btnChooseServer, "Thiết lập server");
-            this.btnChooseServer.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
-            this.btnChooseServer.UseAccentColor = false;
-            this.btnChooseServer.UseVisualStyleBackColor = true;
-            this.btnChooseServer.Click += new System.EventHandler(this.btnChooseServer_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnClose.Depth = 0;
-            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.DrawShadows = true;
-            this.btnClose.HighEmphasis = true;
-            this.btnClose.Icon = ((System.Drawing.Image)(resources.GetObject("btnClose.Icon")));
-            this.btnClose.Location = new System.Drawing.Point(858, 0);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnClose.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(44, 36);
-            this.btnClose.TabIndex = 6;
-            this.btnClose.TabStop = false;
-            this.btnClose.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
-            this.btnClose.UseAccentColor = false;
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox2.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pictureBox2.InitialImage = null;
-            this.pictureBox2.Location = new System.Drawing.Point(535, 45);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(270, 74);
-            this.pictureBox2.TabIndex = 4;
-            this.pictureBox2.TabStop = false;
-            this.pictureBox2.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormLogin_MouseDown);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(426, 600);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormLogin_MouseDown);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             // 
             // frmLogin
             // 
@@ -348,22 +349,22 @@
 
         #endregion
 
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private Material_Design_for_Winform.MaterialTextField txtID;
-        private Material_Design_for_Winform.MaterialTextField txtPass;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private MetroFramework.Components.MetroToolTip metroToolTip1;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private Material_Design_for_Winform.MaterialTextField txtPass;
+        private Material_Design_for_Winform.MaterialTextField txtID;
         private Material_Design_for_Winform.MaterialRaisedButton btnLogin;
         private MaterialSkin.Controls.MaterialButton btnClose;
         private System.Windows.Forms.Label label2;
         private Material_Design_for_Winform.MaterialFlatButton btnForgotPass;
-        private Material_Design_for_Winform.MaterialCheckBox cbxRememberme;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ProgressBar mainProgressbar;
         private System.ComponentModel.BackgroundWorker bwkerMain;
+        private Material_Design_for_Winform.MaterialCheckBox cbxRememberme;
         private System.Windows.Forms.Label lbInformation;
         private System.Windows.Forms.Button btnAccept;
         private MaterialSkin.Controls.MaterialButton btnChooseServer;
-        private MetroFramework.Components.MetroToolTip metroToolTip1;
     }
 }
