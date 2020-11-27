@@ -9,8 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TutteeFrame.Model;
-using System.ComponentModel;
-using System.Windows.Forms;
 using System.Windows.Forms.Design;    // Add reference to System.Design
 
 

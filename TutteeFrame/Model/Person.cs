@@ -14,7 +14,7 @@ namespace TutteeFrame.Model
         private string address;
         private string mail;
         private string phone;
-        private DateTime DateOfBirth;
+        private DateTime dateBorn;
         private bool sex;
         private Image avatar;
 
@@ -25,11 +25,15 @@ namespace TutteeFrame.Model
         public string Mail { get => mail; set => mail = value; }
         public string Phone { get => phone; set => phone = value; }
         public bool Sex { get => sex; set => sex = value; }
-        public DateTime DateOfBirth1 { get => DateOfBirth; set => DateOfBirth = value; }
+        public DateTime DateBorn { get => (dateBorn == default(DateTime)) ? dateBorn : DateTime.Now; set => dateBorn = value; }
         public Image Avatar { get => avatar ?? Properties.Resources.default_avatar; set => avatar = value; }
         public string GetSex
         {
             get => (sex) ? "Nam" : "Nữ";
+        }
+        public string GetName()
+        {
+            return SurName + " " + FirstName;
         }
     }
 }

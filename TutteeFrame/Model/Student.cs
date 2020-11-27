@@ -13,7 +13,7 @@ namespace TutteeFrame.Model
         private float averageScore;
         private string conduct;
         private string punishmentlist;
-        private string status;
+        private bool status;
    
 
         public string ClassID { get => classID; set => classID = value; }
@@ -22,7 +22,7 @@ namespace TutteeFrame.Model
         public float AverageScore { get => averageScore; set => averageScore = value; }
         public string Conduct { get => conduct; set => conduct = value; }
         public string PunishmentList { get => punishmentlist; set => punishmentlist = value; }
-        public string Status { get => status; set => status = value; }
+        public bool Status { get => status; set => status = value; }
 
 
     }

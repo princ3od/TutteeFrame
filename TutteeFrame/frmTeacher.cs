@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows.Forms;
 using TutteeFrame.Model;
+using TutteeFrame.Controller;
 
 namespace TutteeFrame
 {
