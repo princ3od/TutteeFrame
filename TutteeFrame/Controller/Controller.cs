@@ -490,28 +490,20 @@ namespace TutteeFrame
         }
         #endregion
 
-        #region Nhóm chức năng quản lý môn học
+        #region Nhóm chức năng liên quan đến môn học
+
+        public bool GetAllSubjectInformation(List<Subject> listSubject)
+        {
+            return DataAccess.Instance.GetAllSubjectInformation(listSubject);
+        }
+        #endregion
 
         public bool LoadSubjects()
         {
             subjects.Clear();
             return DataAccess.Instance.LoadSubjects(subjects);
         }
-
-        public bool UpdateSubject(Subject sbj)
-        {
-            return DataAccess.Instance.UpdateSubject(sbj);
-        }
-        public bool AddSubject(Subject sbj)
-        {
-            return DataAccess.Instance.AddSubject(sbj);
-        }
-
-        public bool DeleteSubject(Subject sbj)
-        {
-            return DataAccess.Instance.DeleteSubject(sbj);
-        }
-        #endregion
+        //Trả về các index trong teachers không thõa filter
 
     }
 }
