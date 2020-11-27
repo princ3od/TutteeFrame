@@ -486,7 +486,7 @@ namespace TutteeFrame
             mainTabControl.TabPages.Clear();
             mainTabControl.TabPages.Add(tbpgProfile);
             mainTabControl.TabPages.Add(tbpgShedule);
-            if (mainTeacher.ID == "TC123456")
+            if (mainTeacher.ID == "AD999999")
             {
                 lbBelongtoOnCard.Text = "Adminstrator";
                 mainTabControl.TabPages.Add(tbgpTeacherManagment);
