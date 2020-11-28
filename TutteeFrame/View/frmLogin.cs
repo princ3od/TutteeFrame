@@ -118,8 +118,8 @@ namespace TutteeFrame
             {
                 if (bwkerMain.IsBusy)
                     return;
-                txtID.ReadOnly = true;
-                txtPass.ReadOnly = true;
+
+                txtID.Enabled = txtPass.Enabled = cbxRememberme.Enabled = btnLogin.Enabled = btnChooseServer.Enabled = false;
                 lbInformation.Show();
                 mainProgressbar.Show();
                 bwkerMain.RunWorkerAsync();
@@ -148,8 +148,7 @@ namespace TutteeFrame
         {
             lbInformation.Hide();
             mainProgressbar.Hide();
-            txtID.ReadOnly = false;
-            txtPass.ReadOnly = false;
+            txtID.Enabled = txtPass.Enabled = cbxRememberme.Enabled = btnLogin.Enabled = btnChooseServer.Enabled = true;
             if (!connectSuccess)
             {
                 MetroMessageBox.Show(this, "Kết nối thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);

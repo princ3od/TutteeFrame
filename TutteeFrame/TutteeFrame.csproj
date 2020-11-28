@@ -109,6 +109,12 @@
     <Compile Include="DataAccess\StudentDA.cs" />
     <Compile Include="DataAccess\SubjectDA.cs" />
     <Compile Include="DataAccess\TeacherDA.cs" />
+    <Compile Include="View\frmTeacherAssignment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\frmTeacherAssignment.Designer.cs">
+      <DependentUpon>frmTeacherAssignment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\DSStudentxsd.cs">
       <DependentUpon>DSStudentxsd.xsd</DependentUpon>
     </Compile>
@@ -230,6 +236,9 @@
       <DependentUpon>frmSpashScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportStudent.rdlc" />
+    <EmbeddedResource Include="View\frmTeacherAssignment.resx">
+      <DependentUpon>frmTeacherAssignment.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

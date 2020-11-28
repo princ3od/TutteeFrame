@@ -285,7 +285,24 @@ namespace TutteeFrame
         {
             if (firstLoad)
                 return;
-            TeacherFilter();
+            cbbTeacherRoleFilter.Enabled = cbbTeacherSubjectFilter.Enabled = cbbTeacherSortBy.Enabled = 
+                        btnUpdateTeacher.Enabled = btnDeleteTeacher.Enabled = listviewTeacher.Enabled = false;
+            using (BackgroundWorker worker = new BackgroundWorker())
+            {
+                worker.DoWork += (s, e) =>
+                {
+                    teachers = teacherController.GetAllTeachers();
+                    Thread.Sleep(500);
+                };
+                worker.RunWorkerCompleted += (s, e) =>
+                {
+                    TeacherFilter();
+                    cbbTeacherRoleFilter.Enabled = cbbTeacherSubjectFilter.Enabled = cbbTeacherSortBy.Enabled =
+                                btnUpdateTeacher.Enabled = btnDeleteTeacher.Enabled = listviewTeacher.Enabled = true;
+                };
+                worker.RunWorkerAsync();
+            }    
+            
         }
         private void listviewTeacher_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -396,7 +413,6 @@ namespace TutteeFrame
         private void txtTeacherSearch_TextChanged(object sender, EventArgs e)
         {
             TeacherFilter();
-
         }
 
         private void btnApproveUpdateScore_Click(object sender, EventArgs e)
@@ -433,10 +449,6 @@ namespace TutteeFrame
             };
 
             updater.RunWorkerAsync();
-        }
-        private void gridviewStudentScore_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
-        {
-
         }
 
         private void gridviewStudentScore_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -701,6 +713,7 @@ namespace TutteeFrame
                                 lvSubjectManage.Items.Add(new ListViewItem(new string[] { index.ToString(), subject.ID, subject.Name }));
                                 index++;
                             }
+                            cbbTeachingGrade.SelectedIndex = 0;
                         };
 
                     }
@@ -950,6 +963,11 @@ namespace TutteeFrame
             };
             worker.RunWorkerCompleted += (s, e) =>
             {
+                if (classes == null)
+                {
+                    MetroMessageBox.Show(this, "Có lỗi xảy ra khi lấy danh sách lớp.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }    
                 foreach (var i in classes)
                 {
                     cbbStudentClass.Items.Add(i.ID);
@@ -963,14 +981,11 @@ namespace TutteeFrame
 
         }
 
-
-        private void CountSum()
-        {
-
-        }
-
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (mainTabControl.SelectedTab == null)
+                return;
+            lbTittle.Text = mainTabControl.SelectedTab.Text;
         }
 
 
@@ -1159,6 +1174,43 @@ namespace TutteeFrame
                     MessageBox.Show("Xóa thật bại, dữ liệu nhập vào không hợp lệ");
                 }
             }
+        }
+
+        private void cbbTeachingGrade_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (firstLoad)
+                return;
+            loader = new BackgroundWorker();
+            List<Class> classes = new List<Class>();
+            cbbTeachingGrade.Enabled = ckbHideDoneClass.Enabled = btnAssignTeacher.Enabled = listViewTeachingClass.Enabled = false;
+            string selectedGrade = (cbbTeachingGrade.SelectedIndex == 0) ? "" : cbbTeachingGrade.Text;
+            lbInformation.Text = "Đang tải danh sách lớp học...";
+            lbInformation.Show();
+            mainProgressbar.Show();
+            loader.DoWork += (s, e) =>
+            {
+                classes = classController.GetClass(selectedGrade);
+                Thread.Sleep(500);
+            };
+            loader.RunWorkerCompleted += (s, e) =>
+            {
+                cbbTeachingGrade.Enabled = ckbHideDoneClass.Enabled = btnAssignTeacher.Enabled = listViewTeachingClass.Enabled = true;
+                lbInformation.Hide();
+                mainProgressbar.Hide();
+                listViewTeachingClass.Items.Clear();
+                foreach (Class _class in classes)
+                {
+                    listViewTeachingClass.Items.Add(_class.ID, 0);
+                }
+            };
+            loader.RunWorkerAsync();
+        }
+
+        private void btnAssignTeacher_Click(object sender, EventArgs e)
+        {
+            frmTeacherAssignment frmTeacherAssignment = new frmTeacherAssignment();
+            OverlayForm overlayForm = new OverlayForm(this, frmTeacherAssignment);
+            frmTeacherAssignment.Show();
         }
     }
 }

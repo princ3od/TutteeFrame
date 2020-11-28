@@ -28,6 +28,7 @@ namespace TutteeFrame
             {
                 _child.Activate();
             };
+            _child.StartPosition = FormStartPosition.Manual;
             _child.Owner = _parent;
             _child.ShowInTaskbar = false;
             _child.Location = new Point(this.Location.X + this.Width / 2 - _child.Width / 2, this.Location.Y + this.Height / 2 - _child.Height / 2);

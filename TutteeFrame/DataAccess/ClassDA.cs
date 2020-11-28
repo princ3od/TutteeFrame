@@ -52,7 +52,7 @@ namespace TutteeFrame.DataAccess
 
             bool success = Connect();
             if (!success)
-                return NhomLops;
+                return null;
             try
             {
                 strQuery = $"SELECT * FROM CLASS WHERE ClassID LIKE @khoi";
