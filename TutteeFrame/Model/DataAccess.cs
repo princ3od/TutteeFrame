@@ -42,8 +42,7 @@ namespace TutteeFrame.Model
             //string strConnect = string.Format(Properties.Settings.Default.ServerConnectionString,
             //       _server, _port, _userid, _pass);
             //Đổi chuỗi kết nối ở dưới để test
-            string strConnect = string.Format(Properties.Settings.Default.ServerConnectionString
-                                    , _server, _port, _userid, _pass);
+            string strConnect = "Server=ANDREWANHTRAN;Database=TutteeFrame;Trusted_Connection=True;"; 
             try
             {
                 connection = new SqlConnection(strConnect);
@@ -121,7 +120,7 @@ namespace TutteeFrame.Model
                             break;
                         }
                 }
-                string query = "INSERT INTO TEACHER(TeacherID,Surname,FirstName,TeacherImage,DateBorn,Sex,Address,Phone,Maill,SubjectID,IsMinistry,IsAdmin,Posittion) " +
+                string query = "INSERT INTO TEACHER(TeacherID,Surname,FirstName,TeacherImage,DateBorn,Sex,Address,Phone,Maill,SubjectID,IsMinistry,IsAdmin,Position) " +
                     "VALUES(@teacherid,@surname,@firstname,@avatar,@date,@sex,@address,@phone,@mail,@subjectid,@is_ministry,@is_admin,@position)";
                 SqlCommand sqlCommand = new SqlCommand(query, connection);
                 sqlCommand.Parameters.AddWithValue("@teacherid", _teacher.ID);
@@ -1085,10 +1084,10 @@ namespace TutteeFrame.Model
                 return false;
             try
             {
-                string strQuery = "SELECT TOP 1 * FROM STUDENT ORDER BY StudentID DESC";
+                string strQuery = "SELECT TOP 1 StudentID FROM STUDENT ORDER BY StudentID DESC";
                 SqlCommand sqlCommand = new SqlCommand(strQuery, connection);
-                SqlDataReader dataReader = sqlCommand.ExecuteReader();
-
+                
+                _lastStudentID = int.Parse(sqlCommand.ExecuteScalar().ToString());
             }
             catch (Exception e)
             {

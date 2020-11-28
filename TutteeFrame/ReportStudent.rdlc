@@ -80,33 +80,33 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.47917in</Width>
+                  <Width>0.58594in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.92708in</Width>
+                  <Width>1.03385in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.85292in</Width>
+                  <Width>0.95969in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.54167in</Width>
+                  <Width>0.64844in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.88542in</Width>
+                  <Width>0.99219in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.78125in</Width>
+                  <Width>0.88802in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.75in</Width>
+                  <Width>3.09635in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.09375in</Width>
+                  <Width>1.20052in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.42188in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -118,7 +118,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>STT</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Times New Roman</FontFamily>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -150,7 +152,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Mã học sinh</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>13pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -182,7 +187,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Họ</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>13pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -214,7 +222,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Tên</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>13pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -246,7 +257,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Ngày sinh</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>13pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -278,7 +292,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Giới tính</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>13pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -310,7 +327,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Địa chỉ</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>13pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -342,7 +362,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Trạng thái</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>13pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -367,7 +390,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.25in</Height>
+                  <Height>0.42188in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -411,7 +434,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!StudentID.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>13pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -443,7 +469,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Surname.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>13pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -475,7 +504,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Firstname.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>13pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -508,6 +540,8 @@
                                 <TextRun>
                                   <Value>=Fields!DateBorn.Value</Value>
                                   <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>13pt</FontSize>
                                     <Format>dd/MM/yyyy</Format>
                                   </Style>
                                 </TextRun>
@@ -542,6 +576,8 @@
                                 <TextRun>
                                   <Value>=iif(Fields!Sex.Value, "Nam", "Nữ")</Value>
                                   <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>13pt</FontSize>
                                     <Format>=iif(Fields!Sex.Value, "Nam", "Nữ")</Format>
                                   </Style>
                                 </TextRun>
@@ -575,7 +611,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Fields!Address.Value</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>13pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -607,7 +646,10 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>=iif(Fields!Status.Value, "Đang học", "Đã nghỉ")</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontFamily>Cambria</FontFamily>
+                                    <FontSize>13pt</FontSize>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -656,24 +698,25 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSetStudent</DataSetName>
-            <Top>0.13542in</Top>
-            <Left>0.5in</Left>
-            <Height>0.5in</Height>
-            <Width>6.31125in</Width>
+            <Top>0.01042in</Top>
+            <Left>0.125in</Left>
+            <Height>0.84375in</Height>
+            <Width>9.40501in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
+              <FontFamily>Times New Roman</FontFamily>
             </Style>
           </Tablix>
         </ReportItems>
-        <Height>2in</Height>
+        <Height>2.95833in</Height>
         <Style />
       </Body>
-      <Width>7.18625in</Width>
+      <Width>9.84251in</Width>
       <Page>
         <PageHeader>
-          <Height>1.53in</Height>
+          <Height>1.46056in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -686,6 +729,7 @@
                     <TextRun>
                       <Value>DANH SÁCH HỌC SINH LỚP</Value>
                       <Style>
+                        <FontFamily>Cambria</FontFamily>
                         <FontSize>14pt</FontSize>
                         <Color>DarkBlue</Color>
                       </Style>
@@ -697,8 +741,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.29736in</Top>
-              <Left>1.8425in</Left>
+              <Top>0.85986in</Top>
+              <Left>2.405in</Left>
               <Height>0.34375in</Height>
               <Width>2.76042in</Width>
               <Style>
@@ -717,8 +761,8 @@
               <Sizing>FitProportional</Sizing>
               <Top>0.10292in</Top>
               <Left>0.125in</Left>
-              <Height>0.42708in</Height>
-              <Width>1.47917in</Width>
+              <Height>0.41666in</Height>
+              <Width>1.78125in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
@@ -735,6 +779,7 @@
                     <TextRun>
                       <Value>=Globals!ExecutionTime</Value>
                       <Style>
+                        <FontFamily>Calibri</FontFamily>
                         <Format>dd/MM/yyyy</Format>
                       </Style>
                     </TextRun>
@@ -743,8 +788,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>ExecutionTime</rd:DefaultName>
-              <Top>0.98139in</Top>
-              <Left>5.04042in</Left>
+              <Top>1.06472in</Top>
+              <Left>8.50918in</Left>
               <Height>0.25in</Height>
               <Width>1.14583in</Width>
               <ZIndex>2</ZIndex>
@@ -776,9 +821,9 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>PageName</rd:DefaultName>
-              <Top>0.29736in</Top>
-              <Left>4.54736in</Left>
-              <Height>0.35764in</Height>
+              <Top>0.85986in</Top>
+              <Left>4.94667in</Left>
+              <Height>0.34375in</Height>
               <Width>1.375in</Width>
               <ZIndex>3</ZIndex>
               <Style>
@@ -811,7 +856,9 @@
                   <TextRuns>
                     <TextRun>
                       <Value>=Globals!PageNumber</Value>
-                      <Style />
+                      <Style>
+                        <FontFamily>Calibri</FontFamily>
+                      </Style>
                     </TextRun>
                   </TextRuns>
                   <Style />
@@ -819,7 +866,7 @@
               </Paragraphs>
               <rd:DefaultName>PageNumber</rd:DefaultName>
               <Top>0.75in</Top>
-              <Left>6.18625in</Left>
+              <Left>8.71751in</Left>
               <Height>0.25in</Height>
               <Width>1in</Width>
               <Style>

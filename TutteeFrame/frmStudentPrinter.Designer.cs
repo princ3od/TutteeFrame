@@ -37,14 +37,14 @@
             this.reportStudentViewer.Location = new System.Drawing.Point(20, 60);
             this.reportStudentViewer.Name = "reportStudentViewer";
             this.reportStudentViewer.ServerReport.BearerToken = null;
-            this.reportStudentViewer.Size = new System.Drawing.Size(760, 370);
+            this.reportStudentViewer.Size = new System.Drawing.Size(1230, 661);
             this.reportStudentViewer.TabIndex = 0;
             // 
             // frmStudentPrinter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1270, 741);
             this.Controls.Add(this.reportStudentViewer);
             this.Name = "frmStudentPrinter";
             this.Load += new System.EventHandler(this.frmStudentPrinter_Load);

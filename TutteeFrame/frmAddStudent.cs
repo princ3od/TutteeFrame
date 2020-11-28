@@ -9,11 +9,11 @@ using System.Text;
 using System.Windows.Forms;
 using TutteeFrame.Model;
 using System.Drawing.Imaging;
-
+using System.Runtime.InteropServices;
 
 namespace TutteeFrame
 {
-    public partial class frmAddStudent : MetroForm
+    public partial class frmAddStudent : Form
     {
         public bool Is_Progress_Successed = false;
         public StudentInfomation studentinfor { get; set; }
@@ -26,6 +26,26 @@ namespace TutteeFrame
             this.txtStudentID.Visible = IsNew;
             this.IsNew = IsNew;
         }
+        #region Win32 Form
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                const int CS_DROPSHADOW = 0x20000;
+                CreateParams cp = base.CreateParams;
+                cp.ClassStyle |= CS_DROPSHADOW;
+                return cp;
+            }
+        }
+        #endregion
 
         private void btnChooseAvatar_Click(object sender, EventArgs e)
         {
@@ -38,11 +58,13 @@ namespace TutteeFrame
         // Tải dữ liệu lên form
         private void frmAddStudent_Load(object sender, EventArgs e)
         {
+
+            txtStudentID.Text = Controller.Instance.GenerateStudentID(); 
             txtSurname.Text = studentinfor.SurName == null ? "" : studentinfor.SurName;
             txtFirstName.Text = studentinfor.FistName == null ? "" : studentinfor.FistName;
             txtAddress.Text = studentinfor.Address == null ? "" : studentinfor.Address;
             txtPhoneNunber.Text = studentinfor.Phone == null ? "" : studentinfor.Phone;
-            txtStudentID.Text = studentinfor.StudentID == null ? "" : studentinfor.StudentID;
+            
             txtPunishment.Text = studentinfor.PunishmentID == null ? "" : studentinfor.PunishmentID;
             dateBorn.Value = studentinfor.BornDate == null ? DateTime.Now : studentinfor.BornDate;
             cbbSex.SelectedIndex = studentinfor.Sex == true ? 0 : 1;
@@ -90,7 +112,8 @@ namespace TutteeFrame
 
         private void btnApprove_Click(object sender, EventArgs e)
         {
-            studentinfor.StudentID = txtStudentID.Text == "" ? null : txtStudentID.Text;
+
+            studentinfor.StudentID = Controller.Instance.GenerateStudentID();
             studentinfor.StudentImage = picboxStudent.Image;
             studentinfor.FistName = txtFirstName.Text;
             studentinfor.SurName = txtSurname.Text;
@@ -101,11 +124,7 @@ namespace TutteeFrame
             studentinfor.Status = cbbStatus.Text == "Đang học" ? true : false;
             studentinfor.Class = cbbClass.Text == "" ? null : cbbClass.Text;
             studentinfor.BornDate = dateBorn.Value;
-            if (!Controller.Instance.IsDigitsOnly(studentinfor.StudentID) || studentinfor.StudentID.Length != 8 || studentinfor.Class == null)
-            {
-                MessageBox.Show("Mã số học sinh, hoặc mã lớp không hợp lệ.");
-                return;
-            }
+        
             if (IsNew == true)
             {
                     if (Controller.Instance.AddNewStudentToDataBase(studentinfor.StudentID, studentinfor))
@@ -143,6 +162,22 @@ namespace TutteeFrame
         private void btnCancal_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+
+        }
+
+        private void pnBasicInfor_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void materialCard1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

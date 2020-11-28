@@ -34,8 +34,6 @@
             this.txtAddress = new Material_Design_for_Winform.MaterialTextField();
             this.txtPhoneNunber = new Material_Design_for_Winform.MaterialTextField();
             this.txtTeacherMail = new Material_Design_for_Winform.MaterialTextField();
-            this.cbxIsAdmin = new Material_Design_for_Winform.MaterialCheckBox();
-            this.cbxIsMinistry = new Material_Design_for_Winform.MaterialCheckBox();
             this.pnBasicInfor = new MaterialSkin.Controls.MaterialCard();
             this.label6 = new System.Windows.Forms.Label();
             this.cbbSubject = new MetroFramework.Controls.MetroComboBox();
@@ -47,6 +45,8 @@
             this.materialCard1 = new MaterialSkin.Controls.MaterialCard();
             this.label4 = new System.Windows.Forms.Label();
             this.materialCard2 = new MaterialSkin.Controls.MaterialCard();
+            this.cbxIsAdmin = new MaterialSkin.Controls.MaterialRadioButton();
+            this.cbxIsMinistry = new MaterialSkin.Controls.MaterialRadioButton();
             this.txtPostition = new Material_Design_for_Winform.MaterialTextField();
             this.label5 = new System.Windows.Forms.Label();
             this.btnApprove = new Material_Design_for_Winform.MaterialRaisedButton();
@@ -58,6 +58,7 @@
             this.ptbAvatar = new System.Windows.Forms.PictureBox();
             this.mainProgressbar = new System.Windows.Forms.ProgressBar();
             this.lbInformation = new System.Windows.Forms.Label();
+            this.btnAccess = new System.Windows.Forms.Button();
             this.pnBasicInfor.SuspendLayout();
             this.materialCard1.SuspendLayout();
             this.materialCard2.SuspendLayout();
@@ -176,42 +177,6 @@
             this.txtTeacherMail.Style = Material_Design_for_Winform.MaterialTextField.ST.HintAsFloatingLabel;
             this.txtTeacherMail.TabIndex = 5;
             this.txtTeacherMail.UseSystemPasswordChar = false;
-            // 
-            // cbxIsAdmin
-            // 
-            this.cbxIsAdmin.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbxIsAdmin.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.cbxIsAdmin.BorderColor = System.Drawing.Color.Gray;
-            this.cbxIsAdmin.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.cbxIsAdmin.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cbxIsAdmin.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cbxIsAdmin.Location = new System.Drawing.Point(28, 92);
-            this.cbxIsAdmin.MarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
-            this.cbxIsAdmin.Name = "cbxIsAdmin";
-            this.cbxIsAdmin.Size = new System.Drawing.Size(291, 27);
-            this.cbxIsAdmin.TabIndex = 7;
-            this.cbxIsAdmin.Text = "Giáo viên thuộc ban giám hiệu";
-            this.cbxIsAdmin.UseVisualStyleBackColor = false;
-            this.cbxIsAdmin.CheckedChanged += new System.EventHandler(this.cbxIsAdmin_CheckedChanged);
-            // 
-            // cbxIsMinistry
-            // 
-            this.cbxIsMinistry.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbxIsMinistry.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.cbxIsMinistry.BorderColor = System.Drawing.Color.Gray;
-            this.cbxIsMinistry.CheckedColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.cbxIsMinistry.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.cbxIsMinistry.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.cbxIsMinistry.Location = new System.Drawing.Point(28, 55);
-            this.cbxIsMinistry.MarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
-            this.cbxIsMinistry.Name = "cbxIsMinistry";
-            this.cbxIsMinistry.Size = new System.Drawing.Size(235, 27);
-            this.cbxIsMinistry.TabIndex = 6;
-            this.cbxIsMinistry.Text = "Giáo viên thuộc ban giáo vụ";
-            this.cbxIsMinistry.UseVisualStyleBackColor = false;
-            this.cbxIsMinistry.CheckedChanged += new System.EventHandler(this.cbxIsMinistry_CheckedChanged);
             // 
             // pnBasicInfor
             // 
@@ -346,10 +311,10 @@
             // materialCard2
             // 
             this.materialCard2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialCard2.Controls.Add(this.cbxIsAdmin);
+            this.materialCard2.Controls.Add(this.cbxIsMinistry);
             this.materialCard2.Controls.Add(this.txtPostition);
             this.materialCard2.Controls.Add(this.label5);
-            this.materialCard2.Controls.Add(this.cbxIsMinistry);
-            this.materialCard2.Controls.Add(this.cbxIsAdmin);
             this.materialCard2.Depth = 0;
             this.materialCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialCard2.Location = new System.Drawing.Point(411, 418);
@@ -359,6 +324,38 @@
             this.materialCard2.Padding = new System.Windows.Forms.Padding(14);
             this.materialCard2.Size = new System.Drawing.Size(344, 188);
             this.materialCard2.TabIndex = 40;
+            // 
+            // cbxIsAdmin
+            // 
+            this.cbxIsAdmin.AutoSize = true;
+            this.cbxIsAdmin.Depth = 0;
+            this.cbxIsAdmin.Location = new System.Drawing.Point(45, 88);
+            this.cbxIsAdmin.Margin = new System.Windows.Forms.Padding(0);
+            this.cbxIsAdmin.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.cbxIsAdmin.MouseState = MaterialSkin.MouseState.HOVER;
+            this.cbxIsAdmin.Name = "cbxIsAdmin";
+            this.cbxIsAdmin.Ripple = true;
+            this.cbxIsAdmin.Size = new System.Drawing.Size(250, 37);
+            this.cbxIsAdmin.TabIndex = 44;
+            this.cbxIsAdmin.TabStop = true;
+            this.cbxIsAdmin.Text = "Giáo viên thuộc ban giám hiệu";
+            this.cbxIsAdmin.UseVisualStyleBackColor = true;
+            // 
+            // cbxIsMinistry
+            // 
+            this.cbxIsMinistry.AutoSize = true;
+            this.cbxIsMinistry.Depth = 0;
+            this.cbxIsMinistry.Location = new System.Drawing.Point(45, 51);
+            this.cbxIsMinistry.Margin = new System.Windows.Forms.Padding(0);
+            this.cbxIsMinistry.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.cbxIsMinistry.MouseState = MaterialSkin.MouseState.HOVER;
+            this.cbxIsMinistry.Name = "cbxIsMinistry";
+            this.cbxIsMinistry.Ripple = true;
+            this.cbxIsMinistry.Size = new System.Drawing.Size(232, 37);
+            this.cbxIsMinistry.TabIndex = 43;
+            this.cbxIsMinistry.TabStop = true;
+            this.cbxIsMinistry.Text = "Giáo viên thuộc ban giáo vụ";
+            this.cbxIsMinistry.UseVisualStyleBackColor = true;
             // 
             // txtPostition
             // 
@@ -524,6 +521,15 @@
             this.lbInformation.Text = "*Đang kết nối...";
             this.lbInformation.Visible = false;
             // 
+            // btnAccess
+            // 
+            this.btnAccess.Location = new System.Drawing.Point(387, 634);
+            this.btnAccess.Name = "btnAccess";
+            this.btnAccess.Size = new System.Drawing.Size(18, 16);
+            this.btnAccess.TabIndex = 49;
+            this.btnAccess.Text = "btnAccess";
+            this.btnAccess.UseVisualStyleBackColor = true;
+            // 
             // frmTeacher
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
@@ -542,6 +548,7 @@
             this.Controls.Add(this.pnBasicInfor);
             this.Controls.Add(this.ptbAvatar);
             this.Controls.Add(this.lbID);
+            this.Controls.Add(this.btnAccess);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -570,8 +577,6 @@
         private Material_Design_for_Winform.MaterialTextField txtAddress;
         private Material_Design_for_Winform.MaterialTextField txtPhoneNunber;
         private Material_Design_for_Winform.MaterialTextField txtTeacherMail;
-        private Material_Design_for_Winform.MaterialCheckBox cbxIsAdmin;
-        private Material_Design_for_Winform.MaterialCheckBox cbxIsMinistry;
         private System.Windows.Forms.PictureBox ptbAvatar;
         private MaterialSkin.Controls.MaterialCard pnBasicInfor;
         private MaterialSkin.Controls.MaterialCard materialCard1;
@@ -594,5 +599,8 @@
         private Material_Design_for_Winform.MaterialTextField txtPostition;
         private System.Windows.Forms.ProgressBar mainProgressbar;
         private System.Windows.Forms.Label lbInformation;
+        private MaterialSkin.Controls.MaterialRadioButton cbxIsAdmin;
+        private MaterialSkin.Controls.MaterialRadioButton cbxIsMinistry;
+        private System.Windows.Forms.Button btnAccess;
     }
 }

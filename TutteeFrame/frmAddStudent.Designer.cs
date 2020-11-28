@@ -53,10 +53,11 @@
             this.txtAddress = new Material_Design_for_Winform.MaterialTextField();
             this.txtSurname = new Material_Design_for_Winform.MaterialTextField();
             this.txtFirstName = new Material_Design_for_Winform.MaterialTextField();
-            this.txtStudentID = new Material_Design_for_Winform.MaterialTextField();
             this.AddStudentBackground = new System.ComponentModel.BackgroundWorker();
             this.btnChooseAvatar = new MaterialSkin.Controls.MaterialFloatingActionButton();
             this.picboxStudent = new System.Windows.Forms.PictureBox();
+            this.btnClose = new MaterialSkin.Controls.MaterialButton();
+            this.txtStudentID = new Material_Design_for_Winform.MaterialTextField();
             this.materialCard2.SuspendLayout();
             this.materialCard1.SuspendLayout();
             this.pnBasicInfor.SuspendLayout();
@@ -104,7 +105,6 @@
             // materialCard2
             // 
             this.materialCard2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.materialCard2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.materialCard2.Controls.Add(this.label8);
             this.materialCard2.Controls.Add(this.label7);
             this.materialCard2.Controls.Add(this.cbbStatus);
@@ -115,7 +115,7 @@
             this.materialCard2.Controls.Add(this.txtPunishment);
             this.materialCard2.Depth = 0;
             this.materialCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialCard2.Location = new System.Drawing.Point(387, 340);
+            this.materialCard2.Location = new System.Drawing.Point(413, 340);
             this.materialCard2.Margin = new System.Windows.Forms.Padding(14);
             this.materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialCard2.Name = "materialCard2";
@@ -238,18 +238,18 @@
             // materialCard1
             // 
             this.materialCard1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.materialCard1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.materialCard1.Controls.Add(this.label4);
             this.materialCard1.Controls.Add(this.txtPhoneNunber);
             this.materialCard1.Depth = 0;
             this.materialCard1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialCard1.Location = new System.Drawing.Point(387, 213);
+            this.materialCard1.Location = new System.Drawing.Point(413, 214);
             this.materialCard1.Margin = new System.Windows.Forms.Padding(14);
             this.materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialCard1.Name = "materialCard1";
             this.materialCard1.Padding = new System.Windows.Forms.Padding(14);
             this.materialCard1.Size = new System.Drawing.Size(344, 111);
             this.materialCard1.TabIndex = 51;
+            this.materialCard1.Paint += new System.Windows.Forms.PaintEventHandler(this.materialCard1_Paint);
             // 
             // label4
             // 
@@ -286,7 +286,7 @@
             // pnBasicInfor
             // 
             this.pnBasicInfor.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.pnBasicInfor.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnBasicInfor.Controls.Add(this.txtStudentID);
             this.pnBasicInfor.Controls.Add(this.label3);
             this.pnBasicInfor.Controls.Add(this.cbbSex);
             this.pnBasicInfor.Controls.Add(this.label2);
@@ -295,22 +295,22 @@
             this.pnBasicInfor.Controls.Add(this.txtAddress);
             this.pnBasicInfor.Controls.Add(this.txtSurname);
             this.pnBasicInfor.Controls.Add(this.txtFirstName);
-            this.pnBasicInfor.Controls.Add(this.txtStudentID);
             this.pnBasicInfor.Depth = 0;
             this.pnBasicInfor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.pnBasicInfor.Location = new System.Drawing.Point(11, 213);
+            this.pnBasicInfor.Location = new System.Drawing.Point(37, 214);
             this.pnBasicInfor.Margin = new System.Windows.Forms.Padding(14);
             this.pnBasicInfor.MouseState = MaterialSkin.MouseState.HOVER;
             this.pnBasicInfor.Name = "pnBasicInfor";
             this.pnBasicInfor.Padding = new System.Windows.Forms.Padding(14);
             this.pnBasicInfor.Size = new System.Drawing.Size(350, 390);
             this.pnBasicInfor.TabIndex = 50;
+            this.pnBasicInfor.Paint += new System.Windows.Forms.PaintEventHandler(this.pnBasicInfor_Paint);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(18, 253);
+            this.label3.Location = new System.Drawing.Point(23, 305);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 19);
             this.label3.TabIndex = 44;
@@ -324,7 +324,7 @@
             this.cbbSex.Items.AddRange(new object[] {
             "Nam",
             "Nữ"});
-            this.cbbSex.Location = new System.Drawing.Point(31, 275);
+            this.cbbSex.Location = new System.Drawing.Point(36, 327);
             this.cbbSex.MaxDropDownItems = 2;
             this.cbbSex.Name = "cbbSex";
             this.cbbSex.PromptText = "Giới tính";
@@ -337,7 +337,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(13, 177);
+            this.label2.Location = new System.Drawing.Point(18, 229);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(70, 19);
             this.label2.TabIndex = 42;
@@ -347,8 +347,8 @@
             // 
             this.dateBorn.CustomFormat = "dd-MM-yyyy";
             this.dateBorn.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateBorn.Location = new System.Drawing.Point(31, 200);
-            this.dateBorn.MinimumSize = new System.Drawing.Size(4, 29);
+            this.dateBorn.Location = new System.Drawing.Point(36, 252);
+            this.dateBorn.MinimumSize = new System.Drawing.Size(0, 29);
             this.dateBorn.Name = "dateBorn";
             this.dateBorn.Size = new System.Drawing.Size(215, 29);
             this.dateBorn.Style = MetroFramework.MetroColorStyle.Teal;
@@ -373,7 +373,7 @@
             this.txtAddress.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtAddress.HideSelection = true;
             this.txtAddress.HintText = "Địa chỉ";
-            this.txtAddress.Location = new System.Drawing.Point(17, 115);
+            this.txtAddress.Location = new System.Drawing.Point(22, 167);
             this.txtAddress.MaxLength = 32767;
             this.txtAddress.Multiline = false;
             this.txtAddress.Name = "txtAddress";
@@ -395,7 +395,7 @@
             this.txtSurname.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtSurname.HideSelection = true;
             this.txtSurname.HintText = "Họ";
-            this.txtSurname.Location = new System.Drawing.Point(17, 50);
+            this.txtSurname.Location = new System.Drawing.Point(22, 102);
             this.txtSurname.MaxLength = 32767;
             this.txtSurname.Multiline = false;
             this.txtSurname.Name = "txtSurname";
@@ -417,7 +417,7 @@
             this.txtFirstName.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtFirstName.HideSelection = true;
             this.txtFirstName.HintText = "Tên";
-            this.txtFirstName.Location = new System.Drawing.Point(212, 50);
+            this.txtFirstName.Location = new System.Drawing.Point(207, 102);
             this.txtFirstName.MaxLength = 32767;
             this.txtFirstName.Multiline = false;
             this.txtFirstName.Name = "txtFirstName";
@@ -429,28 +429,6 @@
             this.txtFirstName.Style = Material_Design_for_Winform.MaterialTextField.ST.HintAsFloatingLabel;
             this.txtFirstName.TabIndex = 1;
             this.txtFirstName.UseSystemPasswordChar = false;
-            // 
-            // txtStudentID
-            // 
-            this.txtStudentID.AutoScaleColor = true;
-            this.txtStudentID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtStudentID.FloatingLabelText = "FloatingLabel";
-            this.txtStudentID.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.txtStudentID.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.txtStudentID.HideSelection = true;
-            this.txtStudentID.HintText = "Mã học sinh";
-            this.txtStudentID.Location = new System.Drawing.Point(17, 320);
-            this.txtStudentID.MaxLength = 32767;
-            this.txtStudentID.Multiline = false;
-            this.txtStudentID.Name = "txtStudentID";
-            this.txtStudentID.PasswordChar = '\0';
-            this.txtStudentID.ReadOnly = false;
-            this.txtStudentID.ShortcutsEnable = true;
-            this.txtStudentID.ShowCaret = true;
-            this.txtStudentID.Size = new System.Drawing.Size(306, 43);
-            this.txtStudentID.Style = Material_Design_for_Winform.MaterialTextField.ST.HintAsFloatingLabel;
-            this.txtStudentID.TabIndex = 5;
-            this.txtStudentID.UseSystemPasswordChar = false;
             // 
             // AddStudentBackground
             // 
@@ -466,7 +444,7 @@
             this.btnChooseAvatar.Depth = 0;
             this.btnChooseAvatar.DrawShadows = true;
             this.btnChooseAvatar.Icon = ((System.Drawing.Image)(resources.GetObject("btnChooseAvatar.Icon")));
-            this.btnChooseAvatar.Location = new System.Drawing.Point(413, 129);
+            this.btnChooseAvatar.Location = new System.Drawing.Point(422, 129);
             this.btnChooseAvatar.Mini = true;
             this.btnChooseAvatar.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnChooseAvatar.Name = "btnChooseAvatar";
@@ -480,19 +458,65 @@
             // 
             this.picboxStudent.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.picboxStudent.Image = global::TutteeFrame.Properties.Resources.user;
-            this.picboxStudent.Location = new System.Drawing.Point(317, 21);
+            this.picboxStudent.Location = new System.Drawing.Point(344, 6);
             this.picboxStudent.Name = "picboxStudent";
-            this.picboxStudent.Size = new System.Drawing.Size(122, 148);
+            this.picboxStudent.Size = new System.Drawing.Size(122, 163);
             this.picboxStudent.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picboxStudent.TabIndex = 48;
             this.picboxStudent.TabStop = false;
+            // 
+            // btnClose
+            // 
+            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClose.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnClose.Depth = 0;
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.DrawShadows = true;
+            this.btnClose.HighEmphasis = true;
+            this.btnClose.Icon = ((System.Drawing.Image)(resources.GetObject("btnClose.Icon")));
+            this.btnClose.Location = new System.Drawing.Point(755, 6);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnClose.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(44, 36);
+            this.btnClose.TabIndex = 59;
+            this.btnClose.TabStop = false;
+            this.btnClose.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
+            this.btnClose.UseAccentColor = false;
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // txtStudentID
+            // 
+            this.txtStudentID.AutoScaleColor = true;
+            this.txtStudentID.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtStudentID.Enabled = false;
+            this.txtStudentID.FloatingLabelText = "Mã số học sinh (hệ thống tự sinh)";
+            this.txtStudentID.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.txtStudentID.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtStudentID.HideSelection = true;
+            this.txtStudentID.HintText = "";
+            this.txtStudentID.Location = new System.Drawing.Point(22, 53);
+            this.txtStudentID.MaxLength = 32767;
+            this.txtStudentID.Multiline = false;
+            this.txtStudentID.Name = "txtStudentID";
+            this.txtStudentID.PasswordChar = '\0';
+            this.txtStudentID.ReadOnly = false;
+            this.txtStudentID.ShortcutsEnable = true;
+            this.txtStudentID.ShowCaret = true;
+            this.txtStudentID.Size = new System.Drawing.Size(205, 43);
+            this.txtStudentID.Style = Material_Design_for_Winform.MaterialTextField.ST.HasFloatingLabel;
+            this.txtStudentID.TabIndex = 45;
+            this.txtStudentID.UseSystemPasswordChar = false;
             // 
             // frmAddStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BorderStyle = MetroFramework.Forms.MetroFormBorderStyle.FixedSingle;
-            this.ClientSize = new System.Drawing.Size(743, 662);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(800, 680);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnChooseAvatar);
             this.Controls.Add(this.btnCancal);
             this.Controls.Add(this.btnApprove);
@@ -500,10 +524,14 @@
             this.Controls.Add(this.materialCard1);
             this.Controls.Add(this.pnBasicInfor);
             this.Controls.Add(this.picboxStudent);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAddStudent";
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmAddStudent_Load);
             this.materialCard2.ResumeLayout(false);
             this.materialCard2.PerformLayout();
@@ -513,6 +541,7 @@
             this.pnBasicInfor.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picboxStudent)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -543,7 +572,8 @@
         private Material_Design_for_Winform.MaterialTextField txtAddress;
         private Material_Design_for_Winform.MaterialTextField txtSurname;
         private Material_Design_for_Winform.MaterialTextField txtFirstName;
-        private Material_Design_for_Winform.MaterialTextField txtStudentID;
         private System.ComponentModel.BackgroundWorker AddStudentBackground;
+        private MaterialSkin.Controls.MaterialButton btnClose;
+        private Material_Design_for_Winform.MaterialTextField txtStudentID;
     }
 }

@@ -80,10 +80,10 @@
             this.txtOldPass.AutoScaleColor = true;
             this.txtOldPass.BackColor = System.Drawing.SystemColors.Control;
             this.txtOldPass.FloatingLabelText = "";
-            this.txtOldPass.FocusColor = System.Drawing.Color.DodgerBlue;
+            this.txtOldPass.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
             this.txtOldPass.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.txtOldPass.HideSelection = true;
-            this.txtOldPass.HintText = "Mật khẩu";
+            this.txtOldPass.HintText = "Nhập lại mật khẩu";
             this.txtOldPass.Location = new System.Drawing.Point(117, 124);
             this.txtOldPass.MaxLength = 32767;
             this.txtOldPass.Multiline = false;
@@ -103,7 +103,7 @@
             this.txtNewPass.AutoScaleColor = true;
             this.txtNewPass.BackColor = System.Drawing.SystemColors.Control;
             this.txtNewPass.FloatingLabelText = "";
-            this.txtNewPass.FocusColor = System.Drawing.Color.DodgerBlue;
+            this.txtNewPass.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
             this.txtNewPass.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.txtNewPass.HideSelection = true;
             this.txtNewPass.HintText = "Mật khẩu mới";
@@ -126,7 +126,7 @@
             this.txtConfirmPass.AutoScaleColor = true;
             this.txtConfirmPass.BackColor = System.Drawing.SystemColors.Control;
             this.txtConfirmPass.FloatingLabelText = "";
-            this.txtConfirmPass.FocusColor = System.Drawing.Color.DodgerBlue;
+            this.txtConfirmPass.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
             this.txtConfirmPass.Font = new System.Drawing.Font("Segoe UI", 11F);
             this.txtConfirmPass.HideSelection = true;
             this.txtConfirmPass.HintText = "Xác nhận mật khẩu mới";
@@ -159,7 +159,7 @@
             this.btnOK.ShadowOpacity = 35;
             this.btnOK.Size = new System.Drawing.Size(162, 55);
             this.btnOK.TabIndex = 3;
-            this.btnOK.Text = "Ố kê";
+            this.btnOK.Text = "OK";
             this.btnOK.TextAlign = System.Drawing.StringAlignment.Center;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
@@ -225,10 +225,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semilight", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(161, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(179, 32);
+            this.label1.Size = new System.Drawing.Size(182, 32);
             this.label1.TabIndex = 31;
             this.label1.Text = "ĐỔI MẬT KHẨU";
             // 

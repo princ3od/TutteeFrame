@@ -66,11 +66,9 @@ namespace TutteeFrame
 
         public bool LoadUsingTeacher(string _teacherID)
         {
-            bool isMinistry = false, isAdmin = false;
-            string position = "";
+            bool isMinistry = false, isAdmin = false;           
             byte[] avatar = null;
-            bool success = DataAccess.Instance.LoadTeacher(_teacherID, usingTeacher, ref isMinistry, ref isAdmin, ref avatar);
-            usingTeacher.Position = position;
+            bool success = DataAccess.Instance.LoadTeacher(_teacherID, usingTeacher, ref isMinistry, ref isAdmin, ref avatar);           
             usingTeacher.Avatar = ImageHelper.BytesToImage(avatar);
             if (isAdmin)
                 usingTeacher.Type = Teacher.TeacherType.Adminstrator;
@@ -191,7 +189,7 @@ namespace TutteeFrame
             int result = 0;
             if (DataAccess.Instance.GetLastStudentID(ref result))
             {
-                result += 1;
+                result ++;
             }
             return result.ToString();
         }

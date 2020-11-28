@@ -45,6 +45,7 @@ namespace TutteeFrame
         }
         protected override void OnShown(EventArgs e)
         {
+           
             base.OnShown(e);
             TopMost = true;
             this.Focus();
@@ -69,7 +70,7 @@ namespace TutteeFrame
         {
             if (logined)
                 return;
-            DialogResult result = MetroMessageBox.Show(this, "Bạn chắc chắn muốn thoát?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult result = MetroMessageBox.Show(this, "Bạn chắc chắn muốn thoát?", "Chưa đăng nhập", MessageBoxButtons.YesNo, MessageBoxIcon.Information);
             if (result == DialogResult.No)
                 e.Cancel = true;
         }

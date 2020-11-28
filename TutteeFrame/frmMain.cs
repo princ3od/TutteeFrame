@@ -377,6 +377,8 @@ namespace TutteeFrame
                 if (lbBelongtoOnCard.Text == "Giáo viên bộ môn" || lbBelongtoOnCard.Text == "Giáo viên chủ nhiệm")
                 {
                     lbBelongto.Text = "Tổ " + mainTeacher.Subject.Name;
+                    //lbPosition.Visible = false;
+                    //pictureBox11.Visible = false;
                 }
                 else
                     lbBelongto.Text = lbBelongtoOnCard.Text;
@@ -501,7 +503,8 @@ namespace TutteeFrame
         {
             StudentInfomation newStudent = new StudentInfomation();
             frmAddStudent NewFormAddStudent = new frmAddStudent(newStudent, true);
-            NewFormAddStudent.ShowDialog();
+            OverlayForm overlayForm = new OverlayForm(this, NewFormAddStudent);
+            NewFormAddStudent.Show();
             if (NewFormAddStudent.Is_Progress_Successed)
                 ShowListBackGroundWork.RunWorkerAsync(cboxLop.Text);
 
@@ -750,7 +753,7 @@ namespace TutteeFrame
             if (Controller.Instance.GetDataSetPrepareToPrint(ds, classID))
             {
                 frmStudentPrinter printer = new frmStudentPrinter(ds, classID);
-                printer.ShowDialog();
+                printer.Show();
 
             }
         }

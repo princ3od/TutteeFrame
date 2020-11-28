@@ -30,6 +30,11 @@ namespace TutteeFrame
             if (_teacherID != null)
                 teacherID = _teacherID;
             mode = _mode;
+            btnAccess.Click += (s, e) =>
+             {
+                 this.btnApprove.PerformClick();
+             };
+            this.AcceptButton = btnAccess;
         }
 
         #region Win32 Form
@@ -133,84 +138,136 @@ namespace TutteeFrame
         }
         private void btnAproveAdding_Click(object sender, EventArgs e)
         {
-            string idPreflex = "TC";
-            teacher = new Teacher();
-            if (cbxIsAdmin.Checked)
-                teacher.Type = Teacher.TeacherType.Adminstrator;
-            else if (cbxIsMinistry.Checked)
-                teacher.Type = Teacher.TeacherType.Ministry;
-            else
-                teacher.Type = Teacher.TeacherType.Teacher;
-            foreach (Subject subject in Controller.Instance.subjects)
+
+            if (String.IsNullOrEmpty(txtSurename.Text))
             {
-                if (subject.Name == cbbSubject.Text)
-                    teacher.Subject = subject;
+                txtSurename.FocusColor = Color.Red;
+                txtSurename.HintText = "Hãy nhập họ của giáo viên";
+                txtSurename.Focus();
             }
-            teacher.ID = idPreflex + teacherID.Remove(0, 2);
-            teacher.FirstName = txtFirstname.Text;
-            teacher.SurName = txtSurename.Text;
-            teacher.Avatar = ptbAvatar.Image;
-            teacher.Position = txtPostition.Text;
-            if (cbbSex.SelectedIndex == -1)
+            else if (String.IsNullOrEmpty(txtFirstname.Text))
             {
-                cbbSex.Focus();
-                return;
+                txtFirstname.FocusColor = Color.Red;
+                txtFirstname.HintText = "Hãy nhập tên của giáo viên";
+                txtFirstname.Focus();
             }
-            teacher.Sex = Convert.ToBoolean(cbbSex.SelectedIndex);
-            teacher.DateOfBirth1 = dateBorn.Value;
-            teacher.Address = txtAddress.Text;
-            teacher.Phone = txtPhoneNunber.Text;
-            teacher.Mail = txtTeacherMail.Text;
-            if (mode == Mode.Add)
+            else if (String.IsNullOrEmpty(txtAddress.Text))
             {
-                lbInformation.Text = "Đang thêm giáo viên có mã ID: " + teacher.ID;
-                lbInformation.Show();
-                mainProgressbar.Show();
-                worker = new BackgroundWorker();
-                worker.DoWork += (s, e) =>
+                txtAddress.FocusColor = Color.Red;
+                txtAddress.HintText = "Hãy nhập địa chỉ của giáo viên";
+                txtAddress.Focus();
+            }
+            else if (String.IsNullOrEmpty(txtPhoneNunber.Text))
+            {
+                txtPhoneNunber.FocusColor = Color.Red;
+                txtPhoneNunber.HintText = "Hãy nhập số điện thoại của giáo viên";
+                txtPhoneNunber.Focus();
+            }
+            else if (String.IsNullOrEmpty(txtTeacherMail.Text))
+            {
+                txtTeacherMail.FocusColor = Color.Red;
+                txtTeacherMail.HintText = "Hãy nhập địa chỉ email của giáo viên";
+                txtTeacherMail.Focus();
+            }
+            else if (String.IsNullOrEmpty(cbbSubject.Text))
+            {
+
+                DialogResult rs = MessageBox.Show("Vui lòng chọn môn giảng dạy", "Chưa chọn môn giảng dạy!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (rs == DialogResult.OK)
                 {
-                    System.Threading.Thread.Sleep(400);
-                    doneSuccess = Controller.Instance.AddTeacher(teacher);
-                };
-                worker.RunWorkerCompleted += (s, e) =>
+                    cbbSubject.Focus();
+                }
+
+            }
+            else if (String.IsNullOrEmpty(cbbSex.Text))
+            {
+                DialogResult rs = MessageBox.Show("Vui lòng chọn giới tính ", "Chưa chọn giới tính!!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (rs == DialogResult.OK)
                 {
-                    lbInformation.Hide();
-                    mainProgressbar.Hide();
-                    if (!doneSuccess)
-                        MetroMessageBox.Show(this, "Đã có lỗi xảy ra trong quá trình thêm giáo viên.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    else
-                    {
-                        MetroMessageBox.Show(this, "Đã thêm thành công giáo viên có ID: " + teacher.ID, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.Close();
-                    }
-                };
+                    cbbSex.Focus();
+                }
 
             }
             else
             {
-                lbInformation.Text = "Đang cập nhật giáo viên có mã ID: " + teacher.ID;
-                lbInformation.Show();
-                mainProgressbar.Show();
-                worker = new BackgroundWorker();
-                worker.DoWork += (s, e) =>
+                string idPreflex = "TC";
+                teacher = new Teacher();
+                if (cbxIsAdmin.Checked)
+                    teacher.Type = Teacher.TeacherType.Adminstrator;
+                else if (cbxIsMinistry.Checked)
+                    teacher.Type = Teacher.TeacherType.Ministry;
+                else
+                    teacher.Type = Teacher.TeacherType.Teacher;
+                foreach (Subject subject in Controller.Instance.subjects)
                 {
-                    System.Threading.Thread.Sleep(400);
-                    doneSuccess = Controller.Instance.UpdateTeacher(teacherID, teacher);
-                };
-                worker.RunWorkerCompleted += (s, e) =>
+                    if (subject.Name == cbbSubject.Text)
+                        teacher.Subject = subject;
+                }
+                teacher.ID = idPreflex + teacherID.Remove(0, 2);
+                teacher.FirstName = txtFirstname.Text;
+                teacher.SurName = txtSurename.Text;
+                teacher.Avatar = ptbAvatar.Image;
+                teacher.Position = txtPostition.Text;
+                if (cbbSex.SelectedIndex == -1)
                 {
-                    lbInformation.Hide();
-                    mainProgressbar.Hide();
-                    if (!doneSuccess)
-                        MetroMessageBox.Show(this, "Đã có lỗi xảy ra trong quá trình cập nhật giáo viên.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    else
+                    cbbSex.Focus();
+                    return;
+                }
+                teacher.Sex = Convert.ToBoolean(cbbSex.SelectedIndex);
+                teacher.DateOfBirth1 = dateBorn.Value;
+                teacher.Address = txtAddress.Text;
+                teacher.Phone = txtPhoneNunber.Text;
+                teacher.Mail = txtTeacherMail.Text;
+                if (mode == Mode.Add)
+                {
+                    lbInformation.Text = "Đang thêm giáo viên có mã ID: " + teacher.ID;
+                    lbInformation.Show();
+                    mainProgressbar.Show();
+                    worker = new BackgroundWorker();
+                    worker.DoWork += (s, e) =>
                     {
-                        MetroMessageBox.Show(this, "Đã cập nhật thành công giáo viên có ID: " + teacher.ID, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        this.Close();
-                    }
-                };
+                        System.Threading.Thread.Sleep(400);
+                        doneSuccess = Controller.Instance.AddTeacher(teacher);
+                    };
+                    worker.RunWorkerCompleted += (s, e) =>
+                    {
+                        lbInformation.Hide();
+                        mainProgressbar.Hide();
+                        if (!doneSuccess)
+                            MetroMessageBox.Show(this, "Đã có lỗi xảy ra trong quá trình thêm giáo viên.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else
+                        {
+                            MetroMessageBox.Show(this, "Đã thêm thành công giáo viên có ID: " + teacher.ID, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Close();
+                        }
+                    };
+                }          
+                else
+                {
+                    lbInformation.Text = "Đang cập nhật giáo viên có mã ID: " + teacher.ID;
+                    lbInformation.Show();
+                    mainProgressbar.Show();
+                    worker = new BackgroundWorker();
+                    worker.DoWork += (s, e) =>
+                    {
+                        System.Threading.Thread.Sleep(400);
+                        doneSuccess = Controller.Instance.UpdateTeacher(teacherID, teacher);
+                    };
+                    worker.RunWorkerCompleted += (s, e) =>
+                    {
+                        lbInformation.Hide();
+                        mainProgressbar.Hide();
+                        if (!doneSuccess)
+                            MetroMessageBox.Show(this, "Đã có lỗi xảy ra trong quá trình cập nhật giáo viên.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        else
+                        {
+                            MetroMessageBox.Show(this, "Đã cập nhật thành công giáo viên có ID: " + teacher.ID, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Close();
+                        }
+                    };
+                }
+                worker.RunWorkerAsync();
             }
-            worker.RunWorkerAsync();
         }
 
         private void NameChanging(object sender, EventArgs e)
