@@ -4,7 +4,8 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
-
+using TutteeFrame.Controller;
+using TutteeFrame.Model;
 namespace TutteeFrame
 {
     public partial class frmLogin : Form
@@ -31,13 +32,16 @@ namespace TutteeFrame
         #endregion
 
         public bool logined = false;
-
+        public string teacherID;
         bool connectSuccess = false;
         bool loadSuccess = true;
-
+        MainController mainController;
+        AccountController accountController;
         public frmLogin()
         {
             InitializeComponent();
+            mainController = new MainController();
+            accountController = new AccountController();
             btnAccept.Click += (s, e) =>
             {
                 btnLogin.PerformClick();
@@ -114,47 +118,38 @@ namespace TutteeFrame
             {
                 if (bwkerMain.IsBusy)
                     return;
+                txtID.ReadOnly = true;
+                txtPass.ReadOnly = true;
                 lbInformation.Show();
                 mainProgressbar.Show();
-                if (!connectSuccess)
-                    bwkerMain.RunWorkerAsync();
-                else
-                {
-                    bwkerMain_RunWorkerCompleted(bwkerMain, null);
-                }
+                bwkerMain.RunWorkerAsync();
             }
         }
+        int flag = 1;
+        bool loginSuccess = false;
         private void bwkerMain_DoWork(object sender, DoWorkEventArgs e)
         {
-            bwkerMain.ReportProgress(0);
-            connectSuccess = Controller.Instance.ConnectServer();
+            bwkerMain.ReportProgress(0, "*Đang kết nối đến server...");
+            connectSuccess = mainController.ConnectServer();
             if (!connectSuccess)
                 return;
-            bwkerMain.ReportProgress(50);
-            loadSuccess = Controller.Instance.LoadAccounts();
-            if (!loadSuccess)
-                return;
-            bwkerMain.ReportProgress(100);
+            bwkerMain.ReportProgress(50, "*Đang đăng nhập...");
+            loginSuccess = accountController.Login(txtID.Text, txtPass.Text, ref flag);
+            System.Threading.Thread.Sleep(600);
 
         }
 
         private void bwkerMain_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            if (e.ProgressPercentage < 50)
-            {
-                mainProgressbar.Style = ProgressBarStyle.Marquee;
-                lbInformation.Text = "*Đang kết nối đến server...";
-            }
-            else
-            {
-                lbInformation.Text = "*Đang đăng nhập...";
-            }
+            lbInformation.Text = e.UserState.ToString();
         }
 
         private void bwkerMain_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             lbInformation.Hide();
             mainProgressbar.Hide();
+            txtID.ReadOnly = false;
+            txtPass.ReadOnly = false;
             if (!connectSuccess)
             {
                 MetroMessageBox.Show(this, "Kết nối thất bại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -165,8 +160,7 @@ namespace TutteeFrame
                 MetroMessageBox.Show(this, "Không thể đăng nhập!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            int flag = 1;
-            if (Controller.Instance.Login(txtID.Text, txtPass.Text, ref flag))
+            if (loginSuccess)
             {
                 InitHelper.Instance.Write("RememberMe", cbxRememberme.Checked.ToString(), "Application");
                 if (cbxRememberme.Checked)
@@ -174,7 +168,7 @@ namespace TutteeFrame
                     InitHelper.Instance.Write("LastID", txtID.Text, "Application");
                     InitHelper.Instance.Write("LastPass", Encryption.Encrypt(txtPass.Text, txtID.Text), "Application");
                 }
-                Controller.Instance.LoadUsingTeacher(txtID.Text);
+                teacherID = txtID.Text;
                 logined = true;
                 this.Close();
             }

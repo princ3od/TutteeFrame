@@ -19,6 +19,7 @@ namespace TutteeFrame.Controller
         }
         public bool LoadUsingTeacher(string _teacherID)
         {
+            usingTeacher = new Teacher();
             bool isMinistry = false, isAdmin = false;
             string position = "";
             byte[] avatar = null;
@@ -232,9 +233,8 @@ namespace TutteeFrame.Controller
             return result;
         }
         public enum OrderType { ID = 0, Name = 1, BornDate = 2 };
-        public void SortTeacherList(OrderType orderType)
+        public List<Teacher> SortTeacherList(OrderType orderType, List<Teacher> teachers)
         {
-            List<Teacher> teachers = GetAllTeachers();
             switch (orderType)
             {
                 case OrderType.ID:
@@ -249,6 +249,7 @@ namespace TutteeFrame.Controller
                 default:
                     break;
             }
+            return teachers.ToList();
         }
         public bool GetTeachingClass(string _teacherID, List<string> _classes)
         {

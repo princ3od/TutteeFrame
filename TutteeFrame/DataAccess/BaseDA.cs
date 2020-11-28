@@ -12,11 +12,11 @@ using TutteeFrame.Model;
 
 namespace TutteeFrame.DataAccess
 {
-    class MainDA
+    class BaseDA
     {
 
         #region Variables
-        private string connectionString;
+        private static string connectionString;
 
         protected SqlConnection connection;
         protected string strQuery;

@@ -9,7 +9,7 @@ using TutteeFrame.Model;
 
 namespace TutteeFrame.DataAccess
 {
-    class ClassDA : MainDA
+    class ClassDA : BaseDA
     {
         #region Class Function
         /// <summary>

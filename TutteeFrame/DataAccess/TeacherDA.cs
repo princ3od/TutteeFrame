@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using TutteeFrame.Model;
 namespace TutteeFrame.DataAccess
 {
-    class TeacherDA : MainDA
+    class TeacherDA : BaseDA
     {
 
         /// <summary>

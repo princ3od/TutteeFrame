@@ -9,9 +9,8 @@ using System.Windows.Forms;
 using TutteeFrame.Model;
 namespace TutteeFrame.DataAccess
 {
-    class SubjectDA : MainDA
+    class SubjectDA : BaseDA
     {
-        #region Subject Function
         public bool LoadSubjects(List<Subject> _subjects)
         {
             bool success = Connect();
@@ -114,6 +113,5 @@ namespace TutteeFrame.DataAccess
                 return false;
             }
         }
-        #endregion
     }
 }

@@ -10,7 +10,7 @@ using TutteeFrame.Model;
 
 namespace TutteeFrame.DataAccess
 {
-    class StudentDA : MainDA
+    class StudentDA : BaseDA
     {
         public bool AddStudent(string _studentid, Student student)
         {

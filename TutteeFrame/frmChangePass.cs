@@ -1,17 +1,9 @@
 ﻿using MetroFramework;
-using MetroFramework.Forms;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using TutteeFrame.Model;
-
+using TutteeFrame.Controller;
 namespace TutteeFrame
 {
     public partial class frmChangePass : Form
@@ -19,9 +11,11 @@ namespace TutteeFrame
         public bool changedSuccess = false;
         private string accountID;
         private BackgroundWorker backgroundWorker = new BackgroundWorker();
+        AccountController accountController;
         public frmChangePass(string _accountID)
         {
             InitializeComponent();
+            accountController = new AccountController();
             this.SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
             this.UpdateStyles();
             this.DoubleBuffered = true;
@@ -62,7 +56,7 @@ namespace TutteeFrame
                 if (backgroundWorker.IsBusy)
                     return;
                 int flag = 0;
-                if (Controller.Instance.Login(accountID, txtOldPass.Text, ref flag))
+                if (accountController.Login(accountID, txtOldPass.Text, ref flag))
                 {
                     txtOldPass.Enabled = false;
                     if (lbError1.Visible)
@@ -74,7 +68,7 @@ namespace TutteeFrame
                         mainProgressbar.Show();
                         backgroundWorker.DoWork += (s, ev) =>
                         {
-                            changedSuccess = Controller.Instance.ChangePass(accountID, txtNewPass.Text);
+                            changedSuccess = accountController.ChangePass(accountID, txtNewPass.Text);
                         };
                         backgroundWorker.RunWorkerCompleted += (s, ev) =>
                         {

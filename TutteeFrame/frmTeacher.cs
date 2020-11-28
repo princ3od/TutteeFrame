@@ -11,7 +11,6 @@ using System.Text;
 using System.Windows.Forms;
 using TutteeFrame.Model;
 using TutteeFrame.Controller;
-
 namespace TutteeFrame
 {
     public partial class frmTeacher : Form
@@ -22,9 +21,14 @@ namespace TutteeFrame
         public Teacher teacher;
         public bool doneSuccess = false;
         BackgroundWorker worker;
+        TeacherController teacherController;
+        SubjectController subjectController;
+        List<Subject> subjects = new List<Subject>();
         public frmTeacher(Mode _mode, string _teacherID = null)
         {
             InitializeComponent();
+            teacherController = new TeacherController();
+            subjectController = new SubjectController();
             this.SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
             this.UpdateStyles();
             this.DoubleBuffered = true;
@@ -66,71 +70,89 @@ namespace TutteeFrame
         #endregion
         private void frmTeacher_Load(object sender, EventArgs e)
         {
-
             System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
             gp.AddEllipse(0, 0, ptbAvatar.Width - 3, ptbAvatar.Height - 3);
             Region rg = new Region(gp);
             ptbAvatar.Region = rg;
-            foreach (Subject subject in Controller.Instance.subjects)
+            BackgroundWorker backgroundWorker = new BackgroundWorker();
+            backgroundWorker.DoWork += (s, e) =>
             {
-                cbbSubject.Items.Add(subject.Name);
-            }
+                subjects = subjectController.LoadSubjects();
+            };
+            backgroundWorker.RunWorkerCompleted += (s, e) =>
+            {
+                if (subjects == null)
+                    return;
+                foreach (Subject subject in subjects)
+                {
+                    cbbSubject.Items.Add(subject.Name);
+                }
+            };
             switch (mode)
             {
                 case Mode.Add:
                     btnApprove.Text = "Thêm giáo viên";
-                    teacherID = "TC" + Controller.Instance.GenerateTeacherID();
+                    teacherID = "TC" + Helper.GenerateTeacherID();
                     lbID.Text = teacherID;
                     lbID.ForeColor = Color.Green;
                     lbName.Text = "--";
                     break;
                 case Mode.Edit:
                     btnApprove.Text = "Cập nhật giáo viên";
-                    foreach (Teacher _teacher in Controller.Instance.teachers)
+                    List<Teacher> teachers = new List<Teacher>();
+                    backgroundWorker.DoWork += (s, e) =>
                     {
-                        if (_teacher.ID == teacherID)
-                            teacher = _teacher;
-                    }
-                    lbID.Text = teacher.ID;
-                    lbName.Text = teacher.SurName + " " + teacher.FirstName;
-                    txtFirstname.Text = teacher.FirstName;
-                    txtSurename.Text = teacher.SurName;
-                    dateBorn.Value = teacher.DateOfBirth1;
-                    cbbSex.SelectedIndex = Convert.ToInt32(teacher.Sex);
-                    txtAddress.Text = teacher.Address;
-                    txtPhoneNunber.Text = teacher.Phone;
-                    txtTeacherMail.Text = teacher.Mail;
-                    ptbAvatar.Image = teacher.Avatar;
-                    txtPostition.Text = teacher.Position;
-                    for (int i = 0; i < cbbSubject.Items.Count; i++)
+                        teachers = teacherController.GetAllTeachers();
+                    };
+                    backgroundWorker.RunWorkerCompleted += (s, e) =>
                     {
-                        if (cbbSubject.GetItemText(cbbSubject.Items[i]) == teacher.Subject.Name)
+                        foreach (Teacher _teacher in teachers)
                         {
-                            cbbSubject.SelectedIndex = i;
-                            break;
+                            if (_teacher.ID == teacherID)
+                                teacher = _teacher;
                         }
-                    }
-                    cbbSex.SelectedIndex = (teacher.GetSex == "Nữ") ? 0 : 1;
-                    switch (teacher.Type)
-                    {
-                        case Teacher.TeacherType.Teacher:
-                            break;
-                        case Teacher.TeacherType.Adminstrator:
-                            cbxIsAdmin.Checked = true;
-                            break;
-                        case Teacher.TeacherType.Ministry:
-                            cbxIsMinistry.Checked = true;
-                            break;
-                        case Teacher.TeacherType.FormerTeacher:
-                            break;
-                        default:
-                            break;
-                    }
+                        lbID.Text = teacher.ID;
+                        lbName.Text = teacher.SurName + " " + teacher.FirstName;
+                        txtFirstname.Text = teacher.FirstName;
+                        txtSurename.Text = teacher.SurName;
+                        dateBorn.Value = teacher.DateBorn;
+                        cbbSex.SelectedIndex = Convert.ToInt32(teacher.Sex);
+                        txtAddress.Text = teacher.Address;
+                        txtPhoneNunber.Text = teacher.Phone;
+                        txtTeacherMail.Text = teacher.Mail;
+                        ptbAvatar.Image = teacher.Avatar;
+                        txtPostition.Text = teacher.Position;
+                        for (int i = 0; i < cbbSubject.Items.Count; i++)
+                        {
+                            if (cbbSubject.GetItemText(cbbSubject.Items[i]) == teacher.Subject.Name)
+                            {
+                                cbbSubject.SelectedIndex = i;
+                                break;
+                            }
+                        }
+                        cbbSex.SelectedIndex = (teacher.GetSex == "Nữ") ? 0 : 1;
+                        switch (teacher.Type)
+                        {
+                            case Teacher.TeacherType.Teacher:
+                                break;
+                            case Teacher.TeacherType.Adminstrator:
+                                cbxIsAdmin.Checked = true;
+                                break;
+                            case Teacher.TeacherType.Ministry:
+                                cbxIsMinistry.Checked = true;
+                                break;
+                            case Teacher.TeacherType.FormerTeacher:
+                                break;
+                            default:
+                                break;
+                        }
+                    };
                     break;
                 default:
                     break;
             }
             btnChooseAvatar.Show();
+            backgroundWorker.RunWorkerAsync();
         }
         private void btnAproveAdding_Click(object sender, EventArgs e)
         {
@@ -142,7 +164,7 @@ namespace TutteeFrame
                 teacher.Type = Teacher.TeacherType.Ministry;
             else
                 teacher.Type = Teacher.TeacherType.Teacher;
-            foreach (Subject subject in Controller.Instance.subjects)
+            foreach (Subject subject in subjects)
             {
                 if (subject.Name == cbbSubject.Text)
                     teacher.Subject = subject;
@@ -158,7 +180,7 @@ namespace TutteeFrame
                 return;
             }
             teacher.Sex = Convert.ToBoolean(cbbSex.SelectedIndex);
-            teacher.DateOfBirth1 = dateBorn.Value;
+            teacher.DateBorn = dateBorn.Value;
             teacher.Address = txtAddress.Text;
             teacher.Phone = txtPhoneNunber.Text;
             teacher.Mail = txtTeacherMail.Text;
@@ -171,7 +193,7 @@ namespace TutteeFrame
                 worker.DoWork += (s, e) =>
                 {
                     System.Threading.Thread.Sleep(400);
-                    doneSuccess = Controller.Instance.AddTeacher(teacher);
+                    doneSuccess = teacherController.AddTeacher(teacher);
                 };
                 worker.RunWorkerCompleted += (s, e) =>
                 {
@@ -196,7 +218,7 @@ namespace TutteeFrame
                 worker.DoWork += (s, e) =>
                 {
                     System.Threading.Thread.Sleep(400);
-                    doneSuccess = Controller.Instance.UpdateTeacher(teacherID, teacher);
+                    doneSuccess = teacherController.UpdateTeacher(teacherID, teacher);
                 };
                 worker.RunWorkerCompleted += (s, e) =>
                 {

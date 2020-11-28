@@ -9,9 +9,8 @@ using TutteeFrame.Model;
 
 namespace TutteeFrame.DataAccess
 {
-    class AccountDA :MainDA
+    class AccountDA :BaseDA
     {
-        #region Account Function
         public bool AddAccount(Account _account)
         {
             bool success = Connect();
@@ -98,10 +97,6 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
-
-
-
-
         /// <summary>
         /// Xóa giáo viên có mã [_teacherID].
         /// </summary>
@@ -162,6 +157,5 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
-        #endregion
     }
 }

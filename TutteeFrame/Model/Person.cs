@@ -18,6 +18,11 @@ namespace TutteeFrame.Model
         private bool sex;
         private Image avatar;
 
+        public Person()
+        {
+            dateBorn = DateTime.Now;
+            sex = true;
+        }
         public string ID { get => iD; set => iD = value; }
         public string SurName { get => surName; set => surName = value; }
         public string FirstName { get => firstName; set => firstName = value; }
@@ -25,7 +30,7 @@ namespace TutteeFrame.Model
         public string Mail { get => mail; set => mail = value; }
         public string Phone { get => phone; set => phone = value; }
         public bool Sex { get => sex; set => sex = value; }
-        public DateTime DateBorn { get => (dateBorn == default(DateTime)) ? dateBorn : DateTime.Now; set => dateBorn = value; }
+        public DateTime DateBorn { get => dateBorn; set => dateBorn = value; }
         public Image Avatar { get => avatar ?? Properties.Resources.default_avatar; set => avatar = value; }
         public string GetSex
         {

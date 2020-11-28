@@ -26,6 +26,7 @@ namespace TutteeFrame
         TeacherController teacherController;
         ClassController classController;
         SubjectController subjectController;
+        List<Teacher> teachers = new List<Teacher>();
         public bool ProgressSuccess { get; }
         public frmMain()
         {
@@ -82,7 +83,7 @@ namespace TutteeFrame
             gp.AddEllipse(0, 0, ptbAvatar.Width - 1, ptbAvatar.Height - 1);
             Region rg = new Region(gp);
             ptbAvatar.Region = rg;
-
+            teacherController.LoadUsingTeacher((sender as frmLogin).teacherID);
             this.CenterToScreen();
             this.Show();
             LoadAfterLogin();
@@ -394,20 +395,7 @@ namespace TutteeFrame
         private void txtTeacherSearch_TextChanged(object sender, EventArgs e)
         {
             TeacherFilter();
-            if (string.IsNullOrEmpty(txtTeacherSearch.Text))
-                return;
-            else
-            {
-                for (int i = 0; i < listviewTeacher.Items.Count;)
-                {
-                    if (!listviewTeacher.Items[i].SubItems[1].Text.Contains(txtTeacherSearch.Text) && !listviewTeacher.Items[i].SubItems[2].Text.Contains(txtTeacherSearch.Text))
-                    {
-                        listviewTeacher.Items.RemoveAt(i);
-                        i--;
-                    }
-                    i++;
-                }
-            }
+
         }
 
         private void btnApproveUpdateScore_Click(object sender, EventArgs e)
@@ -444,529 +432,6 @@ namespace TutteeFrame
 
             updater.RunWorkerAsync();
         }
-        #endregion
-
-        #region Custom Function
-        void LoadAfterLogin()
-        {
-            //Cắt ảnh đại diện thành hình tròn
-            System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
-            gp.AddEllipse(0, 0, pbProfilemainAvatar.Width - 1, pbProfilemainAvatar.Height - 1);
-            Region rg = new Region(gp);
-            pbProfilemainAvatar.Region = rg;
-
-            //Đổ dữ liệu 
-            mainTeacher = teacherController.usingTeacher;
-            lbName.Text = mainTeacher.SurName + " " + mainTeacher.FirstName;
-
-            //Avatar
-            pbProfilemainAvatar.Image = mainTeacher.Avatar;
-            ptbAvatar.Image = mainTeacher.Avatar;
-
-            //THÔNG TIN CÁ NHÂN
-            lbMyName.Text = string.Format("{0} {1}", mainTeacher.SurName, mainTeacher.FirstName);
-            lbImyID.Text = mainTeacher.ID;
-            lbMyaddr.Text = mainTeacher.Address;
-            lbMyemail.Text = mainTeacher.Mail;
-            lbMyfonenum.Text = mainTeacher.Phone;
-            lbSubjectTeach.Text = "Bộ môn " + mainTeacher.Subject.Name;
-            lbPosition.Text = mainTeacher.Position;
-            lbDateofbirth.Text = mainTeacher.DateOfBirth1.ToString("dd/MM/yyyy");
-            if (mainTeacher.Sex == true)
-            {
-                lbGender.Text = "Giới tính nam";
-
-            }
-            else
-            {
-                lbGender.Text = "Giới tính nữ";
-            }
-            pictureBox13.Visible = false;
-
-
-
-            if (mainTeacher.Type == Teacher.TeacherType.Adminstrator)
-            {
-                lbBelongto.Text = "Ban giam hiệu";
-            }
-            else if (mainTeacher.Type == Teacher.TeacherType.Ministry)
-            {
-                lbBelongto.Text = "Giáo vụ";
-
-            }
-            mainTabControl.TabPages.Clear();
-            mainTabControl.TabPages.Add(tbpgProfile);
-            mainTabControl.TabPages.Add(tbpgShedule);
-            if (mainTeacher.ID == "AD999999")
-            {
-                lbBelongtoOnCard.Text = "Adminstrator";
-                mainTabControl.TabPages.Add(tbgpTeacherManagment);
-                mainTabControl.TabPages.Add(tbpgTeacherAssignment);
-                mainTabControl.TabPages.Add(tbpgClassManagment);
-                mainTabControl.TabPages.Add(tbpgStudentManagment);
-                mainTabControl.TabPages.Add(tbpgSubjectManagment);
-                mainTabControl.TabPages.Add(tbpgRewardManagment);
-                mainTabControl.TabPages.Add(tbpgStudentMarkboard);
-                mainTabControl.TabPages.Add(tbpgReport);
-                mainTeacher.Type = Teacher.TeacherType.Adminstrator;
-            }
-            else
-            {
-                switch (mainTeacher.Type)
-                {
-                    case Teacher.TeacherType.FormerTeacher:
-                        lbBelongtoOnCard.Text = "Giáo viên chủ nhiệm";
-                        mainTabControl.TabPages.Add(tbpgFormClass);
-                        mainTabControl.TabPages.Add(tbpgStudentMarkboard);
-                        break;
-                    case Teacher.TeacherType.Teacher:
-                        lbBelongtoOnCard.Text = "Giáo viên bộ môn";
-                        mainTabControl.TabPages.Add(tbpgStudentMarkboard);
-                        break;
-                    case Teacher.TeacherType.Adminstrator:
-                        mainTabControl.TabPages.Add(tbgpTeacherManagment);
-                        mainTabControl.TabPages.Add(tbpgTeacherAssignment);
-                        mainTabControl.TabPages.Add(tbpgSubjectManagment);
-                        mainTabControl.TabPages.Add(tbpgReport);
-                        lbBelongtoOnCard.Text = "Ban giám hiệu";
-                        break;
-                    case Teacher.TeacherType.Ministry:
-                        lbBelongtoOnCard.Text = "Ban giáo vụ";
-                        mainTabControl.TabPages.Add(tbpgStudentManagment);
-                        mainTabControl.TabPages.Add(tbpgClassManagment);
-                        mainTabControl.TabPages.Add(tbpgRewardManagment);
-                        mainTabControl.TabPages.Add(tbpgReport);
-                        break;
-                    default:
-                        break;
-                }
-                if (lbBelongtoOnCard.Text == "Giáo viên bộ môn" || lbBelongtoOnCard.Text == "Giáo viên chủ nhiệm")
-                {
-                    lbBelongto.Text = "Tổ " + mainTeacher.Subject.Name;
-                }
-                else
-                    lbBelongto.Text = lbBelongtoOnCard.Text;
-            }
-            LoadData();
-        }
-        BackgroundWorker loader;
-        void LoadData()
-        {
-            loader = new BackgroundWorker();
-            loader.WorkerReportsProgress = true;
-            loader.DoWork += (s, e) =>
-            {
-                loader.ReportProgress(0, "Đang tải danh sách môn học...");
-                Thread.Sleep(800);
-                Controller.Instance.LoadSubjects();
-            };
-            loader.RunWorkerCompleted += (s, e) =>
-            {
-                firstLoad = false;
-                mainProgressbar.Hide();
-                lbInformation.Hide();
-            };
-            loader.ProgressChanged += (s, e) =>
-            {
-                lbInformation.Text = (string)e.UserState;
-            };
-            mainProgressbar.Show();
-            lbInformation.Show();
-            switch (mainTeacher.Type)
-            {
-                case Teacher.TeacherType.Teacher:
-                    LoadOnTeacher();
-                    break;
-                case Teacher.TeacherType.Adminstrator:
-                    {
-                        cbbTeacherSubjectFilter.Items.Clear();
-                        cbbTeacherSubjectFilter.Items.Add("Tất cả");
-                        cbbTeacherSubjectFilter.SelectedIndex = 0;
-                        cbbTeacherRoleFilter.SelectedIndex = 0;
-                        cbbTeacherSortBy.SelectedIndex = 0;
-                        listviewTeacher.Items.Clear();
-                        lvSubjectManage.Items.Clear();
-                        int totalMinistry = 0, totalAdmin = 0, totalTeacher = 0;
-                        loader.DoWork += (s, e) =>
-                        {
-                            loader.ReportProgress(0, "Đang tải danh sách giáo viên...");
-                            Thread.Sleep(800);
-                           teacherController.GetAllTeachers();
-                            Controller.Instance.GetTeacherNumber(out totalTeacher, out totalMinistry, out totalAdmin);
-                        };
-
-                        loader.RunWorkerCompleted += (s, e) =>
-                        {
-                            lbTotalTeacher.Text = totalTeacher.ToString();
-                            lbTotalAdmin.Text = totalAdmin.ToString();
-                            lbTotalMinistry.Text = totalMinistry.ToString();
-                            int index = 1;
-                            foreach (Teacher teacher in Controller.Instance.teachers)
-                            {
-                                listviewTeacher.Items.Add(new ListViewItem(new string[] { index.ToString(),
-                                    teacher.ID,teacher.SurName + " " + teacher.FirstName,teacher.DateOfBirth1.ToString("dd-MM-yyyy"), teacher.GetSex,
-                                    teacher.Address, teacher.Phone, teacher.Mail, teacher.Subject.Name, teacher.GetNote()
-                                }));
-                                index++;
-                            }
-                            foreach (Subject subject in Controller.Instance.subjects)
-                            {
-                                cbbTeacherSubjectFilter.Items.Add(subject.Name);
-                            }
-                            index = 0;
-                            foreach (Subject subject in Controller.Instance.subjects)
-                            {
-                                lvSubjectManage.Items.Add(new ListViewItem(new string[] { index.ToString(), subject.ID, subject.Name }));
-                                index++;
-                            }
-                        };
-
-                    }
-                    break;
-                case Teacher.TeacherType.Ministry:
-                    break;
-                case Teacher.TeacherType.FormerTeacher:
-                    LoadOnTeacher();
-                    break;
-                default:
-                    break;
-            }
-            loader.RunWorkerAsync();
-
-        }
-        void LoadOnTeacher()
-        {
-            bool succcess = true;
-            List<string> classes = new List<string>();
-            cbbTeachingClass.Items.Clear();
-            lbTeachingSubject.Text = mainTeacher.Subject.Name;
-            loader.DoWork += (s, e) =>
-            {
-                loader.ReportProgress(0, "Đang tải danh sách các lớp giảng dạy...");
-                succcess = Controller.Instance.GetTeachingClass(mainTeacher.ID, classes);
-
-            };
-            loader.RunWorkerCompleted += (s, e) =>
-            {
-                if (!succcess)
-                    return;
-                foreach (string item in classes)
-                {
-                    cbbTeachingClass.Items.Add(item);
-                }
-                if (cbbTeachingClass.Items.Count > 0)
-                    cbbTeachingClass.SelectedIndex = 0;
-
-                lbTotalTeachingClass.Text = classes.Count.ToString();
-                lbScoreTittle.Text = string.Format("Bảng điểm lớp {0} - môn {1} - HK {2} - năm {3}",
-                                            cbbTeachingClass.Text, mainTeacher.Subject.Name, cbbTeachingSemester.Text, "2020");
-
-            };
-        }
-        void TeacherFilter()
-        {
-            listviewTeacher.Items.Clear();
-            Controller.Instance.SortTeacherList((Controller.OrderType)cbbTeacherSortBy.SelectedIndex);
-            List<Teacher> teachers = Controller.Instance.teachers;
-            if (cbbTeacherSubjectFilter.SelectedIndex != 0)
-                teachers = Controller.Instance.TeacherListFilterBySubject(cbbTeacherSubjectFilter.Text);
-            if (cbbTeacherRoleFilter.SelectedIndex != 0)
-                teachers = Controller.Instance.TeacherListFilterByRole((Teacher.TeacherType)cbbTeacherRoleFilter.SelectedIndex, teachers);
-            int index = 1;
-            foreach (Teacher teacher in teachers)
-            {
-                listviewTeacher.Items.Add(new ListViewItem(new string[] { index.ToString(),
-                                    teacher.ID,teacher.SurName + " " + teacher.FirstName,teacher.DateOfBirth1.ToString("d"), teacher.GetSex,
-                                    teacher.Address, teacher.Phone, teacher.Mail, teacher.Subject.Name, teacher.GetNote()
-                                }));
-                index++;
-            }
-        }
-        void LoadStudentSCores()
-        {
-
-        }
-        #endregion
-
-        private void cboxLop_SelectedValueChanged(object sender, EventArgs e)
-        {
-
-            ShowListBackGroundWork.RunWorkerAsync(cboxLop.Text);
-
-        }
-
-
-
-        private void materialRaisedButton1_Click(object sender, EventArgs e)
-        {
-            Student newStudent = new Student();
-            frmAddStudent NewFormAddStudent = new frmAddStudent(newStudent, true);
-            NewFormAddStudent.ShowDialog();
-            if (NewFormAddStudent.Is_Progress_Successed)
-                ShowListBackGroundWork.RunWorkerAsync(cboxLop.Text);
-
-        }
-
-        private void btnAproveAdding_Click(object sender, EventArgs e)
-        {
-            ListView.SelectedListViewItemCollection collect = ListViewStudents.SelectedItems;
-            if (collect.Count > 0)
-            {
-                string studentId = collect[0].SubItems[0].Text;
-                if (studentController.DeleteStudent(studentId)) MessageBox.Show("Xóa thành công");
-                ListViewStudents.Items.Clear();
-
-                ShowListBackGroundWork.RunWorkerAsync(cboxLop.Text);
-            }
-        }
-
-
-
-        private void metroListView1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            btnFix.PerformClick();
-        }
-
-
-
-        private void ShowListBackGroundWork_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
-        {
-            // đối số e lưu  value của cbbKhoi trong t/h cbbKhoi Index change
-            // lưu value của cbbClaas trong t/h cbbClass Index change
-
-            List<Student> Students =
-                (e.Argument as string).Length == 2 ?
-            studentController.GetInformationStudents(e.Argument as string, true) :
-           studentController.GetInformationStudents(e.Argument as string);
-            ShowListBackGroundWork.ReportProgress(0, Students);
-        }
-
-
-        private void ShowListBackGroundWork_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
-        {
-
-            CountSum();
-            List<Student> Students = e.UserState as List<Student>;
-            ListViewStudents.Items.Clear();
-            foreach (var i in Students)
-            {
-                ListViewItem lvi = new ListViewItem(i.ID);
-                lvi.SubItems.Add(i.SurName);
-                lvi.SubItems.Add(i.FirstName);
-                lvi.Tag = i.DateBorn;
-                lvi.SubItems[1].Tag = i.Avatar;
-                lvi.SubItems.Add(i.DateBorn.ToString("dd/MM/yyyy"));
-                lvi.SubItems.Add(i.Sex == true ? "Nam" : "Nữ");
-                lvi.SubItems.Add(i.Address.ToString());
-                lvi.SubItems.Add(i.Phone.ToString());
-                lvi.SubItems.Add(i.ClassID.ToString());
-                lvi.SubItems.Add(i.Status == true ? "Đang học" : "Đã nghỉ");
-                if (i.PunishmentList != null)
-                {
-                    lvi.SubItems.Add(i.PunishmentList.ToString());
-                }
-
-                ListViewStudents.Items.Add(lvi);
-            }
-
-
-        }
-
-        private void cbxKhoi_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-            lbInformation.Text = "Đamg tải thông tin học sinh...";
-            lbInformation.Show();
-            mainProgressbar.Show();
-            btnPrint.Visible = false;
-            string KhoiSelected = null;
-            KhoiSelected = cbxKhoi.SelectedItem.ToString() != "Tất cả" ? cbxKhoi.SelectedItem.ToString() : "";
-            if (KhoiSelected == null) return;
-            cboxLop.Items.Clear();
-            List<Class> LopThuocKhoi = Controller.Instance.GetClass(KhoiSelected);
-            foreach (var i in LopThuocKhoi)
-            {
-                cboxLop.Items.Add(i.ID);
-            }
-            ShowListBackGroundWork.RunWorkerAsync($"{KhoiSelected}");
-
-            return;
-
-        }
-
-
-        private void CountSum()
-        {
-            int numclass = 0;
-            Controller.Instance.CountNumberOfClass(ref numclass);
-            txtSumClass.Text = numclass.ToString();
-            int numStudent = 0;
-            Controller.Instance.CountNumberOfStudent(ref numStudent);
-            txtSumStudent.Text = numStudent.ToString();
-        }
-
-        private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            btnPrint.Visible = false;
-
-            if (mainTabControl.SelectedIndex == 4)
-            {
-                cbxKhoi.SelectedIndex = 3;
-            }
-            //if (mainTabControl.SelectedIndex == 5)
-            //{
-            //    ManageSubjectBackgroundWork.RunWorkerAsync();
-            //}
-        }
-
-
-        private void materialRaisedButton2_Click(object sender, EventArgs e)
-        {
-            // Lấy thông tin của học sinh đã chọn 
-            ListView.SelectedListViewItemCollection collect = ListViewStudents.SelectedItems;
-            if (collect.Count >= 1)
-            {
-                ListViewItem lvi = collect[0];
-                Student st = new Student();
-                st.ID = lvi.SubItems[0].Text;
-                st.SurName = lvi.SubItems[1].Text;
-                st.FirstName = lvi.SubItems[2].Text;
-                st.DateBorn = (DateTime)lvi.Tag;
-                st.Avatar = (Image)lvi.SubItems[1].Tag;
-                if (lvi.SubItems[4].Text == "Nam")
-                {
-                    st.Sex = true;
-                }
-                else
-                {
-                    st.Sex = false;
-                }
-                st.Address = lvi.SubItems[5].Text;
-                st.Phone = lvi.SubItems[6].Text;
-                st.ClassID = lvi.SubItems[7].Text;
-                if (lvi.SubItems[8].Text == "Đang học")
-                {
-                    st.Status = true;
-                }
-                else
-                {
-                    st.Status = false;
-                }
-                if (lvi.SubItems["Kỷ luật số"] != null)
-                {
-                    st.PunishmentList = lvi.SubItems["Kỷ luật số"].Text;
-                }
-
-                frmAddStudent frmstudentnew = new frmAddStudent(st, false);
-                frmstudentnew.ShowDialog();
-                if (frmstudentnew.Is_Progress_Successed)
-                    ShowListBackGroundWork.RunWorkerAsync(cboxLop.Text);
-            }
-        }
-
-        private void SearchListBackGroundWork_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
-        {
-            Pair arg = e.Argument as Pair;
-            List<Student> students = new List<Student>();
-            students.Add(new Student());
-            if ((arg.Second as bool?) == false && studentController.LoadStudentInformationById(arg.First as string, students[0]))
-            {
-
-            }
-
-            else
-            {
-                students = new List<Student>();
-                if ((arg.Second as bool?) == true && studentController.LoadStudentInformationByName(arg.First as string, students))
-                {
-
-                }
-                else
-                {
-                    MessageBox.Show("Tìm kiếm không thành công");
-                    return;
-                }
-
-            }
-            SearchListBackGroundWork.ReportProgress(0, students);
-        }
-
-        private void SearchListBackGroundWork_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
-        {
-            ListViewStudents.Items.Clear();
-            List<Student> students = e.UserState as List<Student>;
-            if (students.Count > 0)
-            {
-                foreach (Student i in students)
-                {
-                    if (i.StudentID != null && i.StudentID != "")
-                    {
-                        ListViewItem lvi = new ListViewItem(i.StudentID);
-                        lvi.SubItems.Add(i.SurName);
-                        lvi.SubItems.Add(i.FistName);
-                        lvi.Tag = i.BornDate;
-                        lvi.SubItems[1].Tag = i.StudentImage;
-                        lvi.SubItems.Add(i.BornDate.ToString("dd/MM/yyyy"));
-                        lvi.SubItems.Add(i.Sex == true ? "Nam" : "Nữ");
-                        lvi.SubItems.Add(i.Address.ToString());
-                        lvi.SubItems.Add(i.Phone.ToString());
-                        lvi.SubItems.Add(i.Class.ToString());
-                        lvi.SubItems.Add(i.Status == true ? "Đang học" : "Đã nghỉ");
-                        if (i.PunishmentID != null)
-                        {
-                            lvi.SubItems.Add(i.PunishmentID.ToString());
-                        }
-
-                        ListViewStudents.Items.Add(lvi);
-                    }
-                }
-
-            }
-            else
-            {
-                MessageBox.Show("Không tìm thấy học sinh phù hợp");
-            }
-        }
-
-        private void SearchListBackGroundWork_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
-        {
-            MessageBox.Show("Kết thúc tìm kiếm");
-        }
-
-        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            btnPrint.Visible = false;
-            if (e.KeyChar == (char)13)
-            {
-                Pair agr;
-                if (Helper.IsDigitsOnly(txtSearch.Text) && txtSearch.Text.Length == 8)
-                {
-                    agr = new Pair(txtSearch.Text, false);
-                }
-                else
-                {
-                    agr = new Pair(txtSearch.Text, true);
-                }
-                SearchListBackGroundWork.RunWorkerAsync(agr);
-            }
-        }
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-            string classID = cboxLop.Text;
-            DataSet ds = new DataSet();
-            if (studentController.GetDataSetPrepareToPrint(ds, classID))
-            {
-                frmStudentPrinter printer = new frmStudentPrinter(ds, classID);
-                printer.ShowDialog();
-
-            }
-        }
-
-        private void cboxLop_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            btnPrint.Visible = true;
-        }
-
         private void gridviewStudentScore_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e)
         {
 
@@ -1064,11 +529,588 @@ namespace TutteeFrame
             }
 
         }
+        #endregion
 
+        #region Custom Function
+        void LoadAfterLogin()
+        {
+            //Cắt ảnh đại diện thành hình tròn
+            System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
+            gp.AddEllipse(0, 0, pbProfilemainAvatar.Width - 1, pbProfilemainAvatar.Height - 1);
+            Region rg = new Region(gp);
+            pbProfilemainAvatar.Region = rg;
+
+            //Đổ dữ liệu 
+            mainTeacher = teacherController.usingTeacher;
+            lbName.Text = mainTeacher.SurName + " " + mainTeacher.FirstName;
+
+            //Avatar
+            pbProfilemainAvatar.Image = mainTeacher.Avatar;
+            ptbAvatar.Image = mainTeacher.Avatar;
+
+            //THÔNG TIN CÁ NHÂN
+            lbMyName.Text = string.Format("{0} {1}", mainTeacher.SurName, mainTeacher.FirstName);
+            lbImyID.Text = mainTeacher.ID;
+            lbMyaddr.Text = mainTeacher.Address;
+            lbMyemail.Text = mainTeacher.Mail;
+            lbMyfonenum.Text = mainTeacher.Phone;
+            lbSubjectTeach.Text = "Bộ môn " + mainTeacher.Subject.Name;
+            lbPosition.Text = mainTeacher.Position;
+            lbDateofbirth.Text = mainTeacher.DateBorn.ToString("dd/MM/yyyy");
+            if (mainTeacher.Sex == true)
+            {
+                lbGender.Text = "Giới tính nam";
+
+            }
+            else
+            {
+                lbGender.Text = "Giới tính nữ";
+            }
+            pictureBox13.Visible = false;
+
+
+
+            if (mainTeacher.Type == Teacher.TeacherType.Adminstrator)
+            {
+                lbBelongto.Text = "Ban giam hiệu";
+            }
+            else if (mainTeacher.Type == Teacher.TeacherType.Ministry)
+            {
+                lbBelongto.Text = "Giáo vụ";
+
+            }
+            mainTabControl.TabPages.Clear();
+            mainTabControl.TabPages.Add(tbpgProfile);
+            mainTabControl.TabPages.Add(tbpgShedule);
+            if (mainTeacher.ID == "AD999999")
+            {
+                lbBelongtoOnCard.Text = "Adminstrator";
+                mainTabControl.TabPages.Add(tbgpTeacherManagment);
+                mainTabControl.TabPages.Add(tbpgTeacherAssignment);
+                mainTabControl.TabPages.Add(tbpgClassManagment);
+                mainTabControl.TabPages.Add(tbpgStudentManagment);
+                mainTabControl.TabPages.Add(tbpgSubjectManagment);
+                mainTabControl.TabPages.Add(tbpgRewardManagment);
+                mainTabControl.TabPages.Add(tbpgStudentMarkboard);
+                mainTabControl.TabPages.Add(tbpgReport);
+                mainTeacher.Type = Teacher.TeacherType.Adminstrator;
+            }
+            else
+            {
+                switch (mainTeacher.Type)
+                {
+                    case Teacher.TeacherType.FormerTeacher:
+                        lbBelongtoOnCard.Text = "Giáo viên chủ nhiệm";
+                        mainTabControl.TabPages.Add(tbpgFormClass);
+                        mainTabControl.TabPages.Add(tbpgStudentMarkboard);
+                        break;
+                    case Teacher.TeacherType.Teacher:
+                        lbBelongtoOnCard.Text = "Giáo viên bộ môn";
+                        mainTabControl.TabPages.Add(tbpgStudentMarkboard);
+                        break;
+                    case Teacher.TeacherType.Adminstrator:
+                        mainTabControl.TabPages.Add(tbgpTeacherManagment);
+                        mainTabControl.TabPages.Add(tbpgTeacherAssignment);
+                        mainTabControl.TabPages.Add(tbpgSubjectManagment);
+                        mainTabControl.TabPages.Add(tbpgReport);
+                        lbBelongtoOnCard.Text = "Ban giám hiệu";
+                        break;
+                    case Teacher.TeacherType.Ministry:
+                        lbBelongtoOnCard.Text = "Ban giáo vụ";
+                        mainTabControl.TabPages.Add(tbpgStudentManagment);
+                        mainTabControl.TabPages.Add(tbpgClassManagment);
+                        mainTabControl.TabPages.Add(tbpgRewardManagment);
+                        mainTabControl.TabPages.Add(tbpgReport);
+                        break;
+                    default:
+                        break;
+                }
+                if (lbBelongtoOnCard.Text == "Giáo viên bộ môn" || lbBelongtoOnCard.Text == "Giáo viên chủ nhiệm")
+                {
+                    lbBelongto.Text = "Tổ " + mainTeacher.Subject.Name;
+                }
+                else
+                    lbBelongto.Text = lbBelongtoOnCard.Text;
+            }
+            LoadData();
+        }
+        BackgroundWorker loader;
+        void LoadData()
+        {
+            List<Subject> subjects = new List<Subject>();
+            loader = new BackgroundWorker();
+            loader.WorkerReportsProgress = true;
+            loader.RunWorkerCompleted += (s, e) =>
+            {
+                firstLoad = false;
+                mainProgressbar.Hide();
+                lbInformation.Hide();
+            };
+            loader.ProgressChanged += (s, e) =>
+            {
+                lbInformation.Text = (string)e.UserState;
+            };
+            mainProgressbar.Show();
+            lbInformation.Show();
+            switch (mainTeacher.Type)
+            {
+                case Teacher.TeacherType.Teacher:
+                    LoadOnTeacher();
+                    break;
+                case Teacher.TeacherType.Adminstrator:
+                    {
+                        cbbTeacherSubjectFilter.Items.Clear();
+                        cbbTeacherSubjectFilter.Items.Add("Tất cả");
+                        cbbTeacherSubjectFilter.SelectedIndex = 0;
+                        cbbTeacherRoleFilter.SelectedIndex = 0;
+                        cbbTeacherSortBy.SelectedIndex = 0;
+                        listviewTeacher.Items.Clear();
+                        lvSubjectManage.Items.Clear();
+                        int totalMinistry = 0, totalAdmin = 0, totalTeacher = 0;
+                        loader.DoWork += (s, e) =>
+                        {
+                            loader.ReportProgress(0, "Đang tải danh sách môn học...");
+                            Thread.Sleep(800);
+                            subjects = subjectController.LoadSubjects();
+                            loader.ReportProgress(0, "Đang tải danh sách giáo viên...");
+                            Thread.Sleep(800);
+                            teachers = teacherController.GetAllTeachers();
+                            teacherController.GetTeacherNumber(out totalTeacher, out totalMinistry, out totalAdmin);
+                        };
+
+                        loader.RunWorkerCompleted += (s, e) =>
+                        {
+                            lbTotalTeacher.Text = totalTeacher.ToString();
+                            lbTotalAdmin.Text = totalAdmin.ToString();
+                            lbTotalMinistry.Text = totalMinistry.ToString();
+                            int index = 1;
+                            foreach (Teacher teacher in teachers)
+                            {
+                                listviewTeacher.Items.Add(new ListViewItem(new string[] { index.ToString(),
+                                    teacher.ID,teacher.SurName + " " + teacher.FirstName,teacher.DateBorn.ToString("dd-MM-yyyy"), teacher.GetSex,
+                                    teacher.Address, teacher.Phone, teacher.Mail, teacher.Subject.Name, teacher.GetNote()
+                                }));
+                                index++;
+                            }
+                            index = 0;
+                            foreach (Subject subject in subjects)
+                            {
+                                cbbTeacherSubjectFilter.Items.Add(subject.Name);
+                                lvSubjectManage.Items.Add(new ListViewItem(new string[] { index.ToString(), subject.ID, subject.Name }));
+                                index++;
+                            }
+                        };
+
+                    }
+                    break;
+                case Teacher.TeacherType.Ministry:
+                    loader.RunWorkerCompleted += (s, e) =>
+                    {
+                        cbbStudentGrade.SelectedIndex = 0;
+                    };
+
+                    break;
+                case Teacher.TeacherType.FormerTeacher:
+                    LoadOnTeacher();
+                    break;
+                default:
+                    break;
+            }
+            loader.RunWorkerAsync();
+
+        }
+        void LoadOnTeacher()
+        {
+            bool succcess = true;
+            List<string> classes = new List<string>();
+            cbbTeachingClass.Items.Clear();
+            lbTeachingSubject.Text = mainTeacher.Subject.Name;
+            loader.DoWork += (s, e) =>
+            {
+                loader.ReportProgress(0, "Đang tải danh sách các lớp giảng dạy...");
+                succcess = teacherController.GetTeachingClass(mainTeacher.ID, classes);
+
+            };
+            loader.RunWorkerCompleted += (s, e) =>
+            {
+                if (!succcess)
+                    return;
+                foreach (string item in classes)
+                {
+                    cbbTeachingClass.Items.Add(item);
+                }
+                if (cbbTeachingClass.Items.Count > 0)
+                    cbbTeachingClass.SelectedIndex = 0;
+
+                lbTotalTeachingClass.Text = classes.Count.ToString();
+                lbScoreTittle.Text = string.Format("Bảng điểm lớp {0} - môn {1} - HK {2} - năm {3}",
+                                            cbbTeachingClass.Text, mainTeacher.Subject.Name, cbbTeachingSemester.Text, "2020");
+
+            };
+        }
+        public void LoadSubjectAgain()
+        {
+            loader = new BackgroundWorker();
+            loader.WorkerReportsProgress = true;
+            List<Subject> subjects = new List<Subject>();
+            lvSubjectManage.Enabled = false;
+            lvSubjectManage.SelectedItems.Clear();
+            loader.DoWork += (s, e) =>
+            {
+                loader.ReportProgress(0, "Đang tải danh sách môn học...");
+                Thread.Sleep(800);
+                subjects = subjectController.LoadSubjects();
+            };
+            loader.RunWorkerCompleted += (s, e) =>
+            {
+                int index = 1;
+                mainProgressbar.Hide();
+                lbInformation.Hide();
+                lvSubjectManage.Items.Clear();
+                lvSubjectManage.Enabled = true;
+                if (subjects == null)
+                {
+                    MetroMessageBox.Show(this, "Có lỗi xảy ra khi load môn học.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                foreach (Subject subject in subjects)
+                {
+                    lvSubjectManage.Items.Add(new ListViewItem(new string[] { index.ToString(), subject.ID, subject.Name }));
+                    index++;
+                }
+            };
+            loader.ProgressChanged += (s, e) =>
+            {
+                lbInformation.Text = (string)e.UserState;
+            };
+            loader.RunWorkerAsync();
+        }
+        void TeacherFilter()
+        {
+            if (teachers == null)
+            {
+                MetroMessageBox.Show(this, "Đã xảy ra lỗi.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            List<Teacher> _teachers = teacherController.SortTeacherList((TeacherController.OrderType)cbbTeacherSortBy.SelectedIndex, teachers);
+            listviewTeacher.Items.Clear();
+            if (cbbTeacherSubjectFilter.SelectedIndex != 0)
+                _teachers = teacherController.TeacherListFilterBySubject(cbbTeacherSubjectFilter.Text, _teachers);
+            if (cbbTeacherRoleFilter.SelectedIndex != 0)
+                _teachers = teacherController.TeacherListFilterByRole((Teacher.TeacherType)cbbTeacherRoleFilter.SelectedIndex, _teachers);
+            int index = 1;
+            foreach (Teacher teacher in _teachers)
+            {
+                listviewTeacher.Items.Add(new ListViewItem(new string[] { index.ToString(),
+                                    teacher.ID,teacher.SurName + " " + teacher.FirstName,teacher.DateBorn.ToString("dd-MM-yyyy"), teacher.GetSex,
+                                    teacher.Address, teacher.Phone, teacher.Mail, teacher.Subject.Name, teacher.GetNote()
+                                }));
+                index++;
+            }
+            if (string.IsNullOrEmpty(txtTeacherSearch.Text))
+                return;
+            else
+            {
+                for (int i = 0; i < listviewTeacher.Items.Count;)
+                {
+                    if (!listviewTeacher.Items[i].SubItems[1].Text.Contains(txtTeacherSearch.Text) && !listviewTeacher.Items[i].SubItems[2].Text.Contains(txtTeacherSearch.Text))
+                    {
+                        listviewTeacher.Items.RemoveAt(i);
+                        i--;
+                    }
+                    i++;
+                }
+            }
+
+        }
+        #endregion
+
+        private void materialRaisedButton1_Click(object sender, EventArgs e)
+        {
+            Student newStudent = new Student();
+            frmAddStudent NewFormAddStudent = new frmAddStudent(newStudent, true);
+            OverlayForm overlay = new OverlayForm(this, NewFormAddStudent);
+            NewFormAddStudent.Show();
+            if (NewFormAddStudent.Is_Progress_Successed)
+                studentLoader.RunWorkerAsync(cbbStudentClass.Text);
+        }
+
+        private void btnAproveAdding_Click(object sender, EventArgs e)
+        {
+            ListView.SelectedListViewItemCollection collect = listViewStudents.SelectedItems;
+            if (collect.Count > 0)
+            {
+                string studentId = collect[0].SubItems[0].Text;
+                if (studentController.DeleteStudent(studentId)) MessageBox.Show("Xóa thành công");
+                listViewStudents.Items.Clear();
+
+                studentLoader.RunWorkerAsync(cbbStudentClass.Text);
+            }
+        }
+
+
+
+        private void metroListView1_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            btnFix.PerformClick();
+        }
+        private void cboxLop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnPrint.Visible = true;
+            cbbStudentGrade.Enabled = false;
+            cbbStudentClass.Enabled = false;
+            listViewStudents.Enabled = false;
+            listViewStudents.SelectedItems.Clear();
+            studentLoader.RunWorkerAsync(cbbStudentClass.Text);
+        }
+
+
+        private void ShowListBackGroundWork_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            Thread.Sleep(500);
+            List<Student> Students =
+                (e.Argument as string).Length == 2 ?
+            studentController.GetInformationStudents(e.Argument as string, true) :
+           studentController.GetInformationStudents(e.Argument as string);
+            studentLoader.ReportProgress(0, Students);
+            int numclass = 0;
+            classController.CountNumberOfClass(ref numclass);
+            studentLoader.ReportProgress(80, numclass.ToString());
+            int numStudent = 0;
+            studentController.CountNumberOfStudent(ref numStudent);
+            studentLoader.ReportProgress(90, numStudent.ToString());
+
+        }
+
+
+        private void ShowListBackGroundWork_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+            if (e.ProgressPercentage == 80)
+                txtSumClass.Text = e.UserState.ToString();
+            else if (e.ProgressPercentage == 90)
+                txtSumStudent.Text = e.UserState.ToString();
+            else
+            {
+                List<Student> Students = e.UserState as List<Student>;
+                listViewStudents.Items.Clear();
+                foreach (var i in Students)
+                {
+                    ListViewItem lvi = new ListViewItem(i.ID);
+                    lvi.SubItems.Add(i.SurName);
+                    lvi.SubItems.Add(i.FirstName);
+                    lvi.Tag = i.DateBorn;
+                    lvi.SubItems[1].Tag = i.Avatar;
+                    lvi.SubItems.Add(i.DateBorn.ToString("dd/MM/yyyy"));
+                    lvi.SubItems.Add(i.Sex == true ? "Nam" : "Nữ");
+                    lvi.SubItems.Add(i.Address.ToString());
+                    lvi.SubItems.Add(i.Phone.ToString());
+                    lvi.SubItems.Add(i.ClassID.ToString());
+                    lvi.SubItems.Add(i.Status == true ? "Đang học" : "Đã nghỉ");
+                    if (i.PunishmentList != null)
+                    {
+                        lvi.SubItems.Add(i.PunishmentList.ToString());
+                    }
+
+                    listViewStudents.Items.Add(lvi);
+                }
+            }
+
+        }
         private void ShowListBackGroundWork_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            cbbStudentGrade.Enabled = true;
+            cbbStudentClass.Enabled = true;
+            listViewStudents.Enabled = true;
             mainProgressbar.Hide();
             lbInformation.Hide();
+        }
+        private void cbxKhoi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string khoiSelected = null;
+            khoiSelected = cbbStudentGrade.SelectedItem.ToString() != "Tất cả" ? cbbStudentGrade.SelectedItem.ToString() : "";
+            if (khoiSelected == null)
+                return;
+            lbInformation.Text = "Đang tải danh sách lớp...";
+            lbInformation.Show();
+            mainProgressbar.Show();
+            btnPrint.Visible = false;
+            cbbStudentGrade.Enabled = false;
+            cbbStudentClass.Enabled = false;
+            listViewStudents.Enabled = false;
+            listViewStudents.SelectedItems.Clear();
+            cbbStudentClass.Items.Clear();
+            List<Class> classes = new List<Class>();
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += (s, e) =>
+            {
+                Thread.Sleep(300);
+                classes = classController.GetClass(khoiSelected);
+            };
+            worker.RunWorkerCompleted += (s, e) =>
+            {
+                foreach (var i in classes)
+                {
+                    cbbStudentClass.Items.Add(i.ID);
+                }
+                lbInformation.Text = "Đang tải danh sách học sinh...";
+                studentLoader.RunWorkerAsync($"{khoiSelected}");
+            };
+            worker.RunWorkerAsync();
+
+            return;
+
+        }
+
+
+        private void CountSum()
+        {
+
+        }
+
+        private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
+        {
+        }
+
+
+        private void materialRaisedButton2_Click(object sender, EventArgs e)
+        {
+            // Lấy thông tin của học sinh đã chọn 
+            ListView.SelectedListViewItemCollection collect = listViewStudents.SelectedItems;
+            if (collect.Count >= 1)
+            {
+                ListViewItem lvi = collect[0];
+                Student st = new Student();
+                st.ID = lvi.SubItems[0].Text;
+                st.SurName = lvi.SubItems[1].Text;
+                st.FirstName = lvi.SubItems[2].Text;
+                st.DateBorn = (DateTime)lvi.Tag;
+                st.Avatar = (Image)lvi.SubItems[1].Tag;
+                if (lvi.SubItems[4].Text == "Nam")
+                {
+                    st.Sex = true;
+                }
+                else
+                {
+                    st.Sex = false;
+                }
+                st.Address = lvi.SubItems[5].Text;
+                st.Phone = lvi.SubItems[6].Text;
+                st.ClassID = lvi.SubItems[7].Text;
+                if (lvi.SubItems[8].Text == "Đang học")
+                {
+                    st.Status = true;
+                }
+                else
+                {
+                    st.Status = false;
+                }
+                if (lvi.SubItems["Kỷ luật số"] != null)
+                {
+                    st.PunishmentList = lvi.SubItems["Kỷ luật số"].Text;
+                }
+
+                frmAddStudent frmstudentnew = new frmAddStudent(st, false);
+                frmstudentnew.ShowDialog();
+                if (frmstudentnew.Is_Progress_Successed)
+                    studentLoader.RunWorkerAsync(cbbStudentClass.Text);
+            }
+        }
+        private void SearchListBackGroundWork_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            Pair arg = e.Argument as Pair;
+            List<Student> students = new List<Student>();
+            students.Add(new Student());
+            if ((arg.Second as bool?) == false && studentController.LoadStudentInformationById(arg.First as string, students[0]))
+            {
+
+            }
+
+            else
+            {
+                students = new List<Student>();
+                if ((arg.Second as bool?) == true && studentController.LoadStudentInformationByName(arg.First as string, students))
+                {
+
+                }
+                else
+                {
+                    MessageBox.Show("Tìm kiếm không thành công");
+                    return;
+                }
+
+            }
+            SearchListBackGroundWork.ReportProgress(0, students);
+        }
+
+        private void SearchListBackGroundWork_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+            listViewStudents.Items.Clear();
+            List<Student> students = e.UserState as List<Student>;
+            if (students.Count > 0)
+            {
+                foreach (Student i in students)
+                {
+                    if (i.ID != null && i.ID != "")
+                    {
+                        ListViewItem lvi = new ListViewItem(i.ID);
+                        lvi.SubItems.Add(i.SurName);
+                        lvi.SubItems.Add(i.FirstName);
+                        lvi.Tag = i.DateBorn;
+                        lvi.SubItems[1].Tag = i.Avatar;
+                        lvi.SubItems.Add(i.DateBorn.ToString("dd/MM/yyyy"));
+                        lvi.SubItems.Add(i.Sex == true ? "Nam" : "Nữ");
+                        lvi.SubItems.Add(i.Address.ToString());
+                        lvi.SubItems.Add(i.Phone.ToString());
+                        lvi.SubItems.Add(i.ClassID.ToString());
+                        lvi.SubItems.Add(i.Status == true ? "Đang học" : "Đã nghỉ");
+                        if (i.PunishmentList != null)
+                        {
+                            lvi.SubItems.Add(i.PunishmentList.ToString());
+                        }
+
+                        listViewStudents.Items.Add(lvi);
+                    }
+                }
+
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy học sinh phù hợp");
+            }
+        }
+
+        private void SearchListBackGroundWork_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+            MessageBox.Show("Kết thúc tìm kiếm");
+        }
+
+        private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            btnPrint.Visible = false;
+            if (e.KeyChar == (char)13)
+            {
+                Pair agr;
+                if (Helper.IsDigitsOnly(txtStudentSearch.Text) && txtStudentSearch.Text.Length == 8)
+                {
+                    agr = new Pair(txtStudentSearch.Text, false);
+                }
+                else
+                {
+                    agr = new Pair(txtStudentSearch.Text, true);
+                }
+                SearchListBackGroundWork.RunWorkerAsync(agr);
+            }
+        }
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            string classID = cbbStudentClass.Text;
+            DataSet ds = new DataSet();
+            if (studentController.GetDataSetPrepareToPrint(ds, classID))
+            {
+                frmStudentPrinter printer = new frmStudentPrinter(ds, classID);
+                printer.ShowDialog();
+
+            }
         }
 
         private void lvSubjectManage_DoubleClick(object sender, EventArgs e)
@@ -1097,40 +1139,6 @@ namespace TutteeFrame
 
             }
         }
-        public void LoadDataAgain()
-        {
-            loader = new BackgroundWorker();
-            loader.WorkerReportsProgress = true;
-            List<Subject> subjects = new List<Subject>();
-            loader.DoWork += (s, e) =>
-            {
-                loader.ReportProgress(0, "Đang tải danh sách môn học...");
-                Thread.Sleep(800);
-                subjects = subjectController.LoadSubjects();
-            };
-            loader.RunWorkerCompleted += (s, e) =>
-            {
-                int index = 1;
-                mainProgressbar.Hide();
-                lbInformation.Hide();
-                lvSubjectManage.Items.Clear();
-                if (subjects == null)
-                {
-                    MetroMessageBox.Show(this, "Có lỗi xảy ra khi load môn học.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                foreach (Subject subject in subjects)
-                {
-                    lvSubjectManage.Items.Add(new ListViewItem(new string[] { index.ToString(), subject.ID, subject.Name }));
-                    index++;
-                }
-            };
-            loader.ProgressChanged += (s, e) =>
-            {
-                lbInformation.Text = (string)e.UserState;
-            };
-            loader.RunWorkerAsync();
-        }
 
         private void btnDelASubject_Click(object sender, EventArgs e)
         {
@@ -1141,7 +1149,7 @@ namespace TutteeFrame
                 if (subjectController.DeleteSubject(sbj))
                 {
                     MessageBox.Show("Xóa thành công!");
-                    LoadDataAgain();
+                    LoadSubjectAgain();
                 }
                 else
                 {

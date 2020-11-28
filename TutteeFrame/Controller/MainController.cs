@@ -12,12 +12,12 @@ using TutteeFrame.DataAccess;
 
 namespace TutteeFrame.Controller
 {
-    class Controller
+    class MainController
     {
-        MainDA mainDA;
-        public Controller()
+        BaseDA mainDA;
+        public MainController()
         {
-            mainDA = new MainDA();
+            mainDA = new BaseDA();
         }
        
 
@@ -38,11 +38,6 @@ namespace TutteeFrame.Controller
             {
                 result += 1;
             }
-            return result.ToString();
-        }
-        public string GenerateTeacherID()
-        {
-            int result = (new Random()).Next(100000, 999999);
             return result.ToString();
         }
        

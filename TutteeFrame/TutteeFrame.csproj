@@ -99,7 +99,7 @@
   <ItemGroup>
     <Compile Include="Controller\AccountController.cs" />
     <Compile Include="Controller\ClassController.cs" />
-    <Compile Include="Controller\Controller.cs" />
+    <Compile Include="Controller\MainController.cs" />
     <Compile Include="Controller\Helper.cs" />
     <Compile Include="Controller\StudentController.cs" />
     <Compile Include="Controller\SubjectController.cs" />
@@ -170,7 +170,7 @@
     <Compile Include="InitHelper.cs" />
     <Compile Include="Model\Account.cs" />
     <Compile Include="Model\Class.cs" />
-    <Compile Include="DataAccess\MainDA.cs" />
+    <Compile Include="DataAccess\BaseDA.cs" />
     <Compile Include="Model\Person.cs" />
     <Compile Include="Model\Score.cs" />
     <Compile Include="Model\Student.cs" />
