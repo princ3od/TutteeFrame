@@ -64,15 +64,17 @@ namespace TutteeFrame.DataAccess
                         sqlCommand.ExecuteNonQuery();
                     }
                 }
+                int year = DateTime.Now.Year;
                 //Thêm learn-result
-                strQuery = "INSERT INTO LEARNRESULT(LearnResultID,StudentID,ScoreBoardSE01ID,ScoreBoardSE02ID,Grade) " +
-                    "VALUES(@learnid,@studentid,@board1,@board2,@grade)";
+                strQuery = "INSERT INTO LEARNRESULT(LearnResultID,StudentID,ScoreBoardSE01ID,ScoreBoardSE02ID,Grade,Year) " +
+                    "VALUES(@learnid,@studentid,@board1,@board2,@grade,@year)";
                 sqlCommand = new SqlCommand(strQuery, connection);
                 sqlCommand.Parameters.AddWithValue("@learnid", student.ID + student.GetGrade);
                 sqlCommand.Parameters.AddWithValue("@studentid", student.ID);
                 sqlCommand.Parameters.AddWithValue("@board1", student.ExactID + student.GetGrade + 1.ToString());
                 sqlCommand.Parameters.AddWithValue("@board2", student.ExactID + student.GetGrade + 2.ToString());
                 sqlCommand.Parameters.AddWithValue("@grade", student.GetGrade);
+                sqlCommand.Parameters.AddWithValue("@year", year);
                 sqlCommand.ExecuteNonQuery();
             }
             catch (Exception ex)
