@@ -94,13 +94,20 @@ namespace TutteeFrame.DataAccess
                 return false;
             try
             {
-                string strQuery = "SELECT TOP 1 * FROM STUDENT ORDER BY StudentID DESC";
+                strQuery = "SELECT COUNT(*) FROM STUDENT";
                 SqlCommand sqlCommand = new SqlCommand(strQuery, connection);
-                SqlDataReader dataReader = sqlCommand.ExecuteReader();
-
+                if ((int)sqlCommand.ExecuteScalar() <= 0)
+                {
+                    _lastStudentID = Int32.Parse(DateTime.Now.Year.ToString() + "0000");
+                    return true;
+                }
+                strQuery = "SELECT TOP 1 StudentID FROM STUDENT ORDER BY StudentID DESC";
+                sqlCommand = new SqlCommand(strQuery, connection);
+                _lastStudentID = Int32.Parse((string)sqlCommand.ExecuteScalar());
             }
             catch (Exception e)
             {
+                MessageBox.Show(e.Message);
                 return false;
             }
             finally

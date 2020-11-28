@@ -31,13 +31,24 @@ namespace TutteeFrame.Controller
         {
             return studentDA.UpdateStudent(_studentid, student);
         }
-        public bool AddNewStudentToDataBase(string _studentid, Student student)
+        public bool AddNewStudentToDataBase(Student student)
         {
             SubjectController subjectController = new SubjectController();
             List<Subject> subjects = subjectController.LoadSubjects();
-            return studentDA.AddStudent(_studentid, student, subjects);
+            bool success = studentDA.AddStudent(student);
+            if (success)
+                success = studentDA.AddStudentLearnResult(student, subjects);
+            return success;
         }
-
+        public bool AddNewStudentLearnResult(string _studentID,string _classID)
+        {
+            SubjectController subjectController = new SubjectController();
+            List<Subject> subjects = subjectController.LoadSubjects();
+            Student student = new Student();
+            student.ID = _studentID;
+            student.ClassID = _classID;
+            return studentDA.AddStudentLearnResult(student, subjects);
+        }
         public bool LoadStudentInformationById(string studentID, Student student)
         {
             return studentDA.LoadStudentByID(studentID, student);

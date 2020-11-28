@@ -12,7 +12,7 @@ namespace TutteeFrame.DataAccess
 {
     class StudentDA : BaseDA
     {
-        public bool AddStudent(string _studentid, Student student, List<Subject> _subjects)
+        public bool AddStudent(Student student)
         {
             bool success = Connect();
 
@@ -38,11 +38,28 @@ namespace TutteeFrame.DataAccess
                 sqlCommand.Parameters.AddWithValue("@punishmentlistid", string.IsNullOrEmpty(student.PunishmentList) ? (object)DBNull.Value : student.PunishmentList);
                 sqlCommand.Parameters.Add("@studentimage", SqlDbType.Image, photo.Length).Value = photo;
                 sqlCommand.ExecuteNonQuery();
-                //Cập nhật tổng số học sinh của lớp
-                strQuery = "UPDATE CLASS SET StudentNum = StudentNum + 1 WHERE ClassID = @classid";
-                sqlCommand = new SqlCommand(strQuery, connection);
-                sqlCommand.Parameters.AddWithValue("@classid", student.ClassID);
-                sqlCommand.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return true;
+        }
+        public bool AddStudentLearnResult(Student student, List<Subject> _subjects)
+        {
+            bool success = Connect();
+
+            if (!success)
+                return false;
+
+            try
+            {
+                SqlCommand sqlCommand;
                 //Thêm 2 bảng điểm
                 for (int semester = 1; semester < 3; semester++)
                 {

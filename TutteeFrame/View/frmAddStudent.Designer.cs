@@ -475,8 +475,8 @@
             // 
             // picboxStudent
             // 
-            this.picboxStudent.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picboxStudent.Image = global::TutteeFrame.Properties.Resources.user;
+            this.picboxStudent.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.picboxStudent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picboxStudent.Location = new System.Drawing.Point(317, 21);
             this.picboxStudent.Name = "picboxStudent";
             this.picboxStudent.Size = new System.Drawing.Size(122, 148);

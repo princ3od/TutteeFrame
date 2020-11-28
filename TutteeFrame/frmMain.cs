@@ -1012,7 +1012,8 @@ namespace TutteeFrame
                 }
 
                 frmAddStudent frmstudentnew = new frmAddStudent(st, false);
-                frmstudentnew.ShowDialog();
+                OverlayForm overlayForm = new OverlayForm(this, frmstudentnew);
+                frmstudentnew.Show();
                 if (frmstudentnew.Is_Progress_Successed)
                     studentLoader.RunWorkerAsync(cbbStudentClass.Text);
             }

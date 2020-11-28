@@ -26,7 +26,9 @@ namespace TutteeFrame
             studentController = new StudentController();
             studentinfor = student;
             InitializeComponent();
-            this.txtStudentID.Visible = IsNew;
+            this.txtStudentID.Enabled = false;
+            if (IsNew)
+                txtStudentID.Text = new MainController().GenerateStudentID();
             this.IsNew = IsNew;
         }
 
@@ -41,6 +43,8 @@ namespace TutteeFrame
         // Tải dữ liệu lên form
         private void frmAddStudent_Load(object sender, EventArgs e)
         {
+            if (IsNew)
+                return;
             txtSurname.Text = studentinfor.SurName == null ? "" : studentinfor.SurName;
             txtFirstName.Text = studentinfor.FirstName == null ? "" : studentinfor.FirstName;
             txtAddress.Text = studentinfor.Address == null ? "" : studentinfor.Address;
@@ -53,6 +57,8 @@ namespace TutteeFrame
             cbbKhoi.SelectedItem = studentinfor.ClassID == null ? cbbKhoi.Items[2] : studentinfor.ClassID.Substring(0, 2);
             cbbClass.SelectedItem = studentinfor.ClassID == null ? "" : studentinfor.ClassID;
             picboxStudent.Image = studentinfor.Avatar;
+            cbbKhoi.Hide();
+            label6.Hide();
         }
 
         private void cbbKhoi_SelectedIndexChanged(object sender, EventArgs e)
@@ -93,7 +99,7 @@ namespace TutteeFrame
 
         private void btnApprove_Click(object sender, EventArgs e)
         {
-            studentinfor.ID = txtStudentID.Text == "" ? null : txtStudentID.Text;
+            studentinfor.ID = txtStudentID.Text;
             studentinfor.Avatar = picboxStudent.Image;
             studentinfor.FirstName = txtFirstName.Text;
             studentinfor.SurName = txtSurname.Text;
@@ -111,7 +117,7 @@ namespace TutteeFrame
             }
             if (IsNew == true)
             {
-                if (studentController.AddNewStudentToDataBase(studentinfor.ID, studentinfor))
+                if (studentController.AddNewStudentToDataBase(studentinfor))
                 {
                     Is_Progress_Successed = true;
                     MessageBox.Show("Thêm thành công");
