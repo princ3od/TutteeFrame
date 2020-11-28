@@ -361,10 +361,11 @@ namespace TutteeFrame
             BackgroundWorker scoreLoaderr = new BackgroundWorker();
             Dictionary<string, List<Score>> scoreList = new Dictionary<string, List<Score>>();
             int _semes = Int32.Parse(cbbTeachingSemester.Text);
+            int grade = Int32.Parse(cbbTeachingClass.Text.Substring(0, 2));
             scoreLoaderr.DoWork += (s, e) =>
             {
                 StudentController studentController = new StudentController();
-                scoreList = studentController.GetStudentListScore(students, mainTeacher.Subject.ID, _semes);
+                scoreList = studentController.GetStudentListScore(students, mainTeacher.Subject.ID, _semes, grade);
             };
             scoreLoaderr.RunWorkerCompleted += (s, e) =>
             {
@@ -410,6 +411,7 @@ namespace TutteeFrame
                     }
             }
             int _semes = Int32.Parse(cbbTeachingSemester.Text);
+            int grade = Int32.Parse(cbbTeachingClass.Text.Substring(0, 2));
             BackgroundWorker updater = new BackgroundWorker();
             bool success = true;
             lbInformation.Text = "Đang cập nhật điểm...";
@@ -418,7 +420,7 @@ namespace TutteeFrame
             updater.DoWork += (s, e) =>
             {
                 Thread.Sleep(800);
-                success = studentController.UpdateStudentScore(gridviewStudentScore.Rows, mainTeacher.Subject.ID, _semes);
+                success = studentController.UpdateStudentScore(gridviewStudentScore.Rows, mainTeacher.Subject.ID, _semes, grade);
             };
             updater.RunWorkerCompleted += (s, e) =>
             {
@@ -852,11 +854,11 @@ namespace TutteeFrame
 
         private void metroListView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            btnFix.PerformClick();
+            btnUpdateStudent.PerformClick();
         }
         private void cboxLop_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnPrint.Visible = true;
+            btnPrintStudent.Visible = true;
             cbbStudentGrade.Enabled = false;
             cbbStudentClass.Enabled = false;
             listViewStudents.Enabled = false;
@@ -933,7 +935,7 @@ namespace TutteeFrame
             lbInformation.Text = "Đang tải danh sách lớp...";
             lbInformation.Show();
             mainProgressbar.Show();
-            btnPrint.Visible = false;
+            btnPrintStudent.Visible = false;
             cbbStudentGrade.Enabled = false;
             cbbStudentClass.Enabled = false;
             listViewStudents.Enabled = false;
@@ -1086,7 +1088,7 @@ namespace TutteeFrame
 
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
-            btnPrint.Visible = false;
+            btnPrintStudent.Visible = false;
             if (e.KeyChar == (char)13)
             {
                 Pair agr;

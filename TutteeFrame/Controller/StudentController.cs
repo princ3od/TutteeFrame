@@ -33,7 +33,9 @@ namespace TutteeFrame.Controller
         }
         public bool AddNewStudentToDataBase(string _studentid, Student student)
         {
-            return studentDA.AddStudent(_studentid, student);
+            SubjectController subjectController = new SubjectController();
+            List<Subject> subjects = subjectController.LoadSubjects();
+            return studentDA.AddStudent(_studentid, student, subjects);
         }
 
         public bool LoadStudentInformationById(string studentID, Student student)
@@ -60,19 +62,19 @@ namespace TutteeFrame.Controller
             return studentDA.GetDataSetPrepareToPrint(input, classID);
         }
 
-        public Dictionary<string, List<Score>> GetStudentListScore(List<Student> _students, string _subjectID, int _sem)
+        public Dictionary<string, List<Score>> GetStudentListScore(List<Student> _students, string _subjectID, int _sem, int _grade)
         {
             Dictionary<string, List<Score>> result = new Dictionary<string, List<Score>>();
             foreach (Student student in _students)
             {
                 List<Score> scores = new List<Score>();
-                studentDA.GetStudentScore(student.ID, _subjectID, _sem, scores);
+                studentDA.GetStudentScore(student.ID, _subjectID, _sem, _grade, scores);
                 result.Add(student.ID, scores);
             }
             return result;
         }
 
-        public bool UpdateStudentScore(DataGridViewRowCollection rows, string _subjectid, int _semester)
+        public bool UpdateStudentScore(DataGridViewRowCollection rows, string _subjectid, int _semester, int _grade)
         {
             string studentid = "";
             bool success = true;
@@ -102,9 +104,9 @@ namespace TutteeFrame.Controller
                 score.Value = (row.Cells[11].Value == null) ? -1 : Double.Parse(row.Cells[11].Value.ToString());
                 scores.Add(score);
                 if (success)
-                    success = studentDA.UpdateStudentScore(studentid, _subjectid, _semester, scores);
+                    success = studentDA.UpdateStudentScore(studentid, _subjectid, _semester, _grade, scores);
                 else
-                    studentDA.UpdateStudentScore(studentid, _subjectid, _semester, scores);
+                    studentDA.UpdateStudentScore(studentid, _subjectid, _semester, _grade, scores);
             }
             return success;
         }

@@ -101,17 +101,17 @@
             this.studentClassID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.studentStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colKyluat = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnAdd = new Material_Design_for_Winform.MaterialRaisedButton();
+            this.btnAddStudent = new Material_Design_for_Winform.MaterialRaisedButton();
             this.cbbStudentClass = new MaterialSkin.Controls.MaterialComboBox();
             this.txtStudentSearch = new MaterialSkin.Controls.MaterialTextBox();
             this.cbbStudentGrade = new MaterialSkin.Controls.MaterialComboBox();
             this.lbTotalStudentTittle = new System.Windows.Forms.Label();
-            this.btnDel = new Material_Design_for_Winform.MaterialRaisedButton();
-            this.btnFix = new Material_Design_for_Winform.MaterialRaisedButton();
+            this.btnDeleteStudent = new Material_Design_for_Winform.MaterialRaisedButton();
+            this.btnUpdateStudent = new Material_Design_for_Winform.MaterialRaisedButton();
             this.txtSumStudent = new MetroFramework.Controls.MetroLabel();
             this.lbFrmSumClass = new System.Windows.Forms.Label();
             this.txtSumClass = new MetroFramework.Controls.MetroLabel();
-            this.btnPrint = new Material_Design_for_Winform.MaterialRaisedButton();
+            this.btnPrintStudent = new Material_Design_for_Winform.MaterialRaisedButton();
             this.tbpgStudentMarkboard = new System.Windows.Forms.TabPage();
             this.label6 = new System.Windows.Forms.Label();
             this.lbLockScoreboardInform = new System.Windows.Forms.Label();
@@ -632,10 +632,10 @@
             // tbpgShedule
             // 
             this.tbpgShedule.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgShedule.Location = new System.Drawing.Point(4, 22);
+            this.tbpgShedule.Location = new System.Drawing.Point(4, 24);
             this.tbpgShedule.Name = "tbpgShedule";
             this.tbpgShedule.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgShedule.Size = new System.Drawing.Size(1133, 596);
+            this.tbpgShedule.Size = new System.Drawing.Size(1133, 594);
             this.tbpgShedule.TabIndex = 1;
             this.tbpgShedule.Text = "thời khóa biểu";
             this.tbpgShedule.UseVisualStyleBackColor = true;
@@ -673,7 +673,7 @@
             this.btnAutoColumn.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAutoColumn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnAutoColumn.Icon = null;
-            this.btnAutoColumn.Location = new System.Drawing.Point(1010, 532);
+            this.btnAutoColumn.Location = new System.Drawing.Point(1010, 530);
             this.btnAutoColumn.Name = "btnAutoColumn";
             this.btnAutoColumn.Size = new System.Drawing.Size(108, 36);
             this.btnAutoColumn.TabIndex = 43;
@@ -757,7 +757,7 @@
             this.listviewTeacher.MouseState = MaterialSkin.MouseState.OUT;
             this.listviewTeacher.Name = "listviewTeacher";
             this.listviewTeacher.OwnerDraw = true;
-            this.listviewTeacher.Size = new System.Drawing.Size(1119, 401);
+            this.listviewTeacher.Size = new System.Drawing.Size(1119, 399);
             this.listviewTeacher.TabIndex = 13;
             this.listviewTeacher.UseCompatibleStateImageBehavior = false;
             this.listviewTeacher.View = System.Windows.Forms.View.Details;
@@ -824,7 +824,7 @@
             this.btnDeleteTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnDeleteTeacher.Icon = null;
-            this.btnDeleteTeacher.Location = new System.Drawing.Point(862, 524);
+            this.btnDeleteTeacher.Location = new System.Drawing.Point(862, 522);
             this.btnDeleteTeacher.Name = "btnDeleteTeacher";
             this.btnDeleteTeacher.Radius = 2;
             this.btnDeleteTeacher.ShadowDepth = 3;
@@ -846,7 +846,7 @@
             this.btnUpdateTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdateTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnUpdateTeacher.Icon = null;
-            this.btnUpdateTeacher.Location = new System.Drawing.Point(198, 524);
+            this.btnUpdateTeacher.Location = new System.Drawing.Point(198, 522);
             this.btnUpdateTeacher.Name = "btnUpdateTeacher";
             this.btnUpdateTeacher.Radius = 2;
             this.btnUpdateTeacher.ShadowDepth = 3;
@@ -868,7 +868,7 @@
             this.btnAddTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnAddTeacher.Icon = null;
-            this.btnAddTeacher.Location = new System.Drawing.Point(50, 524);
+            this.btnAddTeacher.Location = new System.Drawing.Point(50, 522);
             this.btnAddTeacher.Name = "btnAddTeacher";
             this.btnAddTeacher.Radius = 2;
             this.btnAddTeacher.ShadowDepth = 3;
@@ -1013,17 +1013,17 @@
             // 
             this.tbpgStudentManagment.BackColor = System.Drawing.Color.White;
             this.tbpgStudentManagment.Controls.Add(this.listViewStudents);
-            this.tbpgStudentManagment.Controls.Add(this.btnAdd);
+            this.tbpgStudentManagment.Controls.Add(this.btnAddStudent);
             this.tbpgStudentManagment.Controls.Add(this.cbbStudentClass);
             this.tbpgStudentManagment.Controls.Add(this.txtStudentSearch);
             this.tbpgStudentManagment.Controls.Add(this.cbbStudentGrade);
             this.tbpgStudentManagment.Controls.Add(this.lbTotalStudentTittle);
-            this.tbpgStudentManagment.Controls.Add(this.btnDel);
-            this.tbpgStudentManagment.Controls.Add(this.btnFix);
+            this.tbpgStudentManagment.Controls.Add(this.btnDeleteStudent);
+            this.tbpgStudentManagment.Controls.Add(this.btnUpdateStudent);
             this.tbpgStudentManagment.Controls.Add(this.txtSumStudent);
             this.tbpgStudentManagment.Controls.Add(this.lbFrmSumClass);
             this.tbpgStudentManagment.Controls.Add(this.txtSumClass);
-            this.tbpgStudentManagment.Controls.Add(this.btnPrint);
+            this.tbpgStudentManagment.Controls.Add(this.btnPrintStudent);
             this.tbpgStudentManagment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbpgStudentManagment.Location = new System.Drawing.Point(4, 24);
             this.tbpgStudentManagment.Name = "tbpgStudentManagment";
@@ -1126,25 +1126,25 @@
             this.colKyluat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.colKyluat.Width = 120;
             // 
-            // btnAdd
+            // btnAddStudent
             // 
-            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAdd.BackColor = System.Drawing.Color.Transparent;
-            this.btnAdd.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.btnAdd.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
-            this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnAdd.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
-            this.btnAdd.Icon = null;
-            this.btnAdd.Location = new System.Drawing.Point(23, 532);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Radius = 2;
-            this.btnAdd.ShadowDepth = 3;
-            this.btnAdd.ShadowOpacity = 35;
-            this.btnAdd.Size = new System.Drawing.Size(159, 56);
-            this.btnAdd.TabIndex = 45;
-            this.btnAdd.Text = "Thêm học sinh";
-            this.btnAdd.TextAlign = System.Drawing.StringAlignment.Center;
-            this.btnAdd.Click += new System.EventHandler(this.materialRaisedButton1_Click);
+            this.btnAddStudent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAddStudent.BackColor = System.Drawing.Color.Transparent;
+            this.btnAddStudent.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnAddStudent.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.btnAddStudent.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnAddStudent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.btnAddStudent.Icon = null;
+            this.btnAddStudent.Location = new System.Drawing.Point(23, 532);
+            this.btnAddStudent.Name = "btnAddStudent";
+            this.btnAddStudent.Radius = 2;
+            this.btnAddStudent.ShadowDepth = 3;
+            this.btnAddStudent.ShadowOpacity = 35;
+            this.btnAddStudent.Size = new System.Drawing.Size(159, 56);
+            this.btnAddStudent.TabIndex = 45;
+            this.btnAddStudent.Text = "Thêm học sinh";
+            this.btnAddStudent.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnAddStudent.Click += new System.EventHandler(this.materialRaisedButton1_Click);
             // 
             // cbbStudentClass
             // 
@@ -1230,45 +1230,45 @@
             this.lbTotalStudentTittle.TabIndex = 10;
             this.lbTotalStudentTittle.Text = "Tổng số học sinh";
             // 
-            // btnDel
+            // btnDeleteStudent
             // 
-            this.btnDel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDel.BackColor = System.Drawing.Color.Transparent;
-            this.btnDel.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.btnDel.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
-            this.btnDel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnDel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
-            this.btnDel.Icon = null;
-            this.btnDel.Location = new System.Drawing.Point(776, 532);
-            this.btnDel.Name = "btnDel";
-            this.btnDel.Radius = 2;
-            this.btnDel.ShadowDepth = 3;
-            this.btnDel.ShadowOpacity = 35;
-            this.btnDel.Size = new System.Drawing.Size(159, 56);
-            this.btnDel.TabIndex = 45;
-            this.btnDel.Text = "Xóa học sinh";
-            this.btnDel.TextAlign = System.Drawing.StringAlignment.Center;
-            this.btnDel.Click += new System.EventHandler(this.btnAproveAdding_Click);
+            this.btnDeleteStudent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteStudent.BackColor = System.Drawing.Color.Transparent;
+            this.btnDeleteStudent.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnDeleteStudent.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.btnDeleteStudent.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnDeleteStudent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.btnDeleteStudent.Icon = null;
+            this.btnDeleteStudent.Location = new System.Drawing.Point(776, 532);
+            this.btnDeleteStudent.Name = "btnDeleteStudent";
+            this.btnDeleteStudent.Radius = 2;
+            this.btnDeleteStudent.ShadowDepth = 3;
+            this.btnDeleteStudent.ShadowOpacity = 35;
+            this.btnDeleteStudent.Size = new System.Drawing.Size(159, 56);
+            this.btnDeleteStudent.TabIndex = 45;
+            this.btnDeleteStudent.Text = "Xóa học sinh";
+            this.btnDeleteStudent.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnDeleteStudent.Click += new System.EventHandler(this.btnAproveAdding_Click);
             // 
-            // btnFix
+            // btnUpdateStudent
             // 
-            this.btnFix.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnFix.BackColor = System.Drawing.Color.Transparent;
-            this.btnFix.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.btnFix.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
-            this.btnFix.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnFix.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
-            this.btnFix.Icon = null;
-            this.btnFix.Location = new System.Drawing.Point(188, 532);
-            this.btnFix.Name = "btnFix";
-            this.btnFix.Radius = 2;
-            this.btnFix.ShadowDepth = 3;
-            this.btnFix.ShadowOpacity = 35;
-            this.btnFix.Size = new System.Drawing.Size(223, 56);
-            this.btnFix.TabIndex = 45;
-            this.btnFix.Text = "Sửa thông tin học sinh";
-            this.btnFix.TextAlign = System.Drawing.StringAlignment.Center;
-            this.btnFix.Click += new System.EventHandler(this.materialRaisedButton2_Click);
+            this.btnUpdateStudent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnUpdateStudent.BackColor = System.Drawing.Color.Transparent;
+            this.btnUpdateStudent.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnUpdateStudent.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.btnUpdateStudent.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnUpdateStudent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.btnUpdateStudent.Icon = null;
+            this.btnUpdateStudent.Location = new System.Drawing.Point(188, 532);
+            this.btnUpdateStudent.Name = "btnUpdateStudent";
+            this.btnUpdateStudent.Radius = 2;
+            this.btnUpdateStudent.ShadowDepth = 3;
+            this.btnUpdateStudent.ShadowOpacity = 35;
+            this.btnUpdateStudent.Size = new System.Drawing.Size(223, 56);
+            this.btnUpdateStudent.TabIndex = 45;
+            this.btnUpdateStudent.Text = "Sửa thông tin học sinh";
+            this.btnUpdateStudent.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnUpdateStudent.Click += new System.EventHandler(this.materialRaisedButton2_Click);
             // 
             // txtSumStudent
             // 
@@ -1312,25 +1312,25 @@
             this.txtSumClass.UseCustomBackColor = true;
             this.txtSumClass.UseCustomForeColor = true;
             // 
-            // btnPrint
+            // btnPrintStudent
             // 
-            this.btnPrint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrint.BackColor = System.Drawing.Color.Transparent;
-            this.btnPrint.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.btnPrint.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
-            this.btnPrint.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.btnPrint.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
-            this.btnPrint.Icon = null;
-            this.btnPrint.Location = new System.Drawing.Point(941, 532);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Radius = 2;
-            this.btnPrint.ShadowDepth = 3;
-            this.btnPrint.ShadowOpacity = 35;
-            this.btnPrint.Size = new System.Drawing.Size(147, 56);
-            this.btnPrint.TabIndex = 45;
-            this.btnPrint.Text = "In danh sách";
-            this.btnPrint.TextAlign = System.Drawing.StringAlignment.Center;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            this.btnPrintStudent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPrintStudent.BackColor = System.Drawing.Color.Transparent;
+            this.btnPrintStudent.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnPrintStudent.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.btnPrintStudent.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnPrintStudent.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.btnPrintStudent.Icon = null;
+            this.btnPrintStudent.Location = new System.Drawing.Point(941, 532);
+            this.btnPrintStudent.Name = "btnPrintStudent";
+            this.btnPrintStudent.Radius = 2;
+            this.btnPrintStudent.ShadowDepth = 3;
+            this.btnPrintStudent.ShadowOpacity = 35;
+            this.btnPrintStudent.Size = new System.Drawing.Size(147, 56);
+            this.btnPrintStudent.TabIndex = 45;
+            this.btnPrintStudent.Text = "In danh sách";
+            this.btnPrintStudent.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnPrintStudent.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // tbpgStudentMarkboard
             // 
@@ -1359,7 +1359,7 @@
             this.label6.BackColor = System.Drawing.Color.White;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.label6.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label6.Location = new System.Drawing.Point(670, 2);
+            this.label6.Location = new System.Drawing.Point(670, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(453, 19);
             this.label6.TabIndex = 27;
@@ -1371,7 +1371,7 @@
             this.lbLockScoreboardInform.AutoSize = true;
             this.lbLockScoreboardInform.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
             this.lbLockScoreboardInform.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lbLockScoreboardInform.Location = new System.Drawing.Point(31, 527);
+            this.lbLockScoreboardInform.Location = new System.Drawing.Point(31, 525);
             this.lbLockScoreboardInform.Name = "lbLockScoreboardInform";
             this.lbLockScoreboardInform.Size = new System.Drawing.Size(161, 20);
             this.lbLockScoreboardInform.TabIndex = 14;
@@ -1389,7 +1389,7 @@
             this.btnApproveUpdateScore.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnApproveUpdateScore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnApproveUpdateScore.Icon = null;
-            this.btnApproveUpdateScore.Location = new System.Drawing.Point(804, 527);
+            this.btnApproveUpdateScore.Location = new System.Drawing.Point(804, 525);
             this.btnApproveUpdateScore.Name = "btnApproveUpdateScore";
             this.btnApproveUpdateScore.Radius = 2;
             this.btnApproveUpdateScore.ShadowDepth = 3;
@@ -1564,9 +1564,8 @@
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.gridviewStudentScore.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.gridviewStudentScore.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.gridviewStudentScore.Size = new System.Drawing.Size(1114, 409);
+            this.gridviewStudentScore.Size = new System.Drawing.Size(1114, 407);
             this.gridviewStudentScore.TabIndex = 0;
-            this.gridviewStudentScore.CellBeginEdit += new System.Windows.Forms.DataGridViewCellCancelEventHandler(this.gridviewStudentScore_CellBeginEdit);
             this.gridviewStudentScore.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridviewStudentScore_CellEndEdit);
             this.gridviewStudentScore.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.gridviewStudentScore_EditingControlShowing);
             // 
@@ -1676,7 +1675,7 @@
             this.lvSubjectManage.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.lvSubjectManage.FullRowSelect = true;
             this.lvSubjectManage.HideSelection = false;
-            this.lvSubjectManage.Location = new System.Drawing.Point(25, 113);
+            this.lvSubjectManage.Location = new System.Drawing.Point(25, 111);
             this.lvSubjectManage.MinimumSize = new System.Drawing.Size(200, 100);
             this.lvSubjectManage.MouseLocation = new System.Drawing.Point(-1, -1);
             this.lvSubjectManage.MouseState = MaterialSkin.MouseState.OUT;
@@ -1776,9 +1775,9 @@
             // tbpgRewardManagment
             // 
             this.tbpgRewardManagment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgRewardManagment.Location = new System.Drawing.Point(4, 22);
+            this.tbpgRewardManagment.Location = new System.Drawing.Point(4, 24);
             this.tbpgRewardManagment.Name = "tbpgRewardManagment";
-            this.tbpgRewardManagment.Size = new System.Drawing.Size(1133, 596);
+            this.tbpgRewardManagment.Size = new System.Drawing.Size(1133, 594);
             this.tbpgRewardManagment.TabIndex = 9;
             this.tbpgRewardManagment.Text = "quản lí khen thưởng";
             this.tbpgRewardManagment.UseVisualStyleBackColor = true;
@@ -1786,9 +1785,9 @@
             // tbpgReport
             // 
             this.tbpgReport.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgReport.Location = new System.Drawing.Point(4, 22);
+            this.tbpgReport.Location = new System.Drawing.Point(4, 24);
             this.tbpgReport.Name = "tbpgReport";
-            this.tbpgReport.Size = new System.Drawing.Size(1133, 596);
+            this.tbpgReport.Size = new System.Drawing.Size(1133, 594);
             this.tbpgReport.TabIndex = 6;
             this.tbpgReport.Text = "báo cáo";
             this.tbpgReport.UseVisualStyleBackColor = true;
@@ -1796,9 +1795,9 @@
             // tbpgFormClass
             // 
             this.tbpgFormClass.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgFormClass.Location = new System.Drawing.Point(4, 22);
+            this.tbpgFormClass.Location = new System.Drawing.Point(4, 24);
             this.tbpgFormClass.Name = "tbpgFormClass";
-            this.tbpgFormClass.Size = new System.Drawing.Size(1133, 596);
+            this.tbpgFormClass.Size = new System.Drawing.Size(1133, 594);
             this.tbpgFormClass.TabIndex = 10;
             this.tbpgFormClass.Text = "lớp chủ nhiệm";
             this.tbpgFormClass.UseVisualStyleBackColor = true;
@@ -2327,9 +2326,9 @@
         private System.Windows.Forms.ColumnHeader studentPhone;
         private System.Windows.Forms.ColumnHeader studentClassID;
         private System.Windows.Forms.ColumnHeader studentStatus;
-        private Material_Design_for_Winform.MaterialRaisedButton btnAdd;
-        private Material_Design_for_Winform.MaterialRaisedButton btnFix;
-        private Material_Design_for_Winform.MaterialRaisedButton btnDel;
+        private Material_Design_for_Winform.MaterialRaisedButton btnAddStudent;
+        private Material_Design_for_Winform.MaterialRaisedButton btnUpdateStudent;
+        private Material_Design_for_Winform.MaterialRaisedButton btnDeleteStudent;
         private System.Windows.Forms.ColumnHeader colKyluat;
         private MaterialSkin.Controls.MaterialTextBox txtStudentSearch;
         private MaterialSkin.Controls.MaterialComboBox cbbStudentClass;
@@ -2337,7 +2336,7 @@
         private MetroFramework.Controls.MetroLabel txtSumStudent;
         private MetroFramework.Controls.MetroLabel txtSumClass;
         private System.ComponentModel.BackgroundWorker SearchListBackGroundWork;
-        private Material_Design_for_Winform.MaterialRaisedButton btnPrint;
+        private Material_Design_for_Winform.MaterialRaisedButton btnPrintStudent;
         private MaterialSkin.Controls.MaterialLabel lbTotalAdmin;
         private MaterialSkin.Controls.MaterialLabel lbTotalMinistry;
         private MaterialSkin.Controls.MaterialLabel lbTotalTeacher;

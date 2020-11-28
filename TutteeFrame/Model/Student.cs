@@ -24,6 +24,14 @@ namespace TutteeFrame.Model
         public string PunishmentList { get => punishmentlist; set => punishmentlist = value; }
         public bool Status { get => status; set => status = value; }
 
+        public string ExactID
+        {
+            get => iD.Substring(4, 4);
+        }
+        public string GetGrade
+        {
+            get => classID.Substring(0, 2);
+        }
 
     }
 }

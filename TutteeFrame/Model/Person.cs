@@ -8,15 +8,15 @@ namespace TutteeFrame.Model
 {
     public class Person
     {
-        private string iD;
-        private string surName;
-        private string firstName;
-        private string address;
-        private string mail;
-        private string phone;
-        private DateTime dateBorn;
-        private bool sex;
-        private Image avatar;
+        protected string iD;
+        protected string surName;
+        protected string firstName;
+        protected string address;
+        protected string mail;
+        protected string phone;
+        protected DateTime dateBorn;
+        protected bool sex;
+        protected Image avatar;
 
         public Person()
         {

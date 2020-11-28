@@ -12,7 +12,7 @@ namespace TutteeFrame.DataAccess
 {
     class StudentDA : BaseDA
     {
-        public bool AddStudent(string _studentid, Student student)
+        public bool AddStudent(string _studentid, Student student, List<Subject> _subjects)
         {
             bool success = Connect();
 
@@ -20,22 +20,59 @@ namespace TutteeFrame.DataAccess
                 return false;
 
             byte[] photo = ImageHelper.ImageToBytes(student.Avatar);
-            string query = "INSERT INTO STUDENT(StudentID,Surname,FirstName,DateBorn,Sex,Address,Phonne,ClassID,Status,PunishmentListID,StudentImage) " +
-                "VALUES(@studentid,@surname,@firstname,@dateborn,@sex,@address,@phone,@classid,@status,@punishmentlistid,@studentimage)";
-            SqlCommand sqlCommand = new SqlCommand(query, connection);
-            sqlCommand.Parameters.AddWithValue("@studentid", student.ID);
-            sqlCommand.Parameters.AddWithValue("@surname", student.SurName);
-            sqlCommand.Parameters.AddWithValue("@firstname", student.FirstName);
-            sqlCommand.Parameters.AddWithValue("@dateborn", student.DateBorn);
-            sqlCommand.Parameters.AddWithValue("@sex", student.Sex);
-            sqlCommand.Parameters.AddWithValue("@phone", student.Phone);
-            sqlCommand.Parameters.AddWithValue("@classid", student.ClassID);
-            sqlCommand.Parameters.AddWithValue("@address", student.Address);
-            sqlCommand.Parameters.AddWithValue("@status", student.Status);
-            sqlCommand.Parameters.AddWithValue("@punishmentlistid", string.IsNullOrEmpty(student.PunishmentList) ? (object)DBNull.Value : student.PunishmentList);
-            sqlCommand.Parameters.Add("@studentimage", SqlDbType.Image, photo.Length).Value = photo;
+
             try
             {
+                strQuery = "INSERT INTO STUDENT(StudentID,Surname,FirstName,DateBorn,Sex,Address,Phonne,ClassID,Status,PunishmentListID,StudentImage) " +
+                "VALUES(@studentid,@surname,@firstname,@dateborn,@sex,@address,@phone,@classid,@status,@punishmentlistid,@studentimage)";
+                SqlCommand sqlCommand = new SqlCommand(strQuery, connection);
+                sqlCommand.Parameters.AddWithValue("@studentid", student.ID);
+                sqlCommand.Parameters.AddWithValue("@surname", student.SurName);
+                sqlCommand.Parameters.AddWithValue("@firstname", student.FirstName);
+                sqlCommand.Parameters.AddWithValue("@dateborn", student.DateBorn);
+                sqlCommand.Parameters.AddWithValue("@sex", student.Sex);
+                sqlCommand.Parameters.AddWithValue("@phone", student.Phone);
+                sqlCommand.Parameters.AddWithValue("@classid", student.ClassID);
+                sqlCommand.Parameters.AddWithValue("@address", student.Address);
+                sqlCommand.Parameters.AddWithValue("@status", student.Status);
+                sqlCommand.Parameters.AddWithValue("@punishmentlistid", string.IsNullOrEmpty(student.PunishmentList) ? (object)DBNull.Value : student.PunishmentList);
+                sqlCommand.Parameters.Add("@studentimage", SqlDbType.Image, photo.Length).Value = photo;
+                sqlCommand.ExecuteNonQuery();
+                //Cập nhật tổng số học sinh của lớp
+                strQuery = "UPDATE CLASS SET StudentNum = StudentNum + 1 WHERE ClassID = @classid";
+                sqlCommand = new SqlCommand(strQuery, connection);
+                sqlCommand.Parameters.AddWithValue("@classid", student.ClassID);
+                sqlCommand.ExecuteNonQuery();
+                //Thêm 2 bảng điểm
+                for (int semester = 1; semester < 3; semester++)
+                {
+                    string boardID = student.ExactID + student.GetGrade + semester.ToString();
+                    strQuery = "INSERT INTO SCOREBOARD(ScoreBoardID,StudentID,Semester) VALUES(@scoardboardid,@studentid,@semester)";
+                    sqlCommand = new SqlCommand(strQuery, connection);
+                    sqlCommand.Parameters.AddWithValue("@scoardboardid", boardID);
+                    sqlCommand.Parameters.AddWithValue("@studentid", student.ID);
+                    sqlCommand.Parameters.AddWithValue("@semester", semester);
+                    sqlCommand.ExecuteNonQuery();
+
+                    strQuery = "INSERT INTO SUBJECTSCORE(SubjectScoreID,ScoreBoardID,SubjectID) VALUES(@subjectscoreid,@board,@subjectid)";
+                    foreach (Subject subject in _subjects)
+                    {
+                        sqlCommand = new SqlCommand(strQuery, connection);
+                        sqlCommand.Parameters.AddWithValue("@subjectscoreid", boardID + subject.ID);
+                        sqlCommand.Parameters.AddWithValue("@board", boardID);
+                        sqlCommand.Parameters.AddWithValue("@subjectid", subject.ID);
+                        sqlCommand.ExecuteNonQuery();
+                    }
+                }
+                //Thêm learn-result
+                strQuery = "INSERT INTO LEARNRESULT(LearnResultID,StudentID,ScoreBoardSE01ID,ScoreBoardSE02ID,Grade) " +
+                    "VALUES(@learnid,@studentid,@board1,@board2,@grade)";
+                sqlCommand = new SqlCommand(strQuery, connection);
+                sqlCommand.Parameters.AddWithValue("@learnid", student.ID + student.GetGrade);
+                sqlCommand.Parameters.AddWithValue("@studentid", student.ID);
+                sqlCommand.Parameters.AddWithValue("@board1", student.ExactID + student.GetGrade + 1.ToString());
+                sqlCommand.Parameters.AddWithValue("@board2", student.ExactID + student.GetGrade + 2.ToString());
+                sqlCommand.Parameters.AddWithValue("@grade", student.GetGrade);
                 sqlCommand.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -279,11 +316,50 @@ namespace TutteeFrame.DataAccess
                 return false;
             try
             {
+                strQuery = "SELECT ScoreBoardID FROM SCOREBOARD WHERE StudentID = @studentid";
+                SqlCommand sqlCommand = new SqlCommand(strQuery, connection);
+                sqlCommand.Parameters.AddWithValue("@studentid", _studentID);
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
+                List<string> boards = new List<string>();
+                while (sqlDataReader.Read())
+                    boards.Add(sqlDataReader.GetString(0));
+                sqlDataReader.Close();
+                //Xóa SUBJECTSCORE
+                foreach (string board in boards)
+                {
+                    strQuery = $"DELETE FROM SUBJECTSCORE WHERE ScoreBoardID = @board";
+                    sqlCommand = new SqlCommand(strQuery, connection);
+                    sqlCommand.Parameters.AddWithValue("@board", board);
+                    sqlCommand.ExecuteNonQuery();
+                }
+                //Xóa LEANRESULT
+                strQuery = $"DELETE FROM LEARNRESULT WHERE StudentID = @studentid";
+                sqlCommand = new SqlCommand(strQuery, connection);
+                sqlCommand.Parameters.AddWithValue("@studentid", _studentID);
+                sqlCommand.ExecuteNonQuery();
+                //Xóa SCOREBOARD
+                foreach (string board in boards)
+                {
+                    strQuery = $"DELETE FROM SCOREBOARD WHERE ScoreBoardID = @board";
+                    sqlCommand = new SqlCommand(strQuery, connection);
+                    sqlCommand.Parameters.AddWithValue("@board", board);
+                    sqlCommand.ExecuteNonQuery();
+                }
+                //Xóa học sinh
+                strQuery = $"SELECT ClassID FROM STUDENT WHERE STUDENT.StudentID = @studentid";
+                sqlCommand = new SqlCommand(strQuery, connection);
+                sqlCommand.Parameters.AddWithValue("@studentid", _studentID);
+                string classID = (string)sqlCommand.ExecuteScalar();
                 strQuery = $"DELETE FROM STUDENT WHERE STUDENT.StudentID = @studentid";
-                SqlCommand cmd = connection.CreateCommand();
-                cmd.CommandText = strQuery;
-                cmd.Parameters.AddWithValue("studentid", _studentID);
-                cmd.ExecuteNonQuery();
+                sqlCommand = connection.CreateCommand();
+                sqlCommand.CommandText = strQuery;
+                sqlCommand.Parameters.AddWithValue("@studentid", _studentID);
+                sqlCommand.ExecuteNonQuery();
+                //Cập nhật tổng số học sinh của lớp
+                strQuery = "UPDATE CLASS SET StudentNum = StudentNum + 1 WHERE ClassID = @classid";
+                sqlCommand = new SqlCommand(strQuery, connection);
+                sqlCommand.Parameters.AddWithValue("@classid", classID);
+                sqlCommand.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
@@ -347,7 +423,7 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
-        public bool GetStudentScore(string _studentID, string _subjectID, int _semester, List<Score> _scores)
+        public bool GetStudentScore(string _studentID, string _subjectID, int _semester, int _grade, List<Score> _scores)
         {
             bool success = Connect();
 
@@ -357,9 +433,10 @@ namespace TutteeFrame.DataAccess
             try
             {
                 string[] scoreboardClm = { "ScoreBoardSE01ID", "ScoreBoardSE02ID" };
-                strQuery = $"SELECT {scoreboardClm[_semester - 1]} FROM LEARNRESULT WHERE StudentID = @studentid";
+                strQuery = $"SELECT {scoreboardClm[_semester - 1]} FROM LEARNRESULT WHERE StudentID = @studentid AND Grade = @grade";
                 SqlCommand command = new SqlCommand(strQuery, connection);
                 command.Parameters.AddWithValue("@studentid", _studentID);
+                command.Parameters.AddWithValue("@grade", _grade);
                 string scoreBoardID = (string)command.ExecuteScalar();
                 strQuery = "SELECT * FROM SUBJECTSCORE WHERE ScoreBoardID = @id AND SubjectID = @subjectid";
                 command = new SqlCommand(strQuery, connection);
@@ -369,12 +446,12 @@ namespace TutteeFrame.DataAccess
                 while (reader.Read())
                 {
                     Score score = new Score(Score.ScoreType.Mieng);
-                    if (!reader.IsDBNull(4))
-                        score.Value = reader.GetDouble(4);
+                    if (!reader.IsDBNull(3))
+                        score.Value = reader.GetDouble(3);
                     else
                         score.Value = -1;
                     _scores.Add(score);
-                    for (int i = 5; i < 8; i++)
+                    for (int i = 4; i < 7; i++)
                     {
                         score = new Score(Score.ScoreType.MuoiLamPhut);
                         if (!reader.IsDBNull(i))
@@ -383,7 +460,7 @@ namespace TutteeFrame.DataAccess
                             score.Value = -1;
                         _scores.Add(score);
                     }
-                    for (int i = 8; i < 11; i++)
+                    for (int i = 7; i < 10; i++)
                     {
                         score = new Score(Score.ScoreType.MotTiet);
                         if (!reader.IsDBNull(i))
@@ -393,14 +470,14 @@ namespace TutteeFrame.DataAccess
                         _scores.Add(score);
                     }
                     score = new Score(Score.ScoreType.HocKi);
-                    if (!reader.IsDBNull(11))
-                        score.Value = reader.GetDouble(11);
+                    if (!reader.IsDBNull(10))
+                        score.Value = reader.GetDouble(10);
                     else
                         score.Value = -1;
                     _scores.Add(score);
                     score = new Score(Score.ScoreType.TrungBinh);
-                    if (!reader.IsDBNull(12))
-                        score.Value = reader.GetDouble(12);
+                    if (!reader.IsDBNull(11))
+                        score.Value = reader.GetDouble(11);
                     else
                         score.Value = -1;
                     _scores.Add(score);
@@ -417,7 +494,7 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
-        public bool UpdateStudentScore(string _studentID, string _subjectID, int _semester, List<Score> _scores)
+        public bool UpdateStudentScore(string _studentID, string _subjectID, int _semester, int _grade, List<Score> _scores)
         {
             bool success = Connect();
 
@@ -427,9 +504,10 @@ namespace TutteeFrame.DataAccess
             try
             {
                 string[] scoreboardClm = { "ScoreBoardSE01ID", "ScoreBoardSE02ID" };
-                strQuery = $"SELECT {scoreboardClm[_semester - 1]} FROM LEARNRESULT WHERE StudentID = @studentid";
+                strQuery = $"SELECT {scoreboardClm[_semester - 1]} FROM LEARNRESULT WHERE StudentID = @studentid AND Grade = @grade";
                 SqlCommand command = new SqlCommand(strQuery, connection);
                 command.Parameters.AddWithValue("@studentid", _studentID);
+                command.Parameters.AddWithValue("@grade", _grade);
                 string scoreBoardID = (string)command.ExecuteScalar();
                 strQuery = "UPDATE SUBJECTSCORE " +
                     "SET Quiz = @mieng, _15minuteS01 = @fifteen1, _15minuteS02 = @fifteen2, _15minuteS03 = @fifteen3, " +
