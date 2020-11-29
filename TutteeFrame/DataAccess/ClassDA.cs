@@ -44,7 +44,41 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
+        public bool LoadClass(string _classID, Class _class)
+        {
+            bool success = Connect();
+            if (!success) 
+                return false;
+            try
+            {
+                strQuery = "SELECT * FROM CLASS WHERE ClassID = @classid";
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = strQuery;
+                    command.Parameters.AddWithValue("@classid", _classID);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        reader.Read();
+                        _class.ID = reader.GetString(0);
+                        _class.Room = reader.GetString(1);
+                        _class.StudentNum = reader.GetByte(2);
+                        _class.FormerTeacherID = reader.GetString(3);
+                    }
+                }
+                
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                Disconnect();
 
+            }
+            return true;
+        }
         //Lấy danh sách các lớp học thuộc một khối
         public List<Class> Lops(string _khoi)
         {
@@ -59,16 +93,16 @@ namespace TutteeFrame.DataAccess
                 SqlCommand cmd = connection.CreateCommand();
                 cmd.CommandText = strQuery;
                 cmd.Parameters.AddWithValue("@khoi", _khoi + "%%%");
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
-                {
-                    Class i = new Class();
-                    i.ID = reader.GetString(0);
-                    i.Room = reader.GetString(1);
-                    i.StudentNum = (byte)reader.GetByte(2);
-                    i.FormerTeacherID = reader.GetString(3);
-                    NhomLops.Add(i);
-                }
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                    while (reader.Read())
+                    {
+                        Class i = new Class();
+                        i.ID = reader.GetString(0);
+                        i.Room = reader.GetString(1);
+                        i.StudentNum = (byte)reader.GetByte(2);
+                        i.FormerTeacherID = reader.GetString(3);
+                        NhomLops.Add(i);
+                    }
             }
             catch (Exception ex)
             {

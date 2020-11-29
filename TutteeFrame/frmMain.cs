@@ -85,8 +85,8 @@ namespace TutteeFrame
             ptbAvatar.Region = rg;
             teacherController.LoadUsingTeacher((sender as frmLogin).teacherID);
             this.CenterToScreen();
-            this.Show();
             LoadAfterLogin();
+            this.Show();
         }
         private void MovableForm(object sender, MouseEventArgs e)
         {
@@ -166,10 +166,18 @@ namespace TutteeFrame
 
         private void btnUpdateTeacher_Click(object sender, EventArgs e)
         {
+            bool selfUpdate = false;
             if (listviewTeacher.SelectedItems.Count <= 0)
             {
                 MetroMessageBox.Show(this, "Vui lòng chọn giáo viên cần cập nhật thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
+            }
+            if (listviewTeacher.SelectedItems[0].SubItems[1].Text == mainTeacher.ID)
+            {
+                if (MetroMessageBox.Show(this, "Bạn đang tự cập nhật thông tin của mình. Sau khi hoàn tất cập nhật, bạn sẽ phải đăng nhập lại. Đồng ý?"
+                    , "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.No)
+                    return;
+                selfUpdate = true;
             }
             frmTeacher frmTeacher = new frmTeacher(frmTeacher.Mode.Edit, listviewTeacher.SelectedItems[0].SubItems[1].Text);
             OverlayForm overlayForm = new OverlayForm(this, frmTeacher);
@@ -181,6 +189,11 @@ namespace TutteeFrame
                                     teacher.ID,teacher.SurName + " " + teacher.FirstName,teacher.DateBorn.ToString("dd-MM-yyyy"), teacher.GetSex,
                                     teacher.Address, teacher.Phone, teacher.Mail, teacher.Subject.Name, teacher.GetNote()
                                 });
+                if (selfUpdate)
+                {
+                    btnLogout.PerformClick();
+                    return;
+                }
                 BackgroundWorker worker = new BackgroundWorker();
                 int totalMinistry = 0, totalAdmin = 0, totalTeacher = 0;
                 worker.DoWork += (s, ev) =>
@@ -224,7 +237,7 @@ namespace TutteeFrame
             }
             worker.DoWork += (s, ev) =>
             {
-                Thread.Sleep(600);
+                Thread.Sleep(200);
                 foreach (KeyValuePair<int, string> index in indexToDelete)
                 {
                     idToDel = index.Value;
@@ -285,14 +298,14 @@ namespace TutteeFrame
         {
             if (firstLoad)
                 return;
-            cbbTeacherRoleFilter.Enabled = cbbTeacherSubjectFilter.Enabled = cbbTeacherSortBy.Enabled = 
+            cbbTeacherRoleFilter.Enabled = cbbTeacherSubjectFilter.Enabled = cbbTeacherSortBy.Enabled =
                         btnUpdateTeacher.Enabled = btnDeleteTeacher.Enabled = listviewTeacher.Enabled = false;
             using (BackgroundWorker worker = new BackgroundWorker())
             {
                 worker.DoWork += (s, e) =>
                 {
                     teachers = teacherController.GetAllTeachers();
-                    Thread.Sleep(500);
+                    Thread.Sleep(200);
                 };
                 worker.RunWorkerCompleted += (s, e) =>
                 {
@@ -301,8 +314,8 @@ namespace TutteeFrame
                                 btnUpdateTeacher.Enabled = btnDeleteTeacher.Enabled = listviewTeacher.Enabled = true;
                 };
                 worker.RunWorkerAsync();
-            }    
-            
+            }
+
         }
         private void listviewTeacher_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -399,14 +412,13 @@ namespace TutteeFrame
                         catch
                         {
                             success = false;
-                            //MetroMessageBox.Show(this, "Không thể lấy thông tin điểm của học sinh có mã: " + student.StudentID + ".", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             break;
                         }
                     }
                     index++;
                 }
                 if (!success)
-                    ;
+                    MetroMessageBox.Show(this, "Không thể lấy thông tin điểm vài học sinh.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             };
             scoreLoaderr.RunWorkerAsync();
         }
@@ -435,8 +447,8 @@ namespace TutteeFrame
             mainProgressbar.Show();
             updater.DoWork += (s, e) =>
             {
-                Thread.Sleep(800);
                 success = studentController.UpdateStudentScore(gridviewStudentScore.Rows, mainTeacher.Subject.ID, _semes, grade);
+                Thread.Sleep(200);
             };
             updater.RunWorkerCompleted += (s, e) =>
             {
@@ -684,10 +696,10 @@ namespace TutteeFrame
                         loader.DoWork += (s, e) =>
                         {
                             loader.ReportProgress(0, "Đang tải danh sách môn học...");
-                            Thread.Sleep(800);
+                            Thread.Sleep(200);
                             subjects = subjectController.LoadSubjects();
                             loader.ReportProgress(0, "Đang tải danh sách giáo viên...");
-                            Thread.Sleep(800);
+                            Thread.Sleep(200);
                             teachers = teacherController.GetAllTeachers();
                             teacherController.GetTeacherNumber(out totalTeacher, out totalMinistry, out totalAdmin);
                         };
@@ -773,7 +785,7 @@ namespace TutteeFrame
             loader.DoWork += (s, e) =>
             {
                 loader.ReportProgress(0, "Đang tải danh sách môn học...");
-                Thread.Sleep(800);
+                Thread.Sleep(200);
                 subjects = subjectController.LoadSubjects();
             };
             loader.RunWorkerCompleted += (s, e) =>
@@ -882,7 +894,7 @@ namespace TutteeFrame
 
         private void ShowListBackGroundWork_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            Thread.Sleep(500);
+            Thread.Sleep(200);
             List<Student> Students =
                 (e.Argument as string).Length == 2 ?
             studentController.GetInformationStudents(e.Argument as string, true) :
@@ -958,8 +970,8 @@ namespace TutteeFrame
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += (s, e) =>
             {
-                Thread.Sleep(300);
                 classes = classController.GetClass(khoiSelected);
+                Thread.Sleep(200);
             };
             worker.RunWorkerCompleted += (s, e) =>
             {
@@ -967,7 +979,7 @@ namespace TutteeFrame
                 {
                     MetroMessageBox.Show(this, "Có lỗi xảy ra khi lấy danh sách lớp.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
-                }    
+                }
                 foreach (var i in classes)
                 {
                     cbbStudentClass.Items.Add(i.ID);
@@ -1190,7 +1202,7 @@ namespace TutteeFrame
             loader.DoWork += (s, e) =>
             {
                 classes = classController.GetClass(selectedGrade);
-                Thread.Sleep(500);
+                Thread.Sleep(200);
             };
             loader.RunWorkerCompleted += (s, e) =>
             {
@@ -1208,9 +1220,16 @@ namespace TutteeFrame
 
         private void btnAssignTeacher_Click(object sender, EventArgs e)
         {
-            frmTeacherAssignment frmTeacherAssignment = new frmTeacherAssignment();
+            if (listViewTeachingClass.SelectedItems.Count <= 0)
+                return;
+            frmTeacherAssignment frmTeacherAssignment = new frmTeacherAssignment(listViewTeachingClass.SelectedItems[0].Text);
             OverlayForm overlayForm = new OverlayForm(this, frmTeacherAssignment);
             frmTeacherAssignment.Show();
+        }
+
+        private void listViewTeachingClass_DoubleClick(object sender, EventArgs e)
+        {
+            btnAssignTeacher.PerformClick();
         }
     }
 }

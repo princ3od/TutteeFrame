@@ -24,5 +24,9 @@ namespace TutteeFrame.Controller
         {
             return classDA.Lops(Khoi);
         }
+        public bool LoadClass(string _classID,Class _class)
+        {
+            return classDA.LoadClass(_classID, _class);
+        }
     }
 }

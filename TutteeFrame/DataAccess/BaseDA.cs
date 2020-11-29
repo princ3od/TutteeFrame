@@ -49,7 +49,8 @@ namespace TutteeFrame.DataAccess
                 return false;
             }
             connectionString = strConnect;
-            connection.Close();
+            if (connection != null && connection.State == ConnectionState.Open)
+                connection.Close();
             return success;
         }
 
@@ -76,7 +77,7 @@ namespace TutteeFrame.DataAccess
         /// </summary>
         protected void Disconnect()
         {
-            if (connection != null && connection.State == ConnectionState.Open)
+            if (connection != null)
                 connection.Close();
         }
         #endregion

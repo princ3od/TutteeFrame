@@ -11,14 +11,14 @@ namespace TutteeFrame
     class OverlayForm : Form
     {
 
-        public OverlayForm(Form _parent, Form _child)
+        public OverlayForm(Form _parent, Form _child, float _opacity = 0.65f)
         {
             this.ControlBox = false;
             this.StartPosition = FormStartPosition.Manual;
             this.FormBorderStyle = FormBorderStyle.None;
             this.AllowTransparency = true;
             this.ShowInTaskbar = false;
-            this.Opacity = 0.65f;
+            this.Opacity = _opacity;
             this.BackColor = Color.Black;
             this.Size = _parent.Size;
             this.Location = _parent.Location;

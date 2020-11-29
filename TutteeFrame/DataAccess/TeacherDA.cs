@@ -91,26 +91,28 @@ namespace TutteeFrame.DataAccess
                     " WHERE TeacherID=@teacherid";
                 SqlCommand sqlCommand = new SqlCommand(strQuery, connection);
                 sqlCommand.Parameters.AddWithValue("@teacherid", _teacherID);
-                SqlDataReader dataReader = sqlCommand.ExecuteReader();
-                dataReader.Read();
-                _teacher.ID = dataReader.GetString(0);
-                _teacher.SurName = dataReader.GetString(1);
-                _teacher.FirstName = dataReader.GetString(2);
-                if (!(dataReader["TeacherImage"] is DBNull))
-                    _avatar = (byte[])dataReader["TeacherImage"];
-                else
-                    _avatar = null;
-                _teacher.Address = dataReader.GetString(6);
-                _teacher.Phone = dataReader.GetString(7);
-                _teacher.Mail = dataReader.GetString(8);
-                _teacher.Sex = dataReader.GetBoolean(5);
-                _teacher.DateBorn = dataReader.GetDateTime(4);
-                _teacher.Subject = new Subject();
-                _teacher.Subject.ID = dataReader.GetString(9);
-                _teacher.Subject.Name = dataReader["SubjectName"].ToString();
-                _isMinistry = dataReader.GetBoolean(10);
-                _isAdmin = dataReader.GetBoolean(11);
-                _teacher.Position = dataReader.GetString(12);
+                using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                {
+                    dataReader.Read();
+                    _teacher.ID = dataReader.GetString(0);
+                    _teacher.SurName = dataReader.GetString(1);
+                    _teacher.FirstName = dataReader.GetString(2);
+                    if (!(dataReader["TeacherImage"] is DBNull))
+                        _avatar = (byte[])dataReader["TeacherImage"];
+                    else
+                        _avatar = null;
+                    _teacher.Address = dataReader.GetString(6);
+                    _teacher.Phone = dataReader.GetString(7);
+                    _teacher.Mail = dataReader.GetString(8);
+                    _teacher.Sex = dataReader.GetBoolean(5);
+                    _teacher.DateBorn = dataReader.GetDateTime(4);
+                    _teacher.Subject = new Subject();
+                    _teacher.Subject.ID = dataReader.GetString(9);
+                    _teacher.Subject.Name = dataReader["SubjectName"].ToString();
+                    _isMinistry = dataReader.GetBoolean(10);
+                    _isAdmin = dataReader.GetBoolean(11);
+                    _teacher.Position = dataReader.GetString(12);
+                }
             }
             catch (Exception e)
             {
@@ -238,7 +240,6 @@ namespace TutteeFrame.DataAccess
                 SqlCommand command = new SqlCommand(query, connection);
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    int i = 0;
                     while (reader.Read())
                     {
                         Teacher _teacher = new Teacher();
