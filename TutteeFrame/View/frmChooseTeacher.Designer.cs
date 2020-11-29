@@ -117,6 +117,7 @@
             this.listviewTeacher.UseCompatibleStateImageBehavior = false;
             this.listviewTeacher.View = System.Windows.Forms.View.Details;
             this.listviewTeacher.SelectedIndexChanged += new System.EventHandler(this.listviewTeacher_SelectedIndexChanged);
+            this.listviewTeacher.DoubleClick += new System.EventHandler(this.listviewTeacher_DoubleClick);
             // 
             // columnHeader1
             // 

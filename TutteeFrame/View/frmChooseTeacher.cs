@@ -88,5 +88,10 @@ namespace TutteeFrame
             if (listviewTeacher.SelectedItems.Count > 0)
                 txtCurrentTeacher.Text = listviewTeacher.SelectedItems[0].SubItems[1].Text + " | " + listviewTeacher.SelectedItems[0].SubItems[2].Text;
         }
+
+        private void listviewTeacher_DoubleClick(object sender, EventArgs e)
+        {
+            btnApprove.PerformClick();
+        }
     }
 }

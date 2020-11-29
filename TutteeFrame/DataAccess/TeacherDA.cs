@@ -142,14 +142,14 @@ namespace TutteeFrame.DataAccess
                 string strQuery = "SELECT * FROM CLASS WHERE TeacherID=@teacherid";
                 SqlCommand sqlCommand = new SqlCommand(strQuery, connection);
                 sqlCommand.Parameters.AddWithValue("@teacherid", _teacherID);
-                SqlDataReader dataReader = sqlCommand.ExecuteReader();
-                if (!dataReader.HasRows)
-                    _classID = null;
-                else
-                {
-                    dataReader.Read();
-                    _classID = dataReader.GetString(0);
-                }
+                using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                    if (!dataReader.HasRows)
+                        _classID = null;
+                    else
+                    {
+                        dataReader.Read();
+                        _classID = dataReader.GetString(0);
+                    }
             }
             catch (Exception e)
             {
@@ -325,11 +325,11 @@ namespace TutteeFrame.DataAccess
                 strQuery = "SELECT DISTINCT ClassID FROM TEACHING WHERE TeacherID = @teacherid";
                 SqlCommand command = new SqlCommand(strQuery, connection);
                 command.Parameters.AddWithValue("@teacherid", _teacherID);
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    _classes.Add(reader.GetString(0));
-                }
+                using (SqlDataReader reader = command.ExecuteReader())
+                    while (reader.Read())
+                    {
+                        _classes.Add(reader.GetString(0));
+                    }
             }
             catch (Exception e)
             {
@@ -354,13 +354,13 @@ namespace TutteeFrame.DataAccess
                 SqlCommand command = new SqlCommand(strQuery, connection);
                 command.Parameters.AddWithValue("@teacherid", _teacherID);
                 command.Parameters.AddWithValue("@classid", _classID);
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    _semester.Add(reader.GetInt32(0));
-                    _year.Add(reader.GetInt32(1));
-                    _isEditable.Add(reader.GetBoolean(2));
-                }
+                using (SqlDataReader reader = command.ExecuteReader())
+                    while (reader.Read())
+                    {
+                        _semester.Add(reader.GetInt32(0));
+                        _year.Add(reader.GetInt32(1));
+                        _isEditable.Add(reader.GetBoolean(2));
+                    }
             }
             catch (Exception e)
             {

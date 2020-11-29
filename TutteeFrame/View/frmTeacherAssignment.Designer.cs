@@ -103,7 +103,7 @@
             // 
             this.txtRunnerTeacher.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtRunnerTeacher.Depth = 0;
-            this.txtRunnerTeacher.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtRunnerTeacher.Font = new System.Drawing.Font("Roboto", 12F);
             this.txtRunnerTeacher.Hint = "Giáo viên chủ nhiệm";
             this.txtRunnerTeacher.Location = new System.Drawing.Point(46, 92);
             this.txtRunnerTeacher.MaxLength = 50;
@@ -137,6 +137,7 @@
             this.btnAssignTeacher.TabIndex = 52;
             this.btnAssignTeacher.Text = "Xác nhận";
             this.btnAssignTeacher.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnAssignTeacher.Click += new System.EventHandler(this.btnAssignTeacher_Click);
             // 
             // btnViewStudentList
             // 

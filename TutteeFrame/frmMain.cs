@@ -26,6 +26,7 @@ namespace TutteeFrame
         TeacherController teacherController;
         ClassController classController;
         SubjectController subjectController;
+        ScoreController scoreController;
         List<Teacher> teachers = new List<Teacher>();
         public bool ProgressSuccess { get; }
         public frmMain()
@@ -41,6 +42,7 @@ namespace TutteeFrame
             teacherController = new TeacherController();
             classController = new ClassController();
             subjectController = new SubjectController();
+            scoreController = new ScoreController();
         }
 
         #region Form Event
@@ -124,6 +126,8 @@ namespace TutteeFrame
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Hide();
+            this.Size = new Size(1400, 750);
+            firstLoad = true;
             pnProfile.Size = new Size(pnProfile.Size.Width, 70);
             frmLogin = new frmLogin();
             frmLogin.FormClosed += FrmLogin_FormClosed;
@@ -395,7 +399,7 @@ namespace TutteeFrame
             scoreLoaderr.DoWork += (s, e) =>
             {
                 StudentController studentController = new StudentController();
-                scoreList = studentController.GetStudentListScore(students, mainTeacher.Subject.ID, _semes, grade);
+                scoreList = scoreController.GetStudentListScore(students, mainTeacher.Subject.ID, _semes, grade);
             };
             scoreLoaderr.RunWorkerCompleted += (s, e) =>
             {
@@ -447,7 +451,7 @@ namespace TutteeFrame
             mainProgressbar.Show();
             updater.DoWork += (s, e) =>
             {
-                success = studentController.UpdateStudentScore(gridviewStudentScore.Rows, mainTeacher.Subject.ID, _semes, grade);
+                success = scoreController.UpdateStudentScore(gridviewStudentScore.Rows, mainTeacher.Subject.ID, _semes, grade);
                 Thread.Sleep(200);
             };
             updater.RunWorkerCompleted += (s, e) =>
@@ -1194,6 +1198,7 @@ namespace TutteeFrame
                 return;
             loader = new BackgroundWorker();
             List<Class> classes = new List<Class>();
+            List<string> doneClass = new List<string>();
             cbbTeachingGrade.Enabled = ckbHideDoneClass.Enabled = btnAssignTeacher.Enabled = listViewTeachingClass.Enabled = false;
             string selectedGrade = (cbbTeachingGrade.SelectedIndex == 0) ? "" : cbbTeachingGrade.Text;
             lbInformation.Text = "Đang tải danh sách lớp học...";
@@ -1202,6 +1207,7 @@ namespace TutteeFrame
             loader.DoWork += (s, e) =>
             {
                 classes = classController.GetClass(selectedGrade);
+                doneClass = classController.GetDoneClasses();
                 Thread.Sleep(200);
             };
             loader.RunWorkerCompleted += (s, e) =>
@@ -1212,6 +1218,8 @@ namespace TutteeFrame
                 listViewTeachingClass.Items.Clear();
                 foreach (Class _class in classes)
                 {
+                    if (ckbHideDoneClass.Checked && doneClass != null && doneClass.Contains(_class.ID))
+                        continue;
                     listViewTeachingClass.Items.Add(_class.ID, 0);
                 }
             };

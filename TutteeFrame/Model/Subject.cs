@@ -20,7 +20,8 @@ namespace TutteeFrame.Model
         }
         public Subject()
         {
-
+            iD = "";
+            name = "";
         }
 
     }

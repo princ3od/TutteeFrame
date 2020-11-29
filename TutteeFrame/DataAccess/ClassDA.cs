@@ -47,7 +47,7 @@ namespace TutteeFrame.DataAccess
         public bool LoadClass(string _classID, Class _class)
         {
             bool success = Connect();
-            if (!success) 
+            if (!success)
                 return false;
             try
             {
@@ -65,7 +65,7 @@ namespace TutteeFrame.DataAccess
                         _class.FormerTeacherID = reader.GetString(3);
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -139,6 +139,64 @@ namespace TutteeFrame.DataAccess
             }
             return true;
 
+        }
+        public bool UpdateFormTeacher(string _classID, string _teacherID)
+        {
+            bool success = Connect();
+            if (!success)
+                return false;
+            try
+            {
+                strQuery = "UPDATE CLASS SET TeacherID = @teacherid WHERE ClassID = @classid";
+                using (SqlCommand sqlCommand = new SqlCommand(strQuery, connection))
+                {
+                    sqlCommand.Parameters.AddWithValue("@teacherid", _teacherID);
+                    sqlCommand.Parameters.AddWithValue("@classid", _classID);
+                    sqlCommand.ExecuteNonQuery();
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                Disconnect();
+
+            }
+            return true;
+
+        }
+        public bool GetAssignedDoneClass(Dictionary<string, int> _classes)
+        {
+            bool success = Connect();
+            if (!success)
+                return false;
+            try
+            {
+                strQuery = "SELECT ClassID,COUNT(*) FROM TEACHING WHERE TeacherID IS NOT NULL GROUP BY ClassID";
+                using (SqlCommand sqlCommand = new SqlCommand(strQuery, connection))
+                {
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                        while (reader.Read())
+                        {
+                            _classes.Add(reader.GetString(0), reader.GetInt32(1));
+                        }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                Disconnect();
+
+            }
+            return true;
         }
         #endregion
     }

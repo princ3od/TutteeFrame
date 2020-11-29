@@ -21,12 +21,12 @@ namespace TutteeFrame.DataAccess
             {
                 string query = "SELECT * FROM SUBJECT";
                 SqlCommand command = new SqlCommand(query, connection);
-                SqlDataReader reader = command.ExecuteReader();
-                while (reader.Read())
-                {
-                    Subject subject = new Subject(reader.GetString(0), reader.GetString(1));
-                    _subjects.Add(subject);
-                }
+                using (SqlDataReader reader = command.ExecuteReader())
+                    while (reader.Read())
+                    {
+                        Subject subject = new Subject(reader.GetString(0), reader.GetString(1));
+                        _subjects.Add(subject);
+                    }
             }
             catch (Exception e)
             {
@@ -44,7 +44,8 @@ namespace TutteeFrame.DataAccess
         public bool UpdateSubject(Subject sbj)
         {
             bool success = Connect();
-            if (!success) return false;
+            if (!success)
+                return false;
             try
             {
                 strQuery = "UPDATE SUBJECT SET SubjectName = @sbjName WHERE SubjectID = @sbjId";
@@ -54,15 +55,18 @@ namespace TutteeFrame.DataAccess
                 cmd.CommandText = strQuery;
                 cmd.Parameters.Add("@sbjName", SqlDbType.NVarChar).Value = sbj.Name;
                 cmd.Parameters.Add("@sbjId", SqlDbType.VarChar).Value = sbj.ID;
-                int kq = cmd.ExecuteNonQuery();
-                return kq > 0;
+                cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
                 MaterialSkin.Controls.MaterialMessageBox.Show(ex.Message);
-                if (connection.State == ConnectionState.Open) Disconnect();
                 return false;
             }
+            finally
+            {
+                Disconnect();
+            }
+            return true;
         }
         public bool AddSubject(Subject sbj)
         {
@@ -93,7 +97,9 @@ namespace TutteeFrame.DataAccess
         public bool DeleteSubject(Subject sbj)
         {
             bool succsess = Connect();
-            if (!succsess) return false;
+
+            if (!succsess)
+                return false;
             try
             {
                 strQuery = "DELETE FROM SUBJECT WHERE SubjectID =@SubjectID";
@@ -102,16 +108,18 @@ namespace TutteeFrame.DataAccess
                 cmd.CommandText = strQuery;
                 cmd.Parameters.Add("@SubjectID", SqlDbType.VarChar).Value = sbj.ID;
                 cmd.Connection = connection;
-                int k = cmd.ExecuteNonQuery();
-                if (connection.State == ConnectionState.Open) Disconnect();
-                return k > 0;
+                cmd.ExecuteNonQuery();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                Disconnect();
                 return false;
             }
+            finally
+            {
+                Disconnect();
+            }
+            return true;
         }
     }
 }

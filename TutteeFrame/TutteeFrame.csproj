@@ -100,15 +100,20 @@
     <Compile Include="Controller\AccountController.cs" />
     <Compile Include="Controller\ClassController.cs" />
     <Compile Include="Controller\MainController.cs" />
-    <Compile Include="Controller\Helper.cs" />
+    <Compile Include="Utility\Helper.cs" />
+    <Compile Include="Controller\ScoreController.cs" />
     <Compile Include="Controller\StudentController.cs" />
     <Compile Include="Controller\SubjectController.cs" />
     <Compile Include="Controller\TeacherController.cs" />
+    <Compile Include="Controller\TeachingController.cs" />
     <Compile Include="DataAccess\AccountDA.cs" />
     <Compile Include="DataAccess\ClassDA.cs" />
+    <Compile Include="DataAccess\ScoreDA.cs" />
     <Compile Include="DataAccess\StudentDA.cs" />
     <Compile Include="DataAccess\SubjectDA.cs" />
     <Compile Include="DataAccess\TeacherDA.cs" />
+    <Compile Include="DataAccess\TeachingDA.cs" />
+    <Compile Include="Model\Teaching.cs" />
     <Compile Include="View\frmChooseTeacher.cs">
       <SubType>Form</SubType>
     </Compile>
