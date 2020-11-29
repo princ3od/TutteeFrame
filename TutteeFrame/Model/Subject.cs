@@ -10,8 +10,8 @@ namespace TutteeFrame.Model
         string iD;
         string name;
 
-        public string ID { get => iD; set => iD = value; }
-        public string Name { get => name; set => name = value; }
+        public string ID { get => iD ?? ""; set => iD = value; }
+        public string Name { get => name ?? ""; set => name = value; }
 
         public Subject(string _id, string _name)
         {
@@ -20,7 +20,8 @@ namespace TutteeFrame.Model
         }
         public Subject()
         {
-
+            iD = "";
+            name = "";
         }
 
     }

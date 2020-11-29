@@ -5,7 +5,7 @@ using System.Text;
 
 namespace TutteeFrame.Model
 {
-    class Student : Person
+    public class Student : Person
     {
         private string classID;
         private float scoreSem1;
@@ -13,8 +13,8 @@ namespace TutteeFrame.Model
         private float averageScore;
         private string conduct;
         private string punishmentlist;
-        private string status;
-   
+        private bool status;
+
 
         public string ClassID { get => classID; set => classID = value; }
         public float ScoreSem1 { get => scoreSem1; set => scoreSem1 = value; }
@@ -22,8 +22,16 @@ namespace TutteeFrame.Model
         public float AverageScore { get => averageScore; set => averageScore = value; }
         public string Conduct { get => conduct; set => conduct = value; }
         public string PunishmentList { get => punishmentlist; set => punishmentlist = value; }
-        public string Status { get => status; set => status = value; }
+        public bool Status { get => status; set => status = value; }
 
+        public string ExactID
+        {
+            get => iD.Substring(4, 4);
+        }
+        public string GetGrade
+        {
+            get => classID.Substring(0, 2);
+        }
 
     }
 }

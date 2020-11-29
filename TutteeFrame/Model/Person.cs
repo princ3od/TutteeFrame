@@ -8,16 +8,21 @@ namespace TutteeFrame.Model
 {
     public class Person
     {
-        private string iD;
-        private string surName;
-        private string firstName;
-        private string address;
-        private string mail;
-        private string phone;
-        private DateTime DateOfBirth;
-        private bool sex;
-        private Image avatar;
+        protected string iD;
+        protected string surName;
+        protected string firstName;
+        protected string address;
+        protected string mail;
+        protected string phone;
+        protected DateTime dateBorn;
+        protected bool sex;
+        protected Image avatar;
 
+        public Person()
+        {
+            dateBorn = DateTime.Now;
+            sex = true;
+        }
         public string ID { get => iD; set => iD = value; }
         public string SurName { get => surName; set => surName = value; }
         public string FirstName { get => firstName; set => firstName = value; }
@@ -25,11 +30,15 @@ namespace TutteeFrame.Model
         public string Mail { get => mail; set => mail = value; }
         public string Phone { get => phone; set => phone = value; }
         public bool Sex { get => sex; set => sex = value; }
-        public DateTime DateOfBirth1 { get => DateOfBirth; set => DateOfBirth = value; }
+        public DateTime DateBorn { get => dateBorn; set => dateBorn = value; }
         public Image Avatar { get => avatar ?? Properties.Resources.default_avatar; set => avatar = value; }
         public string GetSex
         {
             get => (sex) ? "Nam" : "Nữ";
+        }
+        public string GetName()
+        {
+            return SurName + " " + FirstName;
         }
     }
 }

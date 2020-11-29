@@ -9,10 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TutteeFrame.Model;
-using System.ComponentModel;
-using System.Windows.Forms;
 using System.Windows.Forms.Design;    // Add reference to System.Design
-
+using TutteeFrame.Controller;
 
 
 namespace TutteeFrame
@@ -23,9 +21,10 @@ namespace TutteeFrame
         private frmMain frmMain;
         private Subject sbj;
         private bool newSubject;
-
+        SubjectController subjectController;
         public frmSubject(Subject inputsSbj, frmMain frmMain)
         {
+            subjectController = new SubjectController();
             sbj = inputsSbj;
             this.frmMain = frmMain;
             InitializeComponent();
@@ -45,20 +44,20 @@ namespace TutteeFrame
             if (sbj == null) sbj = new Subject();
             sbj.ID = txtSubjectId.Text;
             sbj.Name = txtNameSubject.Text;
-            if (!this.newSubject && Controller.Instance.UpdateSubject(sbj))
+            if (!this.newSubject && subjectController.UpdateSubject(sbj))
             {
                 MetroMessageBox.Show(this, "Cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 this.Close();
-                this.frmMain.LoadDataAgain();
+                this.frmMain.LoadSubjectAgain();
                 return;
             }
             else
             {
-                if (Controller.Instance.AddSubject(sbj))
+                if (subjectController.AddSubject(sbj))
                 {
                     MetroMessageBox.Show(this, "Thêm mới thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     this.Close();
-                    this.frmMain.LoadDataAgain();
+                    this.frmMain.LoadSubjectAgain();
                     return;
                 }
 

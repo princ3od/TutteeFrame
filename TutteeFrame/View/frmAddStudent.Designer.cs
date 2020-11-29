@@ -475,8 +475,8 @@
             // 
             // picboxStudent
             // 
-            this.picboxStudent.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picboxStudent.Image = global::TutteeFrame.Properties.Resources.user;
+            this.picboxStudent.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.picboxStudent.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.picboxStudent.Location = new System.Drawing.Point(317, 21);
             this.picboxStudent.Name = "picboxStudent";
             this.picboxStudent.Size = new System.Drawing.Size(122, 148);
@@ -489,7 +489,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(743, 662);
+            this.ClientSize = new System.Drawing.Size(744, 671);
             this.Controls.Add(this.btnChooseAvatar);
             this.Controls.Add(this.btnCancal);
             this.Controls.Add(this.btnApprove);
@@ -497,10 +497,12 @@
             this.Controls.Add(this.materialCard1);
             this.Controls.Add(this.pnBasicInfor);
             this.Controls.Add(this.picboxStudent);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAddStudent";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Load += new System.EventHandler(this.frmAddStudent_Load);
             this.materialCard2.ResumeLayout(false);
             this.materialCard2.PerformLayout();

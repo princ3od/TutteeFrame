@@ -1,4 +1,4 @@
-﻿namespace TutteeFrame
+﻿namespace TutteeFrame.Reports
 {
 
 
