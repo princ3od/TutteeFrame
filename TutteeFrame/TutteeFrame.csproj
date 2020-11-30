@@ -294,6 +294,9 @@
     <None Include="Resources\imageva.jpg" />
     <None Include="Resources\WaitCurser.gif" />
     <None Include="Resources\intro.wav" />
+    <None Include="Resources\settings.png" />
+    <None Include="Resources\log_out.png" />
+    <None Include="Resources\password.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -317,8 +320,6 @@
     <None Include="Resources\thongtinll.png" />
     <None Include="Resources\thongtincanhan.png" />
     <None Include="Resources\phonban.png" />
-    <None Include="Resources\settings.png" />
-    <None Include="Resources\password.png" />
     <None Include="Resources\log-out.png" />
     <Content Include="Resources\logo_1_removebg_preview_hoi_icon.ico" />
     <None Include="Resources\21104.png" />
