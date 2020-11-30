@@ -1218,7 +1218,7 @@ namespace TutteeFrame
                 listViewTeachingClass.Items.Clear();
                 foreach (Class _class in classes)
                 {
-                    if (ckbHideDoneClass.Checked && doneClass != null && doneClass.Contains(_class.ID))
+                    if (ckbHideDoneClass.Checked && doneClass != null && _class.ID != null && doneClass.Contains(_class.ID))
                         continue;
                     listViewTeachingClass.Items.Add(_class.ID, 0);
                 }

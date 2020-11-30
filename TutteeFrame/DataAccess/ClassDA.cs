@@ -62,7 +62,10 @@ namespace TutteeFrame.DataAccess
                         _class.ID = reader.GetString(0);
                         _class.Room = reader.GetString(1);
                         _class.StudentNum = reader.GetByte(2);
-                        _class.FormerTeacherID = reader.GetString(3);
+                        if (!reader.IsDBNull(3))
+                            _class.FormerTeacherID = reader.GetString(3);
+                        else
+                            _class.FormerTeacherID = null;
                     }
                 }
 
@@ -100,7 +103,10 @@ namespace TutteeFrame.DataAccess
                         i.ID = reader.GetString(0);
                         i.Room = reader.GetString(1);
                         i.StudentNum = (byte)reader.GetByte(2);
-                        i.FormerTeacherID = reader.GetString(3);
+                        if (!reader.IsDBNull(3))
+                            i.FormerTeacherID = reader.GetString(3);
+                        else
+                            i.FormerTeacherID = null;
                         NhomLops.Add(i);
                     }
             }

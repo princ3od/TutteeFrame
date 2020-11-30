@@ -53,7 +53,8 @@ namespace TutteeFrame
             {
                 lbClassID.Text = "Lớp: " + mainClass.ID;
                 lbClassInfor.Text = string.Format("Phòng học: {0} - Sỉ số: {1}", mainClass.Room, mainClass.StudentNum);
-                txtRunnerTeacher.Text = mainClass.FormerTeacherID + " | " + teacher.GetName();
+                if (mainClass.FormerTeacherID != null)
+                    txtRunnerTeacher.Text = mainClass.FormerTeacherID + " | " + teacher.GetName();
                 int index = 0;
                 foreach (Subject subject in subjects)
                 {
