@@ -1239,5 +1239,60 @@ namespace TutteeFrame
         {
             btnAssignTeacher.PerformClick();
         }
+
+        private void cbbGradeClass_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            BackgroundWorker classBackgroundWorker = new BackgroundWorker();
+            List<Class> lvClass = new List<Class>();
+            ClassController classControl = new ClassController();
+            classBackgroundWorker.RunWorkerCompleted += (s, e) =>
+            {
+                if (lvClass == null || lvClass.Count <= 0)
+                {
+                    return;
+                }
+                else
+                {
+                    int i = 0;
+                    foreach (var item in lvClass)
+                    {
+                        i += 1;
+                        ListViewItem lvi = new ListViewItem(i.ToString());
+                        lvi.SubItems.Add(item.ID);
+                        lvi.SubItems.Add(item.Room);
+                        lvi.SubItems.Add(item.StudentNum.ToString());
+                        lvi.SubItems.Add(item.FormerTeacherID);
+                        listViewClass.Items.Add(lvi);
+
+                    }
+                }
+            };
+
+            if (cbbGradeClass.Text == "Tất cả")
+            {
+                classBackgroundWorker.DoWork += (s, e) =>
+                  {
+                      classControl.GetAllClass(lvClass);
+                  };
+             }
+            else
+            {
+                string strGradeClass = cbbGradeClass.Text;
+                classBackgroundWorker.DoWork += (s, e) =>
+                  {
+                      
+                      lvClass = classControl.GetClass(strGradeClass);
+                  };
+            }
+            listViewClass.Items.Clear();
+            classBackgroundWorker.RunWorkerAsync();
+        }
+
+        private void btnAddClass_Click(object sender, EventArgs e)
+        {
+            frmClassInfo newClassInfo = new frmClassInfo(this);
+            OverlayForm overlay = new OverlayForm(this, newClassInfo);
+            newClassInfo.ShowDialog();
+        }
     }
 }

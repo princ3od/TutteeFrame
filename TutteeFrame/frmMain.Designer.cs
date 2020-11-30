@@ -148,6 +148,17 @@
             this.btnDelASubject = new Material_Design_for_Winform.MaterialRaisedButton();
             this.btnEdit = new Material_Design_for_Winform.MaterialRaisedButton();
             this.tbpgClassManagment = new System.Windows.Forms.TabPage();
+            this.btnAddClass = new Material_Design_for_Winform.MaterialRaisedButton();
+            this.btnDelClass = new Material_Design_for_Winform.MaterialRaisedButton();
+            this.brnEditClass = new Material_Design_for_Winform.MaterialRaisedButton();
+            this.listViewClass = new MaterialSkin.Controls.MaterialListView();
+            this.colSTT = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colClassId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colRumNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colStudenNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.colTeacherId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cbbGradeClass = new MaterialSkin.Controls.MaterialComboBox();
+            this.txtSearchClass = new MaterialSkin.Controls.MaterialTextBox();
             this.tbpgRewardManagment = new System.Windows.Forms.TabPage();
             this.tbpgReport = new System.Windows.Forms.TabPage();
             this.tbpgFormClass = new System.Windows.Forms.TabPage();
@@ -203,6 +214,7 @@
             this.tbpgStudentMarkboard.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridviewStudentScore)).BeginInit();
             this.tbpgSubjectManagment.SuspendLayout();
+            this.tbpgClassManagment.SuspendLayout();
             this.tbpgTeacherAssignment.SuspendLayout();
             this.pnProfile.SuspendLayout();
             this.materialCard1.SuspendLayout();
@@ -671,7 +683,7 @@
             this.btnAutoColumn.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAutoColumn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnAutoColumn.Icon = null;
-            this.btnAutoColumn.Location = new System.Drawing.Point(1010, 520);
+            this.btnAutoColumn.Location = new System.Drawing.Point(1010, 518);
             this.btnAutoColumn.Name = "btnAutoColumn";
             this.btnAutoColumn.Size = new System.Drawing.Size(108, 36);
             this.btnAutoColumn.TabIndex = 43;
@@ -755,7 +767,7 @@
             this.listviewTeacher.MouseState = MaterialSkin.MouseState.OUT;
             this.listviewTeacher.Name = "listviewTeacher";
             this.listviewTeacher.OwnerDraw = true;
-            this.listviewTeacher.Size = new System.Drawing.Size(1119, 389);
+            this.listviewTeacher.Size = new System.Drawing.Size(1119, 387);
             this.listviewTeacher.TabIndex = 13;
             this.listviewTeacher.UseCompatibleStateImageBehavior = false;
             this.listviewTeacher.View = System.Windows.Forms.View.Details;
@@ -822,7 +834,7 @@
             this.btnDeleteTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnDeleteTeacher.Icon = null;
-            this.btnDeleteTeacher.Location = new System.Drawing.Point(862, 512);
+            this.btnDeleteTeacher.Location = new System.Drawing.Point(862, 510);
             this.btnDeleteTeacher.Name = "btnDeleteTeacher";
             this.btnDeleteTeacher.Radius = 2;
             this.btnDeleteTeacher.ShadowDepth = 3;
@@ -844,7 +856,7 @@
             this.btnUpdateTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdateTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnUpdateTeacher.Icon = null;
-            this.btnUpdateTeacher.Location = new System.Drawing.Point(198, 512);
+            this.btnUpdateTeacher.Location = new System.Drawing.Point(198, 510);
             this.btnUpdateTeacher.Name = "btnUpdateTeacher";
             this.btnUpdateTeacher.Radius = 2;
             this.btnUpdateTeacher.ShadowDepth = 3;
@@ -866,7 +878,7 @@
             this.btnAddTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnAddTeacher.Icon = null;
-            this.btnAddTeacher.Location = new System.Drawing.Point(50, 512);
+            this.btnAddTeacher.Location = new System.Drawing.Point(50, 510);
             this.btnAddTeacher.Name = "btnAddTeacher";
             this.btnAddTeacher.Radius = 2;
             this.btnAddTeacher.ShadowDepth = 3;
@@ -1681,7 +1693,7 @@
             this.lvSubjectManage.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.lvSubjectManage.FullRowSelect = true;
             this.lvSubjectManage.HideSelection = false;
-            this.lvSubjectManage.Location = new System.Drawing.Point(25, 101);
+            this.lvSubjectManage.Location = new System.Drawing.Point(25, 95);
             this.lvSubjectManage.MinimumSize = new System.Drawing.Size(200, 100);
             this.lvSubjectManage.MouseLocation = new System.Drawing.Point(-1, -1);
             this.lvSubjectManage.MouseState = MaterialSkin.MouseState.OUT;
@@ -1769,21 +1781,188 @@
             // 
             // tbpgClassManagment
             // 
+            this.tbpgClassManagment.BackColor = System.Drawing.Color.White;
+            this.tbpgClassManagment.Controls.Add(this.btnAddClass);
+            this.tbpgClassManagment.Controls.Add(this.btnDelClass);
+            this.tbpgClassManagment.Controls.Add(this.brnEditClass);
+            this.tbpgClassManagment.Controls.Add(this.listViewClass);
+            this.tbpgClassManagment.Controls.Add(this.cbbGradeClass);
+            this.tbpgClassManagment.Controls.Add(this.txtSearchClass);
             this.tbpgClassManagment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgClassManagment.Location = new System.Drawing.Point(4, 22);
+            this.tbpgClassManagment.Location = new System.Drawing.Point(4, 24);
             this.tbpgClassManagment.Name = "tbpgClassManagment";
             this.tbpgClassManagment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgClassManagment.Size = new System.Drawing.Size(1133, 596);
+            this.tbpgClassManagment.Size = new System.Drawing.Size(1133, 594);
             this.tbpgClassManagment.TabIndex = 5;
             this.tbpgClassManagment.Text = "Quản lí lớp";
-            this.tbpgClassManagment.UseVisualStyleBackColor = true;
+            // 
+            // btnAddClass
+            // 
+            this.btnAddClass.BackColor = System.Drawing.Color.Transparent;
+            this.btnAddClass.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnAddClass.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.btnAddClass.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnAddClass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.btnAddClass.Icon = null;
+            this.btnAddClass.Location = new System.Drawing.Point(43, 509);
+            this.btnAddClass.Name = "btnAddClass";
+            this.btnAddClass.Radius = 2;
+            this.btnAddClass.ShadowDepth = 3;
+            this.btnAddClass.ShadowOpacity = 35;
+            this.btnAddClass.Size = new System.Drawing.Size(159, 52);
+            this.btnAddClass.TabIndex = 49;
+            this.btnAddClass.Text = "Thêm lớp";
+            this.btnAddClass.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnAddClass.Click += new System.EventHandler(this.btnAddClass_Click);
+            // 
+            // btnDelClass
+            // 
+            this.btnDelClass.BackColor = System.Drawing.Color.Transparent;
+            this.btnDelClass.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnDelClass.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.btnDelClass.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.btnDelClass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.btnDelClass.Icon = null;
+            this.btnDelClass.Location = new System.Drawing.Point(874, 509);
+            this.btnDelClass.Name = "btnDelClass";
+            this.btnDelClass.Radius = 2;
+            this.btnDelClass.ShadowDepth = 3;
+            this.btnDelClass.ShadowOpacity = 35;
+            this.btnDelClass.Size = new System.Drawing.Size(159, 52);
+            this.btnDelClass.TabIndex = 51;
+            this.btnDelClass.Text = "Xóa lớp";
+            this.btnDelClass.TextAlign = System.Drawing.StringAlignment.Center;
+            // 
+            // brnEditClass
+            // 
+            this.brnEditClass.BackColor = System.Drawing.Color.Transparent;
+            this.brnEditClass.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.brnEditClass.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.brnEditClass.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.brnEditClass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.brnEditClass.Icon = null;
+            this.brnEditClass.Location = new System.Drawing.Point(236, 509);
+            this.brnEditClass.Name = "brnEditClass";
+            this.brnEditClass.Radius = 2;
+            this.brnEditClass.ShadowDepth = 3;
+            this.brnEditClass.ShadowOpacity = 35;
+            this.brnEditClass.Size = new System.Drawing.Size(159, 52);
+            this.brnEditClass.TabIndex = 50;
+            this.brnEditClass.Text = "Chỉnh sửa";
+            this.brnEditClass.TextAlign = System.Drawing.StringAlignment.Center;
+            // 
+            // listViewClass
+            // 
+            this.listViewClass.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewClass.AutoSizeTable = false;
+            this.listViewClass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.listViewClass.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listViewClass.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.colSTT,
+            this.colClassId,
+            this.colRumNum,
+            this.colStudenNum,
+            this.colTeacherId});
+            this.listViewClass.Depth = 0;
+            this.listViewClass.Font = new System.Drawing.Font("Segoe UI", 25F);
+            this.listViewClass.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.listViewClass.FullRowSelect = true;
+            this.listViewClass.HideSelection = false;
+            this.listViewClass.Location = new System.Drawing.Point(49, 147);
+            this.listViewClass.MinimumSize = new System.Drawing.Size(200, 100);
+            this.listViewClass.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.listViewClass.MouseState = MaterialSkin.MouseState.OUT;
+            this.listViewClass.Name = "listViewClass";
+            this.listViewClass.OwnerDraw = true;
+            this.listViewClass.Size = new System.Drawing.Size(847, 329);
+            this.listViewClass.TabIndex = 14;
+            this.listViewClass.UseCompatibleStateImageBehavior = false;
+            this.listViewClass.View = System.Windows.Forms.View.Details;
+            // 
+            // colSTT
+            // 
+            this.colSTT.Text = "Số thứ tự";
+            this.colSTT.Width = 180;
+            // 
+            // colClassId
+            // 
+            this.colClassId.Text = "Mã lớp";
+            this.colClassId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.colClassId.Width = 180;
+            // 
+            // colRumNum
+            // 
+            this.colRumNum.Text = "Phòng";
+            this.colRumNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.colRumNum.Width = 180;
+            // 
+            // colStudenNum
+            // 
+            this.colStudenNum.Text = "Tổng số học sinh";
+            this.colStudenNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.colStudenNum.Width = 180;
+            // 
+            // colTeacherId
+            // 
+            this.colTeacherId.Text = "Mã GVCN";
+            this.colTeacherId.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.colTeacherId.Width = 180;
+            // 
+            // cbbGradeClass
+            // 
+            this.cbbGradeClass.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbbGradeClass.AutoResize = false;
+            this.cbbGradeClass.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cbbGradeClass.Depth = 0;
+            this.cbbGradeClass.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbbGradeClass.DropDownHeight = 174;
+            this.cbbGradeClass.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbGradeClass.DropDownWidth = 121;
+            this.cbbGradeClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cbbGradeClass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cbbGradeClass.FormattingEnabled = true;
+            this.cbbGradeClass.Hint = "Khối";
+            this.cbbGradeClass.IntegralHeight = false;
+            this.cbbGradeClass.ItemHeight = 43;
+            this.cbbGradeClass.Items.AddRange(new object[] {
+            "Tất cả",
+            "10",
+            "11",
+            "12"});
+            this.cbbGradeClass.Location = new System.Drawing.Point(786, 75);
+            this.cbbGradeClass.MaxDropDownItems = 4;
+            this.cbbGradeClass.MouseState = MaterialSkin.MouseState.OUT;
+            this.cbbGradeClass.Name = "cbbGradeClass";
+            this.cbbGradeClass.Size = new System.Drawing.Size(110, 49);
+            this.cbbGradeClass.TabIndex = 13;
+            this.cbbGradeClass.SelectedIndexChanged += new System.EventHandler(this.cbbGradeClass_SelectedIndexChanged);
+            // 
+            // txtSearchClass
+            // 
+            this.txtSearchClass.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.txtSearchClass.BackColor = System.Drawing.Color.White;
+            this.txtSearchClass.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtSearchClass.Depth = 0;
+            this.txtSearchClass.Font = new System.Drawing.Font("Roboto", 12F);
+            this.txtSearchClass.Hint = "Tìm kiếm";
+            this.txtSearchClass.Location = new System.Drawing.Point(49, 74);
+            this.txtSearchClass.MaxLength = 32767;
+            this.txtSearchClass.MouseState = MaterialSkin.MouseState.OUT;
+            this.txtSearchClass.Multiline = false;
+            this.txtSearchClass.Name = "txtSearchClass";
+            this.txtSearchClass.Size = new System.Drawing.Size(586, 50);
+            this.txtSearchClass.TabIndex = 12;
+            this.txtSearchClass.Text = "";
             // 
             // tbpgRewardManagment
             // 
             this.tbpgRewardManagment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgRewardManagment.Location = new System.Drawing.Point(4, 22);
+            this.tbpgRewardManagment.Location = new System.Drawing.Point(4, 24);
             this.tbpgRewardManagment.Name = "tbpgRewardManagment";
-            this.tbpgRewardManagment.Size = new System.Drawing.Size(1133, 596);
+            this.tbpgRewardManagment.Size = new System.Drawing.Size(1133, 594);
             this.tbpgRewardManagment.TabIndex = 9;
             this.tbpgRewardManagment.Text = "Quản lí khen thưởng";
             this.tbpgRewardManagment.UseVisualStyleBackColor = true;
@@ -1815,9 +1994,9 @@
             this.tbpgTeacherAssignment.Controls.Add(this.btnAssignTeacher);
             this.tbpgTeacherAssignment.Controls.Add(this.listViewTeachingClass);
             this.tbpgTeacherAssignment.Controls.Add(this.cbbTeachingGrade);
-            this.tbpgTeacherAssignment.Location = new System.Drawing.Point(4, 24);
+            this.tbpgTeacherAssignment.Location = new System.Drawing.Point(4, 22);
             this.tbpgTeacherAssignment.Name = "tbpgTeacherAssignment";
-            this.tbpgTeacherAssignment.Size = new System.Drawing.Size(1133, 594);
+            this.tbpgTeacherAssignment.Size = new System.Drawing.Size(1133, 596);
             this.tbpgTeacherAssignment.TabIndex = 11;
             this.tbpgTeacherAssignment.Text = "Phân công giáo viên";
             // 
@@ -2213,7 +2392,7 @@
             // 
             // frmMain
             // 
-            this.ClientSize = new System.Drawing.Size(1400, 750);
+            this.ClientSize = new System.Drawing.Size(1386, 750);
             this.Controls.Add(this.lbTittle);
             this.Controls.Add(this.mainProgressbar);
             this.Controls.Add(this.lbInformation);
@@ -2258,6 +2437,7 @@
             this.tbpgStudentMarkboard.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridviewStudentScore)).EndInit();
             this.tbpgSubjectManagment.ResumeLayout(false);
+            this.tbpgClassManagment.ResumeLayout(false);
             this.tbpgTeacherAssignment.ResumeLayout(false);
             this.pnProfile.ResumeLayout(false);
             this.materialCard1.ResumeLayout(false);
@@ -2419,5 +2599,16 @@
         private System.Windows.Forms.ListView listViewTeachingClass;
         private Material_Design_for_Winform.MaterialRaisedButton btnAssignTeacher;
         private Material_Design_for_Winform.MaterialCheckBox ckbHideDoneClass;
+        private MaterialSkin.Controls.MaterialListView listViewClass;
+        private System.Windows.Forms.ColumnHeader colSTT;
+        private System.Windows.Forms.ColumnHeader colClassId;
+        private System.Windows.Forms.ColumnHeader colStudenNum;
+        private System.Windows.Forms.ColumnHeader colTeacherId;
+        private MaterialSkin.Controls.MaterialComboBox cbbGradeClass;
+        private MaterialSkin.Controls.MaterialTextBox txtSearchClass;
+        private Material_Design_for_Winform.MaterialRaisedButton btnAddClass;
+        private Material_Design_for_Winform.MaterialRaisedButton btnDelClass;
+        private Material_Design_for_Winform.MaterialRaisedButton brnEditClass;
+        private System.Windows.Forms.ColumnHeader colRumNum;
     }
 }
