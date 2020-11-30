@@ -13,35 +13,32 @@ namespace TutteeFrame
     public partial class frmSpashScreen : Form
     {
 
-        int second = 2;
-
+        int secondShowing = 2;
         public frmSpashScreen()
         {
             InitializeComponent();
-            Helper.SettingCheck();
+            Helper.SettingCheck();            
             timer1.Start();
-
         }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
-            if (second == 0)
+            if (secondShowing == 0)
             {
                 timer1.Stop();
                 this.Close();
-
             }
             else
-                second--;
-
-
-
+                secondShowing--;
         }
-
         private void SplashScreen_Shown(object sender, EventArgs e)
         {
             this.Activate();
+            System.IO.Stream stream = Properties.Resources.intro;
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer(stream);
+            player.Play();
+            
         }
 
+      
     }
 }
