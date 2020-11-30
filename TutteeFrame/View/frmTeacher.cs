@@ -99,18 +99,13 @@ namespace TutteeFrame
                     break;
                 case Mode.Edit:
                     btnApprove.Text = "Cập nhật giáo viên";
-                    List<Teacher> teachers = new List<Teacher>();
+                    teacher = new Teacher();
                     backgroundWorker.DoWork += (s, e) =>
                     {
-                        teachers = teacherController.GetAllTeachers();
+                        teacherController.LoadTeacher(teacherID, teacher);
                     };
                     backgroundWorker.RunWorkerCompleted += (s, e) =>
                     {
-                        foreach (Teacher _teacher in teachers)
-                        {
-                            if (_teacher.ID == teacherID)
-                                teacher = _teacher;
-                        }
                         lbID.Text = teacher.ID;
                         lbName.Text = teacher.SurName + " " + teacher.FirstName;
                         txtFirstname.Text = teacher.FirstName;
