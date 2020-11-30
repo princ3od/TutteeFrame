@@ -7,7 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using TutteeFrame.Model;
-using WMPLib;
 
 namespace TutteeFrame
 {
@@ -34,9 +33,10 @@ namespace TutteeFrame
         private void SplashScreen_Shown(object sender, EventArgs e)
         {
             this.Activate();
-            WindowsMediaPlayer intro = new WindowsMediaPlayer();
-            intro.URL = @"intro.wav";
-            intro.controls.play();
+            System.IO.Stream stream = Properties.Resources.intro;
+            System.Media.SoundPlayer player = new System.Media.SoundPlayer(stream);
+            player.Play();
+            
         }
 
       
