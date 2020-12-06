@@ -564,6 +564,7 @@ namespace TutteeFrame
         #region Custom Function
         void LoadAfterLogin()
         {
+    
             //Cắt ảnh đại diện thành hình tròn
             System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
             gp.AddEllipse(0, 0, pbProfilemainAvatar.Width - 1, pbProfilemainAvatar.Height - 1);
@@ -573,6 +574,7 @@ namespace TutteeFrame
             //Đổ dữ liệu 
             mainTeacher = teacherController.usingTeacher;
             lbName.Text = mainTeacher.SurName + " " + mainTeacher.FirstName;
+            
 
             //Avatar
             pbProfilemainAvatar.Image = mainTeacher.Avatar;
