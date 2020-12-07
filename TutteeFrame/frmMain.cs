@@ -889,7 +889,7 @@ namespace TutteeFrame
         }
         private void cboxLop_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnPrintStudent.Visible = true;
+            btnPrintStudent.Visible = false;
             cbbStudentGrade.Enabled = false;
             cbbStudentClass.Enabled = false;
             listViewStudents.Enabled = false;
