@@ -247,23 +247,7 @@ namespace TutteeFrame
                     break;
             }
         }
-        private void cbxIsAdmin_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbxIsAdmin.Checked)
-            {
-                if (cbxIsMinistry.Checked)
-                    cbxIsMinistry.Checked = false;
-            }
-        }
-
-        private void cbxIsMinistry_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbxIsMinistry.Checked)
-            {
-                if (cbxIsAdmin.Checked)
-                    cbxIsAdmin.Checked = false;
-            }
-        }
+     
         //only digit textbox
         private void txtAddingtcNum_KeyPress(object sender, KeyPressEventArgs e)
         {
