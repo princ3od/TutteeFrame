@@ -44,12 +44,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\MaterialDesignByPr3.dll</HintPath>
     </Reference>
-    <Reference Include="MaterialSkin, Version=2.1.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>C:\Users\MSI PC\Downloads\BattleShipbyANH\MaterialSkin.dll</HintPath>
+    <Reference Include="MaterialSkin">
+      <HintPath>.\MaterialSkin.dll</HintPath>
     </Reference>
-    <Reference Include="MetroFramework, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Users\MSI PC\Downloads\MetroFramework\MetroFramework.dll</HintPath>
+    <Reference Include="MetroFramework">
+      <HintPath>.\MetroFramework.dll</HintPath>
     </Reference>
     <Reference Include="MetroFramework.Design">
       <HintPath>packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
