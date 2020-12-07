@@ -30,15 +30,25 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("", 0);
-            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("", 0);
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("", 0);
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("", 0);
             this.materialDrawer1 = new MaterialSkin.Controls.MaterialDrawer();
             this.mainTabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.tbpgProfile = new System.Windows.Forms.TabPage();
+            this.lbMyaddr = new System.Windows.Forms.Label();
+            this.lbMyemail = new System.Windows.Forms.Label();
+            this.lbMyfonenum = new System.Windows.Forms.Label();
+            this.lbBelongto = new System.Windows.Forms.Label();
+            this.lbDateofbirth = new System.Windows.Forms.Label();
+            this.lbGender = new System.Windows.Forms.Label();
+            this.lbPosition = new System.Windows.Forms.Label();
+            this.lbImyID = new System.Windows.Forms.Label();
+            this.lbSubjectTeach = new System.Windows.Forms.Label();
+            this.lbMyName = new System.Windows.Forms.Label();
             this.materialDivider4 = new MaterialSkin.Controls.MaterialDivider();
             this.pictureBox16 = new System.Windows.Forms.PictureBox();
             this.pbProfilemainAvatar = new System.Windows.Forms.PictureBox();
@@ -156,7 +166,7 @@
             this.materialDivider2 = new MaterialSkin.Controls.MaterialDivider();
             this.ptbAvatar = new System.Windows.Forms.PictureBox();
             this.lbBelongtoOnCard = new MaterialSkin.Controls.MaterialLabel();
-            this.lbName = new MaterialSkin.Controls.MaterialLabel();
+            this.lbName = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.materialDivider1 = new MaterialSkin.Controls.MaterialDivider();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -171,16 +181,6 @@
             this.lbTotalTeachingClassTittle = new System.Windows.Forms.Label();
             this.lbTotalSubjectTittle = new System.Windows.Forms.Label();
             this.lbTittle = new System.Windows.Forms.Label();
-            this.lbMyName = new System.Windows.Forms.Label();
-            this.lbSubjectTeach = new System.Windows.Forms.Label();
-            this.lbImyID = new System.Windows.Forms.Label();
-            this.lbPosition = new System.Windows.Forms.Label();
-            this.lbGender = new System.Windows.Forms.Label();
-            this.lbDateofbirth = new System.Windows.Forms.Label();
-            this.lbBelongto = new System.Windows.Forms.Label();
-            this.lbMyfonenum = new System.Windows.Forms.Label();
-            this.lbMyemail = new System.Windows.Forms.Label();
-            this.lbMyaddr = new System.Windows.Forms.Label();
             this.mainTabControl.SuspendLayout();
             this.tbpgProfile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
@@ -296,6 +296,116 @@
             this.tbpgProfile.TabIndex = 0;
             this.tbpgProfile.Text = "Thông tin tài khoản";
             this.metroToolTip1.SetToolTip(this.tbpgProfile, "Phòng ban trực ");
+            // 
+            // lbMyaddr
+            // 
+            this.lbMyaddr.AutoSize = true;
+            this.lbMyaddr.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMyaddr.Location = new System.Drawing.Point(729, 100);
+            this.lbMyaddr.Name = "lbMyaddr";
+            this.lbMyaddr.Size = new System.Drawing.Size(82, 23);
+            this.lbMyaddr.TabIndex = 41;
+            this.lbMyaddr.Text = "lbMyaddr";
+            this.metroToolTip1.SetToolTip(this.lbMyaddr, "Địa chỉ thường trú");
+            // 
+            // lbMyemail
+            // 
+            this.lbMyemail.AutoSize = true;
+            this.lbMyemail.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMyemail.Location = new System.Drawing.Point(729, 157);
+            this.lbMyemail.Name = "lbMyemail";
+            this.lbMyemail.Size = new System.Drawing.Size(88, 23);
+            this.lbMyemail.TabIndex = 40;
+            this.lbMyemail.Text = "lbMyemail";
+            this.metroToolTip1.SetToolTip(this.lbMyemail, "Địa chỉ thư điện tử");
+            // 
+            // lbMyfonenum
+            // 
+            this.lbMyfonenum.AutoSize = true;
+            this.lbMyfonenum.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMyfonenum.Location = new System.Drawing.Point(729, 216);
+            this.lbMyfonenum.Name = "lbMyfonenum";
+            this.lbMyfonenum.Size = new System.Drawing.Size(116, 23);
+            this.lbMyfonenum.TabIndex = 39;
+            this.lbMyfonenum.Text = "lbMyfonenum";
+            this.metroToolTip1.SetToolTip(this.lbMyfonenum, "Số điện thoại");
+            // 
+            // lbBelongto
+            // 
+            this.lbBelongto.AutoSize = true;
+            this.lbBelongto.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbBelongto.Location = new System.Drawing.Point(729, 361);
+            this.lbBelongto.Name = "lbBelongto";
+            this.lbBelongto.Size = new System.Drawing.Size(93, 23);
+            this.lbBelongto.TabIndex = 38;
+            this.lbBelongto.Text = "lbBelongto";
+            this.metroToolTip1.SetToolTip(this.lbBelongto, "Phòng ban trực thuộc");
+            // 
+            // lbDateofbirth
+            // 
+            this.lbDateofbirth.AutoSize = true;
+            this.lbDateofbirth.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDateofbirth.Location = new System.Drawing.Point(346, 424);
+            this.lbDateofbirth.Name = "lbDateofbirth";
+            this.lbDateofbirth.Size = new System.Drawing.Size(111, 23);
+            this.lbDateofbirth.TabIndex = 37;
+            this.lbDateofbirth.Text = "lbDateofbirth";
+            this.metroToolTip1.SetToolTip(this.lbDateofbirth, "Ngày sinh");
+            // 
+            // lbGender
+            // 
+            this.lbGender.AutoSize = true;
+            this.lbGender.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbGender.Location = new System.Drawing.Point(346, 354);
+            this.lbGender.Name = "lbGender";
+            this.lbGender.Size = new System.Drawing.Size(80, 23);
+            this.lbGender.TabIndex = 36;
+            this.lbGender.Text = "lbGender";
+            this.metroToolTip1.SetToolTip(this.lbGender, "Giới tính");
+            // 
+            // lbPosition
+            // 
+            this.lbPosition.AutoSize = true;
+            this.lbPosition.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbPosition.Location = new System.Drawing.Point(345, 283);
+            this.lbPosition.Name = "lbPosition";
+            this.lbPosition.Size = new System.Drawing.Size(84, 23);
+            this.lbPosition.TabIndex = 35;
+            this.lbPosition.Text = "lbPosition";
+            this.metroToolTip1.SetToolTip(this.lbPosition, "Chức vụ");
+            // 
+            // lbImyID
+            // 
+            this.lbImyID.AutoSize = true;
+            this.lbImyID.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbImyID.Location = new System.Drawing.Point(346, 216);
+            this.lbImyID.Name = "lbImyID";
+            this.lbImyID.Size = new System.Drawing.Size(69, 23);
+            this.lbImyID.TabIndex = 34;
+            this.lbImyID.Text = "lbImyID";
+            this.metroToolTip1.SetToolTip(this.lbImyID, "Số ID");
+            // 
+            // lbSubjectTeach
+            // 
+            this.lbSubjectTeach.AutoSize = true;
+            this.lbSubjectTeach.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbSubjectTeach.Location = new System.Drawing.Point(345, 151);
+            this.lbSubjectTeach.Name = "lbSubjectTeach";
+            this.lbSubjectTeach.Size = new System.Drawing.Size(123, 23);
+            this.lbSubjectTeach.TabIndex = 33;
+            this.lbSubjectTeach.Text = "lbSubjectTeach";
+            this.metroToolTip1.SetToolTip(this.lbSubjectTeach, "Bộ môn");
+            // 
+            // lbMyName
+            // 
+            this.lbMyName.AutoSize = true;
+            this.lbMyName.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbMyName.Location = new System.Drawing.Point(346, 89);
+            this.lbMyName.Name = "lbMyName";
+            this.lbMyName.Size = new System.Drawing.Size(93, 23);
+            this.lbMyName.TabIndex = 32;
+            this.lbMyName.Text = "lbMyName";
+            this.metroToolTip1.SetToolTip(this.lbMyName, "Họ và tên");
             // 
             // materialDivider4
             // 
@@ -531,7 +641,7 @@
             this.btnAutoColumn.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAutoColumn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnAutoColumn.Icon = null;
-            this.btnAutoColumn.Location = new System.Drawing.Point(1010, 516);
+            this.btnAutoColumn.Location = new System.Drawing.Point(1010, 514);
             this.btnAutoColumn.Name = "btnAutoColumn";
             this.btnAutoColumn.Size = new System.Drawing.Size(108, 36);
             this.btnAutoColumn.TabIndex = 43;
@@ -615,7 +725,7 @@
             this.listviewTeacher.MouseState = MaterialSkin.MouseState.OUT;
             this.listviewTeacher.Name = "listviewTeacher";
             this.listviewTeacher.OwnerDraw = true;
-            this.listviewTeacher.Size = new System.Drawing.Size(1119, 385);
+            this.listviewTeacher.Size = new System.Drawing.Size(1119, 383);
             this.listviewTeacher.TabIndex = 13;
             this.listviewTeacher.UseCompatibleStateImageBehavior = false;
             this.listviewTeacher.View = System.Windows.Forms.View.Details;
@@ -682,7 +792,7 @@
             this.btnDeleteTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnDeleteTeacher.Icon = null;
-            this.btnDeleteTeacher.Location = new System.Drawing.Point(862, 508);
+            this.btnDeleteTeacher.Location = new System.Drawing.Point(862, 506);
             this.btnDeleteTeacher.Name = "btnDeleteTeacher";
             this.btnDeleteTeacher.Radius = 2;
             this.btnDeleteTeacher.ShadowDepth = 3;
@@ -704,7 +814,7 @@
             this.btnUpdateTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdateTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnUpdateTeacher.Icon = null;
-            this.btnUpdateTeacher.Location = new System.Drawing.Point(198, 508);
+            this.btnUpdateTeacher.Location = new System.Drawing.Point(198, 506);
             this.btnUpdateTeacher.Name = "btnUpdateTeacher";
             this.btnUpdateTeacher.Radius = 2;
             this.btnUpdateTeacher.ShadowDepth = 3;
@@ -726,7 +836,7 @@
             this.btnAddTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnAddTeacher.Icon = null;
-            this.btnAddTeacher.Location = new System.Drawing.Point(50, 508);
+            this.btnAddTeacher.Location = new System.Drawing.Point(50, 506);
             this.btnAddTeacher.Name = "btnAddTeacher";
             this.btnAddTeacher.Radius = 2;
             this.btnAddTeacher.ShadowDepth = 3;
@@ -1376,14 +1486,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridviewStudentScore.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.gridviewStudentScore.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridviewStudentScore.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridviewStudentScore.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.gridviewStudentScore.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridviewStudentScore.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmStt,
@@ -1398,29 +1508,29 @@
             this.clmFortyfive3,
             this.clmFinal,
             this.clmAverage});
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridviewStudentScore.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridviewStudentScore.DefaultCellStyle = dataGridViewCellStyle2;
             this.gridviewStudentScore.GridColor = System.Drawing.Color.Black;
             this.gridviewStudentScore.Location = new System.Drawing.Point(22, 115);
             this.gridviewStudentScore.Name = "gridviewStudentScore";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridviewStudentScore.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridviewStudentScore.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.gridviewStudentScore.RowHeadersVisible = false;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.gridviewStudentScore.RowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.gridviewStudentScore.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.gridviewStudentScore.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.gridviewStudentScore.Size = new System.Drawing.Size(1114, 393);
             this.gridviewStudentScore.TabIndex = 0;
@@ -1728,8 +1838,8 @@
             this.listViewTeachingClass.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listViewTeachingClass.HideSelection = false;
             this.listViewTeachingClass.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem3,
-            listViewItem4});
+            listViewItem1,
+            listViewItem2});
             this.listViewTeachingClass.LargeImageList = this.imageList1;
             this.listViewTeachingClass.Location = new System.Drawing.Point(32, 85);
             this.listViewTeachingClass.MultiSelect = false;
@@ -1915,12 +2025,10 @@
             // lbName
             // 
             this.lbName.AutoSize = true;
-            this.lbName.Depth = 0;
-            this.lbName.Font = new System.Drawing.Font("Roboto", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.lbName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.lbName.Location = new System.Drawing.Point(62, 14);
-            this.lbName.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(101, 19);
+            this.lbName.Size = new System.Drawing.Size(99, 17);
             this.lbName.TabIndex = 0;
             this.lbName.Text = "Nguyễn Văn A";
             // 
@@ -2071,116 +2179,6 @@
             this.lbTittle.TabIndex = 27;
             this.lbTittle.Text = "Tổng số giáo viên";
             // 
-            // lbMyName
-            // 
-            this.lbMyName.AutoSize = true;
-            this.lbMyName.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMyName.Location = new System.Drawing.Point(346, 89);
-            this.lbMyName.Name = "lbMyName";
-            this.lbMyName.Size = new System.Drawing.Size(93, 23);
-            this.lbMyName.TabIndex = 32;
-            this.lbMyName.Text = "lbMyName";
-            this.metroToolTip1.SetToolTip(this.lbMyName, "Họ và tên");
-            // 
-            // lbSubjectTeach
-            // 
-            this.lbSubjectTeach.AutoSize = true;
-            this.lbSubjectTeach.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbSubjectTeach.Location = new System.Drawing.Point(345, 151);
-            this.lbSubjectTeach.Name = "lbSubjectTeach";
-            this.lbSubjectTeach.Size = new System.Drawing.Size(123, 23);
-            this.lbSubjectTeach.TabIndex = 33;
-            this.lbSubjectTeach.Text = "lbSubjectTeach";
-            this.metroToolTip1.SetToolTip(this.lbSubjectTeach, "Bộ môn");
-            // 
-            // lbImyID
-            // 
-            this.lbImyID.AutoSize = true;
-            this.lbImyID.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbImyID.Location = new System.Drawing.Point(346, 216);
-            this.lbImyID.Name = "lbImyID";
-            this.lbImyID.Size = new System.Drawing.Size(69, 23);
-            this.lbImyID.TabIndex = 34;
-            this.lbImyID.Text = "lbImyID";
-            this.metroToolTip1.SetToolTip(this.lbImyID, "Số ID");
-            // 
-            // lbPosition
-            // 
-            this.lbPosition.AutoSize = true;
-            this.lbPosition.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPosition.Location = new System.Drawing.Point(345, 283);
-            this.lbPosition.Name = "lbPosition";
-            this.lbPosition.Size = new System.Drawing.Size(84, 23);
-            this.lbPosition.TabIndex = 35;
-            this.lbPosition.Text = "lbPosition";
-            this.metroToolTip1.SetToolTip(this.lbPosition, "Chức vụ");
-            // 
-            // lbGender
-            // 
-            this.lbGender.AutoSize = true;
-            this.lbGender.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbGender.Location = new System.Drawing.Point(346, 354);
-            this.lbGender.Name = "lbGender";
-            this.lbGender.Size = new System.Drawing.Size(80, 23);
-            this.lbGender.TabIndex = 36;
-            this.lbGender.Text = "lbGender";
-            this.metroToolTip1.SetToolTip(this.lbGender, "Giới tính");
-            // 
-            // lbDateofbirth
-            // 
-            this.lbDateofbirth.AutoSize = true;
-            this.lbDateofbirth.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDateofbirth.Location = new System.Drawing.Point(346, 424);
-            this.lbDateofbirth.Name = "lbDateofbirth";
-            this.lbDateofbirth.Size = new System.Drawing.Size(111, 23);
-            this.lbDateofbirth.TabIndex = 37;
-            this.lbDateofbirth.Text = "lbDateofbirth";
-            this.metroToolTip1.SetToolTip(this.lbDateofbirth, "Ngày sinh");
-            // 
-            // lbBelongto
-            // 
-            this.lbBelongto.AutoSize = true;
-            this.lbBelongto.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbBelongto.Location = new System.Drawing.Point(729, 361);
-            this.lbBelongto.Name = "lbBelongto";
-            this.lbBelongto.Size = new System.Drawing.Size(93, 23);
-            this.lbBelongto.TabIndex = 38;
-            this.lbBelongto.Text = "lbBelongto";
-            this.metroToolTip1.SetToolTip(this.lbBelongto, "Phòng ban trực thuộc");
-            // 
-            // lbMyfonenum
-            // 
-            this.lbMyfonenum.AutoSize = true;
-            this.lbMyfonenum.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMyfonenum.Location = new System.Drawing.Point(729, 216);
-            this.lbMyfonenum.Name = "lbMyfonenum";
-            this.lbMyfonenum.Size = new System.Drawing.Size(116, 23);
-            this.lbMyfonenum.TabIndex = 39;
-            this.lbMyfonenum.Text = "lbMyfonenum";
-            this.metroToolTip1.SetToolTip(this.lbMyfonenum, "Số điện thoại");
-            // 
-            // lbMyemail
-            // 
-            this.lbMyemail.AutoSize = true;
-            this.lbMyemail.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMyemail.Location = new System.Drawing.Point(729, 157);
-            this.lbMyemail.Name = "lbMyemail";
-            this.lbMyemail.Size = new System.Drawing.Size(88, 23);
-            this.lbMyemail.TabIndex = 40;
-            this.lbMyemail.Text = "lbMyemail";
-            this.metroToolTip1.SetToolTip(this.lbMyemail, "Địa chỉ thư điện tử");
-            // 
-            // lbMyaddr
-            // 
-            this.lbMyaddr.AutoSize = true;
-            this.lbMyaddr.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMyaddr.Location = new System.Drawing.Point(729, 100);
-            this.lbMyaddr.Name = "lbMyaddr";
-            this.lbMyaddr.Size = new System.Drawing.Size(82, 23);
-            this.lbMyaddr.TabIndex = 41;
-            this.lbMyaddr.Text = "lbMyaddr";
-            this.metroToolTip1.SetToolTip(this.lbMyaddr, "Địa chỉ thường trú");
-            // 
             // frmMain
             // 
             this.ClientSize = new System.Drawing.Size(1400, 750);
@@ -2258,7 +2256,7 @@
         private MaterialSkin.Controls.MaterialDivider materialDivider2;
         private System.Windows.Forms.PictureBox ptbAvatar;
         private MaterialSkin.Controls.MaterialLabel lbBelongtoOnCard;
-        private MaterialSkin.Controls.MaterialLabel lbName;
+        private System.Windows.Forms.Label lbName;
         private System.Windows.Forms.Panel pnProfile;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private System.Windows.Forms.Panel panel4;
