@@ -64,5 +64,15 @@ namespace TutteeFrame.Controller
         {
             return classDA.IsClassExist(_classID);
         }
+
+        public bool UpdateClassInfor(string _classID , string _romNum )
+        {
+            return classDA.UpdateClassInfor(_classID, _romNum);
+        }
+
+        public bool DeletedClass(string _classId)
+        {
+            return classDA.DeletedClass(_classId);
+        }
     }
 }

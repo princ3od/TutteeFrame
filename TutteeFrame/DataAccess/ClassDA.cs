@@ -81,11 +81,59 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
+
+        public  bool DeletedClass(string classId)
+        {
+            bool success = Connect();
+            if (!success) return false;
+            try
+            {
+                strQuery = "DELETE  FROM CLASS WHERE ClassID = @classId";
+                SqlCommand cmd = new SqlCommand(strQuery, connection);
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.CommandText = strQuery;
+                cmd.Parameters.Add("@classId", System.Data.SqlDbType.VarChar).Value = classId;
+                cmd.ExecuteNonQuery();
+                if (connection.State == System.Data.ConnectionState.Open) Disconnect();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        }
+
+        // cập nhật thông tin cho lớp học (đổi phòng học)
+        public bool UpdateClassInfor(string classID, string romNum)
+        {
+            bool success = Connect();
+            if (!success) return false;
+            try
+            {
+                strQuery = "UPDATE CLASS SET RoomNum = @romNum WHERE ClassID = @classID";
+                SqlCommand cmd = new SqlCommand(strQuery, connection);
+                cmd.CommandType = System.Data.CommandType.Text;
+                cmd.CommandText = strQuery;
+                cmd.Parameters.Add("@romNum", System.Data.SqlDbType.VarChar).Value = romNum;
+                cmd.Parameters.Add("@classID", System.Data.SqlDbType.VarChar).Value = classID;
+                cmd.ExecuteNonQuery();
+                if (connection.State == System.Data.ConnectionState.Open) Disconnect();
+                return true;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+
+        }
+
         //Lấy danh sách các lớp học thuộc một khối
         public List<Class> Lops(string _khoi)
         {
-            List<Class> NhomLops = new List<Class>();
 
+            List<Class> NhomLops = new List<Class>();
             bool success = Connect();
             if (!success)
                 return null;
@@ -102,7 +150,7 @@ namespace TutteeFrame.DataAccess
                         i.ID = reader.GetString(0);
                         i.Room = reader.GetString(1);
                         i.StudentNum = (byte)reader.GetByte(2);
-                        i.FormerTeacherID = reader.GetString(3);
+                        i.FormerTeacherID = !reader.IsDBNull(3) ? reader.GetString(3) : "Chưa phân công";
                         NhomLops.Add(i);
                     }
             }
