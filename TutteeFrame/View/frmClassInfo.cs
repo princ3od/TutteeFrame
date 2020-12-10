@@ -83,5 +83,10 @@ namespace TutteeFrame
             
 
         }
+
+        private void btnCloseClassInfo_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

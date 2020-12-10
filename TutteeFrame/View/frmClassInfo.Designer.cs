@@ -51,6 +51,7 @@ namespace TutteeFrame
             this.btnExitsClassInfo.TabIndex = 77;
             this.btnExitsClassInfo.Text = "Hủy";
             this.btnExitsClassInfo.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnExitsClassInfo.Click += new System.EventHandler(this.btnCloseClassInfo_Click);
             // 
             // lbClass
             // 
@@ -103,6 +104,7 @@ namespace TutteeFrame
             this.btnCloseClassInfo.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
             this.btnCloseClassInfo.UseAccentColor = false;
             this.btnCloseClassInfo.UseVisualStyleBackColor = false;
+            this.btnCloseClassInfo.Click += new System.EventHandler(this.btnCloseClassInfo_Click);
             // 
             // txtClassId
             // 

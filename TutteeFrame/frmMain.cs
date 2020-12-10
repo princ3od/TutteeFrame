@@ -738,6 +738,7 @@ namespace TutteeFrame
                     loader.RunWorkerCompleted += (s, e) =>
                     {
                         cbbStudentGrade.SelectedIndex = 0;
+                        cbbGradeClass.SelectedIndex = 0;
                     };
 
                     break;
@@ -1247,9 +1248,16 @@ namespace TutteeFrame
         {
             BackgroundWorker classBackgroundWorker = new BackgroundWorker();
             List<Class> lvClass = new List<Class>();
-            ClassController classControl = new ClassController();
+            cbbGradeClass.Enabled = listViewClass.Enabled = false;
+            listViewClass.SelectedItems.Clear();
+            lbInformation.Text = "Đang tải danh sách lớp học...";
+            lbInformation.Show();
+            mainProgressbar.Show();
             classBackgroundWorker.RunWorkerCompleted += (s, e) =>
             {
+                lbInformation.Hide();
+                mainProgressbar.Hide();
+                cbbGradeClass.Enabled = listViewClass.Enabled = true;
                 if (lvClass == null || lvClass.Count <= 0)
                 {
                     return;
@@ -1269,13 +1277,15 @@ namespace TutteeFrame
 
                     }
                 }
+
             };
 
             if (cbbGradeClass.Text == "Tất cả")
             {
                 classBackgroundWorker.DoWork += (s, e) =>
                 {
-                    classControl.GetAllClass(lvClass);
+                    Thread.Sleep(200);
+                    classController.GetAllClass(lvClass);
                 };
             }
             else
@@ -1283,8 +1293,8 @@ namespace TutteeFrame
                 string strGradeClass = cbbGradeClass.Text;
                 classBackgroundWorker.DoWork += (s, e) =>
                 {
-
-                    lvClass = classControl.GetClass(strGradeClass);
+                    Thread.Sleep(200);
+                    lvClass = classController.GetClass(strGradeClass);
                 };
             }
             listViewClass.Items.Clear();
@@ -1300,7 +1310,7 @@ namespace TutteeFrame
             this.ProgressSuccess = false;
             frmClassInfo newClassInfo = new frmClassInfo(this);
             OverlayForm overlay = new OverlayForm(this, newClassInfo);
-            newClassInfo.ShowDialog();
+            newClassInfo.Show();
             if(this.ProgressSuccess)
             {
                 ReUpdateListViewClass();
@@ -1317,8 +1327,9 @@ namespace TutteeFrame
                     listViewClass.SelectedItems[0].SubItems[2].Text);
                 
                 OverlayForm overlay = new OverlayForm(this, newClassInfo);
-                newClassInfo.ShowDialog();
-                if (ProgressSuccess) ReUpdateListViewClass();
+                newClassInfo.Show();
+                if (ProgressSuccess)
+                    ReUpdateListViewClass();
             }
 
         }
@@ -1330,11 +1341,10 @@ namespace TutteeFrame
 
         private void btnDelClass_Click(object sender, EventArgs e)
         {
-            if (listViewClass.SelectedItems.Count == 0) return;
+            if (listViewClass.SelectedItems.Count == 0) 
+                return;
             if(classController.DeletedClass(listViewClass.SelectedItems[0].SubItems[1].Text))
-            {
                 ReUpdateListViewClass();
-            }
         }
     }
 }
