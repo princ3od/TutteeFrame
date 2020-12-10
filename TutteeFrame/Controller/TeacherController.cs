@@ -21,10 +21,8 @@ namespace TutteeFrame.Controller
         {
             usingTeacher = new Teacher();
             bool isMinistry = false, isAdmin = false;
-            string position = "";
             byte[] avatar = null;
             bool success = teacherDA.LoadTeacher(_teacherID, usingTeacher, ref isMinistry, ref isAdmin, ref avatar);
-            usingTeacher.Position = position;
             usingTeacher.Avatar = ImageHelper.BytesToImage(avatar);
             if (isAdmin)
                 usingTeacher.Type = Teacher.TeacherType.Adminstrator;

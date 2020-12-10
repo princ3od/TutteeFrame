@@ -64,7 +64,10 @@ namespace TutteeFrame.DataAccess
                         _class.ID = reader.GetString(0);
                         _class.Room = reader.GetString(1);
                         _class.StudentNum = reader.GetByte(2);
-                        _class.FormerTeacherID = reader.GetString(3);
+                        if (!reader.IsDBNull(3))
+                            _class.FormerTeacherID = reader.GetString(3);
+                        else
+                            _class.FormerTeacherID = null;
                     }
                 }
 

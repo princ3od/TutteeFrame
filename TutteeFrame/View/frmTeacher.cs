@@ -99,18 +99,13 @@ namespace TutteeFrame
                     break;
                 case Mode.Edit:
                     btnApprove.Text = "Cập nhật giáo viên";
-                    List<Teacher> teachers = new List<Teacher>();
+                    teacher = new Teacher();
                     backgroundWorker.DoWork += (s, e) =>
                     {
-                        teachers = teacherController.GetAllTeachers();
+                        teacherController.LoadTeacher(teacherID, teacher);
                     };
                     backgroundWorker.RunWorkerCompleted += (s, e) =>
-                    {
-                        foreach (Teacher _teacher in teachers)
-                        {
-                            if (_teacher.ID == teacherID)
-                                teacher = _teacher;
-                        }
+                    { 
                         lbID.Text = teacher.ID;
                         lbName.Text = teacher.SurName + " " + teacher.FirstName;
                         txtFirstname.Text = teacher.FirstName;
@@ -252,23 +247,7 @@ namespace TutteeFrame
                     break;
             }
         }
-        private void cbxIsAdmin_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbxIsAdmin.Checked)
-            {
-                if (cbxIsMinistry.Checked)
-                    cbxIsMinistry.Checked = false;
-            }
-        }
-
-        private void cbxIsMinistry_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbxIsMinistry.Checked)
-            {
-                if (cbxIsAdmin.Checked)
-                    cbxIsAdmin.Checked = false;
-            }
-        }
+     
         //only digit textbox
         private void txtAddingtcNum_KeyPress(object sender, KeyPressEventArgs e)
         {

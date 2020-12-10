@@ -45,9 +45,10 @@
       <HintPath>.\MaterialDesignByPr3.dll</HintPath>
     </Reference>
     <Reference Include="MaterialSkin, Version=2.1.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\MaterialSkin.2.2.1.3\lib\net461\MaterialSkin.dll</HintPath>
     </Reference>
-    <Reference Include="MetroFramework, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+    <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
     </Reference>
@@ -301,6 +302,11 @@
     <None Include="Resources\labelSubject1.jpg" />
     <None Include="Resources\Screenshot 2020-11-26 152444.jpg" />
     <None Include="Resources\imageva.jpg" />
+    <None Include="Resources\WaitCurser.gif" />
+    <None Include="Resources\intro.wav" />
+    <None Include="Resources\settings.png" />
+    <None Include="Resources\log_out.png" />
+    <None Include="Resources\password.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -324,14 +330,11 @@
     <None Include="Resources\thongtinll.png" />
     <None Include="Resources\thongtincanhan.png" />
     <None Include="Resources\phonban.png" />
-    <None Include="Resources\settings.png" />
-    <None Include="Resources\password.png" />
     <None Include="Resources\log-out.png" />
     <Content Include="Resources\logo_1_removebg_preview_hoi_icon.ico" />
     <None Include="Resources\21104.png" />
     <None Include="Resources\16015343831562853.png" />
     <None Include="Resources\160153438315628531.png" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

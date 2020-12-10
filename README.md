@@ -7,24 +7,23 @@
   - **Mục tiêu**: giúp đội ngũ giáo viên nhà trường có thể số hoá việc quản lí học sinh, quản lí lớp học... tiết kiệm thời gian, chi phí hơn.
 ## Danh sách tính năng
   - **Role: BGH (AdminstratorTeacher)**
-    - Thêm giáo viên
-    - Cập nhật giáo viên
-    - Xóa giáo viên
-    - Phân công giáo viên
+    - Quản lí giáo viên (thêm, sửa, xóa).
+    - Phân công giáo viên.
+    -	Quản lí môn học (thêm, sửa, xóa).
   - **Role: Giáo Vụ (MinistryTeacher)**
-    - Thêm học sinh
-    - Xóa học sinh
-    - Cập nhật thông tin học sinh
-    - Lập danh sách lớp (thêm, xóa, sửa)
-    - Ra quyết định kỷ luật
-    - Ra quyết định khen thưởng
+    - Quản lí học sinh (thêm, sửa, xóa).
+    -	Lập danh sách lớp (thêm, xóa, sửa).
+    -	Quản lí kỉ luật, khen thưởng học sinh.
   - **Role: GVCN (FormerTeacher)**
-    - Cập nhật hạnh kiểm học sinh
-    - Cập nhật vi phạm
-    - Lập báo cáo - xuất báo cáo
-    - In bảng điểm (theo lớp, theo cá nhân)
+    - Quản lí hạnh kiểm, vi phạm của học sinh.
+    - Lập báo cáo - xuất báo cáo.
+    -	In bảng điểm (theo lớp, theo cá nhân).
   - **Role: Giáo viên (Teacher)**
-    - Cập nhật điểm môn cho học sinh
+    - Cập nhật điểm môn cho học sinh.
+  - **Các tính năng khác**
+    - Đăng nhập, ghi nhớ đăng nhập.
+    - Đăng xuất.
+    - Đổi mật khẩu.
 ### **[Usecase Diagram](https://drive.google.com/file/d/1ABtAMIk52-Gye9QqIcycEgiHBsQpuhCQ/view?usp=sharing)**
 ## Tác giả
   - [Leader] *Dương Bình Trọng - 19521056*

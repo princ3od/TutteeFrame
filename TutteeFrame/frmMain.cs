@@ -564,6 +564,7 @@ namespace TutteeFrame
         #region Custom Function
         void LoadAfterLogin()
         {
+    
             //Cắt ảnh đại diện thành hình tròn
             System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
             gp.AddEllipse(0, 0, pbProfilemainAvatar.Width - 1, pbProfilemainAvatar.Height - 1);
@@ -573,6 +574,7 @@ namespace TutteeFrame
             //Đổ dữ liệu 
             mainTeacher = teacherController.usingTeacher;
             lbName.Text = mainTeacher.SurName + " " + mainTeacher.FirstName;
+            
 
             //Avatar
             pbProfilemainAvatar.Image = mainTeacher.Avatar;
@@ -888,7 +890,7 @@ namespace TutteeFrame
         }
         private void cboxLop_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnPrintStudent.Visible = true;
+            btnPrintStudent.Visible = false;
             cbbStudentGrade.Enabled = false;
             cbbStudentClass.Enabled = false;
             listViewStudents.Enabled = false;
@@ -1219,7 +1221,7 @@ namespace TutteeFrame
                 listViewTeachingClass.Items.Clear();
                 foreach (Class _class in classes)
                 {
-                    if (ckbHideDoneClass.Checked && doneClass != null && doneClass.Contains(_class.ID))
+                    if (ckbHideDoneClass.Checked && doneClass != null && _class.ID != null && doneClass.Contains(_class.ID))
                         continue;
                     listViewTeachingClass.Items.Add(_class.ID, 0);
                 }

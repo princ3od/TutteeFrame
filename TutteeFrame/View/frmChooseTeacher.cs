@@ -29,6 +29,8 @@ namespace TutteeFrame
             {
                 txtCurrentTeacher.Text = _currentTeacher;
                 txtCurrentTeacher.Tag = _currentTeacher;
+                if (_subjectLoad != "GVCN")
+                    return;
                 listviewTeacher.Items.Add(new ListViewItem(new string[] { "0", _currentTeacher.Split('|')[0].Trim(), _currentTeacher.Split('|')[1].Trim() }));
                 listviewTeacher.Items[0].Selected = true;
                 listviewTeacher.Select();
