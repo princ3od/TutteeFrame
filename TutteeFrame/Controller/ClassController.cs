@@ -52,5 +52,27 @@ namespace TutteeFrame.Controller
             return result;
             
         }
+        public bool GetAllClass(List<Class> items)
+        {
+            return classDA.GetAllClass(items);
+        }
+        public bool AddNewClass(Class _class)
+        {
+            return classDA.AddClass(_class);
+        }
+        public bool IsClassExist(string _classID)
+        {
+            return classDA.IsClassExist(_classID);
+        }
+
+        public bool UpdateClassInfor(string _classID , string _romNum )
+        {
+            return classDA.UpdateClassInfor(_classID, _romNum);
+        }
+
+        public bool DeletedClass(string _classId)
+        {
+            return classDA.DeletedClass(_classId);
+        }
     }
 }
