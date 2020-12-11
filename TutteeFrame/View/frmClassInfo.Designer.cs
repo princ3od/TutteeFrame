@@ -36,6 +36,8 @@ namespace TutteeFrame
             this.btnCloseClassInfo = new MaterialSkin.Controls.MaterialButton();
             this.txtClassId = new MaterialSkin.Controls.MaterialTextBox();
             this.txtRoom = new MaterialSkin.Controls.MaterialTextBox();
+            this.mainProgressbar = new System.Windows.Forms.ProgressBar();
+            this.lbInformation = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnExitsClassInfo
@@ -45,7 +47,7 @@ namespace TutteeFrame
             this.btnExitsClassInfo.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExitsClassInfo.ForeColor = System.Drawing.Color.Red;
             this.btnExitsClassInfo.Icon = null;
-            this.btnExitsClassInfo.Location = new System.Drawing.Point(296, 181);
+            this.btnExitsClassInfo.Location = new System.Drawing.Point(276, 175);
             this.btnExitsClassInfo.Name = "btnExitsClassInfo";
             this.btnExitsClassInfo.Size = new System.Drawing.Size(108, 36);
             this.btnExitsClassInfo.TabIndex = 77;
@@ -73,7 +75,7 @@ namespace TutteeFrame
             this.btnConfirmClassInfor.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirmClassInfor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnConfirmClassInfor.Icon = null;
-            this.btnConfirmClassInfor.Location = new System.Drawing.Point(148, 173);
+            this.btnConfirmClassInfor.Location = new System.Drawing.Point(128, 169);
             this.btnConfirmClassInfor.Name = "btnConfirmClassInfor";
             this.btnConfirmClassInfor.Radius = 2;
             this.btnConfirmClassInfor.ShadowDepth = 3;
@@ -136,12 +138,40 @@ namespace TutteeFrame
             this.txtRoom.TabIndex = 73;
             this.txtRoom.Text = "";
             // 
+            // mainProgressbar
+            // 
+            this.mainProgressbar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.mainProgressbar.Location = new System.Drawing.Point(0, 235);
+            this.mainProgressbar.MarqueeAnimationSpeed = 18;
+            this.mainProgressbar.Name = "mainProgressbar";
+            this.mainProgressbar.Size = new System.Drawing.Size(435, 5);
+            this.mainProgressbar.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.mainProgressbar.TabIndex = 78;
+            this.mainProgressbar.Visible = false;
+            // 
+            // lbInformation
+            // 
+            this.lbInformation.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbInformation.AutoSize = true;
+            this.lbInformation.BackColor = System.Drawing.Color.White;
+            this.lbInformation.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.lbInformation.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lbInformation.Location = new System.Drawing.Point(4, 218);
+            this.lbInformation.Name = "lbInformation";
+            this.lbInformation.Size = new System.Drawing.Size(88, 13);
+            this.lbInformation.TabIndex = 79;
+            this.lbInformation.Text = "*Đang kết nối...";
+            this.lbInformation.Visible = false;
+            // 
             // frmClassInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(435, 225);
+            this.ClientSize = new System.Drawing.Size(435, 240);
+            this.Controls.Add(this.mainProgressbar);
+            this.Controls.Add(this.lbInformation);
             this.Controls.Add(this.btnExitsClassInfo);
             this.Controls.Add(this.lbClass);
             this.Controls.Add(this.btnConfirmClassInfor);
@@ -164,5 +194,7 @@ namespace TutteeFrame
         private MaterialSkin.Controls.MaterialButton btnCloseClassInfo;
         private MaterialSkin.Controls.MaterialTextBox txtClassId;
         private MaterialSkin.Controls.MaterialTextBox txtRoom;
+        private System.Windows.Forms.ProgressBar mainProgressbar;
+        private System.Windows.Forms.Label lbInformation;
     }
 }

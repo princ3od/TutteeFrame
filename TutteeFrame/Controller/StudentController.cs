@@ -25,7 +25,7 @@ namespace TutteeFrame.Controller
         /// <returns></returns>
         public List<Student> GetInformationStudents(string classID, bool getKhoi = false)
         {
-            return studentDA.StudentsInformation(classID, getKhoi);
+            return studentDA.GetStudents(classID, getKhoi);
         }
         public bool UpdateStudentToDataBase(string _studentid, Student student)
         {

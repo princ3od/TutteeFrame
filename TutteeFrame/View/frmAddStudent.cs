@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using TutteeFrame.Model;
 using System.Drawing.Imaging;
 using TutteeFrame.Controller;
+using MetroFramework;
 
 namespace TutteeFrame
 {
@@ -120,7 +121,7 @@ namespace TutteeFrame
                 if (studentController.AddNewStudentToDataBase(studentinfor))
                 {
                     Is_Progress_Successed = true;
-                    MessageBox.Show("Thêm thành công");
+                    MetroMessageBox.Show(this,"Thêm thành công","Thông báo",MessageBoxButtons.OK,MessageBoxIcon.Exclamation);
                     //Tải lại list Student
                     this.Close();
                 }

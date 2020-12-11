@@ -46,21 +46,23 @@ namespace TutteeFrame.DataAccess
                 }
                 string query = "INSERT INTO TEACHER(TeacherID,Surname,FirstName,TeacherImage,DateBorn,Sex,Address,Phone,Maill,SubjectID,IsMinistry,IsAdmin,Posittion) " +
                     "VALUES(@teacherid,@surname,@firstname,@avatar,@date,@sex,@address,@phone,@mail,@subjectid,@is_ministry,@is_admin,@position)";
-                SqlCommand sqlCommand = new SqlCommand(query, connection);
-                sqlCommand.Parameters.AddWithValue("@teacherid", _teacher.ID);
-                sqlCommand.Parameters.AddWithValue("@surname", _teacher.SurName);
-                sqlCommand.Parameters.AddWithValue("@date", _teacher.DateBorn);
-                sqlCommand.Parameters.AddWithValue("@sex", _teacher.Sex);
-                sqlCommand.Parameters.AddWithValue("@firstname", _teacher.FirstName);
-                sqlCommand.Parameters.AddWithValue("@avatar", _teacher.GetAvatar());
-                sqlCommand.Parameters.AddWithValue("@phone", _teacher.Phone);
-                sqlCommand.Parameters.AddWithValue("@address", _teacher.Address);
-                sqlCommand.Parameters.AddWithValue("@mail", _teacher.Mail);
-                sqlCommand.Parameters.AddWithValue("@subjectid", _teacher.Subject.ID);
-                sqlCommand.Parameters.AddWithValue("@is_ministry", is_ministry);
-                sqlCommand.Parameters.AddWithValue("@is_admin", is_admin);
-                sqlCommand.Parameters.AddWithValue("@position", _teacher.Position);
-                sqlCommand.ExecuteNonQuery();
+                using (SqlCommand sqlCommand = new SqlCommand(query, connection))
+                {
+                    sqlCommand.Parameters.AddWithValue("@teacherid", _teacher.ID);
+                    sqlCommand.Parameters.AddWithValue("@surname", _teacher.SurName);
+                    sqlCommand.Parameters.AddWithValue("@date", _teacher.DateBorn);
+                    sqlCommand.Parameters.AddWithValue("@sex", _teacher.Sex);
+                    sqlCommand.Parameters.AddWithValue("@firstname", _teacher.FirstName);
+                    sqlCommand.Parameters.AddWithValue("@avatar", _teacher.GetAvatar());
+                    sqlCommand.Parameters.AddWithValue("@phone", _teacher.Phone);
+                    sqlCommand.Parameters.AddWithValue("@address", _teacher.Address);
+                    sqlCommand.Parameters.AddWithValue("@mail", _teacher.Mail);
+                    sqlCommand.Parameters.AddWithValue("@subjectid", _teacher.Subject.ID);
+                    sqlCommand.Parameters.AddWithValue("@is_ministry", is_ministry);
+                    sqlCommand.Parameters.AddWithValue("@is_admin", is_admin);
+                    sqlCommand.Parameters.AddWithValue("@position", _teacher.Position);
+                    sqlCommand.ExecuteNonQuery();
+                }
             }
             catch (Exception e)
             {
@@ -89,29 +91,31 @@ namespace TutteeFrame.DataAccess
             {
                 string strQuery = "SELECT * FROM TEACHER JOIN [SUBJECT] ON TEACHER.SubjectID = SUBJECT.SubjectID" +
                     " WHERE TeacherID=@teacherid";
-                SqlCommand sqlCommand = new SqlCommand(strQuery, connection);
-                sqlCommand.Parameters.AddWithValue("@teacherid", _teacherID);
-                using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                using (SqlCommand sqlCommand = new SqlCommand(strQuery, connection))
                 {
-                    dataReader.Read();
-                    _teacher.ID = dataReader.GetString(0);
-                    _teacher.SurName = dataReader.GetString(1);
-                    _teacher.FirstName = dataReader.GetString(2);
-                    if (!(dataReader["TeacherImage"] is DBNull))
-                        _avatar = (byte[])dataReader["TeacherImage"];
-                    else
-                        _avatar = null;
-                    _teacher.Address = dataReader.GetString(6);
-                    _teacher.Phone = dataReader.GetString(7);
-                    _teacher.Mail = dataReader.GetString(8);
-                    _teacher.Sex = dataReader.GetBoolean(5);
-                    _teacher.DateBorn = dataReader.GetDateTime(4);
-                    _teacher.Subject = new Subject();
-                    _teacher.Subject.ID = dataReader.GetString(9);
-                    _teacher.Subject.Name = dataReader["SubjectName"].ToString();
-                    _isMinistry = dataReader.GetBoolean(10);
-                    _isAdmin = dataReader.GetBoolean(11);
-                    _teacher.Position = dataReader.GetString(12);
+                    sqlCommand.Parameters.AddWithValue("@teacherid", _teacherID);
+                    using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                    {
+                        dataReader.Read();
+                        _teacher.ID = dataReader.GetString(0);
+                        _teacher.SurName = dataReader.GetString(1);
+                        _teacher.FirstName = dataReader.GetString(2);
+                        if (!(dataReader["TeacherImage"] is DBNull))
+                            _avatar = (byte[])dataReader["TeacherImage"];
+                        else
+                            _avatar = null;
+                        _teacher.Address = dataReader.GetString(6);
+                        _teacher.Phone = dataReader.GetString(7);
+                        _teacher.Mail = dataReader.GetString(8);
+                        _teacher.Sex = dataReader.GetBoolean(5);
+                        _teacher.DateBorn = dataReader.GetDateTime(4);
+                        _teacher.Subject = new Subject();
+                        _teacher.Subject.ID = dataReader.GetString(9);
+                        _teacher.Subject.Name = dataReader["SubjectName"].ToString();
+                        _isMinistry = dataReader.GetBoolean(10);
+                        _isAdmin = dataReader.GetBoolean(11);
+                        _teacher.Position = dataReader.GetString(12);
+                    }
                 }
             }
             catch (Exception e)
@@ -140,16 +144,18 @@ namespace TutteeFrame.DataAccess
             try
             {
                 string strQuery = "SELECT * FROM CLASS WHERE TeacherID=@teacherid";
-                SqlCommand sqlCommand = new SqlCommand(strQuery, connection);
-                sqlCommand.Parameters.AddWithValue("@teacherid", _teacherID);
-                using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
-                    if (!dataReader.HasRows)
-                        _classID = null;
-                    else
-                    {
-                        dataReader.Read();
-                        _classID = dataReader.GetString(0);
-                    }
+                using (SqlCommand sqlCommand = new SqlCommand(strQuery, connection))
+                {
+                    sqlCommand.Parameters.AddWithValue("@teacherid", _teacherID);
+                    using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                        if (!dataReader.HasRows)
+                            _classID = null;
+                        else
+                        {
+                            dataReader.Read();
+                            _classID = dataReader.GetString(0);
+                        }
+                }
             }
             catch (Exception e)
             {
@@ -178,10 +184,12 @@ namespace TutteeFrame.DataAccess
             try
             {
                 string query = "UPDATE TEACHER SET " + _columnName + " = @value WHERE TeacherID = @teacherid";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@value", _value);
-                command.Parameters.AddWithValue("@teacherid", _teacherID);
-                command.ExecuteNonQuery();
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@value", _value);
+                    command.Parameters.AddWithValue("@teacherid", _teacherID);
+                    command.ExecuteNonQuery();
+                }
             }
             catch (Exception e)
             {
@@ -208,8 +216,8 @@ namespace TutteeFrame.DataAccess
             try
             {
                 string query = $"DELETE TEACHER WHERE TeacherID = '{_teacherID}'";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.ExecuteNonQuery();
+                using (SqlCommand command = new SqlCommand(query, connection))
+                    command.ExecuteNonQuery();
             }
             catch (Exception e)
             {
@@ -237,7 +245,7 @@ namespace TutteeFrame.DataAccess
             try
             {
                 string query = "SELECT * FROM TEACHER JOIN [SUBJECT] ON TEACHER.SubjectID = SUBJECT.SubjectID ORDER BY " + _order;
-                SqlCommand command = new SqlCommand(query, connection);
+                using (SqlCommand command = new SqlCommand(query, connection))
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -323,13 +331,15 @@ namespace TutteeFrame.DataAccess
             try
             {
                 strQuery = "SELECT DISTINCT ClassID FROM TEACHING WHERE TeacherID = @teacherid";
-                SqlCommand command = new SqlCommand(strQuery, connection);
-                command.Parameters.AddWithValue("@teacherid", _teacherID);
-                using (SqlDataReader reader = command.ExecuteReader())
-                    while (reader.Read())
-                    {
-                        _classes.Add(reader.GetString(0));
-                    }
+                using (SqlCommand command = new SqlCommand(strQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@teacherid", _teacherID);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                        while (reader.Read())
+                        {
+                            _classes.Add(reader.GetString(0));
+                        }
+                }
             }
             catch (Exception e)
             {
@@ -351,16 +361,18 @@ namespace TutteeFrame.DataAccess
             try
             {
                 strQuery = "SELECT Semester,SchoolYear,Editable FROM TEACHING WHERE TeacherID = @teacherid AND ClassID = @classid";
-                SqlCommand command = new SqlCommand(strQuery, connection);
-                command.Parameters.AddWithValue("@teacherid", _teacherID);
-                command.Parameters.AddWithValue("@classid", _classID);
-                using (SqlDataReader reader = command.ExecuteReader())
-                    while (reader.Read())
-                    {
-                        _semester.Add(reader.GetInt32(0));
-                        _year.Add(reader.GetInt32(1));
-                        _isEditable.Add(reader.GetBoolean(2));
-                    }
+                using (SqlCommand command = new SqlCommand(strQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@teacherid", _teacherID);
+                    command.Parameters.AddWithValue("@classid", _classID);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                        while (reader.Read())
+                        {
+                            _semester.Add(reader.GetInt32(0));
+                            _year.Add(reader.GetInt32(1));
+                            _isEditable.Add(reader.GetBoolean(2));
+                        }
+                }
             }
             catch (Exception e)
             {

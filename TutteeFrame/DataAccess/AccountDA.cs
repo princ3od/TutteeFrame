@@ -9,7 +9,7 @@ using TutteeFrame.Model;
 
 namespace TutteeFrame.DataAccess
 {
-    class AccountDA :BaseDA
+    class AccountDA : BaseDA
     {
         public bool AddAccount(Account _account)
         {
@@ -20,11 +20,13 @@ namespace TutteeFrame.DataAccess
             try
             {
                 string query = "INSERT INTO ACCOUNT(AccountID,TeacherID,Password) VALUES(@id,@teacherid, @pass)";
-                SqlCommand sqlCommand = new SqlCommand(query, connection);
-                sqlCommand.Parameters.AddWithValue("@id", _account.ID.ToString());
-                sqlCommand.Parameters.AddWithValue("@teacherid", _account.TeacherID);
-                sqlCommand.Parameters.AddWithValue("@pass", _account.Password);
-                sqlCommand.ExecuteNonQuery();
+                using (SqlCommand sqlCommand = new SqlCommand(query, connection))
+                {
+                    sqlCommand.Parameters.AddWithValue("@id", _account.ID.ToString());
+                    sqlCommand.Parameters.AddWithValue("@teacherid", _account.TeacherID);
+                    sqlCommand.Parameters.AddWithValue("@pass", _account.Password);
+                    sqlCommand.ExecuteNonQuery();
+                }
             }
             catch (Exception e)
             {
@@ -47,13 +49,13 @@ namespace TutteeFrame.DataAccess
             {
                 Account account;
                 string strQuery = "SELECT * FROM ACCOUNT";
-                SqlCommand sqlCommand = new SqlCommand(strQuery, connection);
-                SqlDataReader dataReader = sqlCommand.ExecuteReader();
-                while (dataReader.Read())
-                {
-                    account = new Account(Convert.ToInt32(dataReader.GetString(0)), dataReader.GetString(1), dataReader.GetString(2));
-                    accounts.Add(account);
-                }
+                using (SqlCommand sqlCommand = new SqlCommand(strQuery, connection))
+                using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
+                    while (dataReader.Read())
+                    {
+                        account = new Account(Convert.ToInt32(dataReader.GetString(0)), dataReader.GetString(1), dataReader.GetString(2));
+                        accounts.Add(account);
+                    }
             }
             catch (Exception e)
             {
@@ -81,10 +83,13 @@ namespace TutteeFrame.DataAccess
                 return false;
             try
             {
-                string query = $"UPDATE ACCOUNT SET Password = '{_newPass}' WHERE TeacherID = '{_teacherID}'";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.ExecuteNonQuery();
-
+                string query = $"UPDATE ACCOUNT SET Password = @newpass WHERE TeacherID = @teacherid";
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@newpass", _newPass);
+                    command.Parameters.AddWithValue("@teacherid", _teacherID);
+                    command.ExecuteNonQuery();
+                }
             }
             catch (Exception e)
             {
@@ -142,9 +147,11 @@ namespace TutteeFrame.DataAccess
             try
             {
                 string query = "SELECT COUNT(*) FROM ACCOUNT WHERE TeacherID = @teacherid";
-                SqlCommand command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("@teacherid", _teacherID);
-                _isExist = ((int)command.ExecuteScalar() > 0) ? true : false;
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@teacherid", _teacherID);
+                    _isExist = ((int)command.ExecuteScalar() > 0) ? true : false;
+                }
             }
             catch (Exception e)
             {

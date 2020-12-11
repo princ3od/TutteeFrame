@@ -23,7 +23,7 @@ namespace TutteeFrame.Controller
         }
         public List<Class> GetClass(string Khoi)
         {
-            return classDA.Lops(Khoi);
+            return classDA.GetClasses(Khoi);
         }
         public bool LoadClass(string _classID,Class _class)
         {

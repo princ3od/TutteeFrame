@@ -118,6 +118,32 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
+        public bool DeleteTeaching(string _classID)
+        {
+            bool success = Connect();
+
+            if (!success)
+                return false;
+            try
+            {
+                strQuery = "DELETE FROM TEACHING WHERE ClassID = @classid";
+                using (SqlCommand sqlCommand = new SqlCommand(strQuery, connection))
+                {
+                    sqlCommand.Parameters.AddWithValue("@classid", _classID);
+                    sqlCommand.ExecuteNonQuery();
+                }     
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+                return false;
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return true;
+        }
         public bool GetLastTeachingID(ref int _lastTeachingID)
         {
             bool success = Connect();
