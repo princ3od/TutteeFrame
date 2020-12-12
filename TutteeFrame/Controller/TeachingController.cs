@@ -23,12 +23,12 @@ namespace TutteeFrame.Controller
             success = subjectDA.LoadSubjects(subjects);
             if (!success)
                 return false;
+            int teachingID = 1000;
+            teachingDA.GetLastTeachingID(ref teachingID);
             foreach (Subject subject in subjects)
             {
                 for (int sem = 1; sem < 3; sem++)
                 {
-                    int teachingID = 1000;
-                    teachingDA.GetLastTeachingID(ref teachingID);
                     Teaching teaching = new Teaching();
                     teaching.ID = (teachingID + 1).ToString();
                     teaching.ClassID = _classID;
@@ -38,6 +38,7 @@ namespace TutteeFrame.Controller
                     teaching.Year = DateTime.Now.Year;
                     teaching.Editable = true;
                     success = teachingDA.AddTeaching(teaching);
+                    teachingID++;
                 }
             }
             return true;
@@ -51,6 +52,10 @@ namespace TutteeFrame.Controller
         public bool LoadTeaching(string _classID, int _semester, Dictionary<string, string> teacherList, Dictionary<string, bool> editableList)
         {
             return teachingDA.LoadTeaching(_classID, _semester, teacherList, editableList);
+        }
+        public bool DeleteTeaching(string _classID)
+        {
+            return teachingDA.DeleteTeaching(_classID);
         }
 
     }

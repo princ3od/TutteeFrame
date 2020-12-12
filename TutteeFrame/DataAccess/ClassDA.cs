@@ -32,7 +32,7 @@ namespace TutteeFrame.DataAccess
                 command.Parameters.AddWithValue("@classid", _class.ID);
                 command.Parameters.AddWithValue("@classroom", _class.Room);
                 command.Parameters.AddWithValue("@studentnum", _class.StudentNum);
-                command.Parameters.AddWithValue("@teacherid",DBNull.Value);
+                command.Parameters.AddWithValue("@teacherid", DBNull.Value);
                 command.ExecuteNonQuery();
             }
             catch (Exception e)
@@ -85,7 +85,7 @@ namespace TutteeFrame.DataAccess
             return true;
         }
 
-        public  bool DeletedClass(string classId)
+        public bool DeletedClass(string classId)
         {
             bool success = Connect();
             if (!success) return false;
@@ -100,40 +100,41 @@ namespace TutteeFrame.DataAccess
                 if (connection.State == System.Data.ConnectionState.Open) Disconnect();
                 return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return false;
             }
         }
-
-        // cập nhật thông tin cho lớp học (đổi phòng học)
         public bool UpdateClassInfor(string classID, string romNum)
         {
             bool success = Connect();
-            if (!success) return false;
+
+            if (!success)
+                return false;
             try
             {
                 strQuery = "UPDATE CLASS SET RoomNum = @romNum WHERE ClassID = @classID";
-                SqlCommand cmd = new SqlCommand(strQuery, connection);
-                cmd.CommandType = System.Data.CommandType.Text;
-                cmd.CommandText = strQuery;
-                cmd.Parameters.Add("@romNum", System.Data.SqlDbType.VarChar).Value = romNum;
-                cmd.Parameters.Add("@classID", System.Data.SqlDbType.VarChar).Value = classID;
-                cmd.ExecuteNonQuery();
-                if (connection.State == System.Data.ConnectionState.Open) Disconnect();
-                return true;
+                using (SqlCommand cmd = new SqlCommand(strQuery, connection))
+                {
+                    cmd.Parameters.AddWithValue("@romNum", romNum);
+                    cmd.Parameters.AddWithValue("@classID", classID);
+                    cmd.ExecuteNonQuery();
+                }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 return false;
             }
+            finally
+            {
+                Disconnect();
+            }
+            return true;
 
         }
-
-        //Lấy danh sách các lớp học thuộc một khối
-        public List<Class> Lops(string _khoi)
+        public List<Class> GetClasses(string _khoi)
         {
 
             List<Class> NhomLops = new List<Class>();
@@ -270,35 +271,45 @@ namespace TutteeFrame.DataAccess
                     i.FormerTeacherID = reader.IsDBNull(3) ? "Chưa phân công" : (string)reader["TeacherID"];
                     items.Add(i);
                 }
-                if (connection.State == System.Data.ConnectionState.Open) Disconnect();
-                return true;
             }
             catch (Exception ex)
             {
-                if (connection.State == System.Data.ConnectionState.Open) Disconnect();
                 MessageBox.Show(ex.Message);
                 return false;
             }
+            finally
+            {
+                Disconnect();
+            }
+            return true;
         }
         public bool IsClassExist(string _classID)
         {
-           if(Connect())
+            bool success = Connect();
+            if (!success)
+                return false;
+            try
             {
-                strQuery = "SELECT * FROM CLASS WHERE ClassID = @_classID";
-                SqlCommand cmd = new SqlCommand(strQuery,connection);
-                SqlDataReader reader = cmd.ExecuteReader();
-                if(reader.HasRows)
+                strQuery = "SELECT * FROM CLASS WHERE ClassID = @classID";
+                using (SqlCommand cmd = new SqlCommand(strQuery, connection))
                 {
-                    if (connection.State == System.Data.ConnectionState.Open) Disconnect();
-                    return true;
-                }
-                else
-                {
-                    return false;
+                    cmd.Parameters.AddWithValue("@classid", _classID);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                        if (reader.HasRows)
+                            return true;
+                        else
+                            return false;
                 }
             }
-            return false;
-            
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                Disconnect();
+            }
         }
 
 

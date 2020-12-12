@@ -34,12 +34,16 @@ namespace TutteeFrame
         }
         public static bool IsInformationOfClassCorrected(Class item)
         {
-            if (item.ID.Length > 5) return false;
-            if(item.ID.Substring(0,2)!="10"&& item.ID.Substring(0, 2) != "11" && item.ID.Substring(0, 2) != "12") return false;
-            if (item.StudentNum < 0) return false;
-            if(item.FormerTeacherID!=null)
+            if (item.ID.Length > 5)
+                return false;
+            if (item.ID.Substring(0, 2) != "10" && item.ID.Substring(0, 2) != "11" && item.ID.Substring(0, 2) != "12")
+                return false;
+            if (item.StudentNum < 0)
+                return false;
+            if (item.FormerTeacherID != null)
             {
-                if (item.FormerTeacherID.Length != 8) return false;
+                if (item.FormerTeacherID.Length != 8)
+                    return false;
             }
             return true;
         }

@@ -68,30 +68,34 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
-        public bool AddSubject(Subject sbj)
+        public bool AddSubject(Subject _subject)
         {
             bool success = Connect();
-            if (!success) return false;
+            if (!success)
+                return false;
             try
             {
                 strQuery = "INSERT INTO SUBJECT(SubjectID,SubjectName) VALUES(@SubjectID,@SubjectName)";
-                SqlCommand cmd = new SqlCommand();
-                cmd.Connection = connection;
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = strQuery;
-                cmd.Parameters.Add("@SubjectID", SqlDbType.VarChar).Value = sbj.ID;
-                cmd.Parameters.Add("SubjectName", SqlDbType.NVarChar).Value = sbj.Name;
-                int kq = cmd.ExecuteNonQuery();
-                if (connection.State == ConnectionState.Open) Disconnect();
-                return kq > 0;
-
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.Connection = connection;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = strQuery;
+                    cmd.Parameters.Add("@SubjectID", SqlDbType.VarChar).Value = _subject.ID;
+                    cmd.Parameters.Add("SubjectName", SqlDbType.NVarChar).Value = _subject.Name;
+                    cmd.ExecuteNonQuery();
+                }
             }
             catch (Exception ex)
             {
-                MaterialSkin.Controls.MaterialMessageBox.Show(ex.Message);
-                if (connection.State == ConnectionState.Open) Disconnect();
+                MessageBox.Show(ex.Message);
                 return false;
             }
+            finally
+            {
+                Disconnect();
+            }
+            return true;
         }
 
         public bool DeleteSubject(Subject sbj)
@@ -103,12 +107,14 @@ namespace TutteeFrame.DataAccess
             try
             {
                 strQuery = "DELETE FROM SUBJECT WHERE SubjectID =@SubjectID";
-                SqlCommand cmd = new SqlCommand();
-                cmd.CommandType = CommandType.Text;
-                cmd.CommandText = strQuery;
-                cmd.Parameters.Add("@SubjectID", SqlDbType.VarChar).Value = sbj.ID;
-                cmd.Connection = connection;
-                cmd.ExecuteNonQuery();
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = strQuery;
+                    cmd.Parameters.Add("@SubjectID", SqlDbType.VarChar).Value = sbj.ID;
+                    cmd.Connection = connection;
+                    cmd.ExecuteNonQuery();
+                }
             }
             catch (Exception ex)
             {
