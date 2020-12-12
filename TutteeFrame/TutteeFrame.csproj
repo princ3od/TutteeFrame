@@ -115,6 +115,12 @@
     <Compile Include="DataAccess\TeacherDA.cs" />
     <Compile Include="DataAccess\TeachingDA.cs" />
     <Compile Include="Model\Teaching.cs" />
+    <Compile Include="View\frmClassInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\frmClassInfo.Designer.cs">
+      <DependentUpon>frmClassInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\frmChooseTeacher.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,6 +218,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <EmbeddedResource Include="View\frmClassInfo.resx">
+      <DependentUpon>frmClassInfo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\frmChangePass.resx">
       <DependentUpon>frmChangePass.cs</DependentUpon>
     </EmbeddedResource>

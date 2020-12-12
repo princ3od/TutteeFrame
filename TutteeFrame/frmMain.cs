@@ -28,7 +28,7 @@ namespace TutteeFrame
         SubjectController subjectController;
         ScoreController scoreController;
         List<Teacher> teachers = new List<Teacher>();
-        public bool ProgressSuccess { get; }
+        public bool ProgressSuccess { get; set; }
         public frmMain()
         {
             InitializeComponent();
@@ -740,6 +740,7 @@ namespace TutteeFrame
                     loader.RunWorkerCompleted += (s, e) =>
                     {
                         cbbStudentGrade.SelectedIndex = 0;
+                        cbbGradeClass.SelectedIndex = 0;
                     };
 
                     break;
@@ -1240,6 +1241,112 @@ namespace TutteeFrame
         private void listViewTeachingClass_DoubleClick(object sender, EventArgs e)
         {
             btnAssignTeacher.PerformClick();
+        }
+
+        // Viết lại hàm thực hiện việc load lại dữ liệu lên listviewClass
+        // để tái sử dụng khi thêm mới một lớp
+        // Hàm này dùng để cập nhật lại listviewClass khi cần
+        private void ReUpdateListViewClass()
+        {
+            BackgroundWorker classBackgroundWorker = new BackgroundWorker();
+            List<Class> lvClass = new List<Class>();
+            cbbGradeClass.Enabled = listViewClass.Enabled = false;
+            listViewClass.SelectedItems.Clear();
+            lbInformation.Text = "Đang tải danh sách lớp học...";
+            lbInformation.Show();
+            mainProgressbar.Show();
+            classBackgroundWorker.RunWorkerCompleted += (s, e) =>
+            {
+                lbInformation.Hide();
+                mainProgressbar.Hide();
+                cbbGradeClass.Enabled = listViewClass.Enabled = true;
+                if (lvClass == null || lvClass.Count <= 0)
+                {
+                    return;
+                }
+                else
+                {
+                    int i = 0;
+                    foreach (var item in lvClass)
+                    {
+                        i += 1;
+                        ListViewItem lvi = new ListViewItem(i.ToString());
+                        lvi.SubItems.Add(item.ID);
+                        lvi.SubItems.Add(item.Room);
+                        lvi.SubItems.Add(item.StudentNum.ToString());
+                        lvi.SubItems.Add(item.FormerTeacherID);
+                        listViewClass.Items.Add(lvi);
+
+                    }
+                }
+
+            };
+
+            if (cbbGradeClass.Text == "Tất cả")
+            {
+                classBackgroundWorker.DoWork += (s, e) =>
+                {
+                    Thread.Sleep(200);
+                    classController.GetAllClass(lvClass);
+                };
+            }
+            else
+            {
+                string strGradeClass = cbbGradeClass.Text;
+                classBackgroundWorker.DoWork += (s, e) =>
+                {
+                    Thread.Sleep(200);
+                    lvClass = classController.GetClass(strGradeClass);
+                };
+            }
+            listViewClass.Items.Clear();
+            classBackgroundWorker.RunWorkerAsync();
+        }
+        private void cbbGradeClass_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ReUpdateListViewClass();
+        }
+
+        private void btnAddClass_Click(object sender, EventArgs e)
+        {
+            this.ProgressSuccess = false;
+            frmClassInfo newClassInfo = new frmClassInfo(this);
+            OverlayForm overlay = new OverlayForm(this, newClassInfo);
+            newClassInfo.Show();
+            if(this.ProgressSuccess)
+            {
+                ReUpdateListViewClass();
+            }
+        }
+        
+        private void btnEditClass_Click(object sender, EventArgs e)
+        {
+           if( listViewClass.SelectedItems.Count>0)
+            {
+                this.ProgressSuccess = false;
+                frmClassInfo newClassInfo = new frmClassInfo(this,
+                    listViewClass.SelectedItems[0].SubItems[1].Text,
+                    listViewClass.SelectedItems[0].SubItems[2].Text);
+                
+                OverlayForm overlay = new OverlayForm(this, newClassInfo);
+                newClassInfo.Show();
+                if (ProgressSuccess)
+                    ReUpdateListViewClass();
+            }
+
+        }
+
+        private void listViewClass_DoubleClick(object sender, EventArgs e)
+        {
+            btnEditClass.PerformClick();
+        }
+
+        private void btnDelClass_Click(object sender, EventArgs e)
+        {
+            if (listViewClass.SelectedItems.Count == 0) 
+                return;
+            if(classController.DeletedClass(listViewClass.SelectedItems[0].SubItems[1].Text))
+                ReUpdateListViewClass();
         }
     }
 }
