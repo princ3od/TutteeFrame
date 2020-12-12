@@ -105,7 +105,7 @@ namespace TutteeFrame
                         teacherController.LoadTeacher(teacherID, teacher);
                     };
                     backgroundWorker.RunWorkerCompleted += (s, e) =>
-                    {
+                    { 
                         lbID.Text = teacher.ID;
                         lbName.Text = teacher.SurName + " " + teacher.FirstName;
                         txtFirstname.Text = teacher.FirstName;
