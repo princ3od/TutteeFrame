@@ -323,6 +323,7 @@
             this.materialCard2.Padding = new System.Windows.Forms.Padding(14);
             this.materialCard2.Size = new System.Drawing.Size(344, 188);
             this.materialCard2.TabIndex = 40;
+            this.materialCard2.Click += new System.EventHandler(this.materialCard2_Click);
             // 
             // cbxIsAdmin
             // 

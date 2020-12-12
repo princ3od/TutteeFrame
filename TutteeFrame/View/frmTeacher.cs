@@ -247,7 +247,7 @@ namespace TutteeFrame
                     break;
             }
         }
-     
+
         //only digit textbox
         private void txtAddingtcNum_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -269,6 +269,12 @@ namespace TutteeFrame
                 ptbAvatar.ImageLocation = of.FileName;
 
             }
+        }
+
+        private void materialCard2_Click(object sender, EventArgs e)
+        {
+            cbxIsAdmin.Checked = false;
+            cbxIsMinistry.Checked = false;
         }
     }
 }
