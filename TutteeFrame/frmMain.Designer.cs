@@ -62,9 +62,6 @@
             this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.tbpgShedule = new System.Windows.Forms.TabPage();
             this.tbgpTeacherManagment = new System.Windows.Forms.TabPage();
             this.btnAutoColumn = new Material_Design_for_Winform.MaterialFlatButton();
@@ -191,6 +188,15 @@
             this.lbTotalTeachingClassTittle = new System.Windows.Forms.Label();
             this.lbTotalSubjectTittle = new System.Windows.Forms.Label();
             this.lbTittle = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.materialDivider6 = new MaterialSkin.Controls.MaterialDivider();
+            this.materialDivider7 = new MaterialSkin.Controls.MaterialDivider();
+            this.materialDivider8 = new MaterialSkin.Controls.MaterialDivider();
+            this.materialDivider9 = new MaterialSkin.Controls.MaterialDivider();
+            this.materialDivider10 = new MaterialSkin.Controls.MaterialDivider();
+            this.materialDivider11 = new MaterialSkin.Controls.MaterialDivider();
             this.mainTabControl.SuspendLayout();
             this.tbpgProfile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
@@ -205,9 +211,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.tbgpTeacherManagment.SuspendLayout();
             this.tbpgStudentManagment.SuspendLayout();
             this.tbpgStudentMarkboard.SuspendLayout();
@@ -273,6 +276,15 @@
             // 
             this.tbpgProfile.AutoScroll = true;
             this.tbpgProfile.BackColor = System.Drawing.Color.White;
+            this.tbpgProfile.Controls.Add(this.materialDivider11);
+            this.tbpgProfile.Controls.Add(this.materialDivider10);
+            this.tbpgProfile.Controls.Add(this.materialDivider9);
+            this.tbpgProfile.Controls.Add(this.materialDivider8);
+            this.tbpgProfile.Controls.Add(this.materialDivider7);
+            this.tbpgProfile.Controls.Add(this.materialDivider6);
+            this.tbpgProfile.Controls.Add(this.label9);
+            this.tbpgProfile.Controls.Add(this.label8);
+            this.tbpgProfile.Controls.Add(this.label7);
             this.tbpgProfile.Controls.Add(this.lbMyaddr);
             this.tbpgProfile.Controls.Add(this.lbMyemail);
             this.tbpgProfile.Controls.Add(this.lbMyfonenum);
@@ -296,9 +308,6 @@
             this.tbpgProfile.Controls.Add(this.pictureBox7);
             this.tbpgProfile.Controls.Add(this.pictureBox6);
             this.tbpgProfile.Controls.Add(this.pictureBox5);
-            this.tbpgProfile.Controls.Add(this.pictureBox4);
-            this.tbpgProfile.Controls.Add(this.pictureBox3);
-            this.tbpgProfile.Controls.Add(this.pictureBox2);
             this.tbpgProfile.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbpgProfile.Location = new System.Drawing.Point(4, 24);
             this.tbpgProfile.Name = "tbpgProfile";
@@ -312,7 +321,7 @@
             // 
             this.lbMyaddr.AutoSize = true;
             this.lbMyaddr.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMyaddr.Location = new System.Drawing.Point(729, 100);
+            this.lbMyaddr.Location = new System.Drawing.Point(774, 137);
             this.lbMyaddr.Name = "lbMyaddr";
             this.lbMyaddr.Size = new System.Drawing.Size(82, 23);
             this.lbMyaddr.TabIndex = 41;
@@ -323,7 +332,7 @@
             // 
             this.lbMyemail.AutoSize = true;
             this.lbMyemail.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMyemail.Location = new System.Drawing.Point(729, 157);
+            this.lbMyemail.Location = new System.Drawing.Point(774, 208);
             this.lbMyemail.Name = "lbMyemail";
             this.lbMyemail.Size = new System.Drawing.Size(88, 23);
             this.lbMyemail.TabIndex = 40;
@@ -334,7 +343,7 @@
             // 
             this.lbMyfonenum.AutoSize = true;
             this.lbMyfonenum.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMyfonenum.Location = new System.Drawing.Point(729, 216);
+            this.lbMyfonenum.Location = new System.Drawing.Point(774, 287);
             this.lbMyfonenum.Name = "lbMyfonenum";
             this.lbMyfonenum.Size = new System.Drawing.Size(116, 23);
             this.lbMyfonenum.TabIndex = 39;
@@ -345,7 +354,7 @@
             // 
             this.lbBelongto.AutoSize = true;
             this.lbBelongto.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbBelongto.Location = new System.Drawing.Point(729, 361);
+            this.lbBelongto.Location = new System.Drawing.Point(774, 425);
             this.lbBelongto.Name = "lbBelongto";
             this.lbBelongto.Size = new System.Drawing.Size(93, 23);
             this.lbBelongto.TabIndex = 38;
@@ -356,7 +365,7 @@
             // 
             this.lbDateofbirth.AutoSize = true;
             this.lbDateofbirth.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbDateofbirth.Location = new System.Drawing.Point(346, 424);
+            this.lbDateofbirth.Location = new System.Drawing.Point(339, 506);
             this.lbDateofbirth.Name = "lbDateofbirth";
             this.lbDateofbirth.Size = new System.Drawing.Size(111, 23);
             this.lbDateofbirth.TabIndex = 37;
@@ -367,7 +376,7 @@
             // 
             this.lbGender.AutoSize = true;
             this.lbGender.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbGender.Location = new System.Drawing.Point(346, 354);
+            this.lbGender.Location = new System.Drawing.Point(339, 432);
             this.lbGender.Name = "lbGender";
             this.lbGender.Size = new System.Drawing.Size(80, 23);
             this.lbGender.TabIndex = 36;
@@ -378,7 +387,7 @@
             // 
             this.lbPosition.AutoSize = true;
             this.lbPosition.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPosition.Location = new System.Drawing.Point(345, 283);
+            this.lbPosition.Location = new System.Drawing.Point(338, 354);
             this.lbPosition.Name = "lbPosition";
             this.lbPosition.Size = new System.Drawing.Size(84, 23);
             this.lbPosition.TabIndex = 35;
@@ -389,7 +398,7 @@
             // 
             this.lbImyID.AutoSize = true;
             this.lbImyID.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbImyID.Location = new System.Drawing.Point(346, 216);
+            this.lbImyID.Location = new System.Drawing.Point(339, 280);
             this.lbImyID.Name = "lbImyID";
             this.lbImyID.Size = new System.Drawing.Size(69, 23);
             this.lbImyID.TabIndex = 34;
@@ -400,7 +409,7 @@
             // 
             this.lbSubjectTeach.AutoSize = true;
             this.lbSubjectTeach.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbSubjectTeach.Location = new System.Drawing.Point(345, 151);
+            this.lbSubjectTeach.Location = new System.Drawing.Point(338, 201);
             this.lbSubjectTeach.Name = "lbSubjectTeach";
             this.lbSubjectTeach.Size = new System.Drawing.Size(123, 23);
             this.lbSubjectTeach.TabIndex = 33;
@@ -411,7 +420,7 @@
             // 
             this.lbMyName.AutoSize = true;
             this.lbMyName.Font = new System.Drawing.Font("Segoe UI", 12.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbMyName.Location = new System.Drawing.Point(346, 89);
+            this.lbMyName.Location = new System.Drawing.Point(339, 130);
             this.lbMyName.Name = "lbMyName";
             this.lbMyName.Size = new System.Drawing.Size(93, 23);
             this.lbMyName.TabIndex = 32;
@@ -420,22 +429,20 @@
             // 
             // materialDivider4
             // 
-            this.materialDivider4.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.materialDivider4.BackColor = System.Drawing.Color.DarkGray;
+            this.materialDivider4.BackColor = System.Drawing.Color.Black;
             this.materialDivider4.Depth = 0;
-            this.materialDivider4.Location = new System.Drawing.Point(619, 98);
+            this.materialDivider4.Location = new System.Drawing.Point(603, 130);
             this.materialDivider4.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialDivider4.Name = "materialDivider4";
-            this.materialDivider4.Size = new System.Drawing.Size(1, 300);
+            this.materialDivider4.Size = new System.Drawing.Size(1, 350);
             this.materialDivider4.TabIndex = 31;
             this.materialDivider4.Text = "materialDivider4";
             // 
             // pictureBox16
             // 
-            this.pictureBox16.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox16.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox16.BackgroundImage")));
             this.pictureBox16.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox16.Location = new System.Drawing.Point(680, 354);
+            this.pictureBox16.Location = new System.Drawing.Point(717, 418);
             this.pictureBox16.Name = "pictureBox16";
             this.pictureBox16.Size = new System.Drawing.Size(30, 30);
             this.pictureBox16.TabIndex = 28;
@@ -444,9 +451,8 @@
             // 
             // pbProfilemainAvatar
             // 
-            this.pbProfilemainAvatar.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pbProfilemainAvatar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbProfilemainAvatar.Location = new System.Drawing.Point(50, 33);
+            this.pbProfilemainAvatar.Location = new System.Drawing.Point(32, 16);
             this.pbProfilemainAvatar.Name = "pbProfilemainAvatar";
             this.pbProfilemainAvatar.Size = new System.Drawing.Size(190, 190);
             this.pbProfilemainAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -455,10 +461,9 @@
             // 
             // pictureBox14
             // 
-            this.pictureBox14.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox14.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox14.BackgroundImage")));
             this.pictureBox14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox14.Location = new System.Drawing.Point(302, 417);
+            this.pictureBox14.Location = new System.Drawing.Point(287, 499);
             this.pictureBox14.Name = "pictureBox14";
             this.pictureBox14.Size = new System.Drawing.Size(30, 30);
             this.pictureBox14.TabIndex = 26;
@@ -467,10 +472,9 @@
             // 
             // pictureBox13
             // 
-            this.pictureBox13.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox13.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox13.BackgroundImage")));
             this.pictureBox13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox13.Location = new System.Drawing.Point(302, 347);
+            this.pictureBox13.Location = new System.Drawing.Point(287, 425);
             this.pictureBox13.Name = "pictureBox13";
             this.pictureBox13.Size = new System.Drawing.Size(30, 30);
             this.pictureBox13.TabIndex = 25;
@@ -479,10 +483,9 @@
             // 
             // pictureBox12
             // 
-            this.pictureBox12.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox12.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox12.BackgroundImage")));
             this.pictureBox12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox12.Location = new System.Drawing.Point(302, 347);
+            this.pictureBox12.Location = new System.Drawing.Point(287, 425);
             this.pictureBox12.Name = "pictureBox12";
             this.pictureBox12.Size = new System.Drawing.Size(30, 30);
             this.pictureBox12.TabIndex = 24;
@@ -490,10 +493,9 @@
             // 
             // pictureBox11
             // 
-            this.pictureBox11.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox11.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox11.BackgroundImage")));
             this.pictureBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox11.Location = new System.Drawing.Point(302, 276);
+            this.pictureBox11.Location = new System.Drawing.Point(287, 347);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(30, 30);
             this.pictureBox11.TabIndex = 21;
@@ -502,10 +504,9 @@
             // 
             // pictureBox9
             // 
-            this.pictureBox9.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox9.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox9.BackgroundImage")));
             this.pictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox9.Location = new System.Drawing.Point(302, 144);
+            this.pictureBox9.Location = new System.Drawing.Point(287, 194);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(30, 30);
             this.pictureBox9.TabIndex = 18;
@@ -514,10 +515,9 @@
             // 
             // pictureBox10
             // 
-            this.pictureBox10.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
-            this.pictureBox10.Location = new System.Drawing.Point(302, 209);
+            this.pictureBox10.Location = new System.Drawing.Point(287, 273);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(34, 30);
             this.pictureBox10.TabIndex = 17;
@@ -526,10 +526,9 @@
             // 
             // pictureBox8
             // 
-            this.pictureBox8.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox8.BackgroundImage")));
             this.pictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox8.Location = new System.Drawing.Point(302, 82);
+            this.pictureBox8.Location = new System.Drawing.Point(287, 123);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(30, 30);
             this.pictureBox8.TabIndex = 15;
@@ -538,10 +537,9 @@
             // 
             // pictureBox7
             // 
-            this.pictureBox7.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox7.BackgroundImage")));
             this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox7.Location = new System.Drawing.Point(680, 209);
+            this.pictureBox7.Location = new System.Drawing.Point(717, 280);
             this.pictureBox7.Name = "pictureBox7";
             this.pictureBox7.Size = new System.Drawing.Size(30, 30);
             this.pictureBox7.TabIndex = 14;
@@ -550,10 +548,9 @@
             // 
             // pictureBox6
             // 
-            this.pictureBox6.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox6.BackgroundImage")));
             this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox6.Location = new System.Drawing.Point(680, 150);
+            this.pictureBox6.Location = new System.Drawing.Point(717, 201);
             this.pictureBox6.Name = "pictureBox6";
             this.pictureBox6.Size = new System.Drawing.Size(30, 30);
             this.pictureBox6.TabIndex = 13;
@@ -562,10 +559,9 @@
             // 
             // pictureBox5
             // 
-            this.pictureBox5.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.pictureBox5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.BackgroundImage")));
             this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox5.Location = new System.Drawing.Point(680, 93);
+            this.pictureBox5.Location = new System.Drawing.Point(717, 130);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(30, 30);
             this.pictureBox5.TabIndex = 12;
@@ -614,7 +610,7 @@
             this.tbpgShedule.Location = new System.Drawing.Point(4, 22);
             this.tbpgShedule.Name = "tbpgShedule";
             this.tbpgShedule.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgShedule.Size = new System.Drawing.Size(1147, 596);
+            this.tbpgShedule.Size = new System.Drawing.Size(1133, 596);
             this.tbpgShedule.TabIndex = 1;
             this.tbpgShedule.Text = "Thời khóa biểu";
             this.tbpgShedule.UseVisualStyleBackColor = true;
@@ -640,7 +636,7 @@
             this.tbgpTeacherManagment.Location = new System.Drawing.Point(4, 22);
             this.tbgpTeacherManagment.Name = "tbgpTeacherManagment";
             this.tbgpTeacherManagment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbgpTeacherManagment.Size = new System.Drawing.Size(1147, 596);
+            this.tbgpTeacherManagment.Size = new System.Drawing.Size(1133, 596);
             this.tbgpTeacherManagment.TabIndex = 2;
             this.tbgpTeacherManagment.Text = "Quản lí giáo viên";
             // 
@@ -652,7 +648,7 @@
             this.btnAutoColumn.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAutoColumn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnAutoColumn.Icon = null;
-            this.btnAutoColumn.Location = new System.Drawing.Point(1010, 514);
+            this.btnAutoColumn.Location = new System.Drawing.Point(1010, 508);
             this.btnAutoColumn.Name = "btnAutoColumn";
             this.btnAutoColumn.Size = new System.Drawing.Size(108, 36);
             this.btnAutoColumn.TabIndex = 43;
@@ -736,7 +732,7 @@
             this.listviewTeacher.MouseState = MaterialSkin.MouseState.OUT;
             this.listviewTeacher.Name = "listviewTeacher";
             this.listviewTeacher.OwnerDraw = true;
-            this.listviewTeacher.Size = new System.Drawing.Size(1119, 383);
+            this.listviewTeacher.Size = new System.Drawing.Size(1119, 377);
             this.listviewTeacher.TabIndex = 13;
             this.listviewTeacher.UseCompatibleStateImageBehavior = false;
             this.listviewTeacher.View = System.Windows.Forms.View.Details;
@@ -803,7 +799,7 @@
             this.btnDeleteTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnDeleteTeacher.Icon = null;
-            this.btnDeleteTeacher.Location = new System.Drawing.Point(862, 506);
+            this.btnDeleteTeacher.Location = new System.Drawing.Point(862, 500);
             this.btnDeleteTeacher.Name = "btnDeleteTeacher";
             this.btnDeleteTeacher.Radius = 2;
             this.btnDeleteTeacher.ShadowDepth = 3;
@@ -825,7 +821,7 @@
             this.btnUpdateTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdateTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnUpdateTeacher.Icon = null;
-            this.btnUpdateTeacher.Location = new System.Drawing.Point(198, 506);
+            this.btnUpdateTeacher.Location = new System.Drawing.Point(198, 500);
             this.btnUpdateTeacher.Name = "btnUpdateTeacher";
             this.btnUpdateTeacher.Radius = 2;
             this.btnUpdateTeacher.ShadowDepth = 3;
@@ -847,7 +843,7 @@
             this.btnAddTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnAddTeacher.Icon = null;
-            this.btnAddTeacher.Location = new System.Drawing.Point(50, 506);
+            this.btnAddTeacher.Location = new System.Drawing.Point(50, 500);
             this.btnAddTeacher.Name = "btnAddTeacher";
             this.btnAddTeacher.Radius = 2;
             this.btnAddTeacher.ShadowDepth = 3;
@@ -2342,6 +2338,105 @@
             this.lbTittle.TabIndex = 27;
             this.lbTittle.Text = "Tổng số giáo viên";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.label7.Location = new System.Drawing.Point(322, 54);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(157, 25);
+            this.label7.TabIndex = 28;
+            this.label7.Text = "Thông tin cơ bản";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.label8.Location = new System.Drawing.Point(753, 54);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(159, 25);
+            this.label8.TabIndex = 43;
+            this.label8.Text = "Thông tin liên lạc";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Segoe UI Semibold", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.label9.Location = new System.Drawing.Point(753, 347);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(198, 25);
+            this.label9.TabIndex = 46;
+            this.label9.Text = "Phòng ban trực thuộc";
+            // 
+            // materialDivider6
+            // 
+            this.materialDivider6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.materialDivider6.Depth = 0;
+            this.materialDivider6.Location = new System.Drawing.Point(485, 77);
+            this.materialDivider6.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialDivider6.Name = "materialDivider6";
+            this.materialDivider6.Size = new System.Drawing.Size(30, 2);
+            this.materialDivider6.TabIndex = 50;
+            this.materialDivider6.Text = "materialDivider6";
+            // 
+            // materialDivider7
+            // 
+            this.materialDivider7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.materialDivider7.Depth = 0;
+            this.materialDivider7.Location = new System.Drawing.Point(286, 77);
+            this.materialDivider7.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialDivider7.Name = "materialDivider7";
+            this.materialDivider7.Size = new System.Drawing.Size(30, 2);
+            this.materialDivider7.TabIndex = 51;
+            this.materialDivider7.Text = "materialDivider7";
+            // 
+            // materialDivider8
+            // 
+            this.materialDivider8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.materialDivider8.Depth = 0;
+            this.materialDivider8.Location = new System.Drawing.Point(717, 77);
+            this.materialDivider8.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialDivider8.Name = "materialDivider8";
+            this.materialDivider8.Size = new System.Drawing.Size(30, 2);
+            this.materialDivider8.TabIndex = 52;
+            this.materialDivider8.Text = "materialDivider8";
+            // 
+            // materialDivider9
+            // 
+            this.materialDivider9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.materialDivider9.Depth = 0;
+            this.materialDivider9.Location = new System.Drawing.Point(918, 77);
+            this.materialDivider9.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialDivider9.Name = "materialDivider9";
+            this.materialDivider9.Size = new System.Drawing.Size(30, 2);
+            this.materialDivider9.TabIndex = 53;
+            this.materialDivider9.Text = "materialDivider9";
+            // 
+            // materialDivider10
+            // 
+            this.materialDivider10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.materialDivider10.Depth = 0;
+            this.materialDivider10.Location = new System.Drawing.Point(717, 370);
+            this.materialDivider10.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialDivider10.Name = "materialDivider10";
+            this.materialDivider10.Size = new System.Drawing.Size(30, 2);
+            this.materialDivider10.TabIndex = 54;
+            this.materialDivider10.Text = "materialDivider10";
+            // 
+            // materialDivider11
+            // 
+            this.materialDivider11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.materialDivider11.Depth = 0;
+            this.materialDivider11.Location = new System.Drawing.Point(947, 363);
+            this.materialDivider11.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialDivider11.Name = "materialDivider11";
+            this.materialDivider11.Size = new System.Drawing.Size(30, 2);
+            this.materialDivider11.TabIndex = 55;
+            this.materialDivider11.Text = "materialDivider11";
+            // 
             // frmMain
             // 
             this.ClientSize = new System.Drawing.Size(1400, 750);
@@ -2378,9 +2473,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.tbgpTeacherManagment.ResumeLayout(false);
             this.tbgpTeacherManagment.PerformLayout();
             this.tbpgStudentManagment.ResumeLayout(false);
@@ -2434,9 +2526,6 @@
         private System.Windows.Forms.TabPage tbpgStudentMarkboard;
         private System.Windows.Forms.TabPage tbpgRewardManagment;
         private System.Windows.Forms.TabPage tbpgFormClass;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.PictureBox pictureBox10;
         private System.Windows.Forms.PictureBox pictureBox8;
@@ -2561,5 +2650,14 @@
         private System.Windows.Forms.Label lbImyID;
         private System.Windows.Forms.Label lbSubjectTeach;
         private System.Windows.Forms.Label lbMyName;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private MaterialSkin.Controls.MaterialDivider materialDivider11;
+        private MaterialSkin.Controls.MaterialDivider materialDivider10;
+        private MaterialSkin.Controls.MaterialDivider materialDivider9;
+        private MaterialSkin.Controls.MaterialDivider materialDivider8;
+        private MaterialSkin.Controls.MaterialDivider materialDivider7;
+        private MaterialSkin.Controls.MaterialDivider materialDivider6;
     }
 }
