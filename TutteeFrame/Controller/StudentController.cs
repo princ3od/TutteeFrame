@@ -23,9 +23,9 @@ namespace TutteeFrame.Controller
         /// </summary>
         /// <param name="classID"></param> (""/ khác "") nếu (lấy toàn bộ học sinh/ lấy những học sinh theo mã lớp
         /// <returns></returns>
-        public List<Student> GetInformationStudents(string classID, bool getKhoi = false)
+        public List<Student> GetStudents(string classID, bool getKhoi = false, string _orderBy = "ClassID, Firstname, Surname")
         {
-            return studentDA.GetStudents(classID, getKhoi);
+            return studentDA.GetStudents(classID, getKhoi, _orderBy);
         }
         public bool UpdateStudentToDataBase(string _studentid, Student student)
         {
@@ -39,15 +39,6 @@ namespace TutteeFrame.Controller
             if (success)
                 success = studentDA.AddStudentLearnResult(student, subjects);
             return success;
-        }
-        public bool AddNewStudentLearnResult(string _studentID, string _classID)
-        {
-            SubjectController subjectController = new SubjectController();
-            List<Subject> subjects = subjectController.LoadSubjects();
-            Student student = new Student();
-            student.ID = _studentID;
-            student.ClassID = _classID;
-            return studentDA.AddStudentLearnResult(student, subjects);
         }
         public bool LoadStudentInformationById(string studentID, Student student)
         {

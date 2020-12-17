@@ -137,6 +137,7 @@ namespace TutteeFrame
                                 cbxIsMinistry.Checked = true;
                                 break;
                             case Teacher.TeacherType.FormerTeacher:
+                                cbxIsAdmin.Enabled = cbxIsMinistry.Enabled = false;
                                 break;
                             default:
                                 break;

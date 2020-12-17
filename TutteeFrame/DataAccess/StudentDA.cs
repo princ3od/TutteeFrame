@@ -268,9 +268,8 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
-        public List<Student> GetStudents(string classID, bool getKhoi = false)
+        public List<Student> GetStudents(string classID, bool getKhoi = false, string _orderBy = "ClassID, Firstname, Surname")
         {
-            DataTable table = new DataTable();
             List<Student> Students = new List<Student>();
 
             bool success = Connect();
@@ -280,15 +279,12 @@ namespace TutteeFrame.DataAccess
 
             try
             {
-                if (getKhoi == false)
-                {
+                if (!getKhoi)
                     strQuery = classID != "" ? $"SELECT * FROM STUDENT WHERE ClassID = @classid"
                         : $"SELECT * FROM STUDENT";
-                }
                 else
-                {
                     strQuery = $"SELECT * FROM STUDENT WHERE STUDENT.ClassID LIKE @classid";
-                }
+                strQuery += " ORDER BY " + _orderBy;
                 using (SqlCommand cmd = new SqlCommand(strQuery, connection))
                 {
                     cmd.Parameters.AddWithValue("@classid", (getKhoi) ? classID + "%%" : classID);

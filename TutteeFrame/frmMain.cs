@@ -22,13 +22,14 @@ namespace TutteeFrame
     {
         #region Variables
         Teacher mainTeacher = new Teacher();
-        bool firstLoad = true;
+        bool firstLoad = true, updatedScore = false;
         StudentController studentController;
         TeacherController teacherController;
         ClassController classController;
         SubjectController subjectController;
         ScoreController scoreController;
         List<Teacher> teachers = new List<Teacher>();
+        BackgroundWorker loader;
         public bool ProgressSuccess { get; set; }
         #endregion
 
@@ -106,6 +107,13 @@ namespace TutteeFrame
             base.OnClosing(e);
             if (!this.Visible)
                 return;
+            if ((mainTeacher.Type == Teacher.TeacherType.FormerTeacher || mainTeacher.Type == Teacher.TeacherType.Teacher) && updatedScore)
+            {
+                DialogResult _result = MetroMessageBox.Show(this, "Bạn vẫn chưa lưu điểm vừa cập nhật. Bạn chắc chắn muốn hủy những cập nhật và thoát?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                if (_result == DialogResult.No)
+                    e.Cancel = true;
+                return;
+            }
             DialogResult result = MetroMessageBox.Show(this, "Bạn chắc chắn muốn thoát?", "Cảnh báo", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.No)
                 e.Cancel = true;
@@ -231,7 +239,6 @@ namespace TutteeFrame
             }
             LoadData();
         }
-        BackgroundWorker loader;
         void LoadData()
         {
             List<Subject> subjects = new List<Subject>();
@@ -304,12 +311,12 @@ namespace TutteeFrame
                 case Teacher.TeacherType.Ministry:
                     loader.RunWorkerCompleted += (s, e) =>
                     {
-                        cbbStudentGrade.SelectedIndex = 0;
                         cbbGradeClass.SelectedIndex = 0;
                     };
                     break;
                 case Teacher.TeacherType.FormerTeacher:
                     LoadOnTeacher();
+                    LoadFormClassStudents();
                     break;
                 default:
                     break;
@@ -582,10 +589,9 @@ namespace TutteeFrame
             listViewStudents.SelectedItems.Clear();
             studentLoader.RunWorkerAsync(cbbStudentClass.Text);
         }
-        private void ShowListBackGroundWork_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        private void studentLoader_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
         {
-            Thread.Sleep(200);
-            List<Student> Students = (e.Argument as string).Length == 2 ? studentController.GetInformationStudents(e.Argument as string, true) : studentController.GetInformationStudents(e.Argument as string);
+            List<Student> Students = (e.Argument as string).Length == 2 ? studentController.GetStudents(e.Argument as string, true) : studentController.GetStudents(e.Argument as string);
             studentLoader.ReportProgress(0, Students);
             int numclass = 0;
             classController.CountNumberOfClass(ref numclass);
@@ -593,6 +599,7 @@ namespace TutteeFrame
             int numStudent = 0;
             studentController.CountNumberOfStudent(ref numStudent);
             studentLoader.ReportProgress(90, numStudent.ToString());
+            Thread.Sleep(200);
         }
         private void ShowListBackGroundWork_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
@@ -811,9 +818,7 @@ namespace TutteeFrame
             string classID = cbbTeachingClass.Text;
             worker.DoWork += (s, e) =>
             {
-                StudentController studentController = new StudentController();
-                TeacherController teacherController = new TeacherController();
-                students = studentController.GetInformationStudents(classID);
+                students = studentController.GetStudents(classID);
                 students = students.OrderBy(o => o.FirstName).ThenBy(o => o.SurName).ToList();
                 teacherController.GetTeachingSemester(mainTeacher.ID, classID, semester, year, isEdit);
             };
@@ -865,7 +870,6 @@ namespace TutteeFrame
             int grade = Int32.Parse(cbbTeachingClass.Text.Substring(0, 2));
             scoreLoaderr.DoWork += (s, e) =>
             {
-                StudentController studentController = new StudentController();
                 scoreList = scoreController.GetStudentListScore(students, mainTeacher.Subject.ID, _semes, grade);
             };
             scoreLoaderr.RunWorkerCompleted += (s, e) =>
@@ -919,6 +923,8 @@ namespace TutteeFrame
             };
             updater.RunWorkerCompleted += (s, e) =>
             {
+                if (updatedScore)
+                    updatedScore = false;
                 lbInformation.Hide();
                 mainProgressbar.Hide();
                 if (success)
@@ -951,6 +957,8 @@ namespace TutteeFrame
         }
         private void gridviewStudentScore_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
+            if (!updatedScore && !firstLoad)
+                updatedScore = true;
             double temp;
             bool fullScore = true;
             int tongHeSo = 0;
@@ -1219,6 +1227,8 @@ namespace TutteeFrame
                         listViewClass.Items.Add(lvi);
                     }
                 }
+                if (cbbStudentGrade.SelectedIndex == -1)
+                    cbbStudentGrade.SelectedIndex = 0;
             };
             listViewClass.Items.Clear();
             classBackgroundWorker.RunWorkerAsync();
@@ -1310,6 +1320,72 @@ namespace TutteeFrame
 
         }
         #endregion
+
+        #region Tabpage Lớp chủ nhiệm
+        void LoadFormClassStudents()
+        {
+            listviewStudentInClass.Items.Clear();
+            lbFormClass.Text = mainTeacher.FormClassID;
+            Class _class = new Class();
+            List<Student> students = new List<Student>();
+            Dictionary<string, List<AverageScore>> averageScoreList = new Dictionary<string, List<AverageScore>>();
+            loader.DoWork += (s, e) =>
+            {
+                loader.ReportProgress(0, "Đang tải danh sách học sinh lớp chủ nhiệm...");
+                Thread.Sleep(200);
+                classController.LoadClass(mainTeacher.FormClassID, _class);
+                students = studentController.GetStudents(mainTeacher.FormClassID);
+                int grade = Int32.Parse(mainTeacher.FormClassID.Substring(0, 2));
+                averageScoreList = scoreController.GetStudentAverageScore(students, grade);
+            };
+            loader.RunWorkerCompleted += (s, e) =>
+            {
+                lbTotalStudentInClass.Text = _class.StudentNum.ToString();
+                for (int i = 0; i < students.Count; i++)
+                {
+                    listviewStudentInClass.Items.Add(new ListViewItem(new string[] { (i + 1).ToString(), students[i].ID, students[i].GetName(),
+                                "","","","","",""}));
+                    if (averageScoreList[students[i].ID][0].Value > -1)
+                        listviewStudentInClass.Items[i].SubItems[3].Text = averageScoreList[students[i].ID][0].Value.ToString("F");
+                    if (averageScoreList[students[i].ID][1].Value > -1)
+                        listviewStudentInClass.Items[i].SubItems[5].Text = averageScoreList[students[i].ID][1].Value.ToString("F");
+                    if (averageScoreList[students[i].ID][2].Value > -1)
+                        listviewStudentInClass.Items[i].SubItems[7].Text = averageScoreList[students[i].ID][2].Value.ToString("F");
+
+                }
+                students.Clear();
+            };
+        }
+        private void listviewStudentInClass_DoubleClick(object sender, EventArgs e)
+        {
+            btnViewStudentInfor.PerformClick();
+        }
+        private void ViewStudentInfor(object sender, EventArgs e)
+        {
+            if (listviewStudentInClass.SelectedItems.Count <= 0)
+            {
+                MetroMessageBox.Show(this, "Vui lòng chọn học sinh cần xem thông tin.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            frmViewStudent frmViewStudent = new frmViewStudent(listviewStudentInClass.SelectedItems[0].SubItems[1].Text);
+            OverlayForm overlayForm = new OverlayForm(this, frmViewStudent, 0.5f);
+            frmViewStudent.Show();
+        }
+        private void ViewStudentScore(object sender, EventArgs e)
+        {
+            if (listviewStudentInClass.SelectedItems.Count <= 0)
+            {
+                MetroMessageBox.Show(this, "Vui lòng chọn học sinh cần xem bảng điểm.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            int grade = Int32.Parse(mainTeacher.FormClassID.Substring(0, 2));
+            frmStudentScoreboard frmStudentScoreboard = new frmStudentScoreboard(listviewStudentInClass.SelectedItems[0].SubItems[1].Text, listviewStudentInClass.SelectedItems[0].SubItems[2].Text, grade);
+            OverlayForm overlayForm = new OverlayForm(this, frmStudentScoreboard, 0.5f);
+            frmStudentScoreboard.Show();
+        }
+        #endregion
+
+
 
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {

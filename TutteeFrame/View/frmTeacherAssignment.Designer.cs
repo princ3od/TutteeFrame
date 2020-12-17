@@ -211,6 +211,7 @@
             this.Controls.Add(this.txtRunnerTeacher);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.materialDrawer1);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmTeacherAssignment";
             this.Text = "frmTeacherAssignment";

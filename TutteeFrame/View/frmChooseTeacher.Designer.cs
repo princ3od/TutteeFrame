@@ -204,6 +204,7 @@
             this.Controls.Add(this.listviewTeacher);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.txtTeacherSearch);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmChooseTeacher";
             this.Text = "frmChooseTeacher";
