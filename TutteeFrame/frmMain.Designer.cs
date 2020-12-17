@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("", 0);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("", 0);
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("", 0);
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("", 0);
             this.materialDrawer1 = new MaterialSkin.Controls.MaterialDrawer();
             this.mainTabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.tbpgProfile = new System.Windows.Forms.TabPage();
@@ -1403,9 +1403,9 @@
             this.tbpgStudentMarkboard.Controls.Add(this.lbTotalTeachingClass);
             this.tbpgStudentMarkboard.Controls.Add(this.label4);
             this.tbpgStudentMarkboard.Controls.Add(this.gridviewStudentScore);
-            this.tbpgStudentMarkboard.Location = new System.Drawing.Point(4, 24);
+            this.tbpgStudentMarkboard.Location = new System.Drawing.Point(4, 22);
             this.tbpgStudentMarkboard.Name = "tbpgStudentMarkboard";
-            this.tbpgStudentMarkboard.Size = new System.Drawing.Size(1147, 594);
+            this.tbpgStudentMarkboard.Size = new System.Drawing.Size(1147, 596);
             this.tbpgStudentMarkboard.TabIndex = 7;
             this.tbpgStudentMarkboard.Text = "Bảng điểm học sinh";
             // 
@@ -1575,14 +1575,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridviewStudentScore.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.gridviewStudentScore.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridviewStudentScore.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridviewStudentScore.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.gridviewStudentScore.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridviewStudentScore.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmStt,
@@ -1597,29 +1597,29 @@
             this.clmFortyfive3,
             this.clmFinal,
             this.clmAverage});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridviewStudentScore.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridviewStudentScore.DefaultCellStyle = dataGridViewCellStyle6;
             this.gridviewStudentScore.GridColor = System.Drawing.Color.Black;
             this.gridviewStudentScore.Location = new System.Drawing.Point(22, 115);
             this.gridviewStudentScore.Name = "gridviewStudentScore";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridviewStudentScore.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridviewStudentScore.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.gridviewStudentScore.RowHeadersVisible = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.gridviewStudentScore.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.gridviewStudentScore.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.gridviewStudentScore.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.gridviewStudentScore.Size = new System.Drawing.Size(1124, 383);
             this.gridviewStudentScore.TabIndex = 0;
@@ -1716,10 +1716,10 @@
             this.tbpgSubjectManagment.Controls.Add(this.btnAddNew);
             this.tbpgSubjectManagment.Controls.Add(this.btnDelASubject);
             this.tbpgSubjectManagment.Controls.Add(this.btnEdit);
-            this.tbpgSubjectManagment.Location = new System.Drawing.Point(4, 24);
+            this.tbpgSubjectManagment.Location = new System.Drawing.Point(4, 22);
             this.tbpgSubjectManagment.Name = "tbpgSubjectManagment";
             this.tbpgSubjectManagment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgSubjectManagment.Size = new System.Drawing.Size(1147, 594);
+            this.tbpgSubjectManagment.Size = new System.Drawing.Size(1147, 596);
             this.tbpgSubjectManagment.TabIndex = 4;
             this.tbpgSubjectManagment.Text = "Quản lí môn";
             this.tbpgSubjectManagment.UseVisualStyleBackColor = true;
@@ -1839,10 +1839,10 @@
             this.tbpgClassManagment.Controls.Add(this.listViewClass);
             this.tbpgClassManagment.Controls.Add(this.cbbGradeClass);
             this.tbpgClassManagment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgClassManagment.Location = new System.Drawing.Point(4, 24);
+            this.tbpgClassManagment.Location = new System.Drawing.Point(4, 22);
             this.tbpgClassManagment.Name = "tbpgClassManagment";
             this.tbpgClassManagment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgClassManagment.Size = new System.Drawing.Size(1147, 594);
+            this.tbpgClassManagment.Size = new System.Drawing.Size(1147, 596);
             this.tbpgClassManagment.TabIndex = 5;
             this.tbpgClassManagment.Text = "Quản lí lớp";
             // 
@@ -1855,7 +1855,7 @@
             this.btnAddClass.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnAddClass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnAddClass.Icon = null;
-            this.btnAddClass.Location = new System.Drawing.Point(43, 509);
+            this.btnAddClass.Location = new System.Drawing.Point(43, 511);
             this.btnAddClass.Name = "btnAddClass";
             this.btnAddClass.Radius = 2;
             this.btnAddClass.ShadowDepth = 3;
@@ -1875,7 +1875,7 @@
             this.btnDelClass.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnDelClass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnDelClass.Icon = null;
-            this.btnDelClass.Location = new System.Drawing.Point(874, 509);
+            this.btnDelClass.Location = new System.Drawing.Point(874, 511);
             this.btnDelClass.Name = "btnDelClass";
             this.btnDelClass.Radius = 2;
             this.btnDelClass.ShadowDepth = 3;
@@ -1895,7 +1895,7 @@
             this.btnEditClass.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnEditClass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnEditClass.Icon = null;
-            this.btnEditClass.Location = new System.Drawing.Point(236, 509);
+            this.btnEditClass.Location = new System.Drawing.Point(236, 511);
             this.btnEditClass.Name = "btnEditClass";
             this.btnEditClass.Radius = 2;
             this.btnEditClass.ShadowDepth = 3;
@@ -1931,7 +1931,7 @@
             this.listViewClass.MouseState = MaterialSkin.MouseState.OUT;
             this.listViewClass.Name = "listViewClass";
             this.listViewClass.OwnerDraw = true;
-            this.listViewClass.Size = new System.Drawing.Size(1005, 419);
+            this.listViewClass.Size = new System.Drawing.Size(1005, 421);
             this.listViewClass.TabIndex = 14;
             this.listViewClass.UseCompatibleStateImageBehavior = false;
             this.listViewClass.View = System.Windows.Forms.View.Details;
@@ -1997,9 +1997,9 @@
             // tbpgRewardManagment
             // 
             this.tbpgRewardManagment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgRewardManagment.Location = new System.Drawing.Point(4, 24);
+            this.tbpgRewardManagment.Location = new System.Drawing.Point(4, 22);
             this.tbpgRewardManagment.Name = "tbpgRewardManagment";
-            this.tbpgRewardManagment.Size = new System.Drawing.Size(1147, 594);
+            this.tbpgRewardManagment.Size = new System.Drawing.Size(1147, 596);
             this.tbpgRewardManagment.TabIndex = 9;
             this.tbpgRewardManagment.Text = "Quản lí khen thưởng";
             this.tbpgRewardManagment.UseVisualStyleBackColor = true;
@@ -2007,9 +2007,9 @@
             // tbpgReport
             // 
             this.tbpgReport.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgReport.Location = new System.Drawing.Point(4, 24);
+            this.tbpgReport.Location = new System.Drawing.Point(4, 22);
             this.tbpgReport.Name = "tbpgReport";
-            this.tbpgReport.Size = new System.Drawing.Size(1147, 594);
+            this.tbpgReport.Size = new System.Drawing.Size(1147, 596);
             this.tbpgReport.TabIndex = 6;
             this.tbpgReport.Text = "Báo cáo";
             this.tbpgReport.UseVisualStyleBackColor = true;
@@ -2070,6 +2070,7 @@
             this.btnSetStudentConduct.TabIndex = 48;
             this.btnSetStudentConduct.Text = "Xếp hạnh kiểm";
             this.btnSetStudentConduct.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnSetStudentConduct.Click += new System.EventHandler(this.btnSetStudentConduct_Click);
             // 
             // btnViewStudentScores
             // 
@@ -2306,8 +2307,8 @@
             this.listViewTeachingClass.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.listViewTeachingClass.HideSelection = false;
             this.listViewTeachingClass.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
+            listViewItem3,
+            listViewItem4});
             this.listViewTeachingClass.LargeImageList = this.imageList1;
             this.listViewTeachingClass.Location = new System.Drawing.Point(32, 85);
             this.listViewTeachingClass.MultiSelect = false;

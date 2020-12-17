@@ -1360,7 +1360,7 @@ namespace TutteeFrame
                     listviewStudentInClass.Items[i].SubItems[8].Text = studentConducts[students[i].ID].Conducts[2].GetReadableValue();
 
 
-                }
+                } 
                 students.Clear();
             };
         }
@@ -1391,10 +1391,6 @@ namespace TutteeFrame
             OverlayForm overlayForm = new OverlayForm(this, frmStudentScoreboard, 0.5f);
             frmStudentScoreboard.Show();
         }
-        #endregion
-
-
-
         private void btnSetStudentConduct_Click(object sender, EventArgs e)
         {
             if (listviewStudentInClass.SelectedItems.Count <= 0)
@@ -1427,7 +1423,7 @@ namespace TutteeFrame
             };
             frmStudentConduct.Show();
         }
-
+        #endregion
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (mainTabControl.SelectedTab == null)
