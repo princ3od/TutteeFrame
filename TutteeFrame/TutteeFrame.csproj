@@ -115,6 +115,7 @@
     <Compile Include="Controller\AccountController.cs" />
     <Compile Include="Controller\ClassController.cs" />
     <Compile Include="Controller\MainController.cs" />
+    <Compile Include="Model\StudentConduct.cs" />
     <Compile Include="Utility\Helper.cs" />
     <Compile Include="Controller\ScoreController.cs" />
     <Compile Include="Controller\StudentController.cs" />
@@ -140,6 +141,12 @@
     </Compile>
     <Compile Include="View\frmChooseTeacher.Designer.cs">
       <DependentUpon>frmChooseTeacher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\frmStudentConduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\frmStudentConduct.Designer.cs">
+      <DependentUpon>frmStudentConduct.cs</DependentUpon>
     </Compile>
     <Compile Include="View\frmStudentScoreboard.cs">
       <SubType>Form</SubType>
@@ -261,6 +268,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\frmAddStudent.resx">
       <DependentUpon>frmAddStudent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\frmStudentConduct.resx">
+      <DependentUpon>frmStudentConduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\frmStudentPrinter.resx">
       <DependentUpon>frmStudentPrinter.cs</DependentUpon>

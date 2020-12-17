@@ -142,11 +142,7 @@ namespace TutteeFrame.DataAccess
                             _student.ClassID = reader.GetString(8);
                             _student.Status = reader.GetBoolean(9);
                             if (reader.IsDBNull(10) == false)
-                            {
                                 _student.PunishmentList = reader.GetString(10);
-                            }
-
-
                         }
                     }
                 }
@@ -225,10 +221,9 @@ namespace TutteeFrame.DataAccess
             if (!success)
                 return false;
 
-            byte[] photo = ImageHelper.ImageToBytes(student.Avatar);
             try
             {
-
+                byte[] photo = ImageHelper.ImageToBytes(student.Avatar);
                 string query = $"UPDATE  STUDENT SET " +
                     "Surname = @surname," +
                     "Firstname = @firstname," +
@@ -291,31 +286,22 @@ namespace TutteeFrame.DataAccess
                     using (SqlDataReader reader = cmd.ExecuteReader())
                         while (reader.Read())
                         {
-                            Student i = new Student();
-                            i.ID = reader.GetString(0);
-                            i.SurName = reader.GetString(1);
-                            i.FirstName = reader.GetString(2);
+                            Student student = new Student();
+                            student.ID = reader.GetString(0);
+                            student.SurName = reader.GetString(1);
+                            student.FirstName = reader.GetString(2);
                             if (reader.IsDBNull(3) == false)
-                            {
-                                i.Avatar = ImageHelper.BytesToImage((byte[])reader["StudentImage"]);
-                            }
-
+                                student.Avatar = ImageHelper.BytesToImage((byte[])reader["StudentImage"]);
                             if (reader.IsDBNull(4) == false)
-                            {
-
-                                i.DateBorn = reader.GetDateTime(4);
-                            }
-                            i.Sex = reader.GetBoolean(5);
-                            i.Address = reader.GetString(6);
-                            i.Phone = reader.GetString(7);
-                            i.ClassID = reader.GetString(8);
-                            i.Status = reader.GetBoolean(9);
+                                student.DateBorn = reader.GetDateTime(4);
+                            student.Sex = reader.GetBoolean(5);
+                            student.Address = reader.GetString(6);
+                            student.Phone = reader.GetString(7);
+                            student.ClassID = reader.GetString(8);
+                            student.Status = reader.GetBoolean(9);
                             if (reader.IsDBNull(10) == false)
-                            {
-                                i.PunishmentList = reader.GetString(10);
-                            }
-
-                            Students.Add(i);
+                                student.PunishmentList = reader.GetString(10);
+                            Students.Add(student);
                         }
                 }
             }
@@ -383,6 +369,106 @@ namespace TutteeFrame.DataAccess
                 sqlCommand = new SqlCommand(strQuery, connection);
                 sqlCommand.Parameters.AddWithValue("@classid", classID);
                 sqlCommand.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return true;
+        }
+        public bool GetStudentConduct(string _studentID, int _grade, StudentConduct _studentConduct)
+        {
+            bool success = Connect();
+
+            if (!success)
+                return false;
+
+            try
+            {
+                using (SqlCommand sqlCommand = connection.CreateCommand())
+                {
+                    sqlCommand.CommandType = CommandType.Text;
+                    sqlCommand.CommandText = "SELECT ConductSE01, ConductSE02, YearConduct FROM LEARNRESULT WHERE StudentID = @studentid AND Grade = @grade";
+                    sqlCommand.Parameters.AddWithValue("@studentid", _studentID);
+                    sqlCommand.Parameters.AddWithValue("@grade", _grade);
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        reader.Read();
+                        for (int i = 0; i < _studentConduct.Conducts.Count; i++)
+                        {
+                            _studentConduct.Conducts[i].type = (Conduct.Type)i;
+                            if (reader.IsDBNull(i))
+                                _studentConduct.Conducts[i].conductType = Conduct.ConductType.ChuaXet;
+                            else
+                            {
+                                switch (reader.GetString(i))
+                                {
+                                    case "Tot":
+                                        _studentConduct.Conducts[i].conductType = Conduct.ConductType.Tot;
+                                        break;
+                                    case "Kha":
+                                        _studentConduct.Conducts[i].conductType = Conduct.ConductType.Kha;
+                                        break;
+                                    case "TB":
+                                        _studentConduct.Conducts[i].conductType = Conduct.ConductType.TrungBinh;
+                                        break;
+                                    case "Yeu":
+                                        _studentConduct.Conducts[i].conductType = Conduct.ConductType.Yeu;
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return true;
+        }
+        public bool UpdateStudentConduct (string _studentID, int _grade, StudentConduct _studentConduct)
+        {
+            bool success = Connect();
+
+            if (!success)
+                return false;
+
+            try
+            {
+                using (SqlCommand sqlCommand = connection.CreateCommand())
+                {
+                    sqlCommand.CommandType = CommandType.Text;
+                    sqlCommand.CommandText = "UPDATE LEARNRESULT SET ConductSE01 = @conductsem1, ConductSE02 = @conductsem2, YearConduct = @yearconduct " +
+                        "WHERE StudentID = @studentid AND Grade = @grade";
+                    sqlCommand.Parameters.AddWithValue("@studentid", _studentID);
+                    sqlCommand.Parameters.AddWithValue("@grade", _grade);
+                    if (_studentConduct.Conducts[0].ToString() == string.Empty)
+                        sqlCommand.Parameters.AddWithValue("@conductsem1", DBNull.Value);
+                    else
+                        sqlCommand.Parameters.AddWithValue("@conductsem1", _studentConduct.Conducts[0].ToString());
+                    if (_studentConduct.Conducts[1].ToString() == string.Empty)
+                        sqlCommand.Parameters.AddWithValue("@conductsem2", DBNull.Value);
+                    else
+                        sqlCommand.Parameters.AddWithValue("@conductsem2", _studentConduct.Conducts[1].ToString());
+                    if (_studentConduct.Conducts[2].ToString() == string.Empty)
+                        sqlCommand.Parameters.AddWithValue("@yearconduct", DBNull.Value);
+                    else
+                        sqlCommand.Parameters.AddWithValue("@yearconduct", _studentConduct.Conducts[2].ToString());
+                    sqlCommand.ExecuteNonQuery();
+                }
             }
             catch (Exception ex)
             {

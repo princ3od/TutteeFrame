@@ -257,7 +257,7 @@ namespace TutteeFrame.DataAccess
                     }
                 }
                 if (scoreSem1 != -1 && scoreSem2 != -1)
-                    _score = Math.Round(((scoreSem1 + scoreSem2) / 2), 2);
+                    _score = Math.Round(((scoreSem1 + scoreSem2 * 2) / 3), 2);
             }
             catch (Exception ex)
             {

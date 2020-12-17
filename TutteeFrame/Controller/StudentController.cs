@@ -40,6 +40,15 @@ namespace TutteeFrame.Controller
                 success = studentDA.AddStudentLearnResult(student, subjects);
             return success;
         }
+        public bool AddNewStudentLearnResult(string _studentID, string _classID)
+        {
+            SubjectController subjectController = new SubjectController();
+            List<Subject> subjects = subjectController.LoadSubjects();
+            Student student = new Student();
+            student.ID = _studentID;
+            student.ClassID = _classID;
+            return studentDA.AddStudentLearnResult(student, subjects);
+        }
         public bool LoadStudentInformationById(string studentID, Student student)
         {
             return studentDA.LoadStudentByID(studentID, student);
@@ -52,6 +61,29 @@ namespace TutteeFrame.Controller
         public bool DeleteStudent(string _studenID)
         {
             return studentDA.DeleteStudent(_studenID);
+        }
+        public StudentConduct GetStudentConduct(string _studentID, int _grade)
+        {
+            StudentConduct studentConduct = new StudentConduct();
+            bool success = studentDA.GetStudentConduct(_studentID, _grade, studentConduct);
+            if (!success)
+                return null;
+            return studentConduct;
+        }
+        public Dictionary<string, StudentConduct> GetStudentsConduct(List<Student> students)
+        {
+            Dictionary<string, StudentConduct> studentConducts = new Dictionary<string, StudentConduct>();
+            foreach (Student student in students)
+            {
+                StudentConduct studentConduct = new StudentConduct();
+                studentDA.GetStudentConduct(student.ID, Int32.Parse(student.GetGrade), studentConduct);
+                studentConducts.Add(student.ID, studentConduct);
+            }
+            return studentConducts;
+        }
+        public bool UpdateStudentConduct(string _studentID, int _grade, StudentConduct _studentConduct)
+        {
+            return studentDA.UpdateStudentConduct(_studentID, _grade, _studentConduct);
         }
         public bool CountNumberOfStudent(ref int number)
         {

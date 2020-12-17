@@ -1329,6 +1329,8 @@ namespace TutteeFrame
             Class _class = new Class();
             List<Student> students = new List<Student>();
             Dictionary<string, List<AverageScore>> averageScoreList = new Dictionary<string, List<AverageScore>>();
+            Dictionary<string, StudentConduct> studentConducts = new Dictionary<string, StudentConduct>();
+            listviewStudentInClass.Enabled = btnViewStudentInfor.Enabled = btnViewStudentScores.Enabled = btnSetStudentConduct.Enabled = btnStudentReport.Enabled = false;
             loader.DoWork += (s, e) =>
             {
                 loader.ReportProgress(0, "Đang tải danh sách học sinh lớp chủ nhiệm...");
@@ -1337,20 +1339,26 @@ namespace TutteeFrame
                 students = studentController.GetStudents(mainTeacher.FormClassID);
                 int grade = Int32.Parse(mainTeacher.FormClassID.Substring(0, 2));
                 averageScoreList = scoreController.GetStudentAverageScore(students, grade);
+                studentConducts = studentController.GetStudentsConduct(students);
             };
             loader.RunWorkerCompleted += (s, e) =>
             {
+                listviewStudentInClass.Enabled = btnViewStudentInfor.Enabled = btnViewStudentScores.Enabled = btnSetStudentConduct.Enabled = btnStudentReport.Enabled = true;
                 lbTotalStudentInClass.Text = _class.StudentNum.ToString();
                 for (int i = 0; i < students.Count; i++)
                 {
                     listviewStudentInClass.Items.Add(new ListViewItem(new string[] { (i + 1).ToString(), students[i].ID, students[i].GetName(),
-                                "","","","","",""}));
+                                "--","","--","","--",""}));
                     if (averageScoreList[students[i].ID][0].Value > -1)
                         listviewStudentInClass.Items[i].SubItems[3].Text = averageScoreList[students[i].ID][0].Value.ToString("F");
+                    listviewStudentInClass.Items[i].SubItems[4].Text = studentConducts[students[i].ID].Conducts[0].GetReadableValue();
                     if (averageScoreList[students[i].ID][1].Value > -1)
                         listviewStudentInClass.Items[i].SubItems[5].Text = averageScoreList[students[i].ID][1].Value.ToString("F");
+                    listviewStudentInClass.Items[i].SubItems[6].Text = studentConducts[students[i].ID].Conducts[1].GetReadableValue();
                     if (averageScoreList[students[i].ID][2].Value > -1)
                         listviewStudentInClass.Items[i].SubItems[7].Text = averageScoreList[students[i].ID][2].Value.ToString("F");
+                    listviewStudentInClass.Items[i].SubItems[8].Text = studentConducts[students[i].ID].Conducts[2].GetReadableValue();
+
 
                 }
                 students.Clear();
@@ -1386,6 +1394,39 @@ namespace TutteeFrame
         #endregion
 
 
+
+        private void btnSetStudentConduct_Click(object sender, EventArgs e)
+        {
+            if (listviewStudentInClass.SelectedItems.Count <= 0)
+            {
+                MetroMessageBox.Show(this, "Vui lòng chọn học sinh cần xếp hạnh kiểm.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            int grade = Int32.Parse(mainTeacher.FormClassID.Substring(0, 2));
+            frmStudentConduct frmStudentConduct = new frmStudentConduct(listviewStudentInClass.SelectedItems[0].SubItems[1].Text, grade);
+            OverlayForm overlayForm = new OverlayForm(this, frmStudentConduct, 0.5f);
+            frmStudentConduct.FormClosed += (s, ev) =>
+            {
+                if (frmStudentConduct.doneSet)
+                {
+                    loader = new BackgroundWorker();
+                    loader.WorkerReportsProgress = true;
+                    mainProgressbar.Visible = lbInformation.Visible = true;
+                    loader.RunWorkerCompleted += (s, e) =>
+                    {
+                        mainProgressbar.Hide();
+                        lbInformation.Hide();
+                    };
+                    loader.ProgressChanged += (s, e) =>
+                    {
+                        lbInformation.Text = (string)e.UserState;
+                    };
+                    LoadFormClassStudents();
+                    loader.RunWorkerAsync();
+                }
+            };
+            frmStudentConduct.Show();
+        }
 
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
