@@ -23,8 +23,8 @@ namespace TutteeFrame.DataAccess
 
             try
             {
-                strQuery = "INSERT INTO STUDENT(StudentID,Surname,FirstName,DateBorn,Sex,Address,Phonne,ClassID,Status,PunishmentListID,StudentImage) " +
-                "VALUES(@studentid,@surname,@firstname,@dateborn,@sex,@address,@phone,@classid,@status,@punishmentlistid,@studentimage)";
+                strQuery = "INSERT INTO STUDENT(StudentID,Surname,FirstName,DateBorn,Sex,Address,Phonne,ClassID,Status,StudentImage) " +
+                "VALUES(@studentid,@surname,@firstname,@dateborn,@sex,@address,@phone,@classid,@status,@studentimage)";
                 using (SqlCommand sqlCommand = new SqlCommand(strQuery, connection))
                 {
                     sqlCommand.Parameters.AddWithValue("@studentid", student.ID);
@@ -36,7 +36,7 @@ namespace TutteeFrame.DataAccess
                     sqlCommand.Parameters.AddWithValue("@classid", student.ClassID);
                     sqlCommand.Parameters.AddWithValue("@address", student.Address);
                     sqlCommand.Parameters.AddWithValue("@status", student.Status);
-                    sqlCommand.Parameters.AddWithValue("@punishmentlistid", string.IsNullOrEmpty(student.PunishmentList) ? (object)DBNull.Value : student.PunishmentList);
+                    //sqlCommand.Parameters.AddWithValue("@punishmentlistid", string.IsNullOrEmpty(student.PunishmentList) ? (object)DBNull.Value : student.PunishmentList);
                     sqlCommand.Parameters.Add("@studentimage", SqlDbType.Image, photo.Length).Value = photo;
                     sqlCommand.ExecuteNonQuery();
                 }
@@ -141,8 +141,8 @@ namespace TutteeFrame.DataAccess
                             _student.Phone = reader.GetString(7);
                             _student.ClassID = reader.GetString(8);
                             _student.Status = reader.GetBoolean(9);
-                            if (reader.IsDBNull(10) == false)
-                                _student.PunishmentList = reader.GetString(10);
+                            //if (reader.IsDBNull(10) == false)
+                            //    _student.PunishmentList = reader.GetString(10);
                         }
                     }
                 }
@@ -189,8 +189,8 @@ namespace TutteeFrame.DataAccess
                             _student.Phone = reader.GetString(7);
                             _student.ClassID = reader.GetString(8);
                             _student.Status = reader.GetBoolean(9);
-                            if (reader.IsDBNull(10) == false)
-                                _student.PunishmentList = reader.GetString(10);
+                            //if (reader.IsDBNull(10) == false)
+                            //    _student.PunishmentList = reader.GetString(10);
                             _students.Add(_student);
                         }
                     }
@@ -234,7 +234,6 @@ namespace TutteeFrame.DataAccess
                     "Phonne = @phone," +
                     "ClassID =@classid, " +
                     "Status = @status," +
-                    "PunishmentListID = @punishmentlistid" +
                     $" WHERE StudentID = @studentid";
                 using (SqlCommand sqlCommand = new SqlCommand(query, connection))
                 {
@@ -247,7 +246,7 @@ namespace TutteeFrame.DataAccess
                     sqlCommand.Parameters.AddWithValue("@classid", student.ClassID);
                     sqlCommand.Parameters.AddWithValue("@address", student.Address);
                     sqlCommand.Parameters.AddWithValue("@status", student.Status);
-                    sqlCommand.Parameters.AddWithValue("@punishmentlistid", string.IsNullOrEmpty(student.PunishmentList) ? (object)DBNull.Value : student.PunishmentList);
+                    //sqlCommand.Parameters.AddWithValue("@punishmentlistid", string.IsNullOrEmpty(student.PunishmentList) ? (object)DBNull.Value : student.PunishmentList);
                     sqlCommand.Parameters.Add("@studentimage", SqlDbType.Image, photo.Length).Value = photo;
                     sqlCommand.ExecuteNonQuery();
                 }
@@ -299,8 +298,8 @@ namespace TutteeFrame.DataAccess
                             student.Phone = reader.GetString(7);
                             student.ClassID = reader.GetString(8);
                             student.Status = reader.GetBoolean(9);
-                            if (reader.IsDBNull(10) == false)
-                                student.PunishmentList = reader.GetString(10);
+                            //if (reader.IsDBNull(10) == false)
+                            //    student.PunishmentList = reader.GetString(10);
                             Students.Add(student);
                         }
                 }

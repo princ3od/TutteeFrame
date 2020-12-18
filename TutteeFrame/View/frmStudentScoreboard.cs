@@ -18,6 +18,7 @@ namespace TutteeFrame
         int grade;
         SubjectController subjectController;
         ScoreController scoreController;
+        StudentController studentController;
         public frmStudentScoreboard(string _studentID, string _studentName, int _grade)
         {
             InitializeComponent();
@@ -26,6 +27,7 @@ namespace TutteeFrame
             studentName = _studentName;
             subjectController = new SubjectController();
             scoreController = new ScoreController();
+            studentController = new StudentController();
         }
         protected override void OnLoad(EventArgs e)
         {
@@ -47,6 +49,9 @@ namespace TutteeFrame
             Dictionary<string, List<Score>> subjectScores = new Dictionary<string, List<Score>>();
             Dictionary<string, double> averageSubjectScore = new Dictionary<string, double>();
             List<Subject> subjects = new List<Subject>();
+            LearniningCapacity learniningCapacitySemester = new LearniningCapacity();
+            LearniningCapacity learniningCapacityYear = new LearniningCapacity();
+            List<AverageScore> averageScores = new List<AverageScore>(3);
             int semester = Int32.Parse(cbbSemester.Text);
             worker.DoWork += (s, e) =>
             {
@@ -54,12 +59,19 @@ namespace TutteeFrame
                 subjectScores = scoreController.GetAllScores(studentID, semester, grade);
                 averageSubjectScore = scoreController.GetYearAverageListScore(studentID, grade);
                 System.Threading.Thread.Sleep(300);
+                learniningCapacitySemester = studentController.GetStudentLearnCapacity(studentID, grade, semester);
+                learniningCapacityYear = studentController.GetStudentLearnCapacity(studentID, grade);
+                averageScores = scoreController.GetAverageScores(studentID, grade);
             };
             worker.RunWorkerCompleted += (s, e) =>
             {
                 cbbSemester.Enabled = gridviewStudentScore.Enabled = true;
                 mainProgressbar.Visible = lbInformation.Visible = false;
                 int index = 0;
+                if (averageScores != null && learniningCapacitySemester != null)
+                    lbLearningCapacitySem.Text = string.Format("Điểm trung bình HK {0}: {1} - Học lực: {2}", semester.ToString(), averageScores[semester - 1].Value, learniningCapacitySemester.ToString());
+                if (averageScores != null && learniningCapacitySemester != null)
+                    lbLearningCapacityYear.Text = string.Format("Điểm trung bình cả năm: {0} - Học lực cả năm: {1}", averageScores[2].Value, learniningCapacityYear.ToString());
                 foreach (Subject subject in subjects)
                 {
                     gridviewStudentScore.Rows.Add(subject.Name);

@@ -6,21 +6,50 @@ using System.Threading.Tasks;
 
 namespace TutteeFrame.Model
 {
-    class Conduct
+    abstract class AbstractLearn
+    {
+        public enum Type { HK1 = 0, HK2 = 1, CaNam = 2 };
+        public Type type;
+    }
+    class LearniningCapacity : AbstractLearn
+    {
+        public enum HocLuc { Gioi = 0, Kha = 1, TrungBinh = 2, Yeu = 3, Kem = 4, ChuaXet = 5 };
+        public HocLuc LearnCapacity;
+
+        public LearniningCapacity()
+        {
+            this.LearnCapacity = HocLuc.ChuaXet;
+        }
+        public override string ToString()
+        {
+            switch (LearnCapacity)
+            {
+                case HocLuc.Gioi:
+                    return "Giỏi";
+                case HocLuc.Kha:
+                    return "Khá";
+                case HocLuc.TrungBinh:
+                    return "Trung bình";
+                case HocLuc.Yeu:
+                    return "Yếu";
+                case HocLuc.Kem:
+                    return "Kém";
+                case HocLuc.ChuaXet:
+                    return "Chưa xét";
+                default:
+                    return string.Empty;
+            }
+        }
+    }
+    class Conduct : AbstractLearn
     {
         public enum ConductType { Tot = 0, Kha = 1, TrungBinh = 2, Yeu = 3, ChuaXet = 4 };
-        public enum Type { HK1 = 0, HK2 = 1, CaNam = 2 };
+        
         public ConductType conductType;
-        public Type type;
 
         public Conduct()
         {
             this.conductType = ConductType.ChuaXet;
-        }
-        public Conduct(ConductType conductType, Type type)
-        {
-            this.conductType = conductType;
-            this.type = type;
         }
         public string GetReadableValue()
         {
@@ -69,7 +98,7 @@ namespace TutteeFrame.Model
         public StudentConduct()
         {
             for (int i = 0; i < 3; i++)
-                this.Conducts.Add(new Conduct());
+                this.conducts.Add(new Conduct());
         }
     }
 }

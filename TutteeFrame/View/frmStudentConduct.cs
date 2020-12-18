@@ -49,7 +49,7 @@ namespace TutteeFrame
                 cbbConductSem1.SelectedIndex = (int)studentConduct.Conducts[0].conductType;
                 cbbConductSem2.SelectedIndex = (int)studentConduct.Conducts[1].conductType;
                 cbbYearConduct.SelectedIndex = (int)studentConduct.Conducts[2].conductType;
-                lbName.Text = string.Format("Học sinh: {0} - {1}", studentID, student.GetName());
+                lbName.Text = string.Format("Học sinh: {1} - {0}", studentID, student.GetName());
                 lbSex.Text = string.Format("Giới tính: {0}", student.GetSex);
             };
             worker.RunWorkerAsync();

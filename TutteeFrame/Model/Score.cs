@@ -22,8 +22,9 @@ namespace TutteeFrame.Model
             Value = -1;
         }
 
-        public double Value { get => value; set => this.value = value; }
+        public double Value { get => Math.Round(value, 2); set => this.value = value; }
         public ScoreType Type { get => scoreType; set => scoreType = value; }
+
     }
     class Score
     {
@@ -39,10 +40,14 @@ namespace TutteeFrame.Model
         public Score(ScoreType scoreType)
         {
             this.scoreType = scoreType;
+            this.value = -1;
         }
 
-        public double Value { get => value; set => this.value = value; }
+        private string subjectID;
+        public double Value { get => Math.Round(value, 2); set => this.value = value; }
         public ScoreType Type { get => scoreType; set => scoreType = value; }
+        public string SubjectID { get => subjectID; set => subjectID = value; }
+
         public int GetHeSo()
         {
             switch (scoreType)

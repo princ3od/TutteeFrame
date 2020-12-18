@@ -115,7 +115,7 @@
     <Compile Include="Controller\AccountController.cs" />
     <Compile Include="Controller\ClassController.cs" />
     <Compile Include="Controller\MainController.cs" />
-    <Compile Include="Model\StudentConduct.cs" />
+    <Compile Include="Model\StudentLearnResult.cs" />
     <Compile Include="Utility\Helper.cs" />
     <Compile Include="Controller\ScoreController.cs" />
     <Compile Include="Controller\StudentController.cs" />

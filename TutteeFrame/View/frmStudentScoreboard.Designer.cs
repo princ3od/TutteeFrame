@@ -50,6 +50,8 @@
             this.lbScoreTittle = new System.Windows.Forms.Label();
             this.mainProgressbar = new System.Windows.Forms.ProgressBar();
             this.lbInformation = new System.Windows.Forms.Label();
+            this.lbLearningCapacitySem = new System.Windows.Forms.Label();
+            this.lbLearningCapacityYear = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.gridviewStudentScore)).BeginInit();
             this.SuspendLayout();
             // 
@@ -108,7 +110,7 @@
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.gridviewStudentScore.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.gridviewStudentScore.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.gridviewStudentScore.Size = new System.Drawing.Size(926, 391);
+            this.gridviewStudentScore.Size = new System.Drawing.Size(926, 325);
             this.gridviewStudentScore.TabIndex = 1;
             // 
             // clmName
@@ -282,12 +284,34 @@
             this.lbInformation.Text = "*Đang tải thông tin...";
             this.lbInformation.Visible = false;
             // 
+            // lbLearningCapacitySem
+            // 
+            this.lbLearningCapacitySem.AutoSize = true;
+            this.lbLearningCapacitySem.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
+            this.lbLearningCapacitySem.Location = new System.Drawing.Point(27, 411);
+            this.lbLearningCapacitySem.Name = "lbLearningCapacitySem";
+            this.lbLearningCapacitySem.Size = new System.Drawing.Size(304, 21);
+            this.lbLearningCapacitySem.TabIndex = 56;
+            this.lbLearningCapacitySem.Text = "Điểm trung bình HK --: ---- - Học lực: ----\r\n";
+            // 
+            // lbLearningCapacityYear
+            // 
+            this.lbLearningCapacityYear.AutoSize = true;
+            this.lbLearningCapacityYear.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
+            this.lbLearningCapacityYear.Location = new System.Drawing.Point(27, 434);
+            this.lbLearningCapacityYear.Name = "lbLearningCapacityYear";
+            this.lbLearningCapacityYear.Size = new System.Drawing.Size(388, 21);
+            this.lbLearningCapacityYear.TabIndex = 57;
+            this.lbLearningCapacityYear.Text = "Điểm trung bình cả năm --: ---- - Học lực cả năm: ----\r\n";
+            // 
             // frmStudentScoreboard
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnExit;
             this.ClientSize = new System.Drawing.Size(950, 500);
+            this.Controls.Add(this.lbLearningCapacityYear);
+            this.Controls.Add(this.lbLearningCapacitySem);
             this.Controls.Add(this.mainProgressbar);
             this.Controls.Add(this.lbInformation);
             this.Controls.Add(this.lbScoreTittle);
@@ -322,5 +346,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.ProgressBar mainProgressbar;
         private System.Windows.Forms.Label lbInformation;
+        private System.Windows.Forms.Label lbLearningCapacitySem;
+        private System.Windows.Forms.Label lbLearningCapacityYear;
     }
 }

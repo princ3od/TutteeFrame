@@ -59,7 +59,15 @@ namespace TutteeFrame.Controller
             }
             return result;
         }
-        public Dictionary<string, List<AverageScore>> GetStudentAverageScore(List<Student> _students, int _grade)
+        public List<AverageScore> GetAverageScores(string _studentID,int _grade)
+        {
+            List<AverageScore> averageScores = new List<AverageScore>();
+            bool success = scoreDA.GetAverageScore(_studentID, _grade, averageScores);
+            if (!success)
+                return null;
+            return averageScores;
+        }
+        public Dictionary<string, List<AverageScore>> GetStudentsAverageScore(List<Student> _students, int _grade)
         {
             Dictionary<string, List<AverageScore>> result = new Dictionary<string, List<AverageScore>>();
             foreach (Student student in _students)
