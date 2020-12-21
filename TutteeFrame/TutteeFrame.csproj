@@ -40,6 +40,15 @@
     <ApplicationIcon>Resources\logo_1_removebg_preview_hoi_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="LiveCharts, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>packages\LiveCharts.0.9.7\lib\net45\LiveCharts.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.WinForms, Version=0.9.7.1, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>packages\LiveCharts.WinForms.0.9.7.1\lib\net45\LiveCharts.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="LiveCharts.Wpf, Version=0.9.7.0, Culture=neutral, PublicKeyToken=0bc1f845d1ebb8df, processorArchitecture=MSIL">
+      <HintPath>packages\LiveCharts.Wpf.0.9.7\lib\net45\LiveCharts.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="MaterialDesignByPr3, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\MaterialDesignByPr3.dll</HintPath>
@@ -84,10 +93,13 @@
       <HintPath>packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Design" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -96,11 +108,19 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\AccountController.cs" />
     <Compile Include="Controller\ClassController.cs" />
     <Compile Include="Controller\MainController.cs" />
+    <Compile Include="Controller\PunishmentController.cs" />
+    <Compile Include="DataAccess\PunishmentDA.cs" />
+    <Compile Include="Model\Punishment.cs" />
+    <Compile Include="Model\ResultObject.cs" />
+    <Compile Include="Model\Reward.cs" />
+    <Compile Include="Model\StudentLearnResult.cs" />
     <Compile Include="Utility\Helper.cs" />
     <Compile Include="Controller\ScoreController.cs" />
     <Compile Include="Controller\StudentController.cs" />
@@ -126,6 +146,24 @@
     </Compile>
     <Compile Include="View\frmChooseTeacher.Designer.cs">
       <DependentUpon>frmChooseTeacher.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\frmStudentConduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\frmStudentConduct.Designer.cs">
+      <DependentUpon>frmStudentConduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\frmStudentFault.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\frmStudentFault.Designer.cs">
+      <DependentUpon>frmStudentFault.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\frmStudentScoreboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\frmStudentScoreboard.Designer.cs">
+      <DependentUpon>frmStudentScoreboard.cs</DependentUpon>
     </Compile>
     <Compile Include="View\frmTeacherAssignment.cs">
       <SubType>Form</SubType>
@@ -218,6 +256,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="View\frmViewStudent.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\frmViewStudent.Designer.cs">
+      <DependentUpon>frmViewStudent.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="View\frmClassInfo.resx">
       <DependentUpon>frmClassInfo.cs</DependentUpon>
     </EmbeddedResource>
@@ -236,8 +280,17 @@
     <EmbeddedResource Include="View\frmAddStudent.resx">
       <DependentUpon>frmAddStudent.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\frmStudentConduct.resx">
+      <DependentUpon>frmStudentConduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\frmStudentFault.resx">
+      <DependentUpon>frmStudentFault.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\frmStudentPrinter.resx">
       <DependentUpon>frmStudentPrinter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\frmStudentScoreboard.resx">
+      <DependentUpon>frmStudentScoreboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\frmSubject.resx">
       <DependentUpon>frmSubject.cs</DependentUpon>
@@ -262,6 +315,9 @@
     <EmbeddedResource Include="Reports\ReportStudent.rdlc" />
     <EmbeddedResource Include="View\frmTeacherAssignment.resx">
       <DependentUpon>frmTeacherAssignment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\frmViewStudent.resx">
+      <DependentUpon>frmViewStudent.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -307,6 +363,7 @@
     <None Include="Resources\settings.png" />
     <None Include="Resources\log_out.png" />
     <None Include="Resources\password.png" />
+    <Content Include="Database\TutteeFrame.sql" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

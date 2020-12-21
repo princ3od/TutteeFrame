@@ -68,6 +68,7 @@ namespace TutteeFrame.DataAccess
                             score.Value = reader.GetDouble(11);
                         else
                             score.Value = -1;
+                        score.SubjectID = _subjectID;
                         _scores.Add(score);
                     }
             }
@@ -133,6 +134,172 @@ namespace TutteeFrame.DataAccess
                     command.Parameters.AddWithValue("@averagescore", DBNull.Value);
                 command.ExecuteNonQuery();
 
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return true;
+        }
+
+        public bool GetAverageScore(string _studentID, int _grade, List<AverageScore> averageScores)
+        {
+            bool success = Connect();
+
+            if (!success)
+                return false;
+
+            try
+            {
+                AverageScore score;
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.CommandText = "SELECT SCOREBOARD.SemesterAverage FROM LEARNRESULT JOIN SCOREBOARD ON LEARNRESULT.ScoreBoardSE01ID = SCOREBOARD.ScoreBoardID " +
+                                 "WHERE LEARNRESULT.StudentID = @studentid AND Grade = @grade";
+                    command.Parameters.AddWithValue("@studentid", _studentID);
+                    command.Parameters.AddWithValue("@grade", _grade);
+                    score = new AverageScore(AverageScore.ScoreType.HK1);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        reader.Read();
+                        if (!reader.IsDBNull(0))
+                            score.Value = reader.GetDouble(0);
+                    }
+                    averageScores.Add(score);
+                }
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.CommandText = "SELECT SCOREBOARD.SemesterAverage FROM LEARNRESULT JOIN SCOREBOARD ON LEARNRESULT.ScoreBoardSE02ID = SCOREBOARD.ScoreBoardID " +
+                                 "WHERE LEARNRESULT.StudentID = @studentid AND Grade = @grade";
+                    command.Parameters.AddWithValue("@studentid", _studentID);
+                    command.Parameters.AddWithValue("@grade", _grade);
+                    score = new AverageScore(AverageScore.ScoreType.HK2);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        reader.Read();
+                        if (!reader.IsDBNull(0))
+                            score.Value = reader.GetDouble(0);
+                    }
+                    averageScores.Add(score);
+                }
+                using (SqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandType = System.Data.CommandType.Text;
+                    command.CommandText = "SELECT AverageScore FROM LEARNRESULT WHERE StudentID = @studentid AND Grade = @grade";
+                    command.Parameters.AddWithValue("@studentid", _studentID);
+                    command.Parameters.AddWithValue("@grade", _grade);
+                    score = new AverageScore(AverageScore.ScoreType.CaNam);
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        reader.Read();
+                        if (!reader.IsDBNull(0))
+                            score.Value = reader.GetDouble(0);
+                    }
+                    averageScores.Add(score);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return true;
+        }
+        public bool GetAllAverageSubjectScore(string _studentID, int _grade, int _semester, List<Score> _subjectScores)
+        {
+            bool success = Connect();
+
+            if (!success)
+                return false;
+
+            try
+            {
+                using (SqlCommand sqlCommand = connection.CreateCommand())
+                {
+                    sqlCommand.CommandText = "SELECT SubjectID, SubjectAverage FROM SUBJECTSCORE JOIN SCOREBOARD ON SUBJECTSCORE.ScoreBoardID = SCOREBOARD.ScoreBoardID " +
+                        "JOIN LEARNRESULT ON LEARNRESULT.ScoreBoardSE01ID = SCOREBOARD.ScoreBoardID OR LEARNRESULT.ScoreBoardSE02ID = SCOREBOARD.ScoreBoardID " +
+                        "WHERE LEARNRESULT.StudentID = @studentid AND LEARNRESULT.Grade = @grade AND SCOREBOARD.Semester = @sem";
+                    sqlCommand.Parameters.AddWithValue("@studentid", _studentID);
+                    sqlCommand.Parameters.AddWithValue("@grade", _grade);
+                    sqlCommand.Parameters.AddWithValue("@sem", _semester);
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Score score = new Score(Score.ScoreType.TrungBinh);
+                            score.SubjectID = reader.GetString(0);
+                            if (!reader.IsDBNull(1))
+                                score.Value = reader.GetDouble(1);
+                            _subjectScores.Add(score);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return true;
+        }
+        public bool GetAverageYearSubjectScore(string _studentID, string _subjectID, int _grade, out double _score)
+        {
+            _score = -1;
+            bool success = Connect();
+
+            if (!success)
+                return false;
+
+            try
+            {
+                double scoreSem1 = -1, scoreSem2 = -1;
+                using (SqlCommand sqlCommand = connection.CreateCommand())
+                {
+                    sqlCommand.CommandText = "SELECT SUBJECTSCORE.SubjectAverage FROM LEARNRESULT JOIN SCOREBOARD ON LEARNRESULT.ScoreBoardSE01ID = SCOREBOARD.ScoreBoardID " +
+                        "JOIN SUBJECTSCORE ON SCOREBOARD.ScoreBoardID = SUBJECTSCORE.ScoreBoardID " +
+                                 "WHERE LEARNRESULT.StudentID = @studentid AND Grade = @grade AND SUBJECTSCORE.SubjectID = @subjectid";
+                    sqlCommand.Parameters.AddWithValue("@studentid", _studentID);
+                    sqlCommand.Parameters.AddWithValue("@grade", _grade);
+                    sqlCommand.Parameters.AddWithValue("@subjectid", _subjectID);
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        reader.Read();
+                        if (!reader.IsDBNull(0))
+                            scoreSem1 = reader.GetDouble(0);
+                    }
+                }
+                using (SqlCommand sqlCommand = connection.CreateCommand())
+                {
+                    sqlCommand.CommandText = "SELECT SUBJECTSCORE.SubjectAverage FROM LEARNRESULT JOIN SCOREBOARD ON LEARNRESULT.ScoreBoardSE02ID = SCOREBOARD.ScoreBoardID " +
+                        "JOIN SUBJECTSCORE ON SCOREBOARD.ScoreBoardID = SUBJECTSCORE.ScoreBoardID " +
+                                 "WHERE LEARNRESULT.StudentID = @studentid AND Grade = @grade AND SUBJECTSCORE.SubjectID = @subjectid";
+                    sqlCommand.Parameters.AddWithValue("@studentid", _studentID);
+                    sqlCommand.Parameters.AddWithValue("@grade", _grade);
+                    sqlCommand.Parameters.AddWithValue("@subjectid", _subjectID);
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        reader.Read();
+                        if (!reader.IsDBNull(0))
+                            scoreSem2 = reader.GetDouble(0);
+                    }
+                }
+                if (scoreSem1 != -1 && scoreSem2 != -1)
+                    _score = Math.Round(((scoreSem1 + scoreSem2 * 2) / 3), 2);
             }
             catch (Exception ex)
             {

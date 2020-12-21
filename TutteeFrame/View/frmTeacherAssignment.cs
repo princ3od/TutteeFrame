@@ -11,11 +11,32 @@ using TutteeFrame.Controller;
 using TutteeFrame.Model;
 using MaterialSkin.Controls;
 using Material_Design_for_Winform;
+using System.Runtime.InteropServices;
 
 namespace TutteeFrame
 {
     public partial class frmTeacherAssignment : Form
     {
+        #region Win32 Form
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                const int CS_DROPSHADOW = 0x20000;
+                CreateParams cp = base.CreateParams;
+                cp.ClassStyle |= CS_DROPSHADOW;
+                return cp;
+            }
+        }
+        #endregion
         string classID;
         SubjectController subjectController;
         ClassController classController;

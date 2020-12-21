@@ -5,6 +5,27 @@ using System.Text;
 
 namespace TutteeFrame.Model
 {
+    class AverageScore
+    {
+        public enum ScoreType { HK1, HK2, CaNam };
+        private double value;
+        private ScoreType scoreType;
+
+        //public Score()
+        //{
+
+        //}
+
+        public AverageScore(ScoreType scoreType)
+        {
+            this.scoreType = scoreType;
+            Value = -1;
+        }
+
+        public double Value { get => Math.Round(value, 2); set => this.value = value; }
+        public ScoreType Type { get => scoreType; set => scoreType = value; }
+
+    }
     class Score
     {
         public enum ScoreType { Mieng, MuoiLamPhut, MotTiet, HocKi, TrungBinh };
@@ -19,10 +40,14 @@ namespace TutteeFrame.Model
         public Score(ScoreType scoreType)
         {
             this.scoreType = scoreType;
+            this.value = -1;
         }
 
-        public double Value { get => value; set => this.value = value; }
+        private string subjectID;
+        public double Value { get => Math.Round(value, 2); set => this.value = value; }
         public ScoreType Type { get => scoreType; set => scoreType = value; }
+        public string SubjectID { get => subjectID; set => subjectID = value; }
+
         public int GetHeSo()
         {
             switch (scoreType)
