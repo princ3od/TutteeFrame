@@ -55,12 +55,5 @@ namespace TutteeFrame.Controller
             teacher.Type = Teacher.TeacherType.Adminstrator;
             return new TeacherController().AddTeacher(teacher);
         }
-        
-
-        
-
-
-        
-
     }
 }

@@ -210,6 +210,7 @@ namespace TutteeFrame
                         lbBelongtoOnCard.Text = "Giáo viên chủ nhiệm";
                         mainTabControl.TabPages.Add(tbpgFormClass);
                         mainTabControl.TabPages.Add(tbpgStudentMarkboard);
+                        mainTabControl.TabPages.Add(tbpgPunishmentManagment);
                         break;
                     case Teacher.TeacherType.Teacher:
                         lbBelongtoOnCard.Text = "Giáo viên bộ môn";
@@ -554,9 +555,16 @@ namespace TutteeFrame
         #endregion
 
         #region Tabpage Quản lí học sinh
+        private void AddPunishment(object sender, EventArgs e)
+        {
+            frmStudentFault frmStudentFault = new frmStudentFault(listViewStudents.SelectedItems[0].SubItems[0].Text, frmStudentFault.Mode.Add, frmStudentFault.OpenMode.Full);
+            OverlayForm overlayForm = new OverlayForm(this, frmStudentFault, 0.5f);
+            frmStudentFault.Show();
+        }
         private void listViewStudents_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnDeleteStudent.Enabled = btnUpdateStudent.Enabled = (listViewStudents.SelectedItems.Count > 0);
+            btnDeleteStudent.Enabled = btnUpdateStudent.Enabled = btnAddPunishment.Enabled = btnAddReward.Enabled = (listViewStudents.SelectedItems.Count > 0);
+            btnUpdateStudent.Enabled = btnAddPunishment.Enabled = btnAddReward.Enabled = !(listViewStudents.SelectedItems.Count > 1);
         }
         private void AddNewStudent(object sender, EventArgs e)
         {
@@ -590,7 +598,6 @@ namespace TutteeFrame
         }
         private void cboxLop_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnPrintStudent.Visible = false;
             cbbStudentGrade.Enabled = false;
             cbbStudentClass.Enabled = false;
             listViewStudents.Enabled = false;
@@ -619,24 +626,19 @@ namespace TutteeFrame
             {
                 List<Student> Students = e.UserState as List<Student>;
                 listViewStudents.Items.Clear();
-                foreach (var i in Students)
+                foreach (var student in Students)
                 {
-                    ListViewItem lvi = new ListViewItem(i.ID);
-                    lvi.SubItems.Add(i.SurName);
-                    lvi.SubItems.Add(i.FirstName);
-                    lvi.Tag = i.DateBorn;
-                    lvi.SubItems[1].Tag = i.Avatar;
-                    lvi.SubItems.Add(i.DateBorn.ToString("dd/MM/yyyy"));
-                    lvi.SubItems.Add(i.Sex == true ? "Nam" : "Nữ");
-                    lvi.SubItems.Add(i.Address.ToString());
-                    lvi.SubItems.Add(i.Phone.ToString());
-                    lvi.SubItems.Add(i.ClassID.ToString());
-                    lvi.SubItems.Add(i.Status == true ? "Đang học" : "Đã nghỉ");
-                    if (i.PunishmentList != null)
-                    {
-                        lvi.SubItems.Add(i.PunishmentList.ToString());
-                    }
-
+                    ListViewItem lvi = new ListViewItem(student.ID);
+                    lvi.SubItems.Add(student.SurName);
+                    lvi.SubItems.Add(student.FirstName);
+                    lvi.Tag = student.DateBorn;
+                    lvi.SubItems[1].Tag = student.Avatar;
+                    lvi.SubItems.Add(student.DateBorn.ToString("dd/MM/yyyy"));
+                    lvi.SubItems.Add(student.Sex == true ? "Nam" : "Nữ");
+                    lvi.SubItems.Add(student.Address.ToString());
+                    lvi.SubItems.Add(student.Phone.ToString());
+                    lvi.SubItems.Add(student.ClassID.ToString());
+                    lvi.SubItems.Add(student.Status == true ? "Đang học" : "Đã nghỉ");
                     listViewStudents.Items.Add(lvi);
                 }
             }
@@ -658,7 +660,6 @@ namespace TutteeFrame
             lbInformation.Text = "Đang tải danh sách lớp...";
             lbInformation.Show();
             mainProgressbar.Show();
-            btnPrintStudent.Visible = false;
             cbbStudentGrade.Enabled = false;
             cbbStudentClass.Enabled = false;
             listViewStudents.Enabled = false;
@@ -783,7 +784,6 @@ namespace TutteeFrame
         }
         private void txtSearch_KeyPress(object sender, KeyPressEventArgs e)
         {
-            btnPrintStudent.Visible = false;
             if (e.KeyChar == (char)Keys.Enter)
             {
                 Pair agr;
@@ -796,14 +796,14 @@ namespace TutteeFrame
         }
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            string classID = cbbStudentClass.Text;
-            DataSet ds = new DataSet();
-            if (studentController.GetDataSetPrepareToPrint(ds, classID))
-            {
-                frmStudentPrinter printer = new frmStudentPrinter(ds, classID);
-                printer.ShowDialog();
+            //string classID = cbbStudentClass.Text;
+            //DataSet ds = new DataSet();
+            //if (studentController.GetDataSetPrepareToPrint(ds, classID))
+            //{
+            //    frmStudentPrinter printer = new frmStudentPrinter(ds, classID);
+            //    printer.ShowDialog();
 
-            }
+            //}
         }
         #endregion
 
@@ -1053,12 +1053,9 @@ namespace TutteeFrame
                 lbTotalTeachingClass.Text = classes.Count.ToString();
                 lbScoreTittle.Text = string.Format("Bảng điểm lớp {0} - môn {1} - HK {2} - năm {3}",
                                             cbbTeachingClass.Text, mainTeacher.Subject.Name, cbbTeachingSemester.Text, "2020");
-
+                updatedScore = false;
+                btnApproveUpdateScore.Enabled = false;
             };
-        }
-        private void listViewTeachingClass_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            btnAssignTeacher.Enabled = (listViewTeachingClass.SelectedItems.Count > 0);
         }
         #endregion
 
@@ -1145,6 +1142,10 @@ namespace TutteeFrame
         #endregion
 
         #region Tabpage Phân công giáo viên
+        private void listViewTeachingClass_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnAssignTeacher.Enabled = (listViewTeachingClass.SelectedItems.Count > 0);
+        }
         private void cbbTeachingGrade_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (firstLoad)
@@ -1446,7 +1447,13 @@ namespace TutteeFrame
         }
         private void listviewStudentInClass_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnViewStudentInfor.Enabled = btnViewStudentScores.Enabled = btnSetStudentConduct.Enabled = (listviewStudentInClass.SelectedItems.Count > 0);
+            btnViewStudentInfor.Enabled = btnViewStudentScores.Enabled = btnSetStudentConduct.Enabled = btnAddPunishment.Enabled = (listviewStudentInClass.SelectedItems.Count > 0);
+        }
+        private void AddFault(object sender, EventArgs e)
+        {
+            frmStudentFault frmStudentFault = new frmStudentFault(listviewStudentInClass.SelectedItems[0].SubItems[1].Text, frmStudentFault.Mode.Add, frmStudentFault.OpenMode.FaultOnly);
+            OverlayForm overlayForm = new OverlayForm(this, frmStudentFault, 0.5f);
+            frmStudentFault.Show();
         }
         #endregion
 

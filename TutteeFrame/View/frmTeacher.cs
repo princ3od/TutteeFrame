@@ -92,7 +92,7 @@ namespace TutteeFrame
             {
                 case Mode.Add:
                     btnApprove.Text = "Thêm giáo viên";
-                    teacherID = "TC" + Helper.GenerateTeacherID();
+                    teacherID = "TC" + Helper.GenerateID();
                     lbID.Text = teacherID;
                     lbID.ForeColor = Color.Green;
                     lbName.Text = "--";

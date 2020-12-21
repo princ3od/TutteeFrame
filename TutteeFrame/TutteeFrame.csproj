@@ -115,6 +115,11 @@
     <Compile Include="Controller\AccountController.cs" />
     <Compile Include="Controller\ClassController.cs" />
     <Compile Include="Controller\MainController.cs" />
+    <Compile Include="Controller\PunishmentController.cs" />
+    <Compile Include="DataAccess\PunishmentDA.cs" />
+    <Compile Include="Model\Punishment.cs" />
+    <Compile Include="Model\ResultObject.cs" />
+    <Compile Include="Model\Reward.cs" />
     <Compile Include="Model\StudentLearnResult.cs" />
     <Compile Include="Utility\Helper.cs" />
     <Compile Include="Controller\ScoreController.cs" />
@@ -147,6 +152,12 @@
     </Compile>
     <Compile Include="View\frmStudentConduct.Designer.cs">
       <DependentUpon>frmStudentConduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\frmStudentFault.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\frmStudentFault.Designer.cs">
+      <DependentUpon>frmStudentFault.cs</DependentUpon>
     </Compile>
     <Compile Include="View\frmStudentScoreboard.cs">
       <SubType>Form</SubType>
@@ -272,6 +283,9 @@
     <EmbeddedResource Include="View\frmStudentConduct.resx">
       <DependentUpon>frmStudentConduct.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\frmStudentFault.resx">
+      <DependentUpon>frmStudentFault.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\frmStudentPrinter.resx">
       <DependentUpon>frmStudentPrinter.cs</DependentUpon>
     </EmbeddedResource>
@@ -349,6 +363,7 @@
     <None Include="Resources\settings.png" />
     <None Include="Resources\log_out.png" />
     <None Include="Resources\password.png" />
+    <Content Include="Database\TutteeFrame.sql" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

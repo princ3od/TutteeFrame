@@ -11,7 +11,7 @@ namespace TutteeFrame
     class OverlayForm : Form
     {
 
-        public OverlayForm(Form _parent, Form _child, float _opacity = 0.65f)
+        public OverlayForm(Form _parent, Form _child, float _opacity = 0.6f, int _offSet = 5)
         {
             this.ControlBox = false;
             this.StartPosition = FormStartPosition.Manual;
@@ -31,7 +31,7 @@ namespace TutteeFrame
             _child.StartPosition = FormStartPosition.Manual;
             _child.Owner = _parent;
             _child.ShowInTaskbar = false;
-            _child.Location = new Point(this.Location.X + this.Width / 2 - _child.Width / 2, this.Location.Y + this.Height / 2 - _child.Height / 2);
+            _child.Location = new Point(this.Location.X + this.Width / 2 - _child.Width / 2, this.Location.Y + this.Height / 2 - _child.Height / 2 - _offSet);
             _child.FormClosed += (s, e) =>
             {
                 this.Close();
