@@ -57,6 +57,7 @@
             this.AddStudentBackground = new System.ComponentModel.BackgroundWorker();
             this.btnChooseAvatar = new MaterialSkin.Controls.MaterialFloatingActionButton();
             this.picboxStudent = new System.Windows.Forms.PictureBox();
+            this.btnExit = new MaterialSkin.Controls.MaterialButton();
             this.materialCard2.SuspendLayout();
             this.materialCard1.SuspendLayout();
             this.pnBasicInfor.SuspendLayout();
@@ -484,12 +485,35 @@
             this.picboxStudent.TabIndex = 48;
             this.picboxStudent.TabStop = false;
             // 
+            // btnExit
+            // 
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnExit.Depth = 0;
+            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnExit.DrawShadows = true;
+            this.btnExit.HighEmphasis = true;
+            this.btnExit.Icon = ((System.Drawing.Image)(resources.GetObject("btnExit.Icon")));
+            this.btnExit.Location = new System.Drawing.Point(702, 0);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnExit.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(44, 36);
+            this.btnExit.TabIndex = 59;
+            this.btnExit.TabStop = false;
+            this.btnExit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
+            this.btnExit.UseAccentColor = false;
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
             // frmAddStudent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(744, 671);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnChooseAvatar);
             this.Controls.Add(this.btnCancal);
             this.Controls.Add(this.btnApprove);
@@ -497,12 +521,15 @@
             this.Controls.Add(this.materialCard1);
             this.Controls.Add(this.pnBasicInfor);
             this.Controls.Add(this.picboxStudent);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "frmAddStudent";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.ShowIcon = false;
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.frmAddStudent_Load);
             this.materialCard2.ResumeLayout(false);
             this.materialCard2.PerformLayout();
@@ -512,6 +539,7 @@
             this.pnBasicInfor.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picboxStudent)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -544,5 +572,6 @@
         private Material_Design_for_Winform.MaterialTextField txtFirstName;
         private Material_Design_for_Winform.MaterialTextField txtStudentID;
         private System.ComponentModel.BackgroundWorker AddStudentBackground;
+        private MaterialSkin.Controls.MaterialButton btnExit;
     }
 }
