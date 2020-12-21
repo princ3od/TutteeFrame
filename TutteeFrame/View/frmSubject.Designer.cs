@@ -151,6 +151,7 @@ namespace TutteeFrame
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.txtNameSubject);
             this.Controls.Add(this.txtSubjectId);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmSubject";

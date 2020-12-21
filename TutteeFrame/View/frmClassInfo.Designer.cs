@@ -178,6 +178,7 @@ namespace TutteeFrame
             this.Controls.Add(this.btnCloseClassInfo);
             this.Controls.Add(this.txtClassId);
             this.Controls.Add(this.txtRoom);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmClassInfo";
             this.Text = "Thông tin chi tiết của lớp";

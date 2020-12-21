@@ -27,7 +27,7 @@ namespace TutteeFrame
 
             return true;
         }
-        public static string GenerateTeacherID()
+        public static string GenerateID()
         {
             int result = (new Random()).Next(100000, 999999);
             return result.ToString();

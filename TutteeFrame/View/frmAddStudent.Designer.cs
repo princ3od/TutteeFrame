@@ -522,6 +522,7 @@
             this.Controls.Add(this.pnBasicInfor);
             this.Controls.Add(this.picboxStudent);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;

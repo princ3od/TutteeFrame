@@ -273,6 +273,7 @@
             this.Controls.Add(this.txtNewPass);
             this.Controls.Add(this.txtOldPass);
             this.Controls.Add(this.txtID);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.MaximizeBox = false;
             this.MinimizeBox = false;

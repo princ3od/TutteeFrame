@@ -1,0 +1,165 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Runtime.InteropServices;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using TutteeFrame.Controller;
+using TutteeFrame.Model;
+
+namespace TutteeFrame
+{
+    public partial class frmStudentFault : Form
+    {
+        #region Win32 Form
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                const int CS_DROPSHADOW = 0x20000;
+                CreateParams cp = base.CreateParams;
+                cp.ClassStyle |= CS_DROPSHADOW;
+                return cp;
+            }
+        }
+        #endregion
+        StudentController studentController;
+        PunishmentController punishmentController;
+        public bool success = false;
+        string studentID;
+        Punishment punishment;
+        public enum OpenMode { FaultOnly = 0, Full = 1 };
+        OpenMode openMode;
+        public enum Mode { Add = 0, Edit = 1 };
+        Mode mode;
+        public frmStudentFault(string _studentID, Mode _mode, OpenMode _openMode)
+        {
+            InitializeComponent();
+            studentController = new StudentController();
+            punishmentController = new PunishmentController();
+            this.openMode = _openMode;
+            this.mode = _mode;
+            this.studentID = _studentID;
+        }
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            cbbSemester.SelectedIndex = 0;
+            Student student = new Student();
+            switch (openMode)
+            {
+                case OpenMode.FaultOnly:
+                    txtPunishmentContent.Visible = false;
+                    this.Size = new Size(this.Width, 320);
+                    break;
+                case OpenMode.Full:
+                    btnApprove.Text = "Xác nhận";
+                    break;
+                default:
+                    break;
+            }
+            lbInformation.Visible = mainProgressbar.Visible = true;
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += (s, ev) =>
+            {
+                success = studentController.LoadStudentInformationById(studentID, student);
+                if (success) ;
+                System.Threading.Thread.Sleep(300);
+            };
+            worker.RunWorkerCompleted += (s, ev) =>
+            {
+                if (!success)
+                {
+                    MetroFramework.MetroMessageBox.Show(this, "Có vấn đề xảy ra trong quá trình lấy thông tin.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                punishment = new Punishment(student.ExactID);
+                punishment.StudentID = student.ID;
+                punishment.Grade = Int32.Parse(student.GetGrade);
+                punishment.Semester = Int32.Parse(cbbSemester.Text);
+                punishment.Year = DateTime.Now.Year;
+                txtPunishmentID.Text = punishment.ID;
+                lbName.Text = string.Format("{0} - {1}", student.GetName(), studentID);
+                lbSex.Text = string.Format("Giới tính: {0}", student.GetSex);
+                lbInformation.Visible = mainProgressbar.Visible = false;
+                btnApprove.Enabled = true;
+            };
+            worker.RunWorkerAsync();
+        }
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Approve(object sender, EventArgs e)
+        {
+            BackgroundWorker worker = new BackgroundWorker();
+            switch (openMode)
+            {
+                case OpenMode.FaultOnly:
+                    punishment.Content = txtPunishmentContent.Text;
+                    punishment.Fault = txtFaultContent.Text;
+                    lbInformation.Text = "Đang thêm vi phạm...";
+                    lbInformation.Visible = mainProgressbar.Visible = true;
+                    worker.DoWork += (s, ev) =>
+                    {
+                        success = punishmentController.AddStudentFault(punishment);
+                        System.Threading.Thread.Sleep(200);
+                    };
+                    worker.RunWorkerCompleted += (s, ev) =>
+                    {
+                        lbInformation.Visible = mainProgressbar.Visible = false;
+                        if (success)
+                        {
+                            MetroFramework.MetroMessageBox.Show(this, "Thêm vi phạm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Close();
+                        }
+                        else
+                            MetroFramework.MetroMessageBox.Show(this, "Đã có lỗi xảy ra.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    };
+                    break;
+                case OpenMode.Full:
+                    punishment.Content = txtPunishmentContent.Text;
+                    punishment.Fault = txtFaultContent.Text;
+                    punishment.Content = txtPunishmentContent.Text;
+                    lbInformation.Text = "Đang thêm vi phạm...";
+                    lbInformation.Visible = mainProgressbar.Visible = true;
+                    worker.DoWork += (s, ev) =>
+                    {
+                        if (!string.IsNullOrEmpty(punishment.Content))
+                            success = punishmentController.AddPunishment(punishment);
+                        else
+                            success = punishmentController.AddStudentFault(punishment);
+                        System.Threading.Thread.Sleep(200);
+                    };
+                    worker.RunWorkerCompleted += (s, ev) =>
+                    {
+                        lbInformation.Visible = mainProgressbar.Visible = false;
+                        if (success)
+                        {
+                            MetroFramework.MetroMessageBox.Show(this, "Thêm vi phạm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            this.Close();
+                        }
+                        else
+                            MetroFramework.MetroMessageBox.Show(this, "Đã có lỗi xảy ra.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    };
+                    break;
+                default:
+                    break;
+            }
+            worker.RunWorkerAsync();
+        }
+    }
+}

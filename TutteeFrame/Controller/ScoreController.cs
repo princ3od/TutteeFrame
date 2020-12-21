@@ -12,9 +12,41 @@ namespace TutteeFrame.Controller
     class ScoreController
     {
         ScoreDA scoreDA;
+        SubjectDA subjectDA;
         public ScoreController()
         {
             scoreDA = new ScoreDA();
+            subjectDA = new SubjectDA();
+        }
+        public Dictionary<string, List<Score>> GetAllScores(string _studentID, int _semester, int _grade)
+        {
+            Dictionary<string, List<Score>> result = new Dictionary<string, List<Score>>();
+            List<Subject> subjects = new List<Subject>();
+            bool success = subjectDA.LoadSubjects(subjects);
+            if (!success)
+                return result;
+            foreach (Subject subject in subjects)
+            {
+                List<Score> scores = new List<Score>();
+                scoreDA.GetStudentScore(_studentID, subject.ID, _semester, _grade, scores);
+                result.Add(subject.ID, scores);
+            }
+            return result;
+        }
+        public Dictionary<string, double> GetYearAverageListScore(string _studentID, int _grade)
+        {
+            Dictionary<string, double> result = new Dictionary<string, double>();
+            List<Subject> subjects = new List<Subject>();
+            bool success = subjectDA.LoadSubjects(subjects);
+            if (!success)
+                return result;
+            foreach (Subject subject in subjects)
+            {
+                double score = -1;
+                scoreDA.GetAverageYearSubjectScore(_studentID, subject.ID,  _grade, out score);
+                result.Add(subject.ID, score);
+            }
+            return result;
         }
         public Dictionary<string, List<Score>> GetStudentListScore(List<Student> _students, string _subjectID, int _sem, int _grade)
         {
@@ -27,7 +59,25 @@ namespace TutteeFrame.Controller
             }
             return result;
         }
-
+        public List<AverageScore> GetAverageScores(string _studentID,int _grade)
+        {
+            List<AverageScore> averageScores = new List<AverageScore>();
+            bool success = scoreDA.GetAverageScore(_studentID, _grade, averageScores);
+            if (!success)
+                return null;
+            return averageScores;
+        }
+        public Dictionary<string, List<AverageScore>> GetStudentsAverageScore(List<Student> _students, int _grade)
+        {
+            Dictionary<string, List<AverageScore>> result = new Dictionary<string, List<AverageScore>>();
+            foreach (Student student in _students)
+            {
+                List<AverageScore> scores = new List<AverageScore>();
+                scoreDA.GetAverageScore(student.ID, _grade, scores);
+                result.Add(student.ID, scores);
+            }
+            return result;
+        }
         public bool UpdateStudentScore(DataGridViewRowCollection rows, string _subjectid, int _semester, int _grade)
         {
             string studentid = "";
