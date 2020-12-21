@@ -321,7 +321,7 @@
             // 
             this.materialDivider11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.materialDivider11.Depth = 0;
-            this.materialDivider11.Location = new System.Drawing.Point(947, 363);
+            this.materialDivider11.Location = new System.Drawing.Point(947, 373);
             this.materialDivider11.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialDivider11.Name = "materialDivider11";
             this.materialDivider11.Size = new System.Drawing.Size(30, 2);
@@ -711,7 +711,7 @@
             this.btnAutoColumn.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAutoColumn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnAutoColumn.Icon = null;
-            this.btnAutoColumn.Location = new System.Drawing.Point(1010, 506);
+            this.btnAutoColumn.Location = new System.Drawing.Point(1010, 504);
             this.btnAutoColumn.Name = "btnAutoColumn";
             this.btnAutoColumn.Size = new System.Drawing.Size(108, 36);
             this.btnAutoColumn.TabIndex = 43;
@@ -795,7 +795,7 @@
             this.listviewTeacher.MouseState = MaterialSkin.MouseState.OUT;
             this.listviewTeacher.Name = "listviewTeacher";
             this.listviewTeacher.OwnerDraw = true;
-            this.listviewTeacher.Size = new System.Drawing.Size(1119, 375);
+            this.listviewTeacher.Size = new System.Drawing.Size(1119, 373);
             this.listviewTeacher.TabIndex = 13;
             this.listviewTeacher.UseCompatibleStateImageBehavior = false;
             this.listviewTeacher.View = System.Windows.Forms.View.Details;
@@ -862,7 +862,7 @@
             this.btnDeleteTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnDeleteTeacher.Icon = null;
-            this.btnDeleteTeacher.Location = new System.Drawing.Point(862, 498);
+            this.btnDeleteTeacher.Location = new System.Drawing.Point(862, 496);
             this.btnDeleteTeacher.Name = "btnDeleteTeacher";
             this.btnDeleteTeacher.Radius = 2;
             this.btnDeleteTeacher.ShadowDepth = 3;
@@ -884,7 +884,7 @@
             this.btnUpdateTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdateTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnUpdateTeacher.Icon = null;
-            this.btnUpdateTeacher.Location = new System.Drawing.Point(198, 498);
+            this.btnUpdateTeacher.Location = new System.Drawing.Point(198, 496);
             this.btnUpdateTeacher.Name = "btnUpdateTeacher";
             this.btnUpdateTeacher.Radius = 2;
             this.btnUpdateTeacher.ShadowDepth = 3;
@@ -906,7 +906,7 @@
             this.btnAddTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnAddTeacher.Icon = null;
-            this.btnAddTeacher.Location = new System.Drawing.Point(50, 498);
+            this.btnAddTeacher.Location = new System.Drawing.Point(50, 496);
             this.btnAddTeacher.Name = "btnAddTeacher";
             this.btnAddTeacher.Radius = 2;
             this.btnAddTeacher.ShadowDepth = 3;
@@ -1384,9 +1384,9 @@
             this.tbpgStudentMarkboard.Controls.Add(this.lbTotalTeachingClass);
             this.tbpgStudentMarkboard.Controls.Add(this.label4);
             this.tbpgStudentMarkboard.Controls.Add(this.gridviewStudentScore);
-            this.tbpgStudentMarkboard.Location = new System.Drawing.Point(4, 22);
+            this.tbpgStudentMarkboard.Location = new System.Drawing.Point(4, 24);
             this.tbpgStudentMarkboard.Name = "tbpgStudentMarkboard";
-            this.tbpgStudentMarkboard.Size = new System.Drawing.Size(1147, 596);
+            this.tbpgStudentMarkboard.Size = new System.Drawing.Size(1147, 594);
             this.tbpgStudentMarkboard.TabIndex = 7;
             this.tbpgStudentMarkboard.Text = "Bảng điểm học sinh";
             // 
@@ -1409,7 +1409,7 @@
             this.lbLockScoreboardInform.AutoSize = true;
             this.lbLockScoreboardInform.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
             this.lbLockScoreboardInform.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.lbLockScoreboardInform.Location = new System.Drawing.Point(31, 509);
+            this.lbLockScoreboardInform.Location = new System.Drawing.Point(31, 507);
             this.lbLockScoreboardInform.Name = "lbLockScoreboardInform";
             this.lbLockScoreboardInform.Size = new System.Drawing.Size(161, 20);
             this.lbLockScoreboardInform.TabIndex = 14;
@@ -1427,7 +1427,7 @@
             this.btnApproveUpdateScore.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnApproveUpdateScore.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnApproveUpdateScore.Icon = null;
-            this.btnApproveUpdateScore.Location = new System.Drawing.Point(804, 509);
+            this.btnApproveUpdateScore.Location = new System.Drawing.Point(804, 507);
             this.btnApproveUpdateScore.Name = "btnApproveUpdateScore";
             this.btnApproveUpdateScore.Radius = 2;
             this.btnApproveUpdateScore.ShadowDepth = 3;
@@ -1602,7 +1602,7 @@
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.gridviewStudentScore.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.gridviewStudentScore.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.gridviewStudentScore.Size = new System.Drawing.Size(1114, 391);
+            this.gridviewStudentScore.Size = new System.Drawing.Size(1114, 389);
             this.gridviewStudentScore.TabIndex = 0;
             this.gridviewStudentScore.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.gridviewStudentScore_CellEndEdit);
             this.gridviewStudentScore.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.gridviewStudentScore_EditingControlShowing);
@@ -1697,10 +1697,10 @@
             this.tbpgSubjectManagment.Controls.Add(this.btnAddNew);
             this.tbpgSubjectManagment.Controls.Add(this.btnDelASubject);
             this.tbpgSubjectManagment.Controls.Add(this.btnEdit);
-            this.tbpgSubjectManagment.Location = new System.Drawing.Point(4, 22);
+            this.tbpgSubjectManagment.Location = new System.Drawing.Point(4, 24);
             this.tbpgSubjectManagment.Name = "tbpgSubjectManagment";
             this.tbpgSubjectManagment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgSubjectManagment.Size = new System.Drawing.Size(1147, 596);
+            this.tbpgSubjectManagment.Size = new System.Drawing.Size(1147, 594);
             this.tbpgSubjectManagment.TabIndex = 4;
             this.tbpgSubjectManagment.Text = "Quản lí môn";
             this.tbpgSubjectManagment.UseVisualStyleBackColor = true;
@@ -1721,7 +1721,7 @@
             this.lvSubjectManage.ForeColor = System.Drawing.SystemColors.WindowFrame;
             this.lvSubjectManage.FullRowSelect = true;
             this.lvSubjectManage.HideSelection = false;
-            this.lvSubjectManage.Location = new System.Drawing.Point(25, 97);
+            this.lvSubjectManage.Location = new System.Drawing.Point(25, 95);
             this.lvSubjectManage.MinimumSize = new System.Drawing.Size(200, 100);
             this.lvSubjectManage.MouseLocation = new System.Drawing.Point(-1, -1);
             this.lvSubjectManage.MouseState = MaterialSkin.MouseState.OUT;
