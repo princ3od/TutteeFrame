@@ -91,7 +91,7 @@ namespace TutteeFrame
                 punishment.Semester = Int32.Parse(cbbSemester.Text);
                 punishment.Year = DateTime.Now.Year;
                 txtPunishmentID.Text = punishment.ID;
-                lbName.Text = string.Format("{0} - {1}", student.GetName(), studentID);
+                lbName.Text = string.Format("{0} ({1}) - {2}", student.GetName(), studentID, student.ClassID);
                 lbSex.Text = string.Format("Giới tính: {0}", student.GetSex);
                 lbInformation.Visible = mainProgressbar.Visible = false;
                 btnApprove.Enabled = true;
@@ -105,6 +105,12 @@ namespace TutteeFrame
 
         private void Approve(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(txtFaultContent.Text))
+            {
+                MetroFramework.MetroMessageBox.Show(this, "Vui lòng nhập nội dung vi phạm.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtFaultContent.Focus();
+                return;
+            }
             BackgroundWorker worker = new BackgroundWorker();
             switch (openMode)
             {

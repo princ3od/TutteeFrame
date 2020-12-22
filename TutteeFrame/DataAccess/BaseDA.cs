@@ -34,10 +34,10 @@ namespace TutteeFrame.DataAccess
         public bool Test(string _server, string _port, string _userid, string _pass)
         {
             bool success = true;
-            //string strConnect = string.Format(Properties.Settings.Default.ServerConnectionString,
-            //       _server, _port, _userid, _pass);
+            string strConnect = string.Format(Properties.Settings.Default.ServerConnectionString,
+                   _server, _port, _userid, _pass);
             //Đổi chuỗi kết nối ở dưới để test
-            string strConnect = @"Server=ANDREWANHTRAN;Database=TutteeFrame;Trusted_Connection=True;";
+            //string strConnect = @"Server=./SQLEXPRESS;Database=TutteeFrame;Trusted_Connection=True;";
             try
             {
                 connection = new SqlConnection(strConnect);

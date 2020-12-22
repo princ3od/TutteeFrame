@@ -1447,7 +1447,7 @@ namespace TutteeFrame
         }
         private void listviewStudentInClass_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnViewStudentInfor.Enabled = btnViewStudentScores.Enabled = btnSetStudentConduct.Enabled = btnAddPunishment.Enabled = (listviewStudentInClass.SelectedItems.Count > 0);
+            btnViewStudentInfor.Enabled = btnViewStudentScores.Enabled = btnSetStudentConduct.Enabled = btnAddFault.Enabled = (listviewStudentInClass.SelectedItems.Count > 0);
         }
         private void AddFault(object sender, EventArgs e)
         {
@@ -1456,6 +1456,18 @@ namespace TutteeFrame
             frmStudentFault.Show();
         }
         #endregion
+
+        private void ShowReportForm(object sender, EventArgs e)
+        {
+        }
+
+        private void ShowChartForm(object sender, EventArgs e)
+        {
+            frmChart frmChart = new frmChart();
+            this.Hide();
+            frmChart.Owner = this;
+            frmChart.Show();
+        }
 
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {

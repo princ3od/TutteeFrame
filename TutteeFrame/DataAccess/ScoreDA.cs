@@ -312,5 +312,34 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
+        public bool GetClassAverageScore(string _classID, int _semester = 3, string _subjectID = "")
+        {
+            bool success = Connect();
+
+            if (!success)
+                return false;
+
+            try
+            {
+                //if (_semester == 3)
+                //{
+                //    using (SqlCommand sqlCommand = connection.CreateCommand())
+                //    {
+                //        sqlCommand.CommandType = System.Data.CommandType.Text;
+                //        sqlCommand.CommandText = "SELECT * FROM"
+                //    }
+                //}
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return true;
+        }
     }
 }

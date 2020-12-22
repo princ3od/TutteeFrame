@@ -43,7 +43,7 @@ namespace TutteeFrame.Controller
             foreach (Subject subject in subjects)
             {
                 double score = -1;
-                scoreDA.GetAverageYearSubjectScore(_studentID, subject.ID,  _grade, out score);
+                scoreDA.GetAverageYearSubjectScore(_studentID, subject.ID, _grade, out score);
                 result.Add(subject.ID, score);
             }
             return result;
@@ -59,7 +59,7 @@ namespace TutteeFrame.Controller
             }
             return result;
         }
-        public List<AverageScore> GetAverageScores(string _studentID,int _grade)
+        public List<AverageScore> GetAverageScores(string _studentID, int _grade)
         {
             List<AverageScore> averageScores = new List<AverageScore>();
             bool success = scoreDA.GetAverageScore(_studentID, _grade, averageScores);
@@ -113,6 +113,21 @@ namespace TutteeFrame.Controller
                     scoreDA.UpdateStudentScore(studentid, _subjectid, _semester, _grade, scores);
             }
             return success;
+        }
+        public double GetAverageScore(string _studentID, int _grade, string _subjectID = "", int _semester = 3)
+        {
+            double result = -1.0;
+            if (string.IsNullOrEmpty(_subjectID))
+            {
+                List<AverageScore> averageScores = new List<AverageScore>();
+                scoreDA.GetAverageScore(_studentID, _grade, averageScores);
+                result = averageScores[_semester - 1].Value;
+            }
+            else
+            {
+
+            }
+            return result;
         }
     }
 }

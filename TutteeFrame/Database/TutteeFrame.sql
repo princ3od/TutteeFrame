@@ -34,7 +34,7 @@
 			
 */
 
-
+SELECT * FROM LEARNRESULT
 
 CREATE DATABASE 
 TutteeFrame 
