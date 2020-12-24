@@ -109,7 +109,7 @@ namespace TutteeFrame
                     while (isChildShowing) ;
                     if (!accountController.CheckSession())
                         needLogout = true;
-                    Thread.Sleep(1000);
+                    Thread.Sleep(2000);
                 }
             };
             checkLogin.RunWorkerCompleted += (s, ev) =>
@@ -121,7 +121,7 @@ namespace TutteeFrame
             };
             checkLogin.RunWorkerAsync();
             updateData = new System.Windows.Forms.Timer();
-            updateData.Interval = 10000;
+            updateData.Interval = 20000;
             bool success = false;
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += (s, ev) =>

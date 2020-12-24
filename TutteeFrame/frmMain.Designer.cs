@@ -1502,7 +1502,7 @@
             // 
             this.lbScoreTittle.AutoSize = true;
             this.lbScoreTittle.Font = new System.Drawing.Font("Segoe UI Semibold", 13F);
-            this.lbScoreTittle.Location = new System.Drawing.Point(30, 87);
+            this.lbScoreTittle.Location = new System.Drawing.Point(30, 80);
             this.lbScoreTittle.Name = "lbScoreTittle";
             this.lbScoreTittle.Size = new System.Drawing.Size(372, 25);
             this.lbScoreTittle.TabIndex = 12;
@@ -2033,7 +2033,7 @@
             "10",
             "11",
             "12"});
-            this.cbbGradeClass.Location = new System.Drawing.Point(76, 29);
+            this.cbbGradeClass.Location = new System.Drawing.Point(32, 20);
             this.cbbGradeClass.MaxDropDownItems = 4;
             this.cbbGradeClass.MouseState = MaterialSkin.MouseState.OUT;
             this.cbbGradeClass.Name = "cbbGradeClass";
@@ -2323,7 +2323,7 @@
             this.lbFormClass.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.lbFormClass.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
             this.lbFormClass.HighEmphasis = true;
-            this.lbFormClass.Location = new System.Drawing.Point(30, 33);
+            this.lbFormClass.Location = new System.Drawing.Point(28, 35);
             this.lbFormClass.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbFormClass.Name = "lbFormClass";
             this.lbFormClass.Size = new System.Drawing.Size(15, 24);
@@ -2335,7 +2335,7 @@
             // 
             this.lbFormClassTittle.AutoSize = true;
             this.lbFormClassTittle.Font = new System.Drawing.Font("Segoe UI", 12F);
-            this.lbFormClassTittle.Location = new System.Drawing.Point(18, 12);
+            this.lbFormClassTittle.Location = new System.Drawing.Point(28, 12);
             this.lbFormClassTittle.Name = "lbFormClassTittle";
             this.lbFormClassTittle.Size = new System.Drawing.Size(114, 21);
             this.lbFormClassTittle.TabIndex = 10;
@@ -2348,7 +2348,7 @@
             this.lbTotalStudentInClass.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.lbTotalStudentInClass.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
             this.lbTotalStudentInClass.HighEmphasis = true;
-            this.lbTotalStudentInClass.Location = new System.Drawing.Point(196, 33);
+            this.lbTotalStudentInClass.Location = new System.Drawing.Point(184, 35);
             this.lbTotalStudentInClass.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbTotalStudentInClass.Name = "lbTotalStudentInClass";
             this.lbTotalStudentInClass.Size = new System.Drawing.Size(15, 24);
@@ -2424,7 +2424,7 @@
             this.listViewTeachingClass.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.listViewTeachingClass.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.listViewTeachingClass.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listViewTeachingClass.HideSelection = false;
             this.listViewTeachingClass.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1,
@@ -2550,7 +2550,7 @@
             // columnHeader17
             // 
             this.columnHeader17.Text = "Hạnh kiểm HK1";
-            this.columnHeader17.Width = 90;
+            this.columnHeader17.Width = 120;
             // 
             // columnHeader18
             // 
