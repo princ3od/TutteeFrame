@@ -48,8 +48,7 @@ namespace TutteeFrame.Controller
         }
         public bool CheckSession()
         {
-            bool isExist = false;
-            accountDA.CheckSession(AccountID, SessionID, out isExist);
+            accountDA.CheckSession(AccountID, SessionID, out bool isExist);
             return isExist;
         }
         public void DeleteSession()

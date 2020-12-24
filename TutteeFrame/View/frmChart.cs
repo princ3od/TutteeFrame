@@ -14,6 +14,8 @@ using System.Windows.Forms;
 using TutteeFrame.Controller;
 using TutteeFrame.Model;
 using MetroFramework;
+using System.Drawing.Imaging;
+
 namespace TutteeFrame
 {
     public partial class frmChart : MetroForm
@@ -204,8 +206,11 @@ namespace TutteeFrame
                 #region Của lớp
                 if (cbbDetailType.SelectedIndex == 0)
                 {
-                    if (cbbClass.SelectedIndex < 0)
+                    if (cbbClass.SelectedIndex < 0 || cbbSemester.SelectedIndex < 0 || cbbSubject.SelectedIndex < 0)
+                    {
+                        EnableControl(true);
                         return;
+                    }
                     lbChartName.Text = string.Format("{0} của {4} {3} - {1} {2}",
                         cbbChartType.Text, cbbDetailType.Text, cbbClass.Text,
                             (cbbSemester.Text == "Cả năm") ? "cả năm" : "học kì " + cbbSemester.Text,
@@ -279,6 +284,11 @@ namespace TutteeFrame
                 #region Của khối
                 else
                 {
+                    if (cbbSemester.SelectedIndex < 0 || cbbSubject.SelectedIndex < 0 || cbbGrade.SelectedIndex < 0)
+                    {
+                        EnableControl(true);
+                        return;
+                    }
                     lbChartName.Text = string.Format("{0} của {4} {3} - {1} {2}",
                        cbbChartType.Text, cbbDetailType.Text, cbbGrade.Text,
                              (cbbSemester.Text == "Cả năm") ? "cả năm" : "học kì " + cbbSemester.Text,
@@ -305,7 +315,7 @@ namespace TutteeFrame
                     foreach (Control control in listClass.Controls)
                     {
                         if ((control as Material_Design_for_Winform.MaterialCheckBox).Checked)
-                            classIDs.Add(control.Text);
+                            classIDs.Add(control.Text.Substring(0, 4));
                     }
                     worker.WorkerReportsProgress = true;
                     mainChart.Series = new SeriesCollection();
@@ -325,7 +335,6 @@ namespace TutteeFrame
                                 else
                                     for (int i = 0; i < 12; i++)
                                     {
-
                                         if (score < scoreSeprate[i])
                                         {
                                             counts[i]++;
@@ -367,8 +376,11 @@ namespace TutteeFrame
                 #region Theo lớp
                 if (cbbDetailType.SelectedIndex == 0)
                 {
-                    if (cbbClass.SelectedIndex < 0)
+                    if (cbbSemester.SelectedIndex < 0 || cbbSubject.SelectedIndex < 0 || cbbClass.SelectedIndex < 0)
+                    {
+                        EnableControl(true);
                         return;
+                    }
                     lbChartName.Text = string.Format("{0} của {4} {3} - {1} {2}",
                         cbbChartType.Text, cbbDetailType.Text, cbbClass.Text,
                             (cbbSemester.Text == "Cả năm") ? "cả năm" : "học kì " + cbbSemester.Text,
@@ -438,8 +450,11 @@ namespace TutteeFrame
                 #region Theo khối
                 else
                 {
-                    if (cbbGrade.SelectedIndex < 0)
+                    if (cbbSemester.SelectedIndex < 0 || cbbSubject.SelectedIndex < 0 || cbbGrade.SelectedIndex < 0)
+                    {
+                        EnableControl(true);
                         return;
+                    }
                     lbChartName.Text = string.Format("{0} của {4} {3} - {1} {2}",
                         cbbChartType.Text, cbbDetailType.Text, cbbGrade.Text,
                             (cbbSemester.Text == "Cả năm") ? "cả năm" : "học kì " + cbbSemester.Text,
@@ -448,7 +463,7 @@ namespace TutteeFrame
                     foreach (Control control in listClass.Controls)
                     {
                         if ((control as Material_Design_for_Winform.MaterialCheckBox).Checked)
-                            classIDs.Add(control.Text);
+                            classIDs.Add(control.Text.Substring(0, 4));
                     }
                     ChartValues<double> chartValues = new ChartValues<double>();
                     string grade = cbbGrade.Text;
@@ -516,6 +531,7 @@ namespace TutteeFrame
         private void OnCheckChanged(object sender, EventArgs e)
         {
             loadFast = !loadFast;
+            btnOK.Visible = !loadFast;
         }
 
         private void ShowListClass(object sender, EventArgs e)
@@ -556,6 +572,9 @@ namespace TutteeFrame
 
         private void OnDetail1Changed(object sender, EventArgs e)
         {
+            cbbGrade.SelectedIndex = -1;
+            cbbClass.Items.Clear();
+            listClass.Controls.Clear();
             if (cbbChartType.SelectedIndex == 0)
             {
                 //biểu đồ phổ điểm
@@ -631,6 +650,8 @@ namespace TutteeFrame
             {
                 if (cbbClass.Visible)
                 {
+                    if (cbbGrade.Text == "Tất cả")
+                        return;
                     cbbClass.Items.Clear();
                     foreach (Class _class in classes)
                     {
@@ -643,9 +664,10 @@ namespace TutteeFrame
                     listClass.Controls.Clear();
                     foreach (Class _class in classes)
                     {
-                        listClass.Controls.Add(CreateCheckBox(_class.ID));
+                        listClass.Controls.Add(CreateCheckBox(_class.ID + " - Sỉ số: " + _class.StudentNum.ToString()));
                     }
                     listClass.Enabled = true;
+                    LoadChart(btnOK, EventArgs.Empty);
                 }
                 cbbGrade.Enabled = true;
             };
@@ -671,7 +693,30 @@ namespace TutteeFrame
 
         private void ExportChart(object sender, EventArgs e)
         {
+            Bitmap bmp = new Bitmap(mainChart.Width, mainChart.Height);
+            mainChart.DrawToBitmap(bmp, new Rectangle(0, 0, bmp.Width, bmp.Height));
+            SaveFileDialog browserDialog = new SaveFileDialog();
+            browserDialog.Filter = "Images | *.png; *.bmp; *.jpg";
+            browserDialog.ShowDialog();
+            bmp.Save(browserDialog.FileName, ImageFormat.Png);
+        }
 
+        private void ChangeClass(object sender, EventArgs e)
+        {
+            if (loadFast)
+                LoadChart(btnOK, EventArgs.Empty);
+        }
+
+        private void ChangeSemester(object sender, EventArgs e)
+        {
+            if (loadFast)
+                LoadChart(btnOK, EventArgs.Empty);
+        }
+
+        private void ChangeSubject(object sender, EventArgs e)
+        {
+            if (loadFast)
+                LoadChart(btnOK, EventArgs.Empty);
         }
     }
 }

@@ -16,6 +16,7 @@ using TutteeFrame.Model;
 using System.Data;
 using System.Linq;
 using TutteeFrame.Controller;
+using System.Threading.Tasks;
 namespace TutteeFrame
 {
     public partial class frmMain : MetroForm
@@ -31,6 +32,7 @@ namespace TutteeFrame
         List<Teacher> teachers = new List<Teacher>();
         BackgroundWorker loader;
         BackgroundWorker checkLogin;
+        System.Windows.Forms.Timer updateData;
         public bool isChildShowing;
         public bool ProgressSuccess { get; set; }
         #endregion
@@ -104,8 +106,7 @@ namespace TutteeFrame
                 {
                     if (!accountController.CheckSession())
                         needLogout = true;
-                    Thread.Sleep(1000);
-                    Console.WriteLine("Status need logout: ", needLogout);
+                    Thread.Sleep(2000);
                 }
             };
             checkLogin.RunWorkerCompleted += (s, ev) =>
@@ -116,6 +117,25 @@ namespace TutteeFrame
                 btnLogout.PerformClick();
             };
             checkLogin.RunWorkerAsync();
+            updateData = new System.Windows.Forms.Timer();
+            updateData.Interval = 12000;
+            bool success = false;
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += (s, ev) =>
+            {
+                success = teacherController.LoadUsingTeacher(teacherController.usingTeacher.ID);
+            };
+            worker.RunWorkerCompleted += (s, ev) =>
+            {
+                LoadTabpageInfor();
+                LoadData();
+            };
+            updateData.Tick += (s, ev) =>
+            {
+                if (!isChildShowing)
+                    worker.RunWorkerAsync();
+            };
+            updateData.Start();
             this.Show();
         }
         private void MovableForm(object sender, MouseEventArgs e)
@@ -190,7 +210,7 @@ namespace TutteeFrame
         #endregion
 
         #region Tabpage Thông tin tài khoản và việc tải thông tin lần đầu sau khi đăng nhập
-        void LoadAfterLogin()
+        void LoadTabpageInfor()
         {
             System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
             gp.AddEllipse(0, 0, pbProfilemainAvatar.Width - 1, pbProfilemainAvatar.Height - 1);
@@ -217,6 +237,10 @@ namespace TutteeFrame
                 lbBelongto.Text = "Ban giam hiệu";
             else if (mainTeacher.Type == Teacher.TeacherType.Ministry)
                 lbBelongto.Text = "Giáo vụ";
+        }
+        void LoadAfterLogin()
+        {
+            LoadTabpageInfor();
             mainTabControl.TabPages.Clear();
             mainTabControl.TabPages.Add(tbpgProfile);
             mainTabControl.TabPages.Add(tbpgShedule);
@@ -1496,8 +1520,10 @@ namespace TutteeFrame
         {
             frmChart frmChart = new frmChart();
             this.Hide();
+            this.isChildShowing = true;
             frmChart.Owner = this;
             frmChart.Show();
+            frmChart.FormClosed += (s, ev) => { isChildShowing = false; };
         }
 
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)

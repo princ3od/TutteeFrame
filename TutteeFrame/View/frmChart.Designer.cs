@@ -126,6 +126,7 @@
             this.cbbSemester.Name = "cbbSemester";
             this.cbbSemester.Size = new System.Drawing.Size(90, 49);
             this.cbbSemester.TabIndex = 12;
+            this.cbbSemester.SelectedIndexChanged += new System.EventHandler(this.ChangeSemester);
             // 
             // cbbSubject
             // 
@@ -152,6 +153,7 @@
             this.cbbSubject.Size = new System.Drawing.Size(125, 49);
             this.cbbSubject.TabIndex = 13;
             this.cbbSubject.Visible = false;
+            this.cbbSubject.SelectedIndexChanged += new System.EventHandler(this.ChangeSubject);
             this.cbbSubject.VisibleChanged += new System.EventHandler(this.OnDetailShow);
             // 
             // materialDivider1
@@ -339,6 +341,7 @@
             this.cbbClass.Size = new System.Drawing.Size(94, 49);
             this.cbbClass.TabIndex = 51;
             this.cbbClass.Visible = false;
+            this.cbbClass.SelectedIndexChanged += new System.EventHandler(this.ChangeClass);
             // 
             // lbChartName
             // 

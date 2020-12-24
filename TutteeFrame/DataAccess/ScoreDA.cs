@@ -77,7 +77,7 @@ namespace TutteeFrame.DataAccess
                         {
                             _scores.Add(new Score(Score.ScoreType.TrungBinh));
                         }
-                    }    
+                    }
             }
             catch (Exception ex)
             {
@@ -223,6 +223,47 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
+        public bool GetAverageSubjectScore(string _studentID, int _grade, int _semester, string _subjectID, out double _score)
+        {
+            _score = -1.0;
+            bool success = Connect();
+
+            if (!success)
+                return false;
+
+            try
+            {
+                using (SqlCommand sqlCommand = connection.CreateCommand())
+                {
+                    sqlCommand.CommandText = "SELECT SubjectAverage FROM SUBJECTSCORE JOIN SCOREBOARD ON SUBJECTSCORE.ScoreBoardID = SCOREBOARD.ScoreBoardID " +
+                        "JOIN LEARNRESULT ON LEARNRESULT.ScoreBoardSE01ID = SCOREBOARD.ScoreBoardID OR LEARNRESULT.ScoreBoardSE02ID = SCOREBOARD.ScoreBoardID " +
+                        "WHERE LEARNRESULT.StudentID = @studentid AND LEARNRESULT.Grade = @grade AND SCOREBOARD.Semester = @sem AND SUBJECTSCORE.SubjectID = @subjectid";
+                    sqlCommand.Parameters.AddWithValue("@studentid", _studentID);
+                    sqlCommand.Parameters.AddWithValue("@grade", _grade);
+                    sqlCommand.Parameters.AddWithValue("@sem", _semester);
+                    sqlCommand.Parameters.AddWithValue("@subjectid", _subjectID);
+
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            if (!reader.IsDBNull(0))
+                                _score = reader.GetDouble(0);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return true;
+        }
         public bool GetAllAverageSubjectScore(string _studentID, int _grade, int _semester, List<Score> _subjectScores)
         {
             bool success = Connect();
@@ -354,12 +395,12 @@ namespace TutteeFrame.DataAccess
                                 _score = (double)sqlCommand.ExecuteScalar();
                             }
                         }
-                    }   
+                    }
                 }
                 else
                 {
 
-                }    
+                }
             }
             catch (Exception ex)
             {

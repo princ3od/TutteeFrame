@@ -172,12 +172,37 @@ namespace TutteeFrame.Controller
                             break;
                         }
                     }
+                    if (students.Count < 1)
+                        return -1.0;
                     result = result / students.Count;
                 }
             }
             else
             {
-
+                studentDA = new StudentDA();
+                List<Student> students = new List<Student>();
+                students = studentDA.GetStudents(_classID);
+                if (_semester == 3)
+                {
+                    foreach (Student student in students)
+                    {
+                        double score;
+                        scoreDA.GetAverageYearSubjectScore(student.ID, _subjectID, Int32.Parse(student.GetGrade), out score);
+                        result += score;
+                    }
+                }
+                else
+                {
+                    foreach (Student student in students)
+                    {
+                        double score;
+                        scoreDA.GetAverageSubjectScore(student.ID, Int32.Parse(student.GetGrade), _semester, _subjectID, out score);
+                        result += score;
+                    }
+                }
+                if (students.Count < 1)
+                    return -1.0;
+                result = result / students.Count;
             }
             return result;
         }
