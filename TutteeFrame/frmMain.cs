@@ -95,6 +95,7 @@ namespace TutteeFrame
             this.CenterToScreen();
             LoadAfterLogin();
             checkLogin = new BackgroundWorker();
+            checkLogin.WorkerSupportsCancellation = true;
             checkLogin.DoWork += (s, ev) =>
             {
                 bool needLogout = false;
@@ -109,6 +110,8 @@ namespace TutteeFrame
             };
             checkLogin.RunWorkerCompleted += (s, ev) =>
             {
+                if (!this.Visible)
+                    return;
                 MessageBox.Show("Tài khoản đã đăng nhập từ nơi khác.");
                 btnLogout.PerformClick();
             };
@@ -169,6 +172,7 @@ namespace TutteeFrame
             frmLogin = new frmLogin();
             frmLogin.FormClosed += FrmLogin_FormClosed;
             (new AccountController()).DeleteSession();
+            checkLogin.CancelAsync();
             frmLogin.Show();
         }
         private void btnChangePass_Click(object sender, EventArgs e)
