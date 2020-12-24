@@ -34,6 +34,7 @@ namespace TutteeFrame
         BackgroundWorker checkLogin;
         System.Windows.Forms.Timer updateData;
         public bool isChildShowing;
+        bool isLogin = false;
         public bool ProgressSuccess { get; set; }
         #endregion
 
@@ -96,17 +97,19 @@ namespace TutteeFrame
             teacherController.LoadUsingTeacher((sender as frmLogin).teacherID);
             this.CenterToScreen();
             LoadAfterLogin();
+            isLogin = true;
             checkLogin = new BackgroundWorker();
             checkLogin.WorkerSupportsCancellation = true;
             checkLogin.DoWork += (s, ev) =>
             {
                 bool needLogout = false;
                 AccountController accountController = new AccountController();
-                while (!needLogout || isChildShowing)
+                while (!needLogout && isLogin)
                 {
+                    while (isChildShowing) ;
                     if (!accountController.CheckSession())
                         needLogout = true;
-                    Thread.Sleep(2000);
+                    Thread.Sleep(1000);
                 }
             };
             checkLogin.RunWorkerCompleted += (s, ev) =>
@@ -118,11 +121,12 @@ namespace TutteeFrame
             };
             checkLogin.RunWorkerAsync();
             updateData = new System.Windows.Forms.Timer();
-            updateData.Interval = 12000;
+            updateData.Interval = 10000;
             bool success = false;
             BackgroundWorker worker = new BackgroundWorker();
             worker.DoWork += (s, ev) =>
             {
+                while (isChildShowing) ;
                 success = teacherController.LoadUsingTeacher(teacherController.usingTeacher.ID);
             };
             worker.RunWorkerCompleted += (s, ev) =>
@@ -186,6 +190,7 @@ namespace TutteeFrame
         private void btnLogout_Click(object sender, EventArgs e)
         {
             this.Hide();
+            isLogin = false;
             this.Size = new Size(1400, 750);
             firstLoad = true;
             pnProfile.Size = new Size(pnProfile.Size.Width, 70);
