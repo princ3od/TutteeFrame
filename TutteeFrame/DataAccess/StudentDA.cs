@@ -533,6 +533,85 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
+        public bool GetDataStudentResultPrepareToPrint( DataSet input, string studentID)
+        {
+            bool success = Test("", "", "", ""); // test local
+
+            if (!success)
+                return false;
+
+            try
+            {
+                strQuery = $"SELECT   SubjectName,Quiz,_15MinuteS01 AS MN1501,_15MinuteS02 AS MN1502,_15MinuteS03 AS MN1503,_45MinuteS01 AS MN4501,_45MinuteS02 AS MN4502,_45MinuteS03 AS MN4503,Final,SubjectAverage FROM LEARNRESULT INNER JOIN SCOREBOARD ON LEARNRESULT.ScoreBoardSE01ID = SCOREBOARD.ScoreBoardID INNER JOIN SUBJECTSCORE ON SUBJECTSCORE.ScoreBoardID = SCOREBOARD.ScoreBoardID INNER JOIN SUBJECT ON SUBJECT.SubjectID = SUBJECTSCORE.SubjectID WHERE LEARNRESULT.StudentID = @studentID";
+                SqlCommand command = new SqlCommand(strQuery, connection);
+                command.Parameters.AddWithValue("@studentID", studentID);
+                SqlDataAdapter adapter = new SqlDataAdapter(command);
+
+                adapter.Fill(input, "RESULTSTUDENT");
+                strQuery = $"SELECT   SubjectName,Quiz,_15MinuteS01 AS MN1501,_15MinuteS02 AS MN1502,_15MinuteS03 AS MN1503,_45MinuteS01 AS MN4501,_45MinuteS02 AS MN4502,_45MinuteS03 AS MN4503,Final,SubjectAverage FROM LEARNRESULT INNER JOIN SCOREBOARD ON LEARNRESULT.ScoreBoardSE02ID = SCOREBOARD.ScoreBoardID INNER JOIN SUBJECTSCORE ON SUBJECTSCORE.ScoreBoardID = SCOREBOARD.ScoreBoardID INNER JOIN SUBJECT ON SUBJECT.SubjectID = SUBJECTSCORE.SubjectID WHERE LEARNRESULT.StudentID = @studentID";
+                command = new SqlCommand(strQuery, connection);
+                command.Parameters.AddWithValue("@studentID", studentID);
+                adapter = new SqlDataAdapter(command);
+                adapter.Fill(input, "RESULTSTUDENTS2");
+                Disconnect();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                Disconnect();
+                return false;
+            }
+
+        }
+        public bool GetAnotherInforOfStudentPrepareToPrint(InformationOfStudentResultPrepareForPrint input , string studentID)
+        {
+            bool success = Test("", "", "", "");
+            if (!success) return false;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    string strQuery = "SELECT Surname,Firstname,CLASS.ClassID,ConductSE01,ConductSE02,YearConduct,AverageScore " +
+                        "FROM STUDENT INNER JOIN LEARNRESULT ON STUDENT.StudentID = LEARNRESULT.StudentID  " +
+                        "INNER JOIN CLASS ON CLASS.ClassID = STUDENT.ClassID " +
+                        "WHERE STUDENT.StudentID = @studentID";
+                    cmd.Parameters.AddWithValue("studentID", studentID);
+                    cmd.CommandText = strQuery;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = connection;
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        input.nameOfStudent = reader.GetString(0) + " " + reader.GetString(1);
+                        input.classOfStudent = reader.GetString(2);
+                        if (!reader.IsDBNull(3)) input.conductS1 = reader.GetString(3);
+                        if (!reader.IsDBNull(4)) input.conductS2 = reader.GetString(4);
+                        if (!reader.IsDBNull(5)) input.conductS3 = reader.GetString(5);
+                        if (!reader.IsDBNull(6)) input.averageResult = reader.GetDouble(6);
+                    }
+                    if (connection.State == ConnectionState
+                        .Open) Disconnect();
+                    return true;
+                };
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                if (connection.State == ConnectionState.Open) Disconnect();
+                return false;
+            }
+
+        }
+        public bool GetAllInfoAndResultOfStudentPrepareToPrint(InformationOfStudentResultPrepareForPrint input, string studentID)
+        {
+            input.scoreBoards = new DataSet();
+            if(!GetDataStudentResultPrepareToPrint( input.scoreBoards, studentID)) return false;
+            if (!GetAnotherInforOfStudentPrepareToPrint(input, studentID)) return false;
+            return true;
+        }
 
     }
 }

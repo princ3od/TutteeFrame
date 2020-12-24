@@ -1,6 +1,7 @@
-﻿namespace TutteeFrame
+﻿
+namespace TutteeFrame.View
 {
-    partial class frmStudentPrinter
+    partial class frmChekDataSouce
     {
         /// <summary>
         /// Required designer variable.
@@ -28,32 +29,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.reportStudentViewer = new Microsoft.Reporting.WinForms.ReportViewer();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // reportStudentViewer
+            // dataGridView1
             // 
-            this.reportStudentViewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reportStudentViewer.Location = new System.Drawing.Point(20, 60);
-            this.reportStudentViewer.Name = "reportStudentViewer";
-            this.reportStudentViewer.ServerReport.BearerToken = null;
-            this.reportStudentViewer.Size = new System.Drawing.Size(760, 370);
-            this.reportStudentViewer.TabIndex = 0;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(687, 343);
+            this.dataGridView1.TabIndex = 0;
             // 
-            // frmStudentPrinter
+            // frmChekDataSouce
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.reportStudentViewer);
-            this.Name = "frmStudentPrinter";
-            this.Load += new System.EventHandler(this.frmStudentPrinter_Load);
+            this.ClientSize = new System.Drawing.Size(687, 343);
+            this.Controls.Add(this.dataGridView1);
+            this.Name = "frmChekDataSouce";
+            this.Text = "frmChekDataSouce";
+            this.Load += new System.EventHandler(this.frmChekDataSouce_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private Microsoft.Reporting.WinForms.ReportViewer reportStudentViewer;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

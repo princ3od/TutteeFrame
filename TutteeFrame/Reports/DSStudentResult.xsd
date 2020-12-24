@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSStudentResult" targetNamespace="http://tempuri.org/DSStudentResult.xsd" xmlns:mstns="http://tempuri.org/DSStudentResult.xsd" xmlns="http://tempuri.org/DSStudentResult.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSStudentResult" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSStudentResult" msprop:Generator_UserDSName="DSStudentResult">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="RESULTSTUDENTS2" msprop:Generator_TableClassName="RESULTSTUDENTS2DataTable" msprop:Generator_TableVarName="tableRESULTSTUDENTS2" msprop:Generator_RowChangedName="RESULTSTUDENTS2RowChanged" msprop:Generator_TablePropName="RESULTSTUDENTS2" msprop:Generator_RowDeletingName="RESULTSTUDENTS2RowDeleting" msprop:Generator_RowChangingName="RESULTSTUDENTS2RowChanging" msprop:Generator_RowEvHandlerName="RESULTSTUDENTS2RowChangeEventHandler" msprop:Generator_RowDeletedName="RESULTSTUDENTS2RowDeleted" msprop:Generator_RowClassName="RESULTSTUDENTS2Row" msprop:Generator_UserTableName="RESULTSTUDENTS2" msprop:Generator_RowEvArgName="RESULTSTUDENTS2RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SubjectName" msprop:Generator_ColumnVarNameInTable="columnSubjectName" msprop:Generator_ColumnPropNameInRow="SubjectName" msprop:Generator_ColumnPropNameInTable="SubjectNameColumn" msprop:Generator_UserColumnName="SubjectName" type="xs:string" minOccurs="0" />
+              <xs:element name="Quiz" msprop:Generator_ColumnVarNameInTable="columnQuiz" msprop:Generator_ColumnPropNameInRow="Quiz" msprop:Generator_ColumnPropNameInTable="QuizColumn" msprop:Generator_UserColumnName="Quiz" type="xs:double" minOccurs="0" />
+              <xs:element name="MN1501" msprop:Generator_ColumnVarNameInTable="columnMN1501" msprop:Generator_ColumnPropNameInRow="MN1501" msprop:Generator_ColumnPropNameInTable="MN1501Column" msprop:Generator_UserColumnName="MN1501" type="xs:double" minOccurs="0" />
+              <xs:element name="MN1502" msprop:Generator_ColumnVarNameInTable="columnMN1502" msprop:Generator_ColumnPropNameInRow="MN1502" msprop:Generator_ColumnPropNameInTable="MN1502Column" msprop:Generator_UserColumnName="MN1502" type="xs:double" minOccurs="0" />
+              <xs:element name="MN1503" msprop:Generator_ColumnVarNameInTable="columnMN1503" msprop:Generator_ColumnPropNameInRow="MN1503" msprop:Generator_ColumnPropNameInTable="MN1503Column" msprop:Generator_UserColumnName="MN1503" type="xs:double" minOccurs="0" />
+              <xs:element name="MN4501" msprop:Generator_ColumnVarNameInTable="columnMN4501" msprop:Generator_ColumnPropNameInRow="MN4501" msprop:Generator_ColumnPropNameInTable="MN4501Column" msprop:Generator_UserColumnName="MN4501" type="xs:double" minOccurs="0" />
+              <xs:element name="MN4502" msprop:Generator_ColumnVarNameInTable="columnMN4502" msprop:Generator_ColumnPropNameInRow="MN4502" msprop:Generator_ColumnPropNameInTable="MN4502Column" msprop:Generator_UserColumnName="MN4502" type="xs:double" minOccurs="0" />
+              <xs:element name="MN4503" msprop:Generator_ColumnVarNameInTable="columnMN4503" msprop:Generator_ColumnPropNameInRow="MN4503" msprop:Generator_ColumnPropNameInTable="MN4503Column" msprop:Generator_UserColumnName="MN4503" type="xs:double" minOccurs="0" />
+              <xs:element name="Final" msprop:Generator_ColumnVarNameInTable="columnFinal" msprop:Generator_ColumnPropNameInRow="Final" msprop:Generator_ColumnPropNameInTable="FinalColumn" msprop:Generator_UserColumnName="Final" type="xs:double" minOccurs="0" />
+              <xs:element name="SubjectAverage" msprop:Generator_ColumnVarNameInTable="columnSubjectAverage" msprop:Generator_ColumnPropNameInRow="SubjectAverage" msprop:Generator_ColumnPropNameInTable="SubjectAverageColumn" msprop:Generator_UserColumnName="SubjectAverage" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RESULTSTUDENTS1" msprop:Generator_TableClassName="RESULTSTUDENTS1DataTable" msprop:Generator_TableVarName="tableRESULTSTUDENTS1" msprop:Generator_RowChangedName="RESULTSTUDENTS1RowChanged" msprop:Generator_TablePropName="RESULTSTUDENTS1" msprop:Generator_RowDeletingName="RESULTSTUDENTS1RowDeleting" msprop:Generator_RowChangingName="RESULTSTUDENTS1RowChanging" msprop:Generator_RowEvHandlerName="RESULTSTUDENTS1RowChangeEventHandler" msprop:Generator_RowDeletedName="RESULTSTUDENTS1RowDeleted" msprop:Generator_RowClassName="RESULTSTUDENTS1Row" msprop:Generator_UserTableName="RESULTSTUDENTS1" msprop:Generator_RowEvArgName="RESULTSTUDENTS1RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SubjectName" msprop:Generator_ColumnVarNameInTable="columnSubjectName" msprop:Generator_ColumnPropNameInRow="SubjectName" msprop:Generator_ColumnPropNameInTable="SubjectNameColumn" msprop:Generator_UserColumnName="SubjectName" type="xs:string" minOccurs="0" />
+              <xs:element name="Quiz" msprop:Generator_ColumnVarNameInTable="columnQuiz" msprop:Generator_ColumnPropNameInRow="Quiz" msprop:Generator_ColumnPropNameInTable="QuizColumn" msprop:Generator_UserColumnName="Quiz" type="xs:double" minOccurs="0" />
+              <xs:element name="MN1501" msprop:Generator_ColumnVarNameInTable="columnMN1501" msprop:Generator_ColumnPropNameInRow="MN1501" msprop:Generator_ColumnPropNameInTable="MN1501Column" msprop:Generator_UserColumnName="MN1501" type="xs:double" minOccurs="0" />
+              <xs:element name="MN1502" msprop:Generator_ColumnVarNameInTable="columnMN1502" msprop:Generator_ColumnPropNameInRow="MN1502" msprop:Generator_ColumnPropNameInTable="MN1502Column" msprop:Generator_UserColumnName="MN1502" type="xs:double" minOccurs="0" />
+              <xs:element name="MN1503" msprop:Generator_ColumnVarNameInTable="columnMN1503" msprop:Generator_ColumnPropNameInRow="MN1503" msprop:Generator_ColumnPropNameInTable="MN1503Column" msprop:Generator_UserColumnName="MN1503" type="xs:double" minOccurs="0" />
+              <xs:element name="MN4501" msprop:Generator_ColumnVarNameInTable="columnMN4501" msprop:Generator_ColumnPropNameInRow="MN4501" msprop:Generator_ColumnPropNameInTable="MN4501Column" msprop:Generator_UserColumnName="MN4501" type="xs:double" minOccurs="0" />
+              <xs:element name="MN4502" msprop:Generator_ColumnVarNameInTable="columnMN4502" msprop:Generator_ColumnPropNameInRow="MN4502" msprop:Generator_ColumnPropNameInTable="MN4502Column" msprop:Generator_UserColumnName="MN4502" type="xs:double" minOccurs="0" />
+              <xs:element name="MN4503" msprop:Generator_ColumnVarNameInTable="columnMN4503" msprop:Generator_ColumnPropNameInRow="MN4503" msprop:Generator_ColumnPropNameInTable="MN4503Column" msprop:Generator_UserColumnName="MN4503" type="xs:double" minOccurs="0" />
+              <xs:element name="Final" msprop:Generator_ColumnVarNameInTable="columnFinal" msprop:Generator_ColumnPropNameInRow="Final" msprop:Generator_ColumnPropNameInTable="FinalColumn" msprop:Generator_UserColumnName="Final" type="xs:double" minOccurs="0" />
+              <xs:element name="SubjectAverage" msprop:Generator_ColumnVarNameInTable="columnSubjectAverage" msprop:Generator_ColumnPropNameInRow="SubjectAverage" msprop:Generator_ColumnPropNameInTable="SubjectAverageColumn" msprop:Generator_UserColumnName="SubjectAverage" type="xs:double" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

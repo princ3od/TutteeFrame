@@ -156,6 +156,13 @@ namespace TutteeFrame.Controller
         {
             return studentDA.GetDataSetPrepareToPrint(input, classID);
         }
-
+        public bool GetDataStudentResultPrepareToPrint( DataSet input, string studentID)
+        {
+            return studentDA.GetDataStudentResultPrepareToPrint( input, studentID);
+        }
+        public bool GetAllInfoAndResultOfStudentPrepareToPrint(InformationOfStudentResultPrepareForPrint input, string studentID)
+        {
+            return studentDA.GetAllInfoAndResultOfStudentPrepareToPrint(input, studentID);
+        }
     }
 }

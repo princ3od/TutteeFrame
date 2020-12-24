@@ -34,10 +34,10 @@ namespace TutteeFrame.DataAccess
         public bool Test(string _server, string _port, string _userid, string _pass)
         {
             bool success = true;
-            string strConnect = string.Format(Properties.Settings.Default.ServerConnectionString,
-                   _server, _port, _userid, _pass);
+            //string strConnect = string.Format(Properties.Settings.Default.ServerConnectionString,
+            //       _server, _port, _userid, _pass);
             //Đổi chuỗi kết nối ở dưới để test
-            //string strConnect = @"Server=./SQLEXPRESS;Database=TutteeFrame;Trusted_Connection=True;";
+            string strConnect = @"Data Source=.\SQLEXPRESS;Initial Catalog=TutteeFrame;Integrated Security=True";
             try
             {
                 connection = new SqlConnection(strConnect);
@@ -45,12 +45,12 @@ namespace TutteeFrame.DataAccess
             }
             catch (Exception e)
             {
-                //MessageBox.Show(e.Message);
+                MessageBox.Show(e.Message);
                 return false;
             }
             connectionString = strConnect;
-            if (connection != null && connection.State == ConnectionState.Open)
-                connection.Close();
+            //if (connection != null && connection.State == ConnectionState.Open)
+            //    connection.Close();
             return success;
         }
 
