@@ -29,13 +29,13 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("", 0);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("", 0);
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("----", 0);
+            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("----", 0);
             this.materialDrawer1 = new MaterialSkin.Controls.MaterialDrawer();
             this.mainTabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.tbpgProfile = new System.Windows.Forms.TabPage();
@@ -59,6 +59,18 @@
             this.lbSubjectTeach = new System.Windows.Forms.Label();
             this.lbMyName = new System.Windows.Forms.Label();
             this.materialDivider4 = new MaterialSkin.Controls.MaterialDivider();
+            this.pictureBox16 = new System.Windows.Forms.PictureBox();
+            this.pbProfilemainAvatar = new System.Windows.Forms.PictureBox();
+            this.pictureBox14 = new System.Windows.Forms.PictureBox();
+            this.pictureBox13 = new System.Windows.Forms.PictureBox();
+            this.pictureBox12 = new System.Windows.Forms.PictureBox();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.tbpgShedule = new System.Windows.Forms.TabPage();
             this.tbgpTeacherManagment = new System.Windows.Forms.TabPage();
             this.btnAutoColumn = new Material_Design_for_Winform.MaterialFlatButton();
@@ -154,6 +166,8 @@
             this.cbbGradeClass = new MaterialSkin.Controls.MaterialComboBox();
             this.tbpgRewardManagment = new System.Windows.Forms.TabPage();
             this.tbpgReport = new System.Windows.Forms.TabPage();
+            this.btnProgressChart = new Material_Design_for_Winform.MaterialRaisedButton();
+            this.btnProgressReport = new Material_Design_for_Winform.MaterialRaisedButton();
             this.tbpgFormClass = new System.Windows.Forms.TabPage();
             this.btnAddFault = new Material_Design_for_Winform.MaterialRaisedButton();
             this.btnStudentReport = new Material_Design_for_Winform.MaterialRaisedButton();
@@ -193,11 +207,17 @@
             this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnProfile = new System.Windows.Forms.Panel();
             this.materialCard1 = new MaterialSkin.Controls.MaterialCard();
+            this.btnLogout = new Material_Design_for_Winform.MaterialFlatButton();
+            this.btnChangePass = new Material_Design_for_Winform.MaterialFlatButton();
+            this.btnSetting = new Material_Design_for_Winform.MaterialFlatButton();
+            this.btnShowMore = new MaterialSkin.Controls.MaterialButton();
             this.materialDivider2 = new MaterialSkin.Controls.MaterialDivider();
+            this.ptbAvatar = new System.Windows.Forms.PictureBox();
             this.lbBelongtoOnCard = new MaterialSkin.Controls.MaterialLabel();
             this.lbName = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.materialDivider1 = new MaterialSkin.Controls.MaterialDivider();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.materialDivider3 = new MaterialSkin.Controls.MaterialDivider();
@@ -209,43 +229,8 @@
             this.lbTotalTeachingClassTittle = new System.Windows.Forms.Label();
             this.lbTotalSubjectTittle = new System.Windows.Forms.Label();
             this.lbTittle = new System.Windows.Forms.Label();
-            this.btnProgressReport = new Material_Design_for_Winform.MaterialRaisedButton();
-            this.btnProgressChart = new Material_Design_for_Winform.MaterialRaisedButton();
-            this.btnLogout = new Material_Design_for_Winform.MaterialFlatButton();
-            this.btnChangePass = new Material_Design_for_Winform.MaterialFlatButton();
-            this.btnSetting = new Material_Design_for_Winform.MaterialFlatButton();
-            this.btnShowMore = new MaterialSkin.Controls.MaterialButton();
-            this.ptbAvatar = new System.Windows.Forms.PictureBox();
-            this.pictureBox16 = new System.Windows.Forms.PictureBox();
-            this.pbProfilemainAvatar = new System.Windows.Forms.PictureBox();
-            this.pictureBox14 = new System.Windows.Forms.PictureBox();
-            this.pictureBox13 = new System.Windows.Forms.PictureBox();
-            this.pictureBox12 = new System.Windows.Forms.PictureBox();
-            this.pictureBox11 = new System.Windows.Forms.PictureBox();
-            this.pictureBox9 = new System.Windows.Forms.PictureBox();
-            this.pictureBox10 = new System.Windows.Forms.PictureBox();
-            this.pictureBox8 = new System.Windows.Forms.PictureBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.mainTabControl.SuspendLayout();
             this.tbpgProfile.SuspendLayout();
-            this.tbgpTeacherManagment.SuspendLayout();
-            this.tbpgStudentManagment.SuspendLayout();
-            this.tbpgStudentMarkboard.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.gridviewStudentScore)).BeginInit();
-            this.tbpgSubjectManagment.SuspendLayout();
-            this.tbpgClassManagment.SuspendLayout();
-            this.tbpgReport.SuspendLayout();
-            this.tbpgFormClass.SuspendLayout();
-            this.tbpgTeacherAssignment.SuspendLayout();
-            this.tbpgPunishmentManagment.SuspendLayout();
-            this.pnProfile.SuspendLayout();
-            this.materialCard1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbAvatar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbProfilemainAvatar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).BeginInit();
@@ -258,7 +243,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            this.tbgpTeacherManagment.SuspendLayout();
+            this.tbpgStudentManagment.SuspendLayout();
+            this.tbpgStudentMarkboard.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridviewStudentScore)).BeginInit();
+            this.tbpgSubjectManagment.SuspendLayout();
+            this.tbpgClassManagment.SuspendLayout();
+            this.tbpgReport.SuspendLayout();
+            this.tbpgFormClass.SuspendLayout();
+            this.tbpgTeacherAssignment.SuspendLayout();
+            this.tbpgPunishmentManagment.SuspendLayout();
+            this.pnProfile.SuspendLayout();
+            this.materialCard1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbAvatar)).BeginInit();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // materialDrawer1
@@ -574,6 +574,136 @@
             this.materialDivider4.TabIndex = 31;
             this.materialDivider4.Text = "materialDivider4";
             // 
+            // pictureBox16
+            // 
+            this.pictureBox16.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox16.BackgroundImage")));
+            this.pictureBox16.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox16.Location = new System.Drawing.Point(717, 418);
+            this.pictureBox16.Name = "pictureBox16";
+            this.pictureBox16.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox16.TabIndex = 28;
+            this.pictureBox16.TabStop = false;
+            this.metroToolTip1.SetToolTip(this.pictureBox16, "Phòng ban trực ");
+            // 
+            // pbProfilemainAvatar
+            // 
+            this.pbProfilemainAvatar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pbProfilemainAvatar.Location = new System.Drawing.Point(32, 16);
+            this.pbProfilemainAvatar.Name = "pbProfilemainAvatar";
+            this.pbProfilemainAvatar.Size = new System.Drawing.Size(190, 190);
+            this.pbProfilemainAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbProfilemainAvatar.TabIndex = 27;
+            this.pbProfilemainAvatar.TabStop = false;
+            // 
+            // pictureBox14
+            // 
+            this.pictureBox14.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox14.BackgroundImage")));
+            this.pictureBox14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox14.Location = new System.Drawing.Point(287, 499);
+            this.pictureBox14.Name = "pictureBox14";
+            this.pictureBox14.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox14.TabIndex = 26;
+            this.pictureBox14.TabStop = false;
+            this.metroToolTip1.SetToolTip(this.pictureBox14, "Ngày sinh");
+            // 
+            // pictureBox13
+            // 
+            this.pictureBox13.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox13.BackgroundImage")));
+            this.pictureBox13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox13.Location = new System.Drawing.Point(287, 425);
+            this.pictureBox13.Name = "pictureBox13";
+            this.pictureBox13.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox13.TabIndex = 25;
+            this.pictureBox13.TabStop = false;
+            this.metroToolTip1.SetToolTip(this.pictureBox13, "Giới tính");
+            // 
+            // pictureBox12
+            // 
+            this.pictureBox12.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox12.BackgroundImage")));
+            this.pictureBox12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox12.Location = new System.Drawing.Point(287, 425);
+            this.pictureBox12.Name = "pictureBox12";
+            this.pictureBox12.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox12.TabIndex = 24;
+            this.pictureBox12.TabStop = false;
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox11.BackgroundImage")));
+            this.pictureBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox11.Location = new System.Drawing.Point(287, 347);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox11.TabIndex = 21;
+            this.pictureBox11.TabStop = false;
+            this.metroToolTip1.SetToolTip(this.pictureBox11, "Chức vụ");
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox9.BackgroundImage")));
+            this.pictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox9.Location = new System.Drawing.Point(287, 194);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox9.TabIndex = 18;
+            this.pictureBox9.TabStop = false;
+            this.metroToolTip1.SetToolTip(this.pictureBox9, "Bộ môn");
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
+            this.pictureBox10.Location = new System.Drawing.Point(287, 273);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(34, 30);
+            this.pictureBox10.TabIndex = 17;
+            this.pictureBox10.TabStop = false;
+            this.metroToolTip1.SetToolTip(this.pictureBox10, "Số ID");
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox8.BackgroundImage")));
+            this.pictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox8.Location = new System.Drawing.Point(287, 123);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox8.TabIndex = 15;
+            this.pictureBox8.TabStop = false;
+            this.metroToolTip1.SetToolTip(this.pictureBox8, "Họ và tên");
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox7.BackgroundImage")));
+            this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox7.Location = new System.Drawing.Point(717, 280);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox7.TabIndex = 14;
+            this.pictureBox7.TabStop = false;
+            this.metroToolTip1.SetToolTip(this.pictureBox7, "Số điện thoại");
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox6.BackgroundImage")));
+            this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox6.Location = new System.Drawing.Point(717, 201);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox6.TabIndex = 13;
+            this.pictureBox6.TabStop = false;
+            this.metroToolTip1.SetToolTip(this.pictureBox6, "Địa chỉ thư điện tử");
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.BackgroundImage")));
+            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox5.Location = new System.Drawing.Point(717, 130);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(30, 30);
+            this.pictureBox5.TabIndex = 12;
+            this.pictureBox5.TabStop = false;
+            this.metroToolTip1.SetToolTip(this.pictureBox5, "Địa chỉ thường trú");
+            // 
             // tbpgShedule
             // 
             this.tbpgShedule.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -632,7 +762,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtTeacherSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtTeacherSearch.Depth = 0;
-            this.txtTeacherSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtTeacherSearch.Font = new System.Drawing.Font("Roboto", 12F);
             this.txtTeacherSearch.Hint = "Tìm kiếm";
             this.txtTeacherSearch.Location = new System.Drawing.Point(30, 62);
             this.txtTeacherSearch.MaxLength = 50;
@@ -1142,7 +1272,7 @@
             this.txtStudentSearch.BackColor = System.Drawing.Color.White;
             this.txtStudentSearch.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtStudentSearch.Depth = 0;
-            this.txtStudentSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtStudentSearch.Font = new System.Drawing.Font("Roboto", 12F);
             this.txtStudentSearch.Hint = "Tìm kiếm";
             this.txtStudentSearch.Location = new System.Drawing.Point(24, 62);
             this.txtStudentSearch.MaxLength = 32767;
@@ -1933,6 +2063,50 @@
             this.tbpgReport.Text = "Báo cáo";
             this.tbpgReport.UseVisualStyleBackColor = true;
             // 
+            // btnProgressChart
+            // 
+            this.btnProgressChart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnProgressChart.BackColor = System.Drawing.Color.Transparent;
+            this.btnProgressChart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnProgressChart.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnProgressChart.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnProgressChart.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.btnProgressChart.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProgressChart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.btnProgressChart.Icon = null;
+            this.btnProgressChart.Location = new System.Drawing.Point(472, 289);
+            this.btnProgressChart.Name = "btnProgressChart";
+            this.btnProgressChart.Radius = 2;
+            this.btnProgressChart.ShadowDepth = 3;
+            this.btnProgressChart.ShadowOpacity = 35;
+            this.btnProgressChart.Size = new System.Drawing.Size(220, 60);
+            this.btnProgressChart.TabIndex = 15;
+            this.btnProgressChart.Text = "BIỂU ĐỒ";
+            this.btnProgressChart.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnProgressChart.Click += new System.EventHandler(this.ShowChartForm);
+            // 
+            // btnProgressReport
+            // 
+            this.btnProgressReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnProgressReport.BackColor = System.Drawing.Color.Transparent;
+            this.btnProgressReport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnProgressReport.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnProgressReport.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnProgressReport.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.btnProgressReport.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProgressReport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.btnProgressReport.Icon = null;
+            this.btnProgressReport.Location = new System.Drawing.Point(472, 223);
+            this.btnProgressReport.Name = "btnProgressReport";
+            this.btnProgressReport.Radius = 2;
+            this.btnProgressReport.ShadowDepth = 3;
+            this.btnProgressReport.ShadowOpacity = 35;
+            this.btnProgressReport.Size = new System.Drawing.Size(220, 60);
+            this.btnProgressReport.TabIndex = 14;
+            this.btnProgressReport.Text = "BÁO CÁO";
+            this.btnProgressReport.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnProgressReport.Click += new System.EventHandler(this.ShowReportForm);
+            // 
             // tbpgFormClass
             // 
             this.tbpgFormClass.BackColor = System.Drawing.Color.White;
@@ -2433,6 +2607,69 @@
             this.materialCard1.Size = new System.Drawing.Size(290, 60);
             this.materialCard1.TabIndex = 2;
             // 
+            // btnLogout
+            // 
+            this.btnLogout.BackColor = System.Drawing.Color.Transparent;
+            this.btnLogout.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
+            this.btnLogout.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
+            this.btnLogout.ForeColor = System.Drawing.Color.Red;
+            this.btnLogout.Icon = global::TutteeFrame.Properties.Resources.log_out;
+            this.btnLogout.Location = new System.Drawing.Point(-1, 173);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(292, 45);
+            this.btnLogout.TabIndex = 10;
+            this.btnLogout.Text = "Đăng xuất";
+            this.btnLogout.TextAlign = System.Drawing.StringAlignment.Near;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
+            // btnChangePass
+            // 
+            this.btnChangePass.BackColor = System.Drawing.Color.Transparent;
+            this.btnChangePass.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
+            this.btnChangePass.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
+            this.btnChangePass.ForeColor = System.Drawing.Color.Black;
+            this.btnChangePass.Icon = global::TutteeFrame.Properties.Resources.password;
+            this.btnChangePass.Location = new System.Drawing.Point(-1, 128);
+            this.btnChangePass.Name = "btnChangePass";
+            this.btnChangePass.Size = new System.Drawing.Size(292, 45);
+            this.btnChangePass.TabIndex = 9;
+            this.btnChangePass.Text = "Đổi mật khẩu";
+            this.btnChangePass.TextAlign = System.Drawing.StringAlignment.Near;
+            this.btnChangePass.Click += new System.EventHandler(this.btnChangePass_Click);
+            // 
+            // btnSetting
+            // 
+            this.btnSetting.BackColor = System.Drawing.Color.Transparent;
+            this.btnSetting.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
+            this.btnSetting.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
+            this.btnSetting.ForeColor = System.Drawing.Color.Black;
+            this.btnSetting.Icon = global::TutteeFrame.Properties.Resources.settings;
+            this.btnSetting.Location = new System.Drawing.Point(-1, 83);
+            this.btnSetting.Name = "btnSetting";
+            this.btnSetting.Size = new System.Drawing.Size(292, 45);
+            this.btnSetting.TabIndex = 8;
+            this.btnSetting.Text = "Cài đặt";
+            this.btnSetting.TextAlign = System.Drawing.StringAlignment.Near;
+            // 
+            // btnShowMore
+            // 
+            this.btnShowMore.AutoSize = false;
+            this.btnShowMore.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnShowMore.Depth = 0;
+            this.btnShowMore.DrawShadows = false;
+            this.btnShowMore.HighEmphasis = false;
+            this.btnShowMore.Icon = ((System.Drawing.Image)(resources.GetObject("btnShowMore.Icon")));
+            this.btnShowMore.Location = new System.Drawing.Point(240, 10);
+            this.btnShowMore.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnShowMore.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnShowMore.Name = "btnShowMore";
+            this.btnShowMore.Size = new System.Drawing.Size(42, 35);
+            this.btnShowMore.TabIndex = 7;
+            this.btnShowMore.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
+            this.btnShowMore.UseAccentColor = false;
+            this.btnShowMore.UseVisualStyleBackColor = true;
+            this.btnShowMore.Click += new System.EventHandler(this.TogglePanelProfile);
+            // 
             // materialDivider2
             // 
             this.materialDivider2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
@@ -2443,6 +2680,17 @@
             this.materialDivider2.Size = new System.Drawing.Size(175, 1);
             this.materialDivider2.TabIndex = 5;
             this.materialDivider2.Text = "materialDivider2";
+            // 
+            // ptbAvatar
+            // 
+            this.ptbAvatar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ptbAvatar.Image = global::TutteeFrame.Properties.Resources.default_avatar;
+            this.ptbAvatar.Location = new System.Drawing.Point(16, 10);
+            this.ptbAvatar.Name = "ptbAvatar";
+            this.ptbAvatar.Size = new System.Drawing.Size(40, 40);
+            this.ptbAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ptbAvatar.TabIndex = 4;
+            this.ptbAvatar.TabStop = false;
             // 
             // lbBelongtoOnCard
             // 
@@ -2490,6 +2738,17 @@
             this.materialDivider1.Size = new System.Drawing.Size(175, 1);
             this.materialDivider1.TabIndex = 2;
             this.materialDivider1.Text = "materialDivider1";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(100, 13);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(55, 55);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MovableForm);
             // 
             // materialLabel1
             // 
@@ -2605,265 +2864,6 @@
             this.lbTittle.TabIndex = 27;
             this.lbTittle.Text = "Thông tin tài khoản";
             // 
-            // btnProgressReport
-            // 
-            this.btnProgressReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnProgressReport.BackColor = System.Drawing.Color.Transparent;
-            this.btnProgressReport.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnProgressReport.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.btnProgressReport.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnProgressReport.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
-            this.btnProgressReport.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProgressReport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
-            this.btnProgressReport.Icon = null;
-            this.btnProgressReport.Location = new System.Drawing.Point(472, 223);
-            this.btnProgressReport.Name = "btnProgressReport";
-            this.btnProgressReport.Radius = 2;
-            this.btnProgressReport.ShadowDepth = 3;
-            this.btnProgressReport.ShadowOpacity = 35;
-            this.btnProgressReport.Size = new System.Drawing.Size(220, 60);
-            this.btnProgressReport.TabIndex = 14;
-            this.btnProgressReport.Text = "BÁO CÁO";
-            this.btnProgressReport.TextAlign = System.Drawing.StringAlignment.Center;
-            this.btnProgressReport.Click += new System.EventHandler(this.ShowReportForm);
-            // 
-            // btnProgressChart
-            // 
-            this.btnProgressChart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnProgressChart.BackColor = System.Drawing.Color.Transparent;
-            this.btnProgressChart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnProgressChart.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.btnProgressChart.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnProgressChart.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
-            this.btnProgressChart.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnProgressChart.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
-            this.btnProgressChart.Icon = null;
-            this.btnProgressChart.Location = new System.Drawing.Point(472, 289);
-            this.btnProgressChart.Name = "btnProgressChart";
-            this.btnProgressChart.Radius = 2;
-            this.btnProgressChart.ShadowDepth = 3;
-            this.btnProgressChart.ShadowOpacity = 35;
-            this.btnProgressChart.Size = new System.Drawing.Size(220, 60);
-            this.btnProgressChart.TabIndex = 15;
-            this.btnProgressChart.Text = "BIỂU ĐỒ";
-            this.btnProgressChart.TextAlign = System.Drawing.StringAlignment.Center;
-            this.btnProgressChart.Click += new System.EventHandler(this.ShowChartForm);
-            // 
-            // btnLogout
-            // 
-            this.btnLogout.BackColor = System.Drawing.Color.Transparent;
-            this.btnLogout.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
-            this.btnLogout.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
-            this.btnLogout.ForeColor = System.Drawing.Color.Red;
-            this.btnLogout.Icon = global::TutteeFrame.Properties.Resources.log_out;
-            this.btnLogout.Location = new System.Drawing.Point(-1, 173);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(292, 45);
-            this.btnLogout.TabIndex = 10;
-            this.btnLogout.Text = "Đăng xuất";
-            this.btnLogout.TextAlign = System.Drawing.StringAlignment.Near;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
-            // 
-            // btnChangePass
-            // 
-            this.btnChangePass.BackColor = System.Drawing.Color.Transparent;
-            this.btnChangePass.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
-            this.btnChangePass.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
-            this.btnChangePass.ForeColor = System.Drawing.Color.Black;
-            this.btnChangePass.Icon = global::TutteeFrame.Properties.Resources.password;
-            this.btnChangePass.Location = new System.Drawing.Point(-1, 128);
-            this.btnChangePass.Name = "btnChangePass";
-            this.btnChangePass.Size = new System.Drawing.Size(292, 45);
-            this.btnChangePass.TabIndex = 9;
-            this.btnChangePass.Text = "Đổi mật khẩu";
-            this.btnChangePass.TextAlign = System.Drawing.StringAlignment.Near;
-            this.btnChangePass.Click += new System.EventHandler(this.btnChangePass_Click);
-            // 
-            // btnSetting
-            // 
-            this.btnSetting.BackColor = System.Drawing.Color.Transparent;
-            this.btnSetting.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
-            this.btnSetting.Font = new System.Drawing.Font("Segoe UI Semibold", 12F);
-            this.btnSetting.ForeColor = System.Drawing.Color.Black;
-            this.btnSetting.Icon = global::TutteeFrame.Properties.Resources.settings;
-            this.btnSetting.Location = new System.Drawing.Point(-1, 83);
-            this.btnSetting.Name = "btnSetting";
-            this.btnSetting.Size = new System.Drawing.Size(292, 45);
-            this.btnSetting.TabIndex = 8;
-            this.btnSetting.Text = "Cài đặt";
-            this.btnSetting.TextAlign = System.Drawing.StringAlignment.Near;
-            // 
-            // btnShowMore
-            // 
-            this.btnShowMore.AutoSize = false;
-            this.btnShowMore.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnShowMore.Depth = 0;
-            this.btnShowMore.DrawShadows = false;
-            this.btnShowMore.HighEmphasis = false;
-            this.btnShowMore.Icon = ((System.Drawing.Image)(resources.GetObject("btnShowMore.Icon")));
-            this.btnShowMore.Location = new System.Drawing.Point(240, 10);
-            this.btnShowMore.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
-            this.btnShowMore.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnShowMore.Name = "btnShowMore";
-            this.btnShowMore.Size = new System.Drawing.Size(42, 35);
-            this.btnShowMore.TabIndex = 7;
-            this.btnShowMore.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
-            this.btnShowMore.UseAccentColor = false;
-            this.btnShowMore.UseVisualStyleBackColor = true;
-            this.btnShowMore.Click += new System.EventHandler(this.TogglePanelProfile);
-            // 
-            // ptbAvatar
-            // 
-            this.ptbAvatar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ptbAvatar.Image = global::TutteeFrame.Properties.Resources.default_avatar;
-            this.ptbAvatar.Location = new System.Drawing.Point(16, 10);
-            this.ptbAvatar.Name = "ptbAvatar";
-            this.ptbAvatar.Size = new System.Drawing.Size(40, 40);
-            this.ptbAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.ptbAvatar.TabIndex = 4;
-            this.ptbAvatar.TabStop = false;
-            // 
-            // pictureBox16
-            // 
-            this.pictureBox16.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox16.BackgroundImage")));
-            this.pictureBox16.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox16.Location = new System.Drawing.Point(717, 418);
-            this.pictureBox16.Name = "pictureBox16";
-            this.pictureBox16.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox16.TabIndex = 28;
-            this.pictureBox16.TabStop = false;
-            this.metroToolTip1.SetToolTip(this.pictureBox16, "Phòng ban trực ");
-            // 
-            // pbProfilemainAvatar
-            // 
-            this.pbProfilemainAvatar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pbProfilemainAvatar.Location = new System.Drawing.Point(32, 16);
-            this.pbProfilemainAvatar.Name = "pbProfilemainAvatar";
-            this.pbProfilemainAvatar.Size = new System.Drawing.Size(190, 190);
-            this.pbProfilemainAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbProfilemainAvatar.TabIndex = 27;
-            this.pbProfilemainAvatar.TabStop = false;
-            // 
-            // pictureBox14
-            // 
-            this.pictureBox14.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox14.BackgroundImage")));
-            this.pictureBox14.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox14.Location = new System.Drawing.Point(287, 499);
-            this.pictureBox14.Name = "pictureBox14";
-            this.pictureBox14.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox14.TabIndex = 26;
-            this.pictureBox14.TabStop = false;
-            this.metroToolTip1.SetToolTip(this.pictureBox14, "Ngày sinh");
-            // 
-            // pictureBox13
-            // 
-            this.pictureBox13.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox13.BackgroundImage")));
-            this.pictureBox13.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox13.Location = new System.Drawing.Point(287, 425);
-            this.pictureBox13.Name = "pictureBox13";
-            this.pictureBox13.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox13.TabIndex = 25;
-            this.pictureBox13.TabStop = false;
-            this.metroToolTip1.SetToolTip(this.pictureBox13, "Giới tính");
-            // 
-            // pictureBox12
-            // 
-            this.pictureBox12.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox12.BackgroundImage")));
-            this.pictureBox12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox12.Location = new System.Drawing.Point(287, 425);
-            this.pictureBox12.Name = "pictureBox12";
-            this.pictureBox12.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox12.TabIndex = 24;
-            this.pictureBox12.TabStop = false;
-            // 
-            // pictureBox11
-            // 
-            this.pictureBox11.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox11.BackgroundImage")));
-            this.pictureBox11.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox11.Location = new System.Drawing.Point(287, 347);
-            this.pictureBox11.Name = "pictureBox11";
-            this.pictureBox11.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox11.TabIndex = 21;
-            this.pictureBox11.TabStop = false;
-            this.metroToolTip1.SetToolTip(this.pictureBox11, "Chức vụ");
-            // 
-            // pictureBox9
-            // 
-            this.pictureBox9.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox9.BackgroundImage")));
-            this.pictureBox9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox9.Location = new System.Drawing.Point(287, 194);
-            this.pictureBox9.Name = "pictureBox9";
-            this.pictureBox9.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox9.TabIndex = 18;
-            this.pictureBox9.TabStop = false;
-            this.metroToolTip1.SetToolTip(this.pictureBox9, "Bộ môn");
-            // 
-            // pictureBox10
-            // 
-            this.pictureBox10.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
-            this.pictureBox10.Location = new System.Drawing.Point(287, 273);
-            this.pictureBox10.Name = "pictureBox10";
-            this.pictureBox10.Size = new System.Drawing.Size(34, 30);
-            this.pictureBox10.TabIndex = 17;
-            this.pictureBox10.TabStop = false;
-            this.metroToolTip1.SetToolTip(this.pictureBox10, "Số ID");
-            // 
-            // pictureBox8
-            // 
-            this.pictureBox8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox8.BackgroundImage")));
-            this.pictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox8.Location = new System.Drawing.Point(287, 123);
-            this.pictureBox8.Name = "pictureBox8";
-            this.pictureBox8.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox8.TabIndex = 15;
-            this.pictureBox8.TabStop = false;
-            this.metroToolTip1.SetToolTip(this.pictureBox8, "Họ và tên");
-            // 
-            // pictureBox7
-            // 
-            this.pictureBox7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox7.BackgroundImage")));
-            this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox7.Location = new System.Drawing.Point(717, 280);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox7.TabIndex = 14;
-            this.pictureBox7.TabStop = false;
-            this.metroToolTip1.SetToolTip(this.pictureBox7, "Số điện thoại");
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox6.BackgroundImage")));
-            this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox6.Location = new System.Drawing.Point(717, 201);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox6.TabIndex = 13;
-            this.pictureBox6.TabStop = false;
-            this.metroToolTip1.SetToolTip(this.pictureBox6, "Địa chỉ thư điện tử");
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.BackgroundImage")));
-            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox5.Location = new System.Drawing.Point(717, 130);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(30, 30);
-            this.pictureBox5.TabIndex = 12;
-            this.pictureBox5.TabStop = false;
-            this.metroToolTip1.SetToolTip(this.pictureBox5, "Địa chỉ thường trú");
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(100, 13);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(55, 55);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MovableForm);
-            // 
             // frmMain
             // 
             this.ClientSize = new System.Drawing.Size(1400, 750);
@@ -2888,6 +2888,18 @@
             this.mainTabControl.ResumeLayout(false);
             this.tbpgProfile.ResumeLayout(false);
             this.tbpgProfile.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbProfilemainAvatar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.tbgpTeacherManagment.ResumeLayout(false);
             this.tbgpTeacherManagment.PerformLayout();
             this.tbpgStudentManagment.ResumeLayout(false);
@@ -2905,23 +2917,11 @@
             this.pnProfile.ResumeLayout(false);
             this.materialCard1.ResumeLayout(false);
             this.materialCard1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbAvatar)).EndInit();
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ptbAvatar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbProfilemainAvatar)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox14)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox13)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox12)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

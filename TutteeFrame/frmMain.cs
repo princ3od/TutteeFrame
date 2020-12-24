@@ -30,6 +30,8 @@ namespace TutteeFrame
         ScoreController scoreController;
         List<Teacher> teachers = new List<Teacher>();
         BackgroundWorker loader;
+        BackgroundWorker checkLogin;
+        public bool isChildShowing;
         public bool ProgressSuccess { get; set; }
         #endregion
 
@@ -92,6 +94,23 @@ namespace TutteeFrame
             teacherController.LoadUsingTeacher((sender as frmLogin).teacherID);
             this.CenterToScreen();
             LoadAfterLogin();
+            checkLogin = new BackgroundWorker();
+            checkLogin.DoWork += (s, ev) =>
+            {
+                bool needLogout = false;
+                AccountController accountController = new AccountController();
+                while (!needLogout || !isChildShowing)
+                {
+                    if (!accountController.CheckSession())
+                        needLogout = true;
+                    Thread.Sleep(2000);
+                }
+            };
+            checkLogin.RunWorkerCompleted += (s, ev) =>
+            {
+                btnLogout.PerformClick();
+            };
+            checkLogin.RunWorkerAsync();
             this.Show();
         }
         private void MovableForm(object sender, MouseEventArgs e)
@@ -118,6 +137,11 @@ namespace TutteeFrame
             if (result == DialogResult.No)
                 e.Cancel = true;
         }
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            (new AccountController()).DeleteSession();
+        }
         #endregion
 
         #region Panel Profile Function
@@ -142,6 +166,7 @@ namespace TutteeFrame
             pnProfile.Size = new Size(pnProfile.Size.Width, 70);
             frmLogin = new frmLogin();
             frmLogin.FormClosed += FrmLogin_FormClosed;
+            (new AccountController()).DeleteSession();
             frmLogin.Show();
         }
         private void btnChangePass_Click(object sender, EventArgs e)

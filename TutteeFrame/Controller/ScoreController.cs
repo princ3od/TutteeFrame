@@ -13,11 +13,19 @@ namespace TutteeFrame.Controller
     {
         ScoreDA scoreDA;
         SubjectDA subjectDA;
+        StudentDA studentDA;
         public ScoreController()
         {
             scoreDA = new ScoreDA();
             subjectDA = new SubjectDA();
         }
+        /// <summary>
+        /// Lấy tất cả điểm của học sinh có mã [_studentID], trả về Dictionary, mỗi List<Score> tương ứng với mã môn học
+        /// </summary>
+        /// <param name="_studentID"></param>
+        /// <param name="_semester"></param>
+        /// <param name="_grade"></param>
+        /// <returns></returns>
         public Dictionary<string, List<Score>> GetAllScores(string _studentID, int _semester, int _grade)
         {
             Dictionary<string, List<Score>> result = new Dictionary<string, List<Score>>();
@@ -62,9 +70,7 @@ namespace TutteeFrame.Controller
         public List<AverageScore> GetAverageScores(string _studentID, int _grade)
         {
             List<AverageScore> averageScores = new List<AverageScore>();
-            bool success = scoreDA.GetAverageScore(_studentID, _grade, averageScores);
-            if (!success)
-                return null;
+            scoreDA.GetAverageScore(_studentID, _grade, averageScores);
             return averageScores;
         }
         public Dictionary<string, List<AverageScore>> GetStudentsAverageScore(List<Student> _students, int _grade)
@@ -120,8 +126,54 @@ namespace TutteeFrame.Controller
             if (string.IsNullOrEmpty(_subjectID))
             {
                 List<AverageScore> averageScores = new List<AverageScore>();
-                scoreDA.GetAverageScore(_studentID, _grade, averageScores);
-                result = averageScores[_semester - 1].Value;
+                bool success = scoreDA.GetAverageScore(_studentID, _grade, averageScores);
+                if (success)
+                    result = averageScores[_semester - 1].Value;
+            }
+            else
+            {
+                List<Score> scores = new List<Score>();
+                if (_semester < 3)
+                {
+                    bool success = scoreDA.GetStudentScore(_studentID, _subjectID, _semester, _grade, scores);
+                    if (success)
+                        result = scores[scores.Count - 1].Value;
+                }
+                else
+                {
+                    bool success = scoreDA.GetAverageYearSubjectScore(_studentID, _subjectID, _grade, out result);
+                    if (!success)
+                        result = -1.0;
+                }
+            }
+            return result;
+        }
+        public double GetClassAverageScore(string _classID, string _subjectID = "", int _semester = 3)
+        {
+            double result = -1.0;
+            if (string.IsNullOrEmpty(_subjectID))
+            {
+                if (_semester == 3)
+                    scoreDA.GetClassAverageScore(_classID, out result, _semester, _subjectID);
+                else
+                {
+                    studentDA = new StudentDA();
+                    List<Student> students = new List<Student>();
+                    students = studentDA.GetStudents(_classID);
+                    foreach (Student student in students)
+                    {
+                        List<AverageScore> averageScores = new List<AverageScore>();
+                        scoreDA.GetAverageScore(student.ID, Int32.Parse(student.GetGrade), averageScores);
+                        if (averageScores[_semester - 1].Value > 0)
+                            result += averageScores[_semester - 1].Value;
+                        else
+                        {
+                            result = -1.0;
+                            break;
+                        }
+                    }
+                    result = result / students.Count;
+                }
             }
             else
             {

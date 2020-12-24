@@ -9,6 +9,8 @@ namespace TutteeFrame.Controller
 {
     class AccountController
     {
+        public static int AccountID { get; set; }
+        public static string SessionID { get; set; }
         AccountDA accountDA;
         public AccountController()
         {
@@ -28,13 +30,31 @@ namespace TutteeFrame.Controller
         {
             List<Account> accounts = new List<Account>();
             accountDA.LoadAccounts(accounts);
+            bool loggedIn = false;
             foreach (Account account in accounts)
             {
                 if (account.TeacherID == _teacherId)
-                    return account.Login(_pass);
+                    loggedIn = account.Login(_pass);
+                if (loggedIn)
+                {
+                    AccountID = account.ID;
+                    SessionID = Helper.GenerateSessionID();
+                    accountDA.CreateSession(account.ID, SessionID);
+                    break;
+                }
             }
             _flag = 0; //unknow username
-            return false;
+            return loggedIn;
+        }
+        public bool CheckSession()
+        {
+            bool isExist = false;
+            accountDA.CheckSession(AccountID, SessionID, out isExist);
+            return isExist;
+        }
+        public void DeleteSession()
+        {
+            accountDA.DeleteSession(AccountID, SessionID);
         }
         public bool ChangePass(string _accountID, string _newPass)
         {

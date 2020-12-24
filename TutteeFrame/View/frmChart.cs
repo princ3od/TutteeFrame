@@ -13,11 +13,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using TutteeFrame.Controller;
 using TutteeFrame.Model;
+using MetroFramework;
 namespace TutteeFrame
 {
     public partial class frmChart : MetroForm
     {
         bool loadFast = true;
+        double[] scoreSeprate = { 1.1, 2.1, 3.1, 4.1, 5.1, 6.1, 7.1, 8.1, 8.6, 9.1, 9.6, 10.0 };
         SubjectController subjectController;
         ClassController classController;
         StudentController studentController;
@@ -36,8 +38,8 @@ namespace TutteeFrame
             swtFastRespond.Location = new Point(swtFastRespond.Location.X, swtFastRespond.Location.Y - listClass.Height - cbbDetailType.Height);
             btnOK.Location = new Point(btnOK.Location.X, btnOK.Location.Y - listClass.Height - cbbDetailType.Height);
             btnExport.Location = new Point(btnExport.Location.X, btnExport.Location.Y - listClass.Height - cbbDetailType.Height);
-            var labels = new string[] { "0 - 1.0", "1.1 - 2.0", "2.1 - 3.0", "3.1 - 4.0", "4.1 - 5.0", "5.1 - 6.0", "6.1 - 7.0", "7.1 - 8.0",
-                            "8.1 - 8.5", "8.6 - 9.0", "9.1 - 9.5", "9.6 - 10.0" };
+            var labels = new string[] { "<= 1.0", "<= 2.0", "<= 3.0", "<= 4.0", "<= 5.0", "<= 6.0", "<= 7.0", "<= 8.0",
+                            "<= 8.5", "<= 9.0", "<= 9.5", "<= 10.0" };
             mainChart.AxisX = new AxesCollection()
                 {
                     new Axis
@@ -45,7 +47,7 @@ namespace TutteeFrame
                         Title = "Điểm",
                         Labels = labels,
                         Separator = new Separator{ Step = 1, IsEnabled = false},
-                        LabelsRotation = 30,
+                        LabelsRotation = 0,
                         FontFamily = new System.Windows.Media.FontFamily("Segoe UI"),
                         FontSize = 12,
                         Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 0, 0)),
@@ -71,53 +73,444 @@ namespace TutteeFrame
             base.OnClosed(e);
             this.Owner.Show();
         }
-
+        private void OnChartTypeChanged(object sender, EventArgs e)
+        {
+            BackgroundWorker worker = new BackgroundWorker();
+            List<Subject> subjects = new List<Subject>(); ;
+            EnableControl(false);
+            mainChart.Series = new SeriesCollection();
+            if (cbbChartType.SelectedIndex == 0)
+            {
+                var labels = new string[] { "<= 1.0", "<= 2.0", "<= 3.0", "<= 4.0", "<= 5.0", "<= 6.0", "<= 7.0", "<= 8.0",
+                            "<= 8.5", "<= 9.0", "<= 9.5", "<= 10.0" };
+                mainChart.AxisX = new AxesCollection()
+                {
+                    new Axis
+                    {
+                        Title = "Điểm",
+                        Labels = labels,
+                        Separator = new Separator{ Step = 1, IsEnabled = false},
+                        LabelsRotation = 0,
+                        FontFamily = new System.Windows.Media.FontFamily("Segoe UI"),
+                        FontSize = 12,
+                        Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 0, 0)),
+                    }
+                };
+                mainChart.AxisY = new AxesCollection
+                {
+                    new Axis
+                    {
+                        Title = "Số lượng HS",
+                        Position = AxisPosition.LeftBottom,
+                        Separator = new Separator{ Step = 5},
+                        FontFamily = new System.Windows.Media.FontFamily("Segoe UI"),
+                        FontSize = 12,
+                        Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 0, 0)),
+                        MinValue = 0, MaxValue = 60,
+                        LabelFormatter = value => value.ToString(),
+                    }
+                };
+                cbbDetailType.Hint = "Của";
+                cbbDetailType.Items.Clear();
+                string[] itemStr = { "Lớp", "Khối" };
+                for (int i = 0; i < itemStr.Length; i++)
+                    cbbDetailType.Items.Add(itemStr[i]);
+                worker.DoWork += (s, ev) =>
+                {
+                    subjects = subjectController.LoadSubjects();
+                    Thread.Sleep(200);
+                };
+                worker.RunWorkerCompleted += (s, ev) =>
+                {
+                    cbbSubject.Hint = "Môn";
+                    cbbSubject.Items.Clear();
+                    cbbSubject.Items.Add("Tất cả");
+                    foreach (Subject subject in subjects)
+                        cbbSubject.Items.Add(subject.Name);
+                    EnableControl(true);
+                    cbbDetailType.Visible = true;
+                    cbbSubject.Visible = true;
+                    cbbDetailType.SelectedIndex = 0;
+                };
+            }
+            else
+            {
+                mainChart.AxisX = new AxesCollection()
+                {
+                    new Axis
+                    {
+                        Title = "Điểm",
+                        Separator = new Separator{ Step = 0.5, IsEnabled = true},
+                        LabelsRotation = 0,
+                        MinValue = 0, MaxValue = 10,
+                        FontFamily = new System.Windows.Media.FontFamily("Segoe UI"),
+                        FontSize = 12,
+                        Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 0, 0)),
+                    }
+                };
+                mainChart.AxisY = new AxesCollection
+                {
+                    new Axis
+                    {
+                        Title = "Học sinh",
+                        Position = AxisPosition.LeftBottom,
+                        Separator = new Separator{ Step = 1, IsEnabled = false },
+                        FontFamily = new System.Windows.Media.FontFamily("Segoe UI"),
+                        FontSize = 12,
+                        Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 0, 0)),
+                        LabelFormatter = value => value.ToString(),
+                    }
+                };
+                cbbDetailType.Hint = "Theo";
+                cbbDetailType.Items.Clear();
+                string[] itemStr = { "Lớp", "Khối" };
+                for (int i = 0; i < itemStr.Length; i++)
+                    cbbDetailType.Items.Add(itemStr[i]);
+                worker.DoWork += (s, ev) =>
+                {
+                    subjects = subjectController.LoadSubjects();
+                    Thread.Sleep(200);
+                };
+                worker.RunWorkerCompleted += (s, ev) =>
+                {
+                    cbbSubject.Hint = "Môn";
+                    cbbSubject.Items.Clear();
+                    cbbSubject.Items.Add("Tất cả");
+                    foreach (Subject subject in subjects)
+                        cbbSubject.Items.Add(subject.Name);
+                    EnableControl(true);
+                    cbbDetailType.Visible = true;
+                    cbbSubject.Visible = true;
+                    cbbDetailType.SelectedIndex = 0;
+                };
+            }
+            worker.RunWorkerAsync();
+        }
         private void LoadChart(object sender, EventArgs e)
         {
-            if (cbbClass.SelectedIndex < 0)
+            if (cbbChartType.SelectedIndex < 0)
+            {
+                MetroMessageBox.Show(this, "Hãy chọn loại biểu đồ!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
+            }
+            bool canLoad = true;
             EnableControl(false);
             BackgroundWorker worker = new BackgroundWorker();
-            List<Student> students = new List<Student>();
-            string classID = cbbClass.Text;
-            double[] scoreSeprate = { 1.1, 2.1, 3.1, 4.1, 5.1, 6.1, 7.1, 8.1, 8.6, 9.1, 9.6, 10.0 };
-            int[] counts = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
-            worker.DoWork += (s, ev) =>
+
+            #region Biểu đồ phổ điểm
+            if (cbbChartType.SelectedIndex == 0)
             {
-                students = studentController.GetStudents(classID);
-                Thread.Sleep(200);
-                Random random = new Random();
-                foreach (Student student in students)
+
+                #region Của lớp
+                if (cbbDetailType.SelectedIndex == 0)
                 {
-                    double score = scoreController.GetAverageScore(student.ID, Int32.Parse(student.GetGrade));
-                    for (int i = 0; i < 12; i++)
+                    if (cbbClass.SelectedIndex < 0)
+                        return;
+                    lbChartName.Text = string.Format("{0} của {4} {3} - {1} {2}",
+                        cbbChartType.Text, cbbDetailType.Text, cbbClass.Text,
+                            (cbbSemester.Text == "Cả năm") ? "cả năm" : "học kì " + cbbSemester.Text,
+                            (cbbSubject.Text == "Tất cả") ? "Điểm trung bình" : "môn " + cbbSubject.Text);
+                    mainChart.LegendLocation = LegendLocation.None;
+                    mainChart.AxisY = new AxesCollection
                     {
-                        counts[i] = random.Next(10, 25);
-                        if (score > -1 && score < scoreSeprate[i])
+                        new Axis
                         {
-                            counts[i]++;
-                            break;
+                            Title = "Số lượng HS",
+                            Position = AxisPosition.LeftBottom,
+                            Separator = new Separator{ Step = 2},
+                            FontFamily = new System.Windows.Media.FontFamily("Segoe UI"),
+                            FontSize = 12,
+                            Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 0, 0)),
+                            MinValue = 0, MaxValue = 40,
+                            LabelFormatter = value => value.ToString(),
                         }
-                    }
+                    };
+                    List<Student> students = new List<Student>();
+                    string classID = cbbClass.Text;
+                    int[] counts = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+                    int sem = cbbSemester.SelectedIndex + 1;
+                    int subjectID = cbbSubject.SelectedIndex - 1;
+                    worker.DoWork += (s, ev) =>
+                    {
+                        students = studentController.GetStudents(classID);
+                        List<Subject> subjects = new List<Subject>();
+                        subjects = subjectController.LoadSubjects();
+                        foreach (Student student in students)
+                        {
+                            double score = scoreController.GetAverageScore(student.ID, Int32.Parse(student.GetGrade), (subjectID > 0) ? subjects[subjectID].ID : "", sem);
+                            if (score < 0)
+                                canLoad = false;
+                            else
+                                for (int i = 0; i < 12; i++)
+                                {
+
+                                    if (score < scoreSeprate[i])
+                                    {
+                                        counts[i]++;
+                                        break;
+                                    }
+                                }
+                        }
+                    };
+                    worker.RunWorkerCompleted += (s, ev) =>
+                    {
+                        EnableControl(true);
+                        mainChart.Series = new SeriesCollection();
+                        if (!canLoad)
+                        {
+                            MetroMessageBox.Show(this, "Chưa đủ thông tin để tạo biểu đồ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+                        mainChart.Series.Add(
+                             new ColumnSeries
+                             {
+                                 Title = "Số học sinh",
+                                 Values = new ChartValues<int>(counts),
+                                 DataLabels = true,
+                                 LabelsPosition = BarLabelPosition.Top,
+                                 FontFamily = new System.Windows.Media.FontFamily("Segoe UI"),
+                                 FontSize = 11,
+                             }
+                        );
+                    };
                 }
-            };
-            worker.RunWorkerCompleted += (s, ev) =>
-            {
-                mainChart.Series = new SeriesCollection
+                #endregion
+
+                #region Của khối
+                else
                 {
-                     new ColumnSeries
-                     {
-                        Title = "Số học sinh",
-                        Values = new ChartValues<int>(counts),
-                        DataLabels = true,
-                        LabelsPosition = BarLabelPosition.Top,
-                        FontFamily = new System.Windows.Media.FontFamily("Segoe UI"),
-                        FontSize = 11,
-                     }
-                };         
-                EnableControl(true);
-            };
-            worker.RunWorkerAsync();
+                    lbChartName.Text = string.Format("{0} của {4} {3} - {1} {2}",
+                       cbbChartType.Text, cbbDetailType.Text, cbbGrade.Text,
+                             (cbbSemester.Text == "Cả năm") ? "cả năm" : "học kì " + cbbSemester.Text,
+                             (cbbSubject.Text == "Tất cả") ? "Điểm trung bình" : "môn " + cbbSubject.Text);
+                    mainChart.LegendLocation = LegendLocation.Right;
+                    mainChart.AxisY = new AxesCollection
+                    {
+                        new Axis
+                        {
+                            Title = "Số lượng HS",
+                            Position = AxisPosition.LeftBottom,
+                            Separator = new Separator{ Step = 10},
+                            FontFamily = new System.Windows.Media.FontFamily("Segoe UI"),
+                            FontSize = 12,
+                            Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 0, 0)),
+                            MinValue = 0, MaxValue = 200,
+                            LabelFormatter = value => value.ToString(),
+                        }
+                    };
+                    int[] counts = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+                    int sem = cbbSemester.SelectedIndex + 1;
+                    int subjectID = cbbSubject.SelectedIndex - 1;
+                    List<string> classIDs = new List<string>();
+                    foreach (Control control in listClass.Controls)
+                    {
+                        if ((control as Material_Design_for_Winform.MaterialCheckBox).Checked)
+                            classIDs.Add(control.Text);
+                    }
+                    worker.WorkerReportsProgress = true;
+                    mainChart.Series = new SeriesCollection();
+                    worker.DoWork += (s, ev) =>
+                    {
+                        List<Subject> subjects = new List<Subject>();
+                        subjects = subjectController.LoadSubjects();
+                        foreach (string _class in classIDs)
+                        {
+                            List<Student> students = new List<Student>();
+                            students = studentController.GetStudents(_class);
+                            foreach (Student student in students)
+                            {
+                                double score = scoreController.GetAverageScore(student.ID, Int32.Parse(student.GetGrade), (subjectID > 0) ? subjects[subjectID].ID : "", sem);
+                                if (score < 0)
+                                    canLoad = false;
+                                else
+                                    for (int i = 0; i < 12; i++)
+                                    {
+
+                                        if (score < scoreSeprate[i])
+                                        {
+                                            counts[i]++;
+                                            break;
+                                        }
+                                    }
+                            }
+                            worker.ReportProgress(0, _class);
+                        }
+                    };
+                    worker.ProgressChanged += (s, ev) =>
+                    {
+                        mainChart.Series.Add(new StackedColumnSeries
+                        {
+                            Title = (string)ev.UserState,
+                            Values = new ChartValues<int>(counts),
+                            StackMode = StackMode.Values,
+                            DataLabels = true,
+                        });
+                        counts = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+                    };
+                    worker.RunWorkerCompleted += (s, ev) =>
+                    {
+                        if (!canLoad)
+                            MessageBox.Show("Không đủ điểm!");
+                        MessageBox.Show("Done");
+                        EnableControl(true);
+                    };
+                }
+                #endregion
+
+                worker.RunWorkerAsync();
+            }
+            #endregion
+
+            #region Biểu đồ xếp hạng
+            else
+            {
+                #region Theo lớp
+                if (cbbDetailType.SelectedIndex == 0)
+                {
+                    if (cbbClass.SelectedIndex < 0)
+                        return;
+                    lbChartName.Text = string.Format("{0} của {4} {3} - {1} {2}",
+                        cbbChartType.Text, cbbDetailType.Text, cbbClass.Text,
+                            (cbbSemester.Text == "Cả năm") ? "cả năm" : "học kì " + cbbSemester.Text,
+                            (cbbSubject.Text == "Tất cả") ? "Điểm trung bình" : "môn " + cbbSubject.Text);
+                    List<Student> students = new List<Student>();
+                    ChartValues<string> studentInfors = new ChartValues<string>();
+                    ChartValues<double> chartValues = new ChartValues<double>();
+                    string classID = cbbClass.Text;
+                    int sem = cbbSemester.SelectedIndex + 1;
+                    int subjectID = cbbSubject.SelectedIndex - 1;
+                    worker.DoWork += (s, ev) =>
+                    {
+                        students = studentController.GetStudents(classID);
+                        List<Subject> subjects = new List<Subject>();
+                        subjects = subjectController.LoadSubjects();
+                        foreach (Student student in students)
+                        {
+                            studentInfors.Add(student.GetName() + "\n(" + student.ID + ")");
+                            double score = scoreController.GetAverageScore(student.ID, Int32.Parse(student.GetGrade), (subjectID > 0) ? subjects[subjectID].ID : "", sem);
+                            if (score < 0)
+                                canLoad = false;
+                            else
+                            {
+                                chartValues.Add(score);
+                            }
+                        }
+
+                    };
+                    worker.RunWorkerCompleted += (s, ev) =>
+                    {
+                        EnableControl(true);
+                        mainChart.Series = new SeriesCollection();
+                        if (!canLoad)
+                        {
+                            MetroMessageBox.Show(this, "Chưa đủ thông tin để tạo biểu đồ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+                        mainChart.AxisY = new AxesCollection
+                        {
+                            new Axis
+                            {
+                                Title = "Tên học sinh",
+                                Labels = studentInfors,
+                                Position = AxisPosition.LeftBottom,
+                                Separator = new Separator{ Step = 1},
+                                FontFamily = new System.Windows.Media.FontFamily("Segoe UI"),
+                                FontSize = 12,
+                                Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 0, 0)),
+                                LabelFormatter = value => value.ToString(),
+                            }
+                        };
+                        mainChart.Series.Add(
+                             new RowSeries
+                             {
+                                 Title = "Điểm",
+                                 Values = chartValues,
+                                 DataLabels = true,
+                                 LabelsPosition = BarLabelPosition.Top,
+                                 FontFamily = new System.Windows.Media.FontFamily("Segoe UI"),
+                                 FontSize = 11,
+                             }
+                        );
+                    };
+                }
+                #endregion
+
+                #region Theo khối
+                else
+                {
+                    if (cbbGrade.SelectedIndex < 0)
+                        return;
+                    lbChartName.Text = string.Format("{0} của {4} {3} - {1} {2}",
+                        cbbChartType.Text, cbbDetailType.Text, cbbGrade.Text,
+                            (cbbSemester.Text == "Cả năm") ? "cả năm" : "học kì " + cbbSemester.Text,
+                            (cbbSubject.Text == "Tất cả") ? "Điểm trung bình" : "môn " + cbbSubject.Text);
+                    List<string> classIDs = new List<string>();
+                    foreach (Control control in listClass.Controls)
+                    {
+                        if ((control as Material_Design_for_Winform.MaterialCheckBox).Checked)
+                            classIDs.Add(control.Text);
+                    }
+                    ChartValues<double> chartValues = new ChartValues<double>();
+                    string grade = cbbGrade.Text;
+                    int sem = cbbSemester.SelectedIndex + 1;
+                    int subjectID = cbbSubject.SelectedIndex - 1;
+                    worker.DoWork += (s, ev) =>
+                    {
+                        List<Subject> subjects = new List<Subject>();
+                        subjects = subjectController.LoadSubjects();
+                        foreach (string classID in classIDs)
+                        {
+                            double score = scoreController.GetClassAverageScore(classID, (subjectID > 0) ? subjects[subjectID].ID : "", sem);
+                            if (score < 0)
+                                canLoad = false;
+                            else
+                            {
+                                chartValues.Add(score);
+                            }
+                        }
+
+                    };
+                    worker.RunWorkerCompleted += (s, ev) =>
+                    {
+                        EnableControl(true);
+                        mainChart.Series = new SeriesCollection();
+                        if (!canLoad)
+                        {
+                            MetroMessageBox.Show(this, "Chưa đủ thông tin để tạo biểu đồ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
+                        mainChart.AxisY = new AxesCollection
+                        {
+                            new Axis
+                            {
+                                Title = "Lớp",
+                                Labels = classIDs,
+                                Position = AxisPosition.LeftBottom,
+                                Separator = new Separator{ Step = 1},
+                                FontFamily = new System.Windows.Media.FontFamily("Segoe UI"),
+                                FontSize = 12,
+                                Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 0, 0)),
+                                LabelFormatter = value => value.ToString(),
+                            }
+                        };
+                        mainChart.Series.Add(
+                             new RowSeries
+                             {
+                                 Title = "Điểm",
+                                 Values = chartValues,
+                                 DataLabels = true,
+                                 LabelsPosition = BarLabelPosition.Top,
+                                 FontFamily = new System.Windows.Media.FontFamily("Segoe UI"),
+                                 FontSize = 11,
+                             }
+                        );
+                    };
+                }
+                #endregion
+
+                worker.RunWorkerAsync();
+            }
+            #endregion
         }
 
         private void OnCheckChanged(object sender, EventArgs e)
@@ -148,45 +541,11 @@ namespace TutteeFrame
         }
         void EnableControl(bool _enable)
         {
-            cbbChartType.Enabled = cbbDetailType.Enabled = cbbDetailType2.Enabled = cbbGrade.Enabled = cbbClass.Enabled = mainChart.Enabled
+            cbbChartType.Enabled = cbbDetailType.Enabled = cbbSubject.Enabled = cbbGrade.Enabled = cbbClass.Enabled = mainChart.Enabled
                  = listClass.Enabled = btnExport.Enabled = btnOK.Enabled = cbbSemester.Enabled = _enable;
 
         }
-        private void OnChartTypeChanged(object sender, EventArgs e)
-        {
-            BackgroundWorker worker = new BackgroundWorker();
-            List<Subject> subjects = new List<Subject>(); ;
-            EnableControl(false);
-            if (cbbChartType.SelectedIndex == 0)
-            {
-                cbbDetailType.Hint = "Của";
-                cbbDetailType.Items.Clear();
-                string[] itemStr = { "Lớp", "Khối" };
-                for (int i = 0; i < itemStr.Length; i++)
-                    cbbDetailType.Items.Add(itemStr[i]);
-                worker.DoWork += (s, ev) =>
-                {
-                    subjects = subjectController.LoadSubjects();
-                    Thread.Sleep(200);
-                };
-                worker.RunWorkerCompleted += (s, ev) =>
-                {
-                    cbbDetailType2.Hint = "Môn";
-                    cbbDetailType2.Items.Clear();
-                    cbbDetailType2.Items.Add("Tất cả");
-                    foreach (Subject subject in subjects)
-                        cbbDetailType2.Items.Add(subject.Name);
-                    EnableControl(true);
-                    cbbDetailType.Visible = true;
-                    cbbDetailType2.Visible = true;
-                };
-            }
-            else
-            {
 
-            }
-            worker.RunWorkerAsync();
-        }
 
         private void OnDetailShow(object sender, EventArgs e)
         {
@@ -205,12 +564,37 @@ namespace TutteeFrame
                     case 0: //của lớp
                         cbbGrade.Visible = cbbClass.Visible = true;
                         cbbClass.Enabled = false;
+                        listClass.Visible = false;
                         if (cbbGrade.Items.Count < 3)
                             cbbGrade.Items.Add("Tất cả");
                         break;
-                    case 1: //của trường
-                        cbbGrade.Visible = true;
+                    case 1: //của khối
+                        cbbGrade.Visible = listClass.Visible = true;
+                        cbbClass.Visible = false;
+                        listClass.Enabled = false;
+                        if (cbbGrade.Items.Count > 3)
+                            cbbGrade.Items.RemoveAt(3);
+                        break;
+                    default:
+                        break;
+                }
+            }
+            //biểu đồ xếp hạng
+            else
+            {
+                switch (cbbDetailType.SelectedIndex)
+                {
+                    case 0: //theo lớp
+                        cbbGrade.Visible = cbbClass.Visible = true;
+                        cbbClass.Enabled = false;
                         listClass.Visible = false;
+                        if (cbbGrade.Items.Count < 3)
+                            cbbGrade.Items.Add("Tất cả");
+                        break;
+                    case 1: //theo khối
+                        cbbGrade.Visible = listClass.Visible = true;
+                        cbbClass.Visible = false;
+                        listClass.Enabled = false;
                         if (cbbGrade.Items.Count > 3)
                             cbbGrade.Items.RemoveAt(3);
                         break;
@@ -268,7 +652,7 @@ namespace TutteeFrame
             worker.RunWorkerAsync();
         }
 
-        private Material_Design_for_Winform.MaterialCheckBox CreateCheckBox(string _text, bool _defaultValue = false)
+        private Material_Design_for_Winform.MaterialCheckBox CreateCheckBox(string _text, bool _defaultValue = true)
         {
             Material_Design_for_Winform.MaterialCheckBox materialCheckBox = new Material_Design_for_Winform.MaterialCheckBox();
             materialCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
@@ -283,6 +667,11 @@ namespace TutteeFrame
             materialCheckBox.Text = _text;
             materialCheckBox.Checked = _defaultValue;
             return materialCheckBox;
+        }
+
+        private void ExportChart(object sender, EventArgs e)
+        {
+
         }
     }
 }

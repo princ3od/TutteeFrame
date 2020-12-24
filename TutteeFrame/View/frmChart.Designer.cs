@@ -32,7 +32,7 @@
             this.cbbChartType = new MaterialSkin.Controls.MaterialComboBox();
             this.cbbDetailType = new MaterialSkin.Controls.MaterialComboBox();
             this.cbbSemester = new MaterialSkin.Controls.MaterialComboBox();
-            this.cbbDetailType2 = new MaterialSkin.Controls.MaterialComboBox();
+            this.cbbSubject = new MaterialSkin.Controls.MaterialComboBox();
             this.materialDivider1 = new MaterialSkin.Controls.MaterialDivider();
             this.mainChart = new LiveCharts.WinForms.CartesianChart();
             this.swtFastRespond = new MaterialSkin.Controls.MaterialSwitch();
@@ -127,32 +127,32 @@
             this.cbbSemester.Size = new System.Drawing.Size(90, 49);
             this.cbbSemester.TabIndex = 12;
             // 
-            // cbbDetailType2
+            // cbbSubject
             // 
-            this.cbbDetailType2.AutoResize = false;
-            this.cbbDetailType2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.cbbDetailType2.Depth = 0;
-            this.cbbDetailType2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cbbDetailType2.DropDownHeight = 174;
-            this.cbbDetailType2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbbDetailType2.DropDownWidth = 121;
-            this.cbbDetailType2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.cbbDetailType2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.cbbDetailType2.FormattingEnabled = true;
-            this.cbbDetailType2.Hint = "Cụ thể 2";
-            this.cbbDetailType2.IntegralHeight = false;
-            this.cbbDetailType2.ItemHeight = 43;
-            this.cbbDetailType2.Items.AddRange(new object[] {
+            this.cbbSubject.AutoResize = false;
+            this.cbbSubject.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cbbSubject.Depth = 0;
+            this.cbbSubject.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbbSubject.DropDownHeight = 174;
+            this.cbbSubject.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbSubject.DropDownWidth = 121;
+            this.cbbSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cbbSubject.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cbbSubject.FormattingEnabled = true;
+            this.cbbSubject.Hint = "Môn";
+            this.cbbSubject.IntegralHeight = false;
+            this.cbbSubject.ItemHeight = 43;
+            this.cbbSubject.Items.AddRange(new object[] {
             "Phổ điểm",
             "Xếp hạng"});
-            this.cbbDetailType2.Location = new System.Drawing.Point(232, 130);
-            this.cbbDetailType2.MaxDropDownItems = 4;
-            this.cbbDetailType2.MouseState = MaterialSkin.MouseState.OUT;
-            this.cbbDetailType2.Name = "cbbDetailType2";
-            this.cbbDetailType2.Size = new System.Drawing.Size(125, 49);
-            this.cbbDetailType2.TabIndex = 13;
-            this.cbbDetailType2.Visible = false;
-            this.cbbDetailType2.VisibleChanged += new System.EventHandler(this.OnDetailShow);
+            this.cbbSubject.Location = new System.Drawing.Point(232, 130);
+            this.cbbSubject.MaxDropDownItems = 4;
+            this.cbbSubject.MouseState = MaterialSkin.MouseState.OUT;
+            this.cbbSubject.Name = "cbbSubject";
+            this.cbbSubject.Size = new System.Drawing.Size(125, 49);
+            this.cbbSubject.TabIndex = 13;
+            this.cbbSubject.Visible = false;
+            this.cbbSubject.VisibleChanged += new System.EventHandler(this.OnDetailShow);
             // 
             // materialDivider1
             // 
@@ -232,6 +232,7 @@
             this.btnExport.TabIndex = 48;
             this.btnExport.Text = "Xuất biểu đồ";
             this.btnExport.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnExport.Click += new System.EventHandler(this.ExportChart);
             // 
             // cbbGrade
             // 
@@ -279,6 +280,7 @@
             this.listClass.VerticalScrollbarHighlightOnWheel = false;
             this.listClass.VerticalScrollbarSize = 10;
             this.listClass.Visible = false;
+            this.listClass.VisibleChanged += new System.EventHandler(this.ShowListClass);
             // 
             // checkbox2
             // 
@@ -344,9 +346,9 @@
             this.lbChartName.Font = new System.Drawing.Font("Segoe UI Light", 15F);
             this.lbChartName.Location = new System.Drawing.Point(437, 29);
             this.lbChartName.Name = "lbChartName";
-            this.lbChartName.Size = new System.Drawing.Size(174, 28);
+            this.lbChartName.Size = new System.Drawing.Size(160, 28);
             this.lbChartName.TabIndex = 52;
-            this.lbChartName.Text = "Thông tin tài khoản";
+            this.lbChartName.Text = "Biểu đồ ----------";
             // 
             // frmChart
             // 
@@ -361,7 +363,7 @@
             this.Controls.Add(this.swtFastRespond);
             this.Controls.Add(this.mainChart);
             this.Controls.Add(this.materialDivider1);
-            this.Controls.Add(this.cbbDetailType2);
+            this.Controls.Add(this.cbbSubject);
             this.Controls.Add(this.cbbSemester);
             this.Controls.Add(this.cbbDetailType);
             this.Controls.Add(this.cbbChartType);
@@ -381,7 +383,7 @@
         private MaterialSkin.Controls.MaterialComboBox cbbChartType;
         private MaterialSkin.Controls.MaterialComboBox cbbDetailType;
         private MaterialSkin.Controls.MaterialComboBox cbbSemester;
-        private MaterialSkin.Controls.MaterialComboBox cbbDetailType2;
+        private MaterialSkin.Controls.MaterialComboBox cbbSubject;
         private MaterialSkin.Controls.MaterialDivider materialDivider1;
         private LiveCharts.WinForms.CartesianChart mainChart;
         private MaterialSkin.Controls.MaterialSwitch swtFastRespond;
