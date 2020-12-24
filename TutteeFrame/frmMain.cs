@@ -99,15 +99,17 @@ namespace TutteeFrame
             {
                 bool needLogout = false;
                 AccountController accountController = new AccountController();
-                while (!needLogout || !isChildShowing)
+                while (!needLogout || isChildShowing)
                 {
                     if (!accountController.CheckSession())
                         needLogout = true;
-                    Thread.Sleep(2000);
+                    Thread.Sleep(1000);
+                    Console.WriteLine("Status need logout: ", needLogout);
                 }
             };
             checkLogin.RunWorkerCompleted += (s, ev) =>
             {
+                MessageBox.Show("Tài khoản đã đăng nhập từ nơi khác.");
                 btnLogout.PerformClick();
             };
             checkLogin.RunWorkerAsync();
