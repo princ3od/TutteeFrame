@@ -507,9 +507,9 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
-        public bool GetDataSetPrepareToPrint(DataSet input, string classID)
+        public bool GetDataSetPrepareToPrint(DataSet input, ref string formalTeacher ,string classID)
         {
-            bool success = Connect();
+            bool success = Test("","","","");
 
             if (!success)
                 return false;
@@ -521,6 +521,20 @@ namespace TutteeFrame.DataAccess
                 command.Parameters.AddWithValue("@classid", classID);
                 SqlDataAdapter adapter = new SqlDataAdapter(command);
                 adapter.Fill(input, "STUDENT");
+
+                strQuery = "SELECT SurName,FirstName FROM CLASS INNER JOIN TEACHER" +
+                    " ON CLASS.TeacherID = TEACHER.TeacherID " +
+                    "WHERE CLASS.ClassID = @classID";
+                command = new SqlCommand(strQuery, connection);
+                command.Parameters.AddWithValue("classID", classID);
+         
+                SqlDataReader reader = command.ExecuteReader();
+                if(reader.Read())
+                {
+                    if (!reader.IsDBNull(0)) formalTeacher += reader.GetString(0);
+                    if (!reader.IsDBNull(1)) formalTeacher +=" " +reader.GetString(1);
+                }
+                
             }
             catch (Exception ex)
             {
@@ -611,6 +625,54 @@ namespace TutteeFrame.DataAccess
             if(!GetDataStudentResultPrepareToPrint( input.scoreBoards, studentID)) return false;
             if (!GetAnotherInforOfStudentPrepareToPrint(input, studentID)) return false;
             return true;
+        }
+
+        public bool GetDataOfAllStudentsInClassPrepareToPrint(InfomationOfStudensResultOfClassPrepareToPrint input, string classID)
+        {
+            bool success = Test("", "", "", "");
+            if (!success) return false;
+            try
+            {
+                using (SqlCommand cmd = new SqlCommand())
+                {
+                    string strQuery = "SELECT st.Surname,st.Firstname,st.StudentID," +
+                        "se1.SemesterAverage as AveragePointS1,se2.SemesterAverage " +
+                        "as AveragePointS2,l.ConductSE01 as ConductS1,l.ConductSE02 as " +
+                        "ConductS2,l.YearConduct as ConductYear  FROM STUDENT st INNER JOIN " +
+                        "LEARNRESULT l ON l.StudentID  = st.StudentID JOIN SCOREBOARD se1" +
+                        " ON l.ScoreBoardSE01ID = se1.ScoreBoardID JOIN SCOREBOARD se2 ON " +
+                        "l.ScoreBoardSE02ID =se2.ScoreBoardID WHERE st.ClassID = @classID";
+                    cmd.CommandText = strQuery;
+                    cmd.CommandType = CommandType.Text;
+                    cmd.Connection = connection;
+                    cmd.Parameters.AddWithValue("classID", classID);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    adapter.Fill(input.ds, "CLASRESULT");
+
+                    strQuery = "SELECT SurName,FirstName FROM CLASS JOIN TEACHER" +
+                        " ON CLASS.TeacherID = TEACHER.TeacherID " +
+                        "WHERE CLASS.ClassID = @classID";
+                    cmd.CommandText = strQuery;
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    input.formalTeacher = "";
+                    if(reader.Read())
+                    {
+                        if (!reader.IsDBNull(0)) input.formalTeacher += reader.GetString(0);
+                        if (!reader.IsDBNull(1)) input.formalTeacher += " "+ reader.GetString(1);
+
+                    }
+
+
+                }
+
+                    return true;
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                if (connection.State == ConnectionState.Open) Disconnect();
+                return false;
+            }
         }
 
     }

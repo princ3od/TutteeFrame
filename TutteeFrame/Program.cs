@@ -64,7 +64,7 @@ namespace TutteeFrame.Model
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmStudentPrinter("20209880", true));
+            Application.Run(new frmStudentPrinter("11A1",true,true));
 
         }
     }

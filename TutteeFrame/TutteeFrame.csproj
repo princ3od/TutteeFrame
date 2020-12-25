@@ -111,11 +111,20 @@
     <Compile Include="Controller\MainController.cs" />
     <Compile Include="Controller\PunishmentController.cs" />
     <Compile Include="DataAccess\PunishmentDA.cs" />
+    <Compile Include="Model\InfomationOfStudensResultOfClassPrepareToPrint.cs" />
     <Compile Include="Model\InformationOfStudentResultPrepareForPrint.cs" />
     <Compile Include="Model\Punishment.cs" />
     <Compile Include="Model\ResultObject.cs" />
     <Compile Include="Model\Reward.cs" />
     <Compile Include="Model\StudentLearnResult.cs" />
+    <Compile Include="Reports\DSClassResultBySE.cs">
+      <DependentUpon>DSClassResultBySE.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\DSClassResultBySE.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DSClassResultBySE.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reports\DSStudentResult.cs">
       <DependentUpon>DSStudentResult.xsd</DependentUpon>
     </Compile>
@@ -283,6 +292,7 @@
     <Compile Include="View\frmViewStudent.Designer.cs">
       <DependentUpon>frmViewStudent.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Reports\ReportClassResult.rdlc" />
     <EmbeddedResource Include="Reports\ReportStudentResult.rdlc" />
     <EmbeddedResource Include="View\frmChart.resx">
       <DependentUpon>frmChart.cs</DependentUpon>
@@ -349,6 +359,17 @@
     </EmbeddedResource>
     <None Include="app.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Reports\DSClassResultBySE.xsc">
+      <DependentUpon>DSClassResultBySE.xsd</DependentUpon>
+    </None>
+    <None Include="Reports\DSClassResultBySE.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DSClassResultBySE.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Reports\DSClassResultBySE.xss">
+      <DependentUpon>DSClassResultBySE.xsd</DependentUpon>
     </None>
     <None Include="Reports\DSStudentResult.xsc">
       <DependentUpon>DSStudentResult.xsd</DependentUpon>
