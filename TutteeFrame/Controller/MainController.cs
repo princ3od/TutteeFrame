@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using MaterialSkin.Controls;
-using TutteeFrame.Model;
-using System.Data;
+﻿using TutteeFrame.Model;
 using TutteeFrame.DataAccess;
 
 namespace TutteeFrame.Controller

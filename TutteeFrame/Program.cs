@@ -28,10 +28,6 @@ namespace TutteeFrame.Model
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
-            return;
             using (var m = new Mutex(true, "TutteeFrame", out isNew))
             {
                 //If application owns the mutex, continue the execution

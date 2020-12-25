@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TutteeFrame.Model;
-using TutteeFrame.Controller;
-using TutteeFrame.DataAccess;
 
 namespace TutteeFrame
 {

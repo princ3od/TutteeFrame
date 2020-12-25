@@ -1,14 +1,7 @@
-﻿using Microsoft.VisualBasic.ApplicationServices;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
-using TutteeFrame.Model;
 
 namespace TutteeFrame.DataAccess
 {
@@ -45,7 +38,7 @@ namespace TutteeFrame.DataAccess
             }
             catch (Exception e)
             {
-                //MessageBox.Show(e.Message);
+                MessageBox.Show(e.Message);
                 return false;
             }
             connectionString = strConnect;

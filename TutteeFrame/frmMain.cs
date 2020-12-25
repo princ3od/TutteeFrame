@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Web.UI;
 using System.ComponentModel;
-using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
@@ -14,7 +13,6 @@ using TutteeFrame.Model;
 using System.Data;
 using System.Linq;
 using TutteeFrame.Controller;
-using System.Threading.Tasks;
 namespace TutteeFrame
 {
     public partial class frmMain : MetroForm
@@ -246,7 +244,6 @@ namespace TutteeFrame
             LoadTabpageInfor();
             mainTabControl.TabPages.Clear();
             mainTabControl.TabPages.Add(tbpgProfile);
-            mainTabControl.TabPages.Add(tbpgShedule);
             if (mainTeacher.ID == "AD999999")
             {
                 lbBelongtoOnCard.Text = "Adminstrator";

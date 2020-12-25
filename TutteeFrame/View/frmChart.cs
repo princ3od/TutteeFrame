@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Threading;
 using System.Windows.Forms;
 using TutteeFrame.Controller;
 using TutteeFrame.Model;
@@ -16,7 +15,7 @@ namespace TutteeFrame
     public partial class frmChart : Form
     {
         bool loadFast = true;
-        double[] scoreSeprate = { 1.1, 2.1, 3.1, 4.1, 5.1, 6.1, 7.1, 8.1, 8.6, 9.1, 9.6, 10.0 };
+        double[] scoreSeprate = { 1.1, 2.1, 3.1, 4.1, 5.1, 6.1, 7.1, 8.1, 8.6, 9.1, 9.6, 10.1 };
         SubjectController subjectController;
         ClassController classController;
         StudentController studentController;
@@ -118,7 +117,6 @@ namespace TutteeFrame
                 worker.DoWork += (s, ev) =>
                 {
                     subjects = subjectController.LoadSubjects();
-                    Thread.Sleep(200);
                 };
                 worker.RunWorkerCompleted += (s, ev) =>
                 {
@@ -169,7 +167,6 @@ namespace TutteeFrame
                 worker.DoWork += (s, ev) =>
                 {
                     subjects = subjectController.LoadSubjects();
-                    Thread.Sleep(200);
                 };
                 worker.RunWorkerCompleted += (s, ev) =>
                 {
@@ -229,6 +226,7 @@ namespace TutteeFrame
             bool canLoad = true;
             EnableControl(false);
             BackgroundWorker worker = new BackgroundWorker();
+            int maxValue = -1;
 
             #region Biểu đồ phổ điểm
             if (cbbChartType.SelectedIndex == 0)
@@ -247,20 +245,6 @@ namespace TutteeFrame
                             (cbbSemester.Text == "Cả năm") ? "cả năm" : "học kì " + cbbSemester.Text,
                             (cbbSubject.Text == "Tất cả") ? "Điểm trung bình" : "môn " + cbbSubject.Text);
                     mainChart.LegendLocation = LegendLocation.None;
-                    mainChart.AxisY = new AxesCollection
-                    {
-                        new Axis
-                        {
-                            Title = "Số lượng HS",
-                            Position = AxisPosition.LeftBottom,
-                            Separator = new Separator{ Step = 2},
-                            FontFamily = new System.Windows.Media.FontFamily("Segoe UI"),
-                            FontSize = 12,
-                            Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 0, 0)),
-                            MinValue = 0, MaxValue = 40,
-                            LabelFormatter = value => value.ToString(),
-                        }
-                    };
                     List<Student> students = new List<Student>();
                     string classID = cbbClass.Text;
                     int[] counts = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -287,6 +271,11 @@ namespace TutteeFrame
                                     }
                                 }
                         }
+                        for (int i = 0; i < 12; i++)
+                        {
+                            if (counts[i] > maxValue)
+                                maxValue = (int)(Math.Round(counts[i] * 1.0 / 10, 0, MidpointRounding.AwayFromZero) * 10);
+                        }
                     };
                     worker.RunWorkerCompleted += (s, ev) =>
                     {
@@ -297,6 +286,20 @@ namespace TutteeFrame
                             MetroMessageBox.Show(this, "Chưa đủ thông tin để tạo biểu đồ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             return;
                         }
+                        mainChart.AxisY = new AxesCollection
+                        {
+                            new Axis
+                            {
+                                Title = "Số lượng HS",
+                                Position = AxisPosition.LeftBottom,
+                                Separator = new Separator{ Step = GetStep(maxValue + 5)},
+                                FontFamily = new System.Windows.Media.FontFamily("Segoe UI"),
+                                FontSize = 12,
+                                Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 0, 0)),
+                                MinValue = 0, MaxValue = maxValue + 5,
+                                LabelFormatter = value => value.ToString(),
+                            }
+                        };
                         mainChart.Series.Add(
                              new ColumnSeries
                              {
@@ -325,21 +328,9 @@ namespace TutteeFrame
                              (cbbSemester.Text == "Cả năm") ? "cả năm" : "học kì " + cbbSemester.Text,
                              (cbbSubject.Text == "Tất cả") ? "Điểm trung bình" : "môn " + cbbSubject.Text);
                     mainChart.LegendLocation = LegendLocation.Right;
-                    mainChart.AxisY = new AxesCollection
-                    {
-                        new Axis
-                        {
-                            Title = "Số lượng HS",
-                            Position = AxisPosition.LeftBottom,
-                            Separator = new Separator{ Step = 10},
-                            FontFamily = new System.Windows.Media.FontFamily("Segoe UI"),
-                            FontSize = 12,
-                            Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 0, 0)),
-                            MinValue = 0, MaxValue = 200,
-                            LabelFormatter = value => value.ToString(),
-                        }
-                    };
+
                     int[] counts = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+                    int[] countTotals = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
                     int sem = cbbSemester.SelectedIndex + 1;
                     int subjectID = cbbSubject.SelectedIndex - 1;
                     List<string> classIDs = new List<string>();
@@ -375,6 +366,11 @@ namespace TutteeFrame
                             }
                             worker.ReportProgress(0, _class);
                         }
+                        for (int i = 0; i < 12; i++)
+                        {
+                            if (countTotals[i] > maxValue)
+                                maxValue = (int)(Math.Round(countTotals[i] * 1.0 / 10, 0, MidpointRounding.AwayFromZero) * 10);
+                        }
                     };
                     worker.ProgressChanged += (s, ev) =>
                     {
@@ -385,16 +381,35 @@ namespace TutteeFrame
                             StackMode = StackMode.Values,
                             DataLabels = true,
                         });
+                        for (int i = 0; i < 12; i++)
+                        {
+                            countTotals[i] += counts[i];
+                        }
                         counts = new int[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
                     };
                     worker.RunWorkerCompleted += (s, ev) =>
                     {
+                        EnableControl(true);
                         if (!canLoad)
                         {
                             MetroMessageBox.Show(this, "Chưa đủ thông tin để tạo biểu đồ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            mainChart.Series = new SeriesCollection();
                             return;
                         }
-                        EnableControl(true);
+                        mainChart.AxisY = new AxesCollection
+                        {
+                            new Axis
+                            {
+                                Title = "Số lượng HS",
+                                Position = AxisPosition.LeftBottom,
+                                Separator = new Separator{ Step = GetStep(maxValue + 5) },
+                                FontFamily = new System.Windows.Media.FontFamily("Segoe UI"),
+                                FontSize = 12,
+                                Foreground = new System.Windows.Media.SolidColorBrush(System.Windows.Media.Color.FromArgb(255, 0, 0, 0)),
+                                MinValue = 0, MaxValue = maxValue + 5,
+                                LabelFormatter = value => value.ToString(),
+                            }
+                        };
                     };
                 }
                 #endregion
@@ -433,6 +448,7 @@ namespace TutteeFrame
                         {
                             studentInfors.Add(student.GetName() + "\n(" + student.ID + ")");
                             double score = scoreController.GetAverageScore(student.ID, Int32.Parse(student.GetGrade), (subjectID > 0) ? subjects[subjectID].ID : "", sem);
+                            score = Math.Round(score, 2);
                             if (score < 0)
                                 canLoad = false;
                             else
@@ -509,6 +525,7 @@ namespace TutteeFrame
                         foreach (string classID in classIDs)
                         {
                             double score = scoreController.GetClassAverageScore(classID, (subjectID > 0) ? subjects[subjectID].ID : "", sem);
+                            score = Math.Round(score, 2);
                             if (score < 0)
                                 canLoad = false;
                             else
@@ -668,7 +685,6 @@ namespace TutteeFrame
                 worker.DoWork += (s, ev) =>
                 {
                     success = classController.GetAllClass(classes);
-                    Thread.Sleep(200);
                 };
             }
             else
@@ -676,8 +692,8 @@ namespace TutteeFrame
                 string grade = cbbGrade.Text;
                 worker.DoWork += (s, ev) =>
                 {
-                    classes = classController.GetClass(grade);
-                    Thread.Sleep(150);
+                    if (!string.IsNullOrEmpty(grade))
+                        classes = classController.GetClass(grade);
                 };
             }
             worker.RunWorkerCompleted += (s, ev) =>
@@ -722,6 +738,14 @@ namespace TutteeFrame
             materialCheckBox.Size = new System.Drawing.Size(153, 27);
             materialCheckBox.Text = _text;
             materialCheckBox.Checked = _defaultValue;
+            materialCheckBox.Tag = false;
+            materialCheckBox.CheckedChanged += (s, ev) =>
+            {
+                if (!(bool)materialCheckBox.Tag)
+                    materialCheckBox.Tag = true;
+                else if (loadFast)
+                    LoadChart(btnOK, EventArgs.Empty);
+            };
             return materialCheckBox;
         }
 
@@ -783,6 +807,21 @@ namespace TutteeFrame
                 default:
                     break;
             }
+        }
+        int GetStep(int maxValue)
+        {
+            if (maxValue < 6)
+                return 1;
+            else if (maxValue < 21)
+                return 2;
+            else if (maxValue < 51)
+                return 5;
+            else if (maxValue < 151)
+                return 10;
+            else if (maxValue < 301)
+                return 20;
+            else
+                return 25;
         }
     }
 }

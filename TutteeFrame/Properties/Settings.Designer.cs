@@ -26,10 +26,22 @@ namespace TutteeFrame.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("Server = {0},{1};Initial Catalog = TutteeFrame;User ID = {2};Password = {3};Integ" +
-            "rated Security = False;Connect Timeout = 20;")]
+            "rated Security = False;Connect Timeout = 20; MultipleActiveResultSets = True; ")]
         public string ServerConnectionString {
             get {
                 return ((string)(this["ServerConnectionString"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.\\SQLEXPRESS;Initial Catalog=TutteeFrame;Integrated Security=True")]
+        public string LocalConnectionString {
+            get {
+                return ((string)(this["LocalConnectionString"]));
+            }
+            set {
+                this["LocalConnectionString"] = value;
             }
         }
     }

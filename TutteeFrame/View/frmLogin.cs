@@ -5,7 +5,6 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using TutteeFrame.Controller;
-using TutteeFrame.Model;
 namespace TutteeFrame
 {
     public partial class frmLogin : Form
