@@ -1853,7 +1853,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Parameters!conductS1.Value</Value>
+                        <Value>=IIf(Parameters!conductS1.Value = "TB","Trung Bình",(IIf(Parameters!conductS1.Value ="Kha","Khá",(IIf(Parameters!conductS1.Value ="Yeu","Yếu",(IIf(Parameters!conductS1.Value ="Tot","Tốt","Chưa Xét")))))))</Value>
                         <Style />
                       </TextRun>
                     </TextRuns>
@@ -1883,7 +1883,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Parameters!conductS2.Value</Value>
+                        <Value>=IIf(Parameters!conductS2.Value = "TB","Trung Bình",(IIf(Parameters!conductS2.Value ="Kha","Khá",(IIf(Parameters!conductS2.Value ="Yeu","Yếu",(IIf(Parameters!conductS2.Value ="Tot","Tốt","Chưa Xét")))))))</Value>
                         <Style />
                       </TextRun>
                     </TextRuns>
@@ -1913,7 +1913,7 @@
                   <Paragraph>
                     <TextRuns>
                       <TextRun>
-                        <Value>=Parameters!conductYear.Value</Value>
+                        <Value>=IIf(Parameters!conductYear.Value = "TB","Trung Bình",(IIf(Parameters!conductYear.Value ="Kha","Khá",(IIf(Parameters!conductYear.Value ="Yeu","Yếu",(IIf(Parameters!conductYear.Value ="Tot","Tốt","Chưa Xét")))))))</Value>
                         <Style />
                       </TextRun>
                     </TextRuns>
@@ -1922,7 +1922,7 @@
                 </Paragraphs>
                 <rd:DefaultName>Textbox2</rd:DefaultName>
                 <Top>1.56771in</Top>
-                <Left>5.26331in</Left>
+                <Left>5.2814in</Left>
                 <Height>0.25in</Height>
                 <Width>0.87199in</Width>
                 <ZIndex>12</ZIndex>

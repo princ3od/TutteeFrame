@@ -283,34 +283,34 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.34375in</Width>
+                  <Width>0.28958in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.24729in</Width>
+                  <Width>1.19312in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.60248in</Width>
+                  <Width>0.54831in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.91909in</Width>
+                  <Width>0.86492in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.53998in</Width>
+                  <Width>0.60617in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.51915in</Width>
+                  <Width>0.46498in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.43171in</Width>
+                  <Width>0.37754in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.60248in</Width>
+                  <Width>0.73581in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.4879in</Width>
+                  <Width>0.68373in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.60248in</Width>
+                  <Width>0.71498in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -861,7 +861,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!ConductS1.Value</Value>
+                                  <Value>=IIf(Fields!ConductS1.Value = "TB","Trung Bình",(IIf(Fields!ConductS1.Value ="Kha","Khá",(IIf(Fields!ConductS1.Value ="Yeu","Yếu",(IIf(Fields!ConductS1.Value ="Tot","Tốt","Chưa Xét")))))))</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -891,7 +891,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!ConductS2.Value</Value>
+                                  <Value>=IIf(Fields!ConductS2.Value = "TB","Trung Bình",(IIf(Fields!ConductS2.Value ="Kha","Khá",(IIf(Fields!ConductS2.Value ="Yeu","Yếu",(IIf(Fields!ConductS2.Value ="Tot","Tốt","Chưa Xét")))))))</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -921,7 +921,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!ConductYear.Value</Value>
+                                  <Value>=IIf(Fields!ConductYear.Value = "TB","Trung Bình",(IIf(Fields!ConductYear.Value ="Kha","Khá",(IIf(Fields!ConductYear.Value ="Yeu","Yếu",(IIf(Fields!ConductYear.Value ="Tot","Tốt","Chưa Xét")))))))</Value>
                                   <Style />
                                 </TextRun>
                               </TextRuns>
@@ -972,9 +972,9 @@
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
             <Top>1.22792in</Top>
-            <Left>0.155in</Left>
+            <Left>0.03in</Left>
             <Height>0.5in</Height>
-            <Width>6.29629in</Width>
+            <Width>6.47914in</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
