@@ -159,7 +159,7 @@
             this.btnOK.ShadowOpacity = 35;
             this.btnOK.Size = new System.Drawing.Size(162, 55);
             this.btnOK.TabIndex = 3;
-            this.btnOK.Text = "Ố kê";
+            this.btnOK.Text = "OK";
             this.btnOK.TextAlign = System.Drawing.StringAlignment.Center;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 

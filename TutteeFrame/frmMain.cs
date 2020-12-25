@@ -155,22 +155,22 @@ namespace TutteeFrame
 
         #region Panel Profile Function
         private void TogglePanelProfile(object sender, EventArgs e)
-        {            
-         
+        {
+
             //if (pnProfile.Size.Height > 70)
-            if(isExpand)
+            if (isExpand)
             {
                 btnShowMore.Icon.RotateFlip(RotateFlipType.Rotate180FlipNone);
-                pnProfile.Size = new Size(pnProfile.Size.Width, 70);                
+                pnProfile.Size = new Size(pnProfile.Size.Width, 70);
                 isExpand = false;
-            }              
+            }
             else
             {
                 btnShowMore.Icon.RotateFlip(RotateFlipType.Rotate180FlipNone);
                 pnProfile.Size = new Size(pnProfile.Size.Width, 250);
                 isExpand = true;
             }
-                
+
             pnProfile.Invalidate();
         }
         private void panel1_Leave(object sender, EventArgs e)
@@ -185,7 +185,7 @@ namespace TutteeFrame
         }
         private void btnLogout_Click(object sender, EventArgs e)
         {
-            btnShowMore.Icon.RotateFlip(RotateFlipType.Rotate180FlipNone);    
+            btnShowMore.Icon.RotateFlip(RotateFlipType.Rotate180FlipNone);
             isExpand = false;
             this.Hide();
             isLogin = false;
@@ -1713,7 +1713,25 @@ namespace TutteeFrame
                     btnUpdatePunishment.Text = "Thêm kỉ luật";
                 else
                     btnUpdatePunishment.Text = "Cập nhật";
-            }    
+            }
+        }
+
+        private void tbpgProfile_Resize(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbpgProfile_SizeChanged(object sender, EventArgs e)
+        {
+            label7.Text = tbpgProfile.Width.ToString() + " ; " + (panel1.Width + panel1.Location.X).ToString();
+            if (tbpgProfile.Width < 1055)
+            {
+                panel1.Location = new Point(238, 535);
+            }
+            else /*if (panel1.Location.X == 238 && panel1.Location.Y == 535)*/
+            {
+                panel1.Location = new Point(649, 16);
+            }
         }
 
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
