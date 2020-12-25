@@ -1765,16 +1765,20 @@ namespace TutteeFrame
             lbTittle.Text = mainTabControl.SelectedTab.Text;
             if (!firstLoad && !reloading)
             {
+                bool success = false;
                 BackgroundWorker worker = new BackgroundWorker();
                 worker.DoWork += (s, ev) =>
                 {
                     reloading = true;
-                    teacherController.LoadUsingTeacher(teacherController.usingTeacher.ID);
+                    success = teacherController.LoadUsingTeacher(teacherController.usingTeacher.ID);
                 };
                 worker.RunWorkerCompleted += (s, ev) =>
                 {
-                    LoadTabpageInfor();
-                    LoadData();
+                    if (success)
+                    {
+                        LoadTabpageInfor();
+                        LoadData();
+                    }
                     reloading = false;
                 };
                 worker.RunWorkerAsync();
