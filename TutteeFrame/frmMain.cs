@@ -33,6 +33,7 @@ namespace TutteeFrame
         BackgroundWorker checkLogin;
         public bool isChildShowing;
         bool isLogin = false;
+        bool isExpand = false;
         public bool ProgressSuccess { get; set; }
         #endregion
 
@@ -154,21 +155,38 @@ namespace TutteeFrame
 
         #region Panel Profile Function
         private void TogglePanelProfile(object sender, EventArgs e)
-        {
-            btnShowMore.Icon.RotateFlip(RotateFlipType.Rotate180FlipNone);
-            if (pnProfile.Size.Height > 70)
-                pnProfile.Size = new Size(pnProfile.Size.Width, 70);
+        {            
+         
+            //if (pnProfile.Size.Height > 70)
+            if(isExpand)
+            {
+                btnShowMore.Icon.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                pnProfile.Size = new Size(pnProfile.Size.Width, 70);                
+                isExpand = false;
+            }              
             else
+            {
+                btnShowMore.Icon.RotateFlip(RotateFlipType.Rotate180FlipNone);
                 pnProfile.Size = new Size(pnProfile.Size.Width, 250);
+                isExpand = true;
+            }
+                
             pnProfile.Invalidate();
         }
         private void panel1_Leave(object sender, EventArgs e)
         {
             if (pnProfile.Size.Height > 70)
+            {
                 pnProfile.Size = new Size(pnProfile.Size.Width, 70);
+                btnShowMore.Icon.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                isExpand = false;
+            }
+
         }
         private void btnLogout_Click(object sender, EventArgs e)
         {
+            btnShowMore.Icon.RotateFlip(RotateFlipType.Rotate180FlipNone);    
+            isExpand = false;
             this.Hide();
             isLogin = false;
             this.Size = new Size(1400, 750);
