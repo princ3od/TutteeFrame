@@ -230,6 +230,17 @@
             this.lbTotalTeachingClassTittle = new System.Windows.Forms.Label();
             this.lbTotalSubjectTittle = new System.Windows.Forms.Label();
             this.lbTittle = new System.Windows.Forms.Label();
+            this.btnDeletePunishment = new Material_Design_for_Winform.MaterialRaisedButton();
+            this.btnUpdatePunishment = new Material_Design_for_Winform.MaterialRaisedButton();
+            this.listViewPunishment = new MaterialSkin.Controls.MaterialListView();
+            this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader22 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader23 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader24 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader25 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader26 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.mainTabControl.SuspendLayout();
             this.tbpgProfile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox16)).BeginInit();
@@ -250,6 +261,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridviewStudentScore)).BeginInit();
             this.tbpgSubjectManagment.SuspendLayout();
             this.tbpgClassManagment.SuspendLayout();
+            this.tbpgPunishmentManagment.SuspendLayout();
             this.tbpgReport.SuspendLayout();
             this.tbpgFormClass.SuspendLayout();
             this.tbpgTeacherAssignment.SuspendLayout();
@@ -2044,12 +2056,15 @@
             // 
             // tbpgPunishmentManagment
             // 
+            this.tbpgPunishmentManagment.Controls.Add(this.btnDeletePunishment);
+            this.tbpgPunishmentManagment.Controls.Add(this.btnUpdatePunishment);
+            this.tbpgPunishmentManagment.Controls.Add(this.listViewPunishment);
             this.tbpgPunishmentManagment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbpgPunishmentManagment.Location = new System.Drawing.Point(4, 22);
             this.tbpgPunishmentManagment.Name = "tbpgPunishmentManagment";
             this.tbpgPunishmentManagment.Size = new System.Drawing.Size(1147, 596);
             this.tbpgPunishmentManagment.TabIndex = 9;
-            this.tbpgPunishmentManagment.Text = "Kỉ luật";
+            this.tbpgPunishmentManagment.Text = "Quản lí kỉ luật";
             this.tbpgPunishmentManagment.UseVisualStyleBackColor = true;
             // 
             // tbpgReport
@@ -2920,6 +2935,127 @@
             this.lbTittle.TabIndex = 27;
             this.lbTittle.Text = "Thông tin tài khoản";
             // 
+            // btnDeletePunishment
+            // 
+            this.btnDeletePunishment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeletePunishment.BackColor = System.Drawing.Color.Transparent;
+            this.btnDeletePunishment.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnDeletePunishment.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnDeletePunishment.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnDeletePunishment.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.btnDeletePunishment.Enabled = false;
+            this.btnDeletePunishment.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeletePunishment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.btnDeletePunishment.Icon = null;
+            this.btnDeletePunishment.Location = new System.Drawing.Point(813, 471);
+            this.btnDeletePunishment.Name = "btnDeletePunishment";
+            this.btnDeletePunishment.Radius = 2;
+            this.btnDeletePunishment.ShadowDepth = 3;
+            this.btnDeletePunishment.ShadowOpacity = 35;
+            this.btnDeletePunishment.Size = new System.Drawing.Size(142, 52);
+            this.btnDeletePunishment.TabIndex = 19;
+            this.btnDeletePunishment.Text = "Xóa";
+            this.btnDeletePunishment.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnDeletePunishment.Click += new System.EventHandler(this.DeletePunishment);
+            // 
+            // btnUpdatePunishment
+            // 
+            this.btnUpdatePunishment.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnUpdatePunishment.BackColor = System.Drawing.Color.Transparent;
+            this.btnUpdatePunishment.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnUpdatePunishment.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnUpdatePunishment.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnUpdatePunishment.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.btnUpdatePunishment.Enabled = false;
+            this.btnUpdatePunishment.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdatePunishment.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.btnUpdatePunishment.Icon = null;
+            this.btnUpdatePunishment.Location = new System.Drawing.Point(149, 471);
+            this.btnUpdatePunishment.Name = "btnUpdatePunishment";
+            this.btnUpdatePunishment.Radius = 2;
+            this.btnUpdatePunishment.ShadowDepth = 3;
+            this.btnUpdatePunishment.ShadowOpacity = 35;
+            this.btnUpdatePunishment.Size = new System.Drawing.Size(154, 52);
+            this.btnUpdatePunishment.TabIndex = 18;
+            this.btnUpdatePunishment.Text = "Cập nhật";
+            this.btnUpdatePunishment.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnUpdatePunishment.Click += new System.EventHandler(this.UpdatePunishment);
+            // 
+            // listViewPunishment
+            // 
+            this.listViewPunishment.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.listViewPunishment.AutoSizeTable = false;
+            this.listViewPunishment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.listViewPunishment.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listViewPunishment.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader18,
+            this.columnHeader19,
+            this.columnHeader21,
+            this.columnHeader22,
+            this.columnHeader23,
+            this.columnHeader25,
+            this.columnHeader24,
+            this.columnHeader26});
+            this.listViewPunishment.Depth = 0;
+            this.listViewPunishment.Font = new System.Drawing.Font("Segoe UI", 25F);
+            this.listViewPunishment.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.listViewPunishment.FullRowSelect = true;
+            this.listViewPunishment.HideSelection = false;
+            this.listViewPunishment.Location = new System.Drawing.Point(19, 74);
+            this.listViewPunishment.MinimumSize = new System.Drawing.Size(200, 100);
+            this.listViewPunishment.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.listViewPunishment.MouseState = MaterialSkin.MouseState.OUT;
+            this.listViewPunishment.Name = "listViewPunishment";
+            this.listViewPunishment.OwnerDraw = true;
+            this.listViewPunishment.Size = new System.Drawing.Size(1108, 391);
+            this.listViewPunishment.TabIndex = 17;
+            this.listViewPunishment.UseCompatibleStateImageBehavior = false;
+            this.listViewPunishment.View = System.Windows.Forms.View.Details;
+            this.listViewPunishment.SelectedIndexChanged += new System.EventHandler(this.listViewPunishment_SelectedIndexChanged);
+            // 
+            // columnHeader18
+            // 
+            this.columnHeader18.Text = "STT";
+            // 
+            // columnHeader19
+            // 
+            this.columnHeader19.Text = "Mã vi phạm";
+            this.columnHeader19.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader19.Width = 110;
+            // 
+            // columnHeader21
+            // 
+            this.columnHeader21.Text = "Mã học sinh";
+            this.columnHeader21.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.columnHeader21.Width = 110;
+            // 
+            // columnHeader22
+            // 
+            this.columnHeader22.Text = "Họ tên";
+            this.columnHeader22.Width = 200;
+            // 
+            // columnHeader23
+            // 
+            this.columnHeader23.Text = "Học kì";
+            this.columnHeader23.Width = 80;
+            // 
+            // columnHeader24
+            // 
+            this.columnHeader24.Text = "Lỗi vi phạm";
+            this.columnHeader24.Width = 281;
+            // 
+            // columnHeader25
+            // 
+            this.columnHeader25.Text = "Lớp";
+            this.columnHeader25.Width = 68;
+            // 
+            // columnHeader26
+            // 
+            this.columnHeader26.Text = "Hình thức kỉ luật";
+            this.columnHeader26.Width = 189;
+            // 
             // frmMain
             // 
             this.ClientSize = new System.Drawing.Size(1400, 750);
@@ -2965,6 +3101,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.gridviewStudentScore)).EndInit();
             this.tbpgSubjectManagment.ResumeLayout(false);
             this.tbpgClassManagment.ResumeLayout(false);
+            this.tbpgPunishmentManagment.ResumeLayout(false);
             this.tbpgReport.ResumeLayout(false);
             this.tbpgFormClass.ResumeLayout(false);
             this.tbpgFormClass.PerformLayout();
@@ -3180,5 +3317,16 @@
         private System.Windows.Forms.ColumnHeader columnHeader16;
         private System.Windows.Forms.ColumnHeader columnHeader20;
         private System.Windows.Forms.ColumnHeader columnHeader17;
+        private Material_Design_for_Winform.MaterialRaisedButton btnDeletePunishment;
+        private Material_Design_for_Winform.MaterialRaisedButton btnUpdatePunishment;
+        private MaterialSkin.Controls.MaterialListView listViewPunishment;
+        private System.Windows.Forms.ColumnHeader columnHeader18;
+        private System.Windows.Forms.ColumnHeader columnHeader19;
+        private System.Windows.Forms.ColumnHeader columnHeader21;
+        private System.Windows.Forms.ColumnHeader columnHeader22;
+        private System.Windows.Forms.ColumnHeader columnHeader23;
+        private System.Windows.Forms.ColumnHeader columnHeader25;
+        private System.Windows.Forms.ColumnHeader columnHeader24;
+        private System.Windows.Forms.ColumnHeader columnHeader26;
     }
 }

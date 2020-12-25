@@ -1,15 +1,10 @@
 ﻿using LiveCharts;
 using LiveCharts.Wpf;
-using MetroFramework.Forms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TutteeFrame.Controller;
 using TutteeFrame.Model;
@@ -18,7 +13,7 @@ using System.Drawing.Imaging;
 
 namespace TutteeFrame
 {
-    public partial class frmChart : MetroForm
+    public partial class frmChart : Form
     {
         bool loadFast = true;
         double[] scoreSeprate = { 1.1, 2.1, 3.1, 4.1, 5.1, 6.1, 7.1, 8.1, 8.6, 9.1, 9.6, 10.0 };
@@ -26,6 +21,8 @@ namespace TutteeFrame
         ClassController classController;
         StudentController studentController;
         ScoreController scoreController;
+        enum MenuState { Show, Hide };
+        MenuState menuState;
         public frmChart()
         {
             InitializeComponent();
@@ -37,6 +34,7 @@ namespace TutteeFrame
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
+            menuState = MenuState.Show;
             swtFastRespond.Location = new Point(swtFastRespond.Location.X, swtFastRespond.Location.Y - listClass.Height - cbbDetailType.Height);
             btnOK.Location = new Point(btnOK.Location.X, btnOK.Location.Y - listClass.Height - cbbDetailType.Height);
             btnExport.Location = new Point(btnExport.Location.X, btnExport.Location.Y - listClass.Height - cbbDetailType.Height);
@@ -392,8 +390,10 @@ namespace TutteeFrame
                     worker.RunWorkerCompleted += (s, ev) =>
                     {
                         if (!canLoad)
-                            MessageBox.Show("Không đủ điểm!");
-                        MessageBox.Show("Done");
+                        {
+                            MetroMessageBox.Show(this, "Chưa đủ thông tin để tạo biểu đồ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            return;
+                        }
                         EnableControl(true);
                     };
                 }
@@ -440,7 +440,6 @@ namespace TutteeFrame
                                 chartValues.Add(score);
                             }
                         }
-
                     };
                     worker.RunWorkerCompleted += (s, ev) =>
                     {
@@ -526,7 +525,7 @@ namespace TutteeFrame
                         if (!canLoad)
                         {
                             MetroMessageBox.Show(this, "Chưa đủ thông tin để tạo biểu đồ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            //return;
+                            return;
                         }
                         QuickSort(chartValues, classIDs, 0, chartValues.Count - 1);
                         mainChart.AxisY = new AxesCollection
@@ -759,6 +758,31 @@ namespace TutteeFrame
         {
             if (loadFast)
                 LoadChart(btnOK, EventArgs.Empty);
+        }
+
+        private void ToggleMenu(object sender, EventArgs e)
+        {
+            switch (menuState)
+            {
+                case MenuState.Show:
+                    foreach (Control control in this.Controls)
+                    {
+                        control.Location = new Point(control.Location.X - 360, control.Location.Y);
+                    }
+                    mainChart.Size = new Size(mainChart.Width + 360, mainChart.Height);
+                    menuState = MenuState.Hide;
+                    break;
+                case MenuState.Hide:
+                    foreach (Control control in this.Controls)
+                    {
+                        control.Location = new Point(control.Location.X + 360, control.Location.Y);
+                    }
+                    mainChart.Size = new Size(mainChart.Width - 360, mainChart.Height);
+                    menuState = MenuState.Show;
+                    break;
+                default:
+                    break;
+            }
         }
     }
 }
