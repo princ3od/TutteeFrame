@@ -233,7 +233,7 @@ namespace TutteeFrame.DataAccess
                     "Address= @address," +
                     "Phonne = @phone," +
                     "ClassID =@classid, " +
-                    "Status = @status," +
+                    "Status = @status" +
                     $" WHERE StudentID = @studentid";
                 using (SqlCommand sqlCommand = new SqlCommand(query, connection))
                 {
