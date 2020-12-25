@@ -1610,20 +1610,7 @@ namespace TutteeFrame
             if (mainTabControl.SelectedTab == null)
                 return;
             lbTittle.Text = mainTabControl.SelectedTab.Text;
-            if (!firstLoad)
-            {
-                BackgroundWorker worker = new BackgroundWorker();
-                worker.DoWork += (s, ev) =>
-                {
-                    teacherController.LoadUsingTeacher(teacherController.usingTeacher.ID);
-                };
-                worker.RunWorkerCompleted += (s, ev) =>
-                {
-                    LoadTabpageInfor();
-                    LoadData();
-                };
-                worker.RunWorkerAsync();
-            }
+           
         }
     }
 }
