@@ -52,6 +52,7 @@ namespace TutteeFrame
             classController = new ClassController();
             subjectController = new SubjectController();
             scoreController = new ScoreController();
+
         }
 
         #region Form Event
@@ -176,6 +177,7 @@ namespace TutteeFrame
         #region Panel Profile Function
         private void TogglePanelProfile(object sender, EventArgs e)
         {
+            btnShowMore.Icon.RotateFlip(RotateFlipType.Rotate180FlipNone);
             if (pnProfile.Size.Height > 70)
                 pnProfile.Size = new Size(pnProfile.Size.Width, 70);
             else
@@ -1529,6 +1531,13 @@ namespace TutteeFrame
             frmChart.Owner = this;
             frmChart.Show();
             frmChart.FormClosed += (s, ev) => { isChildShowing = false; };
+        }
+
+        private void btnSetting_Click(object sender, EventArgs e)
+        {
+            frmSetting frmSetting = new frmSetting();
+            OverlayForm overlay = new OverlayForm(this, frmSetting);
+            frmSetting.Show();
         }
 
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
