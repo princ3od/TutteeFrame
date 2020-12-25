@@ -333,10 +333,8 @@ namespace TutteeFrame
                         loader.DoWork += (s, e) =>
                         {
                             loader.ReportProgress(0, "Đang tải danh sách môn học...");
-                            Thread.Sleep(200);
                             subjects = subjectController.LoadSubjects();
                             loader.ReportProgress(0, "Đang tải danh sách giáo viên...");
-                            Thread.Sleep(200);
                             teachers = teacherController.GetAllTeachers();
                             teacherController.GetTeacherNumber(out totalTeacher, out totalMinistry, out totalAdmin);
                         };
@@ -487,7 +485,6 @@ namespace TutteeFrame
             }
             worker.DoWork += (s, ev) =>
             {
-                Thread.Sleep(200);
                 foreach (KeyValuePair<int, string> index in indexToDelete)
                 {
                     idToDel = index.Value;
@@ -554,7 +551,6 @@ namespace TutteeFrame
                 worker.DoWork += (s, e) =>
                 {
                     teachers = teacherController.GetAllTeachers();
-                    Thread.Sleep(200);
                 };
                 worker.RunWorkerCompleted += (s, e) =>
                 {
@@ -674,7 +670,6 @@ namespace TutteeFrame
             int numStudent = 0;
             studentController.CountNumberOfStudent(ref numStudent);
             studentLoader.ReportProgress(90, numStudent.ToString());
-            Thread.Sleep(200);
         }
         private void ShowListBackGroundWork_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
@@ -730,7 +725,6 @@ namespace TutteeFrame
             worker.DoWork += (s, e) =>
             {
                 classes = classController.GetClass(khoiSelected);
-                Thread.Sleep(200);
             };
             worker.RunWorkerCompleted += (s, e) =>
             {
@@ -987,7 +981,6 @@ namespace TutteeFrame
             updater.DoWork += (s, e) =>
             {
                 success = scoreController.UpdateStudentScore(gridviewStudentScore.Rows, mainTeacher.Subject.ID, _semes, grade);
-                Thread.Sleep(200);
             };
             updater.RunWorkerCompleted += (s, e) =>
             {
@@ -1134,7 +1127,6 @@ namespace TutteeFrame
             loader.DoWork += (s, e) =>
             {
                 loader.ReportProgress(0, "Đang tải danh sách môn học...");
-                Thread.Sleep(200);
                 subjects = subjectController.LoadSubjects();
             };
             loader.RunWorkerCompleted += (s, e) =>
@@ -1222,7 +1214,6 @@ namespace TutteeFrame
             {
                 classes = classController.GetClass(selectedGrade);
                 doneClass = classController.GetDoneClasses();
-                Thread.Sleep(200);
             };
             loader.RunWorkerCompleted += (s, e) =>
             {
@@ -1275,7 +1266,6 @@ namespace TutteeFrame
             {
                 classBackgroundWorker.DoWork += (s, e) =>
                 {
-                    Thread.Sleep(200);
                     classController.GetAllClass(lvClass);
                 };
             }
@@ -1284,7 +1274,6 @@ namespace TutteeFrame
                 string strGradeClass = cbbGradeClass.Text;
                 classBackgroundWorker.DoWork += (s, e) =>
                 {
-                    Thread.Sleep(200);
                     lvClass = classController.GetClass(strGradeClass);
                 };
             }
@@ -1377,10 +1366,8 @@ namespace TutteeFrame
                 if (deletable)
                 {
                     success = new TeachingController().DeleteTeaching(deletedClassID);
-                    Thread.Sleep(300);
                     success = classController.DeletedClass(deletedClassID);
                 }
-                Thread.Sleep(100);
             };
             deleter.RunWorkerCompleted += (s, e) =>
             {
@@ -1416,7 +1403,6 @@ namespace TutteeFrame
             loader.DoWork += (s, e) =>
             {
                 loader.ReportProgress(0, "Đang tải danh sách học sinh lớp chủ nhiệm...");
-                Thread.Sleep(200);
                 classController.LoadClass(mainTeacher.FormClassID, _class);
                 students = studentController.GetStudents(mainTeacher.FormClassID);
                 int grade = Int32.Parse(mainTeacher.FormClassID.Substring(0, 2));
