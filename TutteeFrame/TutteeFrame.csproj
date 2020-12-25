@@ -117,6 +117,12 @@
     <Compile Include="Controller\MainController.cs" />
     <Compile Include="Controller\PunishmentController.cs" />
     <Compile Include="DataAccess\PunishmentDA.cs" />
+    <Compile Include="View\frmSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\frmSetting.Designer.cs">
+      <DependentUpon>frmSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\Punishment.cs" />
     <Compile Include="Model\ResultObject.cs" />
     <Compile Include="Model\Reward.cs" />
@@ -268,6 +274,9 @@
     <Compile Include="View\frmViewStudent.Designer.cs">
       <DependentUpon>frmViewStudent.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\frmSetting.resx">
+      <DependentUpon>frmSetting.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\frmChart.resx">
       <DependentUpon>frmChart.cs</DependentUpon>
     </EmbeddedResource>
