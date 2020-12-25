@@ -368,7 +368,6 @@ namespace TutteeFrame
                     }
                     break;
                 case Teacher.TeacherType.Ministry:
-                    LoadPunishmentList();
                     loader.RunWorkerCompleted += (s, e) =>
                     {
                         cbbGradeClass.SelectedIndex = 0;
@@ -1555,53 +1554,6 @@ namespace TutteeFrame
             };
         }
         #endregion
-        #region Tabpage Quản lí kỉ luật
-        void LoadPunishmentList()
-        {
-            List<Punishment> punishments = new List<Punishment>();
-            List<string> studentName = new List<string>();
-            List<string> classID = new List<string>();
-            loader.DoWork += (s, ev) =>
-            {
-                if (firstLoad)
-                    loader.ReportProgress(0, "Đang tải danh sách vi phạm...");
-                punishments = punishmentController.GetPunishments();
-                for (int i = 0; i < punishments.Count; i++)
-                {
-                    Student student = new Student();
-                    bool success = studentController.LoadStudentInformationById(punishments[i].StudentID, student);
-                    if (success)
-                    {
-                        studentName.Add(student.GetName());
-                        classID.Add(student.ClassID);
-                    }
-                    else
-                    {
-                        studentName.Add("");
-                        classID.Add("");
-                    }
-                }
-            };
-            loader.RunWorkerCompleted += (s, ev) =>
-            {
-                listViewPunishment.Items.Clear();
-                for (int i = 0; i < punishments.Count; i++)
-                {
-                    listViewPunishment.Items.Add(new ListViewItem(new string[]
-                        {
-                            (i + 1).ToString(),
-                            punishments[i].ID,
-                            punishments[i].StudentID,
-                            studentName[i],
-                            classID[i],
-                            punishments[i].Semester.ToString(),
-                            punishments[i].Fault,
-                            punishments[i].Content
-                        }));
-                }
-            };
-        }
-        #endregion
         private void ShowReportForm(object sender, EventArgs e)
         {
         }
@@ -1670,87 +1622,13 @@ namespace TutteeFrame
             OverlayForm overlay = new OverlayForm(this, frmSetting);
             frmSetting.Show();
         }
-        bool reloading = false;
-
-        private void UpdatePunishment(object sender, EventArgs e)
-        {
-            frmStudentFault frmStudentFault = new frmStudentFault(listViewPunishment.SelectedItems[0].SubItems[2].Text, frmStudentFault.Mode.Edit, frmStudentFault.OpenMode.Full, listViewPunishment.SelectedItems[0].SubItems[1].Text);
-            OverlayForm overlayForm = new OverlayForm(this, frmStudentFault, 0.5f);
-            frmStudentFault.FormClosed += (s, ev) =>
-            {
-                loader = new BackgroundWorker();
-                LoadPunishmentList();
-                loader.RunWorkerAsync();
-            };
-            frmStudentFault.Show();
-        }
-
-        private void DeletePunishment(object sender, EventArgs e)
-        {
-
-            string deletedPunishmentID = listViewPunishment.SelectedItems[0].SubItems[1].Text;
-            if (MetroMessageBox.Show(this, "Xác nhận xóa vi phạm có mã " + deletedPunishmentID + " ?", "Xác nhận", MessageBoxButtons.YesNo,
-                              MessageBoxIcon.None) == DialogResult.No)
-                return;
-            BackgroundWorker deleter = new BackgroundWorker();
-            bool success = false;
-            lbInformation.Visible = mainProgressbar.Visible = true;
-            lbInformation.Text = "Đang xóa vi phạm...";
-            deleter.DoWork += (s, e) =>
-            {
-                success = punishmentController.DeletePunishment(deletedPunishmentID);
-
-            };
-            deleter.RunWorkerCompleted += (s, e) =>
-            {
-                lbInformation.Visible = mainProgressbar.Visible = false;
-                if (success)
-                {
-                    MetroMessageBox.Show(this, "Xoá thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    loader = new BackgroundWorker();
-                    LoadFaultList();
-                    loader.RunWorkerAsync();
-                }
-                else
-                    MetroMessageBox.Show(this, "Xoá thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            };
-            deleter.RunWorkerAsync();
-        }
-
-        private void listViewPunishment_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            btnUpdatePunishment.Enabled = btnDeletePunishment.Enabled = (listViewPunishment.SelectedItems.Count > 0);
-
-            if (btnUpdatePunishment.Enabled)
-            {
-                if (string.IsNullOrEmpty(listViewPunishment.SelectedItems[0].SubItems[7].Text))
-                    btnUpdatePunishment.Text = "Thêm kỉ luật";
-                else
-                    btnUpdatePunishment.Text = "Cập nhật";
-            }    
-        }
 
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (mainTabControl.SelectedTab == null)
                 return;
             lbTittle.Text = mainTabControl.SelectedTab.Text;
-            if (!firstLoad && !reloading)
-            {
-                BackgroundWorker worker = new BackgroundWorker();
-                worker.DoWork += (s, ev) =>
-                {
-                    reloading = true;
-                    teacherController.LoadUsingTeacher(teacherController.usingTeacher.ID);
-                };
-                worker.RunWorkerCompleted += (s, ev) =>
-                {
-                    LoadTabpageInfor();
-                    LoadData();
-                    reloading = false;
-                };
-                worker.RunWorkerAsync();
-            }
+           
         }
     }
 }
