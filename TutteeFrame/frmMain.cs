@@ -1361,7 +1361,7 @@ namespace TutteeFrame
                 return;
             }
             string deletedClassID = listViewClass.SelectedItems[0].SubItems[1].Text;
-            if (MetroMessageBox.Show(this, "Xác nhận xóa lớp" + deletedClassID + "?", "Xác nhận", MessageBoxButtons.YesNo,
+            if (MetroMessageBox.Show(this, "Xác nhận xóa lớp " + deletedClassID + "?", "Xác nhận", MessageBoxButtons.YesNo,
                               MessageBoxIcon.None) == DialogResult.No)
                 return;
             BackgroundWorker deleter = new BackgroundWorker();
