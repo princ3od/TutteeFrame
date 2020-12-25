@@ -9,12 +9,13 @@ namespace TutteeFrame.DataAccess
     {
 
         #region Variables
-        private static string connectionString;
+        public static string connectionString;
 
         protected SqlConnection connection;
         protected string strQuery;
         #endregion
 
+        public enum ConnectionType { Server, Local };
         #region Server Function
         /// <summary>
         /// Hàm thực hiện kết nối ban đầu, nếu thành công sẽ lưu lại chuỗi kết nối.
@@ -24,13 +25,11 @@ namespace TutteeFrame.DataAccess
         /// <param name="_userid"></param>
         /// <param name="_pass"></param>
         /// <returns> Việc kết nối đến server lúc đầu có thành công hay không. </returns>
-        public bool Test(string _server, string _port, string _userid, string _pass)
+        public bool CreateConnect(string _server, string _port, string _userid, string _pass)
         {
             bool success = true;
             string strConnect = string.Format(Properties.Settings.Default.ServerConnectionString,
                    _server, _port, _userid, _pass);
-            //Đổi chuỗi kết nối ở dưới để test
-            //string strConnect = @"Data Source=PRINC3-LAPTOP\SQLEXPRESS;Initial Catalog=TutteeFrame;Integrated Security=True";
             try
             {
                 connection = new SqlConnection(strConnect);
@@ -38,15 +37,41 @@ namespace TutteeFrame.DataAccess
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message);
+                //MessageBox.Show(e.Message);
                 return false;
             }
+            finally
+            {
+                if (connection != null && connection.State == ConnectionState.Open)
+                    connection.Close();
+            }
             connectionString = strConnect;
-            if (connection != null && connection.State == ConnectionState.Open)
-                connection.Close();
             return success;
         }
 
+        public bool CreateLocalConnect()
+        {
+            bool success = true;
+
+            string strConnect = Properties.Settings.Default.LocalConnectionString;
+            try
+            {
+                connection = new SqlConnection(strConnect);
+                connection.Open();
+            }
+            catch (Exception e)
+            {
+                //MessageBox.Show(e.Message);
+                return false;
+            }
+            finally
+            {
+                if (connection != null && connection.State == ConnectionState.Open)
+                    connection.Close();
+            }
+            connectionString = strConnect;
+            return success;
+        }
         /// <summary>
         /// Hàm mở kết nối đến server.
         /// </summary>
@@ -63,6 +88,7 @@ namespace TutteeFrame.DataAccess
             {
                 success = false;
             }
+
             return success;
         }
         /// <summary>

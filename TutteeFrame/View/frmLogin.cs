@@ -193,7 +193,7 @@ namespace TutteeFrame
         private void btnChooseServer_Click(object sender, EventArgs e)
         {
             frmChooseServer frmChooseServer = new frmChooseServer();
-            OverlayForm overlayForm = new OverlayForm(this, frmChooseServer);
+            OverlayForm overlayForm = new OverlayForm(this, frmChooseServer, setChild: false);
             frmChooseServer.Show();
         }
     }

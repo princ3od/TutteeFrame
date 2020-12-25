@@ -97,17 +97,43 @@ namespace TutteeFrame
             LoadAfterLogin();
             isLogin = true;
             checkLogin = new BackgroundWorker();
+            checkLogin.WorkerReportsProgress = true;
             checkLogin.WorkerSupportsCancellation = true;
+            int flag = 1, preFlag = 1;
+            bool reconnecting = false;
             checkLogin.DoWork += (s, ev) =>
             {
+                frmReconnecting frmReconnecting = new frmReconnecting();
                 bool needLogout = false;
                 AccountController accountController = new AccountController();
                 while (!needLogout && isLogin)
                 {
                     while (isChildShowing) ;
-                    if (!accountController.CheckSession())
-                        needLogout = true;
+                    if (!accountController.CheckSession(ref flag))
+                        if (flag != 0)
+                            needLogout = true;
+                    if (preFlag != flag)
+                    {
+                        checkLogin.ReportProgress(0);
+                        preFlag = flag;
+                    }
                     Thread.Sleep(2000);
+                }
+            };
+            frmReconnecting frmReconnecting = new frmReconnecting();
+            checkLogin.ProgressChanged += (s, ev) =>
+            {
+                if (flag == 0 && !reconnecting)
+                {
+                    reconnecting = true;
+                    frmReconnecting = new frmReconnecting();
+                    OverlayForm overlayForm = new OverlayForm(this, frmReconnecting, 0.65f, 10, false);
+                    frmReconnecting.Show();
+                }
+                else if (reconnecting)
+                {
+                    reconnecting = false;
+                    frmReconnecting.Close();
                 }
             };
             checkLogin.RunWorkerCompleted += (s, ev) =>
@@ -1538,6 +1564,7 @@ namespace TutteeFrame
             };
         }
         #endregion
+
         #region Tabpage Quản lí kỉ luật
         void LoadPunishmentList()
         {

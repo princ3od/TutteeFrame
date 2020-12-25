@@ -62,6 +62,7 @@ namespace TutteeFrame
             Write("RememberMe", "FALSE", "Application");
             Write("LastID", "", "Application");
             Write("LastPass", "", "Application");
+            Write("ConnectionType", "Server", "Application");
         }
     }
 }

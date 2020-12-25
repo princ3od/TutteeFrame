@@ -211,7 +211,7 @@ namespace TutteeFrame.DataAccess
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.ToString());
+                //MessageBox.Show(e.ToString());
                 return false;
             }
             finally

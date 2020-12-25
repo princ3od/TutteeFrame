@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmChooseServer));
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.btnConfirm = new Material_Design_for_Winform.MaterialRaisedButton();
             this.txtPassword = new Material_Design_for_Winform.MaterialTextField();
             this.txtAccount = new Material_Design_for_Winform.MaterialTextField();
@@ -39,27 +38,22 @@
             this.btnAcept = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnExit = new MaterialSkin.Controls.MaterialButton();
+            this.rbtnConnectServer = new MaterialSkin.Controls.MaterialRadioButton();
+            this.rbtnConnectLocal = new MaterialSkin.Controls.MaterialRadioButton();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtConnectionString = new Material_Design_for_Winform.MaterialTextField();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI Semilight", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(97, 42);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(52, 44);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(153, 30);
+            this.label1.Size = new System.Drawing.Size(228, 30);
             this.label1.TabIndex = 2;
-            this.label1.Text = "CHỌN SERVER";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Semilight", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(111, 213);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(115, 30);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "XÁC THỰC";
+            this.label1.Text = "KẾT NỐI SERVER (LAN)";
+            this.label1.Click += new System.EventHandler(this.ChooseServer);
             // 
             // btnConfirm
             // 
@@ -69,7 +63,7 @@
             this.btnConfirm.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfirm.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnConfirm.Icon = null;
-            this.btnConfirm.Location = new System.Drawing.Point(88, 371);
+            this.btnConfirm.Location = new System.Drawing.Point(218, 372);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Radius = 2;
             this.btnConfirm.ShadowDepth = 3;
@@ -89,7 +83,7 @@
             this.txtPassword.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtPassword.HideSelection = true;
             this.txtPassword.HintText = "có thể trống";
-            this.txtPassword.Location = new System.Drawing.Point(76, 312);
+            this.txtPassword.Location = new System.Drawing.Point(291, 128);
             this.txtPassword.MaxLength = 32767;
             this.txtPassword.Multiline = false;
             this.txtPassword.Name = "txtPassword";
@@ -97,7 +91,7 @@
             this.txtPassword.ReadOnly = false;
             this.txtPassword.ShortcutsEnable = true;
             this.txtPassword.ShowCaret = true;
-            this.txtPassword.Size = new System.Drawing.Size(200, 43);
+            this.txtPassword.Size = new System.Drawing.Size(230, 43);
             this.txtPassword.Style = Material_Design_for_Winform.MaterialTextField.ST.HasFloatingLabel;
             this.txtPassword.TabIndex = 4;
             this.txtPassword.UseSystemPasswordChar = true;
@@ -112,7 +106,7 @@
             this.txtAccount.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtAccount.HideSelection = true;
             this.txtAccount.HintText = "";
-            this.txtAccount.Location = new System.Drawing.Point(76, 261);
+            this.txtAccount.Location = new System.Drawing.Point(47, 128);
             this.txtAccount.MaxLength = 32767;
             this.txtAccount.Multiline = false;
             this.txtAccount.Name = "txtAccount";
@@ -120,7 +114,7 @@
             this.txtAccount.ReadOnly = false;
             this.txtAccount.ShortcutsEnable = true;
             this.txtAccount.ShowCaret = true;
-            this.txtAccount.Size = new System.Drawing.Size(200, 43);
+            this.txtAccount.Size = new System.Drawing.Size(209, 43);
             this.txtAccount.Style = Material_Design_for_Winform.MaterialTextField.ST.HasFloatingLabel;
             this.txtAccount.TabIndex = 3;
             this.txtAccount.UseSystemPasswordChar = false;
@@ -135,7 +129,7 @@
             this.txtPort.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtPort.HideSelection = true;
             this.txtPort.HintText = "Port number";
-            this.txtPort.Location = new System.Drawing.Point(76, 142);
+            this.txtPort.Location = new System.Drawing.Point(291, 79);
             this.txtPort.MaxLength = 32767;
             this.txtPort.Multiline = false;
             this.txtPort.Name = "txtPort";
@@ -143,7 +137,7 @@
             this.txtPort.ReadOnly = false;
             this.txtPort.ShortcutsEnable = true;
             this.txtPort.ShowCaret = true;
-            this.txtPort.Size = new System.Drawing.Size(200, 43);
+            this.txtPort.Size = new System.Drawing.Size(173, 43);
             this.txtPort.Style = Material_Design_for_Winform.MaterialTextField.ST.HasFloatingLabel;
             this.txtPort.TabIndex = 2;
             this.txtPort.UseSystemPasswordChar = false;
@@ -159,7 +153,7 @@
             this.txtServerName.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.txtServerName.HideSelection = true;
             this.txtServerName.HintText = "Có thể là địa chỉ IP";
-            this.txtServerName.Location = new System.Drawing.Point(76, 91);
+            this.txtServerName.Location = new System.Drawing.Point(47, 79);
             this.txtServerName.MaxLength = 32767;
             this.txtServerName.Multiline = false;
             this.txtServerName.Name = "txtServerName";
@@ -187,7 +181,7 @@
             // btnClose
             // 
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(10, 300);
+            this.btnClose.Location = new System.Drawing.Point(10, 306);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(1, 1);
             this.btnClose.TabIndex = 27;
@@ -204,7 +198,7 @@
             this.btnExit.DrawShadows = true;
             this.btnExit.HighEmphasis = true;
             this.btnExit.Icon = ((System.Drawing.Image)(resources.GetObject("btnExit.Icon")));
-            this.btnExit.Location = new System.Drawing.Point(307, 0);
+            this.btnExit.Location = new System.Drawing.Point(557, 0);
             this.btnExit.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnExit.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnExit.Name = "btnExit";
@@ -216,17 +210,85 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // rbtnConnectServer
+            // 
+            this.rbtnConnectServer.AutoSize = true;
+            this.rbtnConnectServer.Depth = 0;
+            this.rbtnConnectServer.Location = new System.Drawing.Point(20, 41);
+            this.rbtnConnectServer.Margin = new System.Windows.Forms.Padding(0);
+            this.rbtnConnectServer.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.rbtnConnectServer.MouseState = MaterialSkin.MouseState.HOVER;
+            this.rbtnConnectServer.Name = "rbtnConnectServer";
+            this.rbtnConnectServer.Ripple = true;
+            this.rbtnConnectServer.Size = new System.Drawing.Size(35, 37);
+            this.rbtnConnectServer.TabIndex = 29;
+            this.rbtnConnectServer.TabStop = true;
+            this.rbtnConnectServer.UseVisualStyleBackColor = true;
+            this.rbtnConnectServer.CheckedChanged += new System.EventHandler(this.ConnectTypeChanged);
+            // 
+            // rbtnConnectLocal
+            // 
+            this.rbtnConnectLocal.AutoSize = true;
+            this.rbtnConnectLocal.Depth = 0;
+            this.rbtnConnectLocal.Location = new System.Drawing.Point(20, 210);
+            this.rbtnConnectLocal.Margin = new System.Windows.Forms.Padding(0);
+            this.rbtnConnectLocal.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.rbtnConnectLocal.MouseState = MaterialSkin.MouseState.HOVER;
+            this.rbtnConnectLocal.Name = "rbtnConnectLocal";
+            this.rbtnConnectLocal.Ripple = true;
+            this.rbtnConnectLocal.Size = new System.Drawing.Size(35, 37);
+            this.rbtnConnectLocal.TabIndex = 31;
+            this.rbtnConnectLocal.TabStop = true;
+            this.rbtnConnectLocal.UseVisualStyleBackColor = true;
+            this.rbtnConnectLocal.CheckedChanged += new System.EventHandler(this.ConnectTypeChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(52, 213);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(159, 30);
+            this.label2.TabIndex = 30;
+            this.label2.Text = "KẾT NỐI LOCAL";
+            this.label2.Click += new System.EventHandler(this.ChooseLocal);
+            // 
+            // txtConnectionString
+            // 
+            this.txtConnectionString.AutoScaleColor = true;
+            this.txtConnectionString.BackColor = System.Drawing.SystemColors.Control;
+            this.txtConnectionString.FloatingLabelText = "Chuỗi kết nối";
+            this.txtConnectionString.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.txtConnectionString.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.txtConnectionString.HideSelection = true;
+            this.txtConnectionString.HintText = "Nhập chuỗi kết nối của bạn tại đây";
+            this.txtConnectionString.Location = new System.Drawing.Point(47, 264);
+            this.txtConnectionString.MaxLength = 32767;
+            this.txtConnectionString.Multiline = true;
+            this.txtConnectionString.Name = "txtConnectionString";
+            this.txtConnectionString.PasswordChar = '\0';
+            this.txtConnectionString.ReadOnly = false;
+            this.txtConnectionString.ShortcutsEnable = true;
+            this.txtConnectionString.ShowCaret = true;
+            this.txtConnectionString.Size = new System.Drawing.Size(474, 89);
+            this.txtConnectionString.Style = Material_Design_for_Winform.MaterialTextField.ST.HasFloatingLabel;
+            this.txtConnectionString.TabIndex = 32;
+            this.txtConnectionString.UseSystemPasswordChar = false;
+            // 
             // frmChooseServer
             // 
             this.AcceptButton = this.btnAcept;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(350, 480);
+            this.ClientSize = new System.Drawing.Size(600, 450);
+            this.Controls.Add(this.txtConnectionString);
+            this.Controls.Add(this.rbtnConnectLocal);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.rbtnConnectServer);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnAcept);
             this.Controls.Add(this.btnConfirm);
-            this.Controls.Add(this.label2);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtAccount);
             this.Controls.Add(this.label1);
@@ -255,11 +317,14 @@
         private Material_Design_for_Winform.MaterialTextField txtServerName;
         private Material_Design_for_Winform.MaterialTextField txtPort;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private Material_Design_for_Winform.MaterialTextField txtPassword;
         private Material_Design_for_Winform.MaterialTextField txtAccount;
         private Material_Design_for_Winform.MaterialRaisedButton btnConfirm;
         private System.Windows.Forms.Button btnClose;
         private MaterialSkin.Controls.MaterialButton btnExit;
+        private MaterialSkin.Controls.MaterialRadioButton rbtnConnectServer;
+        private MaterialSkin.Controls.MaterialRadioButton rbtnConnectLocal;
+        private System.Windows.Forms.Label label2;
+        private Material_Design_for_Winform.MaterialTextField txtConnectionString;
     }
 }

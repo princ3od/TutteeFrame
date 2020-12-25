@@ -42,9 +42,10 @@ namespace TutteeFrame.Controller
             _flag = 0; //unknow username
             return loggedIn;
         }
-        public bool CheckSession()
+        public bool CheckSession(ref int _flag)
         {
-            accountDA.CheckSession(AccountID, SessionID, out bool isExist);
+            bool success = accountDA.CheckSession(AccountID, SessionID, out bool isExist);
+            _flag = (success) ? 1 : 0;
             return isExist;
         }
         public void DeleteSession()
