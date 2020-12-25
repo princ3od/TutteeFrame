@@ -521,8 +521,8 @@
             this.Controls.Add(this.materialCard1);
             this.Controls.Add(this.pnBasicInfor);
             this.Controls.Add(this.picboxStudent);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -530,7 +530,6 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.TopMost = true;
             this.Load += new System.EventHandler(this.frmAddStudent_Load);
             this.materialCard2.ResumeLayout(false);
             this.materialCard2.PerformLayout();
