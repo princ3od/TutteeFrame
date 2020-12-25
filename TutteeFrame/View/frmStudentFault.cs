@@ -110,8 +110,10 @@ namespace TutteeFrame
                     };
                     worker.RunWorkerCompleted += (s, ev) =>
                     {
+                        txtPunishmentContent.Focus();
                         txtPunishmentID.Text = punishmentID;
                         txtFaultContent.Text = punishment.Fault;
+                        txtPunishmentContent.Text = punishment.Content;
                         lbName.Text = string.Format("{0} ({1}) - {2}", student.GetName(), studentID, student.ClassID);
                         lbSex.Text = string.Format("Giới tính: {0}", student.GetSex);
                         lbInformation.Visible = mainProgressbar.Visible = false;
@@ -121,7 +123,7 @@ namespace TutteeFrame
                 default:
                     break;
             }
-            
+
             worker.RunWorkerAsync();
         }
         private void btnExit_Click(object sender, EventArgs e)
@@ -236,7 +238,8 @@ namespace TutteeFrame
                         lbInformation.Visible = mainProgressbar.Visible = true;
                         worker.DoWork += (s, ev) =>
                         {
-
+                            success = punishmentController.UpdatePunishmentContent(punishmentID, punishment.Content)
+                                && punishmentController.UpdateStudentFault(punishmentID, punishment.Fault);
                         };
                         worker.RunWorkerCompleted += (s, ev) =>
                         {
