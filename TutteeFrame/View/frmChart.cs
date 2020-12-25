@@ -188,6 +188,39 @@ namespace TutteeFrame
             }
             worker.RunWorkerAsync();
         }
+        void Swap<T>(IList<T> list, IList<string> subList, int indexA, int indexB)
+        {
+            T tmp = list[indexA];
+            list[indexA] = list[indexB];
+            list[indexB] = tmp;
+            string tmp2 = subList[indexA];
+            subList[indexA] = subList[indexB];
+            subList[indexB] = tmp2;
+        }
+        private void QuickSort(ChartValues<double> arr, ChartValues<string> arr2, int leftIndex, int rightIndex)
+        {
+            if (leftIndex > rightIndex)
+                return;
+            int left = leftIndex, right = rightIndex;
+            double pivot = arr[(left + right) / 2];
+            while (left <= right)
+            {
+                while (arr[left] < pivot)
+                    left++;
+                while (arr[right] > pivot)
+                    right--;
+                if (left <= right)
+                {
+                    Swap<double>(arr, arr2, left, right);
+                    left++;
+                    right--;
+                }
+            }
+            if (left < rightIndex)
+                QuickSort(arr, arr2, left, rightIndex);
+            if (right > leftIndex)
+                QuickSort(arr, arr2, right, leftIndex);
+        }
         private void LoadChart(object sender, EventArgs e)
         {
             if (cbbChartType.SelectedIndex < 0)
@@ -418,6 +451,7 @@ namespace TutteeFrame
                             MetroMessageBox.Show(this, "Chưa đủ thông tin để tạo biểu đồ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                             return;
                         }
+                        QuickSort(chartValues, studentInfors, 0, chartValues.Count - 1);
                         mainChart.AxisY = new AxesCollection
                         {
                             new Axis
@@ -459,7 +493,7 @@ namespace TutteeFrame
                         cbbChartType.Text, cbbDetailType.Text, cbbGrade.Text,
                             (cbbSemester.Text == "Cả năm") ? "cả năm" : "học kì " + cbbSemester.Text,
                             (cbbSubject.Text == "Tất cả") ? "Điểm trung bình" : "môn " + cbbSubject.Text);
-                    List<string> classIDs = new List<string>();
+                    ChartValues<string> classIDs = new ChartValues<string>();
                     foreach (Control control in listClass.Controls)
                     {
                         if ((control as Material_Design_for_Winform.MaterialCheckBox).Checked)
@@ -492,8 +526,9 @@ namespace TutteeFrame
                         if (!canLoad)
                         {
                             MetroMessageBox.Show(this, "Chưa đủ thông tin để tạo biểu đồ.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            return;
+                            //return;
                         }
+                        QuickSort(chartValues, classIDs, 0, chartValues.Count - 1);
                         mainChart.AxisY = new AxesCollection
                         {
                             new Axis
@@ -698,7 +733,14 @@ namespace TutteeFrame
             SaveFileDialog browserDialog = new SaveFileDialog();
             browserDialog.Filter = "Images | *.png; *.bmp; *.jpg";
             browserDialog.ShowDialog();
-            bmp.Save(browserDialog.FileName, ImageFormat.Png);
+            try
+            {
+                bmp.Save(browserDialog.FileName, ImageFormat.Png);
+            }
+            catch
+            {
+                MetroMessageBox.Show(this, "Có lỗi xảy ra!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void ChangeClass(object sender, EventArgs e)

@@ -37,7 +37,7 @@ namespace TutteeFrame.DataAccess
             string strConnect = string.Format(Properties.Settings.Default.ServerConnectionString,
                    _server, _port, _userid, _pass);
             //Đổi chuỗi kết nối ở dưới để test
-            //string strConnect = @"Server=./SQLEXPRESS;Database=TutteeFrame;Trusted_Connection=True;";
+            //string strConnect = @"Data Source=PRINC3-LAPTOP\SQLEXPRESS;Initial Catalog=TutteeFrame;Integrated Security=True";
             try
             {
                 connection = new SqlConnection(strConnect);

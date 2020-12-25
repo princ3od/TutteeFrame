@@ -30,12 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("----", 0);
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("----", 0);
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.ListViewItem listViewItem3 = new System.Windows.Forms.ListViewItem("----", 0);
+            System.Windows.Forms.ListViewItem listViewItem4 = new System.Windows.Forms.ListViewItem("----", 0);
             this.materialDrawer1 = new MaterialSkin.Controls.MaterialDrawer();
             this.mainTabControl = new MaterialSkin.Controls.MaterialTabControl();
             this.tbpgProfile = new System.Windows.Forms.TabPage();
@@ -164,7 +164,7 @@
             this.colStudenNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colTeacherId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cbbGradeClass = new MaterialSkin.Controls.MaterialComboBox();
-            this.tbpgRewardManagment = new System.Windows.Forms.TabPage();
+            this.tbpgPunishmentManagment = new System.Windows.Forms.TabPage();
             this.tbpgReport = new System.Windows.Forms.TabPage();
             this.btnProgressChart = new Material_Design_for_Winform.MaterialRaisedButton();
             this.btnProgressReport = new Material_Design_for_Winform.MaterialRaisedButton();
@@ -194,17 +194,18 @@
             this.listViewTeachingClass = new System.Windows.Forms.ListView();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.cbbTeachingGrade = new MaterialSkin.Controls.MaterialComboBox();
-            this.tbpgPunishmentManagment = new System.Windows.Forms.TabPage();
-            this.materialListView1 = new MaterialSkin.Controls.MaterialListView();
+            this.tbpgFaulttManagment = new System.Windows.Forms.TabPage();
+            this.btnDeleteFault = new Material_Design_for_Winform.MaterialRaisedButton();
+            this.btnUpdateFault = new Material_Design_for_Winform.MaterialRaisedButton();
+            this.lbTotalStudentIncClass2 = new MaterialSkin.Controls.MaterialLabel();
+            this.lbFormClass2 = new System.Windows.Forms.Label();
+            this.listViewFault = new MaterialSkin.Controls.MaterialListView();
             this.columnHeader13 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader14 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader15 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader16 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader18 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader19 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader20 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader21 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader17 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnProfile = new System.Windows.Forms.Panel();
             this.materialCard1 = new MaterialSkin.Controls.MaterialCard();
             this.btnLogout = new Material_Design_for_Winform.MaterialFlatButton();
@@ -252,7 +253,7 @@
             this.tbpgReport.SuspendLayout();
             this.tbpgFormClass.SuspendLayout();
             this.tbpgTeacherAssignment.SuspendLayout();
-            this.tbpgPunishmentManagment.SuspendLayout();
+            this.tbpgFaulttManagment.SuspendLayout();
             this.pnProfile.SuspendLayout();
             this.materialCard1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbAvatar)).BeginInit();
@@ -293,11 +294,11 @@
             this.mainTabControl.Controls.Add(this.tbpgStudentMarkboard);
             this.mainTabControl.Controls.Add(this.tbpgSubjectManagment);
             this.mainTabControl.Controls.Add(this.tbpgClassManagment);
-            this.mainTabControl.Controls.Add(this.tbpgRewardManagment);
+            this.mainTabControl.Controls.Add(this.tbpgPunishmentManagment);
             this.mainTabControl.Controls.Add(this.tbpgReport);
             this.mainTabControl.Controls.Add(this.tbpgFormClass);
             this.mainTabControl.Controls.Add(this.tbpgTeacherAssignment);
-            this.mainTabControl.Controls.Add(this.tbpgPunishmentManagment);
+            this.mainTabControl.Controls.Add(this.tbpgFaulttManagment);
             this.mainTabControl.Depth = 0;
             this.mainTabControl.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.mainTabControl.Location = new System.Drawing.Point(249, 105);
@@ -1616,14 +1617,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridviewStudentScore.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.gridviewStudentScore.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridviewStudentScore.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 8F);
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridviewStudentScore.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.gridviewStudentScore.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridviewStudentScore.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmStt,
@@ -1638,29 +1639,29 @@
             this.clmFortyfive3,
             this.clmFinal,
             this.clmAverage});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridviewStudentScore.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 8F);
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridviewStudentScore.DefaultCellStyle = dataGridViewCellStyle14;
             this.gridviewStudentScore.GridColor = System.Drawing.Color.Black;
             this.gridviewStudentScore.Location = new System.Drawing.Point(22, 115);
             this.gridviewStudentScore.Name = "gridviewStudentScore";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridviewStudentScore.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Segoe UI", 8F);
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridviewStudentScore.RowHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.gridviewStudentScore.RowHeadersVisible = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.gridviewStudentScore.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.gridviewStudentScore.RowsDefaultCellStyle = dataGridViewCellStyle16;
             this.gridviewStudentScore.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.gridviewStudentScore.Size = new System.Drawing.Size(1124, 381);
             this.gridviewStudentScore.TabIndex = 0;
@@ -2041,15 +2042,15 @@
             this.cbbGradeClass.TabIndex = 13;
             this.cbbGradeClass.SelectedIndexChanged += new System.EventHandler(this.cbbGradeClass_SelectedIndexChanged);
             // 
-            // tbpgRewardManagment
+            // tbpgPunishmentManagment
             // 
-            this.tbpgRewardManagment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbpgRewardManagment.Location = new System.Drawing.Point(4, 22);
-            this.tbpgRewardManagment.Name = "tbpgRewardManagment";
-            this.tbpgRewardManagment.Size = new System.Drawing.Size(1147, 596);
-            this.tbpgRewardManagment.TabIndex = 9;
-            this.tbpgRewardManagment.Text = "Khen thưởng - Kỉ luật";
-            this.tbpgRewardManagment.UseVisualStyleBackColor = true;
+            this.tbpgPunishmentManagment.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbpgPunishmentManagment.Location = new System.Drawing.Point(4, 22);
+            this.tbpgPunishmentManagment.Name = "tbpgPunishmentManagment";
+            this.tbpgPunishmentManagment.Size = new System.Drawing.Size(1147, 596);
+            this.tbpgPunishmentManagment.TabIndex = 9;
+            this.tbpgPunishmentManagment.Text = "Kỉ luật";
+            this.tbpgPunishmentManagment.UseVisualStyleBackColor = true;
             // 
             // tbpgReport
             // 
@@ -2427,8 +2428,8 @@
             this.listViewTeachingClass.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.listViewTeachingClass.HideSelection = false;
             this.listViewTeachingClass.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1,
-            listViewItem2});
+            listViewItem3,
+            listViewItem4});
             this.listViewTeachingClass.LargeImageList = this.imageList1;
             this.listViewTeachingClass.Location = new System.Drawing.Point(32, 85);
             this.listViewTeachingClass.MultiSelect = false;
@@ -2478,101 +2479,155 @@
             this.cbbTeachingGrade.TabIndex = 15;
             this.cbbTeachingGrade.SelectedIndexChanged += new System.EventHandler(this.cbbTeachingGrade_SelectedIndexChanged);
             // 
-            // tbpgPunishmentManagment
+            // tbpgFaulttManagment
             // 
-            this.tbpgPunishmentManagment.Controls.Add(this.materialListView1);
-            this.tbpgPunishmentManagment.Location = new System.Drawing.Point(4, 22);
-            this.tbpgPunishmentManagment.Name = "tbpgPunishmentManagment";
-            this.tbpgPunishmentManagment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpgPunishmentManagment.Size = new System.Drawing.Size(1147, 596);
-            this.tbpgPunishmentManagment.TabIndex = 12;
-            this.tbpgPunishmentManagment.Text = "Quản lí vi phạm";
-            this.tbpgPunishmentManagment.UseVisualStyleBackColor = true;
+            this.tbpgFaulttManagment.BackColor = System.Drawing.Color.White;
+            this.tbpgFaulttManagment.Controls.Add(this.btnDeleteFault);
+            this.tbpgFaulttManagment.Controls.Add(this.btnUpdateFault);
+            this.tbpgFaulttManagment.Controls.Add(this.lbTotalStudentIncClass2);
+            this.tbpgFaulttManagment.Controls.Add(this.lbFormClass2);
+            this.tbpgFaulttManagment.Controls.Add(this.listViewFault);
+            this.tbpgFaulttManagment.Location = new System.Drawing.Point(4, 22);
+            this.tbpgFaulttManagment.Name = "tbpgFaulttManagment";
+            this.tbpgFaulttManagment.Padding = new System.Windows.Forms.Padding(3);
+            this.tbpgFaulttManagment.Size = new System.Drawing.Size(1147, 596);
+            this.tbpgFaulttManagment.TabIndex = 12;
+            this.tbpgFaulttManagment.Text = "Quản lí vi phạm";
             // 
-            // materialListView1
+            // btnDeleteFault
             // 
-            this.materialListView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.btnDeleteFault.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteFault.BackColor = System.Drawing.Color.Transparent;
+            this.btnDeleteFault.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnDeleteFault.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnDeleteFault.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnDeleteFault.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.btnDeleteFault.Enabled = false;
+            this.btnDeleteFault.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDeleteFault.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.btnDeleteFault.Icon = null;
+            this.btnDeleteFault.Location = new System.Drawing.Point(813, 500);
+            this.btnDeleteFault.Name = "btnDeleteFault";
+            this.btnDeleteFault.Radius = 2;
+            this.btnDeleteFault.ShadowDepth = 3;
+            this.btnDeleteFault.ShadowOpacity = 35;
+            this.btnDeleteFault.Size = new System.Drawing.Size(142, 52);
+            this.btnDeleteFault.TabIndex = 16;
+            this.btnDeleteFault.Text = "Xóa";
+            this.btnDeleteFault.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnDeleteFault.Click += new System.EventHandler(this.DeleteFault);
+            // 
+            // btnUpdateFault
+            // 
+            this.btnUpdateFault.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnUpdateFault.BackColor = System.Drawing.Color.Transparent;
+            this.btnUpdateFault.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnUpdateFault.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnUpdateFault.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnUpdateFault.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.btnUpdateFault.Enabled = false;
+            this.btnUpdateFault.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdateFault.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.btnUpdateFault.Icon = null;
+            this.btnUpdateFault.Location = new System.Drawing.Point(149, 500);
+            this.btnUpdateFault.Name = "btnUpdateFault";
+            this.btnUpdateFault.Radius = 2;
+            this.btnUpdateFault.ShadowDepth = 3;
+            this.btnUpdateFault.ShadowOpacity = 35;
+            this.btnUpdateFault.Size = new System.Drawing.Size(154, 52);
+            this.btnUpdateFault.TabIndex = 15;
+            this.btnUpdateFault.Text = "Cập nhật";
+            this.btnUpdateFault.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnUpdateFault.Click += new System.EventHandler(this.UpdateFault);
+            // 
+            // lbTotalStudentIncClass2
+            // 
+            this.lbTotalStudentIncClass2.AutoSize = true;
+            this.lbTotalStudentIncClass2.Depth = 0;
+            this.lbTotalStudentIncClass2.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.lbTotalStudentIncClass2.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
+            this.lbTotalStudentIncClass2.HighEmphasis = true;
+            this.lbTotalStudentIncClass2.Location = new System.Drawing.Point(15, 26);
+            this.lbTotalStudentIncClass2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.lbTotalStudentIncClass2.Name = "lbTotalStudentIncClass2";
+            this.lbTotalStudentIncClass2.Size = new System.Drawing.Size(15, 24);
+            this.lbTotalStudentIncClass2.TabIndex = 13;
+            this.lbTotalStudentIncClass2.Text = "--";
+            this.lbTotalStudentIncClass2.UseAccent = true;
+            // 
+            // lbFormClass2
+            // 
+            this.lbFormClass2.AutoSize = true;
+            this.lbFormClass2.Font = new System.Drawing.Font("Segoe UI", 12F);
+            this.lbFormClass2.Location = new System.Drawing.Point(15, 3);
+            this.lbFormClass2.Name = "lbFormClass2";
+            this.lbFormClass2.Size = new System.Drawing.Size(114, 21);
+            this.lbFormClass2.TabIndex = 12;
+            this.lbFormClass2.Text = "Lớp chủ nhiệm";
+            // 
+            // listViewFault
+            // 
+            this.listViewFault.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.materialListView1.AutoSizeTable = false;
-            this.materialListView1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.materialListView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.materialListView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.listViewFault.AutoSizeTable = false;
+            this.listViewFault.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.listViewFault.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listViewFault.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader13,
             this.columnHeader14,
             this.columnHeader15,
             this.columnHeader16,
-            this.columnHeader17,
-            this.columnHeader18,
-            this.columnHeader19,
             this.columnHeader20,
-            this.columnHeader21});
-            this.materialListView1.Depth = 0;
-            this.materialListView1.Font = new System.Drawing.Font("Segoe UI", 22F);
-            this.materialListView1.ForeColor = System.Drawing.SystemColors.WindowFrame;
-            this.materialListView1.FullRowSelect = true;
-            this.materialListView1.HideSelection = false;
-            this.materialListView1.Location = new System.Drawing.Point(18, 72);
-            this.materialListView1.MinimumSize = new System.Drawing.Size(200, 100);
-            this.materialListView1.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialListView1.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialListView1.MultiSelect = false;
-            this.materialListView1.Name = "materialListView1";
-            this.materialListView1.OwnerDraw = true;
-            this.materialListView1.Size = new System.Drawing.Size(1110, 453);
-            this.materialListView1.TabIndex = 13;
-            this.materialListView1.UseCompatibleStateImageBehavior = false;
-            this.materialListView1.View = System.Windows.Forms.View.Details;
+            this.columnHeader17});
+            this.listViewFault.Depth = 0;
+            this.listViewFault.Font = new System.Drawing.Font("Segoe UI", 25F);
+            this.listViewFault.ForeColor = System.Drawing.SystemColors.WindowFrame;
+            this.listViewFault.FullRowSelect = true;
+            this.listViewFault.HideSelection = false;
+            this.listViewFault.Location = new System.Drawing.Point(19, 103);
+            this.listViewFault.MinimumSize = new System.Drawing.Size(200, 100);
+            this.listViewFault.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.listViewFault.MouseState = MaterialSkin.MouseState.OUT;
+            this.listViewFault.Name = "listViewFault";
+            this.listViewFault.OwnerDraw = true;
+            this.listViewFault.Size = new System.Drawing.Size(1108, 391);
+            this.listViewFault.TabIndex = 3;
+            this.listViewFault.UseCompatibleStateImageBehavior = false;
+            this.listViewFault.View = System.Windows.Forms.View.Details;
+            this.listViewFault.SelectedIndexChanged += new System.EventHandler(this.listViewFault_SelectedIndexChanged);
             // 
             // columnHeader13
             // 
             this.columnHeader13.Text = "STT";
-            this.columnHeader13.Width = 110;
+            this.columnHeader13.Width = 80;
             // 
             // columnHeader14
             // 
-            this.columnHeader14.Text = "Mã học sinh";
+            this.columnHeader14.Text = "Mã vi phạm";
             this.columnHeader14.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader14.Width = 110;
+            this.columnHeader14.Width = 120;
             // 
             // columnHeader15
             // 
-            this.columnHeader15.Text = "Họ tên học sinh";
+            this.columnHeader15.Text = "Mã học sinh";
             this.columnHeader15.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader15.Width = 230;
+            this.columnHeader15.Width = 120;
             // 
             // columnHeader16
             // 
-            this.columnHeader16.Text = "ĐTB HK1";
-            this.columnHeader16.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader16.Width = 130;
-            // 
-            // columnHeader17
-            // 
-            this.columnHeader17.Text = "Hạnh kiểm HK1";
-            this.columnHeader17.Width = 120;
-            // 
-            // columnHeader18
-            // 
-            this.columnHeader18.Text = "ĐTB HK2";
-            this.columnHeader18.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader18.Width = 130;
-            // 
-            // columnHeader19
-            // 
-            this.columnHeader19.Text = "Hạnh kiểm HK2";
-            this.columnHeader19.Width = 110;
+            this.columnHeader16.Text = "Họ tên";
+            this.columnHeader16.Width = 250;
             // 
             // columnHeader20
             // 
-            this.columnHeader20.Text = "ĐTB Cả năm";
-            this.columnHeader20.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.columnHeader20.Width = 150;
+            this.columnHeader20.Text = "Học kì";
+            this.columnHeader20.Width = 80;
             // 
-            // columnHeader21
+            // columnHeader17
             // 
-            this.columnHeader21.Text = "Hạnh kiểm cả năm";
-            this.columnHeader21.Width = 150;
+            this.columnHeader17.Text = "Lỗi vi phạm";
+            this.columnHeader17.Width = 424;
             // 
             // pnProfile
             // 
@@ -2913,7 +2968,8 @@
             this.tbpgFormClass.ResumeLayout(false);
             this.tbpgFormClass.PerformLayout();
             this.tbpgTeacherAssignment.ResumeLayout(false);
-            this.tbpgPunishmentManagment.ResumeLayout(false);
+            this.tbpgFaulttManagment.ResumeLayout(false);
+            this.tbpgFaulttManagment.PerformLayout();
             this.pnProfile.ResumeLayout(false);
             this.materialCard1.ResumeLayout(false);
             this.materialCard1.PerformLayout();
@@ -2955,7 +3011,7 @@
         private System.Windows.Forms.TabPage tbpgClassManagment;
         private System.Windows.Forms.TabPage tbpgReport;
         private System.Windows.Forms.TabPage tbpgStudentMarkboard;
-        private System.Windows.Forms.TabPage tbpgRewardManagment;
+        private System.Windows.Forms.TabPage tbpgPunishmentManagment;
         private System.Windows.Forms.TabPage tbpgFormClass;
         private System.Windows.Forms.PictureBox pictureBox9;
         private System.Windows.Forms.PictureBox pictureBox10;
@@ -3109,18 +3165,19 @@
         private Material_Design_for_Winform.MaterialRaisedButton btnStudentReport;
         private Material_Design_for_Winform.MaterialRaisedButton btnAddFault;
         private Material_Design_for_Winform.MaterialRaisedButton btnAddPunishment;
-        private System.Windows.Forms.TabPage tbpgPunishmentManagment;
-        private MaterialSkin.Controls.MaterialListView materialListView1;
+        private System.Windows.Forms.TabPage tbpgFaulttManagment;
+        private Material_Design_for_Winform.MaterialRaisedButton btnProgressChart;
+        private Material_Design_for_Winform.MaterialRaisedButton btnProgressReport;
+        private Material_Design_for_Winform.MaterialRaisedButton btnDeleteFault;
+        private Material_Design_for_Winform.MaterialRaisedButton btnUpdateFault;
+        private MaterialSkin.Controls.MaterialLabel lbTotalStudentIncClass2;
+        private System.Windows.Forms.Label lbFormClass2;
+        private MaterialSkin.Controls.MaterialListView listViewFault;
         private System.Windows.Forms.ColumnHeader columnHeader13;
         private System.Windows.Forms.ColumnHeader columnHeader14;
         private System.Windows.Forms.ColumnHeader columnHeader15;
         private System.Windows.Forms.ColumnHeader columnHeader16;
-        private System.Windows.Forms.ColumnHeader columnHeader17;
-        private System.Windows.Forms.ColumnHeader columnHeader18;
-        private System.Windows.Forms.ColumnHeader columnHeader19;
         private System.Windows.Forms.ColumnHeader columnHeader20;
-        private System.Windows.Forms.ColumnHeader columnHeader21;
-        private Material_Design_for_Winform.MaterialRaisedButton btnProgressChart;
-        private Material_Design_for_Winform.MaterialRaisedButton btnProgressReport;
+        private System.Windows.Forms.ColumnHeader columnHeader17;
     }
 }

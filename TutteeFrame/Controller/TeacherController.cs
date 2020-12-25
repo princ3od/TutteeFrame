@@ -93,7 +93,7 @@ namespace TutteeFrame.Controller
                         teachers[index].Type = Teacher.TeacherType.FormerTeacher;
                         teachers[index].FormClassID = classID;
                     }
-                    teachers[index].Avatar = ImageHelper.BytesToImage(avatars[teachers[index].ID]);
+                    //teachers[index].Avatar = ImageHelper.BytesToImage(avatars[teachers[index].ID]);
                 }
             }
             return teachers;
