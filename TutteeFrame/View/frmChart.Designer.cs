@@ -373,8 +373,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1000, 600);
             this.Name = "frmChart";
-            this.ShadowType = MetroFramework.Forms.MetroFormShadowType.DropShadow;
-            this.Style = MetroFramework.MetroColorStyle.Teal;
             this.Text = "TutteeFrame - Biểu đồ";
             this.listClass.ResumeLayout(false);
             this.ResumeLayout(false);
