@@ -1752,6 +1752,9 @@ namespace TutteeFrame
         #region Tabpage Báo cáo
         private void ShowReportForm(object sender, EventArgs e)
         {
+            frmReport frmReport = new frmReport(mainTeacher.Type);
+            OverlayForm overlayForm = new OverlayForm(this, frmReport, 0.65f);
+            frmReport.Show();
         }
 
         private void ShowChartForm(object sender, EventArgs e)
@@ -1767,8 +1770,9 @@ namespace TutteeFrame
 
         private void CreateClassList(object sender, EventArgs e)
         {
-            frmStudentPrinter frmStudentPrinter = new frmStudentPrinter(PrinterType.StudentList, "11A1");
-            frmStudentPrinter.ShowDialog();
+            frmReport frmReport = new frmReport(mainTeacher.Type, mainTeacher.FormClassID);
+            OverlayForm overlayForm = new OverlayForm(this, frmReport, 0.65f);
+            frmReport.Show();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
