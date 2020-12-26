@@ -74,8 +74,8 @@
             <Sizing>FitProportional</Sizing>
             <Top>0.10292in</Top>
             <Left>0.12375in</Left>
-            <Height>0.17708in</Height>
-            <Width>0.5in</Width>
+            <Height>0.48958in</Height>
+            <Width>1.76042in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -89,8 +89,18 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>BẢNG ĐIỂM TỔNG KẾT </Value>
-                    <Style />
+                    <Value>BẢNG ĐIỂM TỔNG KẾT</Value>
+                    <Style>
+                      <FontSize>14pt</FontSize>
+                      <FontWeight>SemiBold</FontWeight>
+                      <Color>DarkBlue</Color>
+                    </Style>
+                  </TextRun>
+                  <TextRun>
+                    <Value xml:space="preserve"> </Value>
+                    <Style>
+                      <Color>DarkBlue</Color>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
@@ -98,9 +108,9 @@
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
             <Top>0.19667in</Top>
-            <Left>2.05083in</Left>
+            <Left>2.15823in</Left>
             <Height>0.25in</Height>
-            <Width>1.58333in</Width>
+            <Width>2.46968in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -120,7 +130,9 @@
                 <TextRuns>
                   <TextRun>
                     <Value>Lớp:</Value>
-                    <Style />
+                    <Style>
+                      <FontWeight>SemiBold</FontWeight>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style>
@@ -129,7 +141,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox8</rd:DefaultName>
-            <Top>0.69667in</Top>
+            <Top>0.66194in</Top>
             <Left>0.28in</Left>
             <Height>0.25in</Height>
             <Width>0.34375in</Width>
@@ -152,7 +164,9 @@
                 <TextRuns>
                   <TextRun>
                     <Value>=Parameters!className.Value</Value>
-                    <Style />
+                    <Style>
+                      <FontWeight>SemiBold</FontWeight>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style>
@@ -161,8 +175,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox8</rd:DefaultName>
-            <Top>0.69667in</Top>
-            <Left>0.95312in</Left>
+            <Top>0.66194in</Top>
+            <Left>0.69319in</Left>
             <Height>0.26042in</Height>
             <Width>0.59375in</Width>
             <ZIndex>3</ZIndex>
@@ -184,7 +198,9 @@
                 <TextRuns>
                   <TextRun>
                     <Value>Gv. Chủ nhiệm</Value>
-                    <Style />
+                    <Style>
+                      <FontWeight>SemiBold</FontWeight>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style>
@@ -195,7 +211,9 @@
                 <TextRuns>
                   <TextRun>
                     <Value />
-                    <Style />
+                    <Style>
+                      <FontWeight>SemiBold</FontWeight>
+                    </Style>
                   </TextRun>
                 </TextRuns>
                 <Style />
@@ -205,7 +223,7 @@
             <Top>0.70708in</Top>
             <Left>2.15823in</Left>
             <Height>0.25in</Height>
-            <Width>0.97868in</Width>
+            <Width>1.1141in</Width>
             <ZIndex>4</ZIndex>
             <Style>
               <Border>
@@ -283,13 +301,13 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.28958in</Width>
+                  <Width>0.37291in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.19312in</Width>
+                  <Width>1.08895in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.54831in</Width>
+                  <Width>0.81138in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.86492in</Width>
@@ -298,13 +316,13 @@
                   <Width>0.60617in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.46498in</Width>
+                  <Width>0.63494in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.37754in</Width>
+                  <Width>0.63306in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.73581in</Width>
+                  <Width>0.83784in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.68373in</Width>
@@ -327,7 +345,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>STT</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -359,7 +379,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Họ</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -391,7 +413,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Tên</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -423,7 +447,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Mã HS</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -455,7 +481,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value> TBHK1</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -487,7 +515,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>TBHK2</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -519,7 +549,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>TBHK</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -551,7 +583,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>HKHK1</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -583,7 +617,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>HKHK2</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -615,7 +651,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>HKCN</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style>
@@ -655,7 +693,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox26</rd:DefaultName>
@@ -685,7 +725,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>SurName</rd:DefaultName>
@@ -715,7 +757,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>FirstName</rd:DefaultName>
@@ -745,7 +789,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>StudentID</rd:DefaultName>
@@ -775,7 +821,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>AveragePointS1</rd:DefaultName>
@@ -805,7 +853,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>AveragePointS2</rd:DefaultName>
@@ -835,7 +885,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>AveragePointYear</rd:DefaultName>
@@ -865,7 +917,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>ConductS1</rd:DefaultName>
@@ -895,7 +949,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>ConductS2</rd:DefaultName>
@@ -925,7 +981,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>ConductYear</rd:DefaultName>
@@ -974,7 +1032,7 @@
             <Top>1.22792in</Top>
             <Left>0.03in</Left>
             <Height>0.5in</Height>
-            <Width>6.47914in</Width>
+            <Width>7.24888in</Width>
             <ZIndex>7</ZIndex>
             <Style>
               <Border>
@@ -986,7 +1044,7 @@
         <Height>2.00917in</Height>
         <Style />
       </Body>
-      <Width>10.28in</Width>
+      <Width>7.6in</Width>
       <Page>
         <LeftMargin>1in</LeftMargin>
         <RightMargin>1in</RightMargin>

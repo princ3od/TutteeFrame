@@ -72,7 +72,7 @@ namespace TutteeFrame
             splash.FormClosing += Splash_FormClosing;
             splash.Show();
         }
-
+      
         private void Splash_FormClosing(object sender, FormClosingEventArgs e)
         {
             frmLogin = new frmLogin();
@@ -244,19 +244,7 @@ namespace TutteeFrame
                     btnLogout.PerformClick();
             };
         }
-        private void tbpgProfile_SizeChanged(object sender, EventArgs e)
-        {
-            if (tbpgProfile.Width < 1055)
-            {
-                panel1.Location = new Point(238, 535);
-                materialDivider4.Visible = false;
-            }
-            else
-            {
-                panel1.Location = new Point(649, 16);
-                materialDivider4.Visible = true;
-            }
-        }
+  
         #endregion
 
         #region Tabpage Thông tin tài khoản và việc tải thông tin lần đầu sau khi đăng nhập
@@ -1752,6 +1740,9 @@ namespace TutteeFrame
         #region Tabpage Báo cáo
         private void ShowReportForm(object sender, EventArgs e)
         {
+            frmReport frmReport = new frmReport(mainTeacher.Type);
+            OverlayForm overlayForm = new OverlayForm(this, frmReport, 0.65f);
+            frmReport.Show();
         }
 
         private void ShowChartForm(object sender, EventArgs e)
@@ -1764,16 +1755,30 @@ namespace TutteeFrame
             frmChart.FormClosed += (s, ev) => { isChildShowing = false; };
         }
         #endregion
-
+        private void tbpgProfile_SizeChanged(object sender, EventArgs e)
+        {
+            if (tbpgProfile.Width < 1055)
+            {
+                panel1.Location = new Point(238, 535);
+                materialDivider4.Visible = false;
+            }
+            else
+            {
+                panel1.Location = new Point(649, 16);
+                materialDivider4.Visible = true;
+            }
+        }
         private void CreateClassList(object sender, EventArgs e)
         {
-            frmStudentPrinter frmStudentPrinter = new frmStudentPrinter(PrinterType.StudentList, "11A1");
-            frmStudentPrinter.ShowDialog();
+            frmReport frmReport = new frmReport(mainTeacher.Type, mainTeacher.FormClassID);
+            OverlayForm overlayForm = new OverlayForm(this, frmReport, 0.65f);
+            frmReport.Show();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            lbTittle.Text = string.Format("Session: {0} - Reloading: {1}", sessionChecking ? "Checking" : "Done", reloading ? "Checking" : "Done");
+            //lbTittle.Text = string.Format("Session: {0} - Reloading: {1}", sessionChecking ? "Checking" : "Done", reloading ? "Checking" : "Done");
+
         }
 
         bool reloading = false;

@@ -64,9 +64,11 @@ namespace TutteeFrame
                 mainProgressbar.Visible = lbInformation.Visible = false;
                 int index = 0;
                 if (averageScores != null && learniningCapacitySemester != null)
-                    lbLearningCapacitySem.Text = string.Format("Điểm trung bình HK {0}: {1} - Học lực: {2}", semester.ToString(), averageScores[semester - 1].Value, learniningCapacitySemester.ToString());
+                    lbLearningCapacitySem.Text = string.Format("Điểm trung bình HK {0}: {1} - Học lực: {2}", semester.ToString(),
+                        (averageScores[semester - 1].Value > -1) ? averageScores[semester - 1].Value.ToString() : "Chưa có", learniningCapacitySemester.ToString());
                 if (averageScores != null && learniningCapacitySemester != null)
-                    lbLearningCapacityYear.Text = string.Format("Điểm trung bình cả năm: {0} - Học lực cả năm: {1}", averageScores[2].Value, learniningCapacityYear.ToString());
+                    lbLearningCapacityYear.Text = string.Format("Điểm trung bình cả năm: {0} - Học lực cả năm: {1}",
+                        (averageScores[2].Value > -1) ? averageScores[2].Value.ToString() : "Chưa có", learniningCapacityYear.ToString());
                 foreach (Subject subject in subjects)
                 {
                     gridviewStudentScore.Rows.Add(subject.Name);
