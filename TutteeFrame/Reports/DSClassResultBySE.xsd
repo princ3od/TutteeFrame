@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DSClassResultBySE" targetNamespace="http://tempuri.org/DSClassResultBySE.xsd" xmlns:mstns="http://tempuri.org/DSClassResultBySE.xsd" xmlns="http://tempuri.org/DSClassResultBySE.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DSClassResultBySE" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DSClassResultBySE" msprop:Generator_UserDSName="DSClassResultBySE">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CLASRESULT" msprop:Generator_TableClassName="CLASRESULTDataTable" msprop:Generator_TableVarName="tableCLASRESULT" msprop:Generator_TablePropName="CLASRESULT" msprop:Generator_RowDeletingName="CLASRESULTRowDeleting" msprop:Generator_RowChangingName="CLASRESULTRowChanging" msprop:Generator_RowEvHandlerName="CLASRESULTRowChangeEventHandler" msprop:Generator_RowDeletedName="CLASRESULTRowDeleted" msprop:Generator_UserTableName="CLASRESULT" msprop:Generator_RowChangedName="CLASRESULTRowChanged" msprop:Generator_RowEvArgName="CLASRESULTRowChangeEvent" msprop:Generator_RowClassName="CLASRESULTRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="SurName" msprop:Generator_ColumnVarNameInTable="columnSurName" msprop:Generator_ColumnPropNameInRow="SurName" msprop:Generator_ColumnPropNameInTable="SurNameColumn" msprop:Generator_UserColumnName="SurName" type="xs:string" minOccurs="0" />
+              <xs:element name="FirstName" msprop:Generator_ColumnVarNameInTable="columnFirstName" msprop:Generator_ColumnPropNameInRow="FirstName" msprop:Generator_ColumnPropNameInTable="FirstNameColumn" msprop:Generator_UserColumnName="FirstName" type="xs:string" minOccurs="0" />
+              <xs:element name="StudentID" msprop:Generator_ColumnVarNameInTable="columnStudentID" msprop:Generator_ColumnPropNameInRow="StudentID" msprop:Generator_ColumnPropNameInTable="StudentIDColumn" msprop:Generator_UserColumnName="StudentID" type="xs:string" minOccurs="0" />
+              <xs:element name="AveragePointS1" msprop:Generator_ColumnVarNameInTable="columnAveragePointS1" msprop:Generator_ColumnPropNameInRow="AveragePointS1" msprop:Generator_ColumnPropNameInTable="AveragePointS1Column" msprop:Generator_UserColumnName="AveragePointS1" type="xs:string" minOccurs="0" />
+              <xs:element name="AveragePointS2" msprop:Generator_ColumnVarNameInTable="columnAveragePointS2" msprop:Generator_ColumnPropNameInRow="AveragePointS2" msprop:Generator_ColumnPropNameInTable="AveragePointS2Column" msprop:Generator_UserColumnName="AveragePointS2" type="xs:string" minOccurs="0" />
+              <xs:element name="AveragePointYear" msprop:Generator_ColumnVarNameInTable="columnAveragePointYear" msprop:Generator_ColumnPropNameInRow="AveragePointYear" msprop:Generator_ColumnPropNameInTable="AveragePointYearColumn" msprop:Generator_UserColumnName="AveragePointYear" type="xs:string" minOccurs="0" />
+              <xs:element name="ConductS1" msprop:Generator_ColumnVarNameInTable="columnConductS1" msprop:Generator_ColumnPropNameInRow="ConductS1" msprop:Generator_ColumnPropNameInTable="ConductS1Column" msprop:Generator_UserColumnName="ConductS1" type="xs:string" minOccurs="0" />
+              <xs:element name="ConductS2" msprop:Generator_ColumnVarNameInTable="columnConductS2" msprop:Generator_ColumnPropNameInRow="ConductS2" msprop:Generator_ColumnPropNameInTable="ConductS2Column" msprop:Generator_UserColumnName="ConductS2" type="xs:string" minOccurs="0" />
+              <xs:element name="ConductYear" msprop:Generator_ColumnVarNameInTable="columnConductYear" msprop:Generator_ColumnPropNameInRow="ConductYear" msprop:Generator_ColumnPropNameInTable="ConductYearColumn" msprop:Generator_UserColumnName="ConductYear" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
