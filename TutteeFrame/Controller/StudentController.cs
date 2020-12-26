@@ -148,10 +148,21 @@ namespace TutteeFrame.Controller
         {
             return studentDA.CountNumberOfStudent(ref number);
         }
-        public bool GetDataSetPrepareToPrint(DataSet input, string classID)
+        public bool GetDataSetPrepareToPrint(DataSet input,ref string  formalTeacher ,string classID)
         {
-            return studentDA.GetDataSetPrepareToPrint(input, classID);
+            return studentDA.GetDataSetPrepareToPrint(input, ref formalTeacher, classID);
         }
-
+        public bool GetDataStudentResultPrepareToPrint( DataSet input, string studentID)
+        {
+            return studentDA.GetDataStudentResultPrepareToPrint( input, studentID);
+        }
+        public bool GetAllInfoAndResultOfStudentPrepareToPrint(InformationOfStudentResultPrepareForPrint input, string studentID)
+        {
+            return studentDA.GetAllInfoAndResultOfStudentPrepareToPrint(input, studentID);
+        }
+        public bool GetDataOfAllStudentsInClassPrepareToPrint(InfomationOfStudensResultOfClassPrepareToPrint input , string classID)
+        {
+            return studentDA.GetDataOfAllStudentsInClassPrepareToPrint(input, classID);
+        }
     }
 }

@@ -55,15 +55,16 @@ namespace TutteeFrame.Model
             }
         }
     }
+
     //static class Program
     //{
+    //    [STAThread]
     //    static void Main()
     //    {
 
     //        Application.EnableVisualStyles();
     //        Application.SetCompatibleTextRenderingDefault(false);
-    //        Application.Run(new frmSubject(null, new frmMain()));
-    //        //Application.Run( new frmMain());
+    //        Application.Run(new frmStudentPrinter("11A1",true,true));
 
     //    }
     //}
