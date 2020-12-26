@@ -79,7 +79,7 @@ namespace TutteeFrame
             frmLogin.FormClosed += FrmLogin_FormClosed;
             frmLogin.Show();
         }
-
+        bool sessionChecking = false;
         private void FrmLogin_FormClosed(object sender, FormClosedEventArgs e)
         {
             if (!(sender as frmLogin).logined)
@@ -108,10 +108,12 @@ namespace TutteeFrame
                 AccountController accountController = new AccountController();
                 while (!needLogout && isLogin)
                 {
-                    while (isChildShowing) ;
+                    while (isChildShowing || reloading) ;
+                    sessionChecking = true;
                     if (!accountController.CheckSession(ref flag))
                         if (flag != 0)
                             needLogout = true;
+                    sessionChecking = false;
                     if (preFlag != flag)
                     {
                         checkLogin.ReportProgress(0);
@@ -328,7 +330,7 @@ namespace TutteeFrame
             loader.WorkerReportsProgress = true;
             loader.RunWorkerCompleted += (s, e) =>
             {
-                firstLoad = false;
+                firstLoad = reloading = false;
                 mainProgressbar.Hide();
                 lbInformation.Hide();
             };
@@ -642,8 +644,8 @@ namespace TutteeFrame
         }
         private void listViewStudents_SelectedIndexChanged(object sender, EventArgs e)
         {
-            btnDeleteStudent.Enabled = btnUpdateStudent.Enabled = btnAddPunishment.Enabled = btnAddReward.Enabled = (listViewStudents.SelectedItems.Count > 0);
-            btnUpdateStudent.Enabled = btnAddPunishment.Enabled = btnAddReward.Enabled = !(listViewStudents.SelectedItems.Count > 1);
+            btnDeleteStudent.Enabled = btnUpdateStudent.Enabled = btnAddPunishment.Enabled = (listViewStudents.SelectedItems.Count > 0);
+            btnUpdateStudent.Enabled = btnAddPunishment.Enabled = !(listViewStudents.SelectedItems.Count > 1);
         }
         private void AddNewStudent(object sender, EventArgs e)
         {
@@ -760,8 +762,13 @@ namespace TutteeFrame
                 {
                     cbbStudentClass.Items.Add(i.ID);
                 }
-                lbInformation.Text = "Đang tải danh sách học sinh...";
-                studentLoader.RunWorkerAsync($"{khoiSelected}");
+                if (cbbStudentClass.Items.Count > 0)
+                    cbbStudentClass.SelectedIndex = 0;
+                cbbStudentGrade.Enabled = true;
+                cbbStudentClass.Enabled = true;
+                listViewStudents.Enabled = true;
+                mainProgressbar.Hide();
+                lbInformation.Hide();
             };
             worker.RunWorkerAsync();
         }
@@ -1740,20 +1747,31 @@ namespace TutteeFrame
             }
         }
 
-     
+
 
         private void tbpgProfile_SizeChanged(object sender, EventArgs e)
-        {            
+        {
             if (tbpgProfile.Width < 1055)
             {
                 panel1.Location = new Point(238, 535);
                 materialDivider4.Visible = false;
             }
-            else 
+            else
             {
                 panel1.Location = new Point(649, 16);
                 materialDivider4.Visible = true;
             }
+        }
+
+        private void CreateClassList(object sender, EventArgs e)
+        {
+            frmStudentPrinter frmStudentPrinter = new frmStudentPrinter(PrinterType.StudentList, "11A1");
+            frmStudentPrinter.ShowDialog();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            lbTittle.Text = string.Format("Session: {0} - Reloading: {1}", sessionChecking ? "Checking" : "Done", reloading ? "Checking" : "Done");
         }
 
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -1761,26 +1779,26 @@ namespace TutteeFrame
             if (mainTabControl.SelectedTab == null)
                 return;
             lbTittle.Text = mainTabControl.SelectedTab.Text;
-            //if (!firstLoad && !reloading)
-            //{
-            //    bool success = false;
-            //    BackgroundWorker worker = new BackgroundWorker();
-            //    worker.DoWork += (s, ev) =>
-            //    {
-            //        reloading = true;
-            //        success = teacherController.LoadUsingTeacher(teacherController.usingTeacher.ID);
-            //    };
-            //    worker.RunWorkerCompleted += (s, ev) =>
-            //    {
-            //        if (success)
-            //        {
-            //            LoadTabpageInfor();
-            //            LoadData();
-            //        }
-            //        reloading = false;
-            //    };
-            //    worker.RunWorkerAsync();
-            //}
+            if (!firstLoad && !reloading)
+            {
+                bool success = false;
+                BackgroundWorker worker = new BackgroundWorker();
+                worker.DoWork += (s, ev) =>
+                {
+                    reloading = true;
+                    while (sessionChecking) ;
+                    success = teacherController.LoadUsingTeacher(teacherController.usingTeacher.ID);
+                };
+                worker.RunWorkerCompleted += (s, ev) =>
+                {
+                    if (success)
+                    {
+                        LoadTabpageInfor();
+                        LoadData();
+                    }
+                };
+                worker.RunWorkerAsync();
+            }
         }
     }
 }

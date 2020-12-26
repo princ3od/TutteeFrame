@@ -117,6 +117,12 @@
     <Compile Include="View\frmReconnecting.Designer.cs">
       <DependentUpon>frmReconnecting.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\frmReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\frmReport.Designer.cs">
+      <DependentUpon>frmReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\frmSetting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -300,6 +306,9 @@
     </Compile>
     <EmbeddedResource Include="View\frmReconnecting.resx">
       <DependentUpon>frmReconnecting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\frmReport.resx">
+      <DependentUpon>frmReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\frmSetting.resx">
       <DependentUpon>frmSetting.cs</DependentUpon>
