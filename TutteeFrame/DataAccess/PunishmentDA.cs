@@ -42,7 +42,7 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
-        public bool UpdateFault(string _punishmentID, string _fault)
+        public bool UpdateFault(string _punishmentID, string _fault, int _sem)
         {
             bool success = Connect();
 
@@ -51,13 +51,14 @@ namespace TutteeFrame.DataAccess
 
             try
             {
-                strQuery = "UPDATE PUNISHMENT SET Fault = @fault WHERE PunishmentID = @id";
+                strQuery = "UPDATE PUNISHMENT SET Fault = @fault, Semester = @sem WHERE PunishmentID = @id";
                 using (SqlCommand cmd = connection.CreateCommand())
                 {
                     cmd.CommandType = System.Data.CommandType.Text;
                     cmd.CommandText = strQuery;
                     cmd.Parameters.AddWithValue("@id", _punishmentID);
                     cmd.Parameters.AddWithValue("@fault", _fault);
+                    cmd.Parameters.AddWithValue("@sem", _sem);
                     cmd.ExecuteNonQuery();
                 }
             }
@@ -108,7 +109,7 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
-        public bool UpdateContent(string _punishmentID, string _content)
+        public bool UpdateContent(string _punishmentID, string _content, int _sem)
         {
             bool success = Connect();
 
@@ -117,13 +118,14 @@ namespace TutteeFrame.DataAccess
 
             try
             {
-                strQuery = "UPDATE PUNISHMENT SET Content = @content WHERE PunishmentID = @id";
+                strQuery = "UPDATE PUNISHMENT SET Content = @content, Semester = @sem WHERE PunishmentID = @id";
                 using (SqlCommand cmd = connection.CreateCommand())
                 {
                     cmd.CommandType = System.Data.CommandType.Text;
                     cmd.CommandText = strQuery;
                     cmd.Parameters.AddWithValue("@id", _punishmentID);
                     cmd.Parameters.AddWithValue("@content", _content);
+                    cmd.Parameters.AddWithValue("@sem", _sem);
                     cmd.ExecuteNonQuery();
                 }
             }

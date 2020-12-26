@@ -169,5 +169,10 @@ namespace TutteeFrame
         {
             btnConfirm.PerformClick();
         }
+
+        private void CreateAdmin(object sender, EventArgs e)
+        {
+            (new TutteeFrame.Controller.MainController()).CreateAdminAccount();
+        }
     }
 }

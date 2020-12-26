@@ -36,6 +36,7 @@ namespace TutteeFrame
                 result += characters[random.Next(characters.Length)];
             return result;
         }
+
         public static bool IsInformationOfClassCorrected(Class item)
         {
             if (item.ID.Length > 5)

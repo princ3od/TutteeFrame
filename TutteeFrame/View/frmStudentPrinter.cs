@@ -8,7 +8,7 @@ using TutteeFrame.Controller;
 using TutteeFrame.View;
 namespace TutteeFrame
 {
-    public enum PrinterType {ListResultOfStudentsInClassPrinter,StudentResultPrinter,ListStudentOfClass}
+    public enum PrinterType { StudentResultList, StudentResult, StudentList }
     public partial class frmStudentPrinter : MetroForm
     {
         private PrinterType printerType;
@@ -18,37 +18,34 @@ namespace TutteeFrame
         private string studentID { get; set; }
         private string classID { get; set; }
 
-        public frmStudentPrinter(string inputclassName , PrinterType printerType = PrinterType.ListStudentOfClass)
+        public frmStudentPrinter(PrinterType _printType, string _id)
         {
-
-            this.classID = inputclassName;
-            this.printerType = printerType;
             InitializeComponent();
-        }
-        public frmStudentPrinter(string inputstudentID,bool isPrintResult ,PrinterType printerType = PrinterType.StudentResultPrinter)
-        {
-
-            this.studentID = inputstudentID;
-            this.printerType = printerType;
-            InitializeComponent();
-            
-        }
-
-        public frmStudentPrinter(string classID, bool isPrintResult, bool isPrintClResult,PrinterType printerType = PrinterType.ListResultOfStudentsInClassPrinter)
-        {
-            this.classID = classID;
-            this.printerType = printerType;
-            InitializeComponent();
+            this.printerType = _printType;
+            switch (_printType)
+            {
+                case PrinterType.StudentResultList:
+                    studentID = _id;
+                    break;
+                case PrinterType.StudentResult:
+                    studentID = _id;
+                    break;
+                case PrinterType.StudentList:
+                    classID = _id;
+                    break;
+                default:
+                    break;
+            }
         }
 
         private void frmStudentPrinter_Load(object sender, EventArgs e)
         {
-            if (printerType == PrinterType.ListStudentOfClass)
+            if (printerType == PrinterType.StudentList)
             {
                 DataSet ds = new DataSet();
                 string formalTeacher = "";
                 // Hàm lấy thông tin về lớp để chuẩn bị in
-                if (!stController.GetDataSetPrepareToPrint(ds,ref formalTeacher,this.classID)) return;
+                if (!stController.GetDataSetPrepareToPrint(ds, ref formalTeacher, this.classID)) return;
 
                 this.reportStudentViewer.LocalReport.ReportEmbeddedResource
                     = "TutteeFrame.Reports.ReportStudent.rdlc";
@@ -67,10 +64,10 @@ namespace TutteeFrame
             }
             else
             {
-                if(printerType==PrinterType.StudentResultPrinter)
+                if (printerType == PrinterType.StudentResult)
                 {
                     if (!stController.GetAllInfoAndResultOfStudentPrepareToPrint(informationOfStudent, this.studentID)) return;
-                    
+
                     this.reportStudentViewer.LocalReport.ReportEmbeddedResource = "TutteeFrame.Reports.ReportStudentResult.rdlc";
                     ReportDataSource rds = new ReportDataSource("DataSet1", informationOfStudent.scoreBoards.Tables[0]);
                     ReportDataSource rds2 = new ReportDataSource("DataSet2", informationOfStudent.scoreBoards.Tables[1]);
@@ -93,11 +90,11 @@ namespace TutteeFrame
                 }
                 else
                 {
-                    if(this.printerType ==PrinterType.ListResultOfStudentsInClassPrinter)
+                    if (this.printerType == PrinterType.StudentResultList)
                     {
                         InfomationOfStudensResultOfClassPrepareToPrint iforresulttofclas
                             = new InfomationOfStudensResultOfClassPrepareToPrint();
-                        if(!stController.GetDataOfAllStudentsInClassPrepareToPrint(iforresulttofclas, this.classID)) return;
+                        if (!stController.GetDataOfAllStudentsInClassPrepareToPrint(iforresulttofclas, this.classID)) return;
                         this.reportStudentViewer.LocalReport.ReportEmbeddedResource = "TutteeFrame.Reports.ReportClassResult.rdlc";
                         ReportDataSource rds = new ReportDataSource();
                         rds.Name = "DataSet1";
