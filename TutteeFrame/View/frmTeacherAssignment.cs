@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TutteeFrame.Controller;
 using TutteeFrame.Model;
@@ -216,7 +212,7 @@ namespace TutteeFrame
         {
             string currentTeacher = ((sender as MaterialTextBox).Text.Length > 0) ? (sender as MaterialTextBox).Text : null;
             frmChooseTeacher frmChooseTeacher = new frmChooseTeacher((sender as MaterialTextBox).Tag.ToString(), (sender as MaterialTextBox).Hint, currentTeacher);
-            OverlayForm overlay = new OverlayForm(this, frmChooseTeacher, 0.40f);
+            OverlayForm overlay = new OverlayForm(this, frmChooseTeacher, 0.40f, setChild:false) ;
             frmChooseTeacher.FormClosed += (s, e) =>
             {
                 if (frmChooseTeacher.chosenTeacherID.Length > 0)
@@ -260,6 +256,11 @@ namespace TutteeFrame
                 this.Close();
             };
             worker.RunWorkerAsync();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            btnAssignTeacher.PerformClick();
         }
     }
 }

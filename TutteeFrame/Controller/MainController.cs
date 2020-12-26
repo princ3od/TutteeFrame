@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-using MaterialSkin.Controls;
-using TutteeFrame.Model;
-using System.Data;
+﻿using TutteeFrame.Model;
 using TutteeFrame.DataAccess;
 
 namespace TutteeFrame.Controller
@@ -23,11 +14,14 @@ namespace TutteeFrame.Controller
 
         public bool ConnectServer()
         {
+            string connectType = InitHelper.Instance.Read("ConnectType", "Application");
+            if (connectType == "Local")
+                return mainDA.CreateLocalConnect();
             string server = InitHelper.Instance.Read("ServerName", "Database");
             string port = InitHelper.Instance.Read("Port", "Database");
             string serverAccount = InitHelper.Instance.Read("ServerAccount", "Database");
             string serverPass = InitHelper.Instance.Read("ServerPassword", "Database");
-            return mainDA.Test(server, port, serverAccount, serverPass);
+            return mainDA.CreateConnect(server, port, serverAccount, serverPass);
         }
 
        

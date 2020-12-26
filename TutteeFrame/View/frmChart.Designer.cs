@@ -32,7 +32,7 @@
             this.cbbChartType = new MaterialSkin.Controls.MaterialComboBox();
             this.cbbDetailType = new MaterialSkin.Controls.MaterialComboBox();
             this.cbbSemester = new MaterialSkin.Controls.MaterialComboBox();
-            this.cbbDetailType2 = new MaterialSkin.Controls.MaterialComboBox();
+            this.cbbSubject = new MaterialSkin.Controls.MaterialComboBox();
             this.materialDivider1 = new MaterialSkin.Controls.MaterialDivider();
             this.mainChart = new LiveCharts.WinForms.CartesianChart();
             this.swtFastRespond = new MaterialSkin.Controls.MaterialSwitch();
@@ -44,6 +44,7 @@
             this.combobox1 = new Material_Design_for_Winform.MaterialCheckBox();
             this.cbbClass = new MaterialSkin.Controls.MaterialComboBox();
             this.lbChartName = new System.Windows.Forms.Label();
+            this.btnToggleMenu = new MaterialSkin.Controls.MaterialFloatingActionButton();
             this.listClass.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,7 +66,7 @@
             this.cbbChartType.Items.AddRange(new object[] {
             "Phổ điểm",
             "Xếp hạng"});
-            this.cbbChartType.Location = new System.Drawing.Point(26, 75);
+            this.cbbChartType.Location = new System.Drawing.Point(23, 41);
             this.cbbChartType.MaxDropDownItems = 4;
             this.cbbChartType.MouseState = MaterialSkin.MouseState.OUT;
             this.cbbChartType.Name = "cbbChartType";
@@ -91,7 +92,7 @@
             this.cbbDetailType.Items.AddRange(new object[] {
             "Phổ điểm",
             "Xếp hạng"});
-            this.cbbDetailType.Location = new System.Drawing.Point(161, 75);
+            this.cbbDetailType.Location = new System.Drawing.Point(158, 41);
             this.cbbDetailType.MaxDropDownItems = 4;
             this.cbbDetailType.MouseState = MaterialSkin.MouseState.OUT;
             this.cbbDetailType.Name = "cbbDetailType";
@@ -120,39 +121,41 @@
             "1",
             "2",
             "Cả năm"});
-            this.cbbSemester.Location = new System.Drawing.Point(267, 75);
+            this.cbbSemester.Location = new System.Drawing.Point(264, 41);
             this.cbbSemester.MaxDropDownItems = 4;
             this.cbbSemester.MouseState = MaterialSkin.MouseState.OUT;
             this.cbbSemester.Name = "cbbSemester";
             this.cbbSemester.Size = new System.Drawing.Size(90, 49);
             this.cbbSemester.TabIndex = 12;
+            this.cbbSemester.SelectedIndexChanged += new System.EventHandler(this.ChangeSemester);
             // 
-            // cbbDetailType2
+            // cbbSubject
             // 
-            this.cbbDetailType2.AutoResize = false;
-            this.cbbDetailType2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.cbbDetailType2.Depth = 0;
-            this.cbbDetailType2.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.cbbDetailType2.DropDownHeight = 174;
-            this.cbbDetailType2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbbDetailType2.DropDownWidth = 121;
-            this.cbbDetailType2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.cbbDetailType2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.cbbDetailType2.FormattingEnabled = true;
-            this.cbbDetailType2.Hint = "Cụ thể 2";
-            this.cbbDetailType2.IntegralHeight = false;
-            this.cbbDetailType2.ItemHeight = 43;
-            this.cbbDetailType2.Items.AddRange(new object[] {
+            this.cbbSubject.AutoResize = false;
+            this.cbbSubject.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cbbSubject.Depth = 0;
+            this.cbbSubject.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
+            this.cbbSubject.DropDownHeight = 174;
+            this.cbbSubject.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbbSubject.DropDownWidth = 121;
+            this.cbbSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
+            this.cbbSubject.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cbbSubject.FormattingEnabled = true;
+            this.cbbSubject.Hint = "Môn";
+            this.cbbSubject.IntegralHeight = false;
+            this.cbbSubject.ItemHeight = 43;
+            this.cbbSubject.Items.AddRange(new object[] {
             "Phổ điểm",
             "Xếp hạng"});
-            this.cbbDetailType2.Location = new System.Drawing.Point(232, 130);
-            this.cbbDetailType2.MaxDropDownItems = 4;
-            this.cbbDetailType2.MouseState = MaterialSkin.MouseState.OUT;
-            this.cbbDetailType2.Name = "cbbDetailType2";
-            this.cbbDetailType2.Size = new System.Drawing.Size(125, 49);
-            this.cbbDetailType2.TabIndex = 13;
-            this.cbbDetailType2.Visible = false;
-            this.cbbDetailType2.VisibleChanged += new System.EventHandler(this.OnDetailShow);
+            this.cbbSubject.Location = new System.Drawing.Point(229, 96);
+            this.cbbSubject.MaxDropDownItems = 4;
+            this.cbbSubject.MouseState = MaterialSkin.MouseState.OUT;
+            this.cbbSubject.Name = "cbbSubject";
+            this.cbbSubject.Size = new System.Drawing.Size(125, 49);
+            this.cbbSubject.TabIndex = 13;
+            this.cbbSubject.Visible = false;
+            this.cbbSubject.SelectedIndexChanged += new System.EventHandler(this.ChangeSubject);
+            this.cbbSubject.VisibleChanged += new System.EventHandler(this.OnDetailShow);
             // 
             // materialDivider1
             // 
@@ -160,7 +163,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.materialDivider1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.materialDivider1.Depth = 0;
-            this.materialDivider1.Location = new System.Drawing.Point(380, 100);
+            this.materialDivider1.Location = new System.Drawing.Point(375, 100);
             this.materialDivider1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialDivider1.Name = "materialDivider1";
             this.materialDivider1.Size = new System.Drawing.Size(2, 400);
@@ -172,9 +175,9 @@
             this.mainChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.mainChart.Location = new System.Drawing.Point(400, 60);
+            this.mainChart.Location = new System.Drawing.Point(405, 66);
             this.mainChart.Name = "mainChart";
-            this.mainChart.Size = new System.Drawing.Size(627, 502);
+            this.mainChart.Size = new System.Drawing.Size(627, 511);
             this.mainChart.TabIndex = 15;
             this.mainChart.Text = "cartesianChart1";
             // 
@@ -184,7 +187,7 @@
             this.swtFastRespond.Checked = true;
             this.swtFastRespond.CheckState = System.Windows.Forms.CheckState.Checked;
             this.swtFastRespond.Depth = 0;
-            this.swtFastRespond.Location = new System.Drawing.Point(28, 472);
+            this.swtFastRespond.Location = new System.Drawing.Point(25, 438);
             this.swtFastRespond.Margin = new System.Windows.Forms.Padding(0);
             this.swtFastRespond.MouseLocation = new System.Drawing.Point(-1, -1);
             this.swtFastRespond.MouseState = MaterialSkin.MouseState.HOVER;
@@ -204,7 +207,7 @@
             this.btnOK.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnOK.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnOK.Icon = null;
-            this.btnOK.Location = new System.Drawing.Point(32, 512);
+            this.btnOK.Location = new System.Drawing.Point(29, 478);
             this.btnOK.Name = "btnOK";
             this.btnOK.Radius = 2;
             this.btnOK.ShadowDepth = 3;
@@ -213,6 +216,7 @@
             this.btnOK.TabIndex = 47;
             this.btnOK.Text = "OK";
             this.btnOK.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnOK.Visible = false;
             this.btnOK.Click += new System.EventHandler(this.LoadChart);
             // 
             // btnExport
@@ -223,7 +227,7 @@
             this.btnExport.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.btnExport.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnExport.Icon = null;
-            this.btnExport.Location = new System.Drawing.Point(176, 512);
+            this.btnExport.Location = new System.Drawing.Point(152, 478);
             this.btnExport.Name = "btnExport";
             this.btnExport.Radius = 2;
             this.btnExport.ShadowDepth = 3;
@@ -232,6 +236,7 @@
             this.btnExport.TabIndex = 48;
             this.btnExport.Text = "Xuất biểu đồ";
             this.btnExport.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnExport.Click += new System.EventHandler(this.ExportChart);
             // 
             // cbbGrade
             // 
@@ -253,7 +258,7 @@
             "11",
             "12",
             "Tất cả"});
-            this.cbbGrade.Location = new System.Drawing.Point(26, 130);
+            this.cbbGrade.Location = new System.Drawing.Point(23, 96);
             this.cbbGrade.MaxDropDownItems = 4;
             this.cbbGrade.MouseState = MaterialSkin.MouseState.OUT;
             this.cbbGrade.Name = "cbbGrade";
@@ -271,7 +276,7 @@
             this.listClass.HorizontalScrollbarBarColor = true;
             this.listClass.HorizontalScrollbarHighlightOnWheel = false;
             this.listClass.HorizontalScrollbarSize = 10;
-            this.listClass.Location = new System.Drawing.Point(26, 185);
+            this.listClass.Location = new System.Drawing.Point(23, 151);
             this.listClass.Name = "listClass";
             this.listClass.Size = new System.Drawing.Size(330, 280);
             this.listClass.TabIndex = 50;
@@ -279,6 +284,7 @@
             this.listClass.VerticalScrollbarHighlightOnWheel = false;
             this.listClass.VerticalScrollbarSize = 10;
             this.listClass.Visible = false;
+            this.listClass.VisibleChanged += new System.EventHandler(this.ShowListClass);
             // 
             // checkbox2
             // 
@@ -330,28 +336,48 @@
             "11",
             "12",
             "Tất cả"});
-            this.cbbClass.Location = new System.Drawing.Point(132, 130);
+            this.cbbClass.Location = new System.Drawing.Point(129, 96);
             this.cbbClass.MaxDropDownItems = 4;
             this.cbbClass.MouseState = MaterialSkin.MouseState.OUT;
             this.cbbClass.Name = "cbbClass";
             this.cbbClass.Size = new System.Drawing.Size(94, 49);
             this.cbbClass.TabIndex = 51;
             this.cbbClass.Visible = false;
+            this.cbbClass.SelectedIndexChanged += new System.EventHandler(this.ChangeClass);
             // 
             // lbChartName
             // 
             this.lbChartName.AutoSize = true;
             this.lbChartName.Font = new System.Drawing.Font("Segoe UI Light", 15F);
-            this.lbChartName.Location = new System.Drawing.Point(437, 29);
+            this.lbChartName.Location = new System.Drawing.Point(417, 35);
             this.lbChartName.Name = "lbChartName";
-            this.lbChartName.Size = new System.Drawing.Size(174, 28);
+            this.lbChartName.Size = new System.Drawing.Size(160, 28);
             this.lbChartName.TabIndex = 52;
-            this.lbChartName.Text = "Thông tin tài khoản";
+            this.lbChartName.Text = "Biểu đồ ----------";
+            // 
+            // btnToggleMenu
+            // 
+            this.btnToggleMenu.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnToggleMenu.AnimateShowHideButton = false;
+            this.btnToggleMenu.Depth = 0;
+            this.btnToggleMenu.DrawShadows = true;
+            this.btnToggleMenu.Icon = null;
+            this.btnToggleMenu.Location = new System.Drawing.Point(359, 264);
+            this.btnToggleMenu.Mini = true;
+            this.btnToggleMenu.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnToggleMenu.Name = "btnToggleMenu";
+            this.btnToggleMenu.Size = new System.Drawing.Size(40, 40);
+            this.btnToggleMenu.TabIndex = 53;
+            this.btnToggleMenu.Text = "materialFloatingActionButton1";
+            this.btnToggleMenu.UseVisualStyleBackColor = true;
+            this.btnToggleMenu.Click += new System.EventHandler(this.ToggleMenu);
             // 
             // frmChart
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1050, 600);
+            this.Controls.Add(this.btnToggleMenu);
             this.Controls.Add(this.lbChartName);
             this.Controls.Add(this.cbbClass);
             this.Controls.Add(this.listClass);
@@ -361,15 +387,14 @@
             this.Controls.Add(this.swtFastRespond);
             this.Controls.Add(this.mainChart);
             this.Controls.Add(this.materialDivider1);
-            this.Controls.Add(this.cbbDetailType2);
+            this.Controls.Add(this.cbbSubject);
             this.Controls.Add(this.cbbSemester);
             this.Controls.Add(this.cbbDetailType);
             this.Controls.Add(this.cbbChartType);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1000, 600);
             this.Name = "frmChart";
-            this.ShadowType = MetroFramework.Forms.MetroFormShadowType.DropShadow;
-            this.Style = MetroFramework.MetroColorStyle.Teal;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "TutteeFrame - Biểu đồ";
             this.listClass.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -381,7 +406,7 @@
         private MaterialSkin.Controls.MaterialComboBox cbbChartType;
         private MaterialSkin.Controls.MaterialComboBox cbbDetailType;
         private MaterialSkin.Controls.MaterialComboBox cbbSemester;
-        private MaterialSkin.Controls.MaterialComboBox cbbDetailType2;
+        private MaterialSkin.Controls.MaterialComboBox cbbSubject;
         private MaterialSkin.Controls.MaterialDivider materialDivider1;
         private LiveCharts.WinForms.CartesianChart mainChart;
         private MaterialSkin.Controls.MaterialSwitch swtFastRespond;
@@ -393,5 +418,6 @@
         private Material_Design_for_Winform.MaterialCheckBox combobox1;
         private MaterialSkin.Controls.MaterialComboBox cbbClass;
         private System.Windows.Forms.Label lbChartName;
+        private MaterialSkin.Controls.MaterialFloatingActionButton btnToggleMenu;
     }
 }

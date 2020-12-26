@@ -58,6 +58,7 @@
             this.ptbAvatar = new System.Windows.Forms.PictureBox();
             this.mainProgressbar = new System.Windows.Forms.ProgressBar();
             this.lbInformation = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.pnBasicInfor.SuspendLayout();
             this.materialCard1.SuspendLayout();
             this.materialCard2.SuspendLayout();
@@ -521,8 +522,19 @@
             this.lbInformation.Text = "*Đang kết nối...";
             this.lbInformation.Visible = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(386, 635);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(20, 24);
+            this.button1.TabIndex = 49;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmTeacher
             // 
+            this.AcceptButton = this.button1;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnExit;
@@ -539,6 +551,7 @@
             this.Controls.Add(this.pnBasicInfor);
             this.Controls.Add(this.ptbAvatar);
             this.Controls.Add(this.lbID);
+            this.Controls.Add(this.button1);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ForeColor = System.Drawing.SystemColors.ControlText;
@@ -591,5 +604,6 @@
         private System.Windows.Forms.Label lbInformation;
         private MaterialSkin.Controls.MaterialRadioButton cbxIsAdmin;
         private MaterialSkin.Controls.MaterialRadioButton cbxIsMinistry;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace TutteeFrame
 {
-    public partial class frmReport : MetroForm
+    public partial class frmSetting : MetroForm
     {
-        public frmReport()
+        public frmSetting()
         {
             InitializeComponent();
         }

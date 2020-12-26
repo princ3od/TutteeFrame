@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using TutteeFrame.DataAccess;
 using TutteeFrame.Model;
 namespace TutteeFrame.Controller
 {
     class AccountController
     {
+        public static int AccountID { get; set; }
+        public static string SessionID { get; set; }
         AccountDA accountDA;
         public AccountController()
         {
@@ -28,13 +26,31 @@ namespace TutteeFrame.Controller
         {
             List<Account> accounts = new List<Account>();
             accountDA.LoadAccounts(accounts);
+            bool loggedIn = false;
             foreach (Account account in accounts)
             {
                 if (account.TeacherID == _teacherId)
-                    return account.Login(_pass);
+                    loggedIn = account.Login(_pass);
+                if (loggedIn)
+                {
+                    AccountID = account.ID;
+                    SessionID = Helper.GenerateSessionID();
+                    accountDA.CreateSession(account.ID, SessionID);
+                    break;
+                }
             }
             _flag = 0; //unknow username
-            return false;
+            return loggedIn;
+        }
+        public bool CheckSession(ref int _flag)
+        {
+            bool success = accountDA.CheckSession(AccountID, SessionID, out bool isExist);
+            _flag = (success) ? 1 : 0;
+            return isExist;
+        }
+        public void DeleteSession()
+        {
+            accountDA.DeleteSession(AccountID, SessionID);
         }
         public bool ChangePass(string _accountID, string _newPass)
         {

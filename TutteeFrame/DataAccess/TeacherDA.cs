@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TutteeFrame.Model;
 namespace TutteeFrame.DataAccess
@@ -254,10 +251,10 @@ namespace TutteeFrame.DataAccess
                         _teacher.ID = reader.GetString(0);
                         _teacher.SurName = reader["Surname"].ToString();
                         _teacher.FirstName = reader["Firstname"].ToString();
-                        if (!(reader["TeacherImage"] is DBNull))
-                            _avatars.Add(_teacher.ID, (byte[])reader["TeacherImage"]);
+                        if (!reader.IsDBNull(3))
+                            _teacher.Avatar = ImageHelper.BytesToImage((byte[])reader[3]);
                         else
-                            _avatars.Add(_teacher.ID, null);
+                            _teacher.Avatar = null;
                         _teacher.DateBorn = reader.GetDateTime(4);
                         _teacher.Sex = reader.GetBoolean(5);
                         _teacher.Address = reader["Address"].ToString();

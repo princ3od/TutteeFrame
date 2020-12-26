@@ -5,7 +5,6 @@ using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using TutteeFrame.Controller;
-using TutteeFrame.Model;
 namespace TutteeFrame
 {
     public partial class frmLogin : Form
@@ -194,7 +193,7 @@ namespace TutteeFrame
         private void btnChooseServer_Click(object sender, EventArgs e)
         {
             frmChooseServer frmChooseServer = new frmChooseServer();
-            OverlayForm overlayForm = new OverlayForm(this, frmChooseServer);
+            OverlayForm overlayForm = new OverlayForm(this, frmChooseServer, setChild: false);
             frmChooseServer.Show();
         }
     }

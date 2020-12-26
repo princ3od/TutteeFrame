@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TutteeFrame.Model;
 
@@ -31,7 +28,7 @@ namespace TutteeFrame.DataAccess
                 command.Parameters.AddWithValue("@subjectid", _subjectID);
                 command.Parameters.AddWithValue("@id", scoreBoardID);
                 using (SqlDataReader reader = command.ExecuteReader())
-                    while (reader.Read())
+                    if (reader.Read())
                     {
                         Score score = new Score(Score.ScoreType.Mieng);
                         if (!reader.IsDBNull(3))
@@ -70,6 +67,13 @@ namespace TutteeFrame.DataAccess
                             score.Value = -1;
                         score.SubjectID = _subjectID;
                         _scores.Add(score);
+                    }
+                    else
+                    {
+                        for (int i = 0; i < 8; i++)
+                        {
+                            _scores.Add(new Score(Score.ScoreType.TrungBinh));
+                        }
                     }
             }
             catch (Exception ex)
@@ -216,6 +220,47 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
+        public bool GetAverageSubjectScore(string _studentID, int _grade, int _semester, string _subjectID, out double _score)
+        {
+            _score = -1.0;
+            bool success = Connect();
+
+            if (!success)
+                return false;
+
+            try
+            {
+                using (SqlCommand sqlCommand = connection.CreateCommand())
+                {
+                    sqlCommand.CommandText = "SELECT SubjectAverage FROM SUBJECTSCORE JOIN SCOREBOARD ON SUBJECTSCORE.ScoreBoardID = SCOREBOARD.ScoreBoardID " +
+                        "JOIN LEARNRESULT ON LEARNRESULT.ScoreBoardSE01ID = SCOREBOARD.ScoreBoardID OR LEARNRESULT.ScoreBoardSE02ID = SCOREBOARD.ScoreBoardID " +
+                        "WHERE LEARNRESULT.StudentID = @studentid AND LEARNRESULT.Grade = @grade AND SCOREBOARD.Semester = @sem AND SUBJECTSCORE.SubjectID = @subjectid";
+                    sqlCommand.Parameters.AddWithValue("@studentid", _studentID);
+                    sqlCommand.Parameters.AddWithValue("@grade", _grade);
+                    sqlCommand.Parameters.AddWithValue("@sem", _semester);
+                    sqlCommand.Parameters.AddWithValue("@subjectid", _subjectID);
+
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            if (!reader.IsDBNull(0))
+                                _score = reader.GetDouble(0);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return true;
+        }
         public bool GetAllAverageSubjectScore(string _studentID, int _grade, int _semester, List<Score> _subjectScores)
         {
             bool success = Connect();
@@ -312,8 +357,9 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
-        public bool GetClassAverageScore(string _classID, int _semester = 3, string _subjectID = "")
+        public bool GetClassAverageScore(string _classID, out double _score, int _semester = 3, string _subjectID = "")
         {
+            _score = -1.0;
             bool success = Connect();
 
             if (!success)
@@ -321,18 +367,41 @@ namespace TutteeFrame.DataAccess
 
             try
             {
-                //if (_semester == 3)
-                //{
-                //    using (SqlCommand sqlCommand = connection.CreateCommand())
-                //    {
-                //        sqlCommand.CommandType = System.Data.CommandType.Text;
-                //        sqlCommand.CommandText = "SELECT * FROM"
-                //    }
-                //}
+                //cả năm
+                if (_semester == 3)
+                {
+                    if (string.IsNullOrEmpty(_subjectID))
+                    {
+                        bool _canCalc = false;
+                        using (SqlCommand sqlCommand = connection.CreateCommand())
+                        {
+                            sqlCommand.CommandType = System.Data.CommandType.Text;
+                            sqlCommand.CommandText = "SELECT COUNT(*) FROM LEARNRESULT JOIN STUDENT ON LEARNRESULT.StudentID = STUDENT.StudentID " +
+                                "WHERE AverageScore IS NULL AND STUDENT.ClassID = @classid";
+                            sqlCommand.Parameters.AddWithValue("@classid", _classID);
+                            _canCalc = ((int)sqlCommand.ExecuteScalar() == 0);
+                        }
+                        if (_canCalc)
+                        {
+                            using (SqlCommand sqlCommand = connection.CreateCommand())
+                            {
+                                sqlCommand.CommandType = System.Data.CommandType.Text;
+                                sqlCommand.CommandText = "SELECT AVG(AverageScore) FROM LEARNRESULT JOIN STUDENT ON LEARNRESULT.StudentID = STUDENT.StudentID " +
+                                    "WHERE STUDENT.ClassID = @classid";
+                                sqlCommand.Parameters.AddWithValue("@classid", _classID);
+                                _score = (double)sqlCommand.ExecuteScalar();
+                            }
+                        }
+                    }
+                }
+                else
+                {
+
+                }
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                //MessageBox.Show(ex.Message);
                 return false;
             }
             finally

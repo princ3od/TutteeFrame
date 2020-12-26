@@ -4,11 +4,8 @@ using MetroFramework.Forms;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Globalization;
 using System.Web.UI;
 using System.ComponentModel;
-using System.Data.SqlClient;
-using System.IO;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
@@ -28,8 +25,13 @@ namespace TutteeFrame
         ClassController classController;
         SubjectController subjectController;
         ScoreController scoreController;
+        PunishmentController punishmentController;
         List<Teacher> teachers = new List<Teacher>();
         BackgroundWorker loader;
+        BackgroundWorker checkLogin;
+        public bool isChildShowing;
+        bool isLogin = false;
+        bool isExpand = false;
         public bool ProgressSuccess { get; set; }
         #endregion
 
@@ -47,6 +49,7 @@ namespace TutteeFrame
             classController = new ClassController();
             subjectController = new SubjectController();
             scoreController = new ScoreController();
+            punishmentController = new PunishmentController();
         }
 
         #region Form Event
@@ -92,6 +95,55 @@ namespace TutteeFrame
             teacherController.LoadUsingTeacher((sender as frmLogin).teacherID);
             this.CenterToScreen();
             LoadAfterLogin();
+            isLogin = true;
+            checkLogin = new BackgroundWorker();
+            checkLogin.WorkerReportsProgress = true;
+            checkLogin.WorkerSupportsCancellation = true;
+            int flag = 1, preFlag = 1;
+            bool reconnecting = false;
+            checkLogin.DoWork += (s, ev) =>
+            {
+                frmReconnecting frmReconnecting = new frmReconnecting();
+                bool needLogout = false;
+                AccountController accountController = new AccountController();
+                while (!needLogout && isLogin)
+                {
+                    while (isChildShowing) ;
+                    if (!accountController.CheckSession(ref flag))
+                        if (flag != 0)
+                            needLogout = true;
+                    if (preFlag != flag)
+                    {
+                        checkLogin.ReportProgress(0);
+                        preFlag = flag;
+                    }
+                    Thread.Sleep(2000);
+                }
+            };
+            frmReconnecting frmReconnecting = new frmReconnecting();
+            checkLogin.ProgressChanged += (s, ev) =>
+            {
+                if (flag == 0 && !reconnecting)
+                {
+                    reconnecting = true;
+                    frmReconnecting = new frmReconnecting();
+                    OverlayForm overlayForm = new OverlayForm(this, frmReconnecting, 0.65f, 10, false);
+                    frmReconnecting.Show();
+                }
+                else if (reconnecting)
+                {
+                    reconnecting = false;
+                    frmReconnecting.Close();
+                }
+            };
+            checkLogin.RunWorkerCompleted += (s, ev) =>
+            {
+                if (!this.Visible)
+                    return;
+                MessageBox.Show("Tài khoản đã đăng nhập từ nơi khác.");
+                btnLogout.PerformClick();
+            };
+            checkLogin.RunWorkerAsync();
             this.Show();
         }
         private void MovableForm(object sender, MouseEventArgs e)
@@ -118,30 +170,56 @@ namespace TutteeFrame
             if (result == DialogResult.No)
                 e.Cancel = true;
         }
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            (new AccountController()).DeleteSession();
+        }
         #endregion
 
         #region Panel Profile Function
         private void TogglePanelProfile(object sender, EventArgs e)
         {
-            if (pnProfile.Size.Height > 70)
+
+            //if (pnProfile.Size.Height > 70)
+            if (isExpand)
+            {
+                btnShowMore.Icon.RotateFlip(RotateFlipType.Rotate180FlipNone);
                 pnProfile.Size = new Size(pnProfile.Size.Width, 70);
+                isExpand = false;
+            }
             else
+            {
+                btnShowMore.Icon.RotateFlip(RotateFlipType.Rotate180FlipNone);
                 pnProfile.Size = new Size(pnProfile.Size.Width, 250);
+                isExpand = true;
+            }
+
             pnProfile.Invalidate();
         }
         private void panel1_Leave(object sender, EventArgs e)
         {
             if (pnProfile.Size.Height > 70)
+            {
                 pnProfile.Size = new Size(pnProfile.Size.Width, 70);
+                btnShowMore.Icon.RotateFlip(RotateFlipType.Rotate180FlipNone);
+                isExpand = false;
+            }
+
         }
         private void btnLogout_Click(object sender, EventArgs e)
         {
+            btnShowMore.Icon.RotateFlip(RotateFlipType.Rotate180FlipNone);
+            isExpand = false;
             this.Hide();
+            isLogin = false;
             this.Size = new Size(1400, 750);
             firstLoad = true;
             pnProfile.Size = new Size(pnProfile.Size.Width, 70);
             frmLogin = new frmLogin();
             frmLogin.FormClosed += FrmLogin_FormClosed;
+            (new AccountController()).DeleteSession();
+            checkLogin.CancelAsync();
             frmLogin.Show();
         }
         private void btnChangePass_Click(object sender, EventArgs e)
@@ -159,7 +237,7 @@ namespace TutteeFrame
         #endregion
 
         #region Tabpage Thông tin tài khoản và việc tải thông tin lần đầu sau khi đăng nhập
-        void LoadAfterLogin()
+        void LoadTabpageInfor()
         {
             System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
             gp.AddEllipse(0, 0, pbProfilemainAvatar.Width - 1, pbProfilemainAvatar.Height - 1);
@@ -186,9 +264,12 @@ namespace TutteeFrame
                 lbBelongto.Text = "Ban giam hiệu";
             else if (mainTeacher.Type == Teacher.TeacherType.Ministry)
                 lbBelongto.Text = "Giáo vụ";
+        }
+        void LoadAfterLogin()
+        {
+            LoadTabpageInfor();
             mainTabControl.TabPages.Clear();
             mainTabControl.TabPages.Add(tbpgProfile);
-            mainTabControl.TabPages.Add(tbpgShedule);
             if (mainTeacher.ID == "AD999999")
             {
                 lbBelongtoOnCard.Text = "Adminstrator";
@@ -197,7 +278,7 @@ namespace TutteeFrame
                 mainTabControl.TabPages.Add(tbpgClassManagment);
                 mainTabControl.TabPages.Add(tbpgStudentManagment);
                 mainTabControl.TabPages.Add(tbpgSubjectManagment);
-                mainTabControl.TabPages.Add(tbpgRewardManagment);
+                mainTabControl.TabPages.Add(tbpgPunishmentManagment);
                 mainTabControl.TabPages.Add(tbpgStudentMarkboard);
                 mainTabControl.TabPages.Add(tbpgReport);
                 mainTeacher.Type = Teacher.TeacherType.Adminstrator;
@@ -210,7 +291,7 @@ namespace TutteeFrame
                         lbBelongtoOnCard.Text = "Giáo viên chủ nhiệm";
                         mainTabControl.TabPages.Add(tbpgFormClass);
                         mainTabControl.TabPages.Add(tbpgStudentMarkboard);
-                        mainTabControl.TabPages.Add(tbpgPunishmentManagment);
+                        mainTabControl.TabPages.Add(tbpgFaulttManagment);
                         break;
                     case Teacher.TeacherType.Teacher:
                         lbBelongtoOnCard.Text = "Giáo viên bộ môn";
@@ -227,7 +308,7 @@ namespace TutteeFrame
                         lbBelongtoOnCard.Text = "Ban giáo vụ";
                         mainTabControl.TabPages.Add(tbpgStudentManagment);
                         mainTabControl.TabPages.Add(tbpgClassManagment);
-                        mainTabControl.TabPages.Add(tbpgRewardManagment);
+                        mainTabControl.TabPages.Add(tbpgPunishmentManagment);
                         mainTabControl.TabPages.Add(tbpgReport);
                         break;
                     default:
@@ -275,10 +356,8 @@ namespace TutteeFrame
                         loader.DoWork += (s, e) =>
                         {
                             loader.ReportProgress(0, "Đang tải danh sách môn học...");
-                            Thread.Sleep(200);
                             subjects = subjectController.LoadSubjects();
                             loader.ReportProgress(0, "Đang tải danh sách giáo viên...");
-                            Thread.Sleep(200);
                             teachers = teacherController.GetAllTeachers();
                             teacherController.GetTeacherNumber(out totalTeacher, out totalMinistry, out totalAdmin);
                         };
@@ -310,6 +389,7 @@ namespace TutteeFrame
                     }
                     break;
                 case Teacher.TeacherType.Ministry:
+                    LoadPunishmentList();
                     loader.RunWorkerCompleted += (s, e) =>
                     {
                         cbbGradeClass.SelectedIndex = 0;
@@ -318,6 +398,7 @@ namespace TutteeFrame
                 case Teacher.TeacherType.FormerTeacher:
                     LoadOnTeacher();
                     LoadFormClassStudents();
+                    LoadFaultList();
                     break;
                 default:
                     break;
@@ -427,7 +508,6 @@ namespace TutteeFrame
             }
             worker.DoWork += (s, ev) =>
             {
-                Thread.Sleep(200);
                 foreach (KeyValuePair<int, string> index in indexToDelete)
                 {
                     idToDel = index.Value;
@@ -494,7 +574,6 @@ namespace TutteeFrame
                 worker.DoWork += (s, e) =>
                 {
                     teachers = teacherController.GetAllTeachers();
-                    Thread.Sleep(200);
                 };
                 worker.RunWorkerCompleted += (s, e) =>
                 {
@@ -614,7 +693,6 @@ namespace TutteeFrame
             int numStudent = 0;
             studentController.CountNumberOfStudent(ref numStudent);
             studentLoader.ReportProgress(90, numStudent.ToString());
-            Thread.Sleep(200);
         }
         private void ShowListBackGroundWork_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
         {
@@ -670,7 +748,6 @@ namespace TutteeFrame
             worker.DoWork += (s, e) =>
             {
                 classes = classController.GetClass(khoiSelected);
-                Thread.Sleep(200);
             };
             worker.RunWorkerCompleted += (s, e) =>
             {
@@ -927,7 +1004,6 @@ namespace TutteeFrame
             updater.DoWork += (s, e) =>
             {
                 success = scoreController.UpdateStudentScore(gridviewStudentScore.Rows, mainTeacher.Subject.ID, _semes, grade);
-                Thread.Sleep(200);
             };
             updater.RunWorkerCompleted += (s, e) =>
             {
@@ -1074,7 +1150,6 @@ namespace TutteeFrame
             loader.DoWork += (s, e) =>
             {
                 loader.ReportProgress(0, "Đang tải danh sách môn học...");
-                Thread.Sleep(200);
                 subjects = subjectController.LoadSubjects();
             };
             loader.RunWorkerCompleted += (s, e) =>
@@ -1162,7 +1237,6 @@ namespace TutteeFrame
             {
                 classes = classController.GetClass(selectedGrade);
                 doneClass = classController.GetDoneClasses();
-                Thread.Sleep(200);
             };
             loader.RunWorkerCompleted += (s, e) =>
             {
@@ -1215,7 +1289,6 @@ namespace TutteeFrame
             {
                 classBackgroundWorker.DoWork += (s, e) =>
                 {
-                    Thread.Sleep(200);
                     classController.GetAllClass(lvClass);
                 };
             }
@@ -1224,7 +1297,6 @@ namespace TutteeFrame
                 string strGradeClass = cbbGradeClass.Text;
                 classBackgroundWorker.DoWork += (s, e) =>
                 {
-                    Thread.Sleep(200);
                     lvClass = classController.GetClass(strGradeClass);
                 };
             }
@@ -1301,7 +1373,7 @@ namespace TutteeFrame
                 return;
             }
             string deletedClassID = listViewClass.SelectedItems[0].SubItems[1].Text;
-            if (MetroMessageBox.Show(this, "Xác nhận xóa lớp" + deletedClassID + "?", "Xác nhận", MessageBoxButtons.YesNo,
+            if (MetroMessageBox.Show(this, "Xác nhận xóa lớp " + deletedClassID + "?", "Xác nhận", MessageBoxButtons.YesNo,
                               MessageBoxIcon.None) == DialogResult.No)
                 return;
             BackgroundWorker deleter = new BackgroundWorker();
@@ -1317,10 +1389,8 @@ namespace TutteeFrame
                 if (deletable)
                 {
                     success = new TeachingController().DeleteTeaching(deletedClassID);
-                    Thread.Sleep(300);
                     success = classController.DeletedClass(deletedClassID);
                 }
-                Thread.Sleep(100);
             };
             deleter.RunWorkerCompleted += (s, e) =>
             {
@@ -1347,7 +1417,7 @@ namespace TutteeFrame
         void LoadFormClassStudents()
         {
             listviewStudentInClass.Items.Clear();
-            lbFormClass.Text = mainTeacher.FormClassID;
+            lbFormClass.Text = lbFormClass2.Text = mainTeacher.FormClassID;
             Class _class = new Class();
             List<Student> students = new List<Student>();
             Dictionary<string, List<AverageScore>> averageScoreList = new Dictionary<string, List<AverageScore>>();
@@ -1356,7 +1426,6 @@ namespace TutteeFrame
             loader.DoWork += (s, e) =>
             {
                 loader.ReportProgress(0, "Đang tải danh sách học sinh lớp chủ nhiệm...");
-                Thread.Sleep(200);
                 classController.LoadClass(mainTeacher.FormClassID, _class);
                 students = studentController.GetStudents(mainTeacher.FormClassID);
                 int grade = Int32.Parse(mainTeacher.FormClassID.Substring(0, 2));
@@ -1457,6 +1526,92 @@ namespace TutteeFrame
         }
         #endregion
 
+        #region Tabpage Quản lí vi phạm
+        void LoadFaultList()
+        {
+            List<Punishment> punishments = new List<Punishment>();
+            List<string> studentName = new List<string>();
+            loader.DoWork += (s, ev) =>
+            {
+                if (firstLoad)
+                    loader.ReportProgress(0, "Đang tải danh sách vi phạm...");
+                punishments = punishmentController.GetPunishments();
+                for (int i = 0; i < punishments.Count; i++)
+                {
+                    Student student = new Student();
+                    bool success = studentController.LoadStudentInformationById(punishments[i].StudentID, student);
+                    if (success)
+                        studentName.Add(student.GetName());
+                    else
+                        studentName.Add("");
+                }
+            };
+            loader.RunWorkerCompleted += (s, ev) =>
+            {
+                listViewFault.Items.Clear();
+                for (int i = 0; i < punishments.Count; i++)
+                {
+                    listViewFault.Items.Add(new ListViewItem(new string[]
+                        {
+                            (i + 1).ToString(),
+                            punishments[i].ID,
+                            punishments[i].StudentID,
+                            studentName[i],
+                            punishments[i].Semester.ToString(),
+                            punishments[i].Fault
+                        }));
+                }
+            };
+        }
+        #endregion
+
+        #region Tabpage Quản lí kỉ luật
+        void LoadPunishmentList()
+        {
+            List<Punishment> punishments = new List<Punishment>();
+            List<string> studentName = new List<string>();
+            List<string> classID = new List<string>();
+            loader.DoWork += (s, ev) =>
+            {
+                if (firstLoad)
+                    loader.ReportProgress(0, "Đang tải danh sách vi phạm...");
+                punishments = punishmentController.GetPunishments();
+                for (int i = 0; i < punishments.Count; i++)
+                {
+                    Student student = new Student();
+                    bool success = studentController.LoadStudentInformationById(punishments[i].StudentID, student);
+                    if (success)
+                    {
+                        studentName.Add(student.GetName());
+                        classID.Add(student.ClassID);
+                    }
+                    else
+                    {
+                        studentName.Add("");
+                        classID.Add("");
+                    }
+                }
+            };
+            loader.RunWorkerCompleted += (s, ev) =>
+            {
+                listViewPunishment.Items.Clear();
+                for (int i = 0; i < punishments.Count; i++)
+                {
+                    listViewPunishment.Items.Add(new ListViewItem(new string[]
+                        {
+                            (i + 1).ToString(),
+                            punishments[i].ID,
+                            punishments[i].StudentID,
+                            studentName[i],
+                            classID[i],
+                            punishments[i].Semester.ToString(),
+                            punishments[i].Fault,
+                            punishments[i].Content
+                        }));
+                }
+            };
+        }
+        #endregion
         private void ShowReportForm(object sender, EventArgs e)
         {
         }
@@ -1465,8 +1620,140 @@ namespace TutteeFrame
         {
             frmChart frmChart = new frmChart();
             this.Hide();
+            this.isChildShowing = true;
             frmChart.Owner = this;
             frmChart.Show();
+            frmChart.FormClosed += (s, ev) => { isChildShowing = false; };
+        }
+
+        private void listViewFault_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnUpdateFault.Enabled = btnDeleteFault.Enabled = (listViewFault.SelectedItems.Count > 0);
+        }
+
+        private void DeleteFault(object sender, EventArgs e)
+        {
+            string deletedPunishmentID = listViewFault.SelectedItems[0].SubItems[1].Text;
+            if (MetroMessageBox.Show(this, "Xác nhận xóa vi phạm có mã " + deletedPunishmentID + " ?", "Xác nhận", MessageBoxButtons.YesNo,
+                              MessageBoxIcon.None) == DialogResult.No)
+                return;
+            BackgroundWorker deleter = new BackgroundWorker();
+            bool success = false;
+            lbInformation.Visible = mainProgressbar.Visible = true;
+            lbInformation.Text = "Đang xóa vi phạm...";
+            deleter.DoWork += (s, e) =>
+            {
+                success = punishmentController.DeletePunishment(deletedPunishmentID);
+
+            };
+            deleter.RunWorkerCompleted += (s, e) =>
+            {
+                lbInformation.Visible = mainProgressbar.Visible = false;
+                if (success)
+                {
+                    MetroMessageBox.Show(this, "Xoá thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    loader = new BackgroundWorker();
+                    LoadFaultList();
+                    loader.RunWorkerAsync();
+                }
+                else
+                    MetroMessageBox.Show(this, "Xoá thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            };
+            deleter.RunWorkerAsync();
+        }
+
+        private void UpdateFault(object sender, EventArgs e)
+        {
+            frmStudentFault frmStudentFault = new frmStudentFault(listViewFault.SelectedItems[0].SubItems[2].Text, frmStudentFault.Mode.Edit, frmStudentFault.OpenMode.FaultOnly, listViewFault.SelectedItems[0].SubItems[1].Text);
+            OverlayForm overlayForm = new OverlayForm(this, frmStudentFault, 0.5f);
+            frmStudentFault.FormClosed += (s, ev) =>
+            {
+                loader = new BackgroundWorker();
+                LoadFaultList();
+                loader.RunWorkerAsync();
+            };
+            frmStudentFault.Show();
+        }
+        private void btnSetting_Click(object sender, EventArgs e)
+        {
+            frmSetting frmSetting = new frmSetting();
+            OverlayForm overlay = new OverlayForm(this, frmSetting);
+            frmSetting.Show();
+        }
+        bool reloading = false;
+
+        private void UpdatePunishment(object sender, EventArgs e)
+        {
+            frmStudentFault frmStudentFault = new frmStudentFault(listViewPunishment.SelectedItems[0].SubItems[2].Text, frmStudentFault.Mode.Edit, frmStudentFault.OpenMode.Full, listViewPunishment.SelectedItems[0].SubItems[1].Text);
+            OverlayForm overlayForm = new OverlayForm(this, frmStudentFault, 0.5f);
+            frmStudentFault.FormClosed += (s, ev) =>
+            {
+                loader = new BackgroundWorker();
+                LoadPunishmentList();
+                loader.RunWorkerAsync();
+            };
+            frmStudentFault.Show();
+        }
+
+        private void DeletePunishment(object sender, EventArgs e)
+        {
+
+            string deletedPunishmentID = listViewPunishment.SelectedItems[0].SubItems[1].Text;
+            if (MetroMessageBox.Show(this, "Xác nhận xóa vi phạm có mã " + deletedPunishmentID + " ?", "Xác nhận", MessageBoxButtons.YesNo,
+                              MessageBoxIcon.None) == DialogResult.No)
+                return;
+            BackgroundWorker deleter = new BackgroundWorker();
+            bool success = false;
+            lbInformation.Visible = mainProgressbar.Visible = true;
+            lbInformation.Text = "Đang xóa vi phạm...";
+            deleter.DoWork += (s, e) =>
+            {
+                success = punishmentController.DeletePunishment(deletedPunishmentID);
+
+            };
+            deleter.RunWorkerCompleted += (s, e) =>
+            {
+                lbInformation.Visible = mainProgressbar.Visible = false;
+                if (success)
+                {
+                    MetroMessageBox.Show(this, "Xoá thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    loader = new BackgroundWorker();
+                    LoadFaultList();
+                    loader.RunWorkerAsync();
+                }
+                else
+                    MetroMessageBox.Show(this, "Xoá thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            };
+            deleter.RunWorkerAsync();
+        }
+
+        private void listViewPunishment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnUpdatePunishment.Enabled = btnDeletePunishment.Enabled = (listViewPunishment.SelectedItems.Count > 0);
+
+            if (btnUpdatePunishment.Enabled)
+            {
+                if (string.IsNullOrEmpty(listViewPunishment.SelectedItems[0].SubItems[7].Text))
+                    btnUpdatePunishment.Text = "Thêm kỉ luật";
+                else
+                    btnUpdatePunishment.Text = "Cập nhật";
+            }
+        }
+
+     
+
+        private void tbpgProfile_SizeChanged(object sender, EventArgs e)
+        {            
+            if (tbpgProfile.Width < 1055)
+            {
+                panel1.Location = new Point(238, 535);
+                materialDivider4.Visible = false;
+            }
+            else 
+            {
+                panel1.Location = new Point(649, 16);
+                materialDivider4.Visible = true;
+            }
         }
 
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -1474,6 +1761,26 @@ namespace TutteeFrame
             if (mainTabControl.SelectedTab == null)
                 return;
             lbTittle.Text = mainTabControl.SelectedTab.Text;
+            //if (!firstLoad && !reloading)
+            //{
+            //    bool success = false;
+            //    BackgroundWorker worker = new BackgroundWorker();
+            //    worker.DoWork += (s, ev) =>
+            //    {
+            //        reloading = true;
+            //        success = teacherController.LoadUsingTeacher(teacherController.usingTeacher.ID);
+            //    };
+            //    worker.RunWorkerCompleted += (s, ev) =>
+            //    {
+            //        if (success)
+            //        {
+            //            LoadTabpageInfor();
+            //            LoadData();
+            //        }
+            //        reloading = false;
+            //    };
+            //    worker.RunWorkerAsync();
+            //}
         }
     }
 }

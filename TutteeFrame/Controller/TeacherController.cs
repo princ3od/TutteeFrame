@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TutteeFrame.DataAccess;
 using TutteeFrame.Model;
 
@@ -93,7 +91,7 @@ namespace TutteeFrame.Controller
                         teachers[index].Type = Teacher.TeacherType.FormerTeacher;
                         teachers[index].FormClassID = classID;
                     }
-                    teachers[index].Avatar = ImageHelper.BytesToImage(avatars[teachers[index].ID]);
+                    //teachers[index].Avatar = ImageHelper.BytesToImage(avatars[teachers[index].ID]);
                 }
             }
             return teachers;

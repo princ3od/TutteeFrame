@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TutteeFrame.Model;
 using TutteeFrame.Controller;
@@ -92,6 +87,11 @@ namespace TutteeFrame
         }
 
         private void listviewTeacher_DoubleClick(object sender, EventArgs e)
+        {
+            btnApprove.PerformClick();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
         {
             btnApprove.PerformClick();
         }

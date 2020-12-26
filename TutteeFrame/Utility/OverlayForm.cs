@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace TutteeFrame
 {
     class OverlayForm : Form
     {
-
-        public OverlayForm(Form _parent, Form _child, float _opacity = 0.6f, int _offSet = 5)
+        public OverlayForm() { this.Close(); }
+        public OverlayForm(Form _parent, Form _child, float _opacity = 0.6f, int _offSet = 5, bool setChild = true)
         {
+            if (setChild)
+                ((frmMain)_parent).isChildShowing = true;
             this.ControlBox = false;
             this.StartPosition = FormStartPosition.Manual;
             this.FormBorderStyle = FormBorderStyle.None;
@@ -34,6 +31,8 @@ namespace TutteeFrame
             _child.Location = new Point(this.Location.X + this.Width / 2 - _child.Width / 2, this.Location.Y + this.Height / 2 - _child.Height / 2 - _offSet);
             _child.FormClosed += (s, e) =>
             {
+                if (setChild)
+                    ((frmMain)_parent).isChildShowing = false;
                 this.Close();
                 //_parent.Focus();
             };

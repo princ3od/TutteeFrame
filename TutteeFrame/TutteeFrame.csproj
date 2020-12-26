@@ -111,6 +111,18 @@
     <Compile Include="Controller\MainController.cs" />
     <Compile Include="Controller\PunishmentController.cs" />
     <Compile Include="DataAccess\PunishmentDA.cs" />
+    <Compile Include="View\frmReconnecting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\frmReconnecting.Designer.cs">
+      <DependentUpon>frmReconnecting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\frmSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\frmSetting.Designer.cs">
+      <DependentUpon>frmSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\InfomationOfStudensResultOfClassPrepareToPrint.cs" />
     <Compile Include="Model\InformationOfStudentResultPrepareForPrint.cs" />
     <Compile Include="Model\Punishment.cs" />
@@ -170,12 +182,6 @@
     </Compile>
     <Compile Include="View\frmChart.Designer.cs">
       <DependentUpon>frmChart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\frmReport.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\frmReport.Designer.cs">
-      <DependentUpon>frmReport.cs</DependentUpon>
     </Compile>
     <Compile Include="View\frmStudentConduct.cs">
       <SubType>Form</SubType>
@@ -292,6 +298,12 @@
     <Compile Include="View\frmViewStudent.Designer.cs">
       <DependentUpon>frmViewStudent.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\frmReconnecting.resx">
+      <DependentUpon>frmReconnecting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\frmSetting.resx">
+      <DependentUpon>frmSetting.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\ReportClassResult.rdlc" />
     <EmbeddedResource Include="Reports\ReportStudentResult.rdlc" />
     <EmbeddedResource Include="View\frmChart.resx">

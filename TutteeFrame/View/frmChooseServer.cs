@@ -9,6 +9,7 @@ namespace TutteeFrame
     public partial class frmChooseServer : Form
     {
         public bool connected = false;
+        string connectType;
         public frmChooseServer()
         {
             InitializeComponent();
@@ -38,6 +39,12 @@ namespace TutteeFrame
         #endregion
         private void frmChooseServer_Load(object sender, EventArgs e)
         {
+            connectType = InitHelper.Instance.Read("ConnectType", "Application");
+            if (connectType == "Local")
+                rbtnConnectLocal.Checked = true;
+            else
+                rbtnConnectServer.Checked = true;
+            txtConnectionString.Text = Properties.Settings.Default.LocalConnectionString;
             txtServerName.Text = InitHelper.Instance.Read("ServerName", "Database");
             txtPort.Text = InitHelper.Instance.Read("Port", "Database");
             txtAccount.Text = InitHelper.Instance.Read("ServerAccount", "Database");
@@ -58,6 +65,22 @@ namespace TutteeFrame
         }
         private void btnConnect_Click(object sender, EventArgs e)
         {
+            if (rbtnConnectLocal.Checked)
+            {
+                if (string.IsNullOrEmpty(txtConnectionString.Text))
+                {
+                    txtConnectionString.FocusColor = Color.Red;
+                    txtConnectionString.Focus();
+                }
+                else
+                {
+                    Properties.Settings.Default.LocalConnectionString = txtConnectionString.Text;
+                    InitHelper.Instance.Write("ConnectType", "Local", "Application");
+                    Properties.Settings.Default.Save();
+                    this.Close();
+                }
+                return;
+            }
             if (string.IsNullOrEmpty(txtServerName.Text))
             {
                 txtServerName.FocusColor = Color.Red;
@@ -80,6 +103,7 @@ namespace TutteeFrame
                 InitHelper.Instance.Write("Port", txtPort.Text, "Database");
                 InitHelper.Instance.Write("ServerAccount", txtAccount.Text, "Database");
                 InitHelper.Instance.Write("ServerPassword", txtPassword.Text, "Database");
+                InitHelper.Instance.Write("ConnectType", "Server", "Application");
                 this.Close();
             }
         }
@@ -106,6 +130,44 @@ namespace TutteeFrame
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void ConnectTypeChanged(object sender, EventArgs e)
+        {
+            if (rbtnConnectLocal.Checked)
+            {
+                txtConnectionString.Enabled = true;
+                txtAccount.Enabled = txtPassword.Enabled = txtServerName.Enabled = txtPort.Enabled = false;
+                label1.ForeColor = Color.Gray;
+                label2.ForeColor = Color.Black;
+                txtConnectionString.Text = Properties.Settings.Default.LocalConnectionString;
+            }
+            else
+            {
+                txtConnectionString.Enabled = false;
+                txtAccount.Enabled = txtPassword.Enabled = txtServerName.Enabled = txtPort.Enabled = true;
+                label2.ForeColor = Color.Gray;
+                label1.ForeColor = Color.Black;
+                txtServerName.Text = InitHelper.Instance.Read("ServerName", "Database");
+                txtPort.Text = InitHelper.Instance.Read("Port", "Database");
+                txtAccount.Text = InitHelper.Instance.Read("ServerAccount", "Database");
+                txtPassword.Text = InitHelper.Instance.Read("ServerPassword", "Database");
+            }
+        }
+
+        private void ChooseLocal(object sender, EventArgs e)
+        {
+            rbtnConnectLocal.Checked = true;
+        }
+
+        private void ChooseServer(object sender, EventArgs e)
+        {
+            rbtnConnectServer.Checked = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            btnConfirm.PerformClick();
         }
     }
 }

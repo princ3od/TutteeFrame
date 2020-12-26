@@ -2,9 +2,6 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using TutteeFrame.Model;
 
@@ -233,7 +230,7 @@ namespace TutteeFrame.DataAccess
                     "Address= @address," +
                     "Phonne = @phone," +
                     "ClassID =@classid, " +
-                    "Status = @status," +
+                    "Status = @status" +
                     $" WHERE StudentID = @studentid";
                 using (SqlCommand sqlCommand = new SqlCommand(query, connection))
                 {
