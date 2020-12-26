@@ -211,6 +211,12 @@ namespace TutteeFrame
             }
 
         }
+        private void btnSetting_Click(object sender, EventArgs e)
+        {
+            frmSetting frmSetting = new frmSetting();
+            OverlayForm overlay = new OverlayForm(this, frmSetting);
+            frmSetting.Show();
+        }
         private void btnLogout_Click(object sender, EventArgs e)
         {
             btnShowMore.Icon.RotateFlip(RotateFlipType.Rotate180FlipNone);
@@ -237,6 +243,19 @@ namespace TutteeFrame
                 if (frmChangePass.changedSuccess)
                     btnLogout.PerformClick();
             };
+        }
+        private void tbpgProfile_SizeChanged(object sender, EventArgs e)
+        {
+            if (tbpgProfile.Width < 1055)
+            {
+                panel1.Location = new Point(238, 535);
+                materialDivider4.Visible = false;
+            }
+            else
+            {
+                panel1.Location = new Point(649, 16);
+                materialDivider4.Visible = true;
+            }
         }
         #endregion
 
@@ -925,7 +944,10 @@ namespace TutteeFrame
                     cbbTeachingSemester.Items.Add(semes);
                 }
                 if (cbbTeachingSemester.Items.Count > 0)
+                {
                     cbbTeachingSemester.SelectedIndex = 0;
+                    cbbTeachingSemester.Invalidate();
+                }
                 lbScoreTittle.Text = string.Format("Bảng điểm lớp {0} - môn {1} - HK {2} - năm {3}",
                           cbbTeachingClass.Text, mainTeacher.Subject.Name,
                             cbbTeachingSemester.Text, year[Int32.Parse(cbbTeachingSemester.Text) - 1]);
@@ -1133,8 +1155,10 @@ namespace TutteeFrame
                     cbbTeachingClass.Items.Add(item);
                 }
                 if (cbbTeachingClass.Items.Count > 0)
+                {
                     cbbTeachingClass.SelectedIndex = 0;
-
+                    cbbTeachingClass.Invalidate();
+                }
                 lbTotalTeachingClass.Text = classes.Count.ToString();
                 lbScoreTittle.Text = string.Format("Bảng điểm lớp {0} - môn {1} - HK {2} - năm {3}",
                                             cbbTeachingClass.Text, mainTeacher.Subject.Name, cbbTeachingSemester.Text, "2020");
@@ -1572,6 +1596,52 @@ namespace TutteeFrame
                 }
             };
         }
+        private void listViewFault_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            btnUpdateFault.Enabled = btnDeleteFault.Enabled = (listViewFault.SelectedItems.Count > 0);
+        }
+        private void DeleteFault(object sender, EventArgs e)
+        {
+            string deletedPunishmentID = listViewFault.SelectedItems[0].SubItems[1].Text;
+            if (MetroMessageBox.Show(this, "Xác nhận xóa vi phạm có mã " + deletedPunishmentID + " ?", "Xác nhận", MessageBoxButtons.YesNo,
+                              MessageBoxIcon.None) == DialogResult.No)
+                return;
+            BackgroundWorker deleter = new BackgroundWorker();
+            bool success = false;
+            lbInformation.Visible = mainProgressbar.Visible = true;
+            lbInformation.Text = "Đang xóa vi phạm...";
+            deleter.DoWork += (s, e) =>
+            {
+                success = punishmentController.DeletePunishment(deletedPunishmentID);
+
+            };
+            deleter.RunWorkerCompleted += (s, e) =>
+            {
+                lbInformation.Visible = mainProgressbar.Visible = false;
+                if (success)
+                {
+                    MetroMessageBox.Show(this, "Xoá thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    loader = new BackgroundWorker();
+                    LoadFaultList();
+                    loader.RunWorkerAsync();
+                }
+                else
+                    MetroMessageBox.Show(this, "Xoá thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            };
+            deleter.RunWorkerAsync();
+        }
+        private void UpdateFault(object sender, EventArgs e)
+        {
+            frmStudentFault frmStudentFault = new frmStudentFault(listViewFault.SelectedItems[0].SubItems[2].Text, frmStudentFault.Mode.Edit, frmStudentFault.OpenMode.FaultOnly, listViewFault.SelectedItems[0].SubItems[1].Text);
+            OverlayForm overlayForm = new OverlayForm(this, frmStudentFault, 0.5f);
+            frmStudentFault.FormClosed += (s, ev) =>
+            {
+                loader = new BackgroundWorker();
+                LoadFaultList();
+                loader.RunWorkerAsync();
+            };
+            frmStudentFault.Show();
+        }
         #endregion
 
         #region Tabpage Quản lí kỉ luật
@@ -1620,77 +1690,6 @@ namespace TutteeFrame
                 }
             };
         }
-        #endregion
-        private void ShowReportForm(object sender, EventArgs e)
-        {
-        }
-
-        private void ShowChartForm(object sender, EventArgs e)
-        {
-            frmChart frmChart = new frmChart();
-            this.Hide();
-            this.isChildShowing = true;
-            frmChart.Owner = this;
-            frmChart.Show();
-            frmChart.FormClosed += (s, ev) => { isChildShowing = false; };
-        }
-
-        private void listViewFault_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            btnUpdateFault.Enabled = btnDeleteFault.Enabled = (listViewFault.SelectedItems.Count > 0);
-        }
-
-        private void DeleteFault(object sender, EventArgs e)
-        {
-            string deletedPunishmentID = listViewFault.SelectedItems[0].SubItems[1].Text;
-            if (MetroMessageBox.Show(this, "Xác nhận xóa vi phạm có mã " + deletedPunishmentID + " ?", "Xác nhận", MessageBoxButtons.YesNo,
-                              MessageBoxIcon.None) == DialogResult.No)
-                return;
-            BackgroundWorker deleter = new BackgroundWorker();
-            bool success = false;
-            lbInformation.Visible = mainProgressbar.Visible = true;
-            lbInformation.Text = "Đang xóa vi phạm...";
-            deleter.DoWork += (s, e) =>
-            {
-                success = punishmentController.DeletePunishment(deletedPunishmentID);
-
-            };
-            deleter.RunWorkerCompleted += (s, e) =>
-            {
-                lbInformation.Visible = mainProgressbar.Visible = false;
-                if (success)
-                {
-                    MetroMessageBox.Show(this, "Xoá thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    loader = new BackgroundWorker();
-                    LoadFaultList();
-                    loader.RunWorkerAsync();
-                }
-                else
-                    MetroMessageBox.Show(this, "Xoá thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            };
-            deleter.RunWorkerAsync();
-        }
-
-        private void UpdateFault(object sender, EventArgs e)
-        {
-            frmStudentFault frmStudentFault = new frmStudentFault(listViewFault.SelectedItems[0].SubItems[2].Text, frmStudentFault.Mode.Edit, frmStudentFault.OpenMode.FaultOnly, listViewFault.SelectedItems[0].SubItems[1].Text);
-            OverlayForm overlayForm = new OverlayForm(this, frmStudentFault, 0.5f);
-            frmStudentFault.FormClosed += (s, ev) =>
-            {
-                loader = new BackgroundWorker();
-                LoadFaultList();
-                loader.RunWorkerAsync();
-            };
-            frmStudentFault.Show();
-        }
-        private void btnSetting_Click(object sender, EventArgs e)
-        {
-            frmSetting frmSetting = new frmSetting();
-            OverlayForm overlay = new OverlayForm(this, frmSetting);
-            frmSetting.Show();
-        }
-        bool reloading = false;
-
         private void UpdatePunishment(object sender, EventArgs e)
         {
             frmStudentFault frmStudentFault = new frmStudentFault(listViewPunishment.SelectedItems[0].SubItems[2].Text, frmStudentFault.Mode.Edit, frmStudentFault.OpenMode.Full, listViewPunishment.SelectedItems[0].SubItems[1].Text);
@@ -1748,22 +1747,23 @@ namespace TutteeFrame
                     btnUpdatePunishment.Text = "Cập nhật";
             }
         }
+        #endregion
 
-
-
-        private void tbpgProfile_SizeChanged(object sender, EventArgs e)
+        #region Tabpage Báo cáo
+        private void ShowReportForm(object sender, EventArgs e)
         {
-            if (tbpgProfile.Width < 1055)
-            {
-                panel1.Location = new Point(238, 535);
-                materialDivider4.Visible = false;
-            }
-            else
-            {
-                panel1.Location = new Point(649, 16);
-                materialDivider4.Visible = true;
-            }
         }
+
+        private void ShowChartForm(object sender, EventArgs e)
+        {
+            frmChart frmChart = new frmChart();
+            this.Hide();
+            this.isChildShowing = true;
+            frmChart.Owner = this;
+            frmChart.Show();
+            frmChart.FormClosed += (s, ev) => { isChildShowing = false; };
+        }
+        #endregion
 
         private void CreateClassList(object sender, EventArgs e)
         {
@@ -1776,6 +1776,7 @@ namespace TutteeFrame
             lbTittle.Text = string.Format("Session: {0} - Reloading: {1}", sessionChecking ? "Checking" : "Done", reloading ? "Checking" : "Done");
         }
 
+        bool reloading = false;
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (mainTabControl.SelectedTab == null)

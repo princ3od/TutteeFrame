@@ -53,7 +53,6 @@ namespace TutteeFrame
         protected override void OnLoad(EventArgs e)
         {
             base.OnLoad(e);
-            cbbSemester.SelectedIndex = 0;
             Student student = new Student();
             switch (openMode)
             {
@@ -78,6 +77,7 @@ namespace TutteeFrame
             switch (mode)
             {
                 case Mode.Add:
+                    cbbSemester.SelectedIndex = 0;
                     worker.RunWorkerCompleted += (s, ev) =>
                     {
                         if (!success)
@@ -109,6 +109,8 @@ namespace TutteeFrame
                         txtPunishmentID.Text = punishmentID;
                         txtFaultContent.Text = punishment.Fault;
                         txtPunishmentContent.Text = punishment.Content;
+                        cbbSemester.SelectedIndex = punishment.Semester - 1;
+                        cbbSemester.Invalidate();
                         lbName.Text = string.Format("{0} ({1}) - {2}", student.GetName(), studentID, student.ClassID);
                         lbSex.Text = string.Format("Giới tính: {0}", student.GetSex);
                         lbInformation.Visible = mainProgressbar.Visible = false;
@@ -142,6 +144,7 @@ namespace TutteeFrame
                     case OpenMode.FaultOnly:
                         punishment.Content = txtPunishmentContent.Text;
                         punishment.Fault = txtFaultContent.Text;
+                        punishment.Semester = Int32.Parse(cbbSemester.Text);
                         lbInformation.Text = "Đang thêm vi phạm...";
                         lbInformation.Visible = mainProgressbar.Visible = true;
                         worker.DoWork += (s, ev) =>
@@ -164,6 +167,7 @@ namespace TutteeFrame
                     case OpenMode.Full:
                         punishment.Content = txtPunishmentContent.Text;
                         punishment.Fault = txtFaultContent.Text;
+                        punishment.Semester = Int32.Parse(cbbSemester.Text);
                         punishment.Content = txtPunishmentContent.Text;
                         lbInformation.Text = "Đang thêm vi phạm...";
                         lbInformation.Visible = mainProgressbar.Visible = true;
@@ -206,11 +210,12 @@ namespace TutteeFrame
                     case OpenMode.FaultOnly:
                         punishment.Content = txtPunishmentContent.Text;
                         punishment.Fault = txtFaultContent.Text;
+                        punishment.Semester = Int32.Parse(cbbSemester.Text);
                         lbInformation.Text = "Đang cập nhật vi phạm...";
                         lbInformation.Visible = mainProgressbar.Visible = true;
                         worker.DoWork += (s, ev) =>
                         {
-                            success = punishmentController.UpdateStudentFault(punishment.ID, punishment.Fault);
+                            success = punishmentController.UpdateStudentFault(punishment.ID, punishment.Fault, punishment.Semester);
                             System.Threading.Thread.Sleep(200);
                         };
                         worker.RunWorkerCompleted += (s, ev) =>
@@ -230,11 +235,12 @@ namespace TutteeFrame
                         punishment.Fault = txtFaultContent.Text;
                         punishment.Content = txtPunishmentContent.Text;
                         lbInformation.Text = "Đang cập nhật vi phạm...";
+                        punishment.Semester = Int32.Parse(cbbSemester.Text);
                         lbInformation.Visible = mainProgressbar.Visible = true;
                         worker.DoWork += (s, ev) =>
                         {
-                            success = punishmentController.UpdatePunishmentContent(punishmentID, punishment.Content)
-                                && punishmentController.UpdateStudentFault(punishmentID, punishment.Fault);
+                            success = punishmentController.UpdatePunishmentContent(punishmentID, punishment.Content, punishment.Semester)
+                                && punishmentController.UpdateStudentFault(punishmentID, punishment.Fault, punishment.Semester);
                         };
                         worker.RunWorkerCompleted += (s, ev) =>
                         {
