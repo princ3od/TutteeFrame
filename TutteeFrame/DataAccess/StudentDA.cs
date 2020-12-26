@@ -546,7 +546,7 @@ namespace TutteeFrame.DataAccess
         }
         public bool GetDataStudentResultPrepareToPrint(DataSet input, string studentID)
         {
-            bool success = false;
+            bool success = Connect();
 
             if (!success)
                 return false;
