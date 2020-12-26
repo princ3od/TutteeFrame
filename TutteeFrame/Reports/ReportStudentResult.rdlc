@@ -134,8 +134,8 @@
             <Sizing>FitProportional</Sizing>
             <Top>0.125in</Top>
             <Left>0.14458in</Left>
-            <Height>0.29167in</Height>
-            <Width>0.75in</Width>
+            <Height>0.61333in</Height>
+            <Width>1.82752in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -151,8 +151,9 @@
                   <TextRun>
                     <Value>KẾT QUẢ HỌC TẬP</Value>
                     <Style>
-                      <FontSize>12pt</FontSize>
+                      <FontSize>14pt</FontSize>
                       <FontWeight>Bold</FontWeight>
+                      <Color>DarkBlue</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -162,8 +163,8 @@
             <rd:DefaultName>Textbox45</rd:DefaultName>
             <Top>0.48833in</Top>
             <Left>2.405in</Left>
-            <Height>0.25in</Height>
-            <Width>1.75095in</Width>
+            <Height>0.31598in</Height>
+            <Width>1.9989in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -225,7 +226,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>Môn</Value>
-                                      <Style />
+                                      <Style>
+                                        <FontWeight>SemiBold</FontWeight>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style>
@@ -257,7 +260,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>5'</Value>
-                                      <Style />
+                                      <Style>
+                                        <FontWeight>SemiBold</FontWeight>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style>
@@ -289,7 +294,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>15''</Value>
-                                      <Style />
+                                      <Style>
+                                        <FontWeight>SemiBold</FontWeight>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style>
@@ -324,7 +331,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>45''</Value>
-                                      <Style />
+                                      <Style>
+                                        <FontWeight>SemiBold</FontWeight>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style>
@@ -359,7 +368,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>HK</Value>
-                                      <Style />
+                                      <Style>
+                                        <FontWeight>SemiBold</FontWeight>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style>
@@ -391,7 +402,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>TBHK</Value>
-                                      <Style />
+                                      <Style>
+                                        <FontWeight>SemiBold</FontWeight>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style>
@@ -431,7 +444,9 @@
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
-                                  <Style />
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>SubjectName</rd:DefaultName>
@@ -446,6 +461,7 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                         <TablixCell>
@@ -461,7 +477,9 @@
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
-                                  <Style />
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Quiz</rd:DefaultName>
@@ -476,6 +494,7 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                         <TablixCell>
@@ -491,7 +510,9 @@
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
-                                  <Style />
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>MN15011</rd:DefaultName>
@@ -506,6 +527,7 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                         <TablixCell>
@@ -521,7 +543,9 @@
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
-                                  <Style />
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>MN15021</rd:DefaultName>
@@ -536,6 +560,7 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                         <TablixCell>
@@ -551,7 +576,9 @@
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
-                                  <Style />
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>MN15031</rd:DefaultName>
@@ -566,6 +593,7 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                         <TablixCell>
@@ -581,7 +609,9 @@
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
-                                  <Style />
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>MN45011</rd:DefaultName>
@@ -596,6 +626,7 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                         <TablixCell>
@@ -611,7 +642,9 @@
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
-                                  <Style />
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>MN45021</rd:DefaultName>
@@ -626,6 +659,7 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                         <TablixCell>
@@ -641,7 +675,9 @@
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
-                                  <Style />
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>MN45031</rd:DefaultName>
@@ -656,6 +692,7 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                         <TablixCell>
@@ -671,7 +708,9 @@
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
-                                  <Style />
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Final1</rd:DefaultName>
@@ -686,6 +725,7 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                         <TablixCell>
@@ -701,7 +741,9 @@
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
-                                  <Style />
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>SubjectAverage1</rd:DefaultName>
@@ -716,6 +758,7 @@
                                 <PaddingBottom>2pt</PaddingBottom>
                               </Style>
                             </Textbox>
+                            <rd:Selected>true</rd:Selected>
                           </CellContents>
                         </TablixCell>
                       </TablixCells>
@@ -838,7 +881,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>Môn</Value>
-                                      <Style />
+                                      <Style>
+                                        <FontWeight>SemiBold</FontWeight>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style>
@@ -870,7 +915,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>5''</Value>
-                                      <Style />
+                                      <Style>
+                                        <FontWeight>SemiBold</FontWeight>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style>
@@ -902,7 +949,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>15''</Value>
-                                      <Style />
+                                      <Style>
+                                        <FontWeight>SemiBold</FontWeight>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style>
@@ -937,7 +986,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>45"</Value>
-                                      <Style />
+                                      <Style>
+                                        <FontWeight>SemiBold</FontWeight>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style>
@@ -972,7 +1023,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>HK</Value>
-                                      <Style />
+                                      <Style>
+                                        <FontWeight>SemiBold</FontWeight>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style>
@@ -1004,7 +1057,9 @@
                                   <TextRuns>
                                     <TextRun>
                                       <Value>TBHK</Value>
-                                      <Style />
+                                      <Style>
+                                        <FontWeight>SemiBold</FontWeight>
+                                      </Style>
                                     </TextRun>
                                   </TextRuns>
                                   <Style>
@@ -1044,7 +1099,9 @@
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
-                                  <Style />
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>SubjectName1</rd:DefaultName>
@@ -1074,7 +1131,9 @@
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
-                                  <Style />
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Quiz1</rd:DefaultName>
@@ -1104,7 +1163,9 @@
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
-                                  <Style />
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>MN1501</rd:DefaultName>
@@ -1134,7 +1195,9 @@
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
-                                  <Style />
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>MN1502</rd:DefaultName>
@@ -1164,7 +1227,9 @@
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
-                                  <Style />
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>MN1503</rd:DefaultName>
@@ -1194,7 +1259,9 @@
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
-                                  <Style />
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>MN4501</rd:DefaultName>
@@ -1224,7 +1291,9 @@
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
-                                  <Style />
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>MN4502</rd:DefaultName>
@@ -1254,7 +1323,9 @@
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
-                                  <Style />
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>MN4503</rd:DefaultName>
@@ -1284,7 +1355,9 @@
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
-                                  <Style />
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>Final</rd:DefaultName>
@@ -1314,7 +1387,9 @@
                                       <Style />
                                     </TextRun>
                                   </TextRuns>
-                                  <Style />
+                                  <Style>
+                                    <TextAlign>Center</TextAlign>
+                                  </Style>
                                 </Paragraph>
                               </Paragraphs>
                               <rd:DefaultName>SubjectAverage</rd:DefaultName>
@@ -1413,8 +1488,8 @@
                       <TextRun>
                         <Value>Lớp:</Value>
                         <Style>
-                          <FontStyle>Italic</FontStyle>
-                          <FontSize>8pt</FontSize>
+                          <FontStyle>Normal</FontStyle>
+                          <FontWeight>SemiBold</FontWeight>
                         </Style>
                       </TextRun>
                     </TextRuns>
@@ -1422,7 +1497,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox46</rd:DefaultName>
-                <Top>0.18056in</Top>
+                <Top>0.17014in</Top>
                 <Left>0.15355in</Left>
                 <Height>0.25in</Height>
                 <Width>0.54167in</Width>
@@ -1476,8 +1551,8 @@
                       <TextRun>
                         <Value>Họ Tên:</Value>
                         <Style>
-                          <FontStyle>Italic</FontStyle>
-                          <FontSize>8pt</FontSize>
+                          <FontStyle>Normal</FontStyle>
+                          <FontWeight>SemiBold</FontWeight>
                         </Style>
                       </TextRun>
                     </TextRuns>
@@ -1485,7 +1560,7 @@
                   </Paragraph>
                 </Paragraphs>
                 <rd:DefaultName>Textbox46</rd:DefaultName>
-                <Top>0.18056in</Top>
+                <Top>0.17014in</Top>
                 <Left>3.15137in</Left>
                 <Height>0.25in</Height>
                 <Width>0.57022in</Width>
@@ -1533,7 +1608,7 @@
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Top>0.87375in</Top>
-            <Left>0.07436in</Left>
+            <Left>0.32436in</Left>
             <Height>2.70833in</Height>
             <Width>6.23958in</Width>
             <ZIndex>2</ZIndex>
@@ -1999,7 +2074,7 @@
             </ReportItems>
             <KeepTogether>true</KeepTogether>
             <Top>3.58208in</Top>
-            <Left>0.07436in</Left>
+            <Left>0.32436in</Left>
             <Height>1.9375in</Height>
             <Width>6.23958in</Width>
             <ZIndex>3</ZIndex>
@@ -2013,7 +2088,7 @@
         <Height>6.19667in</Height>
         <Style />
       </Body>
-      <Width>8.51958in</Width>
+      <Width>7.06394in</Width>
       <Page>
         <LeftMargin>1in</LeftMargin>
         <RightMargin>1in</RightMargin>

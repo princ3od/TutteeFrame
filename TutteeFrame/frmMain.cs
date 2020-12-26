@@ -1742,6 +1742,7 @@ namespace TutteeFrame
 
      
 
+<<<<<<< Updated upstream
         private void tbpgProfile_SizeChanged(object sender, EventArgs e)
         {            
             if (tbpgProfile.Width < 1055)
@@ -1754,6 +1755,11 @@ namespace TutteeFrame
                 panel1.Location = new Point(649, 16);
                 materialDivider4.Visible = true;
             }
+=======
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            //lbTittle.Text = string.Format("Session: {0} - Reloading: {1}", sessionChecking ? "Checking" : "Done", reloading ? "Checking" : "Done");
+>>>>>>> Stashed changes
         }
 
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
