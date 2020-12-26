@@ -2149,7 +2149,7 @@
             this.btnStudentReport.TabIndex = 49;
             this.btnStudentReport.Text = "Tạo báo cáo";
             this.btnStudentReport.TextAlign = System.Drawing.StringAlignment.Center;
-        
+            this.btnStudentReport.Click += new System.EventHandler(this.CreateClassList);
             // 
             // btnSetStudentConduct
             // 

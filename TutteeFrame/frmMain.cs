@@ -72,6 +72,11 @@ namespace TutteeFrame
             splash.FormClosing += Splash_FormClosing;
             splash.Show();
         }
+        private void CreateClassList(object sender, EventArgs e)
+        {
+            frmStudentPrinter frmStudentPrinter = new frmStudentPrinter(PrinterType.StudentList, "11A1");
+            frmStudentPrinter.ShowDialog();
+        }
 
         private void Splash_FormClosing(object sender, FormClosingEventArgs e)
         {
