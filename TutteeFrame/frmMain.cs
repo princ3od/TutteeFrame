@@ -108,16 +108,18 @@ namespace TutteeFrame
                 AccountController accountController = new AccountController();
                 while (!needLogout && isLogin)
                 {
-                    while (isChildShowing || reloading) ;
-                    sessionChecking = true;
-                    if (!accountController.CheckSession(ref flag))
-                        if (flag != 0)
-                            needLogout = true;
-                    sessionChecking = false;
-                    if (preFlag != flag)
+                    if (!isChildShowing && !reloading)
                     {
-                        checkLogin.ReportProgress(0);
-                        preFlag = flag;
+                        sessionChecking = true;
+                        if (!accountController.CheckSession(ref flag))
+                            if (flag != 0)
+                                needLogout = true;
+                        sessionChecking = false;
+                        if (preFlag != flag)
+                        {
+                            checkLogin.ReportProgress(0);
+                            preFlag = flag;
+                        }
                     }
                     Thread.Sleep(2000);
                 }

@@ -8,6 +8,9 @@ namespace TutteeFrame
         public OverlayForm() { this.Close(); }
         public OverlayForm(Form _parent, Form _child, float _opacity = 0.6f, int _offSet = 5, bool setChild = true)
         {
+            this.SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            this.UpdateStyles();
+            this.DoubleBuffered = true;
             if (setChild)
                 ((frmMain)_parent).isChildShowing = true;
             this.ControlBox = false;
@@ -37,18 +40,6 @@ namespace TutteeFrame
                 //_parent.Focus();
             };
             this.Show();
-        }
-
-        private void InitializeComponent()
-        {
-            this.SuspendLayout();
-            // 
-            // OverlayForm
-            // 
-            this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Name = "OverlayForm";
-            this.ResumeLayout(false);
-
         }
     }
 }
