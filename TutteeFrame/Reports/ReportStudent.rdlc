@@ -112,10 +112,14 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>STT</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox2</rd:DefaultName>
@@ -142,10 +146,14 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Họ</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox4</rd:DefaultName>
@@ -172,10 +180,14 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Tên</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox6</rd:DefaultName>
@@ -202,10 +214,14 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Ngày sinh</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox8</rd:DefaultName>
@@ -232,10 +248,14 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Giới tính</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox10</rd:DefaultName>
@@ -262,10 +282,14 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Ghi chú</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>SemiBold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox12</rd:DefaultName>
@@ -300,7 +324,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox3</rd:DefaultName>
@@ -315,6 +341,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -330,7 +357,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Surname</rd:DefaultName>
@@ -345,6 +374,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -360,7 +390,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Firstname</rd:DefaultName>
@@ -375,6 +407,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -390,7 +423,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>DateBorn</rd:DefaultName>
@@ -405,6 +440,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -420,7 +456,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Sex</rd:DefaultName>
@@ -435,6 +473,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -450,7 +489,9 @@
                                   <Style />
                                 </TextRun>
                               </TextRuns>
-                              <Style />
+                              <Style>
+                                <TextAlign>Center</TextAlign>
+                              </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox13</rd:DefaultName>
@@ -465,6 +506,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -495,7 +537,7 @@
             <Top>0.11458in</Top>
             <Left>0.22792in</Left>
             <Height>0.5in</Height>
-            <Width>6.11111in</Width>
+            <Width>6.11112in</Width>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -506,7 +548,7 @@
         <Height>2in</Height>
         <Style />
       </Body>
-      <Width>7.42236in</Width>
+      <Width>7.6in</Width>
       <Page>
         <PageHeader>
           <Height>1.53in</Height>
@@ -520,7 +562,15 @@
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>DANH SÁCH HỌC SINH </Value>
+                      <Value>DANH SÁCH HỌC SINH</Value>
+                      <Style>
+                        <FontSize>14pt</FontSize>
+                        <FontWeight>SemiBold</FontWeight>
+                        <Color>DarkBlue</Color>
+                      </Style>
+                    </TextRun>
+                    <TextRun>
+                      <Value xml:space="preserve"> </Value>
                       <Style>
                         <FontSize>14pt</FontSize>
                         <Color>DarkBlue</Color>
@@ -553,8 +603,8 @@
               <Sizing>FitProportional</Sizing>
               <Top>0.10417in</Top>
               <Left>0.125in</Left>
-              <Height>0.32291in</Height>
-              <Width>0.94792in</Width>
+              <Height>0.64458in</Height>
+              <Width>1.64806in</Width>
               <ZIndex>1</ZIndex>
               <Style>
                 <Border>
