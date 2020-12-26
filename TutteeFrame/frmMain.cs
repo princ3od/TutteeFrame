@@ -269,8 +269,10 @@ namespace TutteeFrame
             if (mainTeacher.Sex == true)
                 lbGender.Text = "Giới tính nam";
             else
+            {
                 lbGender.Text = "Giới tính nữ";
-            pictureBox13.Visible = false;
+                pictureBox13.Visible = false;
+            }                
             if (mainTeacher.Type == Teacher.TeacherType.Adminstrator)
                 lbBelongto.Text = "Ban giam hiệu";
             else if (mainTeacher.Type == Teacher.TeacherType.Ministry)
@@ -1670,8 +1672,8 @@ namespace TutteeFrame
                             punishments[i].ID,
                             punishments[i].StudentID,
                             studentName[i],
-                            classID[i],
                             punishments[i].Semester.ToString(),
+                            classID[i],                            
                             punishments[i].Fault,
                             punishments[i].Content
                         }));
