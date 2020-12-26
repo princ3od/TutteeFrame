@@ -72,12 +72,7 @@ namespace TutteeFrame
             splash.FormClosing += Splash_FormClosing;
             splash.Show();
         }
-        private void CreateClassList(object sender, EventArgs e)
-        {
-            frmStudentPrinter frmStudentPrinter = new frmStudentPrinter(PrinterType.StudentList, "11A1");
-            frmStudentPrinter.ShowDialog();
-        }
-
+      
         private void Splash_FormClosing(object sender, FormClosingEventArgs e)
         {
             frmLogin = new frmLogin();
@@ -1757,8 +1752,6 @@ namespace TutteeFrame
             frmChart.FormClosed += (s, ev) => { isChildShowing = false; };
         }
         #endregion
-
-
         private void tbpgProfile_SizeChanged(object sender, EventArgs e)
         {
             if (tbpgProfile.Width < 1055)
@@ -1772,6 +1765,12 @@ namespace TutteeFrame
                 materialDivider4.Visible = true;
             }
         }
+        private void CreateClassList(object sender, EventArgs e)
+        {
+            frmStudentPrinter frmStudentPrinter = new frmStudentPrinter(PrinterType.StudentList, "11A1");
+            frmStudentPrinter.ShowDialog();
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             //lbTittle.Text = string.Format("Session: {0} - Reloading: {1}", sessionChecking ? "Checking" : "Done", reloading ? "Checking" : "Done");
