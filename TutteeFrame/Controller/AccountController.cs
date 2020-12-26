@@ -5,7 +5,7 @@ namespace TutteeFrame.Controller
 {
     class AccountController
     {
-        public static int AccountID { get; set; }
+        public static string AccountID { get; set; }
         public static string SessionID { get; set; }
         AccountDA accountDA;
         public AccountController()
@@ -18,7 +18,7 @@ namespace TutteeFrame.Controller
             List<Account> accounts = new List<Account>();
             accountDA.LoadAccounts(accounts);
             _pass = Encryption.Encrypt(_pass, _pass);
-            Account account = new Account(accounts.Count + 1, _teacherID, _pass);
+            Account account = new Account(_teacherID, _teacherID, _pass);
             bool success = accountDA.AddAccount(account);
             return success;
         }

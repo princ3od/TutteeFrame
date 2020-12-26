@@ -1782,7 +1782,7 @@ namespace TutteeFrame
             if (mainTabControl.SelectedTab == null)
                 return;
             lbTittle.Text = mainTabControl.SelectedTab.Text;
-            if (!firstLoad && !reloading)
+            if (!firstLoad && !reloading && mainTabControl.SelectedTab != tbgpTeacherManagment)
             {
                 bool success = false;
                 BackgroundWorker worker = new BackgroundWorker();
@@ -1796,6 +1796,7 @@ namespace TutteeFrame
                 {
                     if (success)
                     {
+                        firstLoad = true;
                         LoadTabpageInfor();
                         LoadData();
                     }

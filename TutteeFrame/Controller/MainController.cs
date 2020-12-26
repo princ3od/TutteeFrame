@@ -38,6 +38,7 @@ namespace TutteeFrame.Controller
 
         public bool CreateAdminAccount()
         {
+            ConnectServer();
             Teacher teacher = new Teacher();
             teacher.Subject = new Subject("01", "Toán");
             teacher.ID = "AD999999";
