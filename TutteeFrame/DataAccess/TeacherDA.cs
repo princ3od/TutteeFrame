@@ -94,6 +94,7 @@ namespace TutteeFrame.DataAccess
                     using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
                     {
                         dataReader.Read();
+                        _teacher.Subject = new Subject();
                         _teacher.ID = dataReader.GetString(0);
                         _teacher.SurName = dataReader.GetString(1);
                         _teacher.FirstName = dataReader.GetString(2);
@@ -106,7 +107,6 @@ namespace TutteeFrame.DataAccess
                         _teacher.Mail = dataReader.GetString(8);
                         _teacher.Sex = dataReader.GetBoolean(5);
                         _teacher.DateBorn = dataReader.GetDateTime(4);
-                        _teacher.Subject = new Subject();
                         _teacher.Subject.ID = dataReader.GetString(9);
                         _teacher.Subject.Name = dataReader["SubjectName"].ToString();
                         _isMinistry = dataReader.GetBoolean(10);

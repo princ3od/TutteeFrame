@@ -435,7 +435,7 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
-        public bool UpdateStudentConduct (string _studentID, int _grade, StudentConduct _studentConduct)
+        public bool UpdateStudentConduct(string _studentID, int _grade, StudentConduct _studentConduct)
         {
             bool success = Connect();
 
@@ -504,9 +504,9 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
-        public bool GetDataSetPrepareToPrint(DataSet input, ref string formalTeacher ,string classID)
+        public bool GetDataSetPrepareToPrint(DataSet input, ref string formalTeacher, string classID)
         {
-            bool success = Test("","","","");
+            bool success = Connect();
 
             if (!success)
                 return false;
@@ -524,14 +524,14 @@ namespace TutteeFrame.DataAccess
                     "WHERE CLASS.ClassID = @classID";
                 command = new SqlCommand(strQuery, connection);
                 command.Parameters.AddWithValue("classID", classID);
-         
+
                 SqlDataReader reader = command.ExecuteReader();
-                if(reader.Read())
+                if (reader.Read())
                 {
                     if (!reader.IsDBNull(0)) formalTeacher += reader.GetString(0);
-                    if (!reader.IsDBNull(1)) formalTeacher +=" " +reader.GetString(1);
+                    if (!reader.IsDBNull(1)) formalTeacher += " " + reader.GetString(1);
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -544,9 +544,9 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
-        public bool GetDataStudentResultPrepareToPrint( DataSet input, string studentID)
+        public bool GetDataStudentResultPrepareToPrint(DataSet input, string studentID)
         {
-            bool success = Test("", "", "", ""); // test local
+            bool success = false;
 
             if (!success)
                 return false;
@@ -575,9 +575,9 @@ namespace TutteeFrame.DataAccess
             }
 
         }
-        public bool GetAnotherInforOfStudentPrepareToPrint(InformationOfStudentResultPrepareForPrint input , string studentID)
+        public bool GetAnotherInforOfStudentPrepareToPrint(InformationOfStudentResultPrepareForPrint input, string studentID)
         {
-            bool success = Test("", "", "", "");
+            bool success = Connect();
             if (!success) return false;
             try
             {
@@ -608,7 +608,7 @@ namespace TutteeFrame.DataAccess
                 };
 
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 if (connection.State == ConnectionState.Open) Disconnect();
@@ -619,15 +619,16 @@ namespace TutteeFrame.DataAccess
         public bool GetAllInfoAndResultOfStudentPrepareToPrint(InformationOfStudentResultPrepareForPrint input, string studentID)
         {
             input.scoreBoards = new DataSet();
-            if(!GetDataStudentResultPrepareToPrint( input.scoreBoards, studentID)) return false;
+            if (!GetDataStudentResultPrepareToPrint(input.scoreBoards, studentID)) return false;
             if (!GetAnotherInforOfStudentPrepareToPrint(input, studentID)) return false;
             return true;
         }
 
         public bool GetDataOfAllStudentsInClassPrepareToPrint(InfomationOfStudensResultOfClassPrepareToPrint input, string classID)
         {
-            bool success = Test("", "", "", "");
-            if (!success) return false;
+            bool success = Connect();
+            if (!success)
+                return false;
             try
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -652,19 +653,19 @@ namespace TutteeFrame.DataAccess
                     cmd.CommandText = strQuery;
                     SqlDataReader reader = cmd.ExecuteReader();
                     input.formalTeacher = "";
-                    if(reader.Read())
+                    if (reader.Read())
                     {
                         if (!reader.IsDBNull(0)) input.formalTeacher += reader.GetString(0);
-                        if (!reader.IsDBNull(1)) input.formalTeacher += " "+ reader.GetString(1);
+                        if (!reader.IsDBNull(1)) input.formalTeacher += " " + reader.GetString(1);
 
                     }
 
 
                 }
 
-                    return true;
+                return true;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
                 if (connection.State == ConnectionState.Open) Disconnect();

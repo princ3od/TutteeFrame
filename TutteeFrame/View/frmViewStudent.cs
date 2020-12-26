@@ -35,6 +35,9 @@ namespace TutteeFrame
         public frmViewStudent(string _studentID)
         {
             InitializeComponent();
+            this.SetStyle(ControlStyles.UserPaint | ControlStyles.AllPaintingInWmPaint | ControlStyles.OptimizedDoubleBuffer, true);
+            this.UpdateStyles();
+            this.DoubleBuffered = true;
             studentID = _studentID;
             studentController = new StudentController();
             student = new Student();
