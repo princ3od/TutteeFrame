@@ -1740,21 +1740,19 @@ namespace TutteeFrame
             }
         }
 
-        private void tbpgProfile_Resize(object sender, EventArgs e)
-        {
-
-        }
+     
 
         private void tbpgProfile_SizeChanged(object sender, EventArgs e)
-        {
-            label7.Text = tbpgProfile.Width.ToString() + " ; " + (panel1.Width + panel1.Location.X).ToString();
+        {            
             if (tbpgProfile.Width < 1055)
             {
                 panel1.Location = new Point(238, 535);
+                materialDivider4.Visible = false;
             }
-            else /*if (panel1.Location.X == 238 && panel1.Location.Y == 535)*/
+            else 
             {
                 panel1.Location = new Point(649, 16);
+                materialDivider4.Visible = true;
             }
         }
 
@@ -1763,26 +1761,26 @@ namespace TutteeFrame
             if (mainTabControl.SelectedTab == null)
                 return;
             lbTittle.Text = mainTabControl.SelectedTab.Text;
-            if (!firstLoad && !reloading)
-            {
-                bool success = false;
-                BackgroundWorker worker = new BackgroundWorker();
-                worker.DoWork += (s, ev) =>
-                {
-                    reloading = true;
-                    success = teacherController.LoadUsingTeacher(teacherController.usingTeacher.ID);
-                };
-                worker.RunWorkerCompleted += (s, ev) =>
-                {
-                    if (success)
-                    {
-                        LoadTabpageInfor();
-                        LoadData();
-                    }
-                    reloading = false;
-                };
-                worker.RunWorkerAsync();
-            }
+            //if (!firstLoad && !reloading)
+            //{
+            //    bool success = false;
+            //    BackgroundWorker worker = new BackgroundWorker();
+            //    worker.DoWork += (s, ev) =>
+            //    {
+            //        reloading = true;
+            //        success = teacherController.LoadUsingTeacher(teacherController.usingTeacher.ID);
+            //    };
+            //    worker.RunWorkerCompleted += (s, ev) =>
+            //    {
+            //        if (success)
+            //        {
+            //            LoadTabpageInfor();
+            //            LoadData();
+            //        }
+            //        reloading = false;
+            //    };
+            //    worker.RunWorkerAsync();
+            //}
         }
     }
 }

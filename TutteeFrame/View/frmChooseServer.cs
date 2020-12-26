@@ -39,7 +39,7 @@ namespace TutteeFrame
         #endregion
         private void frmChooseServer_Load(object sender, EventArgs e)
         {
-            connectType = InitHelper.Instance.Read("ConnectionType", "Application");
+            connectType = InitHelper.Instance.Read("ConnectType", "Application");
             if (connectType == "Local")
                 rbtnConnectLocal.Checked = true;
             else
@@ -65,7 +65,7 @@ namespace TutteeFrame
         }
         private void btnConnect_Click(object sender, EventArgs e)
         {
-            if (connectType == "Local")
+            if (rbtnConnectLocal.Checked)
             {
                 if (string.IsNullOrEmpty(txtConnectionString.Text))
                 {
@@ -75,7 +75,9 @@ namespace TutteeFrame
                 else
                 {
                     Properties.Settings.Default.LocalConnectionString = txtConnectionString.Text;
+                    InitHelper.Instance.Write("ConnectType", "Local", "Application");
                     Properties.Settings.Default.Save();
+                    this.Close();
                 }
                 return;
             }
@@ -101,10 +103,7 @@ namespace TutteeFrame
                 InitHelper.Instance.Write("Port", txtPort.Text, "Database");
                 InitHelper.Instance.Write("ServerAccount", txtAccount.Text, "Database");
                 InitHelper.Instance.Write("ServerPassword", txtPassword.Text, "Database");
-                if (rbtnConnectLocal.Checked)
-                    InitHelper.Instance.Write("ConnectType", "Local", "Application");
-                else
-                    InitHelper.Instance.Write("ConnectType", "Server", "Application");
+                InitHelper.Instance.Write("ConnectType", "Server", "Application");
                 this.Close();
             }
         }
@@ -164,6 +163,11 @@ namespace TutteeFrame
         private void ChooseServer(object sender, EventArgs e)
         {
             rbtnConnectServer.Checked = true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            btnConfirm.PerformClick();
         }
     }
 }

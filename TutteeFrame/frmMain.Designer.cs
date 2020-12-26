@@ -354,7 +354,7 @@
             this.tbpgProfile.Text = "Thông tin tài khoản";
             this.metroToolTip1.SetToolTip(this.tbpgProfile, "Phòng ban trực ");
             this.tbpgProfile.SizeChanged += new System.EventHandler(this.tbpgProfile_SizeChanged);
-            this.tbpgProfile.Resize += new System.EventHandler(this.tbpgProfile_Resize);
+            
             // 
             // panel1
             // 

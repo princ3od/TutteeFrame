@@ -38,6 +38,7 @@
             this.btnApprove = new Material_Design_for_Winform.MaterialRaisedButton();
             this.lbTittle = new System.Windows.Forms.Label();
             this.txtCurrentTeacher = new Material_Design_for_Winform.MaterialTextField();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtTeacherSearch
@@ -191,8 +192,19 @@
             this.txtCurrentTeacher.TabIndex = 55;
             this.txtCurrentTeacher.UseSystemPasswordChar = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(292, 407);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(13, 11);
+            this.button1.TabIndex = 56;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmChooseTeacher
             // 
+            this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
@@ -204,6 +216,7 @@
             this.Controls.Add(this.listviewTeacher);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.txtTeacherSearch);
+            this.Controls.Add(this.button1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmChooseTeacher";
@@ -224,5 +237,6 @@
         private Material_Design_for_Winform.MaterialRaisedButton btnApprove;
         private System.Windows.Forms.Label lbTittle;
         private Material_Design_for_Winform.MaterialTextField txtCurrentTeacher;
+        private System.Windows.Forms.Button button1;
     }
 }

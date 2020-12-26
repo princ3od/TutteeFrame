@@ -39,6 +39,7 @@
             this.btnViewStudentList = new Material_Design_for_Winform.MaterialFlatButton();
             this.materialDrawer1 = new MaterialSkin.Controls.MaterialDrawer();
             this.btnExit = new MaterialSkin.Controls.MaterialButton();
+            this.button1 = new System.Windows.Forms.Button();
             this.materialTabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -196,12 +197,23 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
+            // button1
+            // 
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button1.Location = new System.Drawing.Point(438, 555);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(18, 16);
+            this.button1.TabIndex = 54;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmTeacherAssignment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.CancelButton = this.btnExit;
+            this.CancelButton = this.button1;
             this.ClientSize = new System.Drawing.Size(800, 600);
             this.Controls.Add(this.btnViewStudentList);
             this.Controls.Add(this.btnAssignTeacher);
@@ -211,6 +223,7 @@
             this.Controls.Add(this.txtRunnerTeacher);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.materialDrawer1);
+            this.Controls.Add(this.button1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "frmTeacherAssignment";
@@ -233,5 +246,6 @@
         private Material_Design_for_Winform.MaterialRaisedButton btnAssignTeacher;
         private Material_Design_for_Winform.MaterialFlatButton btnViewStudentList;
         private MaterialSkin.Controls.MaterialDrawer materialDrawer1;
+        private System.Windows.Forms.Button button1;
     }
 }

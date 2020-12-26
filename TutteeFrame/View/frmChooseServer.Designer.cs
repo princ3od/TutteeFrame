@@ -35,13 +35,13 @@
             this.txtAccount = new Material_Design_for_Winform.MaterialTextField();
             this.txtPort = new Material_Design_for_Winform.MaterialTextField();
             this.txtServerName = new Material_Design_for_Winform.MaterialTextField();
-            this.btnAcept = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnExit = new MaterialSkin.Controls.MaterialButton();
             this.rbtnConnectServer = new MaterialSkin.Controls.MaterialRadioButton();
             this.rbtnConnectLocal = new MaterialSkin.Controls.MaterialRadioButton();
             this.label2 = new System.Windows.Forms.Label();
             this.txtConnectionString = new Material_Design_for_Winform.MaterialTextField();
+            this.button1 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -167,17 +167,6 @@
             this.txtServerName.UseSystemPasswordChar = false;
             this.txtServerName.TextChanged += new System.EventHandler(this.ResetTextboxColor);
             // 
-            // btnAcept
-            // 
-            this.btnAcept.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnAcept.Location = new System.Drawing.Point(10, 400);
-            this.btnAcept.Name = "btnAcept";
-            this.btnAcept.Size = new System.Drawing.Size(0, 0);
-            this.btnAcept.TabIndex = 0;
-            this.btnAcept.TabStop = false;
-            this.btnAcept.UseVisualStyleBackColor = true;
-            this.btnAcept.Click += new System.EventHandler(this.btnAcept_Click);
-            // 
             // btnClose
             // 
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -275,9 +264,19 @@
             this.txtConnectionString.TabIndex = 32;
             this.txtConnectionString.UseSystemPasswordChar = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(351, 391);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(13, 18);
+            this.button1.TabIndex = 33;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmChooseServer
             // 
-            this.AcceptButton = this.btnAcept;
+            this.AcceptButton = this.button1;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(600, 450);
@@ -287,13 +286,13 @@
             this.Controls.Add(this.rbtnConnectServer);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.btnAcept);
             this.Controls.Add(this.btnConfirm);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtAccount);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPort);
             this.Controls.Add(this.txtServerName);
+            this.Controls.Add(this.button1);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -312,8 +311,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnAcept;
         private Material_Design_for_Winform.MaterialTextField txtServerName;
         private Material_Design_for_Winform.MaterialTextField txtPort;
         private System.Windows.Forms.Label label1;
@@ -326,5 +323,6 @@
         private MaterialSkin.Controls.MaterialRadioButton rbtnConnectLocal;
         private System.Windows.Forms.Label label2;
         private Material_Design_for_Winform.MaterialTextField txtConnectionString;
+        private System.Windows.Forms.Button button1;
     }
 }
