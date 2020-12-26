@@ -243,41 +243,42 @@ namespace TutteeFrame.DataAccess
             {
                 string query = "SELECT * FROM TEACHER JOIN [SUBJECT] ON TEACHER.SubjectID = SUBJECT.SubjectID ORDER BY " + _order;
                 using (SqlCommand command = new SqlCommand(query, connection))
-                using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    while (reader.Read())
+                    using (SqlDataReader reader = command.ExecuteReader())
                     {
-                        Teacher _teacher = new Teacher();
-                        _teacher.ID = reader.GetString(0);
-                        _teacher.SurName = reader["Surname"].ToString();
-                        _teacher.FirstName = reader["Firstname"].ToString();
-                        if (!reader.IsDBNull(3))
-                            _teacher.Avatar = ImageHelper.BytesToImage((byte[])reader[3]);
-                        else
-                            _teacher.Avatar = null;
-                        _teacher.DateBorn = reader.GetDateTime(4);
-                        _teacher.Sex = reader.GetBoolean(5);
-                        _teacher.Address = reader["Address"].ToString();
-                        _teacher.Phone = reader["Phone"].ToString();
-                        _teacher.Mail = reader["Maill"].ToString();
-                        _teacher.Subject = new Subject();
-                        _teacher.Subject.ID = reader["SubjectID"].ToString();
-                        _teacher.Subject.Name = reader["SubjectName"].ToString();
-                        if (reader.GetBoolean(10))
-                            _teacher.Type = Teacher.TeacherType.Ministry;
-                        else if (reader.GetBoolean(11))
-                            _teacher.Type = Teacher.TeacherType.Adminstrator;
-                        else
-                            _teacher.Type = Teacher.TeacherType.Teacher;
-                        _teacher.Position = reader.GetString(12);
-                        teachers.Add(_teacher);
+                        while (reader.Read())
+                        {
+                            Teacher _teacher = new Teacher();
+                            _teacher.Subject = new Subject();
+                            _teacher.ID = reader.GetString(0);
+                            _teacher.SurName = reader["Surname"].ToString();
+                            _teacher.FirstName = reader["Firstname"].ToString();
+                            if (!reader.IsDBNull(3))
+                                _teacher.Avatar = ImageHelper.BytesToImage((byte[])reader[3]);
+                            else
+                                _teacher.Avatar = null;
+                            _teacher.DateBorn = reader.GetDateTime(4);
+                            _teacher.Sex = reader.GetBoolean(5);
+                            _teacher.Address = reader["Address"].ToString();
+                            _teacher.Phone = reader["Phone"].ToString();
+                            _teacher.Mail = reader["Maill"].ToString();
+                            _teacher.Subject.ID = reader["SubjectID"].ToString();
+                            _teacher.Subject.Name = reader["SubjectName"].ToString();
+                            if (reader.GetBoolean(10))
+                                _teacher.Type = Teacher.TeacherType.Ministry;
+                            else if (reader.GetBoolean(11))
+                                _teacher.Type = Teacher.TeacherType.Adminstrator;
+                            else
+                                _teacher.Type = Teacher.TeacherType.Teacher;
+                            _teacher.Position = reader.GetString(12);
+                            teachers.Add(_teacher);
+                        }
                     }
                 }
             }
             catch (Exception e)
             {
                 MessageBox.Show(e.ToString());
-                teachers = null;
                 return false;
             }
             finally

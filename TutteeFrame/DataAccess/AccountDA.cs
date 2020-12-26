@@ -50,7 +50,7 @@ namespace TutteeFrame.DataAccess
                 using (SqlDataReader dataReader = sqlCommand.ExecuteReader())
                     while (dataReader.Read())
                     {
-                        account = new Account(Int32.Parse(dataReader.GetString(0)), dataReader.GetString(1), dataReader.GetString(2));
+                        account = new Account(dataReader.GetString(0), dataReader.GetString(1), dataReader.GetString(2));
                         accounts.Add(account);
                     }
             }
@@ -135,7 +135,7 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
-        public bool CreateSession(int _accountID, string _sessionID)
+        public bool CreateSession(string _accountID, string _sessionID)
         {
             bool success = Connect();
 
@@ -163,7 +163,7 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
-        public bool DeleteSession(int _accountID, string _sessionID)
+        public bool DeleteSession(string _accountID, string _sessionID)
         {
             bool success = Connect();
 
@@ -175,7 +175,7 @@ namespace TutteeFrame.DataAccess
                 {
                     sqlCommand.CommandType = System.Data.CommandType.Text;
                     sqlCommand.CommandText = "DELETE FROM SESSION WHERE AccountID = @accountid AND SESSIONID = @sessionid";
-                    sqlCommand.Parameters.AddWithValue("@accountid", _accountID.ToString());
+                    sqlCommand.Parameters.AddWithValue("@accountid", _accountID);
                     sqlCommand.Parameters.AddWithValue("sessionid", _sessionID);
                     sqlCommand.ExecuteNonQuery();
                 }
@@ -191,7 +191,7 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
-        public bool CheckSession(int _accountID, string _sessionID,out bool _isExist)
+        public bool CheckSession(string _accountID, string _sessionID, out bool _isExist)
         {
             _isExist = false;
             bool success = Connect();
@@ -204,7 +204,7 @@ namespace TutteeFrame.DataAccess
                 {
                     sqlCommand.CommandType = System.Data.CommandType.Text;
                     sqlCommand.CommandText = "SELECT COUNT(*) FROM SESSION WHERE AccountID = @accountid AND SessionID = @sessionid";
-                    sqlCommand.Parameters.AddWithValue("@accountid", _accountID.ToString());
+                    sqlCommand.Parameters.AddWithValue("@accountid", _accountID);
                     sqlCommand.Parameters.AddWithValue("sessionid", _sessionID);
                     _isExist = ((int)sqlCommand.ExecuteScalar() > 0);
                 }
