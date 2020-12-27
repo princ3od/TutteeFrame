@@ -299,7 +299,7 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox12</rd:DefaultName>
-            <Top>1.47792in</Top>
+            <Top>1.33209in</Top>
             <Left>5.155in</Left>
             <Height>0.25in</Height>
             <Width>1.25in</Width>
@@ -1049,10 +1049,8 @@
             <Top>2.36334in</Top>
             <Left>0.03in</Left>
             <Height>0.5in</Height>
-            <Width>7.24888in</Width>
-            <ZIndex>6</ZIndex>
             <Width>6.24285in</Width>
-            <ZIndex>7</ZIndex>
+            <ZIndex>6</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -1132,7 +1130,7 @@
             </Paragraphs>
             <rd:DefaultName>Textbox23</rd:DefaultName>
             <Top>0.70313in</Top>
-            <Left>3.77433in</Left>
+            <Left>2.00021in</Left>
             <Height>0.25in</Height>
             <Width>2.63067in</Width>
             <ZIndex>9</ZIndex>
@@ -1151,7 +1149,7 @@
         <Height>3.08209in</Height>
         <Style />
       </Body>
-      <Width>6.56875in</Width>
+      <Width>7.27888in</Width>
       <Page>
         <LeftMargin>1in</LeftMargin>
         <RightMargin>1in</RightMargin>

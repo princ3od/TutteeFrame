@@ -1616,8 +1616,6 @@
             <KeepTogether>true</KeepTogether>
             <Top>1.36334in</Top>
             <Left>0.30171in</Left>
-            <Top>0.8998in</Top>
-            <Left>0.1422in</Left>
             <Height>2.70833in</Height>
             <Width>6.23958in</Width>
             <ZIndex>1</ZIndex>
@@ -2165,8 +2163,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox23</rd:DefaultName>
-            <Top>0.73833in</Top>
-            <Left>4.25992in</Left>
+            <Top>0.65152in</Top>
+            <Left>2.8074in</Left>
             <Height>0.25in</Height>
             <Width>1.94803in</Width>
             <ZIndex>5</ZIndex>
