@@ -110,7 +110,11 @@
     <Compile Include="Controller\ClassController.cs" />
     <Compile Include="Controller\MainController.cs" />
     <Compile Include="Controller\PunishmentController.cs" />
+    <Compile Include="Controller\SchoolController.cs" />
     <Compile Include="DataAccess\PunishmentDA.cs" />
+    <Compile Include="DataAccess\SchoolDA.cs" />
+    <Compile Include="Model\BaseInforSchoolPrepareToPrint.cs" />
+    <Compile Include="Model\School.cs" />
     <Compile Include="View\frmReconnecting.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +126,12 @@
     </Compile>
     <Compile Include="View\frmReport.Designer.cs">
       <DependentUpon>frmReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\frmSchool.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\frmSchool.Designer.cs">
+      <DependentUpon>frmSchool.cs</DependentUpon>
     </Compile>
     <Compile Include="View\frmSetting.cs">
       <SubType>Form</SubType>
@@ -308,6 +318,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\frmReport.resx">
       <DependentUpon>frmReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\frmSchool.resx">
+      <DependentUpon>frmSchool.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\frmSetting.resx">
       <DependentUpon>frmSetting.cs</DependentUpon>

@@ -71,6 +71,38 @@
         <rd:TableAdapterName />
       </rd:DataSetInfo>
     </DataSet>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>DSStudentxsd</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="STT">
+          <DataField>STT</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Logo">
+          <DataField>Logo</DataField>
+          <rd:TypeName>System.Byte[]</rd:TypeName>
+        </Field>
+        <Field Name="Slogan">
+          <DataField>Slogan</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FullName">
+          <DataField>FullName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>DSStudentxsd</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\Admin\OneDrive\Documents\GitHub\TutteeFrame\TutteeFrame\Reports\DSStudentxsd.xsd</rd:SchemaPath>
+        <rd:TableName>SCHOOLINFO</rd:TableName>
+        <rd:TableAdapterFillMethod />
+        <rd:TableAdapterGetDataMethod />
+        <rd:TableAdapterName />
+      </rd:DataSetInfo>
+    </DataSet>
   </DataSets>
   <ReportSections>
     <ReportSection>
@@ -341,7 +373,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -374,7 +405,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -407,7 +437,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -440,7 +469,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -473,7 +501,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -506,7 +533,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -551,7 +577,7 @@
       <Width>7.6in</Width>
       <Page>
         <PageHeader>
-          <Height>1.53in</Height>
+          <Height>2.42583in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -564,7 +590,7 @@
                     <TextRun>
                       <Value>DANH SÁCH HỌC SINH</Value>
                       <Style>
-                        <FontSize>14pt</FontSize>
+                        <FontSize>12pt</FontSize>
                         <FontWeight>SemiBold</FontWeight>
                         <Color>DarkBlue</Color>
                       </Style>
@@ -572,7 +598,7 @@
                     <TextRun>
                       <Value xml:space="preserve"> </Value>
                       <Style>
-                        <FontSize>14pt</FontSize>
+                        <FontSize>12pt</FontSize>
                         <Color>DarkBlue</Color>
                       </Style>
                     </TextRun>
@@ -583,8 +609,8 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox1</rd:DefaultName>
-              <Top>0.29736in</Top>
-              <Left>1.8425in</Left>
+              <Top>1.13764in</Top>
+              <Left>1.93279in</Left>
               <Height>0.34375in</Height>
               <Width>2.76042in</Width>
               <Style>
@@ -597,21 +623,6 @@
                 <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
-            <Image Name="Image1">
-              <Source>Embedded</Source>
-              <Value>ID160153438315628531</Value>
-              <Sizing>FitProportional</Sizing>
-              <Top>0.10417in</Top>
-              <Left>0.125in</Left>
-              <Height>0.64458in</Height>
-              <Width>1.64806in</Width>
-              <ZIndex>1</ZIndex>
-              <Style>
-                <Border>
-                  <Style>None</Style>
-                </Border>
-              </Style>
-            </Image>
             <Textbox Name="ExecutionTime">
               <CanGrow>true</CanGrow>
               <KeepTogether>true</KeepTogether>
@@ -629,11 +640,11 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>ExecutionTime</rd:DefaultName>
-              <Top>1.23139in</Top>
-              <Left>5.04042in</Left>
+              <Top>2.07167in</Top>
+              <Left>5.13071in</Left>
               <Height>0.25in</Height>
               <Width>1.14583in</Width>
-              <ZIndex>2</ZIndex>
+              <ZIndex>1</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -661,11 +672,11 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>PageName</rd:DefaultName>
-              <Top>0.87375in</Top>
-              <Left>1.39111in</Left>
+              <Top>1.71403in</Top>
+              <Left>1.4814in</Left>
               <Height>0.25347in</Height>
               <Width>1.11458in</Width>
-              <ZIndex>3</ZIndex>
+              <ZIndex>2</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -695,11 +706,11 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>PageName</rd:DefaultName>
-              <Top>0.87375in</Top>
-              <Left>0.61334in</Left>
+              <Top>1.71403in</Top>
+              <Left>0.70363in</Left>
               <Height>0.25347in</Height>
               <Width>0.59375in</Width>
-              <ZIndex>4</ZIndex>
+              <ZIndex>3</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -729,11 +740,11 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>PageName</rd:DefaultName>
-              <Top>0.87375in</Top>
-              <Left>3.03931in</Left>
+              <Top>1.71403in</Top>
+              <Left>3.1296in</Left>
               <Height>0.25347in</Height>
               <Width>0.85417in</Width>
-              <ZIndex>5</ZIndex>
+              <ZIndex>4</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -761,15 +772,105 @@
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>PageName</rd:DefaultName>
-              <Top>0.87375in</Top>
-              <Left>3.97445in</Left>
+              <Top>1.71403in</Top>
+              <Left>4.06474in</Left>
               <Height>0.25347in</Height>
               <Width>1.95833in</Width>
+              <ZIndex>5</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Image Name="Image2">
+              <Source>Database</Source>
+              <Value>=First(Fields!Logo.Value, "DataSet1")</Value>
+              <MIMEType>image/png</MIMEType>
+              <Sizing>FitProportional</Sizing>
+              <Top>0.16792in</Top>
+              <Left>0.11334in</Left>
+              <Height>0.33333in</Height>
+              <Width>0.6875in</Width>
               <ZIndex>6</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
+              </Style>
+            </Image>
+            <Textbox Name="Textbox22">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=First(Fields!FullName.Value, "DataSet1")</Value>
+                      <Style>
+                        <FontSize>14pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox22</rd:DefaultName>
+              <Top>0.29292in</Top>
+              <Left>1.62406in</Left>
+              <Height>0.33208in</Height>
+              <Width>4.71498in</Width>
+              <ZIndex>7</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <VerticalAlign>Middle</VerticalAlign>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox23">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=First(Fields!Slogan.Value, "DataSet1")</Value>
+                      <Style>
+                        <FontStyle>Italic</FontStyle>
+                        <FontFamily>Times New Roman</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <TextDecoration>Underline</TextDecoration>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Center</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox23</rd:DefaultName>
+              <Top>0.78125in</Top>
+              <Left>3.85292in</Left>
+              <Height>0.25in</Height>
+              <Width>2.42362in</Width>
+              <ZIndex>8</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <VerticalAlign>Middle</VerticalAlign>
                 <PaddingLeft>2pt</PaddingLeft>
                 <PaddingRight>2pt</PaddingRight>
                 <PaddingTop>2pt</PaddingTop>

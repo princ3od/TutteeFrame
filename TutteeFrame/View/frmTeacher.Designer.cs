@@ -495,6 +495,7 @@
             this.ptbAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ptbAvatar.TabIndex = 37;
             this.ptbAvatar.TabStop = false;
+            this.ptbAvatar.Click += new System.EventHandler(this.ptbAvatar_Click);
             // 
             // mainProgressbar
             // 

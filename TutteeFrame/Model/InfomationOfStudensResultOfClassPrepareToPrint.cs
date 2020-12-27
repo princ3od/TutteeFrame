@@ -7,7 +7,7 @@ using System.Data;
 
 namespace TutteeFrame.Model
 {
-    class InfomationOfStudensResultOfClassPrepareToPrint
+    class InfomationOfStudensResultOfClassPrepareToPrint:BaseInforSchoolPrepareToPrint
     {
        public DataSet ds = new DataSet();
         public string formalTeacher { get; set; }
