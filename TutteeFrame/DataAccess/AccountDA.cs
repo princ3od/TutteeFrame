@@ -112,17 +112,9 @@ namespace TutteeFrame.DataAccess
                 return false;
             try
             {
-                string query = $"SELECT AccountID FROM ACCOUNT WHERE TeacherID = '{_teacherID}'";
-                SqlCommand command = new SqlCommand(query, connection);
-                int deletedID = Int32.Parse(command.ExecuteScalar().ToString());
-                query = $"DELETE ACCOUNT WHERE TeacherID = '{_teacherID}'";
-                command = new SqlCommand(query, connection);
-                command.ExecuteNonQuery();
-                //Cập nhật lại id
-                query = "UPDATE ACCOUNT SET AccountID = AccountID - 1 WHERE AccountID > @deletedid";
-                command = new SqlCommand(query, connection);
-                command.Parameters.AddWithValue("deletedid", deletedID);
-                command.ExecuteNonQuery();
+                strQuery = $"DELETE ACCOUNT WHERE TeacherID = '{_teacherID}'";
+                using (SqlCommand command = new SqlCommand(strQuery, connection))
+                    command.ExecuteNonQuery();
             }
             catch (Exception e)
             {

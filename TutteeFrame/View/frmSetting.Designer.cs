@@ -28,160 +28,135 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnCancel = new Material_Design_for_Winform.MaterialFlatButton();
-            this.btnAddTeacher = new Material_Design_for_Winform.MaterialRaisedButton();
-            this.materialSwitch3 = new MaterialSkin.Controls.MaterialSwitch();
-            this.materialSwitch2 = new MaterialSkin.Controls.MaterialSwitch();
-            this.label1 = new System.Windows.Forms.Label();
-            this.materialComboBox1 = new MaterialSkin.Controls.MaterialComboBox();
-            this.materialSwitch1 = new MaterialSkin.Controls.MaterialSwitch();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSetting));
+            this.btnOK = new Material_Design_for_Winform.MaterialRaisedButton();
+            this.swLow = new MaterialSkin.Controls.MaterialSwitch();
+            this.swSound = new MaterialSkin.Controls.MaterialSwitch();
+            this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
+            this.btnExit = new MaterialSkin.Controls.MaterialButton();
+            this.lbChartName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // btnCancel
+            // btnOK
             // 
-            this.btnCancel.BackColor = System.Drawing.Color.Transparent;
-            this.btnCancel.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
-            this.btnCancel.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.ForeColor = System.Drawing.Color.Red;
-            this.btnCancel.Icon = null;
-            this.btnCancel.Location = new System.Drawing.Point(166, 335);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(108, 36);
-            this.btnCancel.TabIndex = 50;
-            this.btnCancel.Text = "Hủy";
-            this.btnCancel.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnOK.BackColor = System.Drawing.Color.Transparent;
+            this.btnOK.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnOK.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnOK.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnOK.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.btnOK.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOK.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.btnOK.Icon = null;
+            this.btnOK.Location = new System.Drawing.Point(74, 172);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Radius = 2;
+            this.btnOK.ShadowDepth = 3;
+            this.btnOK.ShadowOpacity = 35;
+            this.btnOK.Size = new System.Drawing.Size(142, 52);
+            this.btnOK.TabIndex = 49;
+            this.btnOK.Text = "Áp dụng";
+            this.btnOK.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // btnAddTeacher
+            // swLow
             // 
-            this.btnAddTeacher.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddTeacher.BackColor = System.Drawing.Color.Transparent;
-            this.btnAddTeacher.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnAddTeacher.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
-            this.btnAddTeacher.Cursor = System.Windows.Forms.Cursors.Default;
-            this.btnAddTeacher.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
-            this.btnAddTeacher.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddTeacher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
-            this.btnAddTeacher.Icon = null;
-            this.btnAddTeacher.Location = new System.Drawing.Point(24, 326);
-            this.btnAddTeacher.Name = "btnAddTeacher";
-            this.btnAddTeacher.Radius = 2;
-            this.btnAddTeacher.ShadowDepth = 3;
-            this.btnAddTeacher.ShadowOpacity = 35;
-            this.btnAddTeacher.Size = new System.Drawing.Size(142, 52);
-            this.btnAddTeacher.TabIndex = 49;
-            this.btnAddTeacher.Text = "Áp dụng";
-            this.btnAddTeacher.TextAlign = System.Drawing.StringAlignment.Center;
+            this.swLow.AutoSize = true;
+            this.swLow.Depth = 0;
+            this.swLow.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.swLow.Location = new System.Drawing.Point(34, 117);
+            this.swLow.Margin = new System.Windows.Forms.Padding(0);
+            this.swLow.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.swLow.MouseState = MaterialSkin.MouseState.HOVER;
+            this.swLow.Name = "swLow";
+            this.swLow.Ripple = true;
+            this.swLow.Size = new System.Drawing.Size(166, 37);
+            this.swLow.TabIndex = 48;
+            this.swLow.Text = "Hiệu năng thấp";
+            this.metroToolTip1.SetToolTip(this.swLow, "Hạn chế tải lại dữ liệu trong nền.");
+            this.swLow.UseVisualStyleBackColor = true;
             // 
-            // materialSwitch3
+            // swSound
             // 
-            this.materialSwitch3.AutoSize = true;
-            this.materialSwitch3.Depth = 0;
-            this.materialSwitch3.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.materialSwitch3.Location = new System.Drawing.Point(24, 266);
-            this.materialSwitch3.Margin = new System.Windows.Forms.Padding(0);
-            this.materialSwitch3.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialSwitch3.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialSwitch3.Name = "materialSwitch3";
-            this.materialSwitch3.Ripple = true;
-            this.materialSwitch3.Size = new System.Drawing.Size(166, 37);
-            this.materialSwitch3.TabIndex = 48;
-            this.materialSwitch3.Text = "Hiệu năng thấp";
-            this.materialSwitch3.UseVisualStyleBackColor = true;
+            this.swSound.AutoSize = true;
+            this.swSound.Depth = 0;
+            this.swSound.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.swSound.Location = new System.Drawing.Point(34, 80);
+            this.swSound.Margin = new System.Windows.Forms.Padding(0);
+            this.swSound.MouseLocation = new System.Drawing.Point(-1, -1);
+            this.swSound.MouseState = MaterialSkin.MouseState.HOVER;
+            this.swSound.Name = "swSound";
+            this.swSound.Ripple = true;
+            this.swSound.Size = new System.Drawing.Size(202, 37);
+            this.swSound.TabIndex = 47;
+            this.swSound.Text = "Âm thanh khởi động";
+            this.swSound.UseVisualStyleBackColor = true;
             // 
-            // materialSwitch2
+            // metroToolTip1
             // 
-            this.materialSwitch2.AutoSize = true;
-            this.materialSwitch2.Depth = 0;
-            this.materialSwitch2.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.materialSwitch2.Location = new System.Drawing.Point(24, 218);
-            this.materialSwitch2.Margin = new System.Windows.Forms.Padding(0);
-            this.materialSwitch2.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialSwitch2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialSwitch2.Name = "materialSwitch2";
-            this.materialSwitch2.Ripple = true;
-            this.materialSwitch2.Size = new System.Drawing.Size(202, 37);
-            this.materialSwitch2.TabIndex = 47;
-            this.materialSwitch2.Text = "Âm thanh khởi động";
-            this.materialSwitch2.UseVisualStyleBackColor = true;
+            this.metroToolTip1.Style = MetroFramework.MetroColorStyle.Blue;
+            this.metroToolTip1.StyleManager = null;
+            this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
-            // label1
+            // btnExit
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(38, 103);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(59, 21);
-            this.label1.TabIndex = 46;
-            this.label1.Text = "Cỡ chữ";
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnExit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnExit.Depth = 0;
+            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnExit.DrawShadows = true;
+            this.btnExit.HighEmphasis = true;
+            this.btnExit.Icon = ((System.Drawing.Image)(resources.GetObject("btnExit.Icon")));
+            this.btnExit.Location = new System.Drawing.Point(259, 1);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnExit.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(44, 36);
+            this.btnExit.TabIndex = 54;
+            this.btnExit.TabStop = false;
+            this.btnExit.Type = MaterialSkin.Controls.MaterialButton.MaterialButtonType.Text;
+            this.btnExit.UseAccentColor = false;
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // materialComboBox1
+            // lbChartName
             // 
-            this.materialComboBox1.AutoResize = false;
-            this.materialComboBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.materialComboBox1.Depth = 0;
-            this.materialComboBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawVariable;
-            this.materialComboBox1.DropDownHeight = 174;
-            this.materialComboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.materialComboBox1.DropDownWidth = 121;
-            this.materialComboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
-            this.materialComboBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialComboBox1.FormattingEnabled = true;
-            this.materialComboBox1.IntegralHeight = false;
-            this.materialComboBox1.ItemHeight = 43;
-            this.materialComboBox1.Items.AddRange(new object[] {
-            "Vừa",
-            "To",
-            "Nhỏ",
-            "Rất to"});
-            this.materialComboBox1.Location = new System.Drawing.Point(117, 75);
-            this.materialComboBox1.MaxDropDownItems = 4;
-            this.materialComboBox1.MouseState = MaterialSkin.MouseState.OUT;
-            this.materialComboBox1.Name = "materialComboBox1";
-            this.materialComboBox1.Size = new System.Drawing.Size(109, 49);
-            this.materialComboBox1.TabIndex = 45;
-            // 
-            // materialSwitch1
-            // 
-            this.materialSwitch1.AutoSize = true;
-            this.materialSwitch1.Depth = 0;
-            this.materialSwitch1.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.materialSwitch1.Location = new System.Drawing.Point(24, 171);
-            this.materialSwitch1.Margin = new System.Windows.Forms.Padding(0);
-            this.materialSwitch1.MouseLocation = new System.Drawing.Point(-1, -1);
-            this.materialSwitch1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialSwitch1.Name = "materialSwitch1";
-            this.materialSwitch1.Ripple = true;
-            this.materialSwitch1.Size = new System.Drawing.Size(130, 37);
-            this.materialSwitch1.TabIndex = 44;
-            this.materialSwitch1.Text = "Chủ đề tối";
-            this.materialSwitch1.UseVisualStyleBackColor = true;
+            this.lbChartName.AutoSize = true;
+            this.lbChartName.Font = new System.Drawing.Font("Segoe UI Light", 15F);
+            this.lbChartName.Location = new System.Drawing.Point(29, 23);
+            this.lbChartName.Name = "lbChartName";
+            this.lbChartName.Size = new System.Drawing.Size(83, 28);
+            this.lbChartName.TabIndex = 55;
+            this.lbChartName.Text = "CÀI ĐẶT";
             // 
             // frmSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(302, 450);
-            this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnAddTeacher);
-            this.Controls.Add(this.materialSwitch3);
-            this.Controls.Add(this.materialSwitch2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.materialComboBox1);
-            this.Controls.Add(this.materialSwitch1);
+            this.BackColor = System.Drawing.Color.White;
+            this.CancelButton = this.btnExit;
+            this.ClientSize = new System.Drawing.Size(302, 264);
+            this.Controls.Add(this.lbChartName);
+            this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.btnOK);
+            this.Controls.Add(this.swLow);
+            this.Controls.Add(this.swSound);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmSetting";
+            this.Text = "Cài đặt";
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private Material_Design_for_Winform.MaterialFlatButton btnCancel;
-        private Material_Design_for_Winform.MaterialRaisedButton btnAddTeacher;
-        private MaterialSkin.Controls.MaterialSwitch materialSwitch3;
-        private MaterialSkin.Controls.MaterialSwitch materialSwitch2;
-        private System.Windows.Forms.Label label1;
-        private MaterialSkin.Controls.MaterialComboBox materialComboBox1;
-        private MaterialSkin.Controls.MaterialSwitch materialSwitch1;
+        private Material_Design_for_Winform.MaterialRaisedButton btnOK;
+        private MaterialSkin.Controls.MaterialSwitch swLow;
+        private MaterialSkin.Controls.MaterialSwitch swSound;
+        private MetroFramework.Components.MetroToolTip metroToolTip1;
+        private MaterialSkin.Controls.MaterialButton btnExit;
+        private System.Windows.Forms.Label lbChartName;
     }
 }

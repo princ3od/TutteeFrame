@@ -9,10 +9,11 @@ using TutteeFrame.Controller;
 using TutteeFrame.Model;
 using MetroFramework;
 using System.Drawing.Imaging;
+using MetroFramework.Forms;
 
 namespace TutteeFrame
 {
-    public partial class frmChart : Form
+    public partial class frmChart : MetroForm
     {
         bool loadFast = true;
         double[] scoreSeprate = { 1.1, 2.1, 3.1, 4.1, 5.1, 6.1, 7.1, 8.1, 8.6, 9.1, 9.6, 10.1 };
@@ -786,6 +787,7 @@ namespace TutteeFrame
 
         private void ToggleMenu(object sender, EventArgs e)
         {
+            btnToggleMenu.Icon.RotateFlip(RotateFlipType.Rotate180FlipNone);
             switch (menuState)
             {
                 case MenuState.Show:

@@ -410,5 +410,48 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
+        public bool AddSubjectScoreForSubject(string _subjectID)
+        {
+            bool success = Connect();
+
+            if (!success)
+                return false;
+
+            try
+            {
+                List<string> scoreBoardIDs = new List<string>();
+                strQuery = "SELECT ScoreBoardID FROM SCOREBOARD";
+                using (SqlCommand sqlCommand = new SqlCommand(strQuery, connection))
+                {   
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                    {
+                        while (reader.Read())
+                            scoreBoardIDs.Add(reader.GetString(0));
+                    }    
+                }
+                foreach (string scoreboardID in scoreBoardIDs)
+                {
+                    string subjectScoreID = scoreboardID + _subjectID;
+                    strQuery = "INSERT INTO SUBJECTSCORE(SubjectScoreID,ScoreBoardID,SubjectID) VALUES(@subjectscoreid,@board,@subjectid)";
+                    using (SqlCommand sqlCommand = new SqlCommand(strQuery,connection))
+                    {
+                        sqlCommand.Parameters.AddWithValue("@subjectscoreid", subjectScoreID);
+                        sqlCommand.Parameters.AddWithValue("@board", scoreboardID);
+                        sqlCommand.Parameters.AddWithValue("@subjectid", _subjectID);
+                        sqlCommand.ExecuteNonQuery();
+                    }    
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return true;
+        }
     }
 }

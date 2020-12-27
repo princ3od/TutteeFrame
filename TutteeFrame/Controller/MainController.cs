@@ -48,6 +48,7 @@ namespace TutteeFrame.Controller
             teacher.Phone = "0123456789";
             teacher.Mail = "admin@tutteframe.com";
             teacher.Type = Teacher.TeacherType.Adminstrator;
+            (new SubjectController()).AddSubject(teacher.Subject);
             return new TeacherController().AddTeacher(teacher);
         }
     }

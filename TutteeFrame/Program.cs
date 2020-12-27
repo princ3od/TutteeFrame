@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
+using TutteeFrame.View;
 
 
 namespace TutteeFrame.Model
@@ -68,7 +69,7 @@ namespace TutteeFrame.Model
 
     //        Application.EnableVisualStyles();
     //        Application.SetCompatibleTextRenderingDefault(false);
-    //        Application.Run(new frmStudentPrinter("11A1",true,true));
+    //        Application.Run(new frmStudentPrinter(PrinterType.StudentResultList,"11A1"));
 
     //    }
     //}

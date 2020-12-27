@@ -5,7 +5,7 @@ using System.Data;
 
 namespace TutteeFrame.Model
 {
-   public class InformationOfStudentResultPrepareForPrint
+   public class InformationOfStudentResultPrepareForPrint:BaseInforSchoolPrepareToPrint
     {
         public DataSet scoreBoards { get; set; } // SE1 + SE2
         public double averageResult { get; set; }

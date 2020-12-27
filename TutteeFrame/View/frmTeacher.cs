@@ -278,5 +278,10 @@ namespace TutteeFrame
         {
             btnApprove.PerformClick();
         }
+
+        private void ptbAvatar_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

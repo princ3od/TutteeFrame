@@ -72,7 +72,7 @@ namespace TutteeFrame
             splash.FormClosing += Splash_FormClosing;
             splash.Show();
         }
-      
+
         private void Splash_FormClosing(object sender, FormClosingEventArgs e)
         {
             frmLogin = new frmLogin();
@@ -103,7 +103,6 @@ namespace TutteeFrame
             bool reconnecting = false;
             checkLogin.DoWork += (s, ev) =>
             {
-                frmReconnecting frmReconnecting = new frmReconnecting();
                 bool needLogout = false;
                 AccountController accountController = new AccountController();
                 while (!needLogout && isLogin)
@@ -121,12 +120,17 @@ namespace TutteeFrame
                             preFlag = flag;
                         }
                     }
-                    Thread.Sleep(2000);
+                    if (Properties.Settings.Default.LowPerfomance)
+                        Thread.Sleep(5000);
+                    else
+                        Thread.Sleep(2000);
                 }
             };
             frmReconnecting frmReconnecting = new frmReconnecting();
             checkLogin.ProgressChanged += (s, ev) =>
             {
+                if (Properties.Settings.Default.LowPerfomance)
+                    return;
                 if (flag == 0 && !reconnecting)
                 {
                     reconnecting = true;
@@ -247,7 +251,6 @@ namespace TutteeFrame
         }
         private void btnChangePass_Click(object sender, EventArgs e)
         {
-            pnProfile.Size = new Size(pnProfile.Size.Width, 70);
             frmChangePass frmChangePass = new frmChangePass(mainTeacher.ID);
             OverlayForm overlay = new OverlayForm(this, frmChangePass);
             frmChangePass.Show();
@@ -257,7 +260,7 @@ namespace TutteeFrame
                     btnLogout.PerformClick();
             };
         }
-  
+
         #endregion
 
         #region Tabpage Thông tin tài khoản và việc tải thông tin lần đầu sau khi đăng nhập
@@ -1238,6 +1241,11 @@ namespace TutteeFrame
             {
                 ListViewItem listViewItem = lvSubjectManage.SelectedItems[0];
                 Subject subject = new Subject(listViewItem.SubItems[1].Text, listViewItem.SubItems[2].Text);
+                if (!subjectController.IsDeletable(subject))
+                {
+                    MetroMessageBox.Show(this, "Vẫn còn giáo viên dạy môn này", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 if (subjectController.DeleteSubject(subject))
                 {
                     MetroMessageBox.Show(this, "Xóa thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -1780,7 +1788,7 @@ namespace TutteeFrame
             if (mainTabControl.SelectedTab == null)
                 return;
             lbTittle.Text = mainTabControl.SelectedTab.Text;
-            if (!firstLoad && !reloading)
+            if (!firstLoad && !reloading && !Properties.Settings.Default.LowPerfomance)
             {
                 bool success = false;
                 BackgroundWorker worker = new BackgroundWorker();

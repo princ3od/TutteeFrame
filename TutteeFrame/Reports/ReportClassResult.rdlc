@@ -63,25 +63,43 @@
         <rd:TableAdapterName />
       </rd:DataSetInfo>
     </DataSet>
+    <DataSet Name="DataSet2">
+      <Query>
+        <DataSourceName>DSClassResultBySE</DataSourceName>
+        <CommandText>/* Local Query */</CommandText>
+      </Query>
+      <Fields>
+        <Field Name="STT">
+          <DataField>STT</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Logo">
+          <DataField>Logo</DataField>
+          <rd:TypeName>System.Byte[]</rd:TypeName>
+        </Field>
+        <Field Name="Slogan">
+          <DataField>Slogan</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="FullName">
+          <DataField>FullName</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+      </Fields>
+      <rd:DataSetInfo>
+        <rd:DataSetName>DSClassResultBySE</rd:DataSetName>
+        <rd:SchemaPath>C:\Users\Admin\OneDrive\Documents\GitHub\TutteeFrame\TutteeFrame\Reports\DSClassResultBySE.xsd</rd:SchemaPath>
+        <rd:TableName>SCHOOLINFO</rd:TableName>
+        <rd:TableAdapterFillMethod />
+        <rd:TableAdapterGetDataMethod />
+        <rd:TableAdapterName />
+      </rd:DataSetInfo>
+    </DataSet>
   </DataSets>
   <ReportSections>
     <ReportSection>
       <Body>
         <ReportItems>
-          <Image Name="imgLogo">
-            <Source>Embedded</Source>
-            <Value>ID16015343831562853</Value>
-            <Sizing>FitProportional</Sizing>
-            <Top>0.10292in</Top>
-            <Left>0.12375in</Left>
-            <Height>0.48958in</Height>
-            <Width>1.76042in</Width>
-            <Style>
-              <Border>
-                <Style>None</Style>
-              </Border>
-            </Style>
-          </Image>
           <Textbox Name="Textbox1">
             <CanGrow>true</CanGrow>
             <KeepTogether>true</KeepTogether>
@@ -107,11 +125,10 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox1</rd:DefaultName>
-            <Top>0.19667in</Top>
+            <Top>1.33209in</Top>
             <Left>2.15823in</Left>
             <Height>0.25in</Height>
             <Width>2.46968in</Width>
-            <ZIndex>1</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -141,11 +158,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox8</rd:DefaultName>
-            <Top>0.66194in</Top>
+            <Top>1.79736in</Top>
             <Left>0.28in</Left>
             <Height>0.25in</Height>
             <Width>0.34375in</Width>
-            <ZIndex>2</ZIndex>
+            <ZIndex>1</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -175,11 +192,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox8</rd:DefaultName>
-            <Top>0.66194in</Top>
+            <Top>1.79736in</Top>
             <Left>0.69319in</Left>
             <Height>0.26042in</Height>
             <Width>0.59375in</Width>
-            <ZIndex>3</ZIndex>
+            <ZIndex>2</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -220,11 +237,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox8</rd:DefaultName>
-            <Top>0.70708in</Top>
+            <Top>1.8425in</Top>
             <Left>2.15823in</Left>
             <Height>0.25in</Height>
             <Width>1.1141in</Width>
-            <ZIndex>4</ZIndex>
+            <ZIndex>3</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -252,11 +269,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox8</rd:DefaultName>
-            <Top>0.69667in</Top>
+            <Top>1.83209in</Top>
             <Left>3.20635in</Left>
             <Height>0.26042in</Height>
             <Width>1.67708in</Width>
-            <ZIndex>5</ZIndex>
+            <ZIndex>4</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -282,11 +299,11 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>Textbox12</rd:DefaultName>
-            <Top>0.3425in</Top>
+            <Top>1.33209in</Top>
             <Left>5.155in</Left>
             <Height>0.25in</Height>
             <Width>1.25in</Width>
-            <ZIndex>6</ZIndex>
+            <ZIndex>5</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
@@ -304,31 +321,31 @@
                   <Width>0.37291in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.08895in</Width>
+                  <Width>0.93125in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.81138in</Width>
+                  <Width>0.66605in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.86492in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.60617in</Width>
+                  <Width>0.64827in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.63494in</Width>
+                  <Width>0.63619in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.63306in</Width>
+                  <Width>0.47832in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.83784in</Width>
+                  <Width>0.55872in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.68373in</Width>
+                  <Width>0.61082in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.71498in</Width>
+                  <Width>0.4754in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -1029,22 +1046,110 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>1.22792in</Top>
+            <Top>2.36334in</Top>
             <Left>0.03in</Left>
             <Height>0.5in</Height>
-            <Width>7.24888in</Width>
-            <ZIndex>7</ZIndex>
+            <Width>6.24285in</Width>
+            <ZIndex>6</ZIndex>
             <Style>
               <Border>
                 <Style>None</Style>
               </Border>
             </Style>
           </Tablix>
+          <Image Name="Image2">
+            <Source>Database</Source>
+            <Value>=First(Fields!Logo.Value, "DataSet2")</Value>
+            <MIMEType>image/bmp</MIMEType>
+            <Sizing>FitProportional</Sizing>
+            <Top>0.0898in</Top>
+            <Left>0.07254in</Left>
+            <Height>0.30208in</Height>
+            <Width>0.6875in</Width>
+            <ZIndex>7</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Image>
+          <Textbox Name="Textbox22">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!FullName.Value, "DataSet2")</Value>
+                    <Style>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Bold</FontWeight>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox22</rd:DefaultName>
+            <Top>0.29688in</Top>
+            <Left>1.58326in</Left>
+            <Height>0.25in</Height>
+            <Width>3.32348in</Width>
+            <ZIndex>8</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Textbox Name="Textbox23">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>=First(Fields!Slogan.Value, "DataSet2")</Value>
+                    <Style>
+                      <FontStyle>Italic</FontStyle>
+                      <FontSize>8pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style>
+                  <TextAlign>Center</TextAlign>
+                </Style>
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox23</rd:DefaultName>
+            <Top>0.70313in</Top>
+            <Left>2.00021in</Left>
+            <Height>0.25in</Height>
+            <Width>2.63067in</Width>
+            <ZIndex>9</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <VerticalAlign>Middle</VerticalAlign>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
-        <Height>2.00917in</Height>
+        <Height>3.08209in</Height>
         <Style />
       </Body>
-      <Width>7.6in</Width>
+      <Width>7.27888in</Width>
       <Page>
         <LeftMargin>1in</LeftMargin>
         <RightMargin>1in</RightMargin>
