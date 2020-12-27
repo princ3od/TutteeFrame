@@ -183,9 +183,7 @@
     <Compile Include="View\frmChooseTeacher.Designer.cs">
       <DependentUpon>frmChooseTeacher.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\frmChart.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="View\frmChart.cs" />
     <Compile Include="View\frmChart.Designer.cs">
       <DependentUpon>frmChart.cs</DependentUpon>
     </Compile>

@@ -361,7 +361,7 @@
             this.btnToggleMenu.AnimateShowHideButton = false;
             this.btnToggleMenu.Depth = 0;
             this.btnToggleMenu.DrawShadows = true;
-            this.btnToggleMenu.Icon = null;
+            this.btnToggleMenu.Icon = ((System.Drawing.Image)(resources.GetObject("btnToggleMenu.Icon")));
             this.btnToggleMenu.Location = new System.Drawing.Point(359, 264);
             this.btnToggleMenu.Mini = true;
             this.btnToggleMenu.MouseState = MaterialSkin.MouseState.HOVER;
