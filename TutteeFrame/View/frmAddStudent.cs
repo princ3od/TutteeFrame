@@ -59,10 +59,8 @@ namespace TutteeFrame
 
         private void cbbKhoi_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!IsNew)
-                return;
             string KhoiSelected = null;
-            KhoiSelected = cbbKhoi.SelectedItem.ToString();
+            KhoiSelected = cbbKhoi.Text;
 
             if (KhoiSelected == null) return;
             cbbClass.Items.Clear();
