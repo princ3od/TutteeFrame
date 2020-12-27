@@ -24,13 +24,14 @@ namespace TutteeFrame
         }
         private void SplashScreen_Shown(object sender, EventArgs e)
         {
+            timer1.Start();
             this.Activate();
             if (!Properties.Settings.Default.StartupSound)
                 return;
             System.IO.Stream stream = Properties.Resources.intro;
             System.Media.SoundPlayer player = new System.Media.SoundPlayer(stream);
             player.Play();
-            timer1.Start();
+            
         }
 
       
