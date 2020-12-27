@@ -25,7 +25,7 @@ namespace TutteeFrame
             switch (_printType)
             {
                 case PrinterType.StudentResultList:
-                    studentID = _id;
+                    classID = _id;
                     break;
                 case PrinterType.StudentResult:
                     studentID = _id;

@@ -233,7 +233,7 @@ namespace TutteeFrame.DataAccess
         /// </summary>
         /// <param name="teachers">Danh sách giao viên được lấy ra.</param>
         /// <returns> Lấy danh sách có thành công hay không. </returns>
-        public bool LoadTeachers(List<Teacher> teachers, Dictionary<string, byte[]> _avatars, string _order = "TeacherID")
+        public bool LoadTeachers(List<Teacher> teachers, string _order = "TeacherID")
         {
             bool success = Connect();
 

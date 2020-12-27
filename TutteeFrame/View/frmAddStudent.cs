@@ -46,7 +46,7 @@ namespace TutteeFrame
             txtAddress.Text = studentinfor.Address == null ? "" : studentinfor.Address;
             txtPhoneNunber.Text = studentinfor.Phone == null ? "" : studentinfor.Phone;
             txtStudentID.Text = studentinfor.ID == null ? "" : studentinfor.ID;
-            txtPunishment.Text = studentinfor.PunishmentList == null ? "" : studentinfor.PunishmentList;
+            txtPunishment.Text = studentinfor.Punishment == null ? "" : studentinfor.Punishment;
             dateBorn.Value = studentinfor.DateBorn == null ? DateTime.Now : studentinfor.DateBorn;
             cbbSex.SelectedIndex = studentinfor.Sex == true ? 0 : 1;
             cbbStatus.SelectedIndex = studentinfor.Status == true ? 0 : 1;
@@ -103,7 +103,7 @@ namespace TutteeFrame
             studentinfor.SurName = txtSurname.Text;
             studentinfor.Address = txtAddress.Text;
             studentinfor.Phone = txtPhoneNunber.Text;
-            studentinfor.PunishmentList = txtPunishment.Text == "" ? null : txtPunishment.Text;
+            studentinfor.Punishment = txtPunishment.Text == "" ? null : txtPunishment.Text;
             studentinfor.Sex = cbbSex.Text == "Nam" ? true : false;
             studentinfor.Status = cbbStatus.Text == "Đang học" ? true : false;
             studentinfor.ClassID = cbbClass.Text == "" ? null : cbbClass.Text;

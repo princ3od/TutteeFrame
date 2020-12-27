@@ -4,7 +4,7 @@ namespace TutteeFrame.Model
 {
     public class Teacher : Person
     {
-        public enum TeacherType { Teacher = 4, Adminstrator = 3, Ministry = 2, FormerTeacher = 1};
+        public enum TeacherType { Teacher = 4, Adminstrator = 3, Ministry = 2, FormerTeacher = 1 };
 
         private Subject subject;
         private TeacherType teacherType;
@@ -18,7 +18,7 @@ namespace TutteeFrame.Model
         public string FormClassID { get => formClassID; set => formClassID = value; }
         public static List<string> Column = new List<string>{ "TeacherID", "Surname", "Firstname","TeacherImage", "DateBorn","Sex", "Address", "Phone", "Maill",
                                                                     "SubjectID", "IsMinistry", "IsAdmin", "Posittion" };
-        public string Position { get => position ?? "Không"; set => position = value; }
+        public string Position { get => (string.IsNullOrEmpty(position)) ? "Không" : position; set => position = value; }
 
         public byte[] GetAvatar()
         {
@@ -46,6 +46,6 @@ namespace TutteeFrame.Model
                     break;
             }
             return teacherNote;
-        }    
+        }
     }
 }
