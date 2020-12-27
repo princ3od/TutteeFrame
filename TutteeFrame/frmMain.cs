@@ -300,6 +300,7 @@ namespace TutteeFrame
             if (mainTeacher.ID == "AD999999")
             {
                 lbBelongtoOnCard.Text = "Adminstrator";
+                mainTabControl.TabPages.Add(tbpgSchool);
                 mainTabControl.TabPages.Add(tbgpTeacherManagment);
                 mainTabControl.TabPages.Add(tbpgTeacherAssignment);
                 mainTabControl.TabPages.Add(tbpgClassManagment);
@@ -353,15 +354,27 @@ namespace TutteeFrame
             List<Subject> subjects = new List<Subject>();
             loader = new BackgroundWorker();
             loader.WorkerReportsProgress = true;
+            School school = new School();
             loader.RunWorkerCompleted += (s, e) =>
             {
                 firstLoad = reloading = false;
+                ptbSchoolLogo.Image = school.Logo;
+                if (mainTeacher.ID == "AD999999")
+                {
+                    txtSchoolName.Text = school.FullName;
+                    txtSchoolSlogan.Text = school.Slogan;
+                    ptbSchoolLogoBig.Image = school.Logo;
+                }
                 mainProgressbar.Hide();
                 lbInformation.Hide();
             };
             loader.ProgressChanged += (s, e) =>
             {
                 lbInformation.Text = (string)e.UserState;
+            };
+            loader.DoWork += (s, e) =>
+            {
+                (new SchoolController()).GetSchoolInfo(school);
             };
             mainProgressbar.Show();
             lbInformation.Show();
@@ -1783,6 +1796,27 @@ namespace TutteeFrame
         #endregion
 
         bool reloading = false;
+
+        private void ChooseSchoolLogo(object sender, EventArgs e)
+        {
+            OpenFileDialog of = new OpenFileDialog();
+            of.Filter = "Image Files (*.bmp;*.jpg;*.jpeg,*.png)|*.BMP;*.JPG;*.JPEG;*.PNG";
+            if (of.ShowDialog() == DialogResult.OK)
+            {
+                ptbSchoolLogoBig.ImageLocation = of.FileName;
+
+            }
+        }
+
+        private void btnUpdateSchool_Click(object sender, EventArgs e)
+        {
+            School school = new School();
+            school.FullName = txtSchoolName.Text;
+            school.Slogan = txtSchoolSlogan.Text;
+            school.Logo = ptbSchoolLogoBig.Image;
+            (new SchoolController()).UpdateSchoolInfo(school);
+        }
+
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (mainTabControl.SelectedTab == null)

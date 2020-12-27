@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("----", 0);
             System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("----", 0);
             this.materialDrawer1 = new MaterialSkin.Controls.MaterialDrawer();
@@ -240,6 +240,13 @@
             this.lbTotalTeachingClassTittle = new System.Windows.Forms.Label();
             this.lbTotalSubjectTittle = new System.Windows.Forms.Label();
             this.lbTittle = new System.Windows.Forms.Label();
+            this.tbpgSchool = new System.Windows.Forms.TabPage();
+            this.txtSchoolName = new Material_Design_for_Winform.MaterialTextField();
+            this.txtSchoolSlogan = new Material_Design_for_Winform.MaterialTextField();
+            this.ptbSchoolLogoBig = new System.Windows.Forms.PictureBox();
+            this.btnUpdateSchool = new Material_Design_for_Winform.MaterialRaisedButton();
+            this.btnChooseAvatar = new MaterialSkin.Controls.MaterialFloatingActionButton();
+            this.ptbSchoolLogo = new System.Windows.Forms.PictureBox();
             this.mainTabControl.SuspendLayout();
             this.tbpgProfile.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -272,6 +279,9 @@
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel4.SuspendLayout();
+            this.tbpgSchool.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbSchoolLogoBig)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbSchoolLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // materialDrawer1
@@ -310,6 +320,7 @@
             this.mainTabControl.Controls.Add(this.tbpgFormClass);
             this.mainTabControl.Controls.Add(this.tbpgTeacherAssignment);
             this.mainTabControl.Controls.Add(this.tbpgFaulttManagment);
+            this.mainTabControl.Controls.Add(this.tbpgSchool);
             this.mainTabControl.Depth = 0;
             this.mainTabControl.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.mainTabControl.Location = new System.Drawing.Point(249, 105);
@@ -1604,14 +1615,14 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.gridviewStudentScore.BackgroundColor = System.Drawing.Color.WhiteSmoke;
             this.gridviewStudentScore.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Raised;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8F);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.gridviewStudentScore.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Segoe UI", 8F);
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.gridviewStudentScore.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.gridviewStudentScore.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridviewStudentScore.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmStt,
@@ -1626,29 +1637,29 @@
             this.clmFortyfive3,
             this.clmFinal,
             this.clmAverage});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 8F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridviewStudentScore.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 8F);
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridviewStudentScore.DefaultCellStyle = dataGridViewCellStyle18;
             this.gridviewStudentScore.GridColor = System.Drawing.Color.Black;
             this.gridviewStudentScore.Location = new System.Drawing.Point(22, 115);
             this.gridviewStudentScore.Name = "gridviewStudentScore";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.gridviewStudentScore.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle19.Font = new System.Drawing.Font("Segoe UI", 8F);
+            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.gridviewStudentScore.RowHeadersDefaultCellStyle = dataGridViewCellStyle19;
             this.gridviewStudentScore.RowHeadersVisible = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.gridviewStudentScore.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle20.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.gridviewStudentScore.RowsDefaultCellStyle = dataGridViewCellStyle20;
             this.gridviewStudentScore.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.gridviewStudentScore.Size = new System.Drawing.Size(1124, 381);
             this.gridviewStudentScore.TabIndex = 0;
@@ -2888,6 +2899,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.panel2.Controls.Add(this.ptbSchoolLogo);
             this.panel2.Controls.Add(this.materialDivider1);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Location = new System.Drawing.Point(0, 5);
@@ -2910,7 +2922,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(100, 13);
+            this.pictureBox1.Location = new System.Drawing.Point(149, 13);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(55, 55);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -3032,6 +3044,128 @@
             this.lbTittle.TabIndex = 27;
             this.lbTittle.Text = "Thông tin tài khoản";
             // 
+            // tbpgSchool
+            // 
+            this.tbpgSchool.BackColor = System.Drawing.Color.White;
+            this.tbpgSchool.Controls.Add(this.btnChooseAvatar);
+            this.tbpgSchool.Controls.Add(this.btnUpdateSchool);
+            this.tbpgSchool.Controls.Add(this.ptbSchoolLogoBig);
+            this.tbpgSchool.Controls.Add(this.txtSchoolSlogan);
+            this.tbpgSchool.Controls.Add(this.txtSchoolName);
+            this.tbpgSchool.Location = new System.Drawing.Point(4, 22);
+            this.tbpgSchool.Name = "tbpgSchool";
+            this.tbpgSchool.Padding = new System.Windows.Forms.Padding(3);
+            this.tbpgSchool.Size = new System.Drawing.Size(1147, 596);
+            this.tbpgSchool.TabIndex = 13;
+            this.tbpgSchool.Text = "Thông tin trường";
+            // 
+            // txtSchoolName
+            // 
+            this.txtSchoolName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSchoolName.AutoScaleColor = true;
+            this.txtSchoolName.BackColor = System.Drawing.Color.White;
+            this.txtSchoolName.FloatingLabelText = "";
+            this.txtSchoolName.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.txtSchoolName.Font = new System.Drawing.Font("Segoe UI", 20F);
+            this.txtSchoolName.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtSchoolName.HideSelection = true;
+            this.txtSchoolName.HintText = "Tên trường";
+            this.txtSchoolName.Location = new System.Drawing.Point(216, 167);
+            this.txtSchoolName.MaxLength = 32767;
+            this.txtSchoolName.Multiline = false;
+            this.txtSchoolName.Name = "txtSchoolName";
+            this.txtSchoolName.PasswordChar = '\0';
+            this.txtSchoolName.ReadOnly = false;
+            this.txtSchoolName.ShortcutsEnable = true;
+            this.txtSchoolName.ShowCaret = true;
+            this.txtSchoolName.Size = new System.Drawing.Size(892, 73);
+            this.txtSchoolName.Style = Material_Design_for_Winform.MaterialTextField.ST.HintAsFloatingLabel;
+            this.txtSchoolName.TabIndex = 2;
+            this.txtSchoolName.UseSystemPasswordChar = false;
+            // 
+            // txtSchoolSlogan
+            // 
+            this.txtSchoolSlogan.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtSchoolSlogan.AutoScaleColor = true;
+            this.txtSchoolSlogan.BackColor = System.Drawing.Color.White;
+            this.txtSchoolSlogan.FloatingLabelText = "";
+            this.txtSchoolSlogan.FocusColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.txtSchoolSlogan.Font = new System.Drawing.Font("Segoe UI", 14F);
+            this.txtSchoolSlogan.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.txtSchoolSlogan.HideSelection = true;
+            this.txtSchoolSlogan.HintText = "Slogan";
+            this.txtSchoolSlogan.Location = new System.Drawing.Point(32, 246);
+            this.txtSchoolSlogan.MaxLength = 32767;
+            this.txtSchoolSlogan.Multiline = false;
+            this.txtSchoolSlogan.Name = "txtSchoolSlogan";
+            this.txtSchoolSlogan.PasswordChar = '\0';
+            this.txtSchoolSlogan.ReadOnly = false;
+            this.txtSchoolSlogan.ShortcutsEnable = true;
+            this.txtSchoolSlogan.ShowCaret = true;
+            this.txtSchoolSlogan.Size = new System.Drawing.Size(1077, 50);
+            this.txtSchoolSlogan.Style = Material_Design_for_Winform.MaterialTextField.ST.HintAsFloatingLabel;
+            this.txtSchoolSlogan.TabIndex = 3;
+            this.txtSchoolSlogan.UseSystemPasswordChar = false;
+            // 
+            // ptbSchoolLogoBig
+            // 
+            this.ptbSchoolLogoBig.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.ptbSchoolLogoBig.Location = new System.Drawing.Point(32, 80);
+            this.ptbSchoolLogoBig.Name = "ptbSchoolLogoBig";
+            this.ptbSchoolLogoBig.Size = new System.Drawing.Size(160, 160);
+            this.ptbSchoolLogoBig.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ptbSchoolLogoBig.TabIndex = 4;
+            this.ptbSchoolLogoBig.TabStop = false;
+            // 
+            // btnUpdateSchool
+            // 
+            this.btnUpdateSchool.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnUpdateSchool.BackColor = System.Drawing.Color.Transparent;
+            this.btnUpdateSchool.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnUpdateSchool.ButtonColor = System.Drawing.Color.FromArgb(((int)(((byte)(47)))), ((int)(((byte)(144)))), ((int)(((byte)(176)))));
+            this.btnUpdateSchool.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnUpdateSchool.EffectType = Material_Design_for_Winform.MaterialRaisedButton.ET.Light;
+            this.btnUpdateSchool.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
+            this.btnUpdateSchool.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
+            this.btnUpdateSchool.Icon = null;
+            this.btnUpdateSchool.Location = new System.Drawing.Point(447, 372);
+            this.btnUpdateSchool.Name = "btnUpdateSchool";
+            this.btnUpdateSchool.Radius = 2;
+            this.btnUpdateSchool.ShadowDepth = 3;
+            this.btnUpdateSchool.ShadowOpacity = 35;
+            this.btnUpdateSchool.Size = new System.Drawing.Size(227, 74);
+            this.btnUpdateSchool.TabIndex = 14;
+            this.btnUpdateSchool.Text = "CẬP NHẬT";
+            this.btnUpdateSchool.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnUpdateSchool.Click += new System.EventHandler(this.btnUpdateSchool_Click);
+            // 
+            // btnChooseAvatar
+            // 
+            this.btnChooseAvatar.AnimateShowHideButton = true;
+            this.btnChooseAvatar.Depth = 0;
+            this.btnChooseAvatar.DrawShadows = true;
+            this.btnChooseAvatar.Icon = ((System.Drawing.Image)(resources.GetObject("btnChooseAvatar.Icon")));
+            this.btnChooseAvatar.Location = new System.Drawing.Point(151, 198);
+            this.btnChooseAvatar.Mini = true;
+            this.btnChooseAvatar.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnChooseAvatar.Name = "btnChooseAvatar";
+            this.btnChooseAvatar.Size = new System.Drawing.Size(40, 40);
+            this.btnChooseAvatar.TabIndex = 47;
+            this.btnChooseAvatar.Text = "materialFloatingActionButton1";
+            this.btnChooseAvatar.UseVisualStyleBackColor = true;
+            this.btnChooseAvatar.Click += new System.EventHandler(this.ChooseSchoolLogo);
+            // 
+            // ptbSchoolLogo
+            // 
+            this.ptbSchoolLogo.Location = new System.Drawing.Point(61, 13);
+            this.ptbSchoolLogo.Name = "ptbSchoolLogo";
+            this.ptbSchoolLogo.Size = new System.Drawing.Size(55, 55);
+            this.ptbSchoolLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.ptbSchoolLogo.TabIndex = 28;
+            this.ptbSchoolLogo.TabStop = false;
+            // 
             // frmMain
             // 
             this.ClientSize = new System.Drawing.Size(1400, 750);
@@ -3094,6 +3228,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            this.tbpgSchool.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ptbSchoolLogoBig)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.ptbSchoolLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3305,5 +3442,12 @@
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.TabPage tbpgSchool;
+        private Material_Design_for_Winform.MaterialTextField txtSchoolName;
+        private Material_Design_for_Winform.MaterialRaisedButton btnUpdateSchool;
+        private System.Windows.Forms.PictureBox ptbSchoolLogoBig;
+        private Material_Design_for_Winform.MaterialTextField txtSchoolSlogan;
+        private MaterialSkin.Controls.MaterialFloatingActionButton btnChooseAvatar;
+        private System.Windows.Forms.PictureBox ptbSchoolLogo;
     }
 }

@@ -9,9 +9,9 @@ namespace TutteeFrame.Model
 {
    public class School
     {
-        public Image Logo { get; set; }
+        private Image logo;
         public string Slogan { get; set; }
         public string FullName { get; set; }
-
+        public Image Logo { get => logo ?? Properties.Resources.WaitCurser; set => logo = value; }
     }
 }
