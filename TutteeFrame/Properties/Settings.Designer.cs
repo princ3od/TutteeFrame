@@ -44,5 +44,29 @@ namespace TutteeFrame.Properties {
                 this["LocalConnectionString"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool StartupSound {
+            get {
+                return ((bool)(this["StartupSound"]));
+            }
+            set {
+                this["StartupSound"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool LowPerfomance {
+            get {
+                return ((bool)(this["LowPerfomance"]));
+            }
+            set {
+                this["LowPerfomance"] = value;
+            }
+        }
     }
 }

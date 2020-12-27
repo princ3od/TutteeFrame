@@ -2748,7 +2748,7 @@
             this.pnProfile.Location = new System.Drawing.Point(1077, 29);
             this.pnProfile.Name = "pnProfile";
             this.pnProfile.Padding = new System.Windows.Forms.Padding(5);
-            this.pnProfile.Size = new System.Drawing.Size(300, 300);
+            this.pnProfile.Size = new System.Drawing.Size(300, 70);
             this.pnProfile.TabIndex = 3;
             this.pnProfile.Leave += new System.EventHandler(this.panel1_Leave);
             // 
@@ -2771,7 +2771,7 @@
             this.materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialCard1.Name = "materialCard1";
             this.materialCard1.Padding = new System.Windows.Forms.Padding(14);
-            this.materialCard1.Size = new System.Drawing.Size(290, 290);
+            this.materialCard1.Size = new System.Drawing.Size(290, 60);
             this.materialCard1.TabIndex = 2;
             // 
             // btnLogout

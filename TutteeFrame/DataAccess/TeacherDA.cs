@@ -212,8 +212,14 @@ namespace TutteeFrame.DataAccess
                 return false;
             try
             {
-                string query = $"DELETE TEACHER WHERE TeacherID = '{_teacherID}'";
-                using (SqlCommand command = new SqlCommand(query, connection))
+                strQuery = $"UPDATE TEACHING SET TEACHING.TeacherID = NULL WHERE TEACHING.TeacherID = '{_teacherID}'";
+                using (SqlCommand command = new SqlCommand(strQuery, connection))
+                    command.ExecuteNonQuery();
+                strQuery = $"UPDATE CLASS SET CLASS.TeacherID = NULL WHERE CLASS.TeacherID = '{_teacherID}'";
+                using (SqlCommand command = new SqlCommand(strQuery, connection))
+                    command.ExecuteNonQuery();
+                strQuery = $"DELETE TEACHER WHERE TeacherID = '{_teacherID}'";
+                using (SqlCommand command = new SqlCommand(strQuery, connection))
                     command.ExecuteNonQuery();
             }
             catch (Exception e)
