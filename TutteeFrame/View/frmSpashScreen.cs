@@ -10,7 +10,7 @@ namespace TutteeFrame
         public frmSpashScreen()
         {
             InitializeComponent();
-            Helper.SettingCheck();            
+            Helper.SettingCheck();
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -34,6 +34,6 @@ namespace TutteeFrame
             
         }
 
-      
+
     }
 }
