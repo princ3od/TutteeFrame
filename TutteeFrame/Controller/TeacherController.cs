@@ -66,13 +66,12 @@ namespace TutteeFrame.Controller
         }
         public List<Teacher> GetAllTeachers(string _order = null)
         {
-            Dictionary<string, byte[]> avatars = new Dictionary<string, byte[]>();
             List<Teacher> teachers = new List<Teacher>();
             bool succes = true;
             if (_order == null)
-                succes = teacherDA.LoadTeachers(teachers, avatars);
+                succes = teacherDA.LoadTeachers(teachers);
             else
-                succes = teacherDA.LoadTeachers(teachers, avatars, _order);
+                succes = teacherDA.LoadTeachers(teachers, _order);
             int index = 0;
             if (succes)
             {

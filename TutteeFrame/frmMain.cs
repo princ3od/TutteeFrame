@@ -182,6 +182,19 @@ namespace TutteeFrame
         #endregion
 
         #region Panel Profile Function
+        private void tbpgProfile_SizeChanged(object sender, EventArgs e)
+        {
+            if (tbpgProfile.Width < 1055)
+            {
+                panel1.Location = new Point(238, 535);
+                materialDivider4.Visible = false;
+            }
+            else
+            {
+                panel1.Location = new Point(649, 16);
+                materialDivider4.Visible = true;
+            }
+        }
         private void TogglePanelProfile(object sender, EventArgs e)
         {
 
@@ -805,7 +818,7 @@ namespace TutteeFrame
                 else
                     student.Status = false;
                 if (listViewItem.SubItems["Kỷ luật số"] != null)
-                    student.PunishmentList = listViewItem.SubItems["Kỷ luật số"].Text;
+                    student.Punishment = listViewItem.SubItems["Kỷ luật số"].Text;
                 frmAddStudent frmstudentnew = new frmAddStudent(student, false);
                 OverlayForm overlayForm = new OverlayForm(this, frmstudentnew);
                 frmstudentnew.Show();
@@ -858,9 +871,9 @@ namespace TutteeFrame
                         listViewItem.SubItems.Add(student.Phone.ToString());
                         listViewItem.SubItems.Add(student.ClassID.ToString());
                         listViewItem.SubItems.Add(student.Status == true ? "Đang học" : "Đã nghỉ");
-                        if (student.PunishmentList != null)
+                        if (student.Punishment != null)
                         {
-                            listViewItem.SubItems.Add(student.PunishmentList.ToString());
+                            listViewItem.SubItems.Add(student.Punishment.ToString());
                         }
 
                         listViewStudents.Items.Add(listViewItem);
@@ -1132,7 +1145,6 @@ namespace TutteeFrame
             {
                 loader.ReportProgress(0, "Đang tải danh sách các lớp giảng dạy...");
                 succcess = teacherController.GetTeachingClass(mainTeacher.ID, classes);
-
             };
             loader.RunWorkerCompleted += (s, e) =>
             {
@@ -1435,6 +1447,12 @@ namespace TutteeFrame
         #endregion
 
         #region Tabpage Lớp chủ nhiệm
+        private void CreateClassList(object sender, EventArgs e)
+        {
+            frmReport frmReport = new frmReport(mainTeacher.Type, mainTeacher.FormClassID);
+            OverlayForm overlayForm = new OverlayForm(this, frmReport, 0.65f);
+            frmReport.Show();
+        }
         void LoadFormClassStudents()
         {
             listviewStudentInClass.Items.Clear();
@@ -1755,31 +1773,6 @@ namespace TutteeFrame
             frmChart.FormClosed += (s, ev) => { isChildShowing = false; };
         }
         #endregion
-        private void tbpgProfile_SizeChanged(object sender, EventArgs e)
-        {
-            if (tbpgProfile.Width < 1055)
-            {
-                panel1.Location = new Point(238, 535);
-                materialDivider4.Visible = false;
-            }
-            else
-            {
-                panel1.Location = new Point(649, 16);
-                materialDivider4.Visible = true;
-            }
-        }
-        private void CreateClassList(object sender, EventArgs e)
-        {
-            frmReport frmReport = new frmReport(mainTeacher.Type, mainTeacher.FormClassID);
-            OverlayForm overlayForm = new OverlayForm(this, frmReport, 0.65f);
-            frmReport.Show();
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            //lbTittle.Text = string.Format("Session: {0} - Reloading: {1}", sessionChecking ? "Checking" : "Done", reloading ? "Checking" : "Done");
-
-        }
 
         bool reloading = false;
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
@@ -1787,7 +1780,7 @@ namespace TutteeFrame
             if (mainTabControl.SelectedTab == null)
                 return;
             lbTittle.Text = mainTabControl.SelectedTab.Text;
-            if (!firstLoad && !reloading && mainTabControl.SelectedTab != tbgpTeacherManagment)
+            if (!firstLoad && !reloading)
             {
                 bool success = false;
                 BackgroundWorker worker = new BackgroundWorker();

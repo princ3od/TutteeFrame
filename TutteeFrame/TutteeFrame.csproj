@@ -279,7 +279,6 @@
     <Compile Include="Model\Score.cs" />
     <Compile Include="Model\Student.cs" />
     <Compile Include="Model\Subject.cs" />
-    <Compile Include="Model\SubjectScore.cs" />
     <Compile Include="Model\Teacher.cs" />
     <Compile Include="Utility\OverlayForm.cs">
       <SubType>Form</SubType>

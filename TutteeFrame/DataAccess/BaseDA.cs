@@ -9,7 +9,7 @@ namespace TutteeFrame.DataAccess
     {
 
         #region Variables
-        public static string connectionString;
+        protected static string connectionString;
 
         protected SqlConnection connection;
         protected string strQuery;
