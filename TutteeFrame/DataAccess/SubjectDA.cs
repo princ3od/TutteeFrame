@@ -95,6 +95,35 @@ namespace TutteeFrame.DataAccess
             return true;
         }
 
+        public bool CountTeacherTeach(string _subjectID,out int _count)
+        {
+            _count = 0;
+            bool succsess = Connect();
+
+            if (!succsess)
+                return false;
+            try
+            {
+                strQuery = "SELECT COUNT(*) FROM TEACHER WHERE SubjectID = @id";
+                using (SqlCommand cmd = connection.CreateCommand())
+                {
+                    cmd.CommandType = CommandType.Text;
+                    cmd.CommandText = strQuery;
+                    cmd.Parameters.AddWithValue("@id", _subjectID);
+                    _count = (int)cmd.ExecuteScalar();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return true;
+        }
         public bool DeleteSubject(Subject sbj)
         {
             bool succsess = Connect();

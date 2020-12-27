@@ -8,5 +8,11 @@
     <Setting Name="LocalConnectionString" Type="System.String" Scope="User">
       <Value Profile="(Default)">Data Source=.\SQLEXPRESS;Initial Catalog=TutteeFrame;Integrated Security=True</Value>
     </Setting>
+    <Setting Name="StartupSound" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="LowPerfomance" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

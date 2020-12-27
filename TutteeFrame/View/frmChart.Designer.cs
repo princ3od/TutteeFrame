@@ -361,7 +361,7 @@
             this.btnToggleMenu.AnimateShowHideButton = false;
             this.btnToggleMenu.Depth = 0;
             this.btnToggleMenu.DrawShadows = true;
-            this.btnToggleMenu.Icon = null;
+            this.btnToggleMenu.Icon = ((System.Drawing.Image)(resources.GetObject("btnToggleMenu.Icon")));
             this.btnToggleMenu.Location = new System.Drawing.Point(359, 264);
             this.btnToggleMenu.Mini = true;
             this.btnToggleMenu.MouseState = MaterialSkin.MouseState.HOVER;
@@ -375,7 +375,6 @@
             // frmChart
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
-            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1050, 600);
             this.Controls.Add(this.btnToggleMenu);
             this.Controls.Add(this.lbChartName);
@@ -394,8 +393,6 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(1000, 600);
             this.Name = "frmChart";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "TutteeFrame - Biểu đồ";
             this.listClass.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
