@@ -26,23 +26,25 @@ namespace TutteeFrame.Controller
         {
             List<Account> accounts = new List<Account>();
             accountDA.LoadAccounts(accounts);
-            bool loggedIn = false;
+            bool loggedIn = false, found = false;
             foreach (Account account in accounts)
             {
                 if (account.TeacherID == _teacherId)
+                {
+                    _flag = 1;
                     loggedIn = account.Login(_pass);
+                    found = true;
+                }
                 if (loggedIn)
                 {
                     AccountID = account.ID;
                     SessionID = Helper.GenerateSessionID();
                     accountDA.CreateSession(account.ID, SessionID);
-                    break;
-                }
-                else
                     return loggedIn;
+                }
             }
-
-            _flag = 0; //unknow username
+            if (!found)
+                _flag = 0; //unknow username
             return loggedIn;
         }
         public bool CheckSession(ref int _flag)
