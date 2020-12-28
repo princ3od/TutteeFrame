@@ -42,7 +42,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtConnectionString = new Material_Design_for_Winform.MaterialTextField();
             this.button1 = new System.Windows.Forms.Button();
-            this.btnCreateAdmin = new Material_Design_for_Winform.MaterialFlatButton();
             this.SuspendLayout();
             // 
             // label1
@@ -275,29 +274,12 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // btnCreateAdmin
-            // 
-            this.btnCreateAdmin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCreateAdmin.BackColor = System.Drawing.Color.Transparent;
-            this.btnCreateAdmin.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
-            this.btnCreateAdmin.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCreateAdmin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnCreateAdmin.Icon = null;
-            this.btnCreateAdmin.Location = new System.Drawing.Point(386, 382);
-            this.btnCreateAdmin.Name = "btnCreateAdmin";
-            this.btnCreateAdmin.Size = new System.Drawing.Size(108, 36);
-            this.btnCreateAdmin.TabIndex = 44;
-            this.btnCreateAdmin.Text = "Tạo TK Admin";
-            this.btnCreateAdmin.TextAlign = System.Drawing.StringAlignment.Center;
-            this.btnCreateAdmin.Click += new System.EventHandler(this.CreateAdmin);
-            // 
             // frmChooseServer
             // 
             this.AcceptButton = this.button1;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(600, 450);
-            this.Controls.Add(this.btnCreateAdmin);
             this.Controls.Add(this.txtConnectionString);
             this.Controls.Add(this.rbtnConnectLocal);
             this.Controls.Add(this.label2);
@@ -342,6 +324,5 @@
         private System.Windows.Forms.Label label2;
         private Material_Design_for_Winform.MaterialTextField txtConnectionString;
         private System.Windows.Forms.Button button1;
-        private Material_Design_for_Winform.MaterialFlatButton btnCreateAdmin;
     }
 }
