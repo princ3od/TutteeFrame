@@ -227,6 +227,7 @@
             this.btnForgotPass.TabIndex = 4;
             this.btnForgotPass.Text = "Quên mật khẩu?";
             this.btnForgotPass.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnForgotPass.Visible = false;
             // 
             // label1
             // 
@@ -306,7 +307,6 @@
             this.btnAccept.Size = new System.Drawing.Size(1, 1);
             this.btnAccept.TabIndex = 26;
             this.btnAccept.UseVisualStyleBackColor = true;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             // 
             // frmLogin
             // 
