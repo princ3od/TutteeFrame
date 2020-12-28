@@ -38,7 +38,10 @@ namespace TutteeFrame.Controller
                     accountDA.CreateSession(account.ID, SessionID);
                     break;
                 }
+                else
+                    return loggedIn;
             }
+
             _flag = 0; //unknow username
             return loggedIn;
         }
