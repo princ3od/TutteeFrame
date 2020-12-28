@@ -197,7 +197,7 @@ namespace TutteeFrame.DataAccess
                     sqlCommand.CommandType = System.Data.CommandType.Text;
                     sqlCommand.CommandText = "SELECT COUNT(*) FROM SESSION WHERE AccountID = @accountid AND SessionID = @sessionid";
                     sqlCommand.Parameters.AddWithValue("@accountid", _accountID);
-                    sqlCommand.Parameters.AddWithValue("sessionid", _sessionID);
+                    sqlCommand.Parameters.AddWithValue("@sessionid", _sessionID);
                     _isExist = ((int)sqlCommand.ExecuteScalar() > 0);
                 }
             }
