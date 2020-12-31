@@ -291,6 +291,10 @@ namespace TutteeFrame
                 lbBelongto.Text = "Ban giam hiệu";
             else if (mainTeacher.Type == Teacher.TeacherType.Ministry)
                 lbBelongto.Text = "Giáo vụ";
+            if (lbBelongtoOnCard.Text == "Giáo viên bộ môn" || lbBelongtoOnCard.Text == "Giáo viên chủ nhiệm")
+                lbBelongto.Text = "Tổ " + mainTeacher.Subject.Name;
+            else
+                lbBelongto.Text = lbBelongtoOnCard.Text;
         }
         void LoadAfterLogin()
         {
@@ -342,10 +346,6 @@ namespace TutteeFrame
                     default:
                         break;
                 }
-                if (lbBelongtoOnCard.Text == "Giáo viên bộ môn" || lbBelongtoOnCard.Text == "Giáo viên chủ nhiệm")
-                    lbBelongto.Text = "Tổ " + mainTeacher.Subject.Name;
-                else
-                    lbBelongto.Text = lbBelongtoOnCard.Text;
             }
             LoadData();
         }
@@ -381,7 +381,7 @@ namespace TutteeFrame
             switch (mainTeacher.Type)
             {
                 case Teacher.TeacherType.Teacher:
-                    LoadOnTeacher();
+                    LoadStudentScoreBoard();
                     break;
                 case Teacher.TeacherType.Adminstrator:
                     {
@@ -436,7 +436,7 @@ namespace TutteeFrame
                     };
                     break;
                 case Teacher.TeacherType.FormerTeacher:
-                    LoadOnTeacher();
+                    LoadStudentScoreBoard();
                     LoadFormClassStudents();
                     LoadFaultList();
                     break;
@@ -930,17 +930,12 @@ namespace TutteeFrame
         #endregion
 
         #region Tabpage Bảng điểm học sinh
-        List<int> year = new List<int>();
-        List<bool> isEdit = new List<bool>();
         List<Student> students = new List<Student>();
+        List<Teaching> teachings = new List<Teaching>();
         private void cbbTeachingClass_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (firstLoad)
                 return;
-            cbbTeachingSemester.Items.Clear();
-            gridviewStudentScore.Rows.Clear();
-
-            List<int> semester = new List<int>();
 
             BackgroundWorker worker = new BackgroundWorker();
             cbbTeachingClass.Enabled = false;
@@ -948,33 +943,34 @@ namespace TutteeFrame
             string classID = cbbTeachingClass.Text;
             worker.DoWork += (s, e) =>
             {
+                TeachingController teachingController = new TeachingController();
                 students = studentController.GetStudents(classID);
                 students = students.OrderBy(o => o.FirstName).ThenBy(o => o.SurName).ToList();
-                teacherController.GetTeachingSemester(mainTeacher.ID, classID, semester, year, isEdit);
+                teachings = teachingController.GetTeachings(mainTeacher, classID);
             };
             worker.RunWorkerCompleted += (s, e) =>
             {
+                cbbTeachingSemester.Items.Clear();
+                gridviewStudentScore.Rows.Clear();
                 cbbTeachingClass.Enabled = true;
                 cbbTeachingSemester.Enabled = true;
-                foreach (int semes in semester)
+                foreach (Teaching teaching in teachings)
                 {
-                    cbbTeachingSemester.Items.Add(semes);
+                    cbbTeachingSemester.Items.Add(teaching.Semester);
                 }
                 if (cbbTeachingSemester.Items.Count > 0)
                 {
                     cbbTeachingSemester.SelectedIndex = 0;
                     cbbTeachingSemester.Invalidate();
-                }
-                lbScoreTittle.Text = string.Format("Bảng điểm lớp {0} - môn {1} - HK {2} - năm {3}",
-                          cbbTeachingClass.Text, mainTeacher.Subject.Name,
-                            cbbTeachingSemester.Text, year[Int32.Parse(cbbTeachingSemester.Text) - 1]);
-                int index = 1;
-                foreach (Student student in students)
-                {
-                    gridviewStudentScore.Rows.Add(index.ToString(), student.ID, student.GetName());
-                    index++;
-                }
 
+                    int index = 1;
+                    foreach (Student student in students)
+                    {
+                        gridviewStudentScore.Rows.Add(index.ToString(), student.ID, student.GetName());
+                        index++;
+                    }
+
+                }
             };
             worker.RunWorkerAsync();
         }
@@ -982,9 +978,9 @@ namespace TutteeFrame
         private void cbbTeachingSemester_SelectedIndexChanged(object sender, EventArgs e)
         {
             lbScoreTittle.Text = string.Format("Bảng điểm lớp {0} - môn {1} - HK {2} - năm {3}",
-                                          cbbTeachingClass.Text, mainTeacher.Subject.Name,
-                                            cbbTeachingSemester.Text, year[Int32.Parse(cbbTeachingSemester.Text) - 1]);
-            gridviewStudentScore.ReadOnly = !isEdit[Int32.Parse(cbbTeachingSemester.Text) - 1];
+                 cbbTeachingClass.Text, mainTeacher.Subject.Name,
+                     cbbTeachingSemester.Text, teachings[cbbTeachingSemester.SelectedIndex].Year);
+            gridviewStudentScore.ReadOnly = !teachings[cbbTeachingSemester.SelectedIndex].Editable;
             if (gridviewStudentScore.ReadOnly)
             {
                 lbLockScoreboardInform.Text = "Bảng điểm đã bị khóa bởi ban giáo vụ.";
@@ -1151,7 +1147,7 @@ namespace TutteeFrame
                     gridviewStudentScore.Rows[e.RowIndex].Cells[11].Value = null;
             }
         }
-        void LoadOnTeacher()
+        void LoadStudentScoreBoard()
         {
             bool succcess = true;
             List<string> classes = new List<string>();
@@ -1477,7 +1473,7 @@ namespace TutteeFrame
         void LoadFormClassStudents()
         {
             listviewStudentInClass.Items.Clear();
-            lbFormClass.Text = lbFormClass2.Text = mainTeacher.FormClassID;
+            lbFormClass.Text = lbTotalStudentIncClass2.Text = mainTeacher.FormClassID;
             Class _class = new Class();
             List<Student> students = new List<Student>();
             Dictionary<string, List<AverageScore>> averageScoreList = new Dictionary<string, List<AverageScore>>();
@@ -1595,7 +1591,7 @@ namespace TutteeFrame
             {
                 if (firstLoad)
                     loader.ReportProgress(0, "Đang tải danh sách vi phạm...");
-                punishments = punishmentController.GetPunishments();
+                punishments = punishmentController.GetPunishments(mainTeacher.FormClassID);
                 for (int i = 0; i < punishments.Count; i++)
                 {
                     Student student = new Student();
@@ -1795,8 +1791,7 @@ namespace TutteeFrame
         }
         #endregion
 
-        bool reloading = false;
-
+        #region Tabpage Quản lí trường học
         private void ChooseSchoolLogo(object sender, EventArgs e)
         {
             OpenFileDialog of = new OpenFileDialog();
@@ -1816,7 +1811,9 @@ namespace TutteeFrame
             school.Logo = ptbSchoolLogoBig.Image;
             (new SchoolController()).UpdateSchoolInfo(school);
         }
+        #endregion
 
+        bool reloading = false;
         private void mainTabControl_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (mainTabControl.SelectedTab == null)
@@ -1825,23 +1822,35 @@ namespace TutteeFrame
             if (!firstLoad && !reloading && !Properties.Settings.Default.LowPerfomance)
             {
                 bool success = false;
-                BackgroundWorker worker = new BackgroundWorker();
-                worker.DoWork += (s, ev) =>
+                loader = new BackgroundWorker();
+                loader.RunWorkerCompleted += (s, ev) =>
                 {
-                    reloading = true;
-                    while (sessionChecking) ;
-                    success = teacherController.LoadUsingTeacher(teacherController.usingTeacher.ID);
+                    reloading = false;
                 };
-                worker.RunWorkerCompleted += (s, ev) =>
+                switch (this.mainTabControl.SelectedTab.Text)
                 {
-                    if (success)
-                    {
-                        firstLoad = true;
-                        LoadTabpageInfor();
-                        LoadData();
-                    }
-                };
-                worker.RunWorkerAsync();
+                    case "Thông tin tài khoản":
+                        lbInformation.Text = "Đang tải thông tin giáo viên...";
+                        lbInformation.Visible = mainProgressbar.Visible = true;
+                        mainTabControl.Enabled = false;
+                        loader.DoWork += (s, ev) =>
+                        {
+                            success = teacherController.LoadUsingTeacher(mainTeacher.ID);
+                            Thread.Sleep(3000);
+                        };
+                        loader.RunWorkerCompleted += (s, ev) =>
+                        {
+                            mainTabControl.Enabled = true;
+                            lbInformation.Visible = mainProgressbar.Visible = false;
+                            if (success)
+                                LoadTabpageInfor();
+                        };
+                        break;
+                    default:
+                        break;
+                }
+                reloading = true;
+                loader.RunWorkerAsync();
             }
         }
     }

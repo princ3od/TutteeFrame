@@ -10,6 +10,16 @@
         private bool editable;
         private string teacherID;
 
+        public Teaching(string classID, string teacherID, string subjectID)
+        {
+            ClassID = classID;
+            TeacherID = teacherID;
+            SubjectID = subjectID;
+        }
+        public Teaching()
+        {
+
+        }
         public string ID { get => teachingID; set => teachingID = value; }
         public string ClassID { get => classID; set => classID = value; }
         public string SubjectID { get => subjectID; set => subjectID = value; }

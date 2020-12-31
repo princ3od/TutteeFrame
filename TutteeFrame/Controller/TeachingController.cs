@@ -50,6 +50,12 @@ namespace TutteeFrame.Controller
         {
             return teachingDA.LoadTeaching(_classID, _semester, teacherList, editableList);
         }
+        public List<Teaching> GetTeachings(Teacher teacher, string _classID)
+        {
+            List<Teaching> teachings = new List<Teaching>();
+            teachingDA.GetTeachings(teacher, _classID, teachings);
+            return teachings;
+        }
         public bool DeleteTeaching(string _classID)
         {
             return teachingDA.DeleteTeaching(_classID);

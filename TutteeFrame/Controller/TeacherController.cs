@@ -251,11 +251,5 @@ namespace TutteeFrame.Controller
             _classes.Clear();
             return teacherDA.GetTeachingClasses(_teacherID, _classes);
         }
-        public bool GetTeachingSemester(string _teacherID, string _classID, List<int> _semester, List<int> _year, List<bool> _isEditable)
-        {
-            _year.Clear();
-            _isEditable.Clear();
-            return teacherDA.GetTeachingSemester(_teacherID, _classID, _semester, _year, _isEditable);
-        }
     }
 }

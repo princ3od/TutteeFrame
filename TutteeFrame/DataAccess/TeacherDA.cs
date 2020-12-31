@@ -356,38 +356,5 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
-        public bool GetTeachingSemester(string _teacherID, string _classID, List<int> _semester, List<int> _year, List<bool> _isEditable)
-        {
-            bool success = Connect();
-
-            if (!success)
-                return false;
-            try
-            {
-                strQuery = "SELECT Semester,SchoolYear,Editable FROM TEACHING WHERE TeacherID = @teacherid AND ClassID = @classid";
-                using (SqlCommand command = new SqlCommand(strQuery, connection))
-                {
-                    command.Parameters.AddWithValue("@teacherid", _teacherID);
-                    command.Parameters.AddWithValue("@classid", _classID);
-                    using (SqlDataReader reader = command.ExecuteReader())
-                        while (reader.Read())
-                        {
-                            _semester.Add(reader.GetInt32(0));
-                            _year.Add(reader.GetInt32(1));
-                            _isEditable.Add(reader.GetBoolean(2));
-                        }
-                }
-            }
-            catch (Exception e)
-            {
-                MessageBox.Show(e.ToString());
-                return false;
-            }
-            finally
-            {
-                Disconnect();
-            }
-            return true;
-        }
     }
 }

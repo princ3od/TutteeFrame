@@ -79,6 +79,43 @@ namespace TutteeFrame.DataAccess
             }
             return true;
         }
+        public bool GetTeachings(Teacher teacher, string _classID, List<Teaching> teachings)
+        {
+            bool success = Connect();
+
+            if (!success)
+                return false;
+
+            try
+            {
+                strQuery = "SELECT Semester,Schoolyear,Editable FROM TEACHING WHERE ClassID = @classid AND TeacherID = @teacherid AND SubjectID = @subjectid ORDER BY Semester";
+                using (SqlCommand sqlCommand = new SqlCommand(strQuery, connection))
+                {
+                    sqlCommand.Parameters.AddWithValue("@classid", _classID);
+                    sqlCommand.Parameters.AddWithValue("@teacherid", teacher.ID);
+                    sqlCommand.Parameters.AddWithValue("@subjectid", teacher.Subject.ID);
+                    using (SqlDataReader reader = sqlCommand.ExecuteReader())
+                        while (reader.Read())
+                        {
+                            Teaching teaching = new Teaching(_classID, teacher.ID, teacher.Subject.ID);
+                            teaching.Semester = reader.GetInt32(0);
+                            teaching.Year = reader.GetInt32(1);
+                            teaching.Editable = reader.GetBoolean(2);
+                            teachings.Add(teaching);
+                        }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return true;
+        }
         public bool LoadTeaching(string _classID, int _semester, Dictionary<string, string> teacherList, Dictionary<string, bool> editableList)
         {
             bool success = Connect();

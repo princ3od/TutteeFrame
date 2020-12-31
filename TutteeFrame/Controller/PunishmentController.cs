@@ -27,10 +27,13 @@ namespace TutteeFrame.Controller
         {
             return punishmentDA.UpdateContent(_punishmentID, _content, _semester);
         }
-        public List<Punishment> GetPunishments()
+        public List<Punishment> GetPunishments(string _classID = "")
         {
             List<Punishment> punishments = new List<Punishment>();
-            punishmentDA.LoadPunishments(punishments);
+            if (string.IsNullOrEmpty(_classID))
+                punishmentDA.LoadPunishments(punishments);
+            else
+                punishmentDA.LoadPunishments(punishments, _classID);
             return punishments;
         }
         public Punishment GetPunishment(string _punishmentID)
