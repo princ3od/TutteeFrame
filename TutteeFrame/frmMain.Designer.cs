@@ -3129,7 +3129,7 @@
             this.lbInformation.BackColor = System.Drawing.Color.White;
             this.lbInformation.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.lbInformation.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lbInformation.Location = new System.Drawing.Point(245, 727);
+            this.lbInformation.Location = new System.Drawing.Point(252, 727);
             this.lbInformation.Name = "lbInformation";
             this.lbInformation.Size = new System.Drawing.Size(88, 13);
             this.lbInformation.TabIndex = 26;
@@ -3170,13 +3170,13 @@
             // 
             this.ClientSize = new System.Drawing.Size(1400, 750);
             this.Controls.Add(this.lbTittle);
-            this.Controls.Add(this.mainProgressbar);
             this.Controls.Add(this.lbInformation);
             this.Controls.Add(this.pnProfile);
             this.Controls.Add(this.mainTabControl);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.materialDrawer1);
+            this.Controls.Add(this.mainProgressbar);
             this.DisplayHeader = false;
             this.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

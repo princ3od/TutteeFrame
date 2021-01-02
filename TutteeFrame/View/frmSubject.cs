@@ -13,6 +13,7 @@ namespace TutteeFrame
         private frmMain frmMain;
         private Subject sbj;
         private bool newSubject;
+        public bool success = false;
         SubjectController subjectController;
         public frmSubject(Subject inputsSbj, frmMain frmMain)
         {
@@ -39,8 +40,8 @@ namespace TutteeFrame
             if (!this.newSubject && subjectController.UpdateSubject(sbj))
             {
                 MetroMessageBox.Show(this, "Cập nhật thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                success = true;
                 this.Close();
-                this.frmMain.LoadSubjectAgain();
                 return;
             }
             else
@@ -48,8 +49,8 @@ namespace TutteeFrame
                 if (subjectController.AddSubject(sbj))
                 {
                     MetroMessageBox.Show(this, "Thêm mới thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    success = true;
                     this.Close();
-                    this.frmMain.LoadSubjectAgain();
                     return;
                 }
 
