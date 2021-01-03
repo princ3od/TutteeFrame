@@ -513,7 +513,7 @@ namespace TutteeFrame.DataAccess
 
             try
             {
-                strQuery = $"SELECT * FROM STUDENT WHERE ClassID = @classid";
+                strQuery = $"SELECT * FROM STUDENT WHERE ClassID = @classid ORDER BY Firstname, Surname";
                 using (SqlCommand command = new SqlCommand(strQuery, connection))
                 {
                     command.Parameters.AddWithValue("@classid", classID);
@@ -645,7 +645,8 @@ namespace TutteeFrame.DataAccess
                         "ConductS2,l.YearConduct as ConductYear FROM STUDENT st INNER JOIN " +
                         "LEARNRESULT l ON l.StudentID  = st.StudentID JOIN SCOREBOARD se1" +
                         " ON l.ScoreBoardSE01ID = se1.ScoreBoardID JOIN SCOREBOARD se2 ON " +
-                        "l.ScoreBoardSE02ID =se2.ScoreBoardID WHERE st.ClassID = @classID";
+                        "l.ScoreBoardSE02ID =se2.ScoreBoardID WHERE st.ClassID = @classID " +
+                        "ORDER BY st.Firstname, st.Surname";
                     cmd.CommandText = strQuery;
                     cmd.CommandType = CommandType.Text;
                     cmd.Connection = connection;
