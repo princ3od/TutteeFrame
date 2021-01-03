@@ -159,5 +159,19 @@ namespace TutteeFrame
         {
             btnApprove.PerformClick();
         }
+
+        private void txtPhoneNunber_TextChanged(object sender, EventArgs e)
+        {
+            if (txtPhoneNunber.Text.Length != 10 || !txtPhoneNunber.Text.StartsWith("0") && !string.IsNullOrEmpty(txtPhoneNunber.Text))
+            {
+                txtPhoneNunber.FocusColor = Color.Red;
+                lbPhoneError.Visible = true;
+            }
+            else
+            {
+                txtPhoneNunber.FocusColor = Color.FromArgb(47, 144, 176);
+                lbPhoneError.Visible = false;
+            }
+        }
     }
 }

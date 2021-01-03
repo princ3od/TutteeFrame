@@ -101,7 +101,7 @@ namespace TutteeFrame
                         teacherController.LoadTeacher(teacherID, teacher);
                     };
                     backgroundWorker.RunWorkerCompleted += (s, e) =>
-                    { 
+                    {
                         lbID.Text = teacher.ID;
                         lbName.Text = teacher.SurName + " " + teacher.FirstName;
                         txtFirstname.Text = teacher.FirstName;
@@ -184,7 +184,6 @@ namespace TutteeFrame
                 worker = new BackgroundWorker();
                 worker.DoWork += (s, e) =>
                 {
-                    System.Threading.Thread.Sleep(400);
                     doneSuccess = teacherController.AddTeacher(teacher);
                 };
                 worker.RunWorkerCompleted += (s, e) =>
@@ -209,7 +208,6 @@ namespace TutteeFrame
                 worker = new BackgroundWorker();
                 worker.DoWork += (s, e) =>
                 {
-                    System.Threading.Thread.Sleep(400);
                     doneSuccess = teacherController.UpdateTeacher(teacherID, teacher);
                 };
                 worker.RunWorkerCompleted += (s, e) =>
@@ -279,9 +277,33 @@ namespace TutteeFrame
             btnApprove.PerformClick();
         }
 
-        private void ptbAvatar_Click(object sender, EventArgs e)
+        private void txtTeacherMail_TextChanged(object sender, EventArgs e)
         {
+            if (!MailHelper.IsValidEmail(txtTeacherMail.Text) && !string.IsNullOrEmpty(txtTeacherMail.Text))
+            {
+                lbMailError.Visible = true;
+                txtTeacherMail.FocusColor = Color.Red;
+            }
+            else
+            {
+                txtTeacherMail.FocusColor = Color.FromArgb(47, 144, 176);
+                lbMailError.Visible = false;
+            }
 
+        }
+
+        private void txtPhoneNunber_TextChanged(object sender, EventArgs e)
+        {
+            if (txtPhoneNunber.Text.Length != 10 || !txtPhoneNunber.Text.StartsWith("0") && !string.IsNullOrEmpty(txtPhoneNunber.Text))
+            {
+                txtPhoneNunber.FocusColor = Color.Red;
+                lbPhoneError.Visible = true;
+            }
+            else
+            {
+                txtPhoneNunber.FocusColor = Color.FromArgb(47, 144, 176);
+                lbPhoneError.Visible = false;
+            }
         }
     }
 }

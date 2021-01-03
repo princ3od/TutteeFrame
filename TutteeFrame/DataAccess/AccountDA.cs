@@ -112,9 +112,12 @@ namespace TutteeFrame.DataAccess
                 return false;
             try
             {
-                strQuery = $"DELETE ACCOUNT WHERE TeacherID = '{_teacherID}'";
+                strQuery = $"DELETE ACCOUNT WHERE TeacherID = @teacherid";
                 using (SqlCommand command = new SqlCommand(strQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@teacherid", _teacherID);
                     command.ExecuteNonQuery();
+                }
             }
             catch (Exception e)
             {
@@ -140,7 +143,7 @@ namespace TutteeFrame.DataAccess
                     sqlCommand.CommandType = System.Data.CommandType.Text;
                     sqlCommand.CommandText = "INSERT INTO SESSION(AccountID, SessionID) VALUES(@accountid,@sessionid)";
                     sqlCommand.Parameters.AddWithValue("@accountid", _accountID.ToString());
-                    sqlCommand.Parameters.AddWithValue("sessionid", _sessionID);
+                    sqlCommand.Parameters.AddWithValue("@sessionid", _sessionID);
                     sqlCommand.ExecuteNonQuery();
                 }
             }
@@ -166,9 +169,9 @@ namespace TutteeFrame.DataAccess
                 using (SqlCommand sqlCommand = connection.CreateCommand())
                 {
                     sqlCommand.CommandType = System.Data.CommandType.Text;
-                    sqlCommand.CommandText = "DELETE FROM SESSION WHERE AccountID = @accountid AND SESSIONID = @sessionid";
+                    sqlCommand.CommandText = "DELETE FROM SESSION WHERE AccountID = @accountid AND SessionID = @sessionid";
                     sqlCommand.Parameters.AddWithValue("@accountid", _accountID);
-                    sqlCommand.Parameters.AddWithValue("sessionid", _sessionID);
+                    sqlCommand.Parameters.AddWithValue("@sessionid", _sessionID);
                     sqlCommand.ExecuteNonQuery();
                 }
             }
@@ -200,6 +203,82 @@ namespace TutteeFrame.DataAccess
                     sqlCommand.Parameters.AddWithValue("@sessionid", _sessionID);
                     _isExist = ((int)sqlCommand.ExecuteScalar() > 0);
                 }
+            }
+            catch (Exception e)
+            {
+                //MessageBox.Show(e.ToString());
+                return false;
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return true;
+        }
+        public bool CreateResetToken(string _accountID, string _token)
+        {
+            bool success = Connect();
+
+            if (!success)
+                return false;
+            try
+            {
+                using (SqlCommand sqlCommand = connection.CreateCommand())
+                {
+                    sqlCommand.CommandType = System.Data.CommandType.Text;
+                    sqlCommand.CommandText = "INSERT INTO TOKEN(AccountID, TokenID) VALUES(@accountid,@tokenid)";
+                    sqlCommand.Parameters.AddWithValue("@accountid", _accountID.ToString());
+                    sqlCommand.Parameters.AddWithValue("@tokenid", _token);
+                    sqlCommand.ExecuteNonQuery();
+                }
+
+            }
+            catch (Exception e)
+            {
+                //MessageBox.Show(e.ToString());
+                return false;
+            }
+            finally
+            {
+                Disconnect();
+            }
+            return true;
+        }
+        public bool CheckToken(string _accountID, string _tokenID, out bool _isValid)
+        {
+            _isValid = false;
+            bool success = Connect();
+
+            if (!success)
+                return false;
+            try
+            {
+                //delete expired token
+                using (SqlCommand sqlCommand = connection.CreateCommand())
+                {
+                    sqlCommand.CommandType = System.Data.CommandType.Text;
+                    sqlCommand.CommandText = "DELETE FROM TOKEN WHERE CreatedDate < DATEADD(minute, -15, CreatedDate)";
+                    sqlCommand.ExecuteNonQuery();
+                }
+                //check valid token
+                using (SqlCommand sqlCommand = connection.CreateCommand())
+                {
+                    sqlCommand.CommandType = System.Data.CommandType.Text;
+                    sqlCommand.CommandText = "SELECT COUNT(*) FROM TOKEN WHERE AccountID = @accountid AND TokenID = @tokenid";
+                    sqlCommand.Parameters.AddWithValue("@accountid", _accountID);
+                    sqlCommand.Parameters.AddWithValue("@tokenid", _tokenID);
+                    _isValid = ((int)sqlCommand.ExecuteScalar() > 0);
+                }
+                //delete token
+                if (_isValid)
+                    using (SqlCommand sqlCommand = connection.CreateCommand())
+                    {
+                        sqlCommand.CommandType = System.Data.CommandType.Text;
+                        sqlCommand.CommandText = "DELETE FROM TOKEN WHERE AccountID = @accountid AND TokenID = @tokenid";
+                        sqlCommand.Parameters.AddWithValue("@accountid", _accountID);
+                        sqlCommand.Parameters.AddWithValue("@tokenid", _tokenID);
+                        sqlCommand.ExecuteNonQuery();
+                    }
             }
             catch (Exception e)
             {
