@@ -312,7 +312,6 @@ namespace TutteeFrame
                 mainTabControl.TabPages.Add(tbpgStudentManagment);
                 mainTabControl.TabPages.Add(tbpgSubjectManagment);
                 mainTabControl.TabPages.Add(tbpgPunishmentManagment);
-                mainTabControl.TabPages.Add(tbpgStudentMarkboard);
                 mainTabControl.TabPages.Add(tbpgReport);
                 mainTeacher.Type = Teacher.TeacherType.Adminstrator;
             }
@@ -1723,8 +1722,8 @@ namespace TutteeFrame
                             punishments[i].ID,
                             punishments[i].StudentID,
                             studentName[i],
-                            classID[i],
                             punishments[i].Semester.ToString(),
+                            classID[i],
                             punishments[i].Fault,
                             punishments[i].Content
                         }));

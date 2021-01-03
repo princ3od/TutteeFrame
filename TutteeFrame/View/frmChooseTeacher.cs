@@ -57,7 +57,7 @@ namespace TutteeFrame
                     }
                     else
                     {
-                        if (teacher.Subject.ID == loadType)
+                        if (teacher.Subject.ID == loadType && teacher.Type != Teacher.TeacherType.Adminstrator && teacher.Type != Teacher.TeacherType.Ministry)
                         {
                             listviewTeacher.Items.Add(new ListViewItem(new string[] { index.ToString(), teacher.ID, teacher.GetName() }));
                             index++;
