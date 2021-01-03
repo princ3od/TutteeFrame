@@ -641,8 +641,8 @@ namespace TutteeFrame.DataAccess
                 {
                     string strQuery = "SELECT st.Surname,st.Firstname,st.StudentID," +
                         "se1.SemesterAverage as AveragePointS1,se2.SemesterAverage " +
-                        "as AveragePointS2,l.ConductSE01 as ConductS1,l.ConductSE02 as " +
-                        "ConductS2,l.YearConduct as ConductYear  FROM STUDENT st INNER JOIN " +
+                        "as AveragePointS2, l.AverageScore as AveragePointYear,l.ConductSE01 as ConductS1,l.ConductSE02 as " +
+                        "ConductS2,l.YearConduct as ConductYear FROM STUDENT st INNER JOIN " +
                         "LEARNRESULT l ON l.StudentID  = st.StudentID JOIN SCOREBOARD se1" +
                         " ON l.ScoreBoardSE01ID = se1.ScoreBoardID JOIN SCOREBOARD se2 ON " +
                         "l.ScoreBoardSE02ID =se2.ScoreBoardID WHERE st.ClassID = @classID";
