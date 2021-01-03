@@ -16,13 +16,12 @@ namespace TutteeFrame
         public frmAboutus()
         {
             InitializeComponent();
-        }
-
-    
-
+        }   
         private void btnAboutus_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+
+   
     }
 }

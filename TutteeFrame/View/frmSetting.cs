@@ -68,7 +68,7 @@ namespace TutteeFrame
         private void btnAboutus_Click(object sender, EventArgs e)
         {
             frmAboutus frmAboutus = new frmAboutus();            
-            frmAboutus.Show();
+            frmAboutus.ShowDialog();
         }
     }
 }
