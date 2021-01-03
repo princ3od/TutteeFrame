@@ -113,6 +113,12 @@
     <Compile Include="Controller\SchoolController.cs" />
     <Compile Include="DataAccess\PunishmentDA.cs" />
     <Compile Include="DataAccess\SchoolDA.cs" />
+    <Compile Include="frmAboutus.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmAboutus.Designer.cs">
+      <DependentUpon>frmAboutus.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\BaseInforSchoolPrepareToPrint.cs" />
     <Compile Include="Model\School.cs" />
     <Compile Include="Utility\MailHelper.cs" />
@@ -314,6 +320,9 @@
     <Compile Include="View\frmViewStudent.Designer.cs">
       <DependentUpon>frmViewStudent.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmAboutus.resx">
+      <DependentUpon>frmAboutus.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\frmReconnecting.resx">
       <DependentUpon>frmReconnecting.cs</DependentUpon>
     </EmbeddedResource>
