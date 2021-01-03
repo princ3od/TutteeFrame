@@ -59,6 +59,7 @@
             this.picboxStudent = new System.Windows.Forms.PictureBox();
             this.btnExit = new MaterialSkin.Controls.MaterialButton();
             this.button1 = new System.Windows.Forms.Button();
+            this.lbPhoneError = new System.Windows.Forms.Label();
             this.materialCard2.SuspendLayout();
             this.materialCard1.SuspendLayout();
             this.pnBasicInfor.SuspendLayout();
@@ -116,12 +117,12 @@
             this.materialCard2.Controls.Add(this.txtPunishment);
             this.materialCard2.Depth = 0;
             this.materialCard2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialCard2.Location = new System.Drawing.Point(387, 340);
+            this.materialCard2.Location = new System.Drawing.Point(387, 352);
             this.materialCard2.Margin = new System.Windows.Forms.Padding(14);
             this.materialCard2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialCard2.Name = "materialCard2";
             this.materialCard2.Padding = new System.Windows.Forms.Padding(14);
-            this.materialCard2.Size = new System.Drawing.Size(344, 263);
+            this.materialCard2.Size = new System.Drawing.Size(344, 251);
             this.materialCard2.TabIndex = 52;
             // 
             // label8
@@ -239,6 +240,7 @@
             // materialCard1
             // 
             this.materialCard1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialCard1.Controls.Add(this.lbPhoneError);
             this.materialCard1.Controls.Add(this.label4);
             this.materialCard1.Controls.Add(this.txtPhoneNunber);
             this.materialCard1.Depth = 0;
@@ -248,7 +250,7 @@
             this.materialCard1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialCard1.Name = "materialCard1";
             this.materialCard1.Padding = new System.Windows.Forms.Padding(14);
-            this.materialCard1.Size = new System.Drawing.Size(344, 111);
+            this.materialCard1.Size = new System.Drawing.Size(344, 123);
             this.materialCard1.TabIndex = 51;
             // 
             // label4
@@ -282,6 +284,7 @@
             this.txtPhoneNunber.Style = Material_Design_for_Winform.MaterialTextField.ST.HintAsFloatingLabel;
             this.txtPhoneNunber.TabIndex = 6;
             this.txtPhoneNunber.UseSystemPasswordChar = false;
+            this.txtPhoneNunber.TextChanged += new System.EventHandler(this.txtPhoneNunber_TextChanged);
             // 
             // pnBasicInfor
             // 
@@ -518,6 +521,21 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // lbPhoneError
+            // 
+            this.lbPhoneError.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbPhoneError.AutoSize = true;
+            this.lbPhoneError.BackColor = System.Drawing.Color.White;
+            this.lbPhoneError.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.lbPhoneError.ForeColor = System.Drawing.Color.Red;
+            this.lbPhoneError.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lbPhoneError.Location = new System.Drawing.Point(23, 96);
+            this.lbPhoneError.Name = "lbPhoneError";
+            this.lbPhoneError.Size = new System.Drawing.Size(108, 13);
+            this.lbPhoneError.TabIndex = 51;
+            this.lbPhoneError.Text = "*SĐT không hợp lệ.";
+            this.lbPhoneError.Visible = false;
+            // 
             // frmAddStudent
             // 
             this.AcceptButton = this.button1;
@@ -587,5 +605,6 @@
         private System.ComponentModel.BackgroundWorker AddStudentBackground;
         private MaterialSkin.Controls.MaterialButton btnExit;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lbPhoneError;
     }
 }

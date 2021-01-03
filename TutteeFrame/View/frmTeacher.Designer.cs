@@ -59,6 +59,8 @@
             this.mainProgressbar = new System.Windows.Forms.ProgressBar();
             this.lbInformation = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.lbMailError = new System.Windows.Forms.Label();
+            this.lbPhoneError = new System.Windows.Forms.Label();
             this.pnBasicInfor.SuspendLayout();
             this.materialCard1.SuspendLayout();
             this.materialCard2.SuspendLayout();
@@ -155,6 +157,7 @@
             this.txtPhoneNunber.TabIndex = 3;
             this.txtPhoneNunber.UseSystemPasswordChar = false;
             this.txtPhoneNunber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAddingtcNum_KeyPress);
+            this.txtPhoneNunber.TextChanged += new System.EventHandler(this.txtPhoneNunber_TextChanged);
             // 
             // txtTeacherMail
             // 
@@ -177,6 +180,7 @@
             this.txtTeacherMail.Style = Material_Design_for_Winform.MaterialTextField.ST.HintAsFloatingLabel;
             this.txtTeacherMail.TabIndex = 5;
             this.txtTeacherMail.UseSystemPasswordChar = false;
+            this.txtTeacherMail.TextChanged += new System.EventHandler(this.txtTeacherMail_TextChanged);
             // 
             // pnBasicInfor
             // 
@@ -285,6 +289,8 @@
             // materialCard1
             // 
             this.materialCard1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.materialCard1.Controls.Add(this.lbPhoneError);
+            this.materialCard1.Controls.Add(this.lbMailError);
             this.materialCard1.Controls.Add(this.label4);
             this.materialCard1.Controls.Add(this.txtPhoneNunber);
             this.materialCard1.Controls.Add(this.txtTeacherMail);
@@ -495,7 +501,6 @@
             this.ptbAvatar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ptbAvatar.TabIndex = 37;
             this.ptbAvatar.TabStop = false;
-            this.ptbAvatar.Click += new System.EventHandler(this.ptbAvatar_Click);
             // 
             // mainProgressbar
             // 
@@ -532,6 +537,36 @@
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // lbMailError
+            // 
+            this.lbMailError.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbMailError.AutoSize = true;
+            this.lbMailError.BackColor = System.Drawing.Color.White;
+            this.lbMailError.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.lbMailError.ForeColor = System.Drawing.Color.Red;
+            this.lbMailError.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lbMailError.Location = new System.Drawing.Point(25, 162);
+            this.lbMailError.Name = "lbMailError";
+            this.lbMailError.Size = new System.Drawing.Size(110, 13);
+            this.lbMailError.TabIndex = 49;
+            this.lbMailError.Text = "*Mail không hợp lệ.";
+            this.lbMailError.Visible = false;
+            // 
+            // lbPhoneError
+            // 
+            this.lbPhoneError.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lbPhoneError.AutoSize = true;
+            this.lbPhoneError.BackColor = System.Drawing.Color.White;
+            this.lbPhoneError.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.lbPhoneError.ForeColor = System.Drawing.Color.Red;
+            this.lbPhoneError.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lbPhoneError.Location = new System.Drawing.Point(25, 96);
+            this.lbPhoneError.Name = "lbPhoneError";
+            this.lbPhoneError.Size = new System.Drawing.Size(108, 13);
+            this.lbPhoneError.TabIndex = 50;
+            this.lbPhoneError.Text = "*SĐT không hợp lệ.";
+            this.lbPhoneError.Visible = false;
             // 
             // frmTeacher
             // 
@@ -606,5 +641,7 @@
         private MaterialSkin.Controls.MaterialRadioButton cbxIsAdmin;
         private MaterialSkin.Controls.MaterialRadioButton cbxIsMinistry;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label lbPhoneError;
+        private System.Windows.Forms.Label lbMailError;
     }
 }

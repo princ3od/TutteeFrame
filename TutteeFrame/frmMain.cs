@@ -13,6 +13,7 @@ using TutteeFrame.Model;
 using System.Data;
 using System.Linq;
 using TutteeFrame.Controller;
+
 namespace TutteeFrame
 {
     public partial class frmMain : MetroForm
@@ -693,11 +694,10 @@ namespace TutteeFrame
             frmAddStudent NewFormAddStudent = new frmAddStudent(newStudent, true);
             OverlayForm overlay = new OverlayForm(this, NewFormAddStudent);
             NewFormAddStudent.Show();
-            if (NewFormAddStudent.Is_Progress_Successed)
-                studentLoader.RunWorkerAsync(cbbStudentClass.Text);
             NewFormAddStudent.FormClosed += (s, e) =>
             {
-                studentLoader.RunWorkerAsync(cbbStudentClass.Text);
+                if (NewFormAddStudent.Is_Progress_Successed && !string.IsNullOrEmpty(cbbStudentClass.Text))
+                    studentLoader.RunWorkerAsync(cbbStudentClass.Text);
             };
         }
         private void DeleteStudent(object sender, EventArgs e)
@@ -1842,10 +1842,6 @@ namespace TutteeFrame
             {
                 bool success = false;
                 loader = new BackgroundWorker();
-                loader.DoWork += (s, ev) =>
-                {
-                    Thread.Sleep(500);
-                };
                 loader.RunWorkerCompleted += (s, ev) =>
                 {
                     reloading = false;
