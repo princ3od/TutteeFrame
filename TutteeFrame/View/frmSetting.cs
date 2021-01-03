@@ -64,5 +64,11 @@ namespace TutteeFrame
             Properties.Settings.Default.Save();
             this.Close();
         }
+
+        private void btnAboutus_Click(object sender, EventArgs e)
+        {
+            frmAboutus frmAboutus = new frmAboutus();            
+            frmAboutus.ShowDialog();
+        }
     }
 }

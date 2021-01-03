@@ -33,8 +33,9 @@
             this.swLow = new MaterialSkin.Controls.MaterialSwitch();
             this.swSound = new MaterialSkin.Controls.MaterialSwitch();
             this.metroToolTip1 = new MetroFramework.Components.MetroToolTip();
-            this.btnExit = new MaterialSkin.Controls.MaterialButton();
             this.lbChartName = new System.Windows.Forms.Label();
+            this.btnAboutus = new Material_Design_for_Winform.MaterialFlatButton();
+            this.btnExit = new MaterialSkin.Controls.MaterialButton();
             this.SuspendLayout();
             // 
             // btnOK
@@ -47,7 +48,7 @@
             this.btnOK.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOK.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(154)))), ((int)(((byte)(235)))), ((int)(((byte)(166)))));
             this.btnOK.Icon = null;
-            this.btnOK.Location = new System.Drawing.Point(74, 172);
+            this.btnOK.Location = new System.Drawing.Point(64, 172);
             this.btnOK.Name = "btnOK";
             this.btnOK.Radius = 2;
             this.btnOK.ShadowDepth = 3;
@@ -63,7 +64,7 @@
             this.swLow.AutoSize = true;
             this.swLow.Depth = 0;
             this.swLow.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.swLow.Location = new System.Drawing.Point(34, 117);
+            this.swLow.Location = new System.Drawing.Point(24, 117);
             this.swLow.Margin = new System.Windows.Forms.Padding(0);
             this.swLow.MouseLocation = new System.Drawing.Point(-1, -1);
             this.swLow.MouseState = MaterialSkin.MouseState.HOVER;
@@ -80,7 +81,7 @@
             this.swSound.AutoSize = true;
             this.swSound.Depth = 0;
             this.swSound.Font = new System.Drawing.Font("Microsoft Tai Le", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.swSound.Location = new System.Drawing.Point(34, 80);
+            this.swSound.Location = new System.Drawing.Point(24, 80);
             this.swSound.Margin = new System.Windows.Forms.Padding(0);
             this.swSound.MouseLocation = new System.Drawing.Point(-1, -1);
             this.swSound.MouseState = MaterialSkin.MouseState.HOVER;
@@ -97,6 +98,31 @@
             this.metroToolTip1.StyleManager = null;
             this.metroToolTip1.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
+            // lbChartName
+            // 
+            this.lbChartName.AutoSize = true;
+            this.lbChartName.Font = new System.Drawing.Font("Segoe UI Light", 15F);
+            this.lbChartName.Location = new System.Drawing.Point(29, 23);
+            this.lbChartName.Name = "lbChartName";
+            this.lbChartName.Size = new System.Drawing.Size(83, 28);
+            this.lbChartName.TabIndex = 55;
+            this.lbChartName.Text = "CÀI ĐẶT";
+            // 
+            // btnAboutus
+            // 
+            this.btnAboutus.BackColor = System.Drawing.Color.Transparent;
+            this.btnAboutus.EffectType = Material_Design_for_Winform.MaterialFlatButton.ET.Dark;
+            this.btnAboutus.Font = new System.Drawing.Font("Segoe UI", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAboutus.ForeColor = System.Drawing.Color.DarkCyan;
+            this.btnAboutus.Icon = null;
+            this.btnAboutus.Location = new System.Drawing.Point(82, 244);
+            this.btnAboutus.Name = "btnAboutus";
+            this.btnAboutus.Size = new System.Drawing.Size(108, 36);
+            this.btnAboutus.TabIndex = 56;
+            this.btnAboutus.Text = "About us";
+            this.btnAboutus.TextAlign = System.Drawing.StringAlignment.Center;
+            this.btnAboutus.Click += new System.EventHandler(this.btnAboutus_Click);
+            // 
             // btnExit
             // 
             this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -107,7 +133,7 @@
             this.btnExit.DrawShadows = true;
             this.btnExit.HighEmphasis = true;
             this.btnExit.Icon = ((System.Drawing.Image)(resources.GetObject("btnExit.Icon")));
-            this.btnExit.Location = new System.Drawing.Point(259, 1);
+            this.btnExit.Location = new System.Drawing.Point(233, 1);
             this.btnExit.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnExit.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnExit.Name = "btnExit";
@@ -119,23 +145,14 @@
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnCancel_Click);
             // 
-            // lbChartName
-            // 
-            this.lbChartName.AutoSize = true;
-            this.lbChartName.Font = new System.Drawing.Font("Segoe UI Light", 15F);
-            this.lbChartName.Location = new System.Drawing.Point(29, 23);
-            this.lbChartName.Name = "lbChartName";
-            this.lbChartName.Size = new System.Drawing.Size(83, 28);
-            this.lbChartName.TabIndex = 55;
-            this.lbChartName.Text = "CÀI ĐẶT";
-            // 
             // frmSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnExit;
-            this.ClientSize = new System.Drawing.Size(302, 264);
+            this.ClientSize = new System.Drawing.Size(276, 369);
+            this.Controls.Add(this.btnAboutus);
             this.Controls.Add(this.lbChartName);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.btnOK);
@@ -158,5 +175,6 @@
         private MetroFramework.Components.MetroToolTip metroToolTip1;
         private MaterialSkin.Controls.MaterialButton btnExit;
         private System.Windows.Forms.Label lbChartName;
+        private Material_Design_for_Winform.MaterialFlatButton btnAboutus;
     }
 }
