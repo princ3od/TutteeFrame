@@ -1395,9 +1395,9 @@
             this.txtSumStudent.ForeColor = System.Drawing.Color.Lime;
             this.txtSumStudent.Location = new System.Drawing.Point(223, 24);
             this.txtSumStudent.Name = "txtSumStudent";
-            this.txtSumStudent.Size = new System.Drawing.Size(42, 25);
+            this.txtSumStudent.Size = new System.Drawing.Size(33, 25);
             this.txtSumStudent.TabIndex = 3;
-            this.txtSumStudent.Text = "888";
+            this.txtSumStudent.Text = "---";
             this.txtSumStudent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.txtSumStudent.UseCustomBackColor = true;
             this.txtSumStudent.UseCustomForeColor = true;
@@ -1421,9 +1421,9 @@
             this.txtSumClass.ForeColor = System.Drawing.Color.Red;
             this.txtSumClass.Location = new System.Drawing.Point(28, 24);
             this.txtSumClass.Name = "txtSumClass";
-            this.txtSumClass.Size = new System.Drawing.Size(42, 25);
+            this.txtSumClass.Size = new System.Drawing.Size(33, 25);
             this.txtSumClass.TabIndex = 2;
-            this.txtSumClass.Text = "888";
+            this.txtSumClass.Text = "---";
             this.txtSumClass.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.txtSumClass.UseCustomBackColor = true;
             this.txtSumClass.UseCustomForeColor = true;
@@ -2447,7 +2447,7 @@
             this.lbFormClass.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.lbFormClass.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
             this.lbFormClass.HighEmphasis = true;
-            this.lbFormClass.Location = new System.Drawing.Point(28, 35);
+            this.lbFormClass.Location = new System.Drawing.Point(39, 35);
             this.lbFormClass.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbFormClass.Name = "lbFormClass";
             this.lbFormClass.Size = new System.Drawing.Size(15, 24);
@@ -2472,7 +2472,7 @@
             this.lbTotalStudentInClass.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.lbTotalStudentInClass.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
             this.lbTotalStudentInClass.HighEmphasis = true;
-            this.lbTotalStudentInClass.Location = new System.Drawing.Point(184, 35);
+            this.lbTotalStudentInClass.Location = new System.Drawing.Point(195, 35);
             this.lbTotalStudentInClass.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbTotalStudentInClass.Name = "lbTotalStudentInClass";
             this.lbTotalStudentInClass.Size = new System.Drawing.Size(15, 24);
@@ -2670,7 +2670,7 @@
             this.lbTotalStudentIncClass2.Font = new System.Drawing.Font("Roboto Medium", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Pixel);
             this.lbTotalStudentIncClass2.FontType = MaterialSkin.MaterialSkinManager.fontType.H6;
             this.lbTotalStudentIncClass2.HighEmphasis = true;
-            this.lbTotalStudentIncClass2.Location = new System.Drawing.Point(15, 26);
+            this.lbTotalStudentIncClass2.Location = new System.Drawing.Point(28, 26);
             this.lbTotalStudentIncClass2.MouseState = MaterialSkin.MouseState.HOVER;
             this.lbTotalStudentIncClass2.Name = "lbTotalStudentIncClass2";
             this.lbTotalStudentIncClass2.Size = new System.Drawing.Size(15, 24);
