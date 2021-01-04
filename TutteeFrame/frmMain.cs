@@ -926,7 +926,7 @@ namespace TutteeFrame
         {
             if (firstLoad)
                 return;
-
+            btnApproveUpdateScore.Enabled = false;
             BackgroundWorker worker = new BackgroundWorker();
             cbbTeachingClass.Enabled = false;
             cbbTeachingSemester.Enabled = false;
@@ -967,6 +967,7 @@ namespace TutteeFrame
 
         private void cbbTeachingSemester_SelectedIndexChanged(object sender, EventArgs e)
         {
+            btnApproveUpdateScore.Enabled = false;
             lbScoreTittle.Text = string.Format("Bảng điểm lớp {0} - môn {1} - HK {2} - năm {3}",
                  cbbTeachingClass.Text, mainTeacher.Subject.Name,
                      cbbTeachingSemester.Text, teachings[cbbTeachingSemester.SelectedIndex].Year);
@@ -1826,7 +1827,26 @@ namespace TutteeFrame
             school.FullName = txtSchoolName.Text;
             school.Slogan = txtSchoolSlogan.Text;
             school.Logo = ptbSchoolLogoBig.Image;
-            (new SchoolController()).UpdateSchoolInfo(school);
+            bool success = false;
+            mainProgressbar.Visible = lbInformation.Visible = true;
+            lbInformation.Text = "Đang cập nhật thông tin trường...";
+            BackgroundWorker worker = new BackgroundWorker();
+            worker.DoWork += (s, ev) =>
+            {
+                success = (new SchoolController()).UpdateSchoolInfo(school);
+            };
+            worker.RunWorkerCompleted += (s, ev) =>
+            {
+                mainProgressbar.Visible = lbInformation.Visible = false;
+                if (success)
+                {
+                    MetroMessageBox.Show(this, "Cập nhật thông tin trường thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ptbSchoolLogo.Image = ptbSchoolLogoBig.Image;
+                }
+                else
+                    MetroMessageBox.Show(this, "Cập nhật thông tin trường thất bại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            };
+            worker.RunWorkerAsync();
         }
         #endregion
 
