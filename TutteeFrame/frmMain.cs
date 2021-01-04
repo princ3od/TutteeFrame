@@ -701,12 +701,15 @@ namespace TutteeFrame
         }
         private void DeleteStudent(object sender, EventArgs e)
         {
+            if (MetroMessageBox.Show(this, "Xác nhận xóa học sinh đã chọn?", "Xác nhận", MessageBoxButtons.YesNo,
+                               MessageBoxIcon.None) == DialogResult.No)
+                return;
             ListView.SelectedListViewItemCollection collect = listViewStudents.SelectedItems;
             if (collect.Count > 0)
             {
                 string studentId = collect[0].SubItems[0].Text;
                 if (studentController.DeleteStudent(studentId))
-                    MetroMessageBox.Show(this, "Xóa thành công");
+                    MetroMessageBox.Show(this, "Xóa thành công", "Thôgn báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 listViewStudents.Items.Clear();
 
                 studentLoader.RunWorkerAsync(cbbStudentClass.Text);
