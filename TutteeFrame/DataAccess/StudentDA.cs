@@ -321,37 +321,9 @@ namespace TutteeFrame.DataAccess
                 return false;
             try
             {
-                strQuery = "SELECT ScoreBoardID FROM SCOREBOARD WHERE StudentID = @studentid";
-                SqlCommand sqlCommand = new SqlCommand(strQuery, connection);
-                sqlCommand.Parameters.AddWithValue("@studentid", _studentID);
-                List<string> boards = new List<string>();
-
-                using (SqlDataReader sqlDataReader = sqlCommand.ExecuteReader())
-                    while (sqlDataReader.Read())
-                        boards.Add(sqlDataReader.GetString(0));
-                //Xóa SUBJECTSCORE
-                foreach (string board in boards)
-                {
-                    strQuery = $"DELETE FROM SUBJECTSCORE WHERE ScoreBoardID = @board";
-                    sqlCommand = new SqlCommand(strQuery, connection);
-                    sqlCommand.Parameters.AddWithValue("@board", board);
-                    sqlCommand.ExecuteNonQuery();
-                }
-                //Xóa LEANRESULT
-                strQuery = $"DELETE FROM LEARNRESULT WHERE StudentID = @studentid";
-                sqlCommand = new SqlCommand(strQuery, connection);
-                sqlCommand.Parameters.AddWithValue("@studentid", _studentID);
-                sqlCommand.ExecuteNonQuery();
-                //Xóa SCOREBOARD
-                foreach (string board in boards)
-                {
-                    strQuery = $"DELETE FROM SCOREBOARD WHERE ScoreBoardID = @board";
-                    sqlCommand = new SqlCommand(strQuery, connection);
-                    sqlCommand.Parameters.AddWithValue("@board", board);
-                    sqlCommand.ExecuteNonQuery();
-                }
                 //Xóa học sinh
                 strQuery = $"SELECT ClassID FROM STUDENT WHERE STUDENT.StudentID = @studentid";
+                SqlCommand sqlCommand = new SqlCommand(strQuery, connection);
                 sqlCommand = new SqlCommand(strQuery, connection);
                 sqlCommand.Parameters.AddWithValue("@studentid", _studentID);
                 string classID = (string)sqlCommand.ExecuteScalar();
@@ -359,11 +331,6 @@ namespace TutteeFrame.DataAccess
                 sqlCommand = connection.CreateCommand();
                 sqlCommand.CommandText = strQuery;
                 sqlCommand.Parameters.AddWithValue("@studentid", _studentID);
-                sqlCommand.ExecuteNonQuery();
-                //Cập nhật tổng số học sinh của lớp
-                strQuery = "UPDATE CLASS SET StudentNum = StudentNum + 1 WHERE ClassID = @classid";
-                sqlCommand = new SqlCommand(strQuery, connection);
-                sqlCommand.Parameters.AddWithValue("@classid", classID);
                 sqlCommand.ExecuteNonQuery();
             }
             catch (Exception ex)
